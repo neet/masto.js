@@ -1,5 +1,6 @@
 {
-  "name": "@lagune/core",
+  "name": "@lagunehq/core",
+  "private": false,
   "version": "1.0.1",
   "description": "Mastodon API client for TypeScript",
   "main": "dist/index.js",
@@ -9,17 +10,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/neetshin/lagune-core.git"
+    "url": "git+https://github.com/lagunehq/core.git"
   },
   "keywords": [
     "mastodon"
   ],
-  "author": "Neetshin <n33t5hin@gmail.com>",
+  "author": "neetshin",
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://github.com/neetshin/lagune-core/issues"
+    "url": "https://github.com/lagunehq/core/issues"
   },
-  "homepage": "https://github.com/neetshin/lagune-core#readme",
+  "homepage": "https://github.com/lagunehq/core#readme",
   "dependencies": {
     "query-string": "^6.0.0"
   },
