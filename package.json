@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Mastodon API client for TypeScript",
   "main": "dist/index.js",
-  "typings": "./dist/index.d.ts",
+  "typings": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,10 @@
   },
   "homepage": "https://github.com/neetshin/lagune-core#readme",
   "dependencies": {
-    "@types/query-string": "^5.1.0",
     "query-string": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/query-string": "^5.1.0",
+    "typescript": "^2.8.1"
   }
 }

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es5",
     "module": "commonjs",
     "sourceMap": false,
     "outDir": "./dist",
@@ -12,8 +12,6 @@
     "moduleResolution": "node",
     "declaration": true,
     "allowSyntheticDefaultImports": true,
-    "allowJs": true,
-    "checkJs": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
