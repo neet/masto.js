@@ -1,0 +1,28 @@
+---
+defaultSeverity: warning
+
+extends:
+- tslint:recommended
+
+rules:
+  no-duplicate-imports: true
+  space-before-function-paren: true
+  member-ordering: false
+  ordered-imports: false
+  object-literal-sort-keys: false
+  max-line-length: false
+  variable-name: false
+  no-shadowed-variable: false
+  interface-name:
+  - true
+  - never-prefix
+  array-type:
+  - true
+  - array
+  quotemark:
+  - true
+  - single
+  indent:
+  - true
+  - spaces
+  - 2
