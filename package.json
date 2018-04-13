@@ -1,6 +1,6 @@
 {
-  "name": "lagune-core",
-  "version": "1.0.0",
+  "name": "@lagune/core",
+  "version": "1.0.1",
   "description": "Mastodon API client for TypeScript",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
