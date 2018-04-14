@@ -1,60 +1,50 @@
 import * as Mastodon from './types';
+import EventEmitter from 'eventemitter3';
+import WebSocketClient from 'websocket.js';
 import { stringify } from 'query-string';
 
-export class Client {
+export class Client extends EventEmitter {
 
-  private url = '';
-  private urlVersion = '/api/v1';
-  private defaultHeaders: { [key: string]: string } = {};
+  private url: string = '';
+  private token: string = '';
+  private urlVersion: string = '/api/v1';
+  private streamingUrl: string= '';
+
+  constructor () {
+    super();
+  }
 
   private _request = (url: string, options: RequestInit = {}): Promise<any> => {
-    const requestOptions: RequestInit = {
-      ...options,
-      headers: { ...this.defaultHeaders, ...options.headers },
+    options = { ...options };
+
+    options.headers = {
+      Authorization: `Bearer: ${this.token}`,
+      ...options.headers,
     };
 
-    return fetch(url, requestOptions)
+    return fetch(url, options)
       .then((response) => response.json()).then((data) => data)
       .catch((error)   => error.json()).then((error) => error);
   }
 
   private _get = (path: string, params = {}, options: RequestInit = {}): Promise<any> => {
-    return this._request(`${this.getBaseUrl()}${path}${params ? '?' + stringify(params) : ''}`, {
-      method: 'GET',
-      ...options,
-    });
+    return this._request(`${this.getBaseUrl()}${path}${params ? '?' + stringify(params) : ''}`, { method: 'GET', ...options });
   }
 
   private _post = (path: string, body = {}, options: RequestInit = {}): Promise<any> => {
-    return this._request(`${this.getBaseUrl()}${path}`, {
-      method: 'POST',
-      body: JSON.stringify(body),
-      ...options,
-    });
+    return this._request(`${this.getBaseUrl()}${path}`, { method: 'POST', body: JSON.stringify(body), ...options });
   }
 
   private _put = (path: string, body = {}, options: RequestInit = {}): Promise<any> => {
-    return this._request(`${this.getBaseUrl()}${path}`, {
-      method: 'PUT',
-      body: JSON.stringify(body),
-      ...options,
-    });
+    return this._request(`${this.getBaseUrl()}${path}`, { method: 'PUT', body: JSON.stringify(body), ...options });
   }
 
   private _delete = (path: string, body = {}, options: RequestInit = {}): Promise<any> => {
-    return this._request(`${this.getBaseUrl()}${path}`, {
-      method: 'DELETE',
-      body: JSON.stringify(body),
-      ...options,
-    });
+    return this._request(`${this.getBaseUrl()}${path}`, { method: 'DELETE', body: JSON.stringify(body), ...options });
   }
 
   private _patch = (path: string, body = {}, options: RequestInit = {}): Promise<any> => {
-    return this._request(`${this.getBaseUrl()}${path}`, {
-      method: 'PATCH',
-      body: JSON.stringify(body),
-      ...options,
-    });
+    return this._request(`${this.getBaseUrl()}${path}`, { method: 'PATCH', body: JSON.stringify(body), ...options });
   }
 
   /**
@@ -62,6 +52,12 @@ export class Client {
    * @return Base url of API
    */
   private getBaseUrl = (): string => `${this.url}${this.urlVersion}`;
+
+  /**
+   * Getting base url of streaming API
+   * @return Base url of streaming API
+   */
+  private getStreamingBaseUrl = (): string => `${this.getStreamingUrl()}${this.getUrlVersion()}`;
 
   /**
    * Setting URL of Mastodon that logged in without trailing slash
@@ -75,9 +71,21 @@ export class Client {
    * Getting URL of Mastodon that logged in
    * @return The URL of current logged in Mastodon
    */
-  public getUrl = (): string => {
-    return this.url;
+  public getUrl = (): string => this.url;
+
+  /**
+   * Setting URL of Mastodon's streaming api that started with `wss://`
+   * @param streamingUrl The streaming url
+   */
+  public setStreamingUrl = (streamingUrl: string): void => {
+    this.streamingUrl = streamingUrl;
   }
+
+  /**
+   * Getting streaming URL
+   * @return The streaming URL
+   */
+  public getStreamingUrl = (): string => this.streamingUrl;
 
   /**
    * Setting API version of Mastodon without trailing slash
@@ -91,16 +99,49 @@ export class Client {
    * Getting API version of Mastodon
    * @return API version
    */
-  public getUrlVersion = (): string => {
-    return this.urlVersion;
-  }
+  public getUrlVersion = (): string => this.urlVersion;
 
   /**
    * Setting token for OAuth
-   * @param token OAuth token
+   * @param token Access token
    */
   public setToken = (token: string) => {
-    this.defaultHeaders.Authorization = `Bearer: ${token}`;
+    this.token = token;
+  }
+
+  /**
+   * Getting token for OAuth
+   * @return Access token
+   */
+  public getToken = () => this.token;
+
+  /**
+   * Add event listener for specified Event
+   * @param event Type of event `update`, `delete` or `notification`.
+   * @param listener Callback function
+   * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md)
+   */
+  public on (event: Mastodon.EventTypes, listener: (...args: any[]) => void) {
+    return super.on(event, listener);
+  }
+
+  /**
+   * Starting streaming with specified channel
+   * @param stream Type of channel
+   * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md)
+   */
+  public stream = (stream: string) => {
+    const params: any = { stream };
+
+    if ( this.token ) {
+      params.access_token = this.token;
+    }
+
+    const ws = new WebSocketClient(`${this.getStreamingBaseUrl()}/streaming?${stringify(params)}`);
+
+    ws.onmessage = (e) => this.emit(e.type, JSON.parse(e.data));
+
+    return ws;
   }
 
   /**
@@ -255,12 +296,15 @@ export class Client {
   /**
    * Registering an application
    * - These values should be requested in the app itself from the API for each new app install + mastodon domain combo, and stored in the app for future requests.
-   * @param options From data
+   * @param client_name Name of your application
+   * @param redirect_uris Where the user should be redirected after authorization (for no redirect, use `urn:ietf:wg:oauth:2.0:oob`)
+   * @param scopes This can be a space-separated list of the following items: "read", "write" and "follow" (see this page for details on what the scopes do)
+   * @param website URL to the homepage of your app
    * @return Returns `id`, `client_id` and `client_secret` which can be used with OAuth authentication in your 3rd party app.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#registering-an-application)
    */
-  public createApp = (options: Mastodon.CreateAppOptions): Promise<Mastodon.OAuth|Mastodon.Error> => {
-    return this._post('/apps', options);
+  public createApp = (client_name: string, redirect_uris: string, scopes: string, website?: string): Promise<Mastodon.OAuth|Mastodon.Error> => {
+    return this._post('/apps', { client_name, redirect_uris, scopes, website });
   }
 
   /**
@@ -561,12 +605,14 @@ export class Client {
 
   /**
    * Reporting a user
-   * @param options Form data
+   * @param account_id The ID of the account to report
+   * @param status_ids The IDs of statuses to report (can be an array)
+   * @param comment A comment to associate with the report (up to 1000 characters)
    * @return The finished Report
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#reporting-a-user)
    */
-  public reportUser = (options: Mastodon.ReportUserOptions): Promise<Mastodon.Report|Mastodon.Error> => {
-    return this._post('/reports', options);
+  public reportUser = (account_id: string, status_ids: string|string[], comment: string): Promise<Mastodon.Report|Mastodon.Error> => {
+    return this._post('/reports', { account_id, status_ids, comment });
   }
 
   /**
@@ -635,7 +681,7 @@ export class Client {
    * @return An array of Accounts
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-who-rebloggedfavourited-a-status)
    */
-  public fetchFavourites = (id: string, options: Mastodon.FetchFavourites): Promise<Mastodon.Account[]> => {
+  public fetchFavourites = (id: string, options?: Mastodon.FetchFavourites): Promise<Mastodon.Account[]> => {
     return this._get(`/statuses/${id}/favourited_by`, options);
   }
 

@@ -1,8 +1,12 @@
 import * as Mastodon from './types';
-export declare class Client {
+import EventEmitter from 'eventemitter3';
+import WebSocketClient from 'websocket.js';
+export declare class Client extends EventEmitter {
     private url;
+    private token;
     private urlVersion;
-    private defaultHeaders;
+    private streamingUrl;
+    constructor();
     private _request;
     private _get;
     private _post;
@@ -15,6 +19,11 @@ export declare class Client {
      */
     private getBaseUrl;
     /**
+     * Getting base url of streaming API
+     * @return Base url of streaming API
+     */
+    private getStreamingBaseUrl;
+    /**
      * Setting URL of Mastodon that logged in without trailing slash
      * @param url URL of Mastodon
      */
@@ -24,6 +33,16 @@ export declare class Client {
      * @return The URL of current logged in Mastodon
      */
     getUrl: () => string;
+    /**
+     * Setting URL of Mastodon's streaming api that started with `wss://`
+     * @param streamingUrl The streaming url
+     */
+    setStreamingUrl: (streamingUrl: string) => void;
+    /**
+     * Getting streaming URL
+     * @return The streaming URL
+     */
+    getStreamingUrl: () => string;
     /**
      * Setting API version of Mastodon without trailing slash
      * @param urlVersion API version such as `/api/v1`
@@ -36,9 +55,27 @@ export declare class Client {
     getUrlVersion: () => string;
     /**
      * Setting token for OAuth
-     * @param token OAuth token
+     * @param token Access token
      */
     setToken: (token: string) => void;
+    /**
+     * Getting token for OAuth
+     * @return Access token
+     */
+    getToken: () => string;
+    /**
+     * Add event listener for specified Event
+     * @param event Type of event `update`, `delete` or `notification`.
+     * @param listener Callback function
+     * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md)
+     */
+    on(event: Mastodon.EventTypes, listener: (...args: any[]) => void): this;
+    /**
+     * Starting streaming with specified channel
+     * @param stream Type of channel
+     * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md)
+     */
+    stream: (stream: string) => WebSocketClient;
     /**
      * Fetching an account
      * @param id ID of the account
@@ -149,11 +186,14 @@ export declare class Client {
     /**
      * Registering an application
      * - These values should be requested in the app itself from the API for each new app install + mastodon domain combo, and stored in the app for future requests.
-     * @param options From data
+     * @param client_name Name of your application
+     * @param redirect_uris Where the user should be redirected after authorization (for no redirect, use `urn:ietf:wg:oauth:2.0:oob`)
+     * @param scopes This can be a space-separated list of the following items: "read", "write" and "follow" (see this page for details on what the scopes do)
+     * @param website URL to the homepage of your app
      * @return Returns `id`, `client_id` and `client_secret` which can be used with OAuth authentication in your 3rd party app.
      * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#registering-an-application)
      */
-    createApp: (options: Mastodon.CreateAppOptions) => Promise<Mastodon.Error | Mastodon.OAuth>;
+    createApp: (client_name: string, redirect_uris: string, scopes: string, website?: string | undefined) => Promise<Mastodon.Error | Mastodon.OAuth>;
     /**
      * Fetching a user's blocks
      * - Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
@@ -368,11 +408,13 @@ export declare class Client {
     fetchReports: () => Promise<Mastodon.Error | Mastodon.Report[]>;
     /**
      * Reporting a user
-     * @param options Form data
+     * @param account_id The ID of the account to report
+     * @param status_ids The IDs of statuses to report (can be an array)
+     * @param comment A comment to associate with the report (up to 1000 characters)
      * @return The finished Report
      * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#reporting-a-user)
      */
-    reportUser: (options: Mastodon.ReportUserOptions) => Promise<Mastodon.Error | Mastodon.Report>;
+    reportUser: (account_id: string, status_ids: string | string[], comment: string) => Promise<Mastodon.Error | Mastodon.Report>;
     /**
      * Searching for content
      * - If `q` is a URL, Mastodon will attempt to fetch the provided account or status. Otherwise, it will do a local account and hashtag search.
@@ -424,7 +466,7 @@ export declare class Client {
      * @return An array of Accounts
      * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-who-rebloggedfavourited-a-status)
      */
-    fetchFavourites: (id: string, options: Mastodon.FetchFavourites) => Promise<Mastodon.Account[]>;
+    fetchFavourites: (id: string, options?: Mastodon.FetchFavourites | undefined) => Promise<Mastodon.Account[]>;
     /**
      * Posting a new status
      * - Note: In order to prevent duplicate statuses, this endpoint accepts an `Idempotency-Key` header, which should be set to a unique string for each new status. In the event of a network error, a request can be retried with the same `Idempotency-Key`. Only one status will be created regardless of how many requests with the same `Idempotency-Key` did go through. See https://stripe.com/blog/idempotency for more on idempotency and idempotency keys.

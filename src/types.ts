@@ -1,7 +1,8 @@
-export type StatusVisibility = 'public'|'unlisted'|'private'|'direct';
-export type AttachmentType   = 'image'|'video'|'gifv'|'unknown';
-export type CardType         = 'link'|'photo'|'video'|'rich';
-export type NotificationType = 'mention'|'reblog'|'favourite'|'follow';
+export type EventTypes        = 'update'|'delete'|'notification';
+export type VisibilityTypes   = 'public'|'unlisted'|'private'|'direct';
+export type AttachmentTypes   = 'image'|'video'|'gifv'|'unknown';
+export type CardTypes         = 'link'|'photo'|'video'|'rich';
+export type NotificationTypes = 'mention'|'reblog'|'favourite'|'follow';
 
 export interface Account {
   /** The ID of the account */
@@ -60,7 +61,7 @@ export interface Attachment {
   /** ID of the attachment */
   id: string;
   /** One of: "image", "video", "gifv", "unknown" */
-  type: AttachmentType;
+  type: AttachmentTypes;
   /** URL of the locally hosted version of the image */
   url: string;
   /** For remote images, the remote URL of the original image */
@@ -112,7 +113,7 @@ export interface Card {
   /** The image associated with the card, if any */
   image?: string;
   /** "link", "photo", "video", or "rich" */
-  type: CardType;
+  type: CardTypes;
   /** OEmbed data */
   author_name?: string;
   /** OEmbed data */
@@ -205,7 +206,7 @@ export interface Notification {
   /** The notification ID */
   id: string;
   /** One of: "mention", "reblog", "favourite", "follow" */
-  type: NotificationType;
+  type: NotificationTypes;
   /** The time the notification was created */
   created_at: string;
   /** The Account sending the notification to the user */
@@ -285,7 +286,7 @@ export interface Status {
   /** If not empty, warning text that should be displayed before the actual content */
   spoiler_text: string;
   /** One of: `public`, `unlisted`, `private`, `direct` */
-  visibility: StatusVisibility;
+  visibility: VisibilityTypes;
   /** An array of Attachments */
   media_attachments: Attachment[];
   /** An array of Mentions */
@@ -366,17 +367,6 @@ export interface SearchAccountsOptions {
   following: false;
 }
 
-export interface CreateAppOptions {
-  /** Name of your application */
-  client_name: string;
-  /** Where the user should be redirected after authorization (for no redirect, use `urn:ietf:wg:oauth:2.0:oob`) */
-  redirect_uris: string;
-  /** This can be a space-separated list of the following items: "read", "write" and "follow" (see this page for details on what the scopes do) */
-  scopes: string;
-  /** URL to the homepage of your app */
-  website?: string;
-}
-
 export interface FetchBlocksOptions {
   /** Get a list of blocks with ID less than this value */
   max_id?: string;
@@ -444,16 +434,7 @@ export interface FetchNotifications {
   /** Maximum number of notifications to get (Default 15, Max 30) */
   limit: 15;
   /** Array of notifications to exclude (Allowed values: "follow", "favourite", "reblog", "mention") */
-  exclude_types?: (NotificationType)[];
-}
-
-export interface ReportUserOptions {
-  /** The ID of the account to report */
-  account_id: string;
-  /** The IDs of statuses to report (can be an array) */
-  status_ids: string[];
-  /** A comment to associate with the report (up to 1000 characters) */
-  comment: string;
+  exclude_types?: (NotificationTypes)[];
 }
 
 export interface FetchReblogs {
@@ -484,7 +465,7 @@ export interface CreateStatusOptions {
   /** Text to be shown as a warning before the actual content */
   spoiler_text?: string;
   /** Either "direct", "private", "unlisted" or "public" */
-  visibility?: StatusVisibility;
+  visibility?: VisibilityTypes;
 }
 
 export interface FetchTimelineOptions {

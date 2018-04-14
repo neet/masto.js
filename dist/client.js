@@ -1,4 +1,14 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __assign = (this && this.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
         s = arguments[i];
@@ -8,41 +18,46 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var eventemitter3_1 = require("eventemitter3");
+var websocket_js_1 = require("websocket.js");
 var query_string_1 = require("query-string");
-var Client = /** @class */ (function () {
+var Client = /** @class */ (function (_super) {
+    __extends(Client, _super);
     function Client() {
-        var _this = this;
-        this.url = '';
-        this.urlVersion = '/api/v1';
-        this.defaultHeaders = {};
-        this._request = function (url, options) {
+        var _this = _super.call(this) || this;
+        _this.url = '';
+        _this.token = '';
+        _this.urlVersion = '/api/v1';
+        _this.streamingUrl = '';
+        _this._request = function (url, options) {
             if (options === void 0) { options = {}; }
-            var requestOptions = __assign({}, options, { headers: __assign({}, _this.defaultHeaders, options.headers) });
-            return fetch(url, requestOptions)
+            options = __assign({}, options);
+            options.headers = __assign({ Authorization: "Bearer: " + _this.token }, options.headers);
+            return fetch(url, options)
                 .then(function (response) { return response.json(); }).then(function (data) { return data; })
                 .catch(function (error) { return error.json(); }).then(function (error) { return error; });
         };
-        this._get = function (path, params, options) {
+        _this._get = function (path, params, options) {
             if (params === void 0) { params = {}; }
             if (options === void 0) { options = {}; }
             return _this._request("" + _this.getBaseUrl() + path + (params ? '?' + query_string_1.stringify(params) : ''), __assign({ method: 'GET' }, options));
         };
-        this._post = function (path, body, options) {
+        _this._post = function (path, body, options) {
             if (body === void 0) { body = {}; }
             if (options === void 0) { options = {}; }
             return _this._request("" + _this.getBaseUrl() + path, __assign({ method: 'POST', body: JSON.stringify(body) }, options));
         };
-        this._put = function (path, body, options) {
+        _this._put = function (path, body, options) {
             if (body === void 0) { body = {}; }
             if (options === void 0) { options = {}; }
             return _this._request("" + _this.getBaseUrl() + path, __assign({ method: 'PUT', body: JSON.stringify(body) }, options));
         };
-        this._delete = function (path, body, options) {
+        _this._delete = function (path, body, options) {
             if (body === void 0) { body = {}; }
             if (options === void 0) { options = {}; }
             return _this._request("" + _this.getBaseUrl() + path, __assign({ method: 'DELETE', body: JSON.stringify(body) }, options));
         };
-        this._patch = function (path, body, options) {
+        _this._patch = function (path, body, options) {
             if (body === void 0) { body = {}; }
             if (options === void 0) { options = {}; }
             return _this._request("" + _this.getBaseUrl() + path, __assign({ method: 'PATCH', body: JSON.stringify(body) }, options));
@@ -51,41 +66,73 @@ var Client = /** @class */ (function () {
          * Getting base url of API
          * @return Base url of API
          */
-        this.getBaseUrl = function () { return "" + _this.url + _this.urlVersion; };
+        _this.getBaseUrl = function () { return "" + _this.url + _this.urlVersion; };
+        /**
+         * Getting base url of streaming API
+         * @return Base url of streaming API
+         */
+        _this.getStreamingBaseUrl = function () { return "" + _this.getStreamingUrl() + _this.getUrlVersion(); };
         /**
          * Setting URL of Mastodon that logged in without trailing slash
          * @param url URL of Mastodon
          */
-        this.setUrl = function (url) {
+        _this.setUrl = function (url) {
             _this.url = url;
         };
         /**
          * Getting URL of Mastodon that logged in
          * @return The URL of current logged in Mastodon
          */
-        this.getUrl = function () {
-            return _this.url;
+        _this.getUrl = function () { return _this.url; };
+        /**
+         * Setting URL of Mastodon's streaming api that started with `wss://`
+         * @param streamingUrl The streaming url
+         */
+        _this.setStreamingUrl = function (streamingUrl) {
+            _this.streamingUrl = streamingUrl;
         };
+        /**
+         * Getting streaming URL
+         * @return The streaming URL
+         */
+        _this.getStreamingUrl = function () { return _this.streamingUrl; };
         /**
          * Setting API version of Mastodon without trailing slash
          * @param urlVersion API version such as `/api/v1`
          */
-        this.setUrlVersion = function (urlVersion) {
+        _this.setUrlVersion = function (urlVersion) {
             _this.urlVersion = urlVersion;
         };
         /**
          * Getting API version of Mastodon
          * @return API version
          */
-        this.getUrlVersion = function () {
-            return _this.urlVersion;
-        };
+        _this.getUrlVersion = function () { return _this.urlVersion; };
         /**
          * Setting token for OAuth
-         * @param token OAuth token
+         * @param token Access token
          */
-        this.setToken = function (token) {
-            _this.defaultHeaders.Authorization = "Bearer: " + token;
+        _this.setToken = function (token) {
+            _this.token = token;
+        };
+        /**
+         * Getting token for OAuth
+         * @return Access token
+         */
+        _this.getToken = function () { return _this.token; };
+        /**
+         * Starting streaming with specified channel
+         * @param stream Type of channel
+         * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md)
+         */
+        _this.stream = function (stream) {
+            var params = { stream: stream };
+            if (_this.token) {
+                params.access_token = _this.token;
+            }
+            var ws = new websocket_js_1.default(_this.getStreamingBaseUrl() + "/streaming?" + query_string_1.stringify(params));
+            ws.onmessage = function (e) { return _this.emit(e.type, JSON.parse(e.data)); };
+            return ws;
         };
         /**
          * Fetching an account
@@ -93,7 +140,7 @@ var Client = /** @class */ (function () {
          * @return An account
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-an-account)
          */
-        this.fetchAccount = function (id) {
+        _this.fetchAccount = function (id) {
             return _this._get("/accounts/" + id);
         };
         /**
@@ -101,7 +148,7 @@ var Client = /** @class */ (function () {
          * @return The authenticated user's Account with an extra attribute source which contains these keys
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-the-current-user)
          */
-        this.verfiyCredentials = function () {
+        _this.verfiyCredentials = function () {
             return _this._get('/accounts/verify_credentials');
         };
         /**
@@ -110,7 +157,7 @@ var Client = /** @class */ (function () {
          * @return The authenticated user's Account.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#updating-the-current-user)
          */
-        this.updateCredentials = function (options) {
+        _this.updateCredentials = function (options) {
             return _this._patch('/accounts/update_credentials', options, { headers: { 'Content-Type': 'multipart/form-data' } });
         };
         /**
@@ -121,7 +168,7 @@ var Client = /** @class */ (function () {
          * @return An array of accounts
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-followers)
          */
-        this.fetchAccountFollowers = function (id, options) {
+        _this.fetchAccountFollowers = function (id, options) {
             return _this._get("/accounts/" + id + "/followers", options);
         };
         /**
@@ -132,7 +179,7 @@ var Client = /** @class */ (function () {
          * @return An array of accounts
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-who-account-is-following)
          */
-        this.fetchAccountFollowing = function (id, options) {
+        _this.fetchAccountFollowing = function (id, options) {
             return _this._get("/accounts/" + id + "/following", options);
         };
         /**
@@ -143,7 +190,7 @@ var Client = /** @class */ (function () {
          * @return An array of statuses
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-statuses)
          */
-        this.fetchAccountStatuses = function (id, options) {
+        _this.fetchAccountStatuses = function (id, options) {
             return _this._get("/accounts/" + id + "/statuses", options);
         };
         /**
@@ -152,7 +199,7 @@ var Client = /** @class */ (function () {
          * @return The target account's relationship
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#followingunfollowing-an-account)
          */
-        this.followAccount = function (id) {
+        _this.followAccount = function (id) {
             return _this._post("/accounts/" + id + "/follow");
         };
         /**
@@ -161,7 +208,7 @@ var Client = /** @class */ (function () {
          * @return The target account's relationship
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#followingunfollowing-an-account)
          */
-        this.unfollowAccount = function (id) {
+        _this.unfollowAccount = function (id) {
             return _this._post("/accounts/" + id + "/unfollow");
         };
         /**
@@ -170,7 +217,7 @@ var Client = /** @class */ (function () {
          * @return The target account's relationship
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blockingunblocking-an-account)
          */
-        this.blockAccount = function (id) {
+        _this.blockAccount = function (id) {
             return _this._post("/accounts/" + id + "/block");
         };
         /**
@@ -179,7 +226,7 @@ var Client = /** @class */ (function () {
          * @return The target account's relationship
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blockingunblocking-an-account)
          */
-        this.unblockAccount = function (id) {
+        _this.unblockAccount = function (id) {
             return _this._post("/accounts/" + id + "/unblock");
         };
         /**
@@ -189,7 +236,7 @@ var Client = /** @class */ (function () {
          * @return The target account's relationship
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account)
          */
-        this.muteAccount = function (id, notifications) {
+        _this.muteAccount = function (id, notifications) {
             if (notifications === void 0) { notifications = true; }
             return _this._post("/accounts/" + id + "/mute", { notifications: notifications });
         };
@@ -200,7 +247,7 @@ var Client = /** @class */ (function () {
          * @return The target account's relationship
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account)
          */
-        this.ummuteAccount = function (id, notifications) {
+        _this.ummuteAccount = function (id, notifications) {
             if (notifications === void 0) { notifications = true; }
             return _this._post("/accounts/" + id + "/ummute", { notifications: notifications });
         };
@@ -210,7 +257,7 @@ var Client = /** @class */ (function () {
          * @return An array of Relationships of the current user to a list of given accounts.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-relationships)
          */
-        this.fetchAccountRelationships = function (id) {
+        _this.fetchAccountRelationships = function (id) {
             return _this._get("/accounts/relationship", { id: id });
         };
         /**
@@ -221,18 +268,21 @@ var Client = /** @class */ (function () {
          * @return An array of matching accounts
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#searching-for-accounts)
          */
-        this.searchAccounts = function (q, options) {
+        _this.searchAccounts = function (q, options) {
             return _this._get('/accounts/search', __assign({ q: q }, options));
         };
         /**
          * Registering an application
          * - These values should be requested in the app itself from the API for each new app install + mastodon domain combo, and stored in the app for future requests.
-         * @param options From data
+         * @param client_name Name of your application
+         * @param redirect_uris Where the user should be redirected after authorization (for no redirect, use `urn:ietf:wg:oauth:2.0:oob`)
+         * @param scopes This can be a space-separated list of the following items: "read", "write" and "follow" (see this page for details on what the scopes do)
+         * @param website URL to the homepage of your app
          * @return Returns `id`, `client_id` and `client_secret` which can be used with OAuth authentication in your 3rd party app.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#registering-an-application)
          */
-        this.createApp = function (options) {
-            return _this._post('/apps', options);
+        _this.createApp = function (client_name, redirect_uris, scopes, website) {
+            return _this._post('/apps', { client_name: client_name, redirect_uris: redirect_uris, scopes: scopes, website: website });
         };
         /**
          * Fetching a user's blocks
@@ -241,7 +291,7 @@ var Client = /** @class */ (function () {
          * @return An array of accounts blocked by the atuhenticated user
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-blocks)
          */
-        this.fetchBlocks = function (options) {
+        _this.fetchBlocks = function (options) {
             return _this._get('/blocks', options);
         };
         /**
@@ -251,7 +301,7 @@ var Client = /** @class */ (function () {
          * @return An array of strings
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-blocked-domains)
          */
-        this.fetchDomainBlocks = function (options) {
+        _this.fetchDomainBlocks = function (options) {
             return _this._get('/domain_blocks', options);
         };
         /**
@@ -260,7 +310,7 @@ var Client = /** @class */ (function () {
          * @return An empty object
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blocking-a-domain)
          */
-        this.blockDomain = function (domain) {
+        _this.blockDomain = function (domain) {
             return _this._post('/domain_blocks', { domain: domain });
         };
         /**
@@ -269,7 +319,7 @@ var Client = /** @class */ (function () {
          * @return An empty object
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#unblocking-a-domain)
          */
-        this.unblockDomain = function (domain) {
+        _this.unblockDomain = function (domain) {
             return _this._delete('/domain_blocks', { domain: domain });
         };
         /**
@@ -279,7 +329,7 @@ var Client = /** @class */ (function () {
          * @return Return an array of Statuses favourited by the authenticated user
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-favourites)
          */
-        this.fetchFavouritedStatuses = function (options) {
+        _this.fetchFavouritedStatuses = function (options) {
             return _this._get('/favourites', options);
         };
         /**
@@ -289,7 +339,7 @@ var Client = /** @class */ (function () {
          * @return Returns an array of Accounts which have requested to follow the authenticated user.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-list-of-follow-requests)
          */
-        this.fetchFollowRequests = function (options) {
+        _this.fetchFollowRequests = function (options) {
             return _this._get('/follow_requests', options);
         };
         /**
@@ -298,7 +348,7 @@ var Client = /** @class */ (function () {
          * @return An empty object
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#authorizing-or-rejecting-follow-requests)
          */
-        this.authorizeFollowRequest = function (id) {
+        _this.authorizeFollowRequest = function (id) {
             return _this._post("/follow_requests/" + id + "/authorize");
         };
         /**
@@ -307,7 +357,7 @@ var Client = /** @class */ (function () {
          * @return An empty object
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#authorizing-or-rejecting-follow-requests)
          */
-        this.rejectFollowRequest = function (id) {
+        _this.rejectFollowRequest = function (id) {
             return _this._post("/follow_requests/" + id + "/reject");
         };
         /**
@@ -316,7 +366,7 @@ var Client = /** @class */ (function () {
          * @return The local representation of the followed account, as an Account.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#following-a-remote-user)
          */
-        this.followAccountByUsername = function (uri) {
+        _this.followAccountByUsername = function (uri) {
             return _this._post('/follows', { uri: uri });
         };
         /**
@@ -325,7 +375,7 @@ var Client = /** @class */ (function () {
          * @return The current instance.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-current-instance-information)
          */
-        this.fetchInstance = function () {
+        _this.fetchInstance = function () {
             return _this._get('/instance');
         };
         /**
@@ -334,7 +384,7 @@ var Client = /** @class */ (function () {
          * @return A list of Emoji
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-current-instances-custom-emojis)
          */
-        this.fetchCustomEmojis = function () {
+        _this.fetchCustomEmojis = function () {
             return _this._get('/custom_emojis');
         };
         /**
@@ -342,7 +392,7 @@ var Client = /** @class */ (function () {
          * @return At most 50 Lists without pagination
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-lists)
          */
-        this.fetchLists = function () {
+        _this.fetchLists = function () {
             return _this._get('/lists');
         };
         /**
@@ -350,7 +400,7 @@ var Client = /** @class */ (function () {
          * @return At most 50 Lists without pagination
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-lists-by-membership)
          */
-        this.fetchListByMembership = function (id) {
+        _this.fetchListByMembership = function (id) {
             return _this._get("/lists/" + id + "/lists");
         };
         /**
@@ -361,7 +411,7 @@ var Client = /** @class */ (function () {
          * @return Returns Accounts in the list.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-accounts-in-a-list)
          */
-        this.fetchAccountsInList = function (id, limit) {
+        _this.fetchAccountsInList = function (id, limit) {
             return _this._get("/list/" + id + "/accounts", { limit: limit });
         };
         /**
@@ -370,7 +420,7 @@ var Client = /** @class */ (function () {
          * @return The specified List.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-list)
          */
-        this.fetchList = function (id) {
+        _this.fetchList = function (id) {
             return _this._get("/lists/" + id);
         };
         /**
@@ -379,7 +429,7 @@ var Client = /** @class */ (function () {
          * @return A new List.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#creating-and-updating-a-list)
          */
-        this.createList = function (title) {
+        _this.createList = function (title) {
             return _this._post('/lists', { title: title });
         };
         /**
@@ -389,7 +439,7 @@ var Client = /** @class */ (function () {
          * @return A updated List.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#creating-and-updating-a-list)
          */
-        this.updateList = function (id, title) {
+        _this.updateList = function (id, title) {
             return _this._put("/lists/" + id, { title: title });
         };
         /**
@@ -398,7 +448,7 @@ var Client = /** @class */ (function () {
          * @return An empty object
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#deleting-a-list)
          */
-        this.deleteList = function (id) {
+        _this.deleteList = function (id) {
             return _this._delete("/lists/" + id);
         };
         /**
@@ -409,7 +459,7 @@ var Client = /** @class */ (function () {
          * @return An empty object
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#addingremoving-accounts-tofrom-a-list)
          */
-        this.addAccountToList = function (id, account_ids) {
+        _this.addAccountToList = function (id, account_ids) {
             return _this._post("/lists/" + id + "/accounts", { account_ids: account_ids });
         };
         /**
@@ -420,7 +470,7 @@ var Client = /** @class */ (function () {
          * @return An empty object
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#addingremoving-accounts-tofrom-a-list)
          */
-        this.removeAccountFromList = function (id, account_ids) {
+        _this.removeAccountFromList = function (id, account_ids) {
             return _this._post("/lists/" + id + "/accounts", { account_ids: account_ids });
         };
         /**
@@ -430,7 +480,7 @@ var Client = /** @class */ (function () {
          * @return An Attachment that can be used when creating a status.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#uploading-a-media-attachment)
          */
-        this.uploadMediaAttachment = function (file, options) {
+        _this.uploadMediaAttachment = function (file, options) {
             return _this._post('/media', __assign({ file: file }, options), { headers: { 'Content-Type': 'multipart/form-data' } });
         };
         /**
@@ -442,7 +492,7 @@ var Client = /** @class */ (function () {
          * @return Returns an Attachment that can be used when creating a status.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#updating-a-media-attachment)
          */
-        this.updateMediaAttachment = function (id, options) {
+        _this.updateMediaAttachment = function (id, options) {
             return _this._put("/media/" + id, options);
         };
         /**
@@ -452,7 +502,7 @@ var Client = /** @class */ (function () {
          * @return An array of Accounts muted by the authenticated user.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-mutes)
          */
-        this.fetchMutes = function (options) {
+        _this.fetchMutes = function (options) {
             return _this._get('/mutes', options);
         };
         /**
@@ -462,7 +512,7 @@ var Client = /** @class */ (function () {
          * @return A list of Notifications for the authenticated user.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-notifications)
          */
-        this.fetchNotifications = function (options) {
+        _this.fetchNotifications = function (options) {
             return _this._get('/notifications', options);
         };
         /**
@@ -471,7 +521,7 @@ var Client = /** @class */ (function () {
          * @return The Notification.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-a-single-notification)
          */
-        this.fetchNotification = function (id) {
+        _this.fetchNotification = function (id) {
             return _this._get("/notifications/" + id);
         };
         /**
@@ -480,7 +530,7 @@ var Client = /** @class */ (function () {
          * @return Returns an empty object.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#clearing-notifications)
          */
-        this.clearNotifications = function () {
+        _this.clearNotifications = function () {
             return _this._post('/notifications/clear');
         };
         /**
@@ -490,7 +540,7 @@ var Client = /** @class */ (function () {
          * @return Returns an empty object.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#dismissing-a-single-notification)
          */
-        this.dissmissNotification = function (id) {
+        _this.dissmissNotification = function (id) {
             return _this._post("/notifications/dismiss", { id: id });
         };
         /**
@@ -499,17 +549,19 @@ var Client = /** @class */ (function () {
          * @return Returns a list of Reports made by the authenticated user.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-reports)
          */
-        this.fetchReports = function () {
+        _this.fetchReports = function () {
             return _this._post('/reports');
         };
         /**
          * Reporting a user
-         * @param options Form data
+         * @param account_id The ID of the account to report
+         * @param status_ids The IDs of statuses to report (can be an array)
+         * @param comment A comment to associate with the report (up to 1000 characters)
          * @return The finished Report
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#reporting-a-user)
          */
-        this.reportUser = function (options) {
-            return _this._post('/reports', options);
+        _this.reportUser = function (account_id, status_ids, comment) {
+            return _this._post('/reports', { account_id: account_id, status_ids: status_ids, comment: comment });
         };
         /**
          * Searching for content
@@ -519,7 +571,7 @@ var Client = /** @class */ (function () {
          * @return Results
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#searching-for-content)
          */
-        this.searchContent = function (q, resolve) {
+        _this.searchContent = function (q, resolve) {
             if (resolve === void 0) { resolve = false; }
             return _this._post('/search', { q: q, resolve: resolve });
         };
@@ -530,7 +582,7 @@ var Client = /** @class */ (function () {
          * @return A status
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-status)
          */
-        this.fetchStatus = function (id) {
+        _this.fetchStatus = function (id) {
             return _this._get("/statuses/" + id);
         };
         /**
@@ -540,7 +592,7 @@ var Client = /** @class */ (function () {
          * @return A Context.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-status-context)
          */
-        this.fetchStatusContext = function (id) {
+        _this.fetchStatusContext = function (id) {
             return _this._get("/statuses/" + id + "/context");
         };
         /**
@@ -549,7 +601,7 @@ var Client = /** @class */ (function () {
          * @return A Card.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-a-card-associated-with-a-status)
          */
-        this.fetchStatusCard = function (id) {
+        _this.fetchStatusCard = function (id) {
             return _this._get("/statuses/" + id + "/card");
         };
         /**
@@ -561,7 +613,7 @@ var Client = /** @class */ (function () {
          * @return An array of Accounts
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-who-rebloggedfavourited-a-status)
          */
-        this.fetchReblogs = function (id, options) {
+        _this.fetchReblogs = function (id, options) {
             return _this._get("/statuses/" + id + "/reblogged_by", options);
         };
         /**
@@ -573,7 +625,7 @@ var Client = /** @class */ (function () {
          * @return An array of Accounts
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-who-rebloggedfavourited-a-status)
          */
-        this.fetchFavourites = function (id, options) {
+        _this.fetchFavourites = function (id, options) {
             return _this._get("/statuses/" + id + "/favourited_by", options);
         };
         /**
@@ -585,7 +637,7 @@ var Client = /** @class */ (function () {
          * @return The new Status
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#posting-a-new-status)
          */
-        this.createStatus = function (status, options, idempotencyKey) {
+        _this.createStatus = function (status, options, idempotencyKey) {
             if (idempotencyKey) {
                 return _this._post('/statuses', __assign({ status: status }, options), { headers: { 'Idempotency-Key': idempotencyKey } });
             }
@@ -597,7 +649,7 @@ var Client = /** @class */ (function () {
          * @return An empty object
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#deleting-a-status)
          */
-        this.deleteStatus = function (id) {
+        _this.deleteStatus = function (id) {
             return _this._delete("/statuses/" + id);
         };
         /**
@@ -606,7 +658,7 @@ var Client = /** @class */ (function () {
          * @return The reblog Status.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#rebloggingunreblogging-a-status)
          */
-        this.reblogStatus = function (id) {
+        _this.reblogStatus = function (id) {
             return _this._post("/statuses/" + id + "/reblog");
         };
         /**
@@ -615,7 +667,7 @@ var Client = /** @class */ (function () {
          * @return The target Status.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#rebloggingunreblogging-a-status)
          */
-        this.unreblogStatus = function (id) {
+        _this.unreblogStatus = function (id) {
             return _this._post("/statuses/" + id + "/unreblog");
         };
         /**
@@ -624,7 +676,7 @@ var Client = /** @class */ (function () {
          * @return The target status
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#favouritingunfavouriting-a-status)
          */
-        this.favouriteStatus = function (id) {
+        _this.favouriteStatus = function (id) {
             return _this._post("/statuses/" + id + "/favourite");
         };
         /**
@@ -633,7 +685,7 @@ var Client = /** @class */ (function () {
          * @return The target status
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#favouritingunfavouriting-a-status)
          */
-        this.unfavouriteStatus = function (id) {
+        _this.unfavouriteStatus = function (id) {
             return _this._post("/statuses/" + id + "/unfavourite");
         };
         /**
@@ -642,7 +694,7 @@ var Client = /** @class */ (function () {
          * @return The target Status.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#pinningunpinning-a-status)
          */
-        this.pinStatus = function (id) {
+        _this.pinStatus = function (id) {
             return _this._post("/statuses/" + id + "/pin");
         };
         /**
@@ -651,7 +703,7 @@ var Client = /** @class */ (function () {
          * @return The target Status.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#pinningunpinning-a-status)
          */
-        this.unpinStatus = function (id) {
+        _this.unpinStatus = function (id) {
             return _this._post("/statuses/" + id + "/unpin");
         };
         /**
@@ -660,7 +712,7 @@ var Client = /** @class */ (function () {
          * @return The target Status.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-a-conversation-of-a-status)
          */
-        this.muteStatus = function (id) {
+        _this.muteStatus = function (id) {
             return _this._post("/statuses/" + id + "/mute");
         };
         /**
@@ -669,7 +721,7 @@ var Client = /** @class */ (function () {
          * @return The target Status.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-a-conversation-of-a-status)
          */
-        this.unmuteStatus = function (id) {
+        _this.unmuteStatus = function (id) {
             return _this._post("/statuses/" + id + "/unmute");
         };
         /**
@@ -681,7 +733,7 @@ var Client = /** @class */ (function () {
          * @return An array of Statuses, most recent ones first.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline)
          */
-        this.fetchTimeline = function (id, options) {
+        _this.fetchTimeline = function (id, options) {
             return _this._get("/timelines/" + id, options);
         };
         /**
@@ -691,7 +743,7 @@ var Client = /** @class */ (function () {
          * @return An array of Statuses, most recent ones first.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline)
          */
-        this.fetchHomeTimeline = function (options) { return _this.fetchTimeline("/timeline/home", options); };
+        _this.fetchHomeTimeline = function (options) { return _this.fetchTimeline("/timeline/home", options); };
         /**
          * Retrieving the community timeline (aka "Local timeline" in the UI)
          * - Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. However, it is possible to use the `id` of the returned objects to construct your own URLs.
@@ -700,7 +752,7 @@ var Client = /** @class */ (function () {
          * @return An array of Statuses, most recent ones first.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline)
          */
-        this.fetchCommunityTimeline = function (options) { return _this.fetchTimeline("/timeline/public", __assign({ local: true }, options)); };
+        _this.fetchCommunityTimeline = function (options) { return _this.fetchTimeline("/timeline/public", __assign({ local: true }, options)); };
         /**
          * Retrieving the public timeline (aka "Federated timeline" in the UI)
          * - Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. However, it is possible to use the `id` of the returned objects to construct your own URLs.
@@ -709,7 +761,7 @@ var Client = /** @class */ (function () {
          * @return An array of Statuses, most recent ones first.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline)
          */
-        this.fetchPublicTimeline = function (options) { return _this.fetchTimeline("/timeline/public", options); };
+        _this.fetchPublicTimeline = function (options) { return _this.fetchTimeline("/timeline/public", options); };
         /**
          * Retrieving a tag timeline
          * - Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. However, it is possible to use the `id` of the returned objects to construct your own URLs.
@@ -719,7 +771,7 @@ var Client = /** @class */ (function () {
          * @return An array of Statuses, most recent ones first.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline)
          */
-        this.fetchTagTimeline = function (id, options) { return _this.fetchTimeline("/timeline/tag/" + id, options); };
+        _this.fetchTagTimeline = function (id, options) { return _this.fetchTimeline("/timeline/tag/" + id, options); };
         /**
          * Retrieving a list timeline
          * - Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. However, it is possible to use the `id` of the returned objects to construct your own URLs.
@@ -728,8 +780,18 @@ var Client = /** @class */ (function () {
          * @return An array of Statuses, most recent ones first.
          * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline)
          */
-        this.fetchListTimeline = function (id, options) { return _this.fetchTimeline("/timeline/list/" + id, options); };
+        _this.fetchListTimeline = function (id, options) { return _this.fetchTimeline("/timeline/list/" + id, options); };
+        return _this;
     }
+    /**
+     * Add event listener for specified Event
+     * @param event Type of event `update`, `delete` or `notification`.
+     * @param listener Callback function
+     * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md)
+     */
+    Client.prototype.on = function (event, listener) {
+        return _super.prototype.on.call(this, event, listener);
+    };
     return Client;
-}());
+}(eventemitter3_1.default));
 exports.Client = Client;

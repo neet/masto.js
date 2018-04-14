@@ -1,7 +1,7 @@
 {
   "name": "@lagunehq/core",
   "private": false,
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Mastodon API client for TypeScript",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -22,7 +22,9 @@
   },
   "homepage": "https://github.com/lagunehq/core#readme",
   "dependencies": {
-    "query-string": "^6.0.0"
+    "eventemitter3": "^3.0.1",
+    "query-string": "^6.0.0",
+    "websocket.js": "^0.1.12"
   },
   "devDependencies": {
     "@types/query-string": "^5.1.0",
