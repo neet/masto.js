@@ -62,8 +62,28 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="lagune-core">lagune-core</h1>
+				<h1 id="-lagunehq-core">@lagunehq/core</h1>
 				<p>Mastodon API client for TypeScript</p>
+				<h2 id="installation">Installation</h2>
+				<p><strong>npm:</strong></p>
+				<pre><code><span class="hljs-built_in">npm</span> i @lagunehq/core --save
+</code></pre><p><strong>yarn:</strong></p>
+				<pre><code><span class="hljs-selector-tag">yarn</span> <span class="hljs-selector-tag">add</span> @<span class="hljs-keyword">lagunehq</span>/<span class="hljs-keyword">core</span>
+</code></pre><h2 id="using-the-api">Using the api</h2>
+				<p>Here&#39;s a simple example which creates a new status:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">import</span> { Mastodon } <span class="hljs-keyword">from</span> <span class="hljs-string">'./index'</span>;
+
+<span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> Mastodon();
+
+client.setUrl(<span class="hljs-string">'https://mastodon.social'</span>);
+client.setStreamingUrl(<span class="hljs-string">'wss://mastodon.social'</span>);
+client.setToken(<span class="hljs-string">'my token'</span>);
+
+<span class="hljs-keyword">const</span> newStatus: Mastodon.Status = client.createStatus(<span class="hljs-string">'Toot from TypeScript'</span>);
+
+<span class="hljs-built_in">console</span>.log(newStatus);
+</code></pre>
+				<p>All of available methods/interfaces are described in the <a href="https://lagunehq.github.io/core/classes/_index_.mastodon.html">documentation</a></p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">

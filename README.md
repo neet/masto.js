@@ -13,17 +13,19 @@ yarn add @lagunehq/core
 ```
 
 ## Using the api
-Here's the simple example, crating a new status:
+Here's a simple example which creates a new status:
 ```ts
-import { Client } from '@lagunehq/core';
+import { Mastodon } from './index';
 
-const client = new Client();
+const client = new Mastodon();
 
 client.setUrl('https://mastodon.social');
 client.setStreamingUrl('wss://mastodon.social');
 client.setToken('my token');
 
-client.createStatus('Toot from TypeScript');
+const newStatus: Mastodon.Status = client.createStatus('Toot from TypeScript');
+
+console.log(newStatus);
 ```
 
 All of available methods/interfaces are described in the [documentation](https://lagunehq.github.io/core/classes/_index_.mastodon.html)
