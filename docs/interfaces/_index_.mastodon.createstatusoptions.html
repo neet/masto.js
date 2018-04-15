@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;index&quot; | @lagunehq/core</title>
+	<title>CreateStatusOptions | @lagunehq/core</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,26 +54,122 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_index_.html">&quot;index&quot;</a>
+					<a href="../modules/_index_.html">&quot;index&quot;</a>
+				</li>
+				<li>
+					<a href="../classes/_index_.mastodon.html">Mastodon</a>
+				</li>
+				<li>
+					<a href="_index_.mastodon.createstatusoptions.html">CreateStatusOptions</a>
 				</li>
 			</ul>
-			<h1>External module &quot;index&quot;</h1>
+			<h1>Interface CreateStatusOptions</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">CreateStatusOptions</span>
+					</li>
+				</ul>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Classes</h3>
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_index_.mastodon.html" class="tsd-kind-icon">Mastodon</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_index_.mastodon.createstatusoptions.html#in_reply_to_id" class="tsd-kind-icon">in_<wbr>reply_<wbr>to_<wbr>id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_index_.mastodon.createstatusoptions.html#media_ids" class="tsd-kind-icon">media_<wbr>ids</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_index_.mastodon.createstatusoptions.html#sensitive" class="tsd-kind-icon">sensitive</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_index_.mastodon.createstatusoptions.html#spoiler_text" class="tsd-kind-icon">spoiler_<wbr>text</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_index_.mastodon.createstatusoptions.html#visibility" class="tsd-kind-icon">visibility</a></li>
 							</ul>
 						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="in_reply_to_id" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> in_<wbr>reply_<wbr>to_<wbr>id</h3>
+					<div class="tsd-signature tsd-kind-icon">in_<wbr>reply_<wbr>to_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/be92fcf/src/index.ts#L1321">index.ts:1321</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>local ID of the status you want to reply to</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="media_ids" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> media_<wbr>ids</h3>
+					<div class="tsd-signature tsd-kind-icon">media_<wbr>ids<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/be92fcf/src/index.ts#L1323">index.ts:1323</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Array of media IDs to attach to the status (maximum 4)</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="sensitive" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> sensitive</h3>
+					<div class="tsd-signature tsd-kind-icon">sensitive<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/be92fcf/src/index.ts#L1325">index.ts:1325</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Set this to mark the media of the status as NSFW</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="spoiler_text" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> spoiler_<wbr>text</h3>
+					<div class="tsd-signature tsd-kind-icon">spoiler_<wbr>text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/be92fcf/src/index.ts#L1327">index.ts:1327</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Text to be shown as a warning before the actual content</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="visibility" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> visibility</h3>
+					<div class="tsd-signature tsd-kind-icon">visibility<span class="tsd-signature-symbol">:</span> <a href="../classes/_index_.mastodon.html#visibilitytypes" class="tsd-signature-type">VisibilityTypes</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/be92fcf/src/index.ts#L1329">index.ts:1329</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Either &quot;direct&quot;, &quot;private&quot;, &quot;unlisted&quot; or &quot;public&quot;</p>
+						</div>
 					</div>
 				</section>
 			</section>
@@ -85,15 +181,41 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="_index_.html">"index"</a>
+						<a href="../modules/_index_.html">"index"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class tsd-parent-kind-external-module">
 						<a href="../classes/_index_.mastodon.html" class="tsd-kind-icon">Mastodon</a>
+						<ul>
+							<li class="current tsd-kind-interface tsd-parent-kind-class">
+								<a href="_index_.mastodon.createstatusoptions.html" class="tsd-kind-icon">Create<wbr>Status<wbr>Options</a>
+								<ul>
+									<li class=" tsd-kind-property tsd-parent-kind-interface">
+										<a href="_index_.mastodon.createstatusoptions.html#in_reply_to_id" class="tsd-kind-icon">in_<wbr>reply_<wbr>to_<wbr>id</a>
+									</li>
+									<li class=" tsd-kind-property tsd-parent-kind-interface">
+										<a href="_index_.mastodon.createstatusoptions.html#media_ids" class="tsd-kind-icon">media_<wbr>ids</a>
+									</li>
+									<li class=" tsd-kind-property tsd-parent-kind-interface">
+										<a href="_index_.mastodon.createstatusoptions.html#sensitive" class="tsd-kind-icon">sensitive</a>
+									</li>
+									<li class=" tsd-kind-property tsd-parent-kind-interface">
+										<a href="_index_.mastodon.createstatusoptions.html#spoiler_text" class="tsd-kind-icon">spoiler_<wbr>text</a>
+									</li>
+									<li class=" tsd-kind-property tsd-parent-kind-interface">
+										<a href="_index_.mastodon.createstatusoptions.html#visibility" class="tsd-kind-icon">visibility</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 				</ul>
 			</nav>
 		</div>

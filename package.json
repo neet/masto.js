@@ -7,7 +7,7 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "manage:docs": "typedoc ./src --out ./docs"
+    "build:docs": "typedoc ./src --out ./docs --excludeNotExported && touch ./docs/.nojekyll"
   },
   "repository": {
     "type": "git",
