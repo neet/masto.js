@@ -147,8 +147,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Fetching an account
    * @param id ID of the account
-   * @return An account
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-an-account)
+   * @return An account
    */
   public fetchAccount = (id: string): Promise<Mastodon.Account|Mastodon.Error> => {
     return this._get(`/accounts/${id}`);
@@ -156,8 +156,8 @@ export class Mastodon extends EventEmitter {
 
   /**
    * Getting the current user
-   * @return The authenticated user's Account with an extra attribute source which contains these keys
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-the-current-user)
+   * @return The authenticated user's Account with an extra attribute source which contains these keys
    */
   public verfiyCredentials = (): Promise<Mastodon.Credentials|Mastodon.Error> => {
     return this._get('/accounts/verify_credentials');
@@ -166,8 +166,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Updating the current user
    * @param options Form data
-   * @return The authenticated user's Account.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#updating-the-current-user)
+   * @return The authenticated user's Account.
    */
   public updateCredentials = (options?: Mastodon.UpdateCredentialsOptions): Promise<Mastodon.Credentials|Mastodon.Error> => {
     return this._patch('/accounts/update_credentials', options, {headers: {'Content-Type': 'multipart/form-data'}});
@@ -178,8 +178,8 @@ export class Mastodon extends EventEmitter {
    * - Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
    * @param id ID of the target account
    * @param options Query paramerters
-   * @return An array of accounts
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-followers)
+   * @return An array of accounts
    */
   public fetchAccountFollowers = (id: string, options?: Mastodon.FetchAccountFollowersOptions): Promise<Mastodon.Account[]|Mastodon.Error> => {
     return this._get(`/accounts/${id}/followers`, options);
@@ -190,8 +190,8 @@ export class Mastodon extends EventEmitter {
    * - Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
    * @param id ID of the target account
    * @param options Query parameters
-   * @return An array of accounts
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-who-account-is-following)
+   * @return An array of accounts
    */
   public fetchAccountFollowing = (id: string, options?: Mastodon.FetchAccountFollowingOptions): Promise<Mastodon.Account[]|Mastodon.Error> => {
     return this._get(`/accounts/${id}/following`, options);
@@ -202,8 +202,8 @@ export class Mastodon extends EventEmitter {
    * - Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
    * @param id ID of the target account
    * @param options Query parameters
-   * @return An array of statuses
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-statuses)
+   * @return An array of statuses
    */
   public fetchAccountStatuses = (id: string, options?: Mastodon.FetchAccountStatusesOptions): Promise<Mastodon.Status[]|Mastodon.Error> => {
     return this._get(`/accounts/${id}/statuses`, options);
@@ -212,8 +212,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Following an account
    * @param id ID of the target account
-   * @return The target account's relationship
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#followingunfollowing-an-account)
+   * @return The target account's relationship
    */
   public followAccount = (id: string): Promise<Mastodon.Relationship|Mastodon.Error> => {
     return this._post(`/accounts/${id}/follow`);
@@ -222,8 +222,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Unfollowing an account
    * @param id ID of the target account
-   * @return The target account's relationship
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#followingunfollowing-an-account)
+   * @return The target account's relationship
    */
   public unfollowAccount = (id: string): Promise<Mastodon.Relationship|Mastodon.Error> => {
     return this._post(`/accounts/${id}/unfollow`);
@@ -232,8 +232,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Blocking an account
    * @param id ID of the target account
-   * @return The target account's relationship
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blockingunblocking-an-account)
+   * @return The target account's relationship
    */
   public blockAccount = (id: string): Promise<Mastodon.Relationship|Mastodon.Error> => {
     return this._post(`/accounts/${id}/block`);
@@ -242,8 +242,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Unblocking an account
    * @param id ID of the target account
-   * @return The target account's relationship
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blockingunblocking-an-account)
+   * @return The target account's relationship
    */
   public unblockAccount = (id: string): Promise<Mastodon.Relationship|Mastodon.Error> => {
     return this._post(`/accounts/${id}/unblock`);
@@ -253,8 +253,8 @@ export class Mastodon extends EventEmitter {
    * Muting an account
    * @param id ID of the target account
    * @param notifications Determines whether the mute will mute notifications or not. Default(true)
-   * @return The target account's relationship
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account)
+   * @return The target account's relationship
    */
   public muteAccount = (id: string, notifications = true): Promise<Mastodon.Relationship|Mastodon.Error> => {
     return this._post(`/accounts/${id}/mute`, { notifications });
@@ -264,8 +264,8 @@ export class Mastodon extends EventEmitter {
    * Unmuting an account
    * @param id ID of the target account
    * @param notifications Determines whether the mute will mute notifications or not. Default(true)
-   * @return The target account's relationship
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account)
+   * @return The target account's relationship
    */
   public ummuteAccount = (id: string, notifications = true): Promise<Mastodon.Relationship|Mastodon.Error> => {
     return this._post(`/accounts/${id}/ummute`, { notifications });
@@ -274,8 +274,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Getting an account's relationships
    * @param id Account IDs (can be an array)
-   * @return An array of Relationships of the current user to a list of given accounts.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-relationships)
+   * @return An array of Relationships of the current user to a list of given accounts.
    */
   public fetchAccountRelationships = (id: string|string[]): Promise<Mastodon.Relationship[]|Mastodon.Error> => {
     return this._get(`/accounts/relationship`, { id });
@@ -286,8 +286,8 @@ export class Mastodon extends EventEmitter {
    * - Will lookup an account remotely if the search term is in the `username@domain` format and not yet in the database.
    * @param q What to search for
    * @param options Query parameters
-   * @return An array of matching accounts
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#searching-for-accounts)
+   * @return An array of matching accounts
    */
   public searchAccounts = (q: string, options?: Mastodon.SearchAccountsOptions): Promise<Mastodon.Account[]|Mastodon.Error> => {
     return this._get('/accounts/search', { q, ...options });
@@ -300,8 +300,8 @@ export class Mastodon extends EventEmitter {
    * @param redirect_uris Where the user should be redirected after authorization (for no redirect, use `urn:ietf:wg:oauth:2.0:oob`)
    * @param scopes This can be a space-separated list of the following items: "read", "write" and "follow" (see this page for details on what the scopes do)
    * @param website URL to the homepage of your app
-   * @return Returns `id`, `client_id` and `client_secret` which can be used with OAuth authentication in your 3rd party app.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#registering-an-application)
+   * @return Returns `id`, `client_id` and `client_secret` which can be used with OAuth authentication in your 3rd party app.
    */
   public createApp = (client_name: string, redirect_uris: string, scopes: string, website?: string): Promise<Mastodon.OAuth|Mastodon.Error> => {
     return this._post('/apps', { client_name, redirect_uris, scopes, website });
@@ -311,8 +311,8 @@ export class Mastodon extends EventEmitter {
    * Fetching a user's blocks
    * - Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
    * @param options Query parameters
-   * @return An array of accounts blocked by the atuhenticated user
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-blocks)
+   * @return An array of accounts blocked by the atuhenticated user
    */
   public fetchBlocks = (options?: Mastodon.FetchBlocksOptions): Promise<Mastodon.Account[]|Mastodon.Error> => {
     return this._get('/blocks', options);
@@ -322,8 +322,8 @@ export class Mastodon extends EventEmitter {
    * Fetching a user's blocked domains
    * - Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
    * @param options Query parameters
-   * @return An array of strings
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-blocked-domains)
+   * @return An array of strings
    */
   public fetchDomainBlocks = (options?: Mastodon.FetchDomainBlocksOptions): Promise<string[]|Mastodon.Error> => {
     return this._get('/domain_blocks', options);
@@ -332,8 +332,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Blocking a domain
    * @param domain Domain to block
-   * @return An empty object
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blocking-a-domain)
+   * @return An empty object
    */
   public blockDomain = (domain: string): Promise<{}|Mastodon.Error> => {
     return this._post('/domain_blocks', { domain });
@@ -342,8 +342,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Unblocking a domain
    * @param domain Domain to unblock
-   * @return An empty object
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#unblocking-a-domain)
+   * @return An empty object
    */
   public unblockDomain = (domain: string): Promise<{}|Mastodon.Error> => {
     return this._delete('/domain_blocks', { domain });
@@ -353,8 +353,8 @@ export class Mastodon extends EventEmitter {
    * Fetching a user's favourites
    * - Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
    * @param options Query parameters
-   * @return Return an array of Statuses favourited by the authenticated user
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-favourites)
+   * @return Return an array of Statuses favourited by the authenticated user
    */
   public fetchFavouritedStatuses = (options?: Mastodon.FetchFavouritedStatuses): Promise<Mastodon.Status[]|Mastodon.Error> => {
     return this._get('/favourites', options);
@@ -364,8 +364,8 @@ export class Mastodon extends EventEmitter {
    * Fetching a list of follow requests
    * - Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
    * @param options Query parameters
-   * @return Returns an array of Accounts which have requested to follow the authenticated user.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-list-of-follow-requests)
+   * @return Returns an array of Accounts which have requested to follow the authenticated user.
    */
   public fetchFollowRequests = (options?: Mastodon.FetchFollowRequestsOptions): Promise<Mastodon.Account[]|Mastodon.Error> => {
     return this._get('/follow_requests', options);
@@ -374,8 +374,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Authorizing follow requests
    * @param id ID of the target account
-   * @return An empty object
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#authorizing-or-rejecting-follow-requests)
+   * @return An empty object
    */
   public authorizeFollowRequest = (id: string): Promise<{}|Mastodon.Error> => {
     return this._post(`/follow_requests/${id}/authorize`);
@@ -384,8 +384,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Rejecting follow requests
    * @param id ID of the target account
-   * @return An empty object
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#authorizing-or-rejecting-follow-requests)
+   * @return An empty object
    */
   public rejectFollowRequest = (id: string): Promise<{}|Mastodon.Error> => {
     return this._post(`/follow_requests/${id}/reject`);
@@ -394,8 +394,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Following a remote user
    * @param uri `username@domain` of the person you want to follow
-   * @return The local representation of the followed account, as an Account.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#following-a-remote-user)
+   * @return The local representation of the followed account, as an Account.
    */
   public followAccountByUsername = (uri: string): Promise<Mastodon.Account|Mastodon.Error> => {
     return this._post('/follows', { uri });
@@ -404,8 +404,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Getting current instance information
    * - Does not require authentication
-   * @return The current instance.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-current-instance-information)
+   * @return The current instance.
    */
   public fetchInstance = (): Promise<Mastodon.Instance|Mastodon.Error> => {
     return this._get('/instance');
@@ -414,8 +414,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Getting current instance's custom emojis
    * - Does not require authentication
-   * @return A list of Emoji
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-current-instances-custom-emojis)
+   * @return A list of Emoji
    */
   public fetchCustomEmojis = (): Promise<Mastodon.Emoji[]|Mastodon.Error> => {
     return this._get('/custom_emojis');
@@ -423,8 +423,8 @@ export class Mastodon extends EventEmitter {
 
   /**
    * Retrieving lists
-   * @return At most 50 Lists without pagination
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-lists)
+   * @return At most 50 Lists without pagination
    */
   public fetchLists = (): Promise<Mastodon.List[]|Mastodon.Error> => {
     return this._get('/lists');
@@ -432,8 +432,8 @@ export class Mastodon extends EventEmitter {
 
   /**
    * Retrieving lists by membership
-   * @return At most 50 Lists without pagination
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-lists-by-membership)
+   * @return At most 50 Lists without pagination
    */
   public fetchListByMembership = (id: string): Promise<Mastodon.List[]|Mastodon.Error> => {
     return this._get(`/lists/${id}/lists`);
@@ -444,8 +444,8 @@ export class Mastodon extends EventEmitter {
    * - If you specify `limit=0` in the query, all accounts will be returned without pagination. Otherwise, standard account pagination rules apply.
    * @param id ID of the target list
    * @param limit Maximum number of accounts to get
-   * @return Returns Accounts in the list.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-accounts-in-a-list)
+   * @return Returns Accounts in the list.
    */
   public fetchAccountsInList = (id: string, limit?: number): Promise<Mastodon.List[]|Mastodon.Error> => {
     return this._get(`/list/${id}/accounts`, { limit });
@@ -454,8 +454,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Retrieving a list
    * @param id ID of the targtet list
-   * @return The specified List.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-list)
+   * @return The specified List.
    */
   public fetchList = (id: string): Promise<Mastodon.List|Mastodon.Error> => {
     return this._get(`/lists/${id}`);
@@ -464,8 +464,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Creating a list
    * @param title The title of the list
-   * @return A new List.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#creating-and-updating-a-list)
+   * @return A new List.
    */
   public createList = (title: string): Promise<Mastodon.List|Mastodon.Error> => {
     return this._post('/lists', { title });
@@ -475,8 +475,8 @@ export class Mastodon extends EventEmitter {
    * Updating a list
    * @param id ID of the target list
    * @param title The title of the list
-   * @return A updated List.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#creating-and-updating-a-list)
+   * @return A updated List.
    */
   public updateList = (id: string, title: string): Promise<Mastodon.List|Mastodon.Error> => {
     return this._put(`/lists/${id}`, { title });
@@ -485,8 +485,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Deleting a list
    * @param id ID of the target list
-   * @return An empty object
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#deleting-a-list)
+   * @return An empty object
    */
   public deleteList = (id: string): Promise<{}|Mastodon.Error> => {
     return this._delete(`/lists/${id}`);
@@ -497,8 +497,8 @@ export class Mastodon extends EventEmitter {
    * - Note: Only accounts already followed by the authenticated user can be added to a list.
    * @param id ID of the target list
    * @param account_ids Array of account IDs
-   * @return An empty object
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#addingremoving-accounts-tofrom-a-list)
+   * @return An empty object
    */
   public addAccountToList = (id: string, account_ids: string[]): Promise<{}|Mastodon.Error> => {
     return this._post(`/lists/${id}/accounts`, { account_ids });
@@ -509,8 +509,8 @@ export class Mastodon extends EventEmitter {
    * - Note: Only accounts already followed by the authenticated user can be added to a list.
    * @param id ID of the target list
    * @param account_ids Array of account IDs
-   * @return An empty object
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#addingremoving-accounts-tofrom-a-list)
+   * @return An empty object
    */
   public removeAccountFromList = (id: string, account_ids: string[]): Promise<{}|Mastodon.Error> => {
     return this._post(`/lists/${id}/accounts`, { account_ids });
@@ -520,8 +520,8 @@ export class Mastodon extends EventEmitter {
    * Uploading a media attachment
    * @param file Media to be uploaded (encoded using `multipart/form-data`)
    * @param options Form data
-   * @return An Attachment that can be used when creating a status.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#uploading-a-media-attachment)
+   * @return An Attachment that can be used when creating a status.
    */
   public uploadMediaAttachment = (file: File, options?: Mastodon.UploadMediaOptions): Promise<Mastodon.Attachment|Mastodon.Error> => {
     return this._post('/media', { file, ...options}, {headers: {'Content-Type': 'multipart/form-data'}});
@@ -533,8 +533,8 @@ export class Mastodon extends EventEmitter {
    * - Focal points: Server-side preview images are never cropped, to support a variety of apps and user interfaces. Therefore, the cropping must be done by those apps. To crop intelligently, focal points can be used to ensure a certain section of the image is always within the cropped viewport. See this for how to let users select focal point coordinates.
    * @param id ID of the target attachment
    * @param options Form data
-   * @return Returns an Attachment that can be used when creating a status.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#updating-a-media-attachment)
+   * @return Returns an Attachment that can be used when creating a status.
    */
   public updateMediaAttachment = (id: string, options?: Mastodon.UpdateMediaOptions): Promise<Mastodon.Attachment|Mastodon.Error> => {
     return this._put(`/media/${id}`, options);
@@ -544,8 +544,8 @@ export class Mastodon extends EventEmitter {
    * Fetching a user's mutes
    * - Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. It is not possible to use the `id` of the returned objects to construct your own URLs, because the results are sorted by an internal key.
    * @param options Query parameters
-   * @return An array of Accounts muted by the authenticated user.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-mutes)
+   * @return An array of Accounts muted by the authenticated user.
    */
   public fetchMutes = (options?: Mastodon.FetchMutesOptions): Promise<Mastodon.Account[]|Mastodon.Error> => {
     return this._get('/mutes', options);
@@ -555,8 +555,8 @@ export class Mastodon extends EventEmitter {
    * Fetching a user's notifications
    * - Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. It is not possible to use the `id` of the returned objects to construct your own URLs, because the results are sorted by an internal key.
    * @param options Query parameters
-   * @return A list of Notifications for the authenticated user.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-notifications)
+   * @return A list of Notifications for the authenticated user.
    */
   public fetchNotifications = (options?: Mastodon.FetchNotifications): Promise<Mastodon.Notification[]|Mastodon.Error> => {
     return this._get('/notifications', options);
@@ -565,8 +565,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Getting a single notification
    * @param id ID of the target user
-   * @return The Notification.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-a-single-notification)
+   * @return The Notification.
    */
   public fetchNotification = (id: string): Promise<Mastodon.Notification|Mastodon.Error> => {
     return this._get(`/notifications/${id}`);
@@ -575,8 +575,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Clearing notifications
    * - Deletes all notifications from the Mastodon server for the authenticated user.
-   * @return Returns an empty object.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#clearing-notifications)
+   * @return Returns an empty object.
    */
   public clearNotifications = (): Promise<{}|Mastodon.Error> => {
     return this._post('/notifications/clear');
@@ -586,8 +586,8 @@ export class Mastodon extends EventEmitter {
    * Dismissing a single notification
    * - Deletes a single notification from the Mastodon server for the authenticated user.
    * @param id ID of the notification
-   * @return Returns an empty object.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#dismissing-a-single-notification)
+   * @return Returns an empty object.
    */
   public dissmissNotification = (id: string): Promise<{}|Mastodon.Error> => {
     return this._post(`/notifications/dismiss`, { id });
@@ -596,8 +596,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Fetching a user's reports
    * - This method is not entirely implemented and contains no useful information at this point
-   * @return Returns a list of Reports made by the authenticated user.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-reports)
+   * @return Returns a list of Reports made by the authenticated user.
    */
   public fetchReports = (): Promise<Mastodon.Report[]|Mastodon.Error> => {
     return this._post('/reports');
@@ -608,8 +608,8 @@ export class Mastodon extends EventEmitter {
    * @param account_id The ID of the account to report
    * @param status_ids The IDs of statuses to report (can be an array)
    * @param comment A comment to associate with the report (up to 1000 characters)
-   * @return The finished Report
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#reporting-a-user)
+   * @return The finished Report
    */
   public reportUser = (account_id: string, status_ids: string|string[], comment: string): Promise<Mastodon.Report|Mastodon.Error> => {
     return this._post('/reports', { account_id, status_ids, comment });
@@ -620,8 +620,8 @@ export class Mastodon extends EventEmitter {
    * - If `q` is a URL, Mastodon will attempt to fetch the provided account or status. Otherwise, it will do a local account and hashtag search.
    * @param q The search query
    * @param resolve Whether to resolve non-local accounts (default: don't resolve)
-   * @return Results
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#searching-for-content)
+   * @return Results
    */
   public searchContent = (q: string, resolve = false ): Promise<Mastodon.Results|Mastodon.Error> => {
     return this._post('/search', { q, resolve });
@@ -631,8 +631,8 @@ export class Mastodon extends EventEmitter {
    * Fetching a status
    * - Does not require authentication.
    * @param id ID of the target status
-   * @return A status
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-status)
+   * @return A status
    */
   public fetchStatus = (id: string): Promise<Mastodon.Status|Mastodon.Error> => {
     return this._get(`/statuses/${id}`);
@@ -642,8 +642,8 @@ export class Mastodon extends EventEmitter {
    * Getting status context
    * - Does not require authentication.
    * @param id ID of the target status
-   * @return A Context.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-status-context)
+   * @return A Context.
    */
   public fetchStatusContext = (id: string): Promise<Mastodon.Context|Mastodon.Error> => {
     return this._get(`/statuses/${id}/context`);
@@ -652,8 +652,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Getting a card associated with a status
    * - Does not require authentication.
-   * @return A Card.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-a-card-associated-with-a-status)
+   * @return A Card.
    */
   public fetchStatusCard = (id: string): Promise<Mastodon.Card|Mastodon.Error> => {
     return this._get(`/statuses/${id}/card`);
@@ -665,8 +665,8 @@ export class Mastodon extends EventEmitter {
    * - Does not require authentication
    * @param id ID of target status
    * @param options Query parameters
-   * @return An array of Accounts
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-who-rebloggedfavourited-a-status)
+   * @return An array of Accounts
    */
   public fetchReblogs = (id: string, options?: Mastodon.FetchReblogs): Promise<Mastodon.Account[]> => {
     return this._get(`/statuses/${id}/reblogged_by`, options);
@@ -678,8 +678,8 @@ export class Mastodon extends EventEmitter {
    * - Does not require authentication
    * @param id ID of target status
    * @param options Query parameters
-   * @return An array of Accounts
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-who-rebloggedfavourited-a-status)
+   * @return An array of Accounts
    */
   public fetchFavourites = (id: string, options?: Mastodon.FetchFavourites): Promise<Mastodon.Account[]> => {
     return this._get(`/statuses/${id}/favourited_by`, options);
@@ -691,8 +691,8 @@ export class Mastodon extends EventEmitter {
    * @param status The text of the status
    * @param options Form data
    * @param idempotencyKey The Idempotency-Key of request header
-   * @return The new Status
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#posting-a-new-status)
+   * @return The new Status
    */
   public createStatus = (status: string, options?: Mastodon.CreateStatusOptions, idempotencyKey?: string): Promise<Mastodon.Status> => {
     if ( idempotencyKey ) {
@@ -704,8 +704,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Deleting a status
    * @param id ID of the target status
-   * @return An empty object
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#deleting-a-status)
+   * @return An empty object
    */
   public deleteStatus = (id: string): Promise<{}|Mastodon.Error> => {
     return this._delete(`/statuses/${id}`);
@@ -714,8 +714,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Reblogging a status
    * @param id ID of the target status
-   * @return The reblog Status.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#rebloggingunreblogging-a-status)
+   * @return The reblog Status.
    */
   public reblogStatus = (id: string): Promise<Mastodon.Status|Mastodon.Error> => {
     return this._post(`/statuses/${id}/reblog`);
@@ -724,8 +724,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Unreblogging a status
    * @param id ID of the target status
-   * @return The target Status.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#rebloggingunreblogging-a-status)
+   * @return The target Status.
    */
   public unreblogStatus = (id: string): Promise<Mastodon.Status|Mastodon.Error> => {
     return this._post(`/statuses/${id}/unreblog`);
@@ -734,8 +734,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Favouriting status
    * @param id ID of the target status
-   * @return The target status
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#favouritingunfavouriting-a-status)
+   * @return The target status
    */
   public favouriteStatus = (id: string): Promise<Mastodon.Status|Mastodon.Error> => {
     return this._post(`/statuses/${id}/favourite`);
@@ -744,8 +744,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Unfavouriting status
    * @param id ID of the target status
-   * @return The target status
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#favouritingunfavouriting-a-status)
+   * @return The target status
    */
   public unfavouriteStatus = (id: string): Promise<Mastodon.Status|Mastodon.Error> => {
     return this._post(`/statuses/${id}/unfavourite`);
@@ -754,8 +754,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Pinning a status
    * @param id ID of the target status
-   * @return The target Status.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#pinningunpinning-a-status)
+   * @return The target Status.
    */
   public pinStatus = (id: string): Promise<Mastodon.Status|Mastodon.Error> => {
     return this._post(`/statuses/${id}/pin`);
@@ -764,8 +764,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Unpinning a status
    * @param id ID of the target status
-   * @return The target Status.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#pinningunpinning-a-status)
+   * @return The target Status.
    */
   public unpinStatus = (id: string): Promise<Mastodon.Status|Mastodon.Error> => {
     return this._post(`/statuses/${id}/unpin`);
@@ -774,8 +774,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Muting a conversation of a status
    * @param id ID of the target status
-   * @return The target Status.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-a-conversation-of-a-status)
+   * @return The target Status.
    */
   public muteStatus = (id: string): Promise<Mastodon.Status|Mastodon.Error> => {
     return this._post(`/statuses/${id}/mute`);
@@ -784,8 +784,8 @@ export class Mastodon extends EventEmitter {
   /**
    * Unmuting a conversation of a status
    * @param id ID of the target status
-   * @return The target Status.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-a-conversation-of-a-status)
+   * @return The target Status.
    */
   public unmuteStatus = (id: string): Promise<Mastodon.Status|Mastodon.Error> => {
     return this._post(`/statuses/${id}/unmute`);
@@ -797,8 +797,8 @@ export class Mastodon extends EventEmitter {
    * - Public and tag timelines do not require authentication.
    * @param id ID of the timeline
    * @param options Query parameters
-   * @return An array of Statuses, most recent ones first.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline)
+   * @return An array of Statuses, most recent ones first.
    */
   public fetchTimeline = (id: string, options?: Mastodon.FetchTimelineOptions): Promise<Mastodon.Status[]|Mastodon.Error> => {
     return this._get(`/timelines/${id}`, options);
@@ -808,8 +808,8 @@ export class Mastodon extends EventEmitter {
    * Retrieving the home timeline
    * - Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. However, it is possible to use the `id` of the returned objects to construct your own URLs.
    * @param options Query parameters
-   * @return An array of Statuses, most recent ones first.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline)
+   * @return An array of Statuses, most recent ones first.
    */
   public fetchHomeTimeline = (options?: Mastodon.FetchTimelineOptions) => this.fetchTimeline(`/timeline/home`, options);
 
@@ -818,8 +818,8 @@ export class Mastodon extends EventEmitter {
    * - Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. However, it is possible to use the `id` of the returned objects to construct your own URLs.
    * - Does not require authentication.
    * @param options Query parameters
-   * @return An array of Statuses, most recent ones first.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline)
+   * @return An array of Statuses, most recent ones first.
    */
   public fetchCommunityTimeline = (options?: Mastodon.FetchTimelineOptions) => this.fetchTimeline(`/timeline/public`, { local: true, ...options});
 
@@ -828,8 +828,8 @@ export class Mastodon extends EventEmitter {
    * - Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. However, it is possible to use the `id` of the returned objects to construct your own URLs.
    * - Does not require authentication.
    * @param options Query parameters
-   * @return An array of Statuses, most recent ones first.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline)
+   * @return An array of Statuses, most recent ones first.
    */
   public fetchPublicTimeline = (options?: Mastodon.FetchTimelineOptions) => this.fetchTimeline(`/timeline/public`, options);
 
@@ -839,8 +839,8 @@ export class Mastodon extends EventEmitter {
    * - Does not require authentication.
    * @param id ID of the hashtag
    * @param options Query parameters
-   * @return An array of Statuses, most recent ones first.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline)
+   * @return An array of Statuses, most recent ones first.
    */
   public fetchTagTimeline = (id: string, options?: Mastodon.FetchTimelineOptions) => this.fetchTimeline(`/timeline/tag/${id}`, options);
 
@@ -849,8 +849,8 @@ export class Mastodon extends EventEmitter {
    * - Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. However, it is possible to use the `id` of the returned objects to construct your own URLs.
    * @param id ID of the list
    * @param options Query parameters
-   * @return An array of Statuses, most recent ones first.
    * @see [tootsuite/documentation](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline)
+   * @return An array of Statuses, most recent ones first.
    */
   public fetchListTimeline = (id: string, options?: Mastodon.FetchTimelineOptions) => this.fetchTimeline(`/timeline/list/${id}`, options);
 
