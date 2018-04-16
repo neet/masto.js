@@ -15,7 +15,7 @@ yarn add @lagunehq/core
 ## Using the api
 Here's a simple example which creates a new status:
 ```ts
-import { Mastodon } from '@lagunehq/core';
+import Mastodon from '@lagunehq/core';
 
 const client = new Mastodon();
 
