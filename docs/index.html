@@ -71,7 +71,7 @@
 				<pre><code><span class="hljs-selector-tag">yarn</span> <span class="hljs-selector-tag">add</span> @<span class="hljs-keyword">lagunehq</span>/<span class="hljs-keyword">core</span>
 </code></pre><h2 id="using-the-api">Using the api</h2>
 				<p>Here&#39;s a simple example which creates a new status:</p>
-				<pre><code class="lang-ts"><span class="hljs-keyword">import</span> { Mastodon } <span class="hljs-keyword">from</span> <span class="hljs-string">'./index'</span>;
+				<pre><code class="lang-ts"><span class="hljs-keyword">import</span> { Mastodon } <span class="hljs-keyword">from</span> <span class="hljs-string">'@lagunehq/core'</span>;
 
 <span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> Mastodon();
 
@@ -79,9 +79,9 @@ client.setUrl(<span class="hljs-string">'https://mastodon.social'</span>);
 client.setStreamingUrl(<span class="hljs-string">'wss://mastodon.social'</span>);
 client.setToken(<span class="hljs-string">'my token'</span>);
 
-<span class="hljs-keyword">const</span> newStatus: Mastodon.Status = client.createStatus(<span class="hljs-string">'Toot from TypeScript'</span>);
-
-<span class="hljs-built_in">console</span>.log(newStatus);
+client.createStatus(<span class="hljs-string">'Toot from TypeScript'</span>).then(<span class="hljs-function">(<span class="hljs-params">newStatus</span>) =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(newStatus);
+});
 </code></pre>
 				<p>All of available methods/interfaces are described in the <a href="https://lagunehq.github.io/core/classes/_index_.mastodon.html">documentation</a></p>
 			</div>
