@@ -8,7 +8,7 @@ export class Mastodon extends EventEmitter {
   private url: string = '';
   private token: string = '';
   private urlVersion: string = '/api/v1';
-  private streamingUrl: string= '';
+  private streamingUrl: string = '';
 
   constructor () {
     super();
