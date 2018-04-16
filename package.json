@@ -23,12 +23,14 @@
   },
   "homepage": "https://github.com/lagunehq/core#readme",
   "dependencies": {
-    "eventemitter3": "^3.0.1",
+    "node-fetch": "^2.1.2",
     "query-string": "^6.0.0",
-    "websocket.js": "^0.1.12"
+    "websocket": "^1.0.25"
   },
   "devDependencies": {
+    "@types/node-fetch": "^1.6.8",
     "@types/query-string": "^5.1.0",
+    "@types/websocket": "^0.0.38",
     "typedoc": "^0.11.1",
     "typescript": "^2.8.1"
   }

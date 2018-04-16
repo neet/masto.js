@@ -1,49 +1,51 @@
-import EventEmitter from 'eventemitter3';
-import WebSocketClient from 'websocket.js';
+import nodeFetch from 'node-fetch';
+import { client as WebSocketClient } from 'websocket';
 import { stringify } from 'query-string';
 
-
-export class Mastodon extends EventEmitter {
+export class Mastodon {
 
   private url: string = '';
+  private streamingUrl: string = '';
   private token: string = '';
   private urlVersion: string = '/api/v1';
-  private streamingUrl: string = '';
 
-  constructor () {
-    super();
-  }
-
-  private _request = (url: string, options: RequestInit = {}): Promise<any> => {
+  private _request = (url: string, options: any = {}): Promise<any> => {
     options = { ...options };
 
     options.headers = {
-      Authorization: `Bearer: ${this.token}`,
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.token}`,
       ...options.headers,
     };
 
-    return fetch(url, options)
-      .then((response) => response.json()).then((data) => data)
-      .catch((error)   => error.json()).then((error) => error);
+    if (typeof window !== 'undefined') {
+      return fetch(url, options)
+        .then((response) => response.json()).then((data) => data)
+        .catch((error)   => error);
+    } else {
+      return nodeFetch(url, options)
+        .then((response) => response.json()).then((data) => data)
+        .catch((error)   => error);
+    }
   }
 
-  private _get = (path: string, params = {}, options: RequestInit = {}): Promise<any> => {
+  private _get = (path: string, params = {}, options: any = {}): Promise<any> => {
     return this._request(`${this.getBaseUrl()}${path}${params ? '?' + stringify(params) : ''}`, { method: 'GET', ...options });
   }
 
-  private _post = (path: string, body = {}, options: RequestInit = {}): Promise<any> => {
+  private _post = (path: string, body = {}, options: any = {}): Promise<any> => {
     return this._request(`${this.getBaseUrl()}${path}`, { method: 'POST', body: JSON.stringify(body), ...options });
   }
 
-  private _put = (path: string, body = {}, options: RequestInit = {}): Promise<any> => {
+  private _put = (path: string, body = {}, options: any = {}): Promise<any> => {
     return this._request(`${this.getBaseUrl()}${path}`, { method: 'PUT', body: JSON.stringify(body), ...options });
   }
 
-  private _delete = (path: string, body = {}, options: RequestInit = {}): Promise<any> => {
+  private _delete = (path: string, body = {}, options: any = {}): Promise<any> => {
     return this._request(`${this.getBaseUrl()}${path}`, { method: 'DELETE', body: JSON.stringify(body), ...options });
   }
 
-  private _patch = (path: string, body = {}, options: RequestInit = {}): Promise<any> => {
+  private _patch = (path: string, body = {}, options: any = {}): Promise<any> => {
     return this._request(`${this.getBaseUrl()}${path}`, { method: 'PATCH', body: JSON.stringify(body), ...options });
   }
 
@@ -116,32 +118,30 @@ export class Mastodon extends EventEmitter {
   public getToken = () => this.token;
 
   /**
-   * Add event listener for specified Event
-   * @param event Type of event `update`, `delete` or `notification`.
-   * @param listener Callback function
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
-   */
-  public on (event: Mastodon.EventTypes, listener: (...args: any[]) => void) {
-    return super.on(event, listener);
-  }
-
-  /**
    * Starting streaming with specified channel
    * @param stream Type of channel
+   * @param recieved Callback function
+   * @return WebScoket client's instance
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
    */
-  public stream = (stream: string) => {
+  public stream = (stream: string, recieved: (message: {event: string, payload: any}) => void) => {
     const params: any = { stream };
 
     if ( this.token ) {
       params.access_token = this.token;
     }
 
-    const ws = new WebSocketClient(`${this.getStreamingBaseUrl()}/streaming?${stringify(params)}`);
+    const client = new WebSocketClient();
 
-    ws.onmessage = (e) => this.emit(e.type, JSON.parse(e.data));
+    client.on('connect', (connection) => {
+      connection.on('message', (message) => {
+        if (message.type === 'utf8' && message.utf8Data) {
+          recieved(JSON.parse(message.utf8Data));
+        }
+      });
+    });
 
-    return ws;
+    return client.connect(`${this.getStreamingBaseUrl()}/streaming?${stringify(params)}`);
   }
 
   /**
