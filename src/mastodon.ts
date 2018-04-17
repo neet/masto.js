@@ -647,7 +647,7 @@ export class Mastodon {
    * @param grant_type grant_type
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/OAuth-details.md
    */
-  public fetchAccessToken = (code: string, client_id: string, client_secret: string, redirect_uri: string, grant_type = 'authorization_code'): Promise<Mastodon.OAuth> => {
+  public fetchAccessToken = (code: string, client_id: string, client_secret: string, redirect_uri: string, grant_type = 'authorization_code'): Promise<{ access_token: string }> => {
     return this._post(`${this.url}/oauth/token`, { code, client_id, client_secret, redirect_uri, grant_type });
   }
 
