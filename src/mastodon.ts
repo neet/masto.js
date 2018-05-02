@@ -159,7 +159,7 @@ export namespace Mastodon {
 
   export interface Instance {
     /** URI of the current instance */
-    url: string;
+    uri: string;
     /** The instance's title */
     title: string;
     /** A description for the instance */
