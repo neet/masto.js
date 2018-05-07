@@ -21,6 +21,8 @@ export namespace Mastodon {
     display_name: string;
     /** Boolean for when the account cannot be followed without waiting for approval first */
     locked: boolean;
+    /** Whether the account is a BOT */
+    bot: boolean;
     /** The time the account was created */
     created_at: string;
     /** The number of followers for the account */
