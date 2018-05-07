@@ -43,6 +43,13 @@ export namespace Mastodon {
     header_static: string;
     /** If the owner decided to switch accounts, new account is in this attribute */
     moved?: boolean;
+    /** Fileds that will be inserted in the profile */
+    field?: AccountField[];
+  }
+
+  export interface AccountField {
+    name: string;
+    value: string;
   }
 
   export interface Credentials extends Account {
