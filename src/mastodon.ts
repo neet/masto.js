@@ -45,13 +45,15 @@ export namespace Mastodon {
     header_static: string;
     /** If the owner decided to switch accounts, new account is in this attribute */
     moved?: boolean;
-    /** Fileds that will be inserted in the profile */
-    field?: AccountField[];
+    /** Array of profile metadata field, each element has 'name' and 'value' */
+    field?: AccountFields[];
   }
 
-  export interface AccountField {
-    name: string;
-    value: string;
+  export interface AccountFields {
+    /** (2.4 or later) Label of profile metadata field. */
+    name?: string;
+    /** (2.4 or later) Value of profile metadata field. */
+    value?: string;
   }
 
   export interface Credentials extends Account {
@@ -340,6 +342,8 @@ export namespace Mastodon {
     header?: File;
     /** Manually approve followers? */
     locked?: boolean;
+    /** Array of profile metadata, each element has 'name' and 'value' */
+    fields_attributes?: AccountFields[];
   }
 
   export interface FetchAccountFollowersOptions {
@@ -1369,5 +1373,12 @@ export class Mastodon {
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
   public fetchListTimeline = (id: string, options?: Mastodon.FetchTimelineOptions) => this.fetchTimeline(`list/${id}`, options);
+
+  /**
+   * Retrieving a direct timeline
+   * @return An array of Statuses, most recent ones first.
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
+   */
+  public fetchDirectTimeline = () => this.fetchTimeline('direct');
 
 }
