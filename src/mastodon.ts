@@ -46,10 +46,10 @@ export namespace Mastodon {
     /** If the owner decided to switch accounts, new account is in this attribute */
     moved?: boolean;
     /** Array of profile metadata field, each element has 'name' and 'value' */
-    field?: AccountFields[];
+    fields?: AccountField[];
   }
 
-  export interface AccountFields {
+  export interface AccountField {
     /** (2.4 or later) Label of profile metadata field. */
     name?: string;
     /** (2.4 or later) Value of profile metadata field. */
@@ -343,7 +343,7 @@ export namespace Mastodon {
     /** Manually approve followers? */
     locked?: boolean;
     /** Array of profile metadata, each element has 'name' and 'value' */
-    fields_attributes?: AccountFields[];
+    fields_attributes?: AccountField[];
   }
 
   export interface FetchAccountFollowersOptions {
