@@ -569,7 +569,7 @@ export class Mastodon {
   private urlVersion: string   = '/api/v1';
   private token: string        = '';
 
-  private _request = (url: string, options: any = {}): Promise<any> => {
+  private _request = async (url: string, options: any = {}): Promise<any> => {
     options = { ...options };
 
     if ( options.headers === undefined ) {
@@ -582,29 +582,25 @@ export class Mastodon {
 
     options.headers['Content-Type']  = 'application/json';
 
-    if (typeof window === 'undefined') {
-      return nodeFetch(url, options).then((response) => {
-        return response.json().then((data) => {
-          if (response.ok) {
-            return data;
-          }
-          throw data as Mastodon.Error;
-        }).catch(() => {
-          throw { error: 'Unexpected error occured' } as Mastodon.Error;
-        });
-      })
-    }
+    try {
+      let response: any;
 
-    return fetch(url, options).then((response) => {
-      return response.json().then((data) => {
-        if (response.ok) {
-          return data;
-        }
-        throw data as Mastodon.Error;
-      }).catch(() => {
-        throw { error: 'Unexpected error occured' } as Mastodon.Error;
-      });
-    });
+      if (typeof window === 'undefined') {
+        response = await nodeFetch(url, options);
+      } else {
+        response = await fetch(url, options);
+      }
+
+      const data     = await response.json();
+
+      if ( response.ok ) {
+        return data
+      };
+
+      throw data as Mastodon.Error;
+    } catch (error) {
+      throw { error: error || 'Unexpected error occured' } as Mastodon.Error;
+    }
   }
 
   private _get = (url: string, params = {}, options = {}): Promise<any> => {
