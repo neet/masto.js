@@ -232,6 +232,19 @@ export namespace Mastodon {
     status?: Status;
   }
 
+  export interface PushSubscription {
+    /** The push subscription ID */
+    id: string;
+    /** The endpoint URL */
+    endpoint: string;
+    /** The server public key for signature verification. (not for decoding) */
+    server_key: string;
+    /** Map of 'notification event type' and 'push is requested or not' */
+    alerts: {
+      [key: string]: boolean;
+    }
+  }
+
   export interface Relationship {
     /** Target account id */
     id: string;
