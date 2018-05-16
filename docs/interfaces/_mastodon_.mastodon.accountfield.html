@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Emoji | @lagunehq/core</title>
+	<title>AccountField | @lagunehq/core</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -60,10 +60,10 @@
 					<a href="../classes/_mastodon_.mastodon.html">Mastodon</a>
 				</li>
 				<li>
-					<a href="_mastodon_.mastodon.emoji.html">Emoji</a>
+					<a href="_mastodon_.mastodon.accountfield.html">AccountField</a>
 				</li>
 			</ul>
-			<h1>Interface Emoji</h1>
+			<h1>Interface AccountField</h1>
 		</div>
 	</div>
 </header>
@@ -74,7 +74,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Emoji</span>
+						<span class="target">AccountField</span>
 					</li>
 				</ul>
 			</section>
@@ -85,9 +85,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_mastodon_.mastodon.emoji.html#shortcode" class="tsd-kind-icon">shortcode</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_mastodon_.mastodon.emoji.html#static_url" class="tsd-kind-icon">static_<wbr>url</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_mastodon_.mastodon.emoji.html#url" class="tsd-kind-icon">url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_mastodon_.mastodon.accountfield.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_mastodon_.mastodon.accountfield.html#value" class="tsd-kind-icon">value</a></li>
 							</ul>
 						</section>
 					</div>
@@ -96,47 +95,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="shortcode" class="tsd-anchor"></a>
-					<h3>shortcode</h3>
-					<div class="tsd-signature tsd-kind-icon">shortcode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="name" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/a1d6725/src/mastodon.ts#L159">mastodon.ts:159</a></li>
+							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/a1d6725/src/mastodon.ts#L54">mastodon.ts:54</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The shortcode of the emoji</p>
+							<p>(2.4 or later) Label of profile metadata field.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="static_url" class="tsd-anchor"></a>
-					<h3>static_<wbr>url</h3>
-					<div class="tsd-signature tsd-kind-icon">static_<wbr>url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="value" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> value</h3>
+					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/a1d6725/src/mastodon.ts#L161">mastodon.ts:161</a></li>
+							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/a1d6725/src/mastodon.ts#L56">mastodon.ts:56</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>URL to the emoji static image</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="url" class="tsd-anchor"></a>
-					<h3>url</h3>
-					<div class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/a1d6725/src/mastodon.ts#L163">mastodon.ts:163</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>URL to the emoji image</p>
+							<p>(2.4 or later) Value of profile metadata field.</p>
 						</div>
 					</div>
 				</section>
@@ -164,16 +148,13 @@
 						<a href="../classes/_mastodon_.mastodon.html" class="tsd-kind-icon">Mastodon</a>
 						<ul>
 							<li class="current tsd-kind-interface tsd-parent-kind-class">
-								<a href="_mastodon_.mastodon.emoji.html" class="tsd-kind-icon">Emoji</a>
+								<a href="_mastodon_.mastodon.accountfield.html" class="tsd-kind-icon">Account<wbr>Field</a>
 								<ul>
 									<li class=" tsd-kind-property tsd-parent-kind-interface">
-										<a href="_mastodon_.mastodon.emoji.html#shortcode" class="tsd-kind-icon">shortcode</a>
+										<a href="_mastodon_.mastodon.accountfield.html#name" class="tsd-kind-icon">name</a>
 									</li>
 									<li class=" tsd-kind-property tsd-parent-kind-interface">
-										<a href="_mastodon_.mastodon.emoji.html#static_url" class="tsd-kind-icon">static_<wbr>url</a>
-									</li>
-									<li class=" tsd-kind-property tsd-parent-kind-interface">
-										<a href="_mastodon_.mastodon.emoji.html#url" class="tsd-kind-icon">url</a>
+										<a href="_mastodon_.mastodon.accountfield.html#value" class="tsd-kind-icon">value</a>
 									</li>
 								</ul>
 							</li>
