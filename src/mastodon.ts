@@ -241,7 +241,14 @@ export namespace Mastodon {
     server_key: string;
     /** Map of 'notification event type' and 'push is requested or not' */
     alerts: {
-      [key: string]: boolean;
+      /** Boolean of whether you want to receive follow notification event. */
+      follow: boolean;
+      /** Boolean of whether you want to receive favaourite notification event. */
+      favourite: boolean;
+      /** Boolean of whether you want to receive reblog notification event. */
+      reblog: boolean;
+      /** Boolean of whether you want to receive mention notification event. */
+      mention: boolean;
     }
   }
 
@@ -467,6 +474,46 @@ export namespace Mastodon {
     limit: 15;
     /** Array of notifications to exclude (Allowed values: "follow", "favourite", "reblog", "mention") */
     exclude_types?: (NotificationTypes)[];
+  }
+
+  export interface AddPushSubscriptionOptions {
+    subscription: {
+      /** Endpoint URL that called when notification is happen. */
+      endpoint: string;
+      keys: {
+        /** User agent public key. Base64 encoded string of public key of ECDH key that using 'prime256v1' curve. */
+        p256dh: string;
+        /** Auth secret. Base64 encoded string of 16 bytes random data. */
+        auth: string;
+      }
+    };
+    data: {
+      alerts: {
+        /** Boolean of whether you want to receive follow notification event. */
+        follow: boolean;
+        /** Boolean of whether you want to receive favourite notification event. */
+        favourite: boolean;
+        /** Boolean of whether you want to receive reblog notification event. */
+        reblog: boolean;
+        /** Boolean of whether you want to receive mention notification event. */
+        mention: boolean;
+      }
+    }
+  }
+
+  export interface UpdatePushSubscriptionOptions {
+    data: {
+      alerts: {
+        /** Boolean of whether you want to receive follow notification event. */
+        follow: boolean;
+        /** Boolean of whether you want to receive favourite notification event. */
+        favourite: boolean;
+        /** Boolean of whether you want to receive reblog notification event. */
+        reblog: boolean;
+        /** Boolean of whether you want to receive mention notification event. */
+        mention: boolean;
+      }
+    }
   }
 
   export interface FetchReblogsOptions {
@@ -1124,6 +1171,50 @@ export class Mastodon {
    */
   public dissmissNotification = (id: string): Promise<any> => {
     return this._post(`${this.url}${this.urlVersion}/notifications/dismiss`, { id });
+  }
+
+  /**
+   * Adding push subscription
+   * - Each access token can have one push subscription. If you post new subscription. the old subscription is deleted.
+   * - The endpoint URL is called when notification event is happen, and its payload is encrypted according to The Web Push Protocol.
+   * @param options Form data
+   * @return Returns the Push Subscription
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#adding-push-subscription
+   * @see https://developers.google.com/web/updates/2016/03/web-push-encryption
+   * @see https://developers.google.com/web/fundamentals/push-notifications/web-push-protocol
+   */
+  public addPushSubscription = (options: Mastodon.AddPushSubscriptionOptions): Promise<Mastodon.PushSubscription> => {
+    return this._post(`${this.url}${this.urlVersion}/push/subscription`, options);
+  }
+
+  /**
+   * Get current push subscription status
+   * @return Returns the Push Subscription
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#get-current-push-subscription-status
+   */
+  public fetchPushSubscription = (): Promise<Mastodon.PushSubscription> => {
+    return this._get(`${this.url}${this.urlVersion}/push/subscription`);
+  }
+
+  /**
+   * Updating push subscription
+   * - This API updates 'data' part of push subscription. If you want to change 'subscription', you have to use 'POST /api/v1/push/subscription'.
+   * @param options Form data
+   * @return Returns the Push Subscription
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#updating-push-subscription
+   */
+  public updatePushSubscription = (options: Mastodon.UpdatePushSubscriptionOptions): Promise<Mastodon.PushSubscription> => {
+    return this._put(`${this.url}${this.urlVersion}/push/subscription`, options);
+  }
+
+  /**
+   * Removing push subscription
+   * - This API removes push subscription that bind to access token.
+   * @return An empty object
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#removing-push-subscription
+   */
+  public removePushSubscription = (): Promise<any> => {
+    return this._delete(`${this.url}${this.urlVersion}/push/subscription`);
   }
 
   /**
