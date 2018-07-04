@@ -1589,4 +1589,11 @@ export class Mastodon {
     return this._delete(`${this.url}${this.urlVersion}/filters/${id}`);
   }
 
+  /**
+   * Fething user recommendation
+   * @return An array of Accounts
+   */
+  public fetchSuggestions = (): Promise<Mastodon.Account[]> => {
+    return this._get(`${this.url}${this.urlVersion}/suggestions`);
+  }
 }
