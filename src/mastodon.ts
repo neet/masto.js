@@ -1483,4 +1483,14 @@ export class Mastodon {
    */
   public fetchDirectTimeline = () => this.fetchTimeline('direct');
 
+  /**
+   * Retrieving trending hashtags
+   * - Does not require authentication.
+   * @return An array of tags
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-trending-hashtags
+   */
+  public fetchTrends = (): Promise<Mastodon.Tag[]> => {
+    return this._get(`${this.url}${this.urlVersion}/trends`);
+  }
+
 }
