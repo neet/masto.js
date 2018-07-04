@@ -293,7 +293,7 @@ export namespace Mastodon {
     /** A Fediverse-unique resource ID */
     uri: string;
     /** URL to the status page (can be remote) */
-    url: string;
+    url?: string;
     /** The Account which posted the status */
     account: Account;
     /** `null` or the ID of the status it replies to */
