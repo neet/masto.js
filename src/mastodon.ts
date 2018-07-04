@@ -4,11 +4,12 @@ import { client as WebSocketClient } from 'websocket';
 
 export namespace Mastodon {
 
-  export type EventTypes        = 'update'|'delete'|'notification';
-  export type VisibilityTypes   = 'public'|'unlisted'|'private'|'direct';
-  export type AttachmentTypes   = 'image'|'video'|'gifv'|'unknown';
-  export type CardTypes         = 'link'|'photo'|'video'|'rich';
-  export type NotificationTypes = 'mention'|'reblog'|'favourite'|'follow';
+  export type EventTypes         = 'update'|'delete'|'notification';
+  export type VisibilityTypes    = 'public'|'unlisted'|'private'|'direct';
+  export type AttachmentTypes    = 'image'|'video'|'gifv'|'unknown';
+  export type CardTypes          = 'link'|'photo'|'video'|'rich';
+  export type NotificationTypes  = 'mention'|'reblog'|'favourite'|'follow';
+  export type FilterContextTypes = 'home'|'notifications'|'public'|'thread';
 
   export interface Account {
     /** The ID of the account */
@@ -345,6 +346,17 @@ export namespace Mastodon {
     url: string;
   }
 
+  export interface Filter {
+    /** The ID of the filter */
+    id: number;
+    /** The phrase for filter */
+    phrase: string;
+    /** Type of timeline to filter */
+    context: FilterContextTypes[];
+    /** The simestamp for expire time */
+    expires_at?: string;
+  }
+
   export interface OAuth {
     id: string;
     client_id: string;
@@ -560,6 +572,24 @@ export namespace Mastodon {
     since_id?: string;
     /** Maximum number of statuses on the requested timeline to get (Default 20, Max 40) */
     limit?: string;
+  }
+
+  export interface CreateFilterOptions {
+    /** Filtered toots will disappear irreversibly, even if filter is later removed */
+    irreversible?: boolean;
+    /** The simestamp for expire time */
+    expires_at?: number;
+  }
+
+  export interface UpdateFilterOptions {
+    /** The phrase for filter */
+    phrase?: string;
+    /** Type of timeline to filter */
+    context?: FilterContextTypes[];
+    /** Filtered toots will disappear irreversibly, even if filter is later removed */
+    irreversible?: boolean;
+    /** The simestamp for expire time */
+    expires_at?: number;
   }
 
 }
@@ -1482,5 +1512,52 @@ export class Mastodon {
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
   public fetchDirectTimeline = () => this.fetchTimeline('direct');
+
+  /**
+   * Fetching filters
+   * @return An array of Filters
+   */
+  public fetchFilters = (): Promise<Mastodon.Filter[]> => {
+    return this._get(`${this.url}${this.urlVersion}/filters`);
+  }
+
+  /**
+   * Fethcing a filter by id
+   * @param id ID of the filter
+   * @return A filter
+   */
+  public fetchFilter = (id: string): Promise<Mastodon.Filter> => {
+    return this._get(`${this.url}${this.urlVersion}/filters/${id}`);
+  }
+
+  /**
+   * Creating a filter
+   * @param phrase Phrase to filter
+   * @param context Type of timeline to filter
+   * @param options Optional parameters
+   * @return A filter
+   */
+  public createFiler = (phrase: string, context: Mastodon.FilterContextTypes, options: Mastodon.CreateFilterOptions): Promise<Mastodon.Filter> => {
+    return this._post(`${this.url}${this.urlVersion}/filters`, { phrase, context, ...options });
+  }
+
+  /**
+   * Updating a filter
+   * @param id ID of the filter
+   * @param options Optinal parameters
+   * @return A filter
+   */
+  public updateFilter = (id: string, options: Mastodon.UpdateFilterOptions): Promise<Mastodon.Filter> => {
+    return this._patch(`${this.url}${this.urlVersion}/filters/${id}`, options);
+  }
+
+  /**
+   * Removing filter by id
+   * @param id ID of the filter
+   * @return An empty object
+   */
+  public removeFilter = (id: string): Promise<{}> => {
+    return this._delete(`${this.url}${this.urlVersion}/filters/${id}`);
+  }
 
 }
