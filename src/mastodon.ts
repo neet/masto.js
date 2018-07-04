@@ -1,5 +1,5 @@
 import nodeFetch from 'node-fetch';
-import { stringify } from 'query-string';
+import * as queryString from 'query-string';
 import * as WebSocket from 'websocket';
 
 export namespace Mastodon {
@@ -647,7 +647,7 @@ export class Mastodon {
   }
 
   private _get = (url: string, params = {}, options = {}): Promise<any> => {
-    return this._request(url + (Object.keys(params).length ? '?' + stringify(params) : ''), { method: 'GET', ...options });
+    return this._request(url + (Object.keys(params).length ? '?' + queryString.stringify(params) : ''), { method: 'GET', ...options });
   }
 
   private _post = (url: string, body = {}, options = {}): Promise<any> => {
@@ -754,7 +754,7 @@ export class Mastodon {
         resolve(connection);
       });
 
-      client.connect(`${this.streamingUrl}${this.urlVersion}/streaming/${id}?${stringify(params)}`);
+      client.connect(`${this.streamingUrl}${this.urlVersion}/streaming/${id}?${queryString.stringify(params)}`);
     });
   }
 
