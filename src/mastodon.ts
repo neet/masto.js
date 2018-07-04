@@ -1,6 +1,6 @@
 import nodeFetch from 'node-fetch';
 import { stringify } from 'query-string';
-import { client as WebSocketClient } from 'websocket';
+import * as WebSocket from 'websocket';
 
 export namespace Mastodon {
 
@@ -727,27 +727,35 @@ export class Mastodon {
    * Starting streaming with specified channel
    * @param stream Type of channel
    * @param recieved Callback function
-   * @return WebScoket client's instance
+   * @return WebScoket's event emitter
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
    */
-  public stream = (stream: string, recieved: (message: {event: string, payload: any}) => void) => {
+  public stream = (stream: string, recieved: (message: {event: string, payload: any}) => void): Promise<WebSocket.connection> => {
     const params: any = { stream };
 
     if ( this.token ) {
       params.access_token = this.token;
     }
 
-    const client = new WebSocketClient();
+    return new Promise((resolve, reject) => {
+      const client = new WebSocket.client();
 
-    client.on('connect', (connection) => {
-      connection.on('message', (message) => {
-        if (message.type === 'utf8' && message.utf8Data) {
-          recieved(JSON.parse(message.utf8Data));
-        }
+      client.on('connectFailed', (errorDescription) => {
+        reject(errorDescription);
       });
-    });
 
-    return client.connect(`${this.streamingUrl}${this.urlVersion}/streaming?${stringify(params)}`);
+      client.on('connect', (connection) => {
+        connection.on('message', (message) => {
+          if (message.type === 'utf8' && message.utf8Data) {
+            recieved(JSON.parse(message.utf8Data));
+          }
+        });
+
+        resolve(connection);
+      });
+
+      client.connect(`${this.streamingUrl}${this.urlVersion}/streaming?${stringify(params)}`);
+    });
   }
 
   /**
