@@ -202,6 +202,17 @@ export namespace Mastodon {
     domain_count: number;
   }
 
+  export interface ActivityPerWeek {
+    /** Timestamp of 0 o'clock on Monday of the week */
+    week: string;
+    /** Number of statuses created while the week */
+    statuses: string;
+    /** Active users while the week */
+    logins: string;
+    /** New registrations while the week */
+    registrations: string;
+  }
+
   export interface List {
     /** ID of the list */
     id: string;
@@ -1010,7 +1021,7 @@ export class Mastodon {
   }
 
   /**
-   * Getting current instance information
+   * Fetching current instance information
    * - Does not require authentication
    * @return The current instance.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-current-instance-information
@@ -1020,7 +1031,25 @@ export class Mastodon {
   }
 
   /**
-   * Getting current instance's custom emojis
+   * Fetching peer instances
+   * - Does not require authentication
+   * @return An array of peer instance's domain
+   */
+  public fetchPeerInstances = (): Promise<string[]> => {
+    return this._get(`${this.url}${this.urlVersion}/instance/peers`);
+  }
+
+  /**
+   * Fetching activities of current instance
+   * - Does not require authentication
+   * @return An array of Activities
+   */
+  public fetchInstanceActivity = (): Promise<Mastodon.ActivityPerWeek[]> =>  {
+    return this._get(`${this.url}${this.urlVersion}/instance/activity`);
+  }
+
+  /**
+   * Fetching current instance's custom emojis
    * - Does not require authentication
    * @return A list of Emoji
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-current-instances-custom-emojis
