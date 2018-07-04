@@ -612,7 +612,7 @@ export class Mastodon {
   private urlVersion: string   = '/api/v1';
   private token: string        = '';
 
-  private _request = async (url: string, options: any = {}): Promise<any> => {
+  protected _request = async (url: string, options: any = {}): Promise<any> => {
     options = { ...options };
 
     if ( options.headers === undefined ) {
@@ -646,23 +646,23 @@ export class Mastodon {
     }
   }
 
-  private _get = (url: string, params = {}, options = {}): Promise<any> => {
+  protected _get = (url: string, params = {}, options = {}): Promise<any> => {
     return this._request(url + (Object.keys(params).length ? '?' + queryString.stringify(params) : ''), { method: 'GET', ...options });
   }
 
-  private _post = (url: string, body = {}, options = {}): Promise<any> => {
+  protected _post = (url: string, body = {}, options = {}): Promise<any> => {
     return this._request(url, { method: 'POST', body: JSON.stringify(body), ...options });
   }
 
-  private _put = (url: string, body = {}, options = {}): Promise<any> => {
+  protected _put = (url: string, body = {}, options = {}): Promise<any> => {
     return this._request(url, { method: 'PUT', body: JSON.stringify(body), ...options });
   }
 
-  private _delete = (url: string, body = {}, options = {}): Promise<any> => {
+  protected _delete = (url: string, body = {}, options = {}): Promise<any> => {
     return this._request(url, { method: 'DELETE', body: JSON.stringify(body), ...options });
   }
 
-  private _patch = (url: string, body = {}, options = {}): Promise<any> => {
+  protected _patch = (url: string, body = {}, options = {}): Promise<any> => {
     return this._request(url, { method: 'PATCH', body: JSON.stringify(body), ...options });
   }
 
