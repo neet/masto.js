@@ -1091,12 +1091,12 @@ export class Mastodon {
   }
 
   /**
-   * Deleting a list
+   * Removing a list
    * @param id ID of the target list
    * @return An empty object
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#deleting-a-list
    */
-  public deleteList = (id: string): Promise<any> => {
+  public removeList = (id: string): Promise<any> => {
     return this._delete(`${this.url}${this.urlVersion}/lists/${id}`);
   }
 
@@ -1354,12 +1354,12 @@ export class Mastodon {
   }
 
   /**
-   * Deleting a status
+   * Removing a status
    * @param id ID of the target status
    * @return An empty object
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#deleting-a-status
    */
-  public deleteStatus = (id: string): Promise<any> => {
+  public removeStatus = (id: string): Promise<any> => {
     return this._delete(`${this.url}${this.urlVersion}/statuses/${id}`);
   }
 
