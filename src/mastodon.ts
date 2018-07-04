@@ -545,6 +545,8 @@ export namespace Mastodon {
     spoiler_text?: string;
     /** Either "direct", "private", "unlisted" or "public" */
     visibility?: VisibilityTypes;
+    /** ISO 639-2 language code of the toot, to skip automatic detection */
+    language?: string;
   }
 
   export interface FetchTimelineOptions {
