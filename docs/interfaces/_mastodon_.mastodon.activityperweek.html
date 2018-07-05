@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>FetchAccountFollowersOptions | @lagunehq/core</title>
+	<title>ActivityPerWeek | @lagunehq/core</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -60,10 +60,10 @@
 					<a href="../classes/_mastodon_.mastodon.html">Mastodon</a>
 				</li>
 				<li>
-					<a href="_mastodon_.mastodon.fetchaccountfollowersoptions.html">FetchAccountFollowersOptions</a>
+					<a href="_mastodon_.mastodon.activityperweek.html">ActivityPerWeek</a>
 				</li>
 			</ul>
-			<h1>Interface FetchAccountFollowersOptions</h1>
+			<h1>Interface ActivityPerWeek</h1>
 		</div>
 	</div>
 </header>
@@ -74,7 +74,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">FetchAccountFollowersOptions</span>
+						<span class="target">ActivityPerWeek</span>
 					</li>
 				</ul>
 			</section>
@@ -85,9 +85,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_mastodon_.mastodon.fetchaccountfollowersoptions.html#limit" class="tsd-kind-icon">limit</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_mastodon_.mastodon.fetchaccountfollowersoptions.html#max_id" class="tsd-kind-icon">max_<wbr>id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_mastodon_.mastodon.fetchaccountfollowersoptions.html#since_id" class="tsd-kind-icon">since_<wbr>id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_mastodon_.mastodon.activityperweek.html#logins" class="tsd-kind-icon">logins</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_mastodon_.mastodon.activityperweek.html#registrations" class="tsd-kind-icon">registrations</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_mastodon_.mastodon.activityperweek.html#statuses" class="tsd-kind-icon">statuses</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_mastodon_.mastodon.activityperweek.html#week" class="tsd-kind-icon">week</a></li>
 							</ul>
 						</section>
 					</div>
@@ -96,47 +97,62 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="limit" class="tsd-anchor"></a>
-					<h3>limit</h3>
-					<div class="tsd-signature tsd-kind-icon">limit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">40</span></div>
+					<a name="logins" class="tsd-anchor"></a>
+					<h3>logins</h3>
+					<div class="tsd-signature tsd-kind-icon">logins<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/62cd3fa/src/mastodon.ts#L398">mastodon.ts:398</a></li>
+							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/62cd3fa/src/mastodon.ts#L211">mastodon.ts:211</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Maximum number of followers to get (Default 40, Max 80)</p>
+							<p>Active users while the week</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="max_id" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> max_<wbr>id</h3>
-					<div class="tsd-signature tsd-kind-icon">max_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<a name="registrations" class="tsd-anchor"></a>
+					<h3>registrations</h3>
+					<div class="tsd-signature tsd-kind-icon">registrations<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/62cd3fa/src/mastodon.ts#L394">mastodon.ts:394</a></li>
+							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/62cd3fa/src/mastodon.ts#L213">mastodon.ts:213</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Get a list of followers with ID less than this value</p>
+							<p>New registrations while the week</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="since_id" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> since_<wbr>id</h3>
-					<div class="tsd-signature tsd-kind-icon">since_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<a name="statuses" class="tsd-anchor"></a>
+					<h3>statuses</h3>
+					<div class="tsd-signature tsd-kind-icon">statuses<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/62cd3fa/src/mastodon.ts#L396">mastodon.ts:396</a></li>
+							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/62cd3fa/src/mastodon.ts#L209">mastodon.ts:209</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Get a list of followers with ID greater than this value</p>
+							<p>Number of statuses created while the week</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="week" class="tsd-anchor"></a>
+					<h3>week</h3>
+					<div class="tsd-signature tsd-kind-icon">week<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/62cd3fa/src/mastodon.ts#L207">mastodon.ts:207</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Timestamp of 0 o&#39;clock on Monday of the week</p>
 						</div>
 					</div>
 				</section>
@@ -164,16 +180,19 @@
 						<a href="../classes/_mastodon_.mastodon.html" class="tsd-kind-icon">Mastodon</a>
 						<ul>
 							<li class="current tsd-kind-interface tsd-parent-kind-class">
-								<a href="_mastodon_.mastodon.fetchaccountfollowersoptions.html" class="tsd-kind-icon">Fetch<wbr>Account<wbr>Followers<wbr>Options</a>
+								<a href="_mastodon_.mastodon.activityperweek.html" class="tsd-kind-icon">Activity<wbr>Per<wbr>Week</a>
 								<ul>
 									<li class=" tsd-kind-property tsd-parent-kind-interface">
-										<a href="_mastodon_.mastodon.fetchaccountfollowersoptions.html#limit" class="tsd-kind-icon">limit</a>
+										<a href="_mastodon_.mastodon.activityperweek.html#logins" class="tsd-kind-icon">logins</a>
 									</li>
 									<li class=" tsd-kind-property tsd-parent-kind-interface">
-										<a href="_mastodon_.mastodon.fetchaccountfollowersoptions.html#max_id" class="tsd-kind-icon">max_<wbr>id</a>
+										<a href="_mastodon_.mastodon.activityperweek.html#registrations" class="tsd-kind-icon">registrations</a>
 									</li>
 									<li class=" tsd-kind-property tsd-parent-kind-interface">
-										<a href="_mastodon_.mastodon.fetchaccountfollowersoptions.html#since_id" class="tsd-kind-icon">since_<wbr>id</a>
+										<a href="_mastodon_.mastodon.activityperweek.html#statuses" class="tsd-kind-icon">statuses</a>
+									</li>
+									<li class=" tsd-kind-property tsd-parent-kind-interface">
+										<a href="_mastodon_.mastodon.activityperweek.html#week" class="tsd-kind-icon">week</a>
 									</li>
 								</ul>
 							</li>
