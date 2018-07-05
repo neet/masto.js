@@ -4,6 +4,11 @@ defaultSeverity: warning
 extends:
 - tslint:recommended
 
+linterOptions:
+  exclude:
+    - docs
+    - examples
+
 rules:
   no-duplicate-imports: true
   space-before-function-paren: true
