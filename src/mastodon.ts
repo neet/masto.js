@@ -725,13 +725,13 @@ export class Mastodon {
 
   /**
    * Starting streaming with specified channel
-   * @param id ID of channel
+   * @param id ID of channel e.g. "public/local"
    * @param recieved Callback function
-   * @return WebScoket's event emitter
+   * @return WebScoket's eventemitter
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
    */
   public stream = (id: string, recieved: (message: {event: string, payload: any}) => void): Promise<WebSocket.connection> => {
-    const params: any = {};
+    const params: any = { stream: id };
 
     if ( this.token ) {
       params.access_token = this.token;
@@ -754,7 +754,7 @@ export class Mastodon {
         resolve(connection);
       });
 
-      client.connect(`${this.streamingUrl}${this.urlVersion}/streaming/${id}?${queryString.stringify(params)}`);
+      client.connect(`${this.streamingUrl}${this.urlVersion}/streaming?${queryString.stringify(params)}`);
     });
   }
 
