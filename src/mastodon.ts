@@ -269,6 +269,8 @@ export namespace Mastodon {
     id: string;
     /** Whether the user is currently following the account */
     following: boolean;
+    /** Whether reblog will be shown in your timeline*/
+    showing_reblogs: boolean;
     /** Whether the user is currently being followed by the account */
     followed_by: boolean;
     /** Whether the user is currently blocking the account */
