@@ -4,14 +4,23 @@ import * as WebSocket from 'websocket';
 
 export namespace Mastodon {
 
+  /** Type of status visibilty */
   export type VisibilityTypes    = 'public'|'unlisted'|'private'|'direct';
-  export type AttachmentTypes    = 'image'|'video'|'gifv'|'unknown';
-  export type CardTypes          = 'link'|'photo'|'video'|'rich';
-  export type NotificationTypes  = 'mention'|'reblog'|'favourite'|'follow';
-  export type FilterContextTypes = 'home'|'notifications'|'public'|'thread';
-  export type StreamingTypes     = 'user'|'public'|'public/local'|'hashtag'|'list';
 
-  export type EventMapping
+  /** Type of media attachment */
+  export type AttachmentTypes    = 'image'|'video'|'gifv'|'unknown';
+
+  /** Type of card */
+  export type CardTypes          = 'link'|'photo'|'video'|'rich';
+
+  /** Type of notification */
+  export type NotificationTypes  = 'mention'|'reblog'|'favourite'|'follow';
+
+  /** Type of filter context */
+  export type FilterContextTypes = 'home'|'notifications'|'public'|'thread';
+
+  /** Pair of event and payload of streaming */
+  export type StreamingEventMap
     = { event: 'update',         payload: Mastodon.Status }
     | { event: 'delete',         payload: Mastodon.Status['id'] }
     | { event: 'notification',   payload: Mastodon.Notification }
@@ -737,7 +746,7 @@ export class Mastodon {
    * @return WebScoket's eventemitter
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
    */
-  public stream = (id: Mastodon.StreamingTypes, recieved: (data: Mastodon.EventMapping) => void): Promise<WebSocket.connection> => {
+  public stream = (id: string, recieved: (data: Mastodon.StreamingEventMap) => void): Promise<WebSocket.connection> => {
     const params: any = { stream: id };
 
     if ( this.token ) {
