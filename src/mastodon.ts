@@ -628,7 +628,7 @@ export class Mastodon {
   private urlVersion: string   = '/api/v1';
   private token: string        = '';
 
-  protected _request = async (url: string, options: any = {}): Promise<any> => {
+  protected async _request (url: string, options: any = {}): Promise<any> {
     options = { ...options };
 
     if ( options.headers === undefined ) {
@@ -650,7 +650,7 @@ export class Mastodon {
         response = await fetch(url, options);
       }
 
-      const data     = await response.json();
+      const data = await response.json();
 
       if ( response.ok ) {
         return data
@@ -662,23 +662,23 @@ export class Mastodon {
     }
   }
 
-  protected _get = (url: string, params = {}, options = {}): Promise<any> => {
+  protected _get (url: string, params = {}, options = {}): Promise<any> {
     return this._request(url + (Object.keys(params).length ? '?' + queryString.stringify(params) : ''), { method: 'GET', ...options });
   }
 
-  protected _post = (url: string, body = {}, options = {}): Promise<any> => {
+  protected _post (url: string, body = {}, options = {}): Promise<any> {
     return this._request(url, { method: 'POST', body: JSON.stringify(body), ...options });
   }
 
-  protected _put = (url: string, body = {}, options = {}): Promise<any> => {
+  protected _put (url: string, body = {}, options = {}): Promise<any> {
     return this._request(url, { method: 'PUT', body: JSON.stringify(body), ...options });
   }
 
-  protected _delete = (url: string, body = {}, options = {}): Promise<any> => {
+  protected _delete (url: string, body = {}, options = {}): Promise<any> {
     return this._request(url, { method: 'DELETE', body: JSON.stringify(body), ...options });
   }
 
-  protected _patch = (url: string, body = {}, options = {}): Promise<any> => {
+  protected _patch (url: string, body = {}, options = {}): Promise<any> {
     return this._request(url, { method: 'PATCH', body: JSON.stringify(body), ...options });
   }
 
@@ -686,7 +686,7 @@ export class Mastodon {
    * Setting URL of Mastodon that logged in without trailing slash
    * @param url URL of Mastodon
    */
-  public setUrl = (url: string) => {
+  public setUrl (url: string) {
     this.url = url.replace(/\/$/, '');
   }
 
@@ -700,7 +700,7 @@ export class Mastodon {
    * Setting URL of Mastodon's streaming api that started with `wss://`
    * @param streamingUrl The streaming url
    */
-  public setStreamingUrl = (streamingUrl: string) => {
+  public setStreamingUrl (streamingUrl: string) {
     this.streamingUrl = streamingUrl.replace(/\/$/, '');
   }
 
@@ -714,7 +714,7 @@ export class Mastodon {
    * Setting API version of Mastodon without trailing slash
    * @param urlVersion API version such as `/api/v1`
    */
-  public setUrlVersion = (urlVersion: string) => {
+  public setUrlVersion (urlVersion: string) {
     this.urlVersion = urlVersion.replace(/\/$/, "");;
   }
 
@@ -728,7 +728,7 @@ export class Mastodon {
    * Setting token for OAuth
    * @param token Access token
    */
-  public setToken = (token: string) => {
+  public setToken (token: string) {
     this.token = token;
   }
 
@@ -746,7 +746,7 @@ export class Mastodon {
    * @return WebScoket's eventemitter
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
    */
-  public stream = (id: string, recieved: (data: Mastodon.StreamingEventMap) => void): Promise<WebSocket.connection> => {
+  public stream (id: string, recieved: (data: Mastodon.StreamingEventMap) => void): Promise<WebSocket.connection> {
     const params: any = { stream: id };
 
     if ( this.token ) {
@@ -788,7 +788,7 @@ export class Mastodon {
    * @param grant_type grant_type
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/OAuth-details.md
    */
-  public fetchAccessToken = (code: string, client_id: string, client_secret: string, redirect_uri: string, grant_type = 'authorization_code'): Promise<{ access_token: string }> => {
+  public fetchAccessToken (code: string, client_id: string, client_secret: string, redirect_uri: string, grant_type = 'authorization_code'): Promise<{ access_token: string }> {
     return this._post(`${this.url}/oauth/token`, { code, client_id, client_secret, redirect_uri, grant_type });
   }
 
@@ -798,7 +798,7 @@ export class Mastodon {
    * @return An account
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-an-account
    */
-  public fetchAccount = (id: string): Promise<Mastodon.Account> => {
+  public fetchAccount (id: string): Promise<Mastodon.Account> {
     return this._get(`${this.url}${this.urlVersion}/accounts/${id}`);
   }
 
@@ -807,7 +807,7 @@ export class Mastodon {
    * @return The authenticated user's Account with an extra attribute source which contains these keys
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-the-current-user
    */
-  public verfiyCredentials = (): Promise<Mastodon.Credentials> => {
+  public verfiyCredentials (): Promise<Mastodon.Credentials> {
     return this._get(`${this.url}${this.urlVersion}/accounts/verify_credentials`);
   }
 
@@ -817,7 +817,7 @@ export class Mastodon {
    * @return The authenticated user's Account.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#updating-the-current-user
    */
-  public updateCredentials = (options?: Mastodon.UpdateCredentialsOptions): Promise<Mastodon.Credentials> => {
+  public updateCredentials (options?: Mastodon.UpdateCredentialsOptions): Promise<Mastodon.Credentials> {
     return this._patch(`${this.url}${this.urlVersion}/accounts/update_credentials`, options, {headers: {'Content-Type': 'multipart/form-data'}});
   }
 
@@ -829,7 +829,7 @@ export class Mastodon {
    * @return An array of accounts
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-followers
    */
-  public fetchAccountFollowers = (id: string, options?: Mastodon.FetchAccountFollowersOptions): Promise<Mastodon.Account[]> => {
+  public fetchAccountFollowers (id: string, options?: Mastodon.FetchAccountFollowersOptions): Promise<Mastodon.Account[]> {
     return this._get(`${this.url}${this.urlVersion}/accounts/${id}/followers`, options);
   }
 
@@ -841,7 +841,7 @@ export class Mastodon {
    * @return An array of accounts
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-who-account-is-following
    */
-  public fetchAccountFollowing = (id: string, options?: Mastodon.FetchAccountFollowingOptions): Promise<Mastodon.Account[]> => {
+  public fetchAccountFollowing (id: string, options?: Mastodon.FetchAccountFollowingOptions): Promise<Mastodon.Account[]> {
     return this._get(`${this.url}${this.urlVersion}/accounts/${id}/following`, options);
   }
 
@@ -853,7 +853,7 @@ export class Mastodon {
    * @return An array of statuses
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-statuses
    */
-  public fetchAccountStatuses = (id: string, options?: Mastodon.FetchAccountStatusesOptions): Promise<Mastodon.Status[]> => {
+  public fetchAccountStatuses (id: string, options?: Mastodon.FetchAccountStatusesOptions): Promise<Mastodon.Status[]> {
     return this._get(`${this.url}${this.urlVersion}/accounts/${id}/statuses`, options);
   }
 
@@ -863,7 +863,7 @@ export class Mastodon {
    * @return The target account's relationship
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#followingunfollowing-an-account
    */
-  public followAccount = (id: string): Promise<Mastodon.Relationship> => {
+  public followAccount (id: string): Promise<Mastodon.Relationship> {
     return this._post(`${this.url}${this.urlVersion}/accounts/${id}/follow`);
   }
 
@@ -873,7 +873,7 @@ export class Mastodon {
    * @return The target account's relationship
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#followingunfollowing-an-account
    */
-  public unfollowAccount = (id: string): Promise<Mastodon.Relationship> => {
+  public unfollowAccount (id: string): Promise<Mastodon.Relationship> {
     return this._post(`${this.url}${this.urlVersion}/accounts/${id}/unfollow`);
   }
 
@@ -883,7 +883,7 @@ export class Mastodon {
    * @return The target account's relationship
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blockingunblocking-an-account
    */
-  public blockAccount = (id: string): Promise<Mastodon.Relationship> => {
+  public blockAccount (id: string): Promise<Mastodon.Relationship> {
     return this._post(`${this.url}${this.urlVersion}/accounts/${id}/block`);
   }
 
@@ -893,7 +893,7 @@ export class Mastodon {
    * @return The target account's relationship
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blockingunblocking-an-account
    */
-  public unblockAccount = (id: string): Promise<Mastodon.Relationship> => {
+  public unblockAccount (id: string): Promise<Mastodon.Relationship> {
     return this._post(`${this.url}${this.urlVersion}/accounts/${id}/unblock`);
   }
 
@@ -904,7 +904,7 @@ export class Mastodon {
    * @return The target account's relationship
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account
    */
-  public muteAccount = (id: string, notifications = true): Promise<Mastodon.Relationship> => {
+  public muteAccount (id: string, notifications = true): Promise<Mastodon.Relationship> {
     return this._post(`${this.url}${this.urlVersion}/accounts/${id}/mute`, { notifications });
   }
 
@@ -915,7 +915,7 @@ export class Mastodon {
    * @return The target account's relationship
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account
    */
-  public ummuteAccount = (id: string, notifications = true): Promise<Mastodon.Relationship> => {
+  public ummuteAccount (id: string, notifications = true): Promise<Mastodon.Relationship> {
     return this._post(`${this.url}${this.urlVersion}/accounts/${id}/ummute`, { notifications });
   }
 
@@ -925,7 +925,7 @@ export class Mastodon {
    * @return An array of Relationships of the current user to a list of given accounts.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-relationships
    */
-  public fetchAccountRelationships = (id: string|string[]): Promise<Mastodon.Relationship[]> => {
+  public fetchAccountRelationships (id: string|string[]): Promise<Mastodon.Relationship[]> {
     return this._get(`${this.url}${this.urlVersion}/accounts/relationship`, { id });
   }
 
@@ -937,7 +937,7 @@ export class Mastodon {
    * @return An array of matching accounts
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#searching-for-accounts
    */
-  public searchAccounts = (q: string, options?: Mastodon.SearchAccountsOptions): Promise<Mastodon.Account[]> => {
+  public searchAccounts (q: string, options?: Mastodon.SearchAccountsOptions): Promise<Mastodon.Account[]> {
     return this._get(`${this.url}${this.urlVersion}/accounts/search`, { q, ...options });
   }
 
@@ -951,7 +951,7 @@ export class Mastodon {
    * @return Returns `id`, `client_id` and `client_secret` which can be used with OAuth authentication in your 3rd party app.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#registering-an-application
    */
-  public createApp = (client_name: string, redirect_uris: string, scopes: string, website?: string): Promise<Mastodon.OAuth> => {
+  public createApp (client_name: string, redirect_uris: string, scopes: string, website?: string): Promise<Mastodon.OAuth> {
     return this._post(`${this.url}${this.urlVersion}/apps`, { client_name, redirect_uris, scopes, website });
   }
 
@@ -962,7 +962,7 @@ export class Mastodon {
    * @return An array of accounts blocked by the atuhenticated user
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-blocks
    */
-  public fetchBlocks = (options?: Mastodon.FetchBlocksOptions): Promise<Mastodon.Account[]> => {
+  public fetchBlocks (options?: Mastodon.FetchBlocksOptions): Promise<Mastodon.Account[]> {
     return this._get(`${this.url}${this.urlVersion}/blocks`, options);
   }
 
@@ -973,7 +973,7 @@ export class Mastodon {
    * @return An array of strings
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-blocked-domains
    */
-  public fetchDomainBlocks = (options?: Mastodon.FetchDomainBlocksOptions): Promise<string[]> => {
+  public fetchDomainBlocks (options?: Mastodon.FetchDomainBlocksOptions): Promise<string[]> {
     return this._get(`${this.url}${this.urlVersion}/domain_blocks`, options);
   }
 
@@ -983,7 +983,7 @@ export class Mastodon {
    * @return An empty object
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blocking-a-domain
    */
-  public blockDomain = (domain: string): Promise<any> => {
+  public blockDomain (domain: string): Promise<any> {
     return this._post(`${this.url}${this.urlVersion}/domain_blocks`, { domain });
   }
 
@@ -993,7 +993,7 @@ export class Mastodon {
    * @return An empty object
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#unblocking-a-domain
    */
-  public unblockDomain = (domain: string): Promise<any> => {
+  public unblockDomain (domain: string): Promise<any> {
     return this._delete(`${this.url}${this.urlVersion}/domain_blocks`, { domain });
   }
 
@@ -1004,7 +1004,7 @@ export class Mastodon {
    * @return Return an array of Statuses favourited by the authenticated user
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-favourites
    */
-  public fetchFavouritedStatuses = (options?: Mastodon.FetchFavouritedStatusesOptions): Promise<Mastodon.Status[]> => {
+  public fetchFavouritedStatuses (options?: Mastodon.FetchFavouritedStatusesOptions): Promise<Mastodon.Status[]> {
     return this._get(`${this.url}${this.urlVersion}/favourites`, options);
   }
 
@@ -1015,7 +1015,7 @@ export class Mastodon {
    * @return Returns an array of Accounts which have requested to follow the authenticated user.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-list-of-follow-requests
    */
-  public fetchFollowRequests = (options?: Mastodon.FetchFollowRequestsOptions): Promise<Mastodon.Account[]> => {
+  public fetchFollowRequests (options?: Mastodon.FetchFollowRequestsOptions): Promise<Mastodon.Account[]> {
     return this._get(`${this.url}${this.urlVersion}/follow_requests`, options);
   }
 
@@ -1025,7 +1025,7 @@ export class Mastodon {
    * @return An empty object
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#authorizing-or-rejecting-follow-requests
    */
-  public authorizeFollowRequest = (id: string): Promise<any> => {
+  public authorizeFollowRequest (id: string): Promise<any> {
     return this._post(`${this.url}${this.urlVersion}/follow_requests/${id}/authorize`);
   }
 
@@ -1035,7 +1035,7 @@ export class Mastodon {
    * @return An empty object
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#authorizing-or-rejecting-follow-requests
    */
-  public rejectFollowRequest = (id: string): Promise<any> => {
+  public rejectFollowRequest (id: string): Promise<any> {
     return this._post(`${this.url}${this.urlVersion}/follow_requests/${id}/reject`);
   }
 
@@ -1045,7 +1045,7 @@ export class Mastodon {
    * @return The local representation of the followed account, as an Account.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#following-a-remote-user
    */
-  public followAccountByUsername = (uri: string): Promise<Mastodon.Account> => {
+  public followAccountByUsername (uri: string): Promise<Mastodon.Account> {
     return this._post(`${this.url}${this.urlVersion}/follows`, { uri });
   }
 
@@ -1055,7 +1055,7 @@ export class Mastodon {
    * @return The current instance.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-current-instance-information
    */
-  public fetchInstance = (): Promise<Mastodon.Instance> => {
+  public fetchInstance (): Promise<Mastodon.Instance> {
     return this._get(`${this.url}${this.urlVersion}/instance`);
   }
 
@@ -1064,7 +1064,7 @@ export class Mastodon {
    * - Does not require authentication
    * @return An array of peer instance's domain
    */
-  public fetchPeerInstances = (): Promise<string[]> => {
+  public fetchPeerInstances (): Promise<string[]> {
     return this._get(`${this.url}${this.urlVersion}/instance/peers`);
   }
 
@@ -1073,7 +1073,7 @@ export class Mastodon {
    * - Does not require authentication
    * @return An array of Activities
    */
-  public fetchInstanceActivity = (): Promise<Mastodon.ActivityPerWeek[]> =>  {
+  public fetchInstanceActivity (): Promise<Mastodon.ActivityPerWeek[]>  {
     return this._get(`${this.url}${this.urlVersion}/instance/activity`);
   }
 
@@ -1083,7 +1083,7 @@ export class Mastodon {
    * @return A list of Emoji
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-current-instances-custom-emojis
    */
-  public fetchCustomEmojis = (): Promise<Mastodon.Emoji[]> => {
+  public fetchCustomEmojis (): Promise<Mastodon.Emoji[]> {
     return this._get(`${this.url}${this.urlVersion}/custom_emojis`);
   }
 
@@ -1092,7 +1092,7 @@ export class Mastodon {
    * @return At most 50 Lists without pagination
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-lists
    */
-  public fetchLists = (): Promise<Mastodon.List[]> => {
+  public fetchLists (): Promise<Mastodon.List[]> {
     return this._get(`${this.url}${this.urlVersion}/lists`);
   }
 
@@ -1101,7 +1101,7 @@ export class Mastodon {
    * @return At most 50 Lists without pagination
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-lists-by-membership
    */
-  public fetchListByMembership = (id: string): Promise<Mastodon.List[]> => {
+  public fetchListByMembership (id: string): Promise<Mastodon.List[]> {
     return this._get(`${this.url}${this.urlVersion}/lists/${id}/lists`);
   }
 
@@ -1113,7 +1113,7 @@ export class Mastodon {
    * @return Returns Accounts in the list.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-accounts-in-a-list
    */
-  public fetchAccountsInList = (id: string, limit?: number): Promise<Mastodon.List[]> => {
+  public fetchAccountsInList (id: string, limit?: number): Promise<Mastodon.List[]> {
     return this._get(`${this.url}${this.urlVersion}/list/${id}/accounts`, { limit });
   }
 
@@ -1123,7 +1123,7 @@ export class Mastodon {
    * @return The specified List.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-list
    */
-  public fetchList = (id: string): Promise<Mastodon.List> => {
+  public fetchList (id: string): Promise<Mastodon.List> {
     return this._get(`${this.url}${this.urlVersion}/lists/${id}`);
   }
 
@@ -1133,7 +1133,7 @@ export class Mastodon {
    * @return A new List.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#creating-and-updating-a-list
    */
-  public createList = (title: string): Promise<Mastodon.List> => {
+  public createList (title: string): Promise<Mastodon.List> {
     return this._post(`${this.url}${this.urlVersion}/lists`, { title });
   }
 
@@ -1144,7 +1144,7 @@ export class Mastodon {
    * @return A updated List.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#creating-and-updating-a-list
    */
-  public updateList = (id: string, title: string): Promise<Mastodon.List> => {
+  public updateList (id: string, title: string): Promise<Mastodon.List> {
     return this._put(`${this.url}${this.urlVersion}/lists/${id}`, { title });
   }
 
@@ -1154,7 +1154,7 @@ export class Mastodon {
    * @return An empty object
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#deleting-a-list
    */
-  public removeList = (id: string): Promise<any> => {
+  public removeList (id: string): Promise<any> {
     return this._delete(`${this.url}${this.urlVersion}/lists/${id}`);
   }
 
@@ -1166,7 +1166,7 @@ export class Mastodon {
    * @return An empty object
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#addingremoving-accounts-tofrom-a-list
    */
-  public addAccountToList = (id: string, account_ids: string[]): Promise<any> => {
+  public addAccountToList (id: string, account_ids: string[]): Promise<any> {
     return this._post(`${this.url}${this.urlVersion}/lists/${id}/accounts`, { account_ids });
   }
 
@@ -1178,7 +1178,7 @@ export class Mastodon {
    * @return An empty object
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#addingremoving-accounts-tofrom-a-list
    */
-  public removeAccountFromList = (id: string, account_ids: string[]): Promise<any> => {
+  public removeAccountFromList (id: string, account_ids: string[]): Promise<any> {
     return this._post(`${this.url}${this.urlVersion}/lists/${id}/accounts`, { account_ids });
   }
 
@@ -1189,7 +1189,7 @@ export class Mastodon {
    * @return An Attachment that can be used when creating a status.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#uploading-a-media-attachment
    */
-  public uploadMediaAttachment = (file: File, options?: Mastodon.UploadMediaOptions): Promise<Mastodon.Attachment> => {
+  public uploadMediaAttachment (file: File, options?: Mastodon.UploadMediaOptions): Promise<Mastodon.Attachment> {
     return this._post(`${this.url}${this.urlVersion}/media`, { file, ...options}, {headers: {'Content-Type': 'multipart/form-data'}});
   }
 
@@ -1202,7 +1202,7 @@ export class Mastodon {
    * @return Returns an Attachment that can be used when creating a status.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#updating-a-media-attachment
    */
-  public updateMediaAttachment = (id: string, options?: Mastodon.UpdateMediaOptions): Promise<Mastodon.Attachment> => {
+  public updateMediaAttachment (id: string, options?: Mastodon.UpdateMediaOptions): Promise<Mastodon.Attachment> {
     return this._put(`${this.url}${this.urlVersion}/media/${id}`, options);
   }
 
@@ -1213,7 +1213,7 @@ export class Mastodon {
    * @return An array of Accounts muted by the authenticated user.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-mutes
    */
-  public fetchMutes = (options?: Mastodon.FetchMutesOptions): Promise<Mastodon.Account[]> => {
+  public fetchMutes (options?: Mastodon.FetchMutesOptions): Promise<Mastodon.Account[]> {
     return this._get(`${this.url}${this.urlVersion}/mutes`, options);
   }
 
@@ -1224,7 +1224,7 @@ export class Mastodon {
    * @return A list of Notifications for the authenticated user.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-notifications
    */
-  public fetchNotifications = (options?: Mastodon.FetchNotificationsOptions): Promise<Mastodon.Notification[]> => {
+  public fetchNotifications (options?: Mastodon.FetchNotificationsOptions): Promise<Mastodon.Notification[]> {
     return this._get(`${this.url}${this.urlVersion}/notifications`, options);
   }
 
@@ -1234,7 +1234,7 @@ export class Mastodon {
    * @return The Notification.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-a-single-notification
    */
-  public fetchNotification = (id: string): Promise<Mastodon.Notification> => {
+  public fetchNotification (id: string): Promise<Mastodon.Notification> {
     return this._get(`${this.url}${this.urlVersion}/notifications/${id}`);
   }
 
@@ -1244,7 +1244,7 @@ export class Mastodon {
    * @return Returns an empty object.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#clearing-notifications
    */
-  public clearNotifications = (): Promise<any> => {
+  public clearNotifications (): Promise<any> {
     return this._post(`${this.url}${this.urlVersion}/notifications/clear`);
   }
 
@@ -1255,7 +1255,7 @@ export class Mastodon {
    * @return Returns an empty object.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#dismissing-a-single-notification
    */
-  public dissmissNotification = (id: string): Promise<any> => {
+  public dissmissNotification (id: string): Promise<any> {
     return this._post(`${this.url}${this.urlVersion}/notifications/dismiss`, { id });
   }
 
@@ -1269,7 +1269,7 @@ export class Mastodon {
    * @see https://developers.google.com/web/updates/2016/03/web-push-encryption
    * @see https://developers.google.com/web/fundamentals/push-notifications/web-push-protocol
    */
-  public addPushSubscription = (options: Mastodon.AddPushSubscriptionOptions): Promise<Mastodon.PushSubscription> => {
+  public addPushSubscription (options: Mastodon.AddPushSubscriptionOptions): Promise<Mastodon.PushSubscription> {
     return this._post(`${this.url}${this.urlVersion}/push/subscription`, options);
   }
 
@@ -1278,7 +1278,7 @@ export class Mastodon {
    * @return Returns the Push Subscription
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#get-current-push-subscription-status
    */
-  public fetchPushSubscription = (): Promise<Mastodon.PushSubscription> => {
+  public fetchPushSubscription (): Promise<Mastodon.PushSubscription> {
     return this._get(`${this.url}${this.urlVersion}/push/subscription`);
   }
 
@@ -1289,7 +1289,7 @@ export class Mastodon {
    * @return Returns the Push Subscription
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#updating-push-subscription
    */
-  public updatePushSubscription = (options: Mastodon.UpdatePushSubscriptionOptions): Promise<Mastodon.PushSubscription> => {
+  public updatePushSubscription (options: Mastodon.UpdatePushSubscriptionOptions): Promise<Mastodon.PushSubscription> {
     return this._put(`${this.url}${this.urlVersion}/push/subscription`, options);
   }
 
@@ -1299,7 +1299,7 @@ export class Mastodon {
    * @return An empty object
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#removing-push-subscription
    */
-  public removePushSubscription = (): Promise<any> => {
+  public removePushSubscription (): Promise<any> {
     return this._delete(`${this.url}${this.urlVersion}/push/subscription`);
   }
 
@@ -1309,7 +1309,7 @@ export class Mastodon {
    * @return Returns a list of Reports made by the authenticated user.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-reports
    */
-  public fetchReports = (): Promise<Mastodon.Report[]> => {
+  public fetchReports (): Promise<Mastodon.Report[]> {
     return this._post(`${this.url}${this.urlVersion}/reports`);
   }
 
@@ -1321,7 +1321,7 @@ export class Mastodon {
    * @return The finished Report
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#reporting-a-user
    */
-  public reportUser = (account_id: string, status_ids: string|string[], comment: string): Promise<Mastodon.Report> => {
+  public reportUser (account_id: string, status_ids: string|string[], comment: string): Promise<Mastodon.Report> {
     return this._post(`${this.url}${this.urlVersion}/reports`, { account_id, status_ids, comment });
   }
 
@@ -1333,7 +1333,7 @@ export class Mastodon {
    * @return Results
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#searching-for-content
    */
-  public searchContent = (q: string, resolve = false): Promise<Mastodon.Results> => {
+  public searchContent (q: string, resolve = false): Promise<Mastodon.Results> {
     return this._post(`${this.url}${this.urlVersion}/search`, { q, resolve });
   }
 
@@ -1344,7 +1344,7 @@ export class Mastodon {
    * @return A status
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-status
    */
-  public fetchStatus = (id: string): Promise<Mastodon.Status> => {
+  public fetchStatus (id: string): Promise<Mastodon.Status> {
     return this._get(`${this.url}${this.urlVersion}/statuses/${id}`);
   }
 
@@ -1355,7 +1355,7 @@ export class Mastodon {
    * @return A Context.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-status-context
    */
-  public fetchStatusContext = (id: string): Promise<Mastodon.Context> => {
+  public fetchStatusContext (id: string): Promise<Mastodon.Context> {
     return this._get(`${this.url}${this.urlVersion}/statuses/${id}/context`);
   }
 
@@ -1365,7 +1365,7 @@ export class Mastodon {
    * @return A Card.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-a-card-associated-with-a-status
    */
-  public fetchStatusCard = (id: string): Promise<Mastodon.Card> => {
+  public fetchStatusCard (id: string): Promise<Mastodon.Card> {
     return this._get(`${this.url}${this.urlVersion}/statuses/${id}/card`);
   }
 
@@ -1378,7 +1378,7 @@ export class Mastodon {
    * @return An array of Accounts
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-who-rebloggedfavourited-a-status
    */
-  public fetchReblogs = (id: string, options?: Mastodon.FetchReblogsOptions): Promise<Mastodon.Account[]> => {
+  public fetchReblogs (id: string, options?: Mastodon.FetchReblogsOptions): Promise<Mastodon.Account[]> {
     return this._get(`${this.url}${this.urlVersion}/statuses/${id}/reblogged_by`, options);
   }
 
@@ -1391,7 +1391,7 @@ export class Mastodon {
    * @return An array of Accounts
   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-who-rebloggedfavourited-a-status
    */
-  public fetchFavourites = (id: string, options?: Mastodon.FetchFavouritesOptions): Promise<Mastodon.Account[]> => {
+  public fetchFavourites (id: string, options?: Mastodon.FetchFavouritesOptions): Promise<Mastodon.Account[]> {
     return this._get(`${this.url}${this.urlVersion}/statuses/${id}/favourited_by`, options);
   }
 
@@ -1404,7 +1404,7 @@ export class Mastodon {
    * @return The new Status
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#posting-a-new-status
    */
-  public createStatus = (status: string, options?: Mastodon.CreateStatusOptions, idempotencyKey?: string): Promise<Mastodon.Status> => {
+  public createStatus (status: string, options?: Mastodon.CreateStatusOptions, idempotencyKey?: string): Promise<Mastodon.Status> {
     if ( idempotencyKey ) {
       return this._post(`${this.url}${this.urlVersion}/statuses`, {status, ...options}, { headers: {'Idempotency-Key': idempotencyKey }} );
     }
@@ -1417,7 +1417,7 @@ export class Mastodon {
    * @return An empty object
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#deleting-a-status
    */
-  public removeStatus = (id: string): Promise<any> => {
+  public removeStatus (id: string): Promise<any> {
     return this._delete(`${this.url}${this.urlVersion}/statuses/${id}`);
   }
 
@@ -1427,7 +1427,7 @@ export class Mastodon {
    * @return The reblog Status.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#rebloggingunreblogging-a-status
    */
-  public reblogStatus = (id: string): Promise<Mastodon.Status> => {
+  public reblogStatus (id: string): Promise<Mastodon.Status> {
     return this._post(`${this.url}${this.urlVersion}/statuses/${id}/reblog`);
   }
 
@@ -1437,7 +1437,7 @@ export class Mastodon {
    * @return The target Status.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#rebloggingunreblogging-a-status
    */
-  public unreblogStatus = (id: string): Promise<Mastodon.Status> => {
+  public unreblogStatus (id: string): Promise<Mastodon.Status> {
     return this._post(`${this.url}${this.urlVersion}/statuses/${id}/unreblog`);
   }
 
@@ -1447,7 +1447,7 @@ export class Mastodon {
    * @return The target status
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#favouritingunfavouriting-a-status
    */
-  public favouriteStatus = (id: string): Promise<Mastodon.Status> => {
+  public favouriteStatus (id: string): Promise<Mastodon.Status> {
     return this._post(`${this.url}${this.urlVersion}/statuses/${id}/favourite`);
   }
 
@@ -1457,7 +1457,7 @@ export class Mastodon {
    * @return The target status
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#favouritingunfavouriting-a-status
    */
-  public unfavouriteStatus = (id: string): Promise<Mastodon.Status> => {
+  public unfavouriteStatus (id: string): Promise<Mastodon.Status> {
     return this._post(`${this.url}${this.urlVersion}/statuses/${id}/unfavourite`);
   }
 
@@ -1467,7 +1467,7 @@ export class Mastodon {
    * @return The target Status.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#pinningunpinning-a-status
    */
-  public pinStatus = (id: string): Promise<Mastodon.Status> => {
+  public pinStatus (id: string): Promise<Mastodon.Status> {
     return this._post(`${this.url}${this.urlVersion}/statuses/${id}/pin`);
   }
 
@@ -1477,7 +1477,7 @@ export class Mastodon {
    * @return The target Status.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#pinningunpinning-a-status
    */
-  public unpinStatus = (id: string): Promise<Mastodon.Status> => {
+  public unpinStatus (id: string): Promise<Mastodon.Status> {
     return this._post(`${this.url}${this.urlVersion}/statuses/${id}/unpin`);
   }
 
@@ -1487,7 +1487,7 @@ export class Mastodon {
    * @return The target Status.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-a-conversation-of-a-status
    */
-  public muteStatus = (id: string): Promise<Mastodon.Status> => {
+  public muteStatus (id: string): Promise<Mastodon.Status> {
     return this._post(`${this.url}${this.urlVersion}/statuses/${id}/mute`);
   }
 
@@ -1497,7 +1497,7 @@ export class Mastodon {
    * @return The target Status.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-a-conversation-of-a-status
    */
-  public unmuteStatus = (id: string): Promise<Mastodon.Status> => {
+  public unmuteStatus (id: string): Promise<Mastodon.Status> {
     return this._post(`${this.url}${this.urlVersion}/statuses/${id}/unmute`);
   }
 
@@ -1510,7 +1510,7 @@ export class Mastodon {
    * @return An array of Statuses, most recent ones first.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
-  public fetchTimeline = (id: string, options?: Mastodon.FetchTimelineOptions): Promise<Mastodon.Status[]> => {
+  public fetchTimeline (id: string, options?: Mastodon.FetchTimelineOptions): Promise<Mastodon.Status[]> {
     return this._get(`${this.url}${this.urlVersion}/timelines/${id}`, options);
   }
 
@@ -1521,7 +1521,9 @@ export class Mastodon {
    * @return An array of Statuses, most recent ones first.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
-  public fetchHomeTimeline = (options?: Mastodon.FetchTimelineOptions) => this.fetchTimeline('home', options);
+  public fetchHomeTimeline (options?: Mastodon.FetchTimelineOptions) {
+    return this.fetchTimeline('home', options)
+  };
 
   /**
    * Retrieving the community timeline (aka "Local timeline" in the UI)
@@ -1531,7 +1533,9 @@ export class Mastodon {
    * @return An array of Statuses, most recent ones first.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
-  public fetchCommunityTimeline = (options?: Mastodon.FetchTimelineOptions) => this.fetchTimeline('public', { local: true, ...options});
+  public fetchCommunityTimeline (options?: Mastodon.FetchTimelineOptions) {
+    return this.fetchTimeline('public', { local: true, ...options})
+  };
 
   /**
    * Retrieving the public timeline (aka "Federated timeline" in the UI)
@@ -1541,7 +1545,9 @@ export class Mastodon {
    * @return An array of Statuses, most recent ones first.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
-  public fetchPublicTimeline = (options?: Mastodon.FetchTimelineOptions) => this.fetchTimeline('public', options);
+  public fetchPublicTimeline (options?: Mastodon.FetchTimelineOptions) {
+    return this.fetchTimeline('public', options)
+  };
 
   /**
    * Retrieving a tag timeline
@@ -1552,7 +1558,9 @@ export class Mastodon {
    * @return An array of Statuses, most recent ones first.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
-  public fetchTagTimeline = (id: string, options?: Mastodon.FetchTimelineOptions) => this.fetchTimeline(`tag/${id}`, options);
+  public fetchTagTimeline (id: string, options?: Mastodon.FetchTimelineOptions) {
+    return this.fetchTimeline(`tag/${id}`, options)
+  };
 
   /**
    * Retrieving a list timeline
@@ -1562,20 +1570,24 @@ export class Mastodon {
    * @return An array of Statuses, most recent ones first.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
-  public fetchListTimeline = (id: string, options?: Mastodon.FetchTimelineOptions) => this.fetchTimeline(`list/${id}`, options);
+  public fetchListTimeline (id: string, options?: Mastodon.FetchTimelineOptions) {
+    return this.fetchTimeline(`list/${id}`, options)
+  };
 
   /**
    * Retrieving a direct timeline
    * @return An array of Statuses, most recent ones first.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
-  public fetchDirectTimeline = () => this.fetchTimeline('direct');
+  public fetchDirectTimeline () {
+    return this.fetchTimeline('direct')
+  };
 
   /**
    * Fetching filters
    * @return An array of Filters
    */
-  public fetchFilters = (): Promise<Mastodon.Filter[]> => {
+  public fetchFilters (): Promise<Mastodon.Filter[]> {
     return this._get(`${this.url}${this.urlVersion}/filters`);
   }
 
@@ -1584,7 +1596,7 @@ export class Mastodon {
    * @param id ID of the filter
    * @return A filter
    */
-  public fetchFilter = (id: string): Promise<Mastodon.Filter> => {
+  public fetchFilter (id: string): Promise<Mastodon.Filter> {
     return this._get(`${this.url}${this.urlVersion}/filters/${id}`);
   }
 
@@ -1595,7 +1607,7 @@ export class Mastodon {
    * @param options Optional parameters
    * @return A filter
    */
-  public createFiler = (phrase: string, context: Mastodon.FilterContextTypes, options: Mastodon.CreateFilterOptions): Promise<Mastodon.Filter> => {
+  public createFiler (phrase: string, context: Mastodon.FilterContextTypes, options: Mastodon.CreateFilterOptions): Promise<Mastodon.Filter> {
     return this._post(`${this.url}${this.urlVersion}/filters`, { phrase, context, ...options });
   }
 
@@ -1605,7 +1617,7 @@ export class Mastodon {
    * @param options Optinal parameters
    * @return A filter
    */
-  public updateFilter = (id: string, options: Mastodon.UpdateFilterOptions): Promise<Mastodon.Filter> => {
+  public updateFilter (id: string, options: Mastodon.UpdateFilterOptions): Promise<Mastodon.Filter> {
     return this._patch(`${this.url}${this.urlVersion}/filters/${id}`, options);
   }
 
@@ -1614,7 +1626,7 @@ export class Mastodon {
    * @param id ID of the filter
    * @return An empty object
    */
-  public removeFilter = (id: string): Promise<{}> => {
+  public removeFilter (id: string): Promise<{}> {
     return this._delete(`${this.url}${this.urlVersion}/filters/${id}`);
   }
 
@@ -1622,7 +1634,7 @@ export class Mastodon {
    * Fething user recommendation
    * @return An array of Accounts
    */
-  public fetchSuggestions = (): Promise<Mastodon.Account[]> => {
+  public fetchSuggestions (): Promise<Mastodon.Account[]> {
     return this._get(`${this.url}${this.urlVersion}/suggestions`);
   }
 }
