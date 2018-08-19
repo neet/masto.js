@@ -4,12 +4,18 @@ import * as WebSocket from 'websocket';
 
 export namespace Mastodon {
 
-  export type EventTypes         = 'update'|'delete'|'notification';
   export type VisibilityTypes    = 'public'|'unlisted'|'private'|'direct';
   export type AttachmentTypes    = 'image'|'video'|'gifv'|'unknown';
   export type CardTypes          = 'link'|'photo'|'video'|'rich';
   export type NotificationTypes  = 'mention'|'reblog'|'favourite'|'follow';
   export type FilterContextTypes = 'home'|'notifications'|'public'|'thread';
+  export type StreamingTypes     = 'user'|'public'|'public/local'|'hashtag'|'list';
+
+  export type EventMapping
+    = { event: 'update',         payload: Mastodon.Status }
+    | { event: 'delete',         payload: Mastodon.Status['id'] }
+    | { event: 'notification',   payload: Mastodon.Notification }
+    | { event: 'filters_changed' }
 
   export interface Account {
     /** The ID of the account */
@@ -604,7 +610,6 @@ export namespace Mastodon {
     /** The simestamp for expire time */
     expires_at?: number;
   }
-
 }
 
 export class Mastodon {
@@ -732,7 +737,7 @@ export class Mastodon {
    * @return WebScoket's eventemitter
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
    */
-  public stream = (id: string, recieved: (message: {event: string, payload: any}) => void): Promise<WebSocket.connection> => {
+  public stream = (id: Mastodon.StreamingTypes, recieved: (data: Mastodon.EventMapping) => void): Promise<WebSocket.connection> => {
     const params: any = { stream: id };
 
     if ( this.token ) {
@@ -748,9 +753,14 @@ export class Mastodon {
 
       client.on('connect', (connection) => {
         connection.on('message', (message) => {
-          if (message.type === 'utf8' && message.utf8Data) {
-            recieved(JSON.parse(message.utf8Data));
+          if (message.type !== 'utf8' || !message.utf8Data) {
+            return;
           }
+
+          const { event, payload } = JSON.parse(message.utf8Data);
+          const parsedPayload      = JSON.parse(payload);
+
+          recieved({ event, payload: parsedPayload });
         });
 
         resolve(connection);
