@@ -4,3 +4,4 @@
 - [ ] Typesafe `stream` function for each endpoints
 - [ ] Iterable timeline function
 - [ ] More useful helper functions
+- [ ] Strict versioning like halcy/mastodon.py
