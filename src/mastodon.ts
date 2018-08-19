@@ -743,7 +743,7 @@ export class Mastodon {
    * Starting streaming with specified channel
    * @param id ID of channel e.g. "public/local"
    * @param recieved Callback function
-   * @return WebScoket's eventemitter
+   * @return WebScoket connection
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
    */
   public stream (id: string, recieved: (data: Mastodon.StreamingEventMap) => void): Promise<WebSocket.connection> {
@@ -777,6 +777,58 @@ export class Mastodon {
 
       client.connect(`${this.streamingUrl}${this.urlVersion}/streaming?${queryString.stringify(params)}`);
     });
+  }
+
+  /**
+   * Starting home timeline and notification streaming
+   * @param recieved Callback function
+   * @return WebScoket connection
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
+   */
+  public streamUser (recieved: (data: Mastodon.StreamingEventMap) => void): Promise<WebSocket.connection> {
+    return this.stream('user', recieved);
+  }
+
+  /**
+   * Starting local timeline streaming
+   * @param recieved Callback function
+   * @return WebScoket connection
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
+   */
+  public streamCommunityTimeline (recieved: (data: Mastodon.StreamingEventMap) => void): Promise<WebSocket.connection> {
+    return this.stream('public/local', recieved);
+  }
+
+  /**
+   * Starting federated timeline streaming
+   * @param recieved Callback function
+   * @return WebScoket connection
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
+   */
+  public streamPublicTimeline (recieved: (data: Mastodon.StreamingEventMap) => void): Promise<WebSocket.connection> {
+    return this.stream('public', recieved);
+  }
+
+  /**
+   * Starting tag timeline streaming
+   * @param id ID of the tag
+   * @param recieved Callback function
+   * @return WebScoket connection
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
+   */
+  public streamTagTimeline (id: string, recieved: (data: Mastodon.StreamingEventMap) => void): Promise<WebSocket.connection> {
+    return this.stream(`hashtag?${queryString.stringify({ tag: id })}`, recieved);
+  }
+
+  /**
+   * Starting list timeline streaming
+   * @param id ID of the list
+   * @param recieved Callback function
+   * @return WebScoket connection
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
+   */
+  public streamListTimeline (id: string, recieved: (data: Mastodon.StreamingEventMap) => void): Promise<WebSocket.connection> {
+    return this.stream(`list?${queryString.stringify({ list: id })}`, recieved);
   }
 
   /**
