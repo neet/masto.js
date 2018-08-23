@@ -1563,18 +1563,20 @@ export class Mastodon {
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
   public async * fetchTimeline (id: string, options?: Mastodon.FetchTimelineOptions): AsyncIterator<Mastodon.Status[]> {
-    let sinceId: string = '0';
+    let maxId: string = '';
 
     while (true) {
-      options = { ...options, since_id: sinceId };
+      if (maxId) {
+        options = { ...options, max_id: maxId };
+      }
 
-      const statuses: Mastodon.Status[]       = await this._get(`${this.url}${this.urlVersion}/timelines/${id}`, options);
+      const statuses: Mastodon.Status[] = await this._get(`${this.url}${this.urlVersion}/timelines/${id}`, options);
       const result: Mastodon.Status[]|'reset' = yield statuses;
 
       if (result === 'reset') {
-        sinceId = '0';
+        maxId = '';
       } else {
-        sinceId = statuses[statuses.length - 1].id;
+        maxId = statuses[statuses.length - 1].id;
       }
     }
   }
