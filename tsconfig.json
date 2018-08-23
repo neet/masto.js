@@ -7,7 +7,8 @@
     "baseUrl": "./",
     "lib": [
       "es6",
-      "dom"
+      "dom",
+      "esnext.asynciterable"
     ],
     "moduleResolution": "node",
     "declaration": true,
