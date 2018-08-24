@@ -32,9 +32,10 @@ export class Gateway {
    * Fetch API wrapper function
    * @param url URL to request
    * @param options Fetch API options
+   * @param parse Whether parse response before return
    * @return Parsed response object
    */
-  protected async request (url: string, options: { [key: string]: any } = {}): Promise<any> {
+  protected async request (url: string, options: { [key: string]: any } = {}, parse = true): Promise<any> {
     if ( !options.headers ) {
       options.headers = {};
     }
@@ -49,6 +50,10 @@ export class Gateway {
       const response = typeof window === 'undefined'
         ? await nodeFetch(url, options)
         : await fetch(url, options);
+
+      if ( parse ) {
+        return response;
+      }
 
       const data = await response.json();
 
@@ -67,9 +72,10 @@ export class Gateway {
    * @param url URL to request
    * @param params Query strings
    * @param options Fetch API options
+   * @param parse Whether parse response before return
    */
-  protected get <T>(url: string, params = {}, options = {}): Promise<T> {
-    return this.request(url + (Object.keys(params).length ? '?' + queryString.stringify(params) : ''), { method: 'GET', ...options });
+  protected get <T>(url: string, params = {}, options = {}, parse = true): Promise<T> {
+    return this.request(url + (Object.keys(params).length ? '?' + queryString.stringify(params) : ''), { method: 'GET', ...options }, parse);
   }
 
   /**
@@ -77,9 +83,10 @@ export class Gateway {
    * @param url URL to request
    * @param body Payload
    * @param options Fetch API options
+   * @param parse Whether parse response before return
    */
-  protected post <T>(url: string, body = {}, options = {}): Promise<T> {
-    return this.request(url, { method: 'POST', body: JSON.stringify(body), ...options });
+  protected post <T>(url: string, body = {}, options = {}, parse = true): Promise<T> {
+    return this.request(url, { method: 'POST', body: JSON.stringify(body), ...options }, parse);
   }
 
   /**
@@ -87,9 +94,10 @@ export class Gateway {
    * @param url URL to request
    * @param body Payload
    * @param options Fetch API options
+   * @param parse Whether parse response before return
    */
-  protected put <T>(url: string, body = {}, options = {}): Promise<T> {
-    return this.request(url, { method: 'PUT', body: JSON.stringify(body), ...options });
+  protected put <T>(url: string, body = {}, options = {}, parse = true): Promise<T> {
+    return this.request(url, { method: 'PUT', body: JSON.stringify(body), ...options }, parse);
   }
 
   /**
@@ -97,9 +105,10 @@ export class Gateway {
    * @param url URL to request
    * @param body Payload
    * @param options Fetch API options
+   * @param parse Whether parse response before return
    */
-  protected delete <T>(url: string, body = {}, options = {}): Promise<T> {
-    return this.request(url, { method: 'DELETE', body: JSON.stringify(body), ...options });
+  protected delete <T>(url: string, body = {}, options = {}, parse = true): Promise<T> {
+    return this.request(url, { method: 'DELETE', body: JSON.stringify(body), ...options }, parse);
   }
 
   /**
@@ -107,9 +116,10 @@ export class Gateway {
    * @param url URL to request
    * @param body Payload
    * @param options Fetch API options
+   * @param parse Whether parse response before return
    */
-  protected patch <T>(url: string, body = {}, options = {}): Promise<T> {
-    return this.request(url, { method: 'PATCH', body: JSON.stringify(body), ...options });
+  protected patch <T>(url: string, body = {}, options = {}, parse = true): Promise<T> {
+    return this.request(url, { method: 'PATCH', body: JSON.stringify(body), ...options }, parse);
   }
 
   /**
