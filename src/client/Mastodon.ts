@@ -30,7 +30,7 @@ export class Mastodon extends Gateway {
    * @return An array of Statuses, most recent ones first.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
-  protected async * statusesGenerator (path: string, options?: Options.FetchTimeline|Options.FetchAccountStatuses): AsyncIterator<Status[]> {
+  public async * statusesGenerator (path: string, options?: Options.FetchTimeline|Options.FetchAccountStatuses): AsyncIterableIterator<Status[]> {
     let maxId: string|null = null;
 
     while (true) {
@@ -38,7 +38,7 @@ export class Mastodon extends Gateway {
         options = { ...options, max_id: maxId };
       }
 
-      const statuses: Status[] = await this.get(path, options);
+      const statuses: Status[]       = await this.get(path, options);
       const result: Status[]|'reset' = yield statuses;
 
       if (result === 'reset') {
@@ -170,7 +170,7 @@ export class Mastodon extends Gateway {
    * @return An array of statuses
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-statuses
    */
-  public fetchAccountStatuses (id: string, options?: Options.FetchTimeline): AsyncIterator<Status[]> {
+  public fetchAccountStatuses (id: string, options?: Options.FetchTimeline): AsyncIterableIterator<Status[]> {
     return this.statusesGenerator(`${this.url}/v1/accounts/${id}/statuses`, options);
   }
 
@@ -321,7 +321,7 @@ export class Mastodon extends Gateway {
    * @return Return an array of Statuses favourited by the authenticated user
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-favourites
    */
-  public fetchFavouritedStatuses (options?: Options.Pagination): AsyncIterator<Status[]> {
+  public fetchFavouritedStatuses (options?: Options.Pagination): AsyncIterableIterator<Status[]> {
     return this.statusesGenerator(`${this.url}/v1/favourites`, options);
   }
 
@@ -826,7 +826,7 @@ export class Mastodon extends Gateway {
    * @return An array of Statuses, most recent ones first.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
-  public fetchHomeTimeline (options?: Options.FetchTimeline): AsyncIterator<Status[]> {
+  public fetchHomeTimeline (options?: Options.FetchTimeline): AsyncIterableIterator<Status[]> {
     return this.statusesGenerator(`${this.url}/v1/timelines/home`, options)
   };
 
@@ -835,10 +835,10 @@ export class Mastodon extends Gateway {
    * - Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. However, it is possible to use the `id` of the returned objects to construct your own URLs.
    * - Does not require authentication.
    * @param options Query parameters
-   * @return An array of Statuses, most recent ones first.
+   * @return An iterable of Statuses, most recent ones first.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
-  public fetchCommunityTimeline (options?: Options.FetchTimeline): AsyncIterator<Status[]> {
+  public fetchCommunityTimeline (options?: Options.FetchTimeline): AsyncIterableIterator<Status[]> {
     return this.statusesGenerator(`${this.url}/v1/timelines/public`, { local: true, ...options})
   };
 
@@ -847,10 +847,10 @@ export class Mastodon extends Gateway {
    * - Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. However, it is possible to use the `id` of the returned objects to construct your own URLs.
    * - Does not require authentication.
    * @param options Query parameters
-   * @return An array of Statuses, most recent ones first.
+   * @return An iterable of Statuses, most recent ones first.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
-  public fetchPublicTimeline (options?: Options.FetchTimeline): AsyncIterator<Status[]> {
+  public fetchPublicTimeline (options?: Options.FetchTimeline): AsyncIterableIterator<Status[]> {
     return this.statusesGenerator(`${this.url}/v1/timelines/public`, options)
   };
 
@@ -860,10 +860,10 @@ export class Mastodon extends Gateway {
    * - Does not require authentication.
    * @param id ID of the hashtag
    * @param options Query parameters
-   * @return An array of Statuses, most recent ones first.
+   * @return An iterable of Statuses, most recent ones first.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
-  public fetchTagTimeline (id: string, options?: Options.FetchTimeline): AsyncIterator<Status[]> {
+  public fetchTagTimeline (id: string, options?: Options.FetchTimeline): AsyncIterableIterator<Status[]> {
     return this.statusesGenerator(`${this.url}/v1/timelines/tag/${id}`, options)
   };
 
@@ -872,19 +872,19 @@ export class Mastodon extends Gateway {
    * - Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. However, it is possible to use the `id` of the returned objects to construct your own URLs.
    * @param id ID of the list
    * @param options Query parameters
-   * @return An array of Statuses, most recent ones first.
+   * @return An iterable of Statuses, most recent ones first.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
-  public fetchListTimeline (id: string, options?: Options.FetchTimeline): AsyncIterator<Status[]> {
+  public fetchListTimeline (id: string, options?: Options.FetchTimeline): AsyncIterableIterator<Status[]> {
     return this.statusesGenerator(`${this.url}/v1/timelines/list/${id}`, options)
   };
 
   /**
    * Retrieving a direct timeline
-   * @return An array of Statuses, most recent ones first.
+   * @return An iterable of Statuses, most recent ones first.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
-  public fetchDirectTimeline (options?: Options.FetchTimeline): AsyncIterator<Status[]> {
+  public fetchDirectTimeline (options?: Options.FetchTimeline): AsyncIterableIterator<Status[]> {
     return this.statusesGenerator(`${this.url}/v1/timelines/direct`, options)
   };
 

@@ -19,7 +19,10 @@ tsconfig.json
 tslint.json
 
 # Documentaitons
-docs/
+docs
+
+# Examples
+examples
 
 # TS files and maps
 src/
