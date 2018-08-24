@@ -8,7 +8,8 @@
   "scripts": {
     "test": "tslint -c tslint.yml 'src/**/*.{ts,tsx}'",
     "build": "tsc",
-    "build:docs": "typedoc ./src --out ./docs --excludeNotExported && touch ./docs/.nojekyll"
+    "build:docs": "typedoc ./src --out ./docs --excludeNotExported && touch ./docs/.nojekyll",
+    "publish": "npm publish --access=public"
   },
   "repository": {
     "type": "git",
