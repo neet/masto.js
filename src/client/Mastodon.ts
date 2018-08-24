@@ -854,7 +854,7 @@ export class Mastodon extends Gateway {
    * @return Array of accounts
    */
   public fetchStatusRebloggedBy (id: string, options?: Options.Pagination) {
-    return this.paginationGenerator<Account[]>(`${this.url}/api/v1/${id}/reblogged_by`, options);
+    return this.paginationGenerator<Account[]>(`${this.url}/api/v1/statuses/${id}/reblogged_by`, options);
   }
 
   /**
@@ -863,7 +863,7 @@ export class Mastodon extends Gateway {
    * @return Array of accounts
    */
   public fetchStatusFavouritedBy (id: string, options?: Options.Pagination) {
-    return this.paginationGenerator<Account[]>(`${this.url}/api/v1/${id}/favourited_by`, options);
+    return this.paginationGenerator<Account[]>(`${this.url}/api/v1/statuses/${id}/favourited_by`, options);
   }
 
   /**
