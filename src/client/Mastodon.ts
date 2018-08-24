@@ -170,7 +170,7 @@ export class Mastodon extends Gateway {
    * @return An array of statuses
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-statuses
    */
-  public fetchAccountStatuses (id: string, options?: Options.FetchTimeline) {
+  public fetchAccountStatuses (id: string, options?: Options.FetchTimeline): AsyncIterator<Status[]> {
     return this.statusesGenerator(`${this.url}/v1/accounts/${id}/statuses`, options);
   }
 
@@ -321,7 +321,7 @@ export class Mastodon extends Gateway {
    * @return Return an array of Statuses favourited by the authenticated user
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-favourites
    */
-  public fetchFavouritedStatuses (options?: Options.Pagination) {
+  public fetchFavouritedStatuses (options?: Options.Pagination): AsyncIterator<Status[]> {
     return this.statusesGenerator(`${this.url}/v1/favourites`, options);
   }
 
@@ -826,7 +826,7 @@ export class Mastodon extends Gateway {
    * @return An array of Statuses, most recent ones first.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
-  public fetchHomeTimeline (options?: Options.FetchTimeline) {
+  public fetchHomeTimeline (options?: Options.FetchTimeline): AsyncIterator<Status[]> {
     return this.statusesGenerator(`${this.url}/v1/timelines/home`, options)
   };
 
@@ -838,7 +838,7 @@ export class Mastodon extends Gateway {
    * @return An array of Statuses, most recent ones first.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
-  public fetchCommunityTimeline (options?: Options.FetchTimeline) {
+  public fetchCommunityTimeline (options?: Options.FetchTimeline): AsyncIterator<Status[]> {
     return this.statusesGenerator(`${this.url}/v1/timelines/public`, { local: true, ...options})
   };
 
@@ -850,7 +850,7 @@ export class Mastodon extends Gateway {
    * @return An array of Statuses, most recent ones first.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
-  public fetchPublicTimeline (options?: Options.FetchTimeline) {
+  public fetchPublicTimeline (options?: Options.FetchTimeline): AsyncIterator<Status[]> {
     return this.statusesGenerator(`${this.url}/v1/timelines/public`, options)
   };
 
@@ -863,7 +863,7 @@ export class Mastodon extends Gateway {
    * @return An array of Statuses, most recent ones first.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
-  public fetchTagTimeline (id: string, options?: Options.FetchTimeline) {
+  public fetchTagTimeline (id: string, options?: Options.FetchTimeline): AsyncIterator<Status[]> {
     return this.statusesGenerator(`${this.url}/v1/timelines/tag/${id}`, options)
   };
 
@@ -875,7 +875,7 @@ export class Mastodon extends Gateway {
    * @return An array of Statuses, most recent ones first.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
-  public fetchListTimeline (id: string, options?: Options.FetchTimeline) {
+  public fetchListTimeline (id: string, options?: Options.FetchTimeline): AsyncIterator<Status[]> {
     return this.statusesGenerator(`${this.url}/v1/timelines/list/${id}`, options)
   };
 
@@ -884,8 +884,8 @@ export class Mastodon extends Gateway {
    * @return An array of Statuses, most recent ones first.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
-  public fetchDirectTimeline () {
-    return this.statusesGenerator(`${this.url}/v1/timelines/direct`)
+  public fetchDirectTimeline (options?: Options.FetchTimeline): AsyncIterator<Status[]> {
+    return this.statusesGenerator(`${this.url}/v1/timelines/direct`, options)
   };
 
   /**
