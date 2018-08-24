@@ -17,15 +17,15 @@ Here's a simple example which creates a new status:
 ```ts
 import Mastodon from '@lagunehq/core';
 
-const client = new Mastodon();
-
-client.setUrl('https://mastodon.social');
-client.setStreamingUrl('wss://mastodon.social');
-client.setToken('my token');
+const client = new Mastodon({
+  url:          'https://mastodon.social',
+  streamingUrl: 'wss://mastodon.social',
+  token:        'my token', // Optional
+});
 
 client.createStatus('Toot from TypeScript').then((newStatus) => {
   console.log(newStatus);
 });
 ```
 
-All of available methods/interfaces are described in the [documentation](https://lagunehq.github.io/core/classes/_mastodon_.mastodon.html)
+All of available methods/interfaces are described in the [documentation](https://lagunehq.github.io/core/classes/_client_mastodon_.mastodon.html)
