@@ -28,6 +28,8 @@ export interface Status {
   created_at: string;
   /** An array of Emoji */
   emojis: Emoji[];
+  /** The number of replies for the status */
+  replies_count: number;
   /** The number of reblogs for the status */
   reblogs_count: number;
   /** The number of favourites for the status */
