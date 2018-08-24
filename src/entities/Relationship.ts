@@ -17,4 +17,6 @@ export interface Relationship {
   requested: boolean;
   /** Whether the user is currently blocking the accounts's domain */
   domain_blocking: boolean;
+  /** Whether this user is endorsed by authenticated user */
+  endorsed: boolean;
 }

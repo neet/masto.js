@@ -236,6 +236,28 @@ export class Mastodon extends Gateway {
   }
 
   /**
+   * Pin an account to profile
+   * @param id ID of the target account
+   * @param notifications Determines whether the mute will mute notifications or not. Default(true)
+   * @return The target account's relationship
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account
+   */
+  public pinAccount (id: string): Promise<Relationship> {
+    return this.post(`${this.url}/api/v1/accounts/${id}/pin`);
+  }
+
+  /**
+   * Unpin an account
+   * @param id ID of the target account
+   * @param notifications Determines whether the mute will mute notifications or not. Default(true)
+   * @return The target account's relationship
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account
+   */
+  public unpinAccount (id: string): Promise<Relationship> {
+    return this.post(`${this.url}/api/v1/accounts/${id}/unpin`);
+  }
+
+  /**
    * Getting an account's relationships
    * @param id Account IDs (can be an array)
    * @return An array of Relationships of the current user to a list of given accounts.
