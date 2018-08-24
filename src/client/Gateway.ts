@@ -36,22 +36,40 @@ export class Gateway {
     }
   }
 
-  /** Getting rest API URL of the instance*/
+  /**
+   * Getting rest API URL of the instance
+   * @return Rest API URL
+   */
   public getUrl = () => this.url;
 
-  /** Getting streaming API URL of the instance*/
+  /**
+   * Getting streaming API URL of the instance
+   * @return Streaming API URL
+   */
   public getStreamingUrl = () => this.streamingUrl;
 
-  /** Getting token of authenticated user */
+  /**
+   * Getting token of authenticated user
+   * @return The token
+   */
   public getToken = () => this.token;
 
-  /** Setting rest API URL of the instance */
+  /**
+   * Setting rest API URL of the instance
+   * @param url URL of the instance
+   */
   public setUrl (url: string) { this.url = url.replace(/\/$/, ''); }
 
-  /** Setting streaming API URL of the instance */
+  /**
+   * Setting streaming API URL of the instance
+   * @param url URL of the instance
+   */
   public setStreamingUrl (url: string) { this.streamingUrl = url.replace(/\/$/, ''); }
 
-  /** Setting token of authenticated user */
+  /**
+   * Setting token of authenticated user
+   * @param token Token of the user
+   */
   public setToken (token: string) { this.token = token; }
 
   /**
