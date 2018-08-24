@@ -841,6 +841,24 @@ export class Mastodon extends Gateway {
   }
 
   /**
+   * Fetching accounts who reblogged the status
+   * @param id ID of the status
+   * @return Array of accounts
+   */
+  public fetchStatusRebloggedBy (id: string, options: Options.Pagination): Promise<Account[]> {
+    return this.get(`${this.url}/api/v1/${id}/reblogged_by`, options);
+  }
+
+  /**
+   * Fetching accounts who reblogged the status
+   * @param id ID of the status
+   * @return Array of accounts
+   */
+  public fetchStatusFavouritedBy (id: string, options: Options.Pagination): Promise<Account[]> {
+    return this.get(`${this.url}/api/v1/${id}/favourited_by`, options);
+  }
+
+  /**
    * Retrieving the home timeline
    * - Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. However, it is possible to use the `id` of the returned objects to construct your own URLs.
    * @param options Query parameters
