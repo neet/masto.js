@@ -3,17 +3,17 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@lagunehq/core</title>
+	<title>PushSubscription | @lagunehq/core</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
 <body>
 <header>
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">@lagunehq/core</a>
+					<a href="../index.html" class="title">@lagunehq/core</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -51,123 +51,221 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="globals.html">Globals</a>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="../modules/_entities_pushsubscription_.html">&quot;entities/PushSubscription&quot;</a>
+				</li>
+				<li>
+					<a href="_entities_pushsubscription_.pushsubscription.html">PushSubscription</a>
 				</li>
 			</ul>
-			<h1> @lagunehq/core</h1>
+			<h1>Interface PushSubscription</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<div class="tsd-panel tsd-typography">
-				<h1 id="-lagunehq-core">@lagunehq/core</h1>
-				<p>Mastodon API client for TypeScript</p>
-				<h2 id="installation">Installation</h2>
-				<p><strong>npm:</strong></p>
-				<pre><code><span class="hljs-built_in">npm</span> i @lagunehq/core --save</code></pre><p><strong>yarn:</strong></p>
-				<pre><code><span class="hljs-selector-tag">yarn</span> <span class="hljs-selector-tag">add</span> @<span class="hljs-keyword">lagunehq</span>/<span class="hljs-keyword">core</span></code></pre><h2 id="using-the-api">Using the api</h2>
-				<p>Here&#39;s a simple example which creates a new status:</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> Mastodon <span class="hljs-keyword">from</span> <span class="hljs-string">'@lagunehq/core'</span>;
-
-<span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> Mastodon();
-
-client.setUrl(<span class="hljs-string">'https://mastodon.social'</span>);
-client.setStreamingUrl(<span class="hljs-string">'wss://mastodon.social'</span>);
-client.setToken(<span class="hljs-string">'my token'</span>);
-
-client.createStatus(<span class="hljs-string">'Toot from TypeScript'</span>).then(<span class="hljs-function">(<span class="hljs-params">newStatus</span>) =&gt;</span> {
-  <span class="hljs-built_in">console</span>.log(newStatus);
-});</code></pre>
-				<p>All of available methods/interfaces are described in the <a href="https://lagunehq.github.io/core/classes/_mastodon_.mastodon.html">documentation</a></p>
-			</div>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">PushSubscription</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_pushsubscription_.pushsubscription.html#alerts" class="tsd-kind-icon">alerts</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_pushsubscription_.pushsubscription.html#endpoint" class="tsd-kind-icon">endpoint</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_pushsubscription_.pushsubscription.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_pushsubscription_.pushsubscription.html#server_key" class="tsd-kind-icon">server_<wbr>key</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="alerts" class="tsd-anchor"></a>
+					<h3>alerts</h3>
+					<div class="tsd-signature tsd-kind-icon">alerts<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/f9e14ab/src/entities/PushSubscription.ts#L9">entities/PushSubscription.ts:9</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Map of &#39;notification event type&#39; and &#39;push is requested or not&#39;</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="endpoint" class="tsd-anchor"></a>
+					<h3>endpoint</h3>
+					<div class="tsd-signature tsd-kind-icon">endpoint<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/f9e14ab/src/entities/PushSubscription.ts#L5">entities/PushSubscription.ts:5</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The endpoint URL</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="id" class="tsd-anchor"></a>
+					<h3>id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/f9e14ab/src/entities/PushSubscription.ts#L3">entities/PushSubscription.ts:3</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The push subscription ID</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="server_key" class="tsd-anchor"></a>
+					<h3>server_<wbr>key</h3>
+					<div class="tsd-signature tsd-kind-icon">server_<wbr>key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/f9e14ab/src/entities/PushSubscription.ts#L7">entities/PushSubscription.ts:7</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The server public key for signature verification. (not for decoding)</p>
+						</div>
+					</div>
+				</section>
+			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
 					<li class="globals  ">
-						<a href="globals.html"><em>Globals</em></a>
+						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_client_eventhandler_.html">"client/<wbr>Event<wbr>Handler"</a>
+						<a href="../modules/_client_eventhandler_.html">"client/<wbr>Event<wbr>Handler"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_client_gateway_.html">"client/<wbr>Gateway"</a>
+						<a href="../modules/_client_gateway_.html">"client/<wbr>Gateway"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_client_mastodon_.html">"client/<wbr>Mastodon"</a>
+						<a href="../modules/_client_mastodon_.html">"client/<wbr>Mastodon"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_client_options_.html">"client/options"</a>
+						<a href="../modules/_client_options_.html">"client/options"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_entities_account_.html">"entities/<wbr>Account"</a>
+						<a href="../modules/_entities_account_.html">"entities/<wbr>Account"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_entities_application_.html">"entities/<wbr>Application"</a>
+						<a href="../modules/_entities_application_.html">"entities/<wbr>Application"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_entities_attachment_.html">"entities/<wbr>Attachment"</a>
+						<a href="../modules/_entities_attachment_.html">"entities/<wbr>Attachment"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_entities_card_.html">"entities/<wbr>Card"</a>
+						<a href="../modules/_entities_card_.html">"entities/<wbr>Card"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_entities_context_.html">"entities/<wbr>Context"</a>
+						<a href="../modules/_entities_context_.html">"entities/<wbr>Context"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_entities_credentials_.html">"entities/<wbr>Credentials"</a>
+						<a href="../modules/_entities_credentials_.html">"entities/<wbr>Credentials"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_entities_emoji_.html">"entities/<wbr>Emoji"</a>
+						<a href="../modules/_entities_emoji_.html">"entities/<wbr>Emoji"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_entities_error_.html">"entities/<wbr>Error"</a>
+						<a href="../modules/_entities_error_.html">"entities/<wbr>Error"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_entities_filter_.html">"entities/<wbr>Filter"</a>
+						<a href="../modules/_entities_filter_.html">"entities/<wbr>Filter"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_entities_instance_.html">"entities/<wbr>Instance"</a>
+						<a href="../modules/_entities_instance_.html">"entities/<wbr>Instance"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_entities_list_.html">"entities/<wbr>List"</a>
+						<a href="../modules/_entities_list_.html">"entities/<wbr>List"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_entities_mention_.html">"entities/<wbr>Mention"</a>
+						<a href="../modules/_entities_mention_.html">"entities/<wbr>Mention"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_entities_notification_.html">"entities/<wbr>Notification"</a>
+						<a href="../modules/_entities_notification_.html">"entities/<wbr>Notification"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_entities_oauth_.html">"entities/OAuth"</a>
+						<a href="../modules/_entities_oauth_.html">"entities/OAuth"</a>
+					</li>
+					<li class="current tsd-kind-external-module">
+						<a href="../modules/_entities_pushsubscription_.html">"entities/<wbr>Push<wbr>Subscription"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_entities_pushsubscription_.html">"entities/<wbr>Push<wbr>Subscription"</a>
+						<a href="../modules/_entities_relationship_.html">"entities/<wbr>Relationship"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_entities_relationship_.html">"entities/<wbr>Relationship"</a>
+						<a href="../modules/_entities_report_.html">"entities/<wbr>Report"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_entities_report_.html">"entities/<wbr>Report"</a>
+						<a href="../modules/_entities_results_.html">"entities/<wbr>Results"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_entities_results_.html">"entities/<wbr>Results"</a>
+						<a href="../modules/_entities_status_.html">"entities/<wbr>Status"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_entities_status_.html">"entities/<wbr>Status"</a>
+						<a href="../modules/_entities_tag_.html">"entities/<wbr>Tag"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_entities_tag_.html">"entities/<wbr>Tag"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_index_.html">"index"</a>
+						<a href="../modules/_index_.html">"index"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_entities_pushsubscription_.pushsubscription.html" class="tsd-kind-icon">Push<wbr>Subscription</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_entities_pushsubscription_.pushsubscription.html#alerts" class="tsd-kind-icon">alerts</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_entities_pushsubscription_.pushsubscription.html#endpoint" class="tsd-kind-icon">endpoint</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_entities_pushsubscription_.pushsubscription.html#id" class="tsd-kind-icon">id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_entities_pushsubscription_.pushsubscription.html#server_key" class="tsd-kind-icon">server_<wbr>key</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
 				</ul>
 			</nav>
 		</div>
@@ -236,7 +334,7 @@ client.createStatus(<span class="hljs-string">'Toot from TypeScript'</span>).the
 	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
-<script src="assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>
