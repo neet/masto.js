@@ -1,9 +1,10 @@
 import { Account, AccountField } from './Account';
+import { StatusVisibility } from './Status';
 
 export interface Credentials extends Account {
   source: {
     /** Selected preference: Default privacy of new toots */
-    privacy: string;
+    privacy: StatusVisibility;
     /** Selected preference: Mark media as sensitive by default? */
     sensitive: boolean;
     /** Plain-text version of the account's `note` */

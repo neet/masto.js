@@ -5,7 +5,7 @@ import { Tag } from './Tag';
 import { Application } from './Application';
 import { Attachment } from './Attachment';
 
-export type VisibilityTypes = 'public'|'unlisted'|'private'|'direct';
+export type StatusVisibility = 'public'|'unlisted'|'private'|'direct';
 
 export interface Status {
   /** The ID of the status */
@@ -45,7 +45,7 @@ export interface Status {
   /** If not empty, warning text that should be displayed before the actual content */
   spoiler_text: string;
   /** One of: `public`, `unlisted`, `private`, `direct` */
-  visibility: VisibilityTypes;
+  visibility: StatusVisibility;
   /** An array of Attachments */
   media_attachments: Attachment[];
   /** An array of Mentions */

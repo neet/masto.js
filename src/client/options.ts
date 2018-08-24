@@ -1,7 +1,7 @@
 import { AccountField } from '../entities/Account';
-import { FilterContextTypes } from '../entities/Filter';
+import { FilterContext } from '../entities/Filter';
 import { NotificationTypes } from '../entities/Notification';
-import { VisibilityTypes } from '../entities/Status';
+import { StatusVisibility } from '../entities/Status';
 
 export interface Pagination {
   /** Get a list of items with ID less than this value */
@@ -58,7 +58,7 @@ export interface CreateStatus {
   /** Text to be shown as a warning before the actual content */
   spoiler_text?: string;
   /** Either "direct", "private", "unlisted" or "public" */
-  visibility?: VisibilityTypes;
+  visibility?: StatusVisibility;
   /** ISO 639-2 language code of the toot, to skip automatic detection */
   language?: string;
 }
@@ -83,7 +83,7 @@ export interface UpdateFilter {
   /** String that contains keyword or phrase */
   phrase?: string;
   /** Array of strings that means filtering context. each string is one of `home`, `notifications`, `public`, `thread`. At least one context must be specified */
-  context?: FilterContextTypes;
+  context?: FilterContext;
   /** Filtered toots will disappear irreversibly, even if filter is later removed */
   irreversible?: boolean;
   /** Boolean that indicates word match. */

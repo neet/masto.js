@@ -1,4 +1,4 @@
-export type AttachmentTypes = 'image'|'video'|'gifv'|'unknown';
+export type AttachmentType = 'image'|'video'|'gifv'|'unknown';
 
 export interface AttachmentMetadata {
   small?: AttachmentMetadataImage|AttachmentMetadataVideo;
@@ -31,7 +31,7 @@ export interface Attachment {
   /** ID of the attachment */
   id: string;
   /** One of: "image", "video", "gifv", "unknown" */
-  type: AttachmentTypes;
+  type: AttachmentType;
   /** URL of the locally hosted version of the image */
   url: string;
   /** For remote images, the remote URL of the original image */

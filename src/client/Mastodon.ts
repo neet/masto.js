@@ -7,7 +7,7 @@ import { Attachment } from '../entities/Attachment';
 import { Card } from '../entities/Card';
 import { Context } from '../entities/Context';
 import { Emoji } from '../entities/Emoji';
-import { Filter, FilterContextTypes } from '../entities/Filter';
+import { Filter, FilterContext } from '../entities/Filter';
 import { Instance, InstanceActivity } from '../entities/Instance';
 import { List } from '../entities/List';
 import { Notification } from '../entities/Notification';
@@ -956,7 +956,7 @@ export class Mastodon extends Gateway {
    * @param options Optional parameters
    * @return A filter
    */
-  public createFiler (phrase: string, context: FilterContextTypes, options?: Options.CreateFilter) {
+  public createFiler (phrase: string, context: FilterContext, options?: Options.CreateFilter) {
     return this.post<Filter>(`${this.url}/api/v1/filters`, { phrase, context, ...options });
   }
 

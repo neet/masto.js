@@ -1,5 +1,5 @@
 /** Type of card */
-export type CardTypes = 'link'|'photo'|'video'|'rich';
+export type CardType = 'link'|'photo'|'video'|'rich';
 
 export interface Card {
   /** The url associated with the card */
@@ -11,7 +11,7 @@ export interface Card {
   /** The image associated with the card, if any */
   image?: string;
   /** "link", "photo", "video", or "rich" */
-  type: CardTypes;
+  type: CardType;
   /** OEmbed data */
   author_name?: string;
   /** OEmbed data */
