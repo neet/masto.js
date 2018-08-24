@@ -1,4 +1,4 @@
-import { Account } from './Account';
+import { Account, AccountField } from './Account';
 
 export interface Credentials extends Account {
   source: {
@@ -8,5 +8,7 @@ export interface Credentials extends Account {
     sensitive: boolean;
     /** Plain-text version of the account's `note` */
     note: string;
+    /** Plain-text version of the account's field */
+    fields: AccountField;
   };
 }
