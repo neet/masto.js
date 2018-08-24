@@ -4,19 +4,16 @@ import EventEmitter from 'eventemitter3';
 import { Status } from '../entities/Status';
 import { Notification } from '../entities/Notification';
 
-export interface Events {
-  // Mastodon Events
-  on (event: 'update', callback: (payload: Status) => void): this;
-  on (event: 'delete', callback: (payload: Status['id']) => void): this;
-  on (event: 'notification', callback: (payload: Notification) => void): this;
-  on (event: 'filters_changed', callback: (payload: undefined) => void): this;
-
-  // WebSocket.client events
-  on (event: 'connect', callback: (payload: WebSocket.connection) => void): this;
-  on (event: 'connectFailed', callback: (payload: Error) => void): this;
+interface EventTypes {
+  update: Status;
+  delete: Status['id'];
+  notification: Notification;
+  filters_changed: undefined;
+  connect: WebSocket.connection;
+  connectFailed: Error;
 }
 
-export class EventHandler extends EventEmitter implements Events {
+export class EventHandler extends EventEmitter {
 
   /**
    * Starting stream with a specified channel
@@ -59,4 +56,7 @@ export class EventHandler extends EventEmitter implements Events {
     return this;
   }
 
+  public on <E extends keyof EventTypes, P = EventTypes[E]>(event: E, callback: (payload: P) => void): this {
+    return super.on(event, callback);
+  }
 }
