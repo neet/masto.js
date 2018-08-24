@@ -23,22 +23,15 @@ export class EventHandler extends EventEmitter {
 
   /**
    * Starting stream with a specified channel
-   * @param id ID of the channel e.g. "public/local"
-   * @param path Base URL of WebScoekt
+   * @param id URL of the websocket endpoint
    * @param token Access token
    */
-  constructor (id: string, path: string, token?: string) {
+  constructor (url: string, params: { [key: string]: any }) {
     super();
-
-    const params: any = { stream: id };
-
-    if ( token ) {
-      params.access_token = token;
-    }
 
     const client = new WebSocket.client();
 
-    client.connect(`${path}/streaming?${queryString.stringify(params)}`);
+    client.connect(`${url}?${queryString.stringify(params)}`);
 
     client.on('connect', (connection) => {
       connection.on('message', (message) => {

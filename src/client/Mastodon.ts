@@ -1,5 +1,4 @@
 import { Gateway } from '../client/Gateway';
-import * as queryString from 'query-string';
 import * as Options from './options';
 
 import { Account } from '../entities/Account';
@@ -20,6 +19,53 @@ import { OAuth } from '../entities/OAuth';
 import { PushSubscription } from '../entities/PushSubscription';
 
 export class Mastodon extends Gateway {
+
+  /**
+   * Starting home timeline and notification streaming
+   * @return Instance of EventEmitter
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
+   */
+  public streamUser () {
+    return this.stream(`${this.url}/v1/streaming`, { stream: 'user' });
+  }
+
+  /**
+   * Starting local timeline streaming
+   * @return Instance of EventEmitter
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
+   */
+  public streamCommunityTimeline () {
+    return this.stream(`${this.url}/v1/streaming`, { stream: 'public/local' });
+  }
+
+  /**
+   * Starting federated timeline streaming
+   * @return Instance of EventEmitter
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
+   */
+  public streamPublicTimeline () {
+    return this.stream(`${this.url}/v1/streaming`, { stream: 'public' });
+  }
+
+  /**
+   * Starting tag timeline streaming
+   * @param id ID of the tag
+   * @return Instance of EventEmitter
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
+   */
+  public streamTagTimeline (id: string) {
+    return this.stream(`${this.url}/v1/streaming`, { stream: 'hashtag', tag: id });
+  }
+
+  /**
+   * Starting list timeline streaming
+   * @param id ID of the list
+   * @return Instance of EventEmitter
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
+   */
+  public streamListTimeline (id: string) {
+    return this.stream(`${this.url}/v1/streaming`, { stream: 'list', list: id });
+  }
 
   /**
    * Retrieving a timeline
@@ -47,53 +93,6 @@ export class Mastodon extends Gateway {
         maxId = statuses[statuses.length - 1].id;
       }
     }
-  }
-
-  /**
-   * Starting home timeline and notification streaming
-   * @return Instance of EventEmitter
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
-   */
-  public streamUser () {
-    return this.stream('user');
-  }
-
-  /**
-   * Starting local timeline streaming
-   * @return Instance of EventEmitter
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
-   */
-  public streamCommunityTimeline () {
-    return this.stream('public/local');
-  }
-
-  /**
-   * Starting federated timeline streaming
-   * @return Instance of EventEmitter
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
-   */
-  public streamPublicTimeline () {
-    return this.stream('public');
-  }
-
-  /**
-   * Starting tag timeline streaming
-   * @param id ID of the tag
-   * @return Instance of EventEmitter
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
-   */
-  public streamTagTimeline (id: string) {
-    return this.stream(`hashtag?${queryString.stringify({ tag: id })}`);
-  }
-
-  /**
-   * Starting list timeline streaming
-   * @param id ID of the list
-   * @return Instance of EventEmitter
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
-   */
-  public streamListTimeline (id: string) {
-    return this.stream(`list?${queryString.stringify({ list: id })}`);
   }
 
   /**

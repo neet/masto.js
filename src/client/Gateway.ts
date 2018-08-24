@@ -117,7 +117,7 @@ export class Gateway {
    * @param id ID of the channel, e.g. `public`, `user`, `public/local` etc
    * @return Instance of EventEmitter
    */
-  protected stream (id: string): EventHandler {
-    return new EventHandler(id, this.url, this.token);;
+  protected stream (url: string, params: { [key: string]: any }): EventHandler {
+    return new EventHandler(url, { access_token: this.token, ...params });;
   }
 }
