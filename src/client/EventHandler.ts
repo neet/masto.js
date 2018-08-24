@@ -1,4 +1,4 @@
-import querystring from 'querystring';
+import * as querystring from 'querystring';
 import * as WebSocket from 'websocket';
 import { EventEmitter } from 'eventemitter3';
 import { Status } from '../entities/Status';
