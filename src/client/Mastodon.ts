@@ -938,8 +938,8 @@ export class Mastodon extends Gateway {
    * Fething user recommendation
    * @return An array of Accounts
    */
-  public fetchSuggestions (options: Options.Pagination): Promise<Account[]> {
-    return this.get(`${this.url}/api/v1/suggestions`, options);
+  public fetchSuggestions (): Promise<Account[]> {
+    return this.get(`${this.url}/api/v1/suggestions`);
   }
 
   /**
