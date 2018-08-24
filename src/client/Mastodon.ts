@@ -21,15 +21,13 @@ import { PushSubscription } from '../entities/PushSubscription';
 export class Mastodon extends Gateway {
 
   /**
-   * Retrieving a timeline
-   * - Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. However, it is possible to use the `id` of the returned objects to construct your own URLs.
-   * - Public and tag timelines do not require authentication.
+   * Generate an iterable of the pagination
    * @param id Path of the timeline e.g. `timelines/pulbic`, `accounts/1/statuses` e.g.
    * @param options Query parameters
    * @return An async iterable of statuses, most recent ones first.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
-  protected async * statusesGenerator (path: string, options?: Options.FetchTimeline|Options.FetchAccountStatuses): AsyncIterableIterator<Status[]> {
+  protected async * paginationGenerator <T extends string | { id: string }>(path: string, options?: any): AsyncIterableIterator<T[]> {
     let maxId: string|null = null;
 
     while (true) {
@@ -37,13 +35,18 @@ export class Mastodon extends Gateway {
         options = { ...options, max_id: maxId };
       }
 
-      const statuses: Status[]       = await this.get(path, options);
-      const result: Status[]|'reset' = yield statuses;
+      const items: T[] = await this.get(path, options);
+      const result: T[]|'reset' = yield items;
+      const lastItem = items[items.length - 1];
 
       if (result === 'reset') {
         maxId = null;
       } else {
-        maxId = statuses[statuses.length - 1].id;
+        if (typeof lastItem === 'string') {
+          maxId = lastItem;
+        } else {
+          (lastItem as { id: string }).id;
+        }
       }
     }
   }
@@ -145,8 +148,8 @@ export class Mastodon extends Gateway {
    * @return An array of accounts
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-followers
    */
-  public fetchAccountFollowers (id: string, options?: Options.Pagination): Promise<Account[]> {
-    return this.get(`${this.url}/api/v1/accounts/${id}/followers`, options);
+  public fetchAccountFollowers (id: string, options?: Options.Pagination): AsyncIterableIterator<Account[]> {
+    return this.paginationGenerator(`${this.url}/api/v1/accounts/${id}/followers`, options);
   }
 
   /**
@@ -157,8 +160,8 @@ export class Mastodon extends Gateway {
    * @return An array of accounts
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-who-account-is-following
    */
-  public fetchAccountFollowing (id: string, options?: Options.Pagination): Promise<Account[]> {
-    return this.get(`${this.url}/api/v1/accounts/${id}/following`, options);
+  public fetchAccountFollowing (id: string, options?: Options.Pagination): AsyncIterableIterator<Account[]> {
+    return this.paginationGenerator(`${this.url}/api/v1/accounts/${id}/following`, options);
   }
 
   /**
@@ -170,7 +173,7 @@ export class Mastodon extends Gateway {
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-statuses
    */
   public fetchAccountStatuses (id: string, options?: Options.FetchTimeline): AsyncIterableIterator<Status[]> {
-    return this.statusesGenerator(`${this.url}/api/v1/accounts/${id}/statuses`, options);
+    return this.paginationGenerator<Status>(`${this.url}/api/v1/accounts/${id}/statuses`, options);
   }
 
   /**
@@ -300,8 +303,8 @@ export class Mastodon extends Gateway {
    * @return An array of accounts blocked by the atuhenticated user
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-blocks
    */
-  public fetchBlocks (options?: Options.Pagination): Promise<Account[]> {
-    return this.get(`${this.url}/api/v1/blocks`, options);
+  public fetchBlocks (options?: Options.Pagination): AsyncIterableIterator<Account[]> {
+    return this.paginationGenerator<Account>(`${this.url}/api/v1/blocks`, options);
   }
 
   /**
@@ -311,8 +314,8 @@ export class Mastodon extends Gateway {
    * @return An array of strings
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-blocked-domains
    */
-  public fetchDomainBlocks (options?: Options.Pagination): Promise<string[]> {
-    return this.get(`${this.url}/api/v1/domain_blocks`, options);
+  public fetchDomainBlocks (options?: Options.Pagination): AsyncIterableIterator<string[]> {
+    return this.paginationGenerator<string>(`${this.url}/api/v1/domain_blocks`, options);
   }
 
   /**
@@ -343,7 +346,7 @@ export class Mastodon extends Gateway {
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-favourites
    */
   public fetchFavouritedStatuses (options?: Options.Pagination): AsyncIterableIterator<Status[]> {
-    return this.statusesGenerator(`${this.url}/api/v1/favourites`, options);
+    return this.paginationGenerator<Status>(`${this.url}/api/v1/favourites`, options);
   }
 
   /**
@@ -353,8 +356,8 @@ export class Mastodon extends Gateway {
    * @return Returns an array of Accounts which have requested to follow the authenticated user.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-list-of-follow-requests
    */
-  public fetchFollowRequests (options?: Options.Pagination): Promise<Account[]> {
-    return this.get(`${this.url}/api/v1/follow_requests`, options);
+  public fetchFollowRequests (options?: Options.Pagination): AsyncIterableIterator<Account[]> {
+    return this.paginationGenerator<Account>(`${this.url}/api/v1/follow_requests`, options);
   }
 
   /**
@@ -447,12 +450,17 @@ export class Mastodon extends Gateway {
    * Retrieving accounts in a list
    * - If you specify `limit=0` in the query, all accounts will be returned without pagination. Otherwise, standard account pagination rules apply.
    * @param id ID of the target list
-   * @param limit Maximum number of accounts to get
+   * @param options Optional params
+   * @param options.limit Maximum number of accounts to get
    * @return Returns Accounts in the list.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-accounts-in-a-list
    */
-  public fetchAccountsInList (id: string, limit?: number): Promise<List[]> {
-    return this.get(`${this.url}/api/v1/list/${id}/accounts`, { limit });
+  public fetchListAccounts (id: string, options?: Options.Pagination): Promise<List[]>|AsyncIterableIterator<List[]> {
+    if (!options || !options.limit) {
+      return this.get(`${this.url}/api/v1/list/${id}/accounts`, options);
+    }
+
+    return this.paginationGenerator<List>(`${this.url}/api/v1/list/${id}/accounts`, options);
   }
 
   /**
@@ -551,8 +559,8 @@ export class Mastodon extends Gateway {
    * @return An array of Accounts muted by the authenticated user.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-mutes
    */
-  public fetchMutes (options?: Options.Pagination): Promise<Account[]> {
-    return this.get(`${this.url}/api/v1/mutes`, options);
+  public fetchMutes (options?: Options.Pagination): AsyncIterableIterator<Account[]> {
+    return this.paginationGenerator<Account>(`${this.url}/api/v1/mutes`, options);
   }
 
   /**
@@ -717,8 +725,8 @@ export class Mastodon extends Gateway {
    * @return An array of Accounts
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-who-rebloggedfavourited-a-status
    */
-  public fetchReblogs (id: string, options?: Options.Pagination): Promise<Account[]> {
-    return this.get(`${this.url}/api/v1/statuses/${id}/reblogged_by`, options);
+  public fetchReblogs (id: string, options?: Options.Pagination): AsyncIterableIterator<Account[]> {
+    return this.paginationGenerator<Account>(`${this.url}/api/v1/statuses/${id}/reblogged_by`, options);
   }
 
   /**
@@ -730,8 +738,8 @@ export class Mastodon extends Gateway {
    * @return An array of Accounts
   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-who-rebloggedfavourited-a-status
    */
-  public fetchFavourites (id: string, options?: Options.Pagination): Promise<Account[]> {
-    return this.get(`${this.url}/api/v1/statuses/${id}/favourited_by`, options);
+  public fetchFavourites (id: string, options?: Options.Pagination): AsyncIterableIterator<Account[]> {
+    return this.paginationGenerator<Account>(`${this.url}/api/v1/statuses/${id}/favourited_by`, options);
   }
 
   /**
@@ -845,8 +853,8 @@ export class Mastodon extends Gateway {
    * @param id ID of the status
    * @return Array of accounts
    */
-  public fetchStatusRebloggedBy (id: string, options: Options.Pagination): Promise<Account[]> {
-    return this.get(`${this.url}/api/v1/${id}/reblogged_by`, options);
+  public fetchStatusRebloggedBy (id: string, options?: Options.Pagination): AsyncIterableIterator<Account[]> {
+    return this.paginationGenerator<Account>(`${this.url}/api/v1/${id}/reblogged_by`, options);
   }
 
   /**
@@ -854,8 +862,8 @@ export class Mastodon extends Gateway {
    * @param id ID of the status
    * @return Array of accounts
    */
-  public fetchStatusFavouritedBy (id: string, options: Options.Pagination): Promise<Account[]> {
-    return this.get(`${this.url}/api/v1/${id}/favourited_by`, options);
+  public fetchStatusFavouritedBy (id: string, options?: Options.Pagination): AsyncIterableIterator<Account[]> {
+    return this.paginationGenerator<Account>(`${this.url}/api/v1/${id}/favourited_by`, options);
   }
 
   /**
@@ -866,7 +874,7 @@ export class Mastodon extends Gateway {
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
   public fetchHomeTimeline (options?: Options.FetchTimeline): AsyncIterableIterator<Status[]> {
-    return this.statusesGenerator(`${this.url}/api/v1/timelines/home`, options)
+    return this.paginationGenerator<Status>(`${this.url}/api/v1/timelines/home`, options)
   };
 
   /**
@@ -878,7 +886,7 @@ export class Mastodon extends Gateway {
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
   public fetchCommunityTimeline (options?: Options.FetchTimeline): AsyncIterableIterator<Status[]> {
-    return this.statusesGenerator(`${this.url}/api/v1/timelines/public`, { local: true, ...options})
+    return this.paginationGenerator<Status>(`${this.url}/api/v1/timelines/public`, { local: true, ...options})
   };
 
   /**
@@ -890,7 +898,7 @@ export class Mastodon extends Gateway {
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
   public fetchPublicTimeline (options?: Options.FetchTimeline): AsyncIterableIterator<Status[]> {
-    return this.statusesGenerator(`${this.url}/api/v1/timelines/public`, options)
+    return this.paginationGenerator<Status>(`${this.url}/api/v1/timelines/public`, options)
   };
 
   /**
@@ -903,7 +911,7 @@ export class Mastodon extends Gateway {
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
   public fetchTagTimeline (id: string, options?: Options.FetchTimeline): AsyncIterableIterator<Status[]> {
-    return this.statusesGenerator(`${this.url}/api/v1/timelines/tag/${id}`, options)
+    return this.paginationGenerator<Status>(`${this.url}/api/v1/timelines/tag/${id}`, options)
   };
 
   /**
@@ -915,7 +923,7 @@ export class Mastodon extends Gateway {
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
   public fetchListTimeline (id: string, options?: Options.FetchTimeline): AsyncIterableIterator<Status[]> {
-    return this.statusesGenerator(`${this.url}/api/v1/timelines/list/${id}`, options)
+    return this.paginationGenerator<Status>(`${this.url}/api/v1/timelines/list/${id}`, options)
   };
 
   /**
@@ -924,7 +932,7 @@ export class Mastodon extends Gateway {
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
   public fetchDirectTimeline (options?: Options.FetchTimeline): AsyncIterableIterator<Status[]> {
-    return this.statusesGenerator(`${this.url}/api/v1/timelines/direct`, options)
+    return this.paginationGenerator<Status>(`${this.url}/api/v1/timelines/direct`, options)
   };
 
   /**
@@ -951,7 +959,7 @@ export class Mastodon extends Gateway {
    * @param options Optional parameters
    * @return A filter
    */
-  public createFiler (phrase: string, context: FilterContextTypes, options: Options.CreateFilter): Promise<Filter> {
+  public createFiler (phrase: string, context: FilterContextTypes, options?: Options.CreateFilter): Promise<Filter> {
     return this.post(`${this.url}/api/v1/filters`, { phrase, context, ...options });
   }
 
@@ -961,7 +969,7 @@ export class Mastodon extends Gateway {
    * @param options Optinal parameters
    * @return A filter
    */
-  public updateFilter (id: string, options: Options.UpdateFilter): Promise<Filter> {
+  public updateFilter (id: string, options?: Options.UpdateFilter): Promise<Filter> {
     return this.patch(`${this.url}/api/v1/filters/${id}`, options);
   }
 
@@ -986,7 +994,7 @@ export class Mastodon extends Gateway {
    * Fetching endorsements
    * @return An array of Accounts
    */
-  public fetchEndorsements (options: Options.Pagination): Promise<Account[]> {
-    return this.get(`${this.url}/api/v1/endorsements`, options);
+  public fetchEndorsements (options?: Options.Pagination): AsyncIterableIterator<Account[]> {
+    return this.paginationGenerator<Account>(`${this.url}/api/v1/endorsements`, options);
   }
 }

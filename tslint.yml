@@ -13,11 +13,12 @@ rules:
   no-duplicate-imports: true
   space-before-function-paren: true
   member-ordering: false
-  ordered-imports: false
+  ordered-imports: true
   object-literal-sort-keys: false
   max-line-length: false
   variable-name: false
   no-shadowed-variable: false
+  no-consecutive-blank-lines: false
   interface-name:
   - true
   - never-prefix
