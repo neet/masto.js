@@ -1,6 +1,6 @@
 import * as queryString from 'query-string';
 import * as WebSocket from 'websocket';
-import EventEmitter from 'eventemitter3';
+import { EventEmitter } from 'eventemitter3';
 import { Status } from '../entities/Status';
 import { Notification } from '../entities/Notification';
 
@@ -26,12 +26,12 @@ export class EventHandler extends EventEmitter {
    * @param id URL of the websocket endpoint
    * @param token Access token
    */
-  constructor (url: string, params: { [key: string]: any }) {
+  constructor (url: string, options: { [key: string]: string }) {
     super();
 
     const client = new WebSocket.client();
 
-    client.connect(`${url}?${queryString.stringify(params)}`);
+    client.connect(`${url}?${queryString.stringify(options)}`);
 
     client.on('connect', (connection) => {
       connection.on('message', (message) => {

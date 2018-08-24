@@ -21,62 +21,15 @@ import { PushSubscription } from '../entities/PushSubscription';
 export class Mastodon extends Gateway {
 
   /**
-   * Starting home timeline and notification streaming
-   * @return Instance of EventEmitter
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
-   */
-  public streamUser () {
-    return this.stream(`${this.url}/v1/streaming`, { stream: 'user' });
-  }
-
-  /**
-   * Starting local timeline streaming
-   * @return Instance of EventEmitter
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
-   */
-  public streamCommunityTimeline () {
-    return this.stream(`${this.url}/v1/streaming`, { stream: 'public/local' });
-  }
-
-  /**
-   * Starting federated timeline streaming
-   * @return Instance of EventEmitter
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
-   */
-  public streamPublicTimeline () {
-    return this.stream(`${this.url}/v1/streaming`, { stream: 'public' });
-  }
-
-  /**
-   * Starting tag timeline streaming
-   * @param id ID of the tag
-   * @return Instance of EventEmitter
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
-   */
-  public streamTagTimeline (id: string) {
-    return this.stream(`${this.url}/v1/streaming`, { stream: 'hashtag', tag: id });
-  }
-
-  /**
-   * Starting list timeline streaming
-   * @param id ID of the list
-   * @return Instance of EventEmitter
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
-   */
-  public streamListTimeline (id: string) {
-    return this.stream(`${this.url}/v1/streaming`, { stream: 'list', list: id });
-  }
-
-  /**
    * Retrieving a timeline
    * - Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. However, it is possible to use the `id` of the returned objects to construct your own URLs.
    * - Public and tag timelines do not require authentication.
    * @param id Path of the timeline e.g. `timelines/pulbic`, `accounts/1/statuses` e.g.
    * @param options Query parameters
-   * @return An array of Statuses, most recent ones first.
+   * @return An async iterable of statuses, most recent ones first.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
-  public async * statusesGenerator (path: string, options?: Options.FetchTimeline|Options.FetchAccountStatuses): AsyncIterableIterator<Status[]> {
+  protected async * statusesGenerator (path: string, options?: Options.FetchTimeline|Options.FetchAccountStatuses): AsyncIterableIterator<Status[]> {
     let maxId: string|null = null;
 
     while (true) {
@@ -93,6 +46,53 @@ export class Mastodon extends Gateway {
         maxId = statuses[statuses.length - 1].id;
       }
     }
+  }
+
+  /**
+   * Starting home timeline and notification streaming
+   * @return Instance of EventEmitter
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
+   */
+  public streamUser () {
+    return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'user' });
+  }
+
+  /**
+   * Starting local timeline streaming
+   * @return Instance of EventEmitter
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
+   */
+  public streamCommunityTimeline () {
+    return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'public/local' });
+  }
+
+  /**
+   * Starting federated timeline streaming
+   * @return Instance of EventEmitter
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
+   */
+  public streamPublicTimeline () {
+    return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'public' });
+  }
+
+  /**
+   * Starting tag timeline streaming
+   * @param id ID of the tag
+   * @return Instance of EventEmitter
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
+   */
+  public streamTagTimeline (id: string) {
+    return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'hashtag', tag: id });
+  }
+
+  /**
+   * Starting list timeline streaming
+   * @param id ID of the list
+   * @return Instance of EventEmitter
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
+   */
+  public streamListTimeline (id: string) {
+    return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'list', list: id });
   }
 
   /**

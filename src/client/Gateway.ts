@@ -23,7 +23,7 @@ export class Gateway {
   constructor (options: { url: string, streamingUrl: string, token?: string }) {
     if (options) {
       this.url = options.url;
-      this.streamingUrl = options.url;
+      this.streamingUrl = options.streamingUrl;
       this.token = options.token;
     }
   }
@@ -117,7 +117,11 @@ export class Gateway {
    * @param id ID of the channel, e.g. `public`, `user`, `public/local` etc
    * @return Instance of EventEmitter
    */
-  protected stream (url: string, params: { [key: string]: any }): EventHandler {
-    return new EventHandler(url, { access_token: this.token, ...params });;
+  protected stream (url: string, params: { [key: string]: string }): EventHandler {
+    if ( this.token ) {
+      params.access_token = this.token;
+    }
+
+    return new EventHandler(url, params);
   }
 }
