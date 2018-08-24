@@ -68,7 +68,7 @@ export class Gateway {
    * @param params Query strings
    * @param options Fetch API options
    */
-  protected get (url: string, params = {}, options = {}): Promise<any> {
+  protected get <T>(url: string, params = {}, options = {}): Promise<T> {
     return this.request(url + (Object.keys(params).length ? '?' + queryString.stringify(params) : ''), { method: 'GET', ...options });
   }
 
@@ -78,7 +78,7 @@ export class Gateway {
    * @param body Payload
    * @param options Fetch API options
    */
-  protected post (url: string, body = {}, options = {}): Promise<any> {
+  protected post <T>(url: string, body = {}, options = {}): Promise<T> {
     return this.request(url, { method: 'POST', body: JSON.stringify(body), ...options });
   }
 
@@ -88,7 +88,7 @@ export class Gateway {
    * @param body Payload
    * @param options Fetch API options
    */
-  protected put (url: string, body = {}, options = {}): Promise<any> {
+  protected put <T>(url: string, body = {}, options = {}): Promise<T> {
     return this.request(url, { method: 'PUT', body: JSON.stringify(body), ...options });
   }
 
@@ -98,7 +98,7 @@ export class Gateway {
    * @param body Payload
    * @param options Fetch API options
    */
-  protected delete (url: string, body = {}, options = {}): Promise<any> {
+  protected delete <T>(url: string, body = {}, options = {}): Promise<T> {
     return this.request(url, { method: 'DELETE', body: JSON.stringify(body), ...options });
   }
 
@@ -108,7 +108,7 @@ export class Gateway {
    * @param body Payload
    * @param options Fetch API options
    */
-  protected patch (url: string, body = {}, options = {}): Promise<any> {
+  protected patch <T>(url: string, body = {}, options = {}): Promise<T> {
     return this.request(url, { method: 'PATCH', body: JSON.stringify(body), ...options });
   }
 
