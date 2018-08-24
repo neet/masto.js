@@ -1,18 +1,23 @@
 import nodeFetch from 'node-fetch';
 import * as querystring from 'querystring';
 import { EventHandler } from './EventHandler';
-import { Error as MastodonError } from '../entities/Error';
+import {
+  MastodonUnauthorizedError,
+  MastodonNotFoundError,
+  MastodonRatelimitError,
+  MastodonError,
+} from './Errors';
 
 export class Gateway {
 
   /** Rest API URL of the instance */
-  public url: string = '';
+  protected url: string = '';
 
   /** Streaming API URL of the instance */
-  public streamingUrl: string = '';
+  protected streamingUrl: string = '';
 
   /** API token of the user */
-  public token?: string;
+  protected token?: string;
 
   /**
    * @param options Optional params
@@ -24,9 +29,30 @@ export class Gateway {
     if (options) {
       this.url = options.url;
       this.streamingUrl = options.streamingUrl;
-      this.token = options.token;
+
+      if (options.token) {
+        this.token = options.token;
+      }
     }
   }
+
+  /** Getting rest API URL of the instance*/
+  public getUrl = () => this.url;
+
+  /** Getting streaming API URL of the instance*/
+  public getStreamingUrl = () => this.streamingUrl;
+
+  /** Getting token of authenticated user */
+  public getToken = () => this.token;
+
+  /** Setting rest API URL of the instance */
+  public setUrl (url: string) { this.url = url.replace(/\/$/, ''); }
+
+  /** Setting streaming API URL of the instance */
+  public setStreamingUrl (url: string) { this.streamingUrl = url.replace(/\/$/, ''); }
+
+  /** Setting token of authenticated user */
+  public setToken (token: string) { this.token = token; }
 
   /**
    * Fetch API wrapper function
@@ -46,24 +72,29 @@ export class Gateway {
       options.headers['Authorization'] = `Bearer ${this.token}`;
     }
 
-    try {
-      const response = typeof window === 'undefined'
-        ? await nodeFetch(url, options)
-        : await fetch(url, options);
+    const response = typeof window === 'undefined'
+      ? await nodeFetch(url, options)
+      : await fetch(url, options);
 
-      if ( !parse ) {
-        return response;
+    if ( !parse ) {
+      return response;
+    }
+
+    const data = await response.json();
+
+    if (response.ok) {
+      return data;
+    } else {
+      switch (response.status) {
+        case 401:
+          throw new MastodonUnauthorizedError(data.error);
+        case 404:
+          throw new MastodonNotFoundError(data.error);
+        case 429:
+          throw new MastodonRatelimitError(data.error);
+        default:
+          throw new MastodonError('MastodonError', data.error || 'Unexpected error occurred');
       }
-
-      const data = await response.json();
-
-      if ( response.ok ) {
-        return data
-      };
-
-      throw data as MastodonError;
-    } catch (error) {
-      throw { error: error || 'Unexpected error occured' } as MastodonError;
     }
   }
 

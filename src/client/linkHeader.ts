@@ -1,6 +1,6 @@
 import * as LinkHeader from 'http-link-header';
 
-export const getNext = (headers: Headers): string | null => {
+export const getNextUrl = (headers: Headers): string | null => {
   const link = headers.get('Link') || '';
   const refs = LinkHeader.parse(link).refs.filter((ref) => ref.rel === 'next');
 

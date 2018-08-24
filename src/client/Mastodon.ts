@@ -1,6 +1,6 @@
 import { Gateway } from '../client/Gateway';
 import * as Options from './options';
-import { getNext } from './linkHeader';
+import { getNextUrl } from './linkHeader';
 
 import { Account } from '../entities/Account';
 import { Attachment } from '../entities/Attachment';
@@ -39,7 +39,7 @@ export class Mastodon extends Gateway {
       if (result === 'reset') {
         next = path;
       } else {
-        next = getNext(response.headers);
+        next = getNextUrl(response.headers);
 
         if (!next) {
           break;
