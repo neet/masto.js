@@ -5,11 +5,17 @@ import { Status } from '../entities/Status';
 import { Notification } from '../entities/Notification';
 
 interface EventTypes {
+  /** Status posted */
   update: Status;
+  /** Status deleted */
   delete: Status['id'];
+  /** User's notification */
   notification: Notification;
+  /** User's filter changed */
   filters_changed: undefined;
+  /** WebSocket connected */
   connect: WebSocket.connection;
+  /** WebSocket connection failed */
   connectFailed: Error;
 }
 
