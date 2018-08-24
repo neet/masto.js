@@ -1,5 +1,6 @@
 import { Gateway } from '../client/Gateway';
 import * as Options from './options';
+import { getNext } from './linkHeader';
 
 import { Account } from '../entities/Account';
 import { Attachment } from '../entities/Attachment';
@@ -23,29 +24,25 @@ export class Mastodon extends Gateway {
   /**
    * Generate an iterable of the pagination
    * @param id Path of the timeline e.g. `timelines/pulbic`, `accounts/1/statuses` e.g.
-   * @param options Query parameters
+   * @param params Query parameters
    * @return An async iterable of statuses, most recent ones first.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
-  protected async * paginationGenerator <T extends string[] | { id: string }[]>(path: string, options?: any) {
-    let maxId: string|null = null;
+  protected async * paginationGenerator <T extends string[] | { id: string }[]>(path: string, params?: any) {
+    let next: string|null = path;
 
     while (true) {
-      if (maxId) {
-        options = { ...options, max_id: maxId };
-      }
-
-      const items: T = await this.get<T>(path, options);
-      const result: T|'reset' = yield items;
-      const lastItem = items[items.length - 1];
+      const response = await this.get<Response>(next, params, {}, false);
+      const data: T  = await response.json();
+      const result: T|'reset' = yield data;
 
       if (result === 'reset') {
-        maxId = null;
+        next = path;
       } else {
-        if (typeof lastItem === 'string') {
-          maxId = lastItem;
-        } else {
-          (lastItem as { id: string }).id;
+        next = getNext(response.headers);
+
+        if (!next) {
+          break;
         }
       }
     }

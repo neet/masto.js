@@ -1,5 +1,5 @@
 import nodeFetch from 'node-fetch';
-import * as queryString from 'query-string';
+import * as querystring from 'querystring';
 import { EventHandler } from './EventHandler';
 import { Error as MastodonError } from '../entities/Error';
 
@@ -51,7 +51,7 @@ export class Gateway {
         ? await nodeFetch(url, options)
         : await fetch(url, options);
 
-      if ( parse ) {
+      if ( !parse ) {
         return response;
       }
 
@@ -75,7 +75,7 @@ export class Gateway {
    * @param parse Whether parse response before return
    */
   protected get <T>(url: string, params = {}, options = {}, parse = true): Promise<T> {
-    return this.request(url + (Object.keys(params).length ? '?' + queryString.stringify(params) : ''), { method: 'GET', ...options }, parse);
+    return this.request(url + (Object.keys(params).length ? '?' + querystring.stringify(params) : ''), { method: 'GET', ...options }, parse);
   }
 
   /**

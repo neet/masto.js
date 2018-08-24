@@ -1,4 +1,4 @@
-import * as queryString from 'query-string';
+import querystring from 'querystring';
 import * as WebSocket from 'websocket';
 import { EventEmitter } from 'eventemitter3';
 import { Status } from '../entities/Status';
@@ -31,7 +31,7 @@ export class EventHandler extends EventEmitter {
 
     const client = new WebSocket.client();
 
-    client.connect(`${url}?${queryString.stringify(options)}`);
+    client.connect(`${url}?${querystring.stringify(options)}`);
 
     client.on('connect', (connection) => {
       connection.on('message', (message) => {
