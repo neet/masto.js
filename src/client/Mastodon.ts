@@ -928,8 +928,8 @@ export class Mastodon extends Gateway {
 
   /**
    * Creating a filter
-   * @param phrase Phrase to filter
-   * @param context Type of timeline to filter
+   * @param phrase String that contains keyword or phrase
+   * @param context Array of strings that means filtering context. each string is one of `home`, `notifications`, `public`, `thread`. At least one context must be specified
    * @param options Optional parameters
    * @return A filter
    */

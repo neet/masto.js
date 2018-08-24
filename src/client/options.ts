@@ -48,6 +48,52 @@ export interface FetchNotifications extends Pagination {
   exclude_types?: NotificationTypes[];
 }
 
+export interface CreateStatus {
+  /** local ID of the status you want to reply to */
+  in_reply_to_id?: string;
+  /** Array of media IDs to attach to the status (maximum 4) */
+  media_ids?: string[];
+  /** Set this to mark the media of the status as NSFW */
+  sensitive?: boolean;
+  /** Text to be shown as a warning before the actual content */
+  spoiler_text?: string;
+  /** Either "direct", "private", "unlisted" or "public" */
+  visibility?: VisibilityTypes;
+  /** ISO 639-2 language code of the toot, to skip automatic detection */
+  language?: string;
+}
+
+export interface FetchTimeline extends Pagination {
+  /** Only return statuses originating from this instance (public and tag timelines only) */
+  local?: boolean;
+  /** Only return statuses that have media attachments */
+  only_media?: boolean;
+}
+
+export interface FetchAccountStatuses {
+  /** Only return statuses that have media attachments */
+  only_media?: boolean;
+  /** Only return statuses that have been pinned */
+  pinned?: boolean;
+  /** Skip statuses that reply to other statuses */
+  exclude_replies?: boolean;
+}
+
+export interface UpdateFilter {
+  /** String that contains keyword or phrase */
+  phrase?: string;
+  /** Array of strings that means filtering context. each string is one of `home`, `notifications`, `public`, `thread`. At least one context must be specified */
+  context?: FilterContextTypes;
+  /** Filtered toots will disappear irreversibly, even if filter is later removed */
+  irreversible?: boolean;
+  /** Boolean that indicates word match. */
+  whole_word?: boolean;
+  /** The simestamp for expire time */
+  expires_in?: number;
+}
+
+export type CreateFilter = Pick<UpdateFilter, 'irreversible'|'whole_word'|'expires_in'>;
+
 export interface AddPushSubscription {
   subscription: {
     /** Endpoint URL that called when notification is happen. */
@@ -87,49 +133,3 @@ export interface UpdatePushSubscription {
     }
   }
 }
-
-export interface CreateStatus {
-  /** local ID of the status you want to reply to */
-  in_reply_to_id?: string;
-  /** Array of media IDs to attach to the status (maximum 4) */
-  media_ids?: string[];
-  /** Set this to mark the media of the status as NSFW */
-  sensitive?: boolean;
-  /** Text to be shown as a warning before the actual content */
-  spoiler_text?: string;
-  /** Either "direct", "private", "unlisted" or "public" */
-  visibility?: VisibilityTypes;
-  /** ISO 639-2 language code of the toot, to skip automatic detection */
-  language?: string;
-}
-
-export interface FetchTimeline extends Pagination {
-  /** Only return statuses originating from this instance (public and tag timelines only) */
-  local?: boolean;
-  /** Only return statuses that have media attachments */
-  only_media?: boolean;
-}
-
-export interface FetchAccountStatuses {
-  /** Only return statuses that have media attachments */
-  only_media?: boolean;
-  /** Only return statuses that have been pinned */
-  pinned?: boolean;
-  /** Skip statuses that reply to other statuses */
-  exclude_replies?: boolean;
-}
-
-export interface CreateFilter {
-  /** String that contains keyword or phrase */
-  phrase: string;
-  /** Array of strings that means filtering context. each string is one of `home`, `notifications`, `public`, `thread`. At least one context must be specified */
-  context: FilterContextTypes;
-  /** Filtered toots will disappear irreversibly, even if filter is later removed */
-  irreversible?: boolean;
-  /** Boolean that indicates word match. */
-  whole_word?: boolean;
-  /** The simestamp for expire time */
-  expires_in?: number;
-}
-
-export type UpdateFilter = CreateFilter;
