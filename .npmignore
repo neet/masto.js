@@ -17,9 +17,12 @@ pids
 .editorconfig
 tsconfig.json
 tslint.json
+tslint.yml
+yarn.lock
 
 # Documentaitons
 docs
+*.md
 
 # Examples
 examples
