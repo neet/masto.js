@@ -46,7 +46,7 @@ export class Gateway {
     }
 
     try {
-      const response = typeof window !== 'undefined'
+      const response = typeof window === 'undefined'
         ? await nodeFetch(url, options)
         : await fetch(url, options);
 
