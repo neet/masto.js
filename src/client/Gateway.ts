@@ -6,13 +6,13 @@ import { Error as MastodonError } from '../entities/Error';
 export class Gateway {
 
   /** Rest API URL of the instance */
-  protected url: string = '';
+  public url: string = '';
 
   /** Streaming API URL of the instance */
-  protected streamingUrl: string = '';
+  public streamingUrl: string = '';
 
   /** API token of the user */
-  protected token?: string;
+  public token?: string;
 
   /**
    * @param options Optional params
