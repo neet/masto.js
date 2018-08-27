@@ -452,11 +452,7 @@ export class Mastodon extends Gateway {
    * @return Returns Accounts in the list.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-accounts-in-a-list
    */
-  public fetchListAccounts (id: string, options?: Options.Pagination): Promise<Account[]> | AsyncIterableIterator<Account[]> {
-    if (options && options.limit === 0) {
-      return this.get<Account[]>(`${this.url}/api/v1/list/${id}/accounts`, options);
-    }
-
+  public fetchListAccounts (id: string, options: Options.Pagination) {
     return this.paginationGenerator<Account[]>(`${this.url}/api/v1/list/${id}/accounts`, options);
   }
 
@@ -677,7 +673,7 @@ export class Mastodon extends Gateway {
    * @return Results
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#searching-for-content
    */
-  public search <V extends string = 'v2'>(q: string, resolve = false, version?: V) {
+  public search <V extends 'v1'|'v2' = 'v2'>(q: string, resolve = false, version?: V) {
     return this.post<Results<V>>(`${this.url}/api/${version}/search`, { q, resolve });
   }
 
