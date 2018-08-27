@@ -71,7 +71,7 @@
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
 					<li>
-						<h4>V</h4>
+						<h4>V<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">keyof HashtagsValueMap</span></h4>
 					</li>
 				</ul>
 			</section>
@@ -106,7 +106,7 @@
 					<div class="tsd-signature tsd-kind-icon">accounts<span class="tsd-signature-symbol">:</span> <a href="_entities_account_.account.html" class="tsd-signature-type">Account</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/f9e14ab/src/entities/Results.ts#L7">entities/Results.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/a66f7e2/src/entities/Results.ts#L12">entities/Results.ts:12</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -118,10 +118,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="hashtags" class="tsd-anchor"></a>
 					<h3>hashtags</h3>
-					<div class="tsd-signature tsd-kind-icon">hashtags<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">V extends &quot;v2&quot; ? Tag[] : V extends &quot;v1&quot; ? string[] : never</span></div>
+					<div class="tsd-signature tsd-kind-icon">hashtags<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">HashtagsValueMap[V]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/f9e14ab/src/entities/Results.ts#L11">entities/Results.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/a66f7e2/src/entities/Results.ts#L16">entities/Results.ts:16</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -136,7 +136,7 @@
 					<div class="tsd-signature tsd-kind-icon">statuses<span class="tsd-signature-symbol">:</span> <a href="_entities_status_.status.html" class="tsd-signature-type">Status</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/f9e14ab/src/entities/Results.ts#L9">entities/Results.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/a66f7e2/src/entities/Results.ts#L14">entities/Results.ts:14</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -153,80 +153,8 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_client_eventhandler_.html">"client/<wbr>Event<wbr>Handler"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_client_gateway_.html">"client/<wbr>Gateway"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_client_mastodon_.html">"client/<wbr>Mastodon"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_client_options_.html">"client/options"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_account_.html">"entities/<wbr>Account"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_application_.html">"entities/<wbr>Application"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_attachment_.html">"entities/<wbr>Attachment"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_card_.html">"entities/<wbr>Card"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_context_.html">"entities/<wbr>Context"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_credentials_.html">"entities/<wbr>Credentials"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_emoji_.html">"entities/<wbr>Emoji"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_error_.html">"entities/<wbr>Error"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_filter_.html">"entities/<wbr>Filter"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_instance_.html">"entities/<wbr>Instance"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_list_.html">"entities/<wbr>List"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_mention_.html">"entities/<wbr>Mention"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_notification_.html">"entities/<wbr>Notification"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_oauth_.html">"entities/OAuth"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_pushsubscription_.html">"entities/<wbr>Push<wbr>Subscription"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_relationship_.html">"entities/<wbr>Relationship"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_report_.html">"entities/<wbr>Report"</a>
-					</li>
 					<li class="current tsd-kind-external-module">
 						<a href="../modules/_entities_results_.html">"entities/<wbr>Results"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_status_.html">"entities/<wbr>Status"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_tag_.html">"entities/<wbr>Tag"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_index_.html">"index"</a>
 					</li>
 				</ul>
 			</nav>

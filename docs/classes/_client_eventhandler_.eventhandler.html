@@ -134,13 +134,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Event<wbr>Handler<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, token<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_client_eventhandler_.eventhandler.html" class="tsd-signature-type">EventHandler</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Event<wbr>Handler<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_client_eventhandler_.eventhandler.html" class="tsd-signature-type">EventHandler</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/f9e14ab/src/client/EventHandler.ts#L16">client/EventHandler.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/a66f7e2/src/client/EventHandler.ts#L22">client/EventHandler.ts:22</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -151,28 +151,15 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>id: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>ID of the channel e.g. &quot;public/local&quot;</p>
-										</div>
-									</div>
+									<h5>url: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>path: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>Base URL of WebScoekt</p>
-										</div>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> token: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>Access token</p>
-										</div>
-									</div>
+									<h5>options: <span class="tsd-signature-type">object</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-index-signature">
+											<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">string</span></h5>
+										</li>
+									</ul>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_client_eventhandler_.eventhandler.html" class="tsd-signature-type">EventHandler</a></h4>
@@ -384,7 +371,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides EventEmitter.on</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/f9e14ab/src/client/EventHandler.ts#L59">client/EventHandler.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/a66f7e2/src/client/EventHandler.ts#L58">client/EventHandler.ts:58</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -539,78 +526,6 @@
 					</li>
 					<li class="current tsd-kind-external-module">
 						<a href="../modules/_client_eventhandler_.html">"client/<wbr>Event<wbr>Handler"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_client_gateway_.html">"client/<wbr>Gateway"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_client_mastodon_.html">"client/<wbr>Mastodon"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_client_options_.html">"client/options"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_account_.html">"entities/<wbr>Account"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_application_.html">"entities/<wbr>Application"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_attachment_.html">"entities/<wbr>Attachment"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_card_.html">"entities/<wbr>Card"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_context_.html">"entities/<wbr>Context"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_credentials_.html">"entities/<wbr>Credentials"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_emoji_.html">"entities/<wbr>Emoji"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_error_.html">"entities/<wbr>Error"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_filter_.html">"entities/<wbr>Filter"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_instance_.html">"entities/<wbr>Instance"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_list_.html">"entities/<wbr>List"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_mention_.html">"entities/<wbr>Mention"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_notification_.html">"entities/<wbr>Notification"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_oauth_.html">"entities/OAuth"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_pushsubscription_.html">"entities/<wbr>Push<wbr>Subscription"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_relationship_.html">"entities/<wbr>Relationship"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_report_.html">"entities/<wbr>Report"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_results_.html">"entities/<wbr>Results"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_status_.html">"entities/<wbr>Status"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_entities_tag_.html">"entities/<wbr>Tag"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_index_.html">"index"</a>
 					</li>
 				</ul>
 			</nav>

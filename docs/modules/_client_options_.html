@@ -72,7 +72,6 @@
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_client_options_.addpushsubscription.html" class="tsd-kind-icon">Add<wbr>Push<wbr>Subscription</a></li>
-								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_client_options_.createfilter.html" class="tsd-kind-icon">Create<wbr>Filter</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_client_options_.createstatus.html" class="tsd-kind-icon">Create<wbr>Status</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_client_options_.fetchaccountstatuses.html" class="tsd-kind-icon">Fetch<wbr>Account<wbr>Statuses</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_client_options_.fetchnotifications.html" class="tsd-kind-icon">Fetch<wbr>Notifications</a></li>
@@ -80,6 +79,7 @@
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_client_options_.pagination.html" class="tsd-kind-icon">Pagination</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_client_options_.searchaccounts.html" class="tsd-kind-icon">Search<wbr>Accounts</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_client_options_.updatecredentials.html" class="tsd-kind-icon">Update<wbr>Credentials</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_client_options_.updatefilter.html" class="tsd-kind-icon">Update<wbr>Filter</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_client_options_.updatepushsubscription.html" class="tsd-kind-icon">Update<wbr>Push<wbr>Subscription</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_client_options_.uploadmedia.html" class="tsd-kind-icon">Upload<wbr>Media</a></li>
 							</ul>
@@ -87,7 +87,7 @@
 						<section class="tsd-index-section ">
 							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="_client_options_.html#updatefilter" class="tsd-kind-icon">Update<wbr>Filter</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="_client_options_.html#createfilter" class="tsd-kind-icon">Create<wbr>Filter</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="_client_options_.html#updatemedia" class="tsd-kind-icon">Update<wbr>Media</a></li>
 							</ul>
 						</section>
@@ -97,12 +97,12 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Type aliases</h2>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module">
-					<a name="updatefilter" class="tsd-anchor"></a>
-					<h3>Update<wbr>Filter</h3>
-					<div class="tsd-signature tsd-kind-icon">Update<wbr>Filter<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_client_options_.createfilter.html" class="tsd-signature-type">CreateFilter</a></div>
+					<a name="createfilter" class="tsd-anchor"></a>
+					<h3>Create<wbr>Filter</h3>
+					<div class="tsd-signature tsd-kind-icon">Create<wbr>Filter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_client_options_.updatefilter.html" class="tsd-signature-type">UpdateFilter</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"irreversible"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"whole_word"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"expires_in"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/f9e14ab/src/client/options.ts#L135">client/options.ts:135</a></li>
+							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/a66f7e2/src/client/options.ts#L95">client/options.ts:95</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -112,7 +112,7 @@
 					<div class="tsd-signature tsd-kind-icon">Update<wbr>Media<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_client_options_.uploadmedia.html" class="tsd-signature-type">UploadMedia</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/f9e14ab/src/client/options.ts#L44">client/options.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/a66f7e2/src/client/options.ts#L44">client/options.ts:44</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -124,80 +124,8 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_client_eventhandler_.html">"client/<wbr>Event<wbr>Handler"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_client_gateway_.html">"client/<wbr>Gateway"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_client_mastodon_.html">"client/<wbr>Mastodon"</a>
-					</li>
 					<li class="current tsd-kind-external-module">
 						<a href="_client_options_.html">"client/options"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_entities_account_.html">"entities/<wbr>Account"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_entities_application_.html">"entities/<wbr>Application"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_entities_attachment_.html">"entities/<wbr>Attachment"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_entities_card_.html">"entities/<wbr>Card"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_entities_context_.html">"entities/<wbr>Context"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_entities_credentials_.html">"entities/<wbr>Credentials"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_entities_emoji_.html">"entities/<wbr>Emoji"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_entities_error_.html">"entities/<wbr>Error"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_entities_filter_.html">"entities/<wbr>Filter"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_entities_instance_.html">"entities/<wbr>Instance"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_entities_list_.html">"entities/<wbr>List"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_entities_mention_.html">"entities/<wbr>Mention"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_entities_notification_.html">"entities/<wbr>Notification"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_entities_oauth_.html">"entities/OAuth"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_entities_pushsubscription_.html">"entities/<wbr>Push<wbr>Subscription"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_entities_relationship_.html">"entities/<wbr>Relationship"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_entities_report_.html">"entities/<wbr>Report"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_entities_results_.html">"entities/<wbr>Results"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_entities_status_.html">"entities/<wbr>Status"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_entities_tag_.html">"entities/<wbr>Tag"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_index_.html">"index"</a>
 					</li>
 				</ul>
 			</nav>
@@ -205,9 +133,6 @@
 				<ul class="before-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/_client_options_.addpushsubscription.html" class="tsd-kind-icon">Add<wbr>Push<wbr>Subscription</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/_client_options_.createfilter.html" class="tsd-kind-icon">Create<wbr>Filter</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/_client_options_.createstatus.html" class="tsd-kind-icon">Create<wbr>Status</a>
@@ -231,13 +156,16 @@
 						<a href="../interfaces/_client_options_.updatecredentials.html" class="tsd-kind-icon">Update<wbr>Credentials</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/_client_options_.updatefilter.html" class="tsd-kind-icon">Update<wbr>Filter</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/_client_options_.updatepushsubscription.html" class="tsd-kind-icon">Update<wbr>Push<wbr>Subscription</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/_client_options_.uploadmedia.html" class="tsd-kind-icon">Upload<wbr>Media</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="_client_options_.html#updatefilter" class="tsd-kind-icon">Update<wbr>Filter</a>
+						<a href="_client_options_.html#createfilter" class="tsd-kind-icon">Create<wbr>Filter</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
 						<a href="_client_options_.html#updatemedia" class="tsd-kind-icon">Update<wbr>Media</a>

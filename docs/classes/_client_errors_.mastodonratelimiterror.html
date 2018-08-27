@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Notification | @lagunehq/core</title>
+	<title>MastodonRatelimitError | @lagunehq/core</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,13 +54,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_entities_notification_.html">&quot;entities/Notification&quot;</a>
+					<a href="../modules/_client_errors_.html">&quot;client/Errors&quot;</a>
 				</li>
 				<li>
-					<a href="_entities_notification_.notification.html">Notification</a>
+					<a href="_client_errors_.mastodonratelimiterror.html">MastodonRatelimitError</a>
 				</li>
 			</ul>
-			<h1>Interface Notification</h1>
+			<h1>Class MastodonRatelimitError</h1>
 		</div>
 	</div>
 </header>
@@ -71,7 +71,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Notification</span>
+						<a href="_client_errors_.mastodonerror.html" class="tsd-signature-type">MastodonError</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">MastodonRatelimitError</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -80,94 +85,86 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="_client_errors_.mastodonratelimiterror.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-inherited">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_notification_.notification.html#account" class="tsd-kind-icon">account</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_notification_.notification.html#created_at" class="tsd-kind-icon">created_<wbr>at</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_notification_.notification.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_notification_.notification.html#status" class="tsd-kind-icon">status</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_notification_.notification.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_client_errors_.mastodonratelimiterror.html#message" class="tsd-kind-icon">message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_client_errors_.mastodonratelimiterror.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_client_errors_.mastodonratelimiterror.html#stack" class="tsd-kind-icon">stack</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Mastodon<wbr>Ratelimit<wbr>Error<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_client_errors_.mastodonratelimiterror.html" class="tsd-signature-type">MastodonRatelimitError</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="_client_errors_.mastodonerror.html">MastodonError</a>.<a href="_client_errors_.mastodonerror.html#constructor">constructor</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/a66f7e2/src/client/Errors.ts#L20">client/Errors.ts:20</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>message: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_client_errors_.mastodonratelimiterror.html" class="tsd-signature-type">MastodonRatelimitError</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="account" class="tsd-anchor"></a>
-					<h3>account</h3>
-					<div class="tsd-signature tsd-kind-icon">account<span class="tsd-signature-symbol">:</span> <a href="_entities_account_.account.html" class="tsd-signature-type">Account</a></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<a name="message" class="tsd-anchor"></a>
+					<h3>message</h3>
+					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="_client_errors_.mastodonerror.html">MastodonError</a>.<a href="_client_errors_.mastodonerror.html#message">message</a></p>
+						<p>Overrides Error.message</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/a66f7e2/src/entities/Notification.ts#L14">entities/Notification.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/a66f7e2/src/client/Errors.ts#L3">client/Errors.ts:3</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The Account sending the notification to the user</p>
-						</div>
-					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="created_at" class="tsd-anchor"></a>
-					<h3>created_<wbr>at</h3>
-					<div class="tsd-signature tsd-kind-icon">created_<wbr>at<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="_client_errors_.mastodonerror.html">MastodonError</a>.<a href="_client_errors_.mastodonerror.html#name">name</a></p>
+						<p>Overrides Error.name</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/a66f7e2/src/entities/Notification.ts#L12">entities/Notification.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/a66f7e2/src/client/Errors.ts#L3">client/Errors.ts:3</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The time the notification was created</p>
-						</div>
-					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="id" class="tsd-anchor"></a>
-					<h3>id</h3>
-					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<a name="stack" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> stack</h3>
+					<div class="tsd-signature tsd-kind-icon">stack<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from Error.stack</p>
+						<p>Overrides Error.stack</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/a66f7e2/src/entities/Notification.ts#L8">entities/Notification.ts:8</a></li>
+							<li>Defined in /Users/nucx/Developments/core/node_modules/typescript/lib/lib.es5.d.ts:905</li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The notification ID</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="status" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> status</h3>
-					<div class="tsd-signature tsd-kind-icon">status<span class="tsd-signature-symbol">:</span> <a href="_entities_status_.status.html" class="tsd-signature-type">Status</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/a66f7e2/src/entities/Notification.ts#L16">entities/Notification.ts:16</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The Status associated with the notification, if applicable</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../modules/_entities_notification_.html#notificationtypes" class="tsd-signature-type">NotificationTypes</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/LaguneHQ/core/blob/a66f7e2/src/entities/Notification.ts#L10">entities/Notification.ts:10</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>One of: &quot;mention&quot;, &quot;reblog&quot;, &quot;favourite&quot;, &quot;follow&quot;</p>
-						</div>
-					</div>
 				</section>
 			</section>
 		</div>
@@ -178,38 +175,41 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_entities_notification_.html">"entities/<wbr>Notification"</a>
+						<a href="../modules/_client_errors_.html">"client/<wbr>Errors"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="_client_errors_.mastodonerror.html" class="tsd-kind-icon">Mastodon<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="_client_errors_.mastodonnotfounderror.html" class="tsd-kind-icon">Mastodon<wbr>Not<wbr>Found<wbr>Error</a>
+					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_entities_notification_.notification.html" class="tsd-kind-icon">Notification</a>
+					<li class="current tsd-kind-class tsd-parent-kind-external-module">
+						<a href="_client_errors_.mastodonratelimiterror.html" class="tsd-kind-icon">Mastodon<wbr>Ratelimit<wbr>Error</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_notification_.notification.html#account" class="tsd-kind-icon">account</a>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_client_errors_.mastodonratelimiterror.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_notification_.notification.html#created_at" class="tsd-kind-icon">created_<wbr>at</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="_client_errors_.mastodonratelimiterror.html#message" class="tsd-kind-icon">message</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_notification_.notification.html#id" class="tsd-kind-icon">id</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="_client_errors_.mastodonratelimiterror.html#name" class="tsd-kind-icon">name</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_notification_.notification.html#status" class="tsd-kind-icon">status</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_notification_.notification.html#type" class="tsd-kind-icon">type</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="_client_errors_.mastodonratelimiterror.html#stack" class="tsd-kind-icon">stack</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/_entities_notification_.html#notificationtypes" class="tsd-kind-icon">Notification<wbr>Types</a>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="_client_errors_.mastodonunauthorizederror.html" class="tsd-kind-icon">Mastodon<wbr>Unauthorized<wbr>Error</a>
 					</li>
 				</ul>
 			</nav>

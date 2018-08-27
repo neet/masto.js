@@ -71,16 +71,16 @@
 				<p>Here&#39;s a simple example which creates a new status:</p>
 				<pre><code class="language-ts"><span class="hljs-keyword">import</span> Mastodon <span class="hljs-keyword">from</span> <span class="hljs-string">'@lagunehq/core'</span>;
 
-<span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> Mastodon();
-
-client.setUrl(<span class="hljs-string">'https://mastodon.social'</span>);
-client.setStreamingUrl(<span class="hljs-string">'wss://mastodon.social'</span>);
-client.setToken(<span class="hljs-string">'my token'</span>);
+<span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> Mastodon({
+  url:          <span class="hljs-string">'https://mastodon.social'</span>,
+  streamingUrl: <span class="hljs-string">'wss://mastodon.social'</span>,
+  token:        <span class="hljs-string">'my token'</span>, <span class="hljs-comment">// Optional</span>
+});
 
 client.createStatus(<span class="hljs-string">'Toot from TypeScript'</span>).then(<span class="hljs-function">(<span class="hljs-params">newStatus</span>) =&gt;</span> {
   <span class="hljs-built_in">console</span>.log(newStatus);
 });</code></pre>
-				<p>All of available methods/interfaces are described in the <a href="https://lagunehq.github.io/core/classes/_mastodon_.mastodon.html">documentation</a></p>
+				<p>All of available methods/interfaces are described in the <a href="https://lagunehq.github.io/core/classes/_client_mastodon_.mastodon.html">documentation</a></p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -90,6 +90,9 @@ client.createStatus(<span class="hljs-string">'Toot from TypeScript'</span>).the
 						<a href="globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="modules/_client_errors_.html">"client/<wbr>Errors"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="modules/_client_eventhandler_.html">"client/<wbr>Event<wbr>Handler"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -97,6 +100,9 @@ client.createStatus(<span class="hljs-string">'Toot from TypeScript'</span>).the
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_client_mastodon_.html">"client/<wbr>Mastodon"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_client_linkheader_.html">"client/link<wbr>Header"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_client_options_.html">"client/options"</a>
@@ -121,9 +127,6 @@ client.createStatus(<span class="hljs-string">'Toot from TypeScript'</span>).the
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_entities_emoji_.html">"entities/<wbr>Emoji"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_entities_error_.html">"entities/<wbr>Error"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_entities_filter_.html">"entities/<wbr>Filter"</a>
