@@ -28,4 +28,4 @@ client.createStatus('Toot from TypeScript').then((newStatus) => {
 });
 ```
 
-All of available methods/interfaces are described in the [documentation](https://lagunehq.github.io/core/classes/_client_mastodon_.mastodon.html)
+All of available methods/interfaces are described in the [documentation](https://lagunehq.gitbook.io/core/_client_mastodon_/_client_mastodon_.mastodon)
