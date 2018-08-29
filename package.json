@@ -8,7 +8,8 @@
   "scripts": {
     "test": "tslint -c tslint.yml 'src/**/*.{ts,tsx}'",
     "build": "tsc",
-    "build:docs": "typedoc ./src --out ./docs --excludeNotExported && touch ./docs/.nojekyll",
+    "docs:build": "typedoc ./src --out ./docs --theme markdown --mdEngine gitbook --excludeNotExported",
+    "docs:serve": "gitbook serve",
     "publish": "npm publish --access=public"
   },
   "repository": {
@@ -35,7 +36,9 @@
     "@types/node-fetch": "^2.1.2",
     "@types/query-string": "^6.1.0",
     "@types/websocket": "^0.0.39",
+    "gitbook-cli": "^2.3.2",
     "typedoc": "^0.12.0",
+    "typedoc-plugin-markdown": "^1.1.15",
     "typescript": "^3.0.1"
   }
 }
