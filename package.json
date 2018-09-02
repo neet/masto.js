@@ -1,8 +1,8 @@
 {
   "name": "@lagunehq/core",
   "private": false,
-  "version": "1.3.2",
-  "description": "Mastodon API client for TypeScript",
+  "version": "1.3.3",
+  "description": "Mastodon API client for Browser and Node.js",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
