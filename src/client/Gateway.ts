@@ -5,6 +5,7 @@ import {
   MastodonUnauthorizedError,
   MastodonNotFoundError,
   MastodonRatelimitError,
+  MastodonURLResolveError,
   MastodonError,
 } from './Errors';
 
@@ -25,10 +26,10 @@ export class Gateway {
    * @param options.streamingUrl Streaming API URL of the instance
    * @param options.token API token of the user
    */
-  constructor (options: { url: string, streamingUrl: string, token?: string }) {
+  constructor (options: { url?: string, streamingUrl?: string, token?: string }) {
     if (options) {
-      this.url = options.url;
-      this.streamingUrl = options.streamingUrl;
+      this.url          = options.url || '';
+      this.streamingUrl = options.streamingUrl || '';
 
       if (options.token) {
         this.token = options.token;
@@ -85,6 +86,10 @@ export class Gateway {
     }
 
     options.headers['Content-Type']  = 'application/json';
+
+    if ( this.url ) {
+      throw new MastodonURLResolveError('REST API URL has not been specified, Use Mastodon.setUrl to set your instance\'s URL');
+    }
 
     if ( this.token ) {
       options.headers['Authorization'] = `Bearer ${this.token}`;
@@ -177,6 +182,10 @@ export class Gateway {
    * @return Instance of EventEmitter
    */
   protected stream (url: string, params: { [key: string]: string }): EventHandler {
+    if ( this.streamingUrl ) {
+      throw new MastodonURLResolveError('Streaming API URL has not been specified, Use Mastodon.setStreamingUrl to set your instance\'s URL');
+    }
+
     if ( this.token ) {
       params.access_token = this.token;
     }

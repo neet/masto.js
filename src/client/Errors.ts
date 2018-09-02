@@ -22,3 +22,9 @@ export class MastodonRatelimitError extends MastodonError {
     super('MastodonRatelimitError', message);
   }
 }
+
+export class MastodonURLResolveError extends MastodonError {
+  constructor (message: string) {
+    super('MastodonURLResolveError', message);
+  }
+}
