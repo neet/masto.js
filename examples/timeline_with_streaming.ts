@@ -1,4 +1,4 @@
-import Mastodon from 'src';
+import Mastodon from '../src';
 
 const client = new Mastodon({
   url: 'https://mastodon.social',
@@ -14,7 +14,7 @@ stream.on('update', (payload) => {
 });
 
 stream.on('connect', () => {
-  console.log('Connected Successfully!')
+  console.log('Connected Successfully!');
 });
 
 stream.on('connectFailed', (error) => {
