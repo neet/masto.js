@@ -1,12 +1,10 @@
 import nodeFetch from 'node-fetch';
 import * as querystring from 'querystring';
-import {
-  MastodonError,
-  MastodonNotFoundError,
-  MastodonRatelimitError,
-  MastodonUnauthorizedError,
-  MastodonURLResolveError,
-} from './Errors';
+import { MastodonError } from '../errors/MastodonError';
+import { MastodonNotFoundError } from '../errors/MastodonNotFoundError';
+import { MastodonRatelimitError} from '../errors/MastodonRatelimitError';
+import { MastodonUnauthorizedError } from '../errors/MastodonUnauthorizedError';
+import { MastodonURLResolveError } from '../errors/MastodonURLResolveError';
 import { EventHandler } from './EventHandler';
 
 export class Gateway {
