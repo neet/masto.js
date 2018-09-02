@@ -1,6 +1,6 @@
-import { Account } from './Account';
-import { Status } from './Status';
-import { Tag } from './Tag';
+import { Account } from '@/entities/Account';
+import { Status } from '@/entities/Status';
+import { Tag } from '@/entities/Tag';
 
 interface HashtagsValueMap {
   'v1': string[];

@@ -1,4 +1,4 @@
-import { Emoji } from './Emoji';
+import { Emoji } from '@/entities/Emoji';
 
 export interface AccountField {
   /** (2.4 or later) Label of profile metadata field. */

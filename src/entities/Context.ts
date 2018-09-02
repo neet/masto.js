@@ -1,4 +1,4 @@
-import { Status } from './Status';
+import { Status } from '@/entities/Status';
 
 export interface Context {
   /** The ancestors of the status in the conversation, as a list of Statuses */

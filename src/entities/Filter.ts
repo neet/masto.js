@@ -1,7 +1,6 @@
 /** Type of filter context */
 export type FilterContext = 'home'|'notifications'|'public'|'thread';
 
-
 export interface Filter {
   /** ID of the filter */
   id: number;

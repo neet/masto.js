@@ -1,4 +1,4 @@
-import { MastodonError } from './MastodonError';
+import { MastodonError } from '@/errors/MastodonError';
 
 export class MastodonRatelimitError extends MastodonError {
   constructor (message: string) {

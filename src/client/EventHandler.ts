@@ -1,8 +1,8 @@
+import { Notification } from '@/entities/Notification';
+import { Status } from '@/entities/Status';
 import { EventEmitter } from 'eventemitter3';
 import * as querystring from 'querystring';
 import * as WebSocket from 'websocket';
-import { Notification } from '../entities/Notification';
-import { Status } from '../entities/Status';
 
 interface EventTypes {
   /** Status posted */

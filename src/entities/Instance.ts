@@ -1,4 +1,4 @@
-import { Account } from './Account';
+import { Account } from '@/entities/Account';
 
 export interface InstanceUrls {
   streaming_api: string;
