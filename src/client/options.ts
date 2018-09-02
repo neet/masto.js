@@ -115,8 +115,8 @@ export interface AddPushSubscription {
       reblog: boolean;
       /** Boolean of whether you want to receive mention notification event. */
       mention: boolean;
-    }
-  }
+    },
+  };
 }
 
 export interface UpdatePushSubscription {
@@ -130,6 +130,6 @@ export interface UpdatePushSubscription {
       reblog: boolean;
       /** Boolean of whether you want to receive mention notification event. */
       mention: boolean;
-    }
-  }
+    },
+  };
 }

@@ -1,8 +1,8 @@
+import { EventEmitter } from 'eventemitter3';
 import * as querystring from 'querystring';
 import * as WebSocket from 'websocket';
-import { EventEmitter } from 'eventemitter3';
-import { Status } from '../entities/Status';
 import { Notification } from '../entities/Notification';
+import { Status } from '../entities/Status';
 
 interface EventTypes {
   /** Status posted */
@@ -55,7 +55,7 @@ export class EventHandler extends EventEmitter {
     return this;
   }
 
-  public on <E extends keyof EventTypes, P = EventTypes[E]>(event: E, callback: (payload: P) => void): this {
+  public on <E extends keyof EventTypes, P = EventTypes[E]> (event: E, callback: (payload: P) => void): this {
     return super.on(event, callback);
   }
 }

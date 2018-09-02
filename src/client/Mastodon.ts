@@ -1,23 +1,23 @@
 import { Gateway } from '../client/Gateway';
-import * as Options from './options';
 import { getNextUrl } from './linkHeader';
+import * as Options from './options';
 
 import { Account } from '../entities/Account';
 import { Attachment } from '../entities/Attachment';
 import { Card } from '../entities/Card';
 import { Context } from '../entities/Context';
+import { Credentials } from '../entities/Credentials';
 import { Emoji } from '../entities/Emoji';
 import { Filter, FilterContext } from '../entities/Filter';
 import { Instance, InstanceActivity } from '../entities/Instance';
 import { List } from '../entities/List';
 import { Notification } from '../entities/Notification';
+import { OAuth } from '../entities/OAuth';
+import { PushSubscription } from '../entities/PushSubscription';
 import { Relationship } from '../entities/Relationship';
 import { Report } from '../entities/Report';
 import { Results } from '../entities/Results';
 import { Status } from '../entities/Status';
-import { Credentials } from '../entities/Credentials';
-import { OAuth } from '../entities/OAuth';
-import { PushSubscription } from '../entities/PushSubscription';
 
 export class Mastodon extends Gateway {
 
@@ -28,7 +28,7 @@ export class Mastodon extends Gateway {
    * @return An async iterable of statuses, most recent ones first.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
-  protected async * paginationGenerator <T extends string[] | { id: string }[]>(path: string, params?: any) {
+  protected async * paginationGenerator <T extends string[] | { id: string }[]> (path: string, params?: any) {
     let next: string|null = path;
 
     while (true) {
@@ -673,7 +673,7 @@ export class Mastodon extends Gateway {
    * @return Results
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#searching-for-content
    */
-  public search <V extends 'v1'|'v2' = 'v2'>(q: string, resolve = false, version?: V) {
+  public search <V extends 'v1'|'v2' = 'v2'> (q: string, resolve = false, version?: V) {
     return this.post<Results<V>>(`${this.url}/api/${version}/search`, { q, resolve });
   }
 
@@ -867,8 +867,8 @@ export class Mastodon extends Gateway {
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
   public fetchHomeTimeline (options?: Options.FetchTimeline) {
-    return this.paginationGenerator<Status[]>(`${this.url}/api/v1/timelines/home`, options)
-  };
+    return this.paginationGenerator<Status[]>(`${this.url}/api/v1/timelines/home`, options);
+  }
 
   /**
    * Retrieving the community timeline (aka "Local timeline" in the UI)
@@ -879,8 +879,8 @@ export class Mastodon extends Gateway {
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
   public fetchCommunityTimeline (options?: Options.FetchTimeline) {
-    return this.paginationGenerator<Status[]>(`${this.url}/api/v1/timelines/public`, { local: true, ...options})
-  };
+    return this.paginationGenerator<Status[]>(`${this.url}/api/v1/timelines/public`, { local: true, ...options});
+  }
 
   /**
    * Retrieving the public timeline (aka "Federated timeline" in the UI)
@@ -891,8 +891,8 @@ export class Mastodon extends Gateway {
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
   public fetchPublicTimeline (options?: Options.FetchTimeline) {
-    return this.paginationGenerator<Status[]>(`${this.url}/api/v1/timelines/public`, options)
-  };
+    return this.paginationGenerator<Status[]>(`${this.url}/api/v1/timelines/public`, options);
+  }
 
   /**
    * Retrieving a tag timeline
@@ -904,8 +904,8 @@ export class Mastodon extends Gateway {
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
   public fetchTagTimeline (id: string, options?: Options.FetchTimeline) {
-    return this.paginationGenerator<Status[]>(`${this.url}/api/v1/timelines/tag/${id}`, options)
-  };
+    return this.paginationGenerator<Status[]>(`${this.url}/api/v1/timelines/tag/${id}`, options);
+  }
 
   /**
    * Retrieving a list timeline
@@ -916,8 +916,8 @@ export class Mastodon extends Gateway {
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
   public fetchListTimeline (id: string, options?: Options.FetchTimeline) {
-    return this.paginationGenerator<Status[]>(`${this.url}/api/v1/timelines/list/${id}`, options)
-  };
+    return this.paginationGenerator<Status[]>(`${this.url}/api/v1/timelines/list/${id}`, options);
+  }
 
   /**
    * Retrieving a direct timeline
@@ -925,8 +925,8 @@ export class Mastodon extends Gateway {
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
   public fetchDirectTimeline (options?: Options.FetchTimeline) {
-    return this.paginationGenerator<Status[]>(`${this.url}/api/v1/timelines/direct`, options)
-  };
+    return this.paginationGenerator<Status[]>(`${this.url}/api/v1/timelines/direct`, options);
+  }
 
   /**
    * Fetching filters

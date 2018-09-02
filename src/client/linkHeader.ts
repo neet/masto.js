@@ -7,4 +7,4 @@ export const getNextUrl = (headers: Headers): string | null => {
   return refs.length > 0
     ? refs[0].uri
     : null;
-}
+};

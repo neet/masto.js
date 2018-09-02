@@ -1,9 +1,9 @@
-import { Emoji } from './Emoji';
 import { Account } from './Account';
-import { Mention } from './Mention';
-import { Tag } from './Tag';
 import { Application } from './Application';
 import { Attachment } from './Attachment';
+import { Emoji } from './Emoji';
+import { Mention } from './Mention';
+import { Tag } from './Tag';
 
 export type StatusVisibility = 'public'|'unlisted'|'private'|'direct';
 

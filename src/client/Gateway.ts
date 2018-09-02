@@ -1,13 +1,13 @@
 import nodeFetch from 'node-fetch';
 import * as querystring from 'querystring';
-import { EventHandler } from './EventHandler';
 import {
-  MastodonUnauthorizedError,
+  MastodonError,
   MastodonNotFoundError,
   MastodonRatelimitError,
+  MastodonUnauthorizedError,
   MastodonURLResolveError,
-  MastodonError,
 } from './Errors';
+import { EventHandler } from './EventHandler';
 
 export class Gateway {
 
@@ -92,7 +92,7 @@ export class Gateway {
     }
 
     if ( this.token ) {
-      options.headers['Authorization'] = `Bearer ${this.token}`;
+      options.headers.Authorization = `Bearer ${this.token}`;
     }
 
     const response = typeof window === 'undefined'
@@ -128,7 +128,7 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected get <T>(url: string, params = {}, options = {}, parse = true): Promise<T> {
+  protected get <T> (url: string, params = {}, options = {}, parse = true): Promise<T> {
     return this.request(url + (Object.keys(params).length ? '?' + querystring.stringify(params) : ''), { method: 'GET', ...options }, parse);
   }
 
@@ -139,7 +139,7 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected post <T>(url: string, body = {}, options = {}, parse = true): Promise<T> {
+  protected post <T> (url: string, body = {}, options = {}, parse = true): Promise<T> {
     return this.request(url, { method: 'POST', body: JSON.stringify(body), ...options }, parse);
   }
 
@@ -150,7 +150,7 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected put <T>(url: string, body = {}, options = {}, parse = true): Promise<T> {
+  protected put <T> (url: string, body = {}, options = {}, parse = true): Promise<T> {
     return this.request(url, { method: 'PUT', body: JSON.stringify(body), ...options }, parse);
   }
 
@@ -161,7 +161,7 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected delete <T>(url: string, body = {}, options = {}, parse = true): Promise<T> {
+  protected delete <T> (url: string, body = {}, options = {}, parse = true): Promise<T> {
     return this.request(url, { method: 'DELETE', body: JSON.stringify(body), ...options }, parse);
   }
 
@@ -172,7 +172,7 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected patch <T>(url: string, body = {}, options = {}, parse = true): Promise<T> {
+  protected patch <T> (url: string, body = {}, options = {}, parse = true): Promise<T> {
     return this.request(url, { method: 'PATCH', body: JSON.stringify(body), ...options }, parse);
   }
 

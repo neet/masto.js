@@ -15,5 +15,5 @@ export interface PushSubscription {
     reblog: boolean;
     /** Boolean of whether you want to receive mention notification event. */
     mention: boolean;
-  }
+  };
 }
