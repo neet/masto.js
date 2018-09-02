@@ -1,7 +1,7 @@
-import { AccountField } from '@/entities/Account';
-import { FilterContext } from '@/entities/Filter';
-import { NotificationTypes } from '@/entities/Notification';
-import { StatusVisibility } from '@/entities/Status';
+import { AccountField } from '../entities/Account';
+import { FilterContext } from '../entities/Filter';
+import { NotificationTypes } from '../entities/Notification';
+import { StatusVisibility } from '../entities/Status';
 
 export interface Pagination {
   /** Get a list of items with ID less than this value */

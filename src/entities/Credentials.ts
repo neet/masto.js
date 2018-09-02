@@ -1,5 +1,5 @@
-import { Account, AccountField } from '@/entities/Account';
-import { StatusVisibility } from '@/entities/Status';
+import { Account, AccountField } from './Account';
+import { StatusVisibility } from './Status';
 
 export interface Credentials extends Account {
   source: {

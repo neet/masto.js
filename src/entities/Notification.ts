@@ -1,5 +1,5 @@
-import { Account } from '@/entities/Account';
-import { Status } from '@/entities/Status';
+import { Account } from './Account';
+import { Status } from './Status';
 
 export type NotificationTypes  = 'mention'|'reblog'|'favourite'|'follow';
 
