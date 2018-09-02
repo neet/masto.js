@@ -13,7 +13,7 @@
 **● name**: * `undefined` &#124; `string`
 *
 
-*Defined in [entities/Account.ts:5](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Account.ts#L5)*
+*Defined in [entities/Account.ts:5](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Account.ts#L5)*
 
 (2.4 or later) Label of profile metadata field.
 
@@ -25,7 +25,7 @@ ___
 **● value**: * `undefined` &#124; `string`
 *
 
-*Defined in [entities/Account.ts:7](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Account.ts#L7)*
+*Defined in [entities/Account.ts:8](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Account.ts#L8)*
 
 (2.4 or later) Value of profile metadata field.
 

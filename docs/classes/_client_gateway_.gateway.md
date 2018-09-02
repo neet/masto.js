@@ -14,7 +14,7 @@
 
 ⊕ **new Gateway**(options: *`object`*): [Gateway](_client_gateway_.gateway.md)
 
-*Defined in [client/Gateway.ts:20](https://github.com/lagunehq/core/blob/31cfc86/src/client/Gateway.ts#L20)*
+*Defined in [client/Gateway.ts:19](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L19)*
 
 **Parameters:**
 
@@ -34,7 +34,7 @@ ___
 
 **● streamingUrl**: *`string`* = ""
 
-*Defined in [client/Gateway.ts:17](https://github.com/lagunehq/core/blob/31cfc86/src/client/Gateway.ts#L17)*
+*Defined in [client/Gateway.ts:16](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L16)*
 
 Streaming API URL of the instance
 
@@ -46,7 +46,7 @@ ___
 **● token**: * `undefined` &#124; `string`
 *
 
-*Defined in [client/Gateway.ts:20](https://github.com/lagunehq/core/blob/31cfc86/src/client/Gateway.ts#L20)*
+*Defined in [client/Gateway.ts:19](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L19)*
 
 API token of the user
 
@@ -57,7 +57,7 @@ ___
 
 **● url**: *`string`* = ""
 
-*Defined in [client/Gateway.ts:14](https://github.com/lagunehq/core/blob/31cfc86/src/client/Gateway.ts#L14)*
+*Defined in [client/Gateway.ts:13](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L13)*
 
 Rest API URL of the instance
 
@@ -71,7 +71,7 @@ ___
 
 ▸ **delete**<`T`>(url: *`string`*, body?: *`object`*, options?: *`object`*, parse?: *`boolean`*): `Promise`<`T`>
 
-*Defined in [client/Gateway.ts:159](https://github.com/lagunehq/core/blob/31cfc86/src/client/Gateway.ts#L159)*
+*Defined in [client/Gateway.ts:162](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L162)*
 
 HTTP DELETE
 
@@ -96,7 +96,7 @@ ___
 
 ▸ **get**<`T`>(url: *`string`*, params?: *`object`*, options?: *`object`*, parse?: *`boolean`*): `Promise`<`T`>
 
-*Defined in [client/Gateway.ts:126](https://github.com/lagunehq/core/blob/31cfc86/src/client/Gateway.ts#L126)*
+*Defined in [client/Gateway.ts:129](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L129)*
 
 HTTP GET
 
@@ -121,7 +121,7 @@ ___
 
 ▸ **getStreamingUrl**(): `string`
 
-*Defined in [client/Gateway.ts:49](https://github.com/lagunehq/core/blob/31cfc86/src/client/Gateway.ts#L49)*
+*Defined in [client/Gateway.ts:48](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L48)*
 
 Getting streaming API URL of the instance
 
@@ -135,7 +135,7 @@ ___
 
 ▸ **getToken**():  `undefined` &#124; `string`
 
-*Defined in [client/Gateway.ts:55](https://github.com/lagunehq/core/blob/31cfc86/src/client/Gateway.ts#L55)*
+*Defined in [client/Gateway.ts:54](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L54)*
 
 Getting token of authenticated user
 
@@ -150,7 +150,7 @@ ___
 
 ▸ **getUrl**(): `string`
 
-*Defined in [client/Gateway.ts:43](https://github.com/lagunehq/core/blob/31cfc86/src/client/Gateway.ts#L43)*
+*Defined in [client/Gateway.ts:42](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L42)*
 
 Getting rest API URL of the instance
 
@@ -164,7 +164,7 @@ ___
 
 ▸ **patch**<`T`>(url: *`string`*, body?: *`object`*, options?: *`object`*, parse?: *`boolean`*): `Promise`<`T`>
 
-*Defined in [client/Gateway.ts:170](https://github.com/lagunehq/core/blob/31cfc86/src/client/Gateway.ts#L170)*
+*Defined in [client/Gateway.ts:173](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L173)*
 
 HTTP PATCH
 
@@ -189,7 +189,7 @@ ___
 
 ▸ **post**<`T`>(url: *`string`*, body?: *`object`*, options?: *`object`*, parse?: *`boolean`*): `Promise`<`T`>
 
-*Defined in [client/Gateway.ts:137](https://github.com/lagunehq/core/blob/31cfc86/src/client/Gateway.ts#L137)*
+*Defined in [client/Gateway.ts:140](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L140)*
 
 HTTP POST
 
@@ -214,7 +214,7 @@ ___
 
 ▸ **put**<`T`>(url: *`string`*, body?: *`object`*, options?: *`object`*, parse?: *`boolean`*): `Promise`<`T`>
 
-*Defined in [client/Gateway.ts:148](https://github.com/lagunehq/core/blob/31cfc86/src/client/Gateway.ts#L148)*
+*Defined in [client/Gateway.ts:151](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L151)*
 
 HTTP PUT
 
@@ -239,7 +239,7 @@ ___
 
 ▸ **request**(url: *`string`*, options?: *`object`*, parse?: *`boolean`*): `Promise`<`any`>
 
-*Defined in [client/Gateway.ts:82](https://github.com/lagunehq/core/blob/31cfc86/src/client/Gateway.ts#L82)*
+*Defined in [client/Gateway.ts:81](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L81)*
 
 Fetch API wrapper function
 
@@ -261,7 +261,7 @@ ___
 
 ▸ **setStreamingUrl**(url: *`string`*): `void`
 
-*Defined in [client/Gateway.ts:67](https://github.com/lagunehq/core/blob/31cfc86/src/client/Gateway.ts#L67)*
+*Defined in [client/Gateway.ts:66](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L66)*
 
 Setting streaming API URL of the instance
 
@@ -280,7 +280,7 @@ ___
 
 ▸ **setToken**(token: *`string`*): `void`
 
-*Defined in [client/Gateway.ts:73](https://github.com/lagunehq/core/blob/31cfc86/src/client/Gateway.ts#L73)*
+*Defined in [client/Gateway.ts:72](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L72)*
 
 Setting token of authenticated user
 
@@ -299,7 +299,7 @@ ___
 
 ▸ **setUrl**(url: *`string`*): `void`
 
-*Defined in [client/Gateway.ts:61](https://github.com/lagunehq/core/blob/31cfc86/src/client/Gateway.ts#L61)*
+*Defined in [client/Gateway.ts:60](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L60)*
 
 Setting rest API URL of the instance
 
@@ -318,7 +318,7 @@ ___
 
 ▸ **stream**(url: *`string`*, params: *`object`*): [EventHandler](_client_eventhandler_.eventhandler.md)
 
-*Defined in [client/Gateway.ts:179](https://github.com/lagunehq/core/blob/31cfc86/src/client/Gateway.ts#L179)*
+*Defined in [client/Gateway.ts:182](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L182)*
 
 Start streaming
 

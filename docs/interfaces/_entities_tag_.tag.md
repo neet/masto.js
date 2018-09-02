@@ -12,7 +12,7 @@
 
 **● name**: *`string`*
 
-*Defined in [entities/Tag.ts:3](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Tag.ts#L3)*
+*Defined in [entities/Tag.ts:3](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Tag.ts#L3)*
 
 The hashtag, not including the preceding `#`
 
@@ -23,7 +23,7 @@ ___
 
 **● url**: *`string`*
 
-*Defined in [entities/Tag.ts:5](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Tag.ts#L5)*
+*Defined in [entities/Tag.ts:6](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Tag.ts#L6)*
 
 The URL of the hashtag
 

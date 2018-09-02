@@ -16,7 +16,7 @@
 
 *Inherited from [Account](_entities_account_.account.md).[acct](_entities_account_.account.md#acct)*
 
-*Defined in [entities/Account.ts:16](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Account.ts#L16)*
+*Defined in [entities/Account.ts:19](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Account.ts#L19)*
 
 Equals username for local users, includes `@domain` for remote ones
 
@@ -29,7 +29,7 @@ ___
 
 *Inherited from [Account](_entities_account_.account.md).[avatar](_entities_account_.account.md#avatar)*
 
-*Defined in [entities/Account.ts:36](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Account.ts#L36)*
+*Defined in [entities/Account.ts:49](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Account.ts#L49)*
 
 URL to the avatar image
 
@@ -42,7 +42,7 @@ ___
 
 *Inherited from [Account](_entities_account_.account.md).[avatar_static](_entities_account_.account.md#avatar_static)*
 
-*Defined in [entities/Account.ts:38](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Account.ts#L38)*
+*Defined in [entities/Account.ts:52](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Account.ts#L52)*
 
 URL to the avatar static image (gif)
 
@@ -56,7 +56,7 @@ ___
 
 *Inherited from [Account](_entities_account_.account.md).[bot](_entities_account_.account.md#bot)*
 
-*Defined in [entities/Account.ts:22](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Account.ts#L22)*
+*Defined in [entities/Account.ts:28](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Account.ts#L28)*
 
 Boolean to indicate that the account performs automated actions
 
@@ -69,7 +69,7 @@ ___
 
 *Inherited from [Account](_entities_account_.account.md).[created_at](_entities_account_.account.md#created_at)*
 
-*Defined in [entities/Account.ts:24](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Account.ts#L24)*
+*Defined in [entities/Account.ts:31](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Account.ts#L31)*
 
 The time the account was created
 
@@ -82,7 +82,7 @@ ___
 
 *Inherited from [Account](_entities_account_.account.md).[display_name](_entities_account_.account.md#display_name)*
 
-*Defined in [entities/Account.ts:18](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Account.ts#L18)*
+*Defined in [entities/Account.ts:22](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Account.ts#L22)*
 
 The account's display name
 
@@ -95,7 +95,7 @@ ___
 
 *Inherited from [Account](_entities_account_.account.md).[emojis](_entities_account_.account.md#emojis)*
 
-*Defined in [entities/Account.ts:44](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Account.ts#L44)*
+*Defined in [entities/Account.ts:61](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Account.ts#L61)*
 
 Array of Emoji in account username and note
 
@@ -108,7 +108,7 @@ ___
 
 *Inherited from [Account](_entities_account_.account.md).[fields](_entities_account_.account.md#fields)*
 
-*Defined in [entities/Account.ts:48](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Account.ts#L48)*
+*Defined in [entities/Account.ts:67](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Account.ts#L67)*
 
 Array of profile metadata field, each element has 'name' and 'value'
 
@@ -121,7 +121,7 @@ ___
 
 *Inherited from [Account](_entities_account_.account.md).[followers_count](_entities_account_.account.md#followers_count)*
 
-*Defined in [entities/Account.ts:26](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Account.ts#L26)*
+*Defined in [entities/Account.ts:34](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Account.ts#L34)*
 
 The number of followers for the account
 
@@ -134,7 +134,7 @@ ___
 
 *Inherited from [Account](_entities_account_.account.md).[following_count](_entities_account_.account.md#following_count)*
 
-*Defined in [entities/Account.ts:28](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Account.ts#L28)*
+*Defined in [entities/Account.ts:37](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Account.ts#L37)*
 
 The number of accounts the given account is following
 
@@ -147,7 +147,7 @@ ___
 
 *Inherited from [Account](_entities_account_.account.md).[header](_entities_account_.account.md#header)*
 
-*Defined in [entities/Account.ts:40](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Account.ts#L40)*
+*Defined in [entities/Account.ts:55](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Account.ts#L55)*
 
 URL to the header image
 
@@ -160,7 +160,7 @@ ___
 
 *Inherited from [Account](_entities_account_.account.md).[header_static](_entities_account_.account.md#header_static)*
 
-*Defined in [entities/Account.ts:42](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Account.ts#L42)*
+*Defined in [entities/Account.ts:58](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Account.ts#L58)*
 
 URL to the header static image (gif)
 
@@ -173,7 +173,7 @@ ___
 
 *Inherited from [Account](_entities_account_.account.md).[id](_entities_account_.account.md#id)*
 
-*Defined in [entities/Account.ts:12](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Account.ts#L12)*
+*Defined in [entities/Account.ts:13](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Account.ts#L13)*
 
 The ID of the account
 
@@ -186,7 +186,7 @@ ___
 
 *Inherited from [Account](_entities_account_.account.md).[locked](_entities_account_.account.md#locked)*
 
-*Defined in [entities/Account.ts:20](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Account.ts#L20)*
+*Defined in [entities/Account.ts:25](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Account.ts#L25)*
 
 Boolean for when the account cannot be followed without waiting for approval first
 
@@ -200,7 +200,7 @@ ___
 
 *Inherited from [Account](_entities_account_.account.md).[moved](_entities_account_.account.md#moved)*
 
-*Defined in [entities/Account.ts:46](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Account.ts#L46)*
+*Defined in [entities/Account.ts:64](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Account.ts#L64)*
 
 If the owner decided to switch accounts, new account is in this attribute
 
@@ -213,7 +213,7 @@ ___
 
 *Inherited from [Account](_entities_account_.account.md).[note](_entities_account_.account.md#note)*
 
-*Defined in [entities/Account.ts:32](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Account.ts#L32)*
+*Defined in [entities/Account.ts:43](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Account.ts#L43)*
 
 Biography of user
 
@@ -224,7 +224,7 @@ ___
 
 **● source**: *`object`*
 
-*Defined in [entities/Credentials.ts:5](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Credentials.ts#L5)*
+*Defined in [entities/Credentials.ts:5](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Credentials.ts#L5)*
 
 #### Type declaration
 
@@ -237,7 +237,7 @@ ___
 
 *Inherited from [Account](_entities_account_.account.md).[statuses_count](_entities_account_.account.md#statuses_count)*
 
-*Defined in [entities/Account.ts:30](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Account.ts#L30)*
+*Defined in [entities/Account.ts:40](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Account.ts#L40)*
 
 The number of statuses the account has made
 
@@ -250,7 +250,7 @@ ___
 
 *Inherited from [Account](_entities_account_.account.md).[url](_entities_account_.account.md#url)*
 
-*Defined in [entities/Account.ts:34](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Account.ts#L34)*
+*Defined in [entities/Account.ts:46](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Account.ts#L46)*
 
 URL of the user's profile page (can be remote)
 
@@ -263,7 +263,7 @@ ___
 
 *Inherited from [Account](_entities_account_.account.md).[username](_entities_account_.account.md#username)*
 
-*Defined in [entities/Account.ts:14](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Account.ts#L14)*
+*Defined in [entities/Account.ts:16](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Account.ts#L16)*
 
 The username of the account
 

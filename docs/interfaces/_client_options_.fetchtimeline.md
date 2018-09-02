@@ -17,7 +17,7 @@
 
 *Inherited from [Pagination](_client_options_.pagination.md).[limit](_client_options_.pagination.md#limit)*
 
-*Defined in [client/options.ts:12](https://github.com/lagunehq/core/blob/31cfc86/src/client/options.ts#L12)*
+*Defined in [client/options.ts:14](https://github.com/lagunehq/core/blob/ae202cb/src/client/options.ts#L14)*
 
 Maximum number of items to get
 
@@ -29,7 +29,7 @@ ___
 **● local**: * `undefined` &#124; `false` &#124; `true`
 *
 
-*Defined in [client/options.ts:68](https://github.com/lagunehq/core/blob/31cfc86/src/client/options.ts#L68)*
+*Defined in [client/options.ts:82](https://github.com/lagunehq/core/blob/ae202cb/src/client/options.ts#L82)*
 
 Only return statuses originating from this instance (public and tag timelines only)
 
@@ -43,7 +43,7 @@ ___
 
 *Inherited from [Pagination](_client_options_.pagination.md).[max_id](_client_options_.pagination.md#max_id)*
 
-*Defined in [client/options.ts:8](https://github.com/lagunehq/core/blob/31cfc86/src/client/options.ts#L8)*
+*Defined in [client/options.ts:8](https://github.com/lagunehq/core/blob/ae202cb/src/client/options.ts#L8)*
 
 Get a list of items with ID less than this value
 
@@ -55,7 +55,7 @@ ___
 **● only_media**: * `undefined` &#124; `false` &#124; `true`
 *
 
-*Defined in [client/options.ts:70](https://github.com/lagunehq/core/blob/31cfc86/src/client/options.ts#L70)*
+*Defined in [client/options.ts:85](https://github.com/lagunehq/core/blob/ae202cb/src/client/options.ts#L85)*
 
 Only return statuses that have media attachments
 
@@ -69,7 +69,7 @@ ___
 
 *Inherited from [Pagination](_client_options_.pagination.md).[since_id](_client_options_.pagination.md#since_id)*
 
-*Defined in [client/options.ts:10](https://github.com/lagunehq/core/blob/31cfc86/src/client/options.ts#L10)*
+*Defined in [client/options.ts:11](https://github.com/lagunehq/core/blob/ae202cb/src/client/options.ts#L11)*
 
 Get a list of items with ID greater than this value
 

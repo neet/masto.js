@@ -12,7 +12,7 @@
 
 **● client_id**: *`string`*
 
-*Defined in [entities/OAuth.ts:3](https://github.com/lagunehq/core/blob/31cfc86/src/entities/OAuth.ts#L3)*
+*Defined in [entities/OAuth.ts:3](https://github.com/lagunehq/core/blob/ae202cb/src/entities/OAuth.ts#L3)*
 
 ___
 <a id="client_secret"></a>
@@ -21,7 +21,7 @@ ___
 
 **● client_secret**: *`string`*
 
-*Defined in [entities/OAuth.ts:4](https://github.com/lagunehq/core/blob/31cfc86/src/entities/OAuth.ts#L4)*
+*Defined in [entities/OAuth.ts:4](https://github.com/lagunehq/core/blob/ae202cb/src/entities/OAuth.ts#L4)*
 
 ___
 <a id="id"></a>
@@ -30,7 +30,7 @@ ___
 
 **● id**: *`string`*
 
-*Defined in [entities/OAuth.ts:2](https://github.com/lagunehq/core/blob/31cfc86/src/entities/OAuth.ts#L2)*
+*Defined in [entities/OAuth.ts:2](https://github.com/lagunehq/core/blob/ae202cb/src/entities/OAuth.ts#L2)*
 
 ___
 

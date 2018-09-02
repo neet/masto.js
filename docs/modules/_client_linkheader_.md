@@ -8,7 +8,7 @@
 
 ▸ **getNextUrl**(headers: *`Headers`*):  `string` &#124; `null`
 
-*Defined in [client/linkHeader.ts:3](https://github.com/lagunehq/core/blob/31cfc86/src/client/linkHeader.ts#L3)*
+*Defined in [client/linkHeader.ts:3](https://github.com/lagunehq/core/blob/ae202cb/src/client/linkHeader.ts#L3)*
 
 **Parameters:**
 

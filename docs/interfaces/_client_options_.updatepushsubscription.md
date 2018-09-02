@@ -12,7 +12,7 @@
 
 **● data**: *`object`*
 
-*Defined in [client/options.ts:123](https://github.com/lagunehq/core/blob/31cfc86/src/client/options.ts#L123)*
+*Defined in [client/options.ts:149](https://github.com/lagunehq/core/blob/ae202cb/src/client/options.ts#L149)*
 
 #### Type declaration
 

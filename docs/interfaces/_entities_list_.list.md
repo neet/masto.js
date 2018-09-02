@@ -12,7 +12,7 @@
 
 **● id**: *`string`*
 
-*Defined in [entities/List.ts:3](https://github.com/lagunehq/core/blob/31cfc86/src/entities/List.ts#L3)*
+*Defined in [entities/List.ts:3](https://github.com/lagunehq/core/blob/ae202cb/src/entities/List.ts#L3)*
 
 ID of the list
 
@@ -23,7 +23,7 @@ ___
 
 **● title**: *`string`*
 
-*Defined in [entities/List.ts:5](https://github.com/lagunehq/core/blob/31cfc86/src/entities/List.ts#L5)*
+*Defined in [entities/List.ts:6](https://github.com/lagunehq/core/blob/ae202cb/src/entities/List.ts#L6)*
 
 Title of the list
 

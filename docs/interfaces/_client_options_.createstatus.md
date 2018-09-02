@@ -13,7 +13,7 @@
 **● in_reply_to_id**: * `undefined` &#124; `string`
 *
 
-*Defined in [client/options.ts:53](https://github.com/lagunehq/core/blob/31cfc86/src/client/options.ts#L53)*
+*Defined in [client/options.ts:62](https://github.com/lagunehq/core/blob/ae202cb/src/client/options.ts#L62)*
 
 local ID of the status you want to reply to
 
@@ -25,7 +25,7 @@ ___
 **● language**: * `undefined` &#124; `string`
 *
 
-*Defined in [client/options.ts:63](https://github.com/lagunehq/core/blob/31cfc86/src/client/options.ts#L63)*
+*Defined in [client/options.ts:77](https://github.com/lagunehq/core/blob/ae202cb/src/client/options.ts#L77)*
 
 ISO 639-2 language code of the toot, to skip automatic detection
 
@@ -36,7 +36,7 @@ ___
 
 **● media_ids**: *`string`[]*
 
-*Defined in [client/options.ts:55](https://github.com/lagunehq/core/blob/31cfc86/src/client/options.ts#L55)*
+*Defined in [client/options.ts:65](https://github.com/lagunehq/core/blob/ae202cb/src/client/options.ts#L65)*
 
 Array of media IDs to attach to the status (maximum 4)
 
@@ -48,7 +48,7 @@ ___
 **● sensitive**: * `undefined` &#124; `false` &#124; `true`
 *
 
-*Defined in [client/options.ts:57](https://github.com/lagunehq/core/blob/31cfc86/src/client/options.ts#L57)*
+*Defined in [client/options.ts:68](https://github.com/lagunehq/core/blob/ae202cb/src/client/options.ts#L68)*
 
 Set this to mark the media of the status as NSFW
 
@@ -60,7 +60,7 @@ ___
 **● spoiler_text**: * `undefined` &#124; `string`
 *
 
-*Defined in [client/options.ts:59](https://github.com/lagunehq/core/blob/31cfc86/src/client/options.ts#L59)*
+*Defined in [client/options.ts:71](https://github.com/lagunehq/core/blob/ae202cb/src/client/options.ts#L71)*
 
 Text to be shown as a warning before the actual content
 
@@ -71,7 +71,7 @@ ___
 
 **● visibility**: *[StatusVisibility](../modules/_entities_status_.md#statusvisibility)*
 
-*Defined in [client/options.ts:61](https://github.com/lagunehq/core/blob/31cfc86/src/client/options.ts#L61)*
+*Defined in [client/options.ts:74](https://github.com/lagunehq/core/blob/ae202cb/src/client/options.ts#L74)*
 
 Either "direct", "private", "unlisted" or "public"
 

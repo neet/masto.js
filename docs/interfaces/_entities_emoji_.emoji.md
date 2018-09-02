@@ -12,7 +12,7 @@
 
 **● shortcode**: *`string`*
 
-*Defined in [entities/Emoji.ts:3](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Emoji.ts#L3)*
+*Defined in [entities/Emoji.ts:3](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Emoji.ts#L3)*
 
 The shortcode of the emoji
 
@@ -23,7 +23,7 @@ ___
 
 **● static_url**: *`string`*
 
-*Defined in [entities/Emoji.ts:5](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Emoji.ts#L5)*
+*Defined in [entities/Emoji.ts:6](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Emoji.ts#L6)*
 
 URL to the emoji static image
 
@@ -34,7 +34,7 @@ ___
 
 **● url**: *`string`*
 
-*Defined in [entities/Emoji.ts:7](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Emoji.ts#L7)*
+*Defined in [entities/Emoji.ts:9](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Emoji.ts#L9)*
 
 URL to the emoji image
 
@@ -45,7 +45,7 @@ ___
 
 **● visible_in_picker**: *`boolean`*
 
-*Defined in [entities/Emoji.ts:9](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Emoji.ts#L9)*
+*Defined in [entities/Emoji.ts:12](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Emoji.ts#L12)*
 
 Boolean that indicates if the emoji is visible in picker
 

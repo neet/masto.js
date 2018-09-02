@@ -12,7 +12,7 @@
 
 **● ancestors**: *[Status](_entities_status_.status.md)[]*
 
-*Defined in [entities/Context.ts:5](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Context.ts#L5)*
+*Defined in [entities/Context.ts:5](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Context.ts#L5)*
 
 The ancestors of the status in the conversation, as a list of Statuses
 
@@ -23,7 +23,7 @@ ___
 
 **● descendants**: *[Status](_entities_status_.status.md)[]*
 
-*Defined in [entities/Context.ts:7](https://github.com/lagunehq/core/blob/31cfc86/src/entities/Context.ts#L7)*
+*Defined in [entities/Context.ts:8](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Context.ts#L8)*
 
 The descendants of the status in the conversation, as a list of Statuses
 
