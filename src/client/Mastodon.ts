@@ -729,7 +729,7 @@ export class Mastodon extends Gateway {
    * @param id ID of target status
    * @param options Query parameters
    * @return An array of Accounts
-  * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-who-rebloggedfavourited-a-status
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-who-rebloggedfavourited-a-status
    */
   public fetchFavourites (id: string, options?: Options.Pagination) {
     return this.paginationGenerator<Account[]>(`${this.url}/api/v1/statuses/${id}/favourited_by`, options);
