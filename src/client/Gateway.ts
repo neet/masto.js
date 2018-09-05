@@ -85,7 +85,7 @@ export class Gateway {
 
     options.headers['Content-Type']  = 'application/json';
 
-    if ( this.url ) {
+    if ( !this.url ) {
       throw new MastodonURLResolveError('REST API URL has not been specified, Use Mastodon.setUrl to set your instance\'s URL');
     }
 
