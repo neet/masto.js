@@ -1,4 +1,5 @@
 import { Gateway } from '../client/Gateway';
+import { EventHandler } from './EventHandler';
 import { getNextUrl } from './linkHeader';
 import * as Options from './options';
 
@@ -53,7 +54,7 @@ export class Mastodon extends Gateway {
    * @return Instance of EventEmitter
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
    */
-  public streamUser () {
+  public streamUser (): EventHandler {
     return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'user' });
   }
 
@@ -62,7 +63,7 @@ export class Mastodon extends Gateway {
    * @return Instance of EventEmitter
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
    */
-  public streamCommunityTimeline () {
+  public streamCommunityTimeline (): EventHandler {
     return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'public/local' });
   }
 
@@ -71,7 +72,7 @@ export class Mastodon extends Gateway {
    * @return Instance of EventEmitter
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
    */
-  public streamPublicTimeline () {
+  public streamPublicTimeline (): EventHandler {
     return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'public' });
   }
 
@@ -81,7 +82,7 @@ export class Mastodon extends Gateway {
    * @return Instance of EventEmitter
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
    */
-  public streamTagTimeline (id: string) {
+  public streamTagTimeline (id: string): EventHandler {
     return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'hashtag', tag: id });
   }
 
@@ -91,7 +92,7 @@ export class Mastodon extends Gateway {
    * @return Instance of EventEmitter
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
    */
-  public streamListTimeline (id: string) {
+  public streamListTimeline (id: string): EventHandler {
     return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'list', list: id });
   }
 
