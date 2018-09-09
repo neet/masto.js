@@ -13,7 +13,7 @@
 **● author_name**: * `undefined` &#124; `string`
 *
 
-*Defined in [entities/Card.ts:20](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Card.ts#L20)*
+*Defined in [entities/Card.ts:20](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Card.ts#L20)*
 
 OEmbed data
 
@@ -25,7 +25,7 @@ ___
 **● author_url**: * `undefined` &#124; `string`
 *
 
-*Defined in [entities/Card.ts:23](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Card.ts#L23)*
+*Defined in [entities/Card.ts:23](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Card.ts#L23)*
 
 OEmbed data
 
@@ -36,7 +36,7 @@ ___
 
 **● description**: *`string`*
 
-*Defined in [entities/Card.ts:11](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Card.ts#L11)*
+*Defined in [entities/Card.ts:11](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Card.ts#L11)*
 
 The card description
 
@@ -48,7 +48,7 @@ ___
 **● height**: * `undefined` &#124; `string`
 *
 
-*Defined in [entities/Card.ts:38](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Card.ts#L38)*
+*Defined in [entities/Card.ts:38](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Card.ts#L38)*
 
 OEmbed data
 
@@ -60,7 +60,7 @@ ___
 **● html**: * `undefined` &#124; `string`
 *
 
-*Defined in [entities/Card.ts:32](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Card.ts#L32)*
+*Defined in [entities/Card.ts:32](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Card.ts#L32)*
 
 OEmbed data
 
@@ -72,7 +72,7 @@ ___
 **● image**: * `undefined` &#124; `string`
 *
 
-*Defined in [entities/Card.ts:14](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Card.ts#L14)*
+*Defined in [entities/Card.ts:14](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Card.ts#L14)*
 
 The image associated with the card, if any
 
@@ -84,7 +84,7 @@ ___
 **● provider_name**: * `undefined` &#124; `string`
 *
 
-*Defined in [entities/Card.ts:26](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Card.ts#L26)*
+*Defined in [entities/Card.ts:26](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Card.ts#L26)*
 
 OEmbed data
 
@@ -96,7 +96,7 @@ ___
 **● provider_url**: * `undefined` &#124; `string`
 *
 
-*Defined in [entities/Card.ts:29](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Card.ts#L29)*
+*Defined in [entities/Card.ts:29](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Card.ts#L29)*
 
 OEmbed data
 
@@ -107,7 +107,7 @@ ___
 
 **● title**: *`string`*
 
-*Defined in [entities/Card.ts:8](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Card.ts#L8)*
+*Defined in [entities/Card.ts:8](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Card.ts#L8)*
 
 The title of the card
 
@@ -118,7 +118,7 @@ ___
 
 **● type**: *[CardType](../modules/_entities_card_.md#cardtype)*
 
-*Defined in [entities/Card.ts:17](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Card.ts#L17)*
+*Defined in [entities/Card.ts:17](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Card.ts#L17)*
 
 "link", "photo", "video", or "rich"
 
@@ -129,7 +129,7 @@ ___
 
 **● url**: *`string`*
 
-*Defined in [entities/Card.ts:5](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Card.ts#L5)*
+*Defined in [entities/Card.ts:5](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Card.ts#L5)*
 
 The url associated with the card
 
@@ -141,7 +141,7 @@ ___
 **● width**: * `undefined` &#124; `string`
 *
 
-*Defined in [entities/Card.ts:35](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Card.ts#L35)*
+*Defined in [entities/Card.ts:35](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Card.ts#L35)*
 
 OEmbed data
 

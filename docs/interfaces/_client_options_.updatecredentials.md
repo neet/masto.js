@@ -12,7 +12,7 @@
 
 **● avatar**: *`File`*
 
-*Defined in [client/options.ts:25](https://github.com/lagunehq/core/blob/ae202cb/src/client/options.ts#L25)*
+*Defined in [client/options.ts:25](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L25)*
 
 An avatar for the user (encoded using `multipart/form-data`)
 
@@ -24,7 +24,7 @@ ___
 **● display_name**: * `undefined` &#124; `string`
 *
 
-*Defined in [client/options.ts:19](https://github.com/lagunehq/core/blob/ae202cb/src/client/options.ts#L19)*
+*Defined in [client/options.ts:19](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L19)*
 
 The name to display in the user's profile
 
@@ -35,7 +35,7 @@ ___
 
 **● fields_attributes**: *[AccountField](_entities_account_.accountfield.md)[]*
 
-*Defined in [client/options.ts:34](https://github.com/lagunehq/core/blob/ae202cb/src/client/options.ts#L34)*
+*Defined in [client/options.ts:34](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L34)*
 
 Array of profile metadata, each element has 'name' and 'value'
 
@@ -46,7 +46,7 @@ ___
 
 **● header**: *`File`*
 
-*Defined in [client/options.ts:28](https://github.com/lagunehq/core/blob/ae202cb/src/client/options.ts#L28)*
+*Defined in [client/options.ts:28](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L28)*
 
 A header image for the user (encoded using `multipart/form-data`)
 
@@ -58,7 +58,7 @@ ___
 **● locked**: * `undefined` &#124; `false` &#124; `true`
 *
 
-*Defined in [client/options.ts:31](https://github.com/lagunehq/core/blob/ae202cb/src/client/options.ts#L31)*
+*Defined in [client/options.ts:31](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L31)*
 
 Manually approve followers?
 
@@ -70,7 +70,7 @@ ___
 **● note**: * `undefined` &#124; `string`
 *
 
-*Defined in [client/options.ts:22](https://github.com/lagunehq/core/blob/ae202cb/src/client/options.ts#L22)*
+*Defined in [client/options.ts:22](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L22)*
 
 A new biography for the user
 

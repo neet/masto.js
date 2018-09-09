@@ -16,7 +16,7 @@
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[constructor](_client_gateway_.gateway.md#constructor)*
 
-*Defined in [client/Gateway.ts:19](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L19)*
+*Defined in [client/Gateway.ts:19](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L19)*
 
 **Parameters:**
 
@@ -38,7 +38,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[streamingUrl](_client_gateway_.gateway.md#streamingurl)*
 
-*Defined in [client/Gateway.ts:16](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L16)*
+*Defined in [client/Gateway.ts:16](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L16)*
 
 Streaming API URL of the instance
 
@@ -52,7 +52,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[token](_client_gateway_.gateway.md#token)*
 
-*Defined in [client/Gateway.ts:19](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L19)*
+*Defined in [client/Gateway.ts:19](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L19)*
 
 API token of the user
 
@@ -65,7 +65,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[url](_client_gateway_.gateway.md#url)*
 
-*Defined in [client/Gateway.ts:13](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L13)*
+*Defined in [client/Gateway.ts:13](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L13)*
 
 Rest API URL of the instance
 
@@ -79,7 +79,7 @@ ___
 
 ▸ **addAccountToList**(id: *`string`*, account_ids: *`string`[]*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:508](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L508)*
+*Defined in [client/Mastodon.ts:509](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L509)*
 
 Adding accounts to a list
 
@@ -103,7 +103,7 @@ ___
 
 ▸ **addPushSubscription**(options: *[AddPushSubscription](../interfaces/_client_options_.addpushsubscription.md)*): `Promise`<[PushSubscription](../interfaces/_entities_pushsubscription_.pushsubscription.md)>
 
-*Defined in [client/Mastodon.ts:611](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L611)*
+*Defined in [client/Mastodon.ts:612](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L612)*
 
 Adding push subscription
 
@@ -131,7 +131,7 @@ ___
 
 ▸ **authorizeFollowRequest**(id: *`string`*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:366](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L366)*
+*Defined in [client/Mastodon.ts:367](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L367)*
 
 Authorizing follow requests
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#authorizing-or-rejecting-follow-requests](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#authorizing-or-rejecting-follow-requests)
@@ -152,7 +152,7 @@ ___
 
 ▸ **blockAccount**(id: *`string`*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
 
-*Defined in [client/Mastodon.ts:202](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L202)*
+*Defined in [client/Mastodon.ts:203](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L203)*
 
 Blocking an account
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blockingunblocking-an-account](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blockingunblocking-an-account)
@@ -173,7 +173,7 @@ ___
 
 ▸ **blockDomain**(domain: *`string`*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:324](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L324)*
+*Defined in [client/Mastodon.ts:325](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L325)*
 
 Blocking a domain
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blocking-a-domain](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blocking-a-domain)
@@ -194,7 +194,7 @@ ___
 
 ▸ **clearNotifications**(): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:586](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L586)*
+*Defined in [client/Mastodon.ts:587](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L587)*
 
 Clearing notifications
 
@@ -211,7 +211,7 @@ ___
 
 ▸ **createApp**(client_name: *`string`*, redirect_uris: *`string`*, scopes: *`string`*, website?: * `undefined` &#124; `string`*): `Promise`<[OAuth](../interfaces/_entities_oauth_.oauth.md)>
 
-*Defined in [client/Mastodon.ts:292](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L292)*
+*Defined in [client/Mastodon.ts:293](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L293)*
 
 Registering an application
 
@@ -237,7 +237,7 @@ ___
 
 ▸ **createFiler**(phrase: *`string`*, context: *[FilterContext](../modules/_entities_filter_.md#filtercontext)*, options?: *`Options.CreateFilter`*): `Promise`<[Filter](../interfaces/_entities_filter_.filter.md)>
 
-*Defined in [client/Mastodon.ts:955](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L955)*
+*Defined in [client/Mastodon.ts:956](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L956)*
 
 Creating a filter
 
@@ -259,7 +259,7 @@ ___
 
 ▸ **createList**(title: *`string`*): `Promise`<[List](../interfaces/_entities_list_.list.md)>
 
-*Defined in [client/Mastodon.ts:475](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L475)*
+*Defined in [client/Mastodon.ts:476](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L476)*
 
 Creating a list
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#creating-and-updating-a-list](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#creating-and-updating-a-list)
@@ -280,7 +280,7 @@ ___
 
 ▸ **createStatus**(status: *`string`*, options?: *`Options.CreateStatus`*, idempotencyKey?: * `undefined` &#124; `string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:747](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L747)*
+*Defined in [client/Mastodon.ts:748](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L748)*
 
 Posting a new status
 
@@ -307,7 +307,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[delete](_client_gateway_.gateway.md#delete)*
 
-*Defined in [client/Gateway.ts:162](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L162)*
+*Defined in [client/Gateway.ts:162](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L162)*
 
 HTTP DELETE
 
@@ -332,7 +332,7 @@ ___
 
 ▸ **dissmissNotification**(id: *`string`*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:597](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L597)*
+*Defined in [client/Mastodon.ts:598](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L598)*
 
 Dismissing a single notification
 
@@ -355,7 +355,7 @@ ___
 
 ▸ **favouriteStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:790](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L790)*
+*Defined in [client/Mastodon.ts:791](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L791)*
 
 Favouriting status
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#favouritingunfavouriting-a-status](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#favouritingunfavouriting-a-status)
@@ -376,7 +376,7 @@ ___
 
 ▸ **fetchAccessToken**(code: *`string`*, client_id: *`string`*, client_secret: *`string`*, redirect_uri: *`string`*, grant_type?: *`string`*): `Promise`<`object`>
 
-*Defined in [client/Mastodon.ts:107](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L107)*
+*Defined in [client/Mastodon.ts:108](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L108)*
 
 Fetch access token from authorization code
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/OAuth-details.md](https://github.com/tootsuite/documentation/blob/master/Using-the-API/OAuth-details.md)
@@ -400,7 +400,7 @@ ___
 
 ▸ **fetchAccount**(id: *`string`*): `Promise`<[Account](../interfaces/_entities_account_.account.md)>
 
-*Defined in [client/Mastodon.ts:117](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L117)*
+*Defined in [client/Mastodon.ts:118](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L118)*
 
 Fetching an account
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-an-account](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-an-account)
@@ -421,7 +421,7 @@ ___
 
 ▸ **fetchAccountFollowers**(id: *`string`*, options?: *`Options.Pagination`*): `AsyncIterableIterator`< `string`[] &#124; `object`[]>
 
-*Defined in [client/Mastodon.ts:148](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L148)*
+*Defined in [client/Mastodon.ts:149](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L149)*
 
 Getting an account's followers
 
@@ -445,7 +445,7 @@ ___
 
 ▸ **fetchAccountFollowing**(id: *`string`*, options?: *`Options.Pagination`*): `AsyncIterableIterator`< `string`[] &#124; `object`[]>
 
-*Defined in [client/Mastodon.ts:160](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L160)*
+*Defined in [client/Mastodon.ts:161](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L161)*
 
 Getting who account is following
 
@@ -469,7 +469,7 @@ ___
 
 ▸ **fetchAccountRelationships**(id: * `string` &#124; `string`[]*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)[]>
 
-*Defined in [client/Mastodon.ts:266](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L266)*
+*Defined in [client/Mastodon.ts:267](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L267)*
 
 Getting an account's relationships
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-relationships](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-relationships)
@@ -490,7 +490,7 @@ ___
 
 ▸ **fetchAccountStatuses**(id: *`string`*, options?: *`Options.FetchTimeline`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 
-*Defined in [client/Mastodon.ts:172](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L172)*
+*Defined in [client/Mastodon.ts:173](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L173)*
 
 Getting an account's statuses
 
@@ -514,7 +514,7 @@ ___
 
 ▸ **fetchBlocks**(options?: *`Options.Pagination`*): `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
 
-*Defined in [client/Mastodon.ts:303](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L303)*
+*Defined in [client/Mastodon.ts:304](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L304)*
 
 Fetching a user's blocks
 
@@ -537,7 +537,7 @@ ___
 
 ▸ **fetchCommunityTimeline**(options?: *`Options.FetchTimeline`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 
-*Defined in [client/Mastodon.ts:881](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L881)*
+*Defined in [client/Mastodon.ts:882](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L882)*
 
 Retrieving the community timeline (aka "Local timeline" in the UI)
 
@@ -561,7 +561,7 @@ ___
 
 ▸ **fetchCustomEmojis**(): `Promise`<[Emoji](../interfaces/_entities_emoji_.emoji.md)[]>
 
-*Defined in [client/Mastodon.ts:424](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L424)*
+*Defined in [client/Mastodon.ts:425](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L425)*
 
 Fetching current instance's custom emojis
 
@@ -578,7 +578,7 @@ ___
 
 ▸ **fetchDirectTimeline**(options?: *`Options.FetchTimeline`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 
-*Defined in [client/Mastodon.ts:927](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L927)*
+*Defined in [client/Mastodon.ts:928](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L928)*
 
 Retrieving a direct timeline
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline)
@@ -599,7 +599,7 @@ ___
 
 ▸ **fetchDomainBlocks**(options?: *`Options.Pagination`*): `AsyncIterableIterator`<`string`[]>
 
-*Defined in [client/Mastodon.ts:314](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L314)*
+*Defined in [client/Mastodon.ts:315](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L315)*
 
 Fetching a user's blocked domains
 
@@ -622,7 +622,7 @@ ___
 
 ▸ **fetchEndorsements**(options?: *`Options.Pagination`*): `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
 
-*Defined in [client/Mastodon.ts:990](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L990)*
+*Defined in [client/Mastodon.ts:991](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L991)*
 
 Fetching endorsements
 
@@ -642,7 +642,7 @@ ___
 
 ▸ **fetchFavouritedStatuses**(options?: *`Options.Pagination`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 
-*Defined in [client/Mastodon.ts:345](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L345)*
+*Defined in [client/Mastodon.ts:346](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L346)*
 
 Fetching a user's favourites
 
@@ -665,7 +665,7 @@ ___
 
 ▸ **fetchFavourites**(id: *`string`*, options?: *`Options.Pagination`*): `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
 
-*Defined in [client/Mastodon.ts:734](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L734)*
+*Defined in [client/Mastodon.ts:735](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L735)*
 
 Getting who favourited a status
 
@@ -690,7 +690,7 @@ ___
 
 ▸ **fetchFilter**(id: *`string`*): `Promise`<[Filter](../interfaces/_entities_filter_.filter.md)>
 
-*Defined in [client/Mastodon.ts:944](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L944)*
+*Defined in [client/Mastodon.ts:945](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L945)*
 
 Fethcing a filter by id
 
@@ -710,7 +710,7 @@ ___
 
 ▸ **fetchFilters**(): `Promise`<[Filter](../interfaces/_entities_filter_.filter.md)[]>
 
-*Defined in [client/Mastodon.ts:935](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L935)*
+*Defined in [client/Mastodon.ts:936](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L936)*
 
 Fetching filters
 
@@ -724,7 +724,7 @@ ___
 
 ▸ **fetchFollowRequests**(options?: *`Options.Pagination`*): `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
 
-*Defined in [client/Mastodon.ts:356](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L356)*
+*Defined in [client/Mastodon.ts:357](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L357)*
 
 Fetching a list of follow requests
 
@@ -747,7 +747,7 @@ ___
 
 ▸ **fetchHomeTimeline**(options?: *`Options.FetchTimeline`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 
-*Defined in [client/Mastodon.ts:869](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L869)*
+*Defined in [client/Mastodon.ts:870](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L870)*
 
 Retrieving the home timeline
 
@@ -770,7 +770,7 @@ ___
 
 ▸ **fetchInstance**(): `Promise`<[Instance](../interfaces/_entities_instance_.instance.md)>
 
-*Defined in [client/Mastodon.ts:396](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L396)*
+*Defined in [client/Mastodon.ts:397](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L397)*
 
 Fetching current instance information
 
@@ -787,7 +787,7 @@ ___
 
 ▸ **fetchInstanceActivity**(): `Promise`<[InstanceActivity](../interfaces/_entities_instance_.instanceactivity.md)[]>
 
-*Defined in [client/Mastodon.ts:414](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L414)*
+*Defined in [client/Mastodon.ts:415](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L415)*
 
 Fetching activities of current instance
 
@@ -803,7 +803,7 @@ ___
 
 ▸ **fetchList**(id: *`string`*): `Promise`<[List](../interfaces/_entities_list_.list.md)>
 
-*Defined in [client/Mastodon.ts:465](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L465)*
+*Defined in [client/Mastodon.ts:466](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L466)*
 
 Retrieving a list
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-list](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-list)
@@ -824,7 +824,7 @@ ___
 
 ▸ **fetchListAccounts**(id: *`string`*, options: *[Pagination](../interfaces/_client_options_.pagination.md)*): `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
 
-*Defined in [client/Mastodon.ts:455](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L455)*
+*Defined in [client/Mastodon.ts:456](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L456)*
 
 Retrieving accounts in a list
 
@@ -848,7 +848,7 @@ ___
 
 ▸ **fetchListByMembership**(id: *`string`*): `Promise`<[List](../interfaces/_entities_list_.list.md)[]>
 
-*Defined in [client/Mastodon.ts:442](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L442)*
+*Defined in [client/Mastodon.ts:443](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L443)*
 
 Retrieving lists by membership
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-lists-by-membership](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-lists-by-membership)
@@ -869,7 +869,7 @@ ___
 
 ▸ **fetchListTimeline**(id: *`string`*, options?: *`Options.FetchTimeline`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 
-*Defined in [client/Mastodon.ts:918](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L918)*
+*Defined in [client/Mastodon.ts:919](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L919)*
 
 Retrieving a list timeline
 
@@ -893,7 +893,7 @@ ___
 
 ▸ **fetchLists**(): `Promise`<[List](../interfaces/_entities_list_.list.md)[]>
 
-*Defined in [client/Mastodon.ts:433](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L433)*
+*Defined in [client/Mastodon.ts:434](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L434)*
 
 Retrieving lists
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-lists](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-lists)
@@ -908,7 +908,7 @@ ___
 
 ▸ **fetchMutes**(options?: *`Options.Pagination`*): `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
 
-*Defined in [client/Mastodon.ts:555](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L555)*
+*Defined in [client/Mastodon.ts:556](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L556)*
 
 Fetching a user's mutes
 
@@ -931,7 +931,7 @@ ___
 
 ▸ **fetchNotification**(id: *`string`*): `Promise`<[Notification](../interfaces/_entities_notification_.notification.md)>
 
-*Defined in [client/Mastodon.ts:576](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L576)*
+*Defined in [client/Mastodon.ts:577](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L577)*
 
 Getting a single notification
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-a-single-notification](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-a-single-notification)
@@ -952,7 +952,7 @@ ___
 
 ▸ **fetchNotifications**(options?: *`Options.FetchNotifications`*): `Promise`<[Notification](../interfaces/_entities_notification_.notification.md)[]>
 
-*Defined in [client/Mastodon.ts:566](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L566)*
+*Defined in [client/Mastodon.ts:567](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L567)*
 
 Fetching a user's notifications
 
@@ -975,7 +975,7 @@ ___
 
 ▸ **fetchPeerInstances**(): `Promise`<`string`[]>
 
-*Defined in [client/Mastodon.ts:405](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L405)*
+*Defined in [client/Mastodon.ts:406](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L406)*
 
 Fetching peer instances
 
@@ -991,7 +991,7 @@ ___
 
 ▸ **fetchPublicTimeline**(options?: *`Options.FetchTimeline`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 
-*Defined in [client/Mastodon.ts:893](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L893)*
+*Defined in [client/Mastodon.ts:894](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L894)*
 
 Retrieving the public timeline (aka "Federated timeline" in the UI)
 
@@ -1015,7 +1015,7 @@ ___
 
 ▸ **fetchPushSubscription**(): `Promise`<[PushSubscription](../interfaces/_entities_pushsubscription_.pushsubscription.md)>
 
-*Defined in [client/Mastodon.ts:620](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L620)*
+*Defined in [client/Mastodon.ts:621](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L621)*
 
 Get current push subscription status
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#get-current-push-subscription-status](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#get-current-push-subscription-status)
@@ -1030,7 +1030,7 @@ ___
 
 ▸ **fetchReblogs**(id: *`string`*, options?: *`Options.Pagination`*): `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
 
-*Defined in [client/Mastodon.ts:721](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L721)*
+*Defined in [client/Mastodon.ts:722](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L722)*
 
 Getting who reblogged a status
 
@@ -1055,7 +1055,7 @@ ___
 
 ▸ **fetchReports**(): `Promise`<[Report](../interfaces/_entities_report_.report.md)[]>
 
-*Defined in [client/Mastodon.ts:651](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L651)*
+*Defined in [client/Mastodon.ts:652](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L652)*
 
 Fetching a user's reports
 
@@ -1072,7 +1072,7 @@ ___
 
 ▸ **fetchStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:687](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L687)*
+*Defined in [client/Mastodon.ts:688](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L688)*
 
 Fetching a status
 
@@ -1095,7 +1095,7 @@ ___
 
 ▸ **fetchStatusCard**(id: *`string`*): `Promise`<[Card](../interfaces/_entities_card_.card.md)>
 
-*Defined in [client/Mastodon.ts:708](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L708)*
+*Defined in [client/Mastodon.ts:709](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L709)*
 
 Getting a card associated with a status
 
@@ -1118,7 +1118,7 @@ ___
 
 ▸ **fetchStatusContext**(id: *`string`*): `Promise`<[Context](../interfaces/_entities_context_.context.md)>
 
-*Defined in [client/Mastodon.ts:698](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L698)*
+*Defined in [client/Mastodon.ts:699](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L699)*
 
 Getting status context
 
@@ -1141,7 +1141,7 @@ ___
 
 ▸ **fetchStatusFavouritedBy**(id: *`string`*, options?: *`Options.Pagination`*): `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
 
-*Defined in [client/Mastodon.ts:858](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L858)*
+*Defined in [client/Mastodon.ts:859](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L859)*
 
 Fetching accounts who reblogged the status
 
@@ -1162,7 +1162,7 @@ ___
 
 ▸ **fetchStatusRebloggedBy**(id: *`string`*, options?: *`Options.Pagination`*): `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
 
-*Defined in [client/Mastodon.ts:849](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L849)*
+*Defined in [client/Mastodon.ts:850](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L850)*
 
 Fetching accounts who reblogged the status
 
@@ -1183,7 +1183,7 @@ ___
 
 ▸ **fetchSuggestions**(): `Promise`<[Account](../interfaces/_entities_account_.account.md)[]>
 
-*Defined in [client/Mastodon.ts:982](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L982)*
+*Defined in [client/Mastodon.ts:983](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L983)*
 
 Fething user recommendation
 
@@ -1197,7 +1197,7 @@ ___
 
 ▸ **fetchTagTimeline**(id: *`string`*, options?: *`Options.FetchTimeline`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 
-*Defined in [client/Mastodon.ts:906](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L906)*
+*Defined in [client/Mastodon.ts:907](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L907)*
 
 Retrieving a tag timeline
 
@@ -1222,7 +1222,7 @@ ___
 
 ▸ **followAccount**(id: *`string`*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
 
-*Defined in [client/Mastodon.ts:182](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L182)*
+*Defined in [client/Mastodon.ts:183](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L183)*
 
 Following an account
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#followingunfollowing-an-account](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#followingunfollowing-an-account)
@@ -1243,7 +1243,7 @@ ___
 
 ▸ **followAccountByUsername**(uri: *`string`*): `Promise`<[Account](../interfaces/_entities_account_.account.md)>
 
-*Defined in [client/Mastodon.ts:386](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L386)*
+*Defined in [client/Mastodon.ts:387](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L387)*
 
 Following a remote user
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#following-a-remote-user](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#following-a-remote-user)
@@ -1266,7 +1266,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[get](_client_gateway_.gateway.md#get)*
 
-*Defined in [client/Gateway.ts:129](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L129)*
+*Defined in [client/Gateway.ts:129](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L129)*
 
 HTTP GET
 
@@ -1293,7 +1293,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[getStreamingUrl](_client_gateway_.gateway.md#getstreamingurl)*
 
-*Defined in [client/Gateway.ts:48](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L48)*
+*Defined in [client/Gateway.ts:48](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L48)*
 
 Getting streaming API URL of the instance
 
@@ -1309,7 +1309,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[getToken](_client_gateway_.gateway.md#gettoken)*
 
-*Defined in [client/Gateway.ts:54](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L54)*
+*Defined in [client/Gateway.ts:54](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L54)*
 
 Getting token of authenticated user
 
@@ -1326,7 +1326,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[getUrl](_client_gateway_.gateway.md#geturl)*
 
-*Defined in [client/Gateway.ts:42](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L42)*
+*Defined in [client/Gateway.ts:42](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L42)*
 
 Getting rest API URL of the instance
 
@@ -1340,7 +1340,7 @@ ___
 
 ▸ **muteAccount**(id: *`string`*, notifications?: *`boolean`*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
 
-*Defined in [client/Mastodon.ts:223](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L223)*
+*Defined in [client/Mastodon.ts:224](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L224)*
 
 Muting an account
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account)
@@ -1362,7 +1362,7 @@ ___
 
 ▸ **muteStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:830](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L830)*
+*Defined in [client/Mastodon.ts:831](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L831)*
 
 Muting a conversation of a status
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-a-conversation-of-a-status](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-a-conversation-of-a-status)
@@ -1383,7 +1383,7 @@ ___
 
 ▸ **paginationGenerator**<`T`>(path: *`string`*, params?: *`any`*): `AsyncIterableIterator`<`T`>
 
-*Defined in [client/Mastodon.ts:31](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L31)*
+*Defined in [client/Mastodon.ts:32](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L32)*
 
 Generate an iterable of the pagination
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline)
@@ -1411,7 +1411,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[patch](_client_gateway_.gateway.md#patch)*
 
-*Defined in [client/Gateway.ts:173](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L173)*
+*Defined in [client/Gateway.ts:173](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L173)*
 
 HTTP PATCH
 
@@ -1436,7 +1436,7 @@ ___
 
 ▸ **pinAccount**(id: *`string`*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
 
-*Defined in [client/Mastodon.ts:245](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L245)*
+*Defined in [client/Mastodon.ts:246](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L246)*
 
 Pin an account to profile
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account)
@@ -1457,7 +1457,7 @@ ___
 
 ▸ **pinStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:810](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L810)*
+*Defined in [client/Mastodon.ts:811](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L811)*
 
 Pinning a status
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#pinningunpinning-a-status](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#pinningunpinning-a-status)
@@ -1480,7 +1480,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[post](_client_gateway_.gateway.md#post)*
 
-*Defined in [client/Gateway.ts:140](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L140)*
+*Defined in [client/Gateway.ts:140](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L140)*
 
 HTTP POST
 
@@ -1507,7 +1507,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[put](_client_gateway_.gateway.md#put)*
 
-*Defined in [client/Gateway.ts:151](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L151)*
+*Defined in [client/Gateway.ts:151](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L151)*
 
 HTTP PUT
 
@@ -1532,7 +1532,7 @@ ___
 
 ▸ **reblogStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:770](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L770)*
+*Defined in [client/Mastodon.ts:771](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L771)*
 
 Reblogging a status
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#rebloggingunreblogging-a-status](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#rebloggingunreblogging-a-status)
@@ -1553,7 +1553,7 @@ ___
 
 ▸ **rejectFollowRequest**(id: *`string`*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:376](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L376)*
+*Defined in [client/Mastodon.ts:377](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L377)*
 
 Rejecting follow requests
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#authorizing-or-rejecting-follow-requests](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#authorizing-or-rejecting-follow-requests)
@@ -1574,7 +1574,7 @@ ___
 
 ▸ **removeAccountFromList**(id: *`string`*, account_ids: *`string`[]*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:520](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L520)*
+*Defined in [client/Mastodon.ts:521](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L521)*
 
 Removing accounts from a list
 
@@ -1598,7 +1598,7 @@ ___
 
 ▸ **removeFilter**(id: *`string`*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:974](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L974)*
+*Defined in [client/Mastodon.ts:975](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L975)*
 
 Removing filter by id
 
@@ -1618,7 +1618,7 @@ ___
 
 ▸ **removeList**(id: *`string`*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:496](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L496)*
+*Defined in [client/Mastodon.ts:497](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L497)*
 
 Removing a list
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#deleting-a-list](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#deleting-a-list)
@@ -1639,7 +1639,7 @@ ___
 
 ▸ **removePushSubscription**(): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:641](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L641)*
+*Defined in [client/Mastodon.ts:642](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L642)*
 
 Removing push subscription
 
@@ -1656,7 +1656,7 @@ ___
 
 ▸ **removeStatus**(id: *`string`*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:760](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L760)*
+*Defined in [client/Mastodon.ts:761](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L761)*
 
 Removing a status
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#deleting-a-status](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#deleting-a-status)
@@ -1677,7 +1677,7 @@ ___
 
 ▸ **reportUser**(account_id: *`string`*, status_ids: * `string` &#124; `string`[]*, comment: *`string`*): `Promise`<[Report](../interfaces/_entities_report_.report.md)>
 
-*Defined in [client/Mastodon.ts:663](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L663)*
+*Defined in [client/Mastodon.ts:664](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L664)*
 
 Reporting a user
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#reporting-a-user](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#reporting-a-user)
@@ -1702,7 +1702,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[request](_client_gateway_.gateway.md#request)*
 
-*Defined in [client/Gateway.ts:81](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L81)*
+*Defined in [client/Gateway.ts:81](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L81)*
 
 Fetch API wrapper function
 
@@ -1724,7 +1724,7 @@ ___
 
 ▸ **search**<`V`>(q: *`string`*, resolve?: *`boolean`*, version?: *[V]()*): `Promise`<[Results](../interfaces/_entities_results_.results.md)<`V`>>
 
-*Defined in [client/Mastodon.ts:676](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L676)*
+*Defined in [client/Mastodon.ts:677](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L677)*
 
 Searching for content
 
@@ -1753,7 +1753,7 @@ ___
 
 ▸ **searchAccounts**(q: *`string`*, options?: *`Options.SearchAccounts`*): `Promise`<[Account](../interfaces/_entities_account_.account.md)[]>
 
-*Defined in [client/Mastodon.ts:278](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L278)*
+*Defined in [client/Mastodon.ts:279](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L279)*
 
 Searching for accounts
 
@@ -1779,7 +1779,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[setStreamingUrl](_client_gateway_.gateway.md#setstreamingurl)*
 
-*Defined in [client/Gateway.ts:66](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L66)*
+*Defined in [client/Gateway.ts:66](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L66)*
 
 Setting streaming API URL of the instance
 
@@ -1800,7 +1800,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[setToken](_client_gateway_.gateway.md#settoken)*
 
-*Defined in [client/Gateway.ts:72](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L72)*
+*Defined in [client/Gateway.ts:72](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L72)*
 
 Setting token of authenticated user
 
@@ -1821,7 +1821,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[setUrl](_client_gateway_.gateway.md#seturl)*
 
-*Defined in [client/Gateway.ts:60](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L60)*
+*Defined in [client/Gateway.ts:60](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L60)*
 
 Setting rest API URL of the instance
 
@@ -1842,7 +1842,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[stream](_client_gateway_.gateway.md#stream)*
 
-*Defined in [client/Gateway.ts:182](https://github.com/lagunehq/core/blob/ae202cb/src/client/Gateway.ts#L182)*
+*Defined in [client/Gateway.ts:182](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L182)*
 
 Start streaming
 
@@ -1863,7 +1863,7 @@ ___
 
 ▸ **streamCommunityTimeline**(): [EventHandler](_client_eventhandler_.eventhandler.md)
 
-*Defined in [client/Mastodon.ts:65](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L65)*
+*Defined in [client/Mastodon.ts:66](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L66)*
 
 Starting local timeline streaming
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md)
@@ -1878,7 +1878,7 @@ ___
 
 ▸ **streamListTimeline**(id: *`string`*): [EventHandler](_client_eventhandler_.eventhandler.md)
 
-*Defined in [client/Mastodon.ts:94](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L94)*
+*Defined in [client/Mastodon.ts:95](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L95)*
 
 Starting list timeline streaming
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md)
@@ -1899,7 +1899,7 @@ ___
 
 ▸ **streamPublicTimeline**(): [EventHandler](_client_eventhandler_.eventhandler.md)
 
-*Defined in [client/Mastodon.ts:74](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L74)*
+*Defined in [client/Mastodon.ts:75](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L75)*
 
 Starting federated timeline streaming
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md)
@@ -1914,7 +1914,7 @@ ___
 
 ▸ **streamTagTimeline**(id: *`string`*): [EventHandler](_client_eventhandler_.eventhandler.md)
 
-*Defined in [client/Mastodon.ts:84](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L84)*
+*Defined in [client/Mastodon.ts:85](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L85)*
 
 Starting tag timeline streaming
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md)
@@ -1935,7 +1935,7 @@ ___
 
 ▸ **streamUser**(): [EventHandler](_client_eventhandler_.eventhandler.md)
 
-*Defined in [client/Mastodon.ts:56](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L56)*
+*Defined in [client/Mastodon.ts:57](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L57)*
 
 Starting home timeline and notification streaming
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md)
@@ -1950,7 +1950,7 @@ ___
 
 ▸ **ummuteAccount**(id: *`string`*, notifications?: *`boolean`*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
 
-*Defined in [client/Mastodon.ts:234](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L234)*
+*Defined in [client/Mastodon.ts:235](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L235)*
 
 Unmuting an account
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account)
@@ -1972,7 +1972,7 @@ ___
 
 ▸ **unblockAccount**(id: *`string`*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
 
-*Defined in [client/Mastodon.ts:212](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L212)*
+*Defined in [client/Mastodon.ts:213](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L213)*
 
 Unblocking an account
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blockingunblocking-an-account](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blockingunblocking-an-account)
@@ -1993,7 +1993,7 @@ ___
 
 ▸ **unblockDomain**(domain: *`string`*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:334](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L334)*
+*Defined in [client/Mastodon.ts:335](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L335)*
 
 Unblocking a domain
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#unblocking-a-domain](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#unblocking-a-domain)
@@ -2014,7 +2014,7 @@ ___
 
 ▸ **unfavouriteStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:800](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L800)*
+*Defined in [client/Mastodon.ts:801](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L801)*
 
 Unfavouriting status
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#favouritingunfavouriting-a-status](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#favouritingunfavouriting-a-status)
@@ -2035,7 +2035,7 @@ ___
 
 ▸ **unfollowAccount**(id: *`string`*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
 
-*Defined in [client/Mastodon.ts:192](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L192)*
+*Defined in [client/Mastodon.ts:193](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L193)*
 
 Unfollowing an account
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#followingunfollowing-an-account](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#followingunfollowing-an-account)
@@ -2056,7 +2056,7 @@ ___
 
 ▸ **unmuteStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:840](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L840)*
+*Defined in [client/Mastodon.ts:841](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L841)*
 
 Unmuting a conversation of a status
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-a-conversation-of-a-status](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-a-conversation-of-a-status)
@@ -2077,7 +2077,7 @@ ___
 
 ▸ **unpinAccount**(id: *`string`*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
 
-*Defined in [client/Mastodon.ts:256](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L256)*
+*Defined in [client/Mastodon.ts:257](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L257)*
 
 Unpin an account
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account)
@@ -2098,7 +2098,7 @@ ___
 
 ▸ **unpinStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:820](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L820)*
+*Defined in [client/Mastodon.ts:821](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L821)*
 
 Unpinning a status
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#pinningunpinning-a-status](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#pinningunpinning-a-status)
@@ -2119,7 +2119,7 @@ ___
 
 ▸ **unreblogStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:780](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L780)*
+*Defined in [client/Mastodon.ts:781](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L781)*
 
 Unreblogging a status
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#rebloggingunreblogging-a-status](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#rebloggingunreblogging-a-status)
@@ -2140,7 +2140,7 @@ ___
 
 ▸ **updateCredentials**(options?: *`Options.UpdateCredentials`*): `Promise`<[Credentials](../interfaces/_entities_credentials_.credentials.md)>
 
-*Defined in [client/Mastodon.ts:136](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L136)*
+*Defined in [client/Mastodon.ts:137](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L137)*
 
 Updating the current user
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#updating-the-current-user](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#updating-the-current-user)
@@ -2161,7 +2161,7 @@ ___
 
 ▸ **updateFilter**(id: *`string`*, options?: *`Options.UpdateFilter`*): `Promise`<[Filter](../interfaces/_entities_filter_.filter.md)>
 
-*Defined in [client/Mastodon.ts:965](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L965)*
+*Defined in [client/Mastodon.ts:966](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L966)*
 
 Updating a filter
 
@@ -2182,7 +2182,7 @@ ___
 
 ▸ **updateList**(id: *`string`*, title: *`string`*): `Promise`<[List](../interfaces/_entities_list_.list.md)>
 
-*Defined in [client/Mastodon.ts:486](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L486)*
+*Defined in [client/Mastodon.ts:487](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L487)*
 
 Updating a list
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#creating-and-updating-a-list](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#creating-and-updating-a-list)
@@ -2204,7 +2204,7 @@ ___
 
 ▸ **updateMediaAttachment**(id: *`string`*, options?: *`Options.UpdateMedia`*): `Promise`<[Attachment](../interfaces/_entities_attachment_.attachment.md)>
 
-*Defined in [client/Mastodon.ts:544](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L544)*
+*Defined in [client/Mastodon.ts:545](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L545)*
 
 Updating a media attachment
 
@@ -2229,7 +2229,7 @@ ___
 
 ▸ **updatePushSubscription**(options: *[UpdatePushSubscription](../interfaces/_client_options_.updatepushsubscription.md)*): `Promise`<[PushSubscription](../interfaces/_entities_pushsubscription_.pushsubscription.md)>
 
-*Defined in [client/Mastodon.ts:631](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L631)*
+*Defined in [client/Mastodon.ts:632](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L632)*
 
 Updating push subscription
 
@@ -2252,7 +2252,7 @@ ___
 
 ▸ **uploadMediaAttachment**(file: *`File`*, options?: *`Options.UploadMedia`*): `Promise`<[Attachment](../interfaces/_entities_attachment_.attachment.md)>
 
-*Defined in [client/Mastodon.ts:531](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L531)*
+*Defined in [client/Mastodon.ts:532](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L532)*
 
 Uploading a media attachment
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#uploading-a-media-attachment](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#uploading-a-media-attachment)
@@ -2274,7 +2274,7 @@ ___
 
 ▸ **verfiyCredentials**(): `Promise`<[Credentials](../interfaces/_entities_credentials_.credentials.md)>
 
-*Defined in [client/Mastodon.ts:126](https://github.com/lagunehq/core/blob/ae202cb/src/client/Mastodon.ts#L126)*
+*Defined in [client/Mastodon.ts:127](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L127)*
 
 Getting the current user
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-the-current-user](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-the-current-user)

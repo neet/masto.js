@@ -17,7 +17,7 @@
 
 ⊕ **new EventHandler**(url: *`string`*, options: *`object`*): [EventHandler](_client_eventhandler_.eventhandler.md)
 
-*Defined in [client/EventHandler.ts:27](https://github.com/lagunehq/core/blob/ae202cb/src/client/EventHandler.ts#L27)*
+*Defined in [client/EventHandler.ts:27](https://github.com/lagunehq/core/blob/dae58ab/src/client/EventHandler.ts#L27)*
 
 Starting stream with a specified channel
 
@@ -179,7 +179,7 @@ ___
 
 *Overrides EventEmitter.on*
 
-*Defined in [client/EventHandler.ts:63](https://github.com/lagunehq/core/blob/ae202cb/src/client/EventHandler.ts#L63)*
+*Defined in [client/EventHandler.ts:63](https://github.com/lagunehq/core/blob/dae58ab/src/client/EventHandler.ts#L63)*
 
 **Type parameters:**
 

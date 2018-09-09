@@ -15,7 +15,7 @@
 
 **● accounts**: *[Account](_entities_account_.account.md)[]*
 
-*Defined in [entities/Results.ts:7](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Results.ts#L7)*
+*Defined in [entities/Results.ts:7](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Results.ts#L7)*
 
 An array of matched Accounts
 
@@ -26,7 +26,7 @@ ___
 
 **● hashtags**: *`V extends &quot;v1&quot; ? string[] : V extends &quot;v2&quot; ? Tag[] : never`*
 
-*Defined in [entities/Results.ts:13](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Results.ts#L13)*
+*Defined in [entities/Results.ts:13](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Results.ts#L13)*
 
 An array of matched hashtags, as strings
 
@@ -37,7 +37,7 @@ ___
 
 **● statuses**: *[Status](_entities_status_.status.md)[]*
 
-*Defined in [entities/Results.ts:10](https://github.com/lagunehq/core/blob/ae202cb/src/entities/Results.ts#L10)*
+*Defined in [entities/Results.ts:10](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Results.ts#L10)*
 
 An array of matched Statuses
 
