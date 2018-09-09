@@ -44,10 +44,16 @@ export class EventHandler extends EventEmitter {
           return;
         }
 
-        const { event, payload } = JSON.parse(message.utf8Data);
-        const parsedPayload      = JSON.parse(payload);
+        const parsedMessage = JSON.parse(message.utf8Data);
 
-        this.emit(event, parsedPayload);
+        const { event } = parsedMessage;
+        let payload = parsedMessage.payload;
+
+        if (event === 'update' || event === 'notification') {
+          payload = JSON.parse(parsedMessage.payload);
+        }
+
+        this.emit(event, payload);
       });
 
       this.emit('connect', connection);
