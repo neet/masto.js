@@ -180,7 +180,7 @@ export class Gateway {
    * @return Instance of EventEmitter
    */
   protected stream (url: string, params: { [key: string]: string }): EventHandler {
-    if ( this.streamingUrl ) {
+    if ( !this.streamingUrl ) {
       throw new MastodonURLResolveError('Streaming API URL has not been specified, Use Mastodon.setStreamingUrl to set your instance\'s URL');
     }
 
