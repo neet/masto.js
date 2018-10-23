@@ -1,4 +1,4 @@
-import nodeFetch from 'node-fetch';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import * as querystring from 'querystring';
 import { MastodonError } from '../errors/MastodonError';
 import { MastodonNotFoundError } from '../errors/MastodonNotFoundError';
@@ -73,48 +73,53 @@ export class Gateway {
 
   /**
    * Fetch API wrapper function
-   * @param url URL to request
-   * @param options Fetch API options
+   * @param options Axios options
    * @param parse Whether parse response before return
    * @return Parsed response object
    */
-  protected async request (url: string, options: { [key: string]: any } = {}, parse = true): Promise<any> {
-    if ( !options.headers ) {
+  protected async request <T> (options: AxiosRequestConfig): Promise<AxiosResponse<T>> {
+    if (!options.headers) {
       options.headers = {};
     }
 
-    options.headers['Content-Type']  = 'application/json';
+    if (!options.headers['Content-Type']) {
+      options.headers['Content-Type'] = 'application/json';
+    }
 
-    if ( !this.url ) {
+    if (!this.url) {
       throw new MastodonURLResolveError('REST API URL has not been specified, Use Mastodon.setUrl to set your instance\'s URL');
     }
 
-    if ( this.token ) {
+    if (this.token) {
       options.headers.Authorization = `Bearer ${this.token}`;
     }
 
-    const response = typeof window === 'undefined'
-      ? await nodeFetch(url, options)
-      : await fetch(url, options);
+    options.transformResponse = [(data: any) => {
+      try {
+        return JSON.parse(data);
+      } catch {
+        return data;
+      }
+    }];
 
-    if ( !parse ) {
-      return response;
-    }
+    try {
+      return await axios.request<T>(options);
+    } catch (error) {
+      const { status } = error && error.response;
 
-    const data = await response.json();
+      // Error response from REST API might contain error key
+      // https://docs.joinmastodon.org/api/entities/#error
+      const { error: errorMessage } = error && error.response && error.response.data;
 
-    if (response.ok) {
-      return data;
-    } else {
-      switch (response.status) {
+      switch (status) {
         case 401:
-          throw new MastodonUnauthorizedError(data.error);
+          throw new MastodonUnauthorizedError(errorMessage);
         case 404:
-          throw new MastodonNotFoundError(data.error);
+          throw new MastodonNotFoundError(errorMessage);
         case 429:
-          throw new MastodonRatelimitError(data.error);
+          throw new MastodonRatelimitError(errorMessage);
         default:
-          throw new MastodonError('MastodonError', data.error || 'Unexpected error occurred');
+          throw new MastodonError('MastodonError', errorMessage || 'Unexpected error occurred');
       }
     }
   }
@@ -126,8 +131,12 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected get <T> (url: string, params = {}, options = {}, parse = true): Promise<T> {
-    return this.request(url + (Object.keys(params).length ? '?' + querystring.stringify(params) : ''), { method: 'GET', ...options }, parse);
+  protected get <T> (url: string, params = {}, options = {}) {
+    return this.request<T>({
+      method: 'GET',
+      url: url + (Object.keys(params).length ? '?' + querystring.stringify(params) : ''),
+      ...options,
+    });
   }
 
   /**
@@ -137,8 +146,13 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected post <T> (url: string, body = {}, options = {}, parse = true): Promise<T> {
-    return this.request(url, { method: 'POST', body: JSON.stringify(body), ...options }, parse);
+  protected post <T> (url: string, body = {}, options = {}) {
+    return this.request<T>({
+      method: 'POST',
+      url,
+      data: JSON.stringify(body),
+      ...options,
+    });
   }
 
   /**
@@ -148,8 +162,13 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected put <T> (url: string, body = {}, options = {}, parse = true): Promise<T> {
-    return this.request(url, { method: 'PUT', body: JSON.stringify(body), ...options }, parse);
+  protected put <T> (url: string, body = {}, options = {}) {
+    return this.request<T>({
+      method: 'PUT',
+      url,
+      data: JSON.stringify(body),
+      ...options,
+    });
   }
 
   /**
@@ -159,8 +178,13 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected delete <T> (url: string, body = {}, options = {}, parse = true): Promise<T> {
-    return this.request(url, { method: 'DELETE', body: JSON.stringify(body), ...options }, parse);
+  protected delete <T> (url: string, body = {}, options = {}) {
+    return this.request<T>({
+      method: 'DELETE',
+      url,
+      data: JSON.stringify(body),
+      ...options,
+    });
   }
 
   /**
@@ -170,8 +194,13 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected patch <T> (url: string, body = {}, options = {}, parse = true): Promise<T> {
-    return this.request(url, { method: 'PATCH', body: JSON.stringify(body), ...options }, parse);
+  protected patch <T> (url: string, body = {}, options = {}) {
+    return this.request<T>({
+      method: 'PATCH',
+      url,
+      data: JSON.stringify(body),
+      ...options,
+    });
   }
 
   /**
@@ -180,11 +209,11 @@ export class Gateway {
    * @return Instance of EventEmitter
    */
   protected stream (url: string, params: { [key: string]: string }): EventHandler {
-    if ( !this.streamingUrl ) {
+    if (!this.streamingUrl) {
       throw new MastodonURLResolveError('Streaming API URL has not been specified, Use Mastodon.setStreamingUrl to set your instance\'s URL');
     }
 
-    if ( this.token ) {
+    if (this.token) {
       params.access_token = this.token;
     }
 

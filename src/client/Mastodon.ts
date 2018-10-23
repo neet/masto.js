@@ -25,7 +25,7 @@ export class Mastodon extends Gateway {
 
   /**
    * Generate an iterable of the pagination
-   * @param id Path of the timeline e.g. `timelines/pulbic`, `accounts/1/statuses` e.g.
+   * @param id Path to the API, e.g. `timelines/pulbic`, `accounts/1/statuses` e.g.
    * @param params Query parameters
    * @return An async iterable of statuses, most recent ones first.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
@@ -34,9 +34,8 @@ export class Mastodon extends Gateway {
     let next: string|null = path;
 
     while (true) {
-      const response = await this.get<Response>(next, params, {}, false);
-      const data: T  = await response.json();
-      const result: T|'reset' = yield data;
+      const response = await this.get<T>(next, params);
+      const result: T|'reset' = yield response.data;
 
       if (result === 'reset') {
         next = path;
@@ -125,8 +124,8 @@ export class Mastodon extends Gateway {
    * @param grant_type grant_type
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/OAuth-details.md
    */
-  public fetchAccessToken (code: string, client_id: string, client_secret: string, redirect_uri: string, grant_type = 'authorization_code') {
-    return this.post<{ access_token: string }>(`${this.url}/oauth/token`, { code, client_id, client_secret, redirect_uri, grant_type });
+  public async fetchAccessToken (code: string, client_id: string, client_secret: string, redirect_uri: string, grant_type = 'authorization_code') {
+    return (await this.post<{ access_token: string }>(`${this.url}/oauth/token`, { code, client_id, client_secret, redirect_uri, grant_type })).data;
   }
 
   /**
@@ -135,8 +134,8 @@ export class Mastodon extends Gateway {
    * @return An account
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-an-account
    */
-  public fetchAccount (id: string) {
-    return this.get<Account>(`${this.url}/api/v1/accounts/${id}`);
+  public async fetchAccount (id: string) {
+    return (await this.get<Account>(`${this.url}/api/v1/accounts/${id}`)).data;
   }
 
   /**
@@ -144,8 +143,8 @@ export class Mastodon extends Gateway {
    * @return The authenticated user's Account with an extra attribute source which contains these keys
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-the-current-user
    */
-  public verfiyCredentials () {
-    return this.get<Credentials>(`${this.url}/api/v1/accounts/verify_credentials`);
+  public async verfiyCredentials () {
+    return (await this.get<Credentials>(`${this.url}/api/v1/accounts/verify_credentials`)).data;
   }
 
   /**
@@ -154,8 +153,8 @@ export class Mastodon extends Gateway {
    * @return The authenticated user's Account.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#updating-the-current-user
    */
-  public updateCredentials (options?: Options.UpdateCredentials) {
-    return this.patch<Credentials>(`${this.url}/api/v1/accounts/update_credentials`, options, {headers: {'Content-Type': 'multipart/form-data'}});
+  public async updateCredentials (options?: Options.UpdateCredentials) {
+    return (await this.patch<Credentials>(`${this.url}/api/v1/accounts/update_credentials`, options, {headers: {'Content-Type': 'multipart/form-data'}})).data;
   }
 
   /**
@@ -200,8 +199,8 @@ export class Mastodon extends Gateway {
    * @return The target account's relationship
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#followingunfollowing-an-account
    */
-  public followAccount (id: string) {
-    return this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/follow`);
+  public async followAccount (id: string) {
+    return (await this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/follow`)).data;
   }
 
   /**
@@ -210,8 +209,8 @@ export class Mastodon extends Gateway {
    * @return The target account's relationship
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#followingunfollowing-an-account
    */
-  public unfollowAccount (id: string) {
-    return this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/unfollow`);
+  public async unfollowAccount (id: string) {
+    return (await this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/unfollow`)).data;
   }
 
   /**
@@ -220,8 +219,8 @@ export class Mastodon extends Gateway {
    * @return The target account's relationship
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blockingunblocking-an-account
    */
-  public blockAccount (id: string) {
-    return this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/block`);
+  public async blockAccount (id: string) {
+    return (await this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/block`)).data;
   }
 
   /**
@@ -230,8 +229,8 @@ export class Mastodon extends Gateway {
    * @return The target account's relationship
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blockingunblocking-an-account
    */
-  public unblockAccount (id: string) {
-    return this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/unblock`);
+  public async unblockAccount (id: string) {
+    return (await this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/unblock`)).data;
   }
 
   /**
@@ -241,8 +240,8 @@ export class Mastodon extends Gateway {
    * @return The target account's relationship
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account
    */
-  public muteAccount (id: string, notifications = true) {
-    return this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/mute`, { notifications });
+  public async muteAccount (id: string, notifications = true) {
+    return (await this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/mute`, { notifications })).data;
   }
 
   /**
@@ -252,8 +251,8 @@ export class Mastodon extends Gateway {
    * @return The target account's relationship
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account
    */
-  public unmuteAccount (id: string, notifications = true) {
-    return this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/unmute`, { notifications });
+  public async unmuteAccount (id: string, notifications = true) {
+    return (await this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/unmute`, { notifications })).data;
   }
 
   /**
@@ -263,8 +262,8 @@ export class Mastodon extends Gateway {
    * @return The target account's relationship
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account
    */
-  public pinAccount (id: string) {
-    return this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/pin`);
+  public async pinAccount (id: string) {
+    return (await this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/pin`)).data;
   }
 
   /**
@@ -274,8 +273,8 @@ export class Mastodon extends Gateway {
    * @return The target account's relationship
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account
    */
-  public unpinAccount (id: string) {
-    return this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/unpin`);
+  public async unpinAccount (id: string) {
+    return (await this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/unpin`)).data;
   }
 
   /**
@@ -284,8 +283,8 @@ export class Mastodon extends Gateway {
    * @return An array of Relationships of the current user to a list of given accounts.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-relationships
    */
-  public fetchAccountRelationships (id: string|string[]) {
-    return this.get<Relationship[]>(`${this.url}/api/v1/accounts/relationship`, { id });
+  public async fetchAccountRelationships (id: string|string[]) {
+    return (await this.get<Relationship[]>(`${this.url}/api/v1/accounts/relationship`, { id })).data;
   }
 
   /**
@@ -296,8 +295,8 @@ export class Mastodon extends Gateway {
    * @return An array of matching accounts
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#searching-for-accounts
    */
-  public searchAccounts (q: string, options?: Options.SearchAccounts) {
-    return this.get<Account[]>(`${this.url}/api/v1/accounts/search`, { q, ...options });
+  public async searchAccounts (q: string, options?: Options.SearchAccounts) {
+    return (await this.get<Account[]>(`${this.url}/api/v1/accounts/search`, { q, ...options })).data;
   }
 
   /**
@@ -310,8 +309,8 @@ export class Mastodon extends Gateway {
    * @return Returns `id`, `client_id` and `client_secret` which can be used with OAuth authentication in your 3rd party app.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#registering-an-application
    */
-  public createApp (client_name: string, redirect_uris: string, scopes: string, website?: string) {
-    return this.post<OAuth>(`${this.url}/api/v1/apps`, { client_name, redirect_uris, scopes, website });
+  public async createApp (client_name: string, redirect_uris: string, scopes: string, website?: string) {
+    return (await this.post<OAuth>(`${this.url}/api/v1/apps`, { client_name, redirect_uris, scopes, website })).data;
   }
 
   /**
@@ -321,7 +320,7 @@ export class Mastodon extends Gateway {
    * @return An array of accounts blocked by the atuhenticated user
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-blocks
    */
-  public fetchBlocks (options?: Options.Pagination) {
+  public async fetchBlocks (options?: Options.Pagination) {
     return this.paginationGenerator<Account[]>(`${this.url}/api/v1/blocks`, options);
   }
 
@@ -342,8 +341,8 @@ export class Mastodon extends Gateway {
    * @return An empty object
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blocking-a-domain
    */
-  public blockDomain (domain: string) {
-    return this.post<void>(`${this.url}/api/v1/domain_blocks`, { domain });
+  public async blockDomain (domain: string) {
+    return (await this.post<void>(`${this.url}/api/v1/domain_blocks`, { domain })).data;
   }
 
   /**
@@ -352,8 +351,8 @@ export class Mastodon extends Gateway {
    * @return An empty object
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#unblocking-a-domain
    */
-  public unblockDomain (domain: string) {
-    return this.delete<void>(`${this.url}/api/v1/domain_blocks`, { domain });
+  public async unblockDomain (domain: string) {
+    return (await this.delete<void>(`${this.url}/api/v1/domain_blocks`, { domain })).data;
   }
 
   /**
@@ -363,7 +362,7 @@ export class Mastodon extends Gateway {
    * @return Return an array of Statuses favourited by the authenticated user
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-favourites
    */
-  public fetchFavouritedStatuses (options?: Options.Pagination) {
+  public async fetchFavouritedStatuses (options?: Options.Pagination) {
     return this.paginationGenerator<Status[]>(`${this.url}/api/v1/favourites`, options);
   }
 
@@ -374,7 +373,7 @@ export class Mastodon extends Gateway {
    * @return Returns an array of Accounts which have requested to follow the authenticated user.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-list-of-follow-requests
    */
-  public fetchFollowRequests (options?: Options.Pagination) {
+  public async fetchFollowRequests (options?: Options.Pagination) {
     return this.paginationGenerator<Account[]>(`${this.url}/api/v1/follow_requests`, options);
   }
 
@@ -384,8 +383,8 @@ export class Mastodon extends Gateway {
    * @return An empty object
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#authorizing-or-rejecting-follow-requests
    */
-  public authorizeFollowRequest (id: string) {
-    return this.post<void>(`${this.url}/api/v1/follow_requests/${id}/authorize`);
+  public async authorizeFollowRequest (id: string) {
+    return (await this.post<void>(`${this.url}/api/v1/follow_requests/${id}/authorize`)).data;
   }
 
   /**
@@ -394,8 +393,8 @@ export class Mastodon extends Gateway {
    * @return An empty object
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#authorizing-or-rejecting-follow-requests
    */
-  public rejectFollowRequest (id: string) {
-    return this.post<void>(`${this.url}/api/v1/follow_requests/${id}/reject`);
+  public async rejectFollowRequest (id: string) {
+    return (await this.post<void>(`${this.url}/api/v1/follow_requests/${id}/reject`)).data;
   }
 
   /**
@@ -404,8 +403,8 @@ export class Mastodon extends Gateway {
    * @return The local representation of the followed account, as an Account.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#following-a-remote-user
    */
-  public followAccountByUsername (uri: string) {
-    return this.post<Account>(`${this.url}/api/v1/follows`, { uri });
+  public async followAccountByUsername (uri: string) {
+    return (await this.post<Account>(`${this.url}/api/v1/follows`, { uri })).data;
   }
 
   /**
@@ -414,8 +413,8 @@ export class Mastodon extends Gateway {
    * @return The current instance.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-current-instance-information
    */
-  public fetchInstance () {
-    return this.get<Instance>(`${this.url}/api/v1/instance`);
+  public async fetchInstance () {
+    return (await this.get<Instance>(`${this.url}/api/v1/instance`)).data;
   }
 
   /**
@@ -423,8 +422,8 @@ export class Mastodon extends Gateway {
    * - Does not require authentication
    * @return An array of peer instance's domain
    */
-  public fetchPeerInstances () {
-    return this.get<string[]>(`${this.url}/api/v1/instance/peers`);
+  public async fetchPeerInstances () {
+    return (await this.get<string[]>(`${this.url}/api/v1/instance/peers`)).data;
   }
 
   /**
@@ -432,8 +431,8 @@ export class Mastodon extends Gateway {
    * - Does not require authentication
    * @return An array of Activities
    */
-  public fetchInstanceActivity (): Promise<InstanceActivity[]>  {
-    return this.get(`${this.url}/api/v1/instance/activity`);
+  public async fetchInstanceActivity () {
+    return (await this.get<InstanceActivity[]>(`${this.url}/api/v1/instance/activity`)).data;
   }
 
   /**
@@ -442,8 +441,8 @@ export class Mastodon extends Gateway {
    * @return A list of Emoji
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-current-instances-custom-emojis
    */
-  public fetchCustomEmojis () {
-    return this.get<Emoji[]>(`${this.url}/api/v1/custom_emojis`);
+  public async fetchCustomEmojis () {
+    return (await this.get<Emoji[]>(`${this.url}/api/v1/custom_emojis`)).data;
   }
 
   /**
@@ -451,8 +450,8 @@ export class Mastodon extends Gateway {
    * @return At most 50 Lists without pagination
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-lists
    */
-  public fetchLists () {
-    return this.get<List[]>(`${this.url}/api/v1/lists`);
+  public async fetchLists () {
+    return (await this.get<List[]>(`${this.url}/api/v1/lists`)).data;
   }
 
   /**
@@ -460,8 +459,8 @@ export class Mastodon extends Gateway {
    * @return At most 50 Lists without pagination
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-lists-by-membership
    */
-  public fetchListByMembership (id: string) {
-    return this.get<List[]>(`${this.url}/api/v1/lists/${id}/lists`);
+  public async fetchListByMembership (id: string) {
+    return (await this.get<List[]>(`${this.url}/api/v1/lists/${id}/lists`)).data;
   }
 
   /**
@@ -469,11 +468,10 @@ export class Mastodon extends Gateway {
    * - If you specify `limit=0` in the query, all accounts will be returned without pagination. Otherwise, standard account pagination rules apply.
    * @param id ID of the target list
    * @param options Optional params
-   * @param options.limit Maximum number of accounts to get
    * @return Returns Accounts in the list.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-accounts-in-a-list
    */
-  public fetchListAccounts (id: string, options: Options.Pagination) {
+  public  fetchListAccounts (id: string, options: Options.Pagination) {
     return this.paginationGenerator<Account[]>(`${this.url}/api/v1/list/${id}/accounts`, options);
   }
 
@@ -483,8 +481,8 @@ export class Mastodon extends Gateway {
    * @return The specified List.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-list
    */
-  public fetchList (id: string) {
-    return this.get<List>(`${this.url}/api/v1/lists/${id}`);
+  public async fetchList (id: string) {
+    return (await this.get<List>(`${this.url}/api/v1/lists/${id}`)).data;
   }
 
   /**
@@ -493,8 +491,8 @@ export class Mastodon extends Gateway {
    * @return A new List.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#creating-and-updating-a-list
    */
-  public createList (title: string) {
-    return this.post<List>(`${this.url}/api/v1/lists`, { title });
+  public async createList (title: string) {
+    return (await this.post<List>(`${this.url}/api/v1/lists`, { title })).data;
   }
 
   /**
@@ -504,8 +502,8 @@ export class Mastodon extends Gateway {
    * @return A updated List.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#creating-and-updating-a-list
    */
-  public updateList (id: string, title: string) {
-    return this.put<List>(`${this.url}/api/v1/lists/${id}`, { title });
+  public async updateList (id: string, title: string) {
+    return (await this.put<List>(`${this.url}/api/v1/lists/${id}`, { title })).data;
   }
 
   /**
@@ -514,8 +512,8 @@ export class Mastodon extends Gateway {
    * @return An empty object
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#deleting-a-list
    */
-  public removeList (id: string) {
-    return this.delete<void>(`${this.url}/api/v1/lists/${id}`);
+  public async removeList (id: string) {
+    return (await this.delete<void>(`${this.url}/api/v1/lists/${id}`)).data;
   }
 
   /**
@@ -526,8 +524,8 @@ export class Mastodon extends Gateway {
    * @return An empty object
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#addingremoving-accounts-tofrom-a-list
    */
-  public addAccountToList (id: string, account_ids: string[]) {
-    return this.post<void>(`${this.url}/api/v1/lists/${id}/accounts`, { account_ids });
+  public async addAccountToList (id: string, account_ids: string[]) {
+    return (await this.post<void>(`${this.url}/api/v1/lists/${id}/accounts`, { account_ids })).data;
   }
 
   /**
@@ -538,8 +536,8 @@ export class Mastodon extends Gateway {
    * @return An empty object
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#addingremoving-accounts-tofrom-a-list
    */
-  public removeAccountFromList (id: string, account_ids: string[]) {
-    return this.post<void>(`${this.url}/api/v1/lists/${id}/accounts`, { account_ids });
+  public async removeAccountFromList (id: string, account_ids: string[]) {
+    return (await this.post<void>(`${this.url}/api/v1/lists/${id}/accounts`, { account_ids })).data;
   }
 
   /**
@@ -549,8 +547,8 @@ export class Mastodon extends Gateway {
    * @return An Attachment that can be used when creating a status.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#uploading-a-media-attachment
    */
-  public uploadMediaAttachment (file: File, options?: Options.UploadMedia) {
-    return this.post<Attachment>(`${this.url}/api/v1/media`, { file, ...options}, {headers: {'Content-Type': 'multipart/form-data'}});
+  public async uploadMediaAttachment (file: File, options?: Options.UploadMedia) {
+    return (await this.post<Attachment>(`${this.url}/api/v1/media`, { file, ...options}, {headers: {'Content-Type': 'multipart/form-data'}})).data;
   }
 
   /**
@@ -562,8 +560,8 @@ export class Mastodon extends Gateway {
    * @return Returns an Attachment that can be used when creating a status.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#updating-a-media-attachment
    */
-  public updateMediaAttachment (id: string, options?: Options.UpdateMedia) {
-    return this.put<Attachment>(`${this.url}/api/v1/media/${id}`, options);
+  public async updateMediaAttachment (id: string, options?: Options.UpdateMedia) {
+    return (await this.put<Attachment>(`${this.url}/api/v1/media/${id}`, options)).data;
   }
 
   /**
@@ -584,8 +582,8 @@ export class Mastodon extends Gateway {
    * @return A list of Notifications for the authenticated user.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-notifications
    */
-  public fetchNotifications (options?: Options.FetchNotifications) {
-    return this.get<Notification[]>(`${this.url}/api/v1/notifications`, options);
+  public async fetchNotifications (options?: Options.FetchNotifications) {
+    return (await this.get<Notification[]>(`${this.url}/api/v1/notifications`, options)).data;
   }
 
   /**
@@ -594,8 +592,8 @@ export class Mastodon extends Gateway {
    * @return The Notification.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-a-single-notification
    */
-  public fetchNotification (id: string) {
-    return this.get<Notification>(`${this.url}/api/v1/notifications/${id}`);
+  public async fetchNotification (id: string) {
+    return (await this.get<Notification>(`${this.url}/api/v1/notifications/${id}`)).data;
   }
 
   /**
@@ -604,8 +602,8 @@ export class Mastodon extends Gateway {
    * @return Returns an empty object.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#clearing-notifications
    */
-  public clearNotifications () {
-    return this.post<void>(`${this.url}/api/v1/notifications/clear`);
+  public async clearNotifications () {
+    return (await this.post<void>(`${this.url}/api/v1/notifications/clear`)).data;
   }
 
   /**
@@ -615,8 +613,8 @@ export class Mastodon extends Gateway {
    * @return Returns an empty object.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#dismissing-a-single-notification
    */
-  public dissmissNotification (id: string) {
-    return this.post<void>(`${this.url}/api/v1/notifications/dismiss`, { id });
+  public async dissmissNotification (id: string) {
+    return (await this.post<void>(`${this.url}/api/v1/notifications/dismiss`, { id })).data;
   }
 
   /**
@@ -629,8 +627,8 @@ export class Mastodon extends Gateway {
    * @see https://developers.google.com/web/updates/2016/03/web-push-encryption
    * @see https://developers.google.com/web/fundamentals/push-notifications/web-push-protocol
    */
-  public addPushSubscription (options: Options.AddPushSubscription) {
-    return this.post<PushSubscription>(`${this.url}/api/v1/push/subscription`, options);
+  public async addPushSubscription (options: Options.AddPushSubscription) {
+    return (await this.post<PushSubscription>(`${this.url}/api/v1/push/subscription`, options)).data;
   }
 
   /**
@@ -638,8 +636,8 @@ export class Mastodon extends Gateway {
    * @return Returns the Push Subscription
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#get-current-push-subscription-status
    */
-  public fetchPushSubscription () {
-    return this.get<PushSubscription>(`${this.url}/api/v1/push/subscription`);
+  public async fetchPushSubscription () {
+    return (await this.get<PushSubscription>(`${this.url}/api/v1/push/subscription`)).data;
   }
 
   /**
@@ -649,8 +647,8 @@ export class Mastodon extends Gateway {
    * @return Returns the Push Subscription
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#updating-push-subscription
    */
-  public updatePushSubscription (options: Options.UpdatePushSubscription) {
-    return this.put<PushSubscription>(`${this.url}/api/v1/push/subscription`, options);
+  public async updatePushSubscription (options: Options.UpdatePushSubscription) {
+    return (await this.put<PushSubscription>(`${this.url}/api/v1/push/subscription`, options)).data;
   }
 
   /**
@@ -659,8 +657,8 @@ export class Mastodon extends Gateway {
    * @return An empty object
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#removing-push-subscription
    */
-  public removePushSubscription () {
-    return this.delete<void>(`${this.url}/api/v1/push/subscription`);
+  public async removePushSubscription () {
+    return (await this.delete<void>(`${this.url}/api/v1/push/subscription`)).data;
   }
 
   /**
@@ -669,8 +667,8 @@ export class Mastodon extends Gateway {
    * @return Returns a list of Reports made by the authenticated user.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-reports
    */
-  public fetchReports () {
-    return this.post<Report[]>(`${this.url}/api/v1/reports`);
+  public async fetchReports () {
+    return (await this.post<Report[]>(`${this.url}/api/v1/reports`)).data;
   }
 
   /**
@@ -681,8 +679,8 @@ export class Mastodon extends Gateway {
    * @return The finished Report
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#reporting-a-user
    */
-  public reportUser (account_id: string, status_ids: string|string[], comment: string) {
-    return this.post<Report>(`${this.url}/api/v1/reports`, { account_id, status_ids, comment });
+  public async reportUser (account_id: string, status_ids: string|string[], comment: string) {
+    return (await this.post<Report>(`${this.url}/api/v1/reports`, { account_id, status_ids, comment })).data;
   }
 
   /**
@@ -694,8 +692,8 @@ export class Mastodon extends Gateway {
    * @return Results
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#searching-for-content
    */
-  public search <V extends 'v1'|'v2' = 'v2'> (q: string, resolve = false, version?: V) {
-    return this.post<Results<V>>(`${this.url}/api/${version}/search`, { q, resolve });
+  public async search <V extends 'v1'|'v2' = 'v2'> (q: string, resolve = false, version?: V) {
+    return (await this.post<Results<V>>(`${this.url}/api/${version}/search`, { q, resolve })).data;
   }
 
   /**
@@ -705,8 +703,8 @@ export class Mastodon extends Gateway {
    * @return A status
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-status
    */
-  public fetchStatus (id: string) {
-    return this.get<Status>(`${this.url}/api/v1/statuses/${id}`);
+  public async fetchStatus (id: string) {
+    return (await this.get<Status>(`${this.url}/api/v1/statuses/${id}`)).data;
   }
 
   /**
@@ -716,8 +714,8 @@ export class Mastodon extends Gateway {
    * @return A Context.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-status-context
    */
-  public fetchStatusContext (id: string) {
-    return this.get<Context>(`${this.url}/api/v1/statuses/${id}/context`);
+  public async fetchStatusContext (id: string) {
+    return (await this.get<Context>(`${this.url}/api/v1/statuses/${id}/context`)).data;
   }
 
   /**
@@ -726,8 +724,8 @@ export class Mastodon extends Gateway {
    * @return A Card.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-a-card-associated-with-a-status
    */
-  public fetchStatusCard (id: string) {
-    return this.get<Card>(`${this.url}/api/v1/statuses/${id}/card`);
+  public async fetchStatusCard (id: string) {
+    return (await this.get<Card>(`${this.url}/api/v1/statuses/${id}/card`)).data;
   }
 
   /**
@@ -760,16 +758,16 @@ export class Mastodon extends Gateway {
    * Posting a new status
    * - Note: In order to prevent duplicate statuses, this endpoint accepts an `Idempotency-Key` header, which should be set to a unique string for each new status. In the event of a network error, a request can be retried with the same `Idempotency-Key`. Only one status will be created regardless of how many requests with the same `Idempotency-Key` did go through. See https://stripe.com/blog/idempotency for more on idempotency and idempotency keys.
    * @param status The text of the status
-   * @param options Form data
+   * @param options Optional parameter
    * @param idempotencyKey The Idempotency-Key of request header
    * @return The new Status
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#posting-a-new-status
    */
-  public createStatus (status: string, options?: Options.CreateStatus, idempotencyKey?: string): Promise<Status> {
+  public async createStatus (status: string, options?: Options.CreateStatus, idempotencyKey?: string) {
     if ( idempotencyKey ) {
-      return this.post(`${this.url}/api/v1/statuses`, {status, ...options}, { headers: {'Idempotency-Key': idempotencyKey }} );
+      return (await this.post(`${this.url}/api/v1/statuses`, {status, ...options}, { headers: {'Idempotency-Key': idempotencyKey }} )).data;
     }
-    return this.post(`${this.url}/api/v1/statuses`, {status, ...options} );
+    return (await this.post(`${this.url}/api/v1/statuses`, {status, ...options} )).data;
   }
 
   /**
@@ -778,8 +776,8 @@ export class Mastodon extends Gateway {
    * @return An empty object
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#deleting-a-status
    */
-  public removeStatus (id: string) {
-    return this.delete<void>(`${this.url}/api/v1/statuses/${id}`);
+  public async removeStatus (id: string) {
+    return (await this.delete<void>(`${this.url}/api/v1/statuses/${id}`)).data;
   }
 
   /**
@@ -788,8 +786,8 @@ export class Mastodon extends Gateway {
    * @return The reblog Status.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#rebloggingunreblogging-a-status
    */
-  public reblogStatus (id: string) {
-    return this.post<Status>(`${this.url}/api/v1/statuses/${id}/reblog`);
+  public async reblogStatus (id: string) {
+    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/reblog`)).data;
   }
 
   /**
@@ -798,8 +796,8 @@ export class Mastodon extends Gateway {
    * @return The target Status.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#rebloggingunreblogging-a-status
    */
-  public unreblogStatus (id: string) {
-    return this.post<Status>(`${this.url}/api/v1/statuses/${id}/unreblog`);
+  public async unreblogStatus (id: string) {
+    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/unreblog`)).data;
   }
 
   /**
@@ -808,8 +806,8 @@ export class Mastodon extends Gateway {
    * @return The target status
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#favouritingunfavouriting-a-status
    */
-  public favouriteStatus (id: string) {
-    return this.post<Status>(`${this.url}/api/v1/statuses/${id}/favourite`);
+  public async favouriteStatus (id: string) {
+    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/favourite`)).data;
   }
 
   /**
@@ -818,8 +816,8 @@ export class Mastodon extends Gateway {
    * @return The target status
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#favouritingunfavouriting-a-status
    */
-  public unfavouriteStatus (id: string) {
-    return this.post<Status>(`${this.url}/api/v1/statuses/${id}/unfavourite`);
+  public async unfavouriteStatus (id: string) {
+    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/unfavourite`)).data;
   }
 
   /**
@@ -828,8 +826,8 @@ export class Mastodon extends Gateway {
    * @return The target Status.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#pinningunpinning-a-status
    */
-  public pinStatus (id: string) {
-    return this.post<Status>(`${this.url}/api/v1/statuses/${id}/pin`);
+  public async pinStatus (id: string) {
+    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/pin`)).data;
   }
 
   /**
@@ -838,8 +836,8 @@ export class Mastodon extends Gateway {
    * @return The target Status.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#pinningunpinning-a-status
    */
-  public unpinStatus (id: string) {
-    return this.post<Status>(`${this.url}/api/v1/statuses/${id}/unpin`);
+  public async unpinStatus (id: string) {
+    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/unpin`)).data;
   }
 
   /**
@@ -848,8 +846,8 @@ export class Mastodon extends Gateway {
    * @return The target Status.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-a-conversation-of-a-status
    */
-  public muteStatus (id: string) {
-    return this.post<Status>(`${this.url}/api/v1/statuses/${id}/mute`);
+  public async muteStatus (id: string) {
+    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/mute`)).data;
   }
 
   /**
@@ -858,8 +856,8 @@ export class Mastodon extends Gateway {
    * @return The target Status.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-a-conversation-of-a-status
    */
-  public unmuteStatus (id: string) {
-    return this.post<Status>(`${this.url}/api/v1/statuses/${id}/unmute`);
+  public async unmuteStatus (id: string) {
+    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/unmute`)).data;
   }
 
   /**
@@ -867,7 +865,7 @@ export class Mastodon extends Gateway {
    * @param id ID of the status
    * @return Array of accounts
    */
-  public fetchStatusRebloggedBy (id: string, options?: Options.Pagination) {
+  public async fetchStatusRebloggedBy (id: string, options?: Options.Pagination) {
     return this.paginationGenerator<Account[]>(`${this.url}/api/v1/statuses/${id}/reblogged_by`, options);
   }
 
@@ -953,8 +951,9 @@ export class Mastodon extends Gateway {
 
   /**
    * Retrieving a conversation timeline
+   * @return An array of Conversation
    */
-  public fetchConversations () {
+  public async fetchConversations () {
     return this.get<Conversation>(`${this.url}/api/v1/conversations`);
   }
 
@@ -962,8 +961,8 @@ export class Mastodon extends Gateway {
    * Fetching filters
    * @return An array of Filters
    */
-  public fetchFilters () {
-    return this.get<Filter[]>(`${this.url}/api/v1/filters`);
+  public async fetchFilters () {
+    return (await this.get<Filter[]>(`${this.url}/api/v1/filters`)).data;
   }
 
   /**
@@ -971,8 +970,8 @@ export class Mastodon extends Gateway {
    * @param id ID of the filter
    * @return A filter
    */
-  public fetchFilter (id: string) {
-    return this.get<Filter>(`${this.url}/api/v1/filters/${id}`);
+  public async fetchFilter (id: string) {
+    return (await this.get<Filter>(`${this.url}/api/v1/filters/${id}`)).data;
   }
 
   /**
@@ -982,8 +981,8 @@ export class Mastodon extends Gateway {
    * @param options Optional parameters
    * @return A filter
    */
-  public createFiler (phrase: string, context: FilterContext, options?: Options.CreateFilter) {
-    return this.post<Filter>(`${this.url}/api/v1/filters`, { phrase, context, ...options });
+  public async createFiler (phrase: string, context: FilterContext, options?: Options.CreateFilter) {
+    return (await this.post<Filter>(`${this.url}/api/v1/filters`, { phrase, context, ...options })).data;
   }
 
   /**
@@ -992,8 +991,8 @@ export class Mastodon extends Gateway {
    * @param options Optinal parameters
    * @return A filter
    */
-  public updateFilter (id: string, options?: Options.UpdateFilter) {
-    return this.patch<Filter>(`${this.url}/api/v1/filters/${id}`, options);
+  public async updateFilter (id: string, options?: Options.UpdateFilter) {
+    return (await this.patch<Filter>(`${this.url}/api/v1/filters/${id}`, options)).data;
   }
 
   /**
@@ -1001,23 +1000,23 @@ export class Mastodon extends Gateway {
    * @param id ID of the filter
    * @return An empty object
    */
-  public removeFilter (id: string) {
-    return this.delete<void>(`${this.url}/api/v1/filters/${id}`);
+  public async removeFilter (id: string) {
+    return (await this.delete<void>(`${this.url}/api/v1/filters/${id}`)).data;
   }
 
   /**
    * Fething user recommendation
    * @return An array of Accounts
    */
-  public fetchSuggestions () {
-    return this.get<Account[]>(`${this.url}/api/v1/suggestions`);
+  public async fetchSuggestions () {
+    return (await this.get<Account[]>(`${this.url}/api/v1/suggestions`)).data;
   }
 
   /**
    * Fetching endorsements
    * @return An array of Accounts
    */
-  public fetchEndorsements (options?: Options.Pagination) {
+  public async fetchEndorsements (options?: Options.Pagination) {
     return this.paginationGenerator<Account[]>(`${this.url}/api/v1/endorsements`, options);
   }
 }
