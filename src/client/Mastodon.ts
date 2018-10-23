@@ -927,6 +927,8 @@ export class Mastodon extends Gateway {
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
   public fetchDirectTimeline (options?: Options.FetchTimeline) {
+    // tslint:disable-next-line no-console
+    console.warn('Direct timeline API has been deprecated. See https://github.com/tootsuite/mastodon/releases/tag/v2.6.0rc1');
     return this.paginationGenerator<Status[]>(`${this.url}/api/v1/timelines/direct`, options);
   }
 
