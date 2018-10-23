@@ -3,6 +3,7 @@ import { EventHandler } from './EventHandler';
 import { getNextUrl } from './linkHeader';
 import * as Options from './options';
 
+import { Conversation } from 'src/entities/Conversation';
 import { Account } from '../entities/Account';
 import { Attachment } from '../entities/Attachment';
 import { Card } from '../entities/Card';
@@ -94,6 +95,15 @@ export class Mastodon extends Gateway {
    */
   public streamListTimeline (id: string): EventHandler {
     return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'list', list: id });
+  }
+
+  /**
+   * Starting direct timeline streaming
+   * @return Instance of EventEmitter
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
+   */
+  public streamDirectTimeline (): EventHandler {
+    return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'direct' });
   }
 
   /**
@@ -926,7 +936,16 @@ export class Mastodon extends Gateway {
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
   public fetchDirectTimeline (options?: Options.FetchTimeline) {
+    // tslint:disable-next-line no-console
+    console.warn('Direct timeline API has been deprecated. See https://github.com/tootsuite/mastodon/releases/tag/v2.6.0rc1');
     return this.paginationGenerator<Status[]>(`${this.url}/api/v1/timelines/direct`, options);
+  }
+
+  /**
+   * Retrieving a conversation timeline
+   */
+  public fetchConversations () {
+    return this.get<Conversation>(`${this.url}/api/v1/conversations`);
   }
 
   /**

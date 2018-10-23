@@ -1,5 +1,6 @@
 import { EventEmitter } from 'eventemitter3';
 import * as querystring from 'querystring';
+import { Conversation } from 'src/entities/Conversation';
 import * as WebSocket from 'websocket';
 import { Notification } from '../entities/Notification';
 import { Status } from '../entities/Status';
@@ -16,6 +17,9 @@ interface EventTypes {
 
   /** User's filter changed */
   filters_changed: undefined;
+
+  /** Status added to a conversation */
+  conversation: Conversation;
 
   /** WebSocket connected */
   connect: WebSocket.connection;
