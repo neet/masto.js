@@ -9,6 +9,7 @@ export * from './entities/Instance';
 export * from './entities/List';
 export * from './entities/Mention';
 export * from './entities/Notification';
+export * from './entities/PushSubscription';
 export * from './entities/Relationship';
 export * from './entities/Report';
 export * from './entities/Results';
@@ -17,7 +18,6 @@ export * from './entities/Tag';
 
 export * from './entities/Credentials';
 export * from './entities/OAuth';
-export * from './entities/PushSubscription';
 
 export * from './errors/MastodonError';
 export * from './errors/MastodonNotFoundError';

@@ -1,5 +1,3 @@
-export type CardType = 'link'|'photo'|'video'|'rich';
-
 export interface Card {
   /** The url associated with the card */
   url: string;
@@ -11,29 +9,31 @@ export interface Card {
   description: string;
 
   /** The image associated with the card, if any */
-  image?: string;
+  image?: string | null;
 
   /** "link", "photo", "video", or "rich" */
   type: CardType;
 
   /** OEmbed data */
-  author_name?: string;
+  author_name?: string | null;
 
   /** OEmbed data */
-  author_url?: string;
+  author_url?: string | null;
 
   /** OEmbed data */
-  provider_name?: string;
+  provider_name?: string | null;
 
   /** OEmbed data */
-  provider_url?: string;
+  provider_url?: string | null;
 
   /** OEmbed data */
-  html?: string;
+  html?: string | null;
 
   /** OEmbed data */
-  width?: string;
+  width?: string | null;
 
   /** OEmbed data */
-  height?: string;
+  height?: string | null;
 }
+
+export type CardType = 'link'|'photo'|'video'|'rich';

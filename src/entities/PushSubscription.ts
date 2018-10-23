@@ -9,17 +9,19 @@ export interface PushSubscription {
   server_key: string;
 
   /** Map of 'notification event type' and 'push is requested or not' */
-  alerts: {
-    /** Boolean of whether you want to receive follow notification event. */
-    follow: boolean;
+  alerts: PushSubscriptionAlerts;
+}
 
-    /** Boolean of whether you want to receive favaourite notification event. */
-    favourite: boolean;
+export interface PushSubscriptionAlerts {
+  /** Boolean of whether you want to receive follow notification event. */
+  follow: boolean;
 
-    /** Boolean of whether you want to receive reblog notification event. */
-    reblog: boolean;
+  /** Boolean of whether you want to receive favaourite notification event. */
+  favourite: boolean;
 
-    /** Boolean of whether you want to receive mention notification event. */
-    mention: boolean;
-  };
+  /** Boolean of whether you want to receive reblog notification event. */
+  reblog: boolean;
+
+  /** Boolean of whether you want to receive mention notification event. */
+  mention: boolean;
 }

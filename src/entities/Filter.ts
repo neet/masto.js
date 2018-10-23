@@ -1,7 +1,3 @@
-/** Type of filter context */
-export type FilterContext = 'home'|'notifications'|'public'|'thread';
-
-
 export interface Filter {
   /** ID of the filter */
   id: number;
@@ -13,7 +9,7 @@ export interface Filter {
   context: FilterContext[];
 
   /** String such as `2018-07-06T00:59:13.161Z` that indicates when this filter is expired. */
-  expires_at?: string;
+  expires_at?: string | null;
 
   /** Boolean that indicates irreversible server side filtering. */
   irreversible: boolean;
@@ -21,3 +17,6 @@ export interface Filter {
   /** Boolean that indicates word match. */
   whole_word: string;
 }
+
+/** Type of filter context */
+export type FilterContext = 'home'|'notifications'|'public'|'thread';

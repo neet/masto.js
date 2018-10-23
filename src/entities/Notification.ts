@@ -1,14 +1,12 @@
 import { Account } from './Account';
 import { Status } from './Status';
 
-export type NotificationTypes  = 'mention'|'reblog'|'favourite'|'follow';
-
 export interface Notification {
   /** The notification ID */
   id: string;
 
   /** One of: "mention", "reblog", "favourite", "follow" */
-  type: NotificationTypes;
+  type: NotificationType;
 
   /** The time the notification was created */
   created_at: string;
@@ -17,5 +15,7 @@ export interface Notification {
   account: Account;
 
   /** The Status associated with the notification, if applicable */
-  status?: Status;
+  status?: Status | null;
 }
+
+export type NotificationType  = 'mention'|'reblog'|'favourite'|'follow';
