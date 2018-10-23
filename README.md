@@ -3,10 +3,10 @@
 
 Most powerful Mastodon API client for TypeScript/JavaScript/Node.js/Browser
 
-## Whats is the deference between other Mastodon packages?
-- ✅ Georgeous hovering menu provided by TSDoc
-- ✅ Each API has each function so you don't need to type annoying API URLs
-- ✅ Static typing with TypeScript
+### Whats is the deference between other Mastodon packages?
+- [x] Georgeous hovering menu provided by TSDoc
+- [x] Each API has each function so you don't need to type annoying API URLs
+- [x] Static typing with TypeScript
 
 ## Installation
 ```
