@@ -3,6 +3,7 @@ import { EventHandler } from './EventHandler';
 import { getNextUrl } from './linkHeader';
 import * as Options from './options';
 
+import { Conversation } from 'src/entities/Conversation';
 import { Account } from '../entities/Account';
 import { Attachment } from '../entities/Attachment';
 import { Card } from '../entities/Card';
@@ -927,6 +928,13 @@ export class Mastodon extends Gateway {
    */
   public fetchDirectTimeline (options?: Options.FetchTimeline) {
     return this.paginationGenerator<Status[]>(`${this.url}/api/v1/timelines/direct`, options);
+  }
+
+  /**
+   * Retrieving a conversation timeline
+   */
+  public fetchConversations () {
+    return this.get<Conversation>(`${this.url}/api/v1/conversations`);
   }
 
   /**
