@@ -252,8 +252,8 @@ export class Mastodon extends Gateway {
    * @return The target account's relationship
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account
    */
-  public ummuteAccount (id: string, notifications = true) {
-    return this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/ummute`, { notifications });
+  public unmuteAccount (id: string, notifications = true) {
+    return this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/unmute`, { notifications });
   }
 
   /**
