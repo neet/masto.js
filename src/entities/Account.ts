@@ -1,4 +1,5 @@
 import { Emoji } from './Emoji';
+import { StatusVisibility } from './Status';
 
 export interface Account {
   /** The ID of the account */
@@ -66,3 +67,25 @@ export interface AccountField {
   /** (2.4 or later) Value of profile metadata field. */
   value?: string | null;
 }
+
+export interface AccountCredentials extends Account {
+  source: AccountCredentialsSource;
+}
+
+export interface AccountCredentialsSource {
+  /** Selected preference: Default privacy of new toots */
+  privacy?: StatusVisibility | null;
+
+  /** Selected preference: Mark media as sensitive by default? */
+  sensitive?: boolean | null;
+
+  /** User's default language */
+  language: string | null;
+
+  /** Plain-text version of the account's `note` */
+  note: string;
+
+  /** Plain-text version of the account's field */
+  fields: AccountField;
+}
+

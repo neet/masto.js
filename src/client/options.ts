@@ -1,4 +1,4 @@
-import { AccountField } from '../entities/Account';
+import { AccountCredentialsSource, AccountField } from '../entities/Account';
 import { FilterContext } from '../entities/Filter';
 import { NotificationType } from '../entities/Notification';
 import { PushSubscriptionAlerts } from '../entities/PushSubscription';
@@ -19,30 +19,45 @@ export interface Pagination {
 }
 
 export interface UpdateCredentials {
-  /** The name to display in the user's profile */
+  /** Display name */
   display_name?: string | null;
 
-  /** A new biography for the user */
+  /** Biography */
   note?: string | null;
 
-  /** An avatar for the user (encoded using `multipart/form-data`) */
+  /** Avatar encoded using `multipart/form-data` */
   avatar?: File | null;
 
-  /** A header image for the user (encoded using `multipart/form-data`) */
+  /** Header image encoded using `multipart/form-data` */
   header?: File | null;
 
-  /** Manually approve followers? */
+  /** Enable follow requests */
   locked?: boolean | null;
 
-  /** Array of profile metadata, each element has 'name' and 'value' */
-  fields_attributes?: AccountField[] | null;
+  /**
+   * privacy: Default post privacy preference
+   * sensitive: Whether to mark statuses as sensitive by default
+   * language: Override language on statuses by default (ISO6391)
+   */
+  source?: Pick<AccountCredentialsSource, 'privacy'|'sensitive'|'language'> | null;
+
+  /** Profile metadata (max. 4) */
+  fields_attributes?:
+    [AccountField] |
+    [AccountField, AccountField] |
+    [AccountField, AccountField, AccountField] |
+    [AccountField, AccountField, AccountField, AccountField] |
+    null;
 }
 
 export interface SearchAccounts {
   /** Maximum number of matching accounts to return (default: `40`) */
   limit?: number | null;
 
-  /** Limit the search to following (boolean, default `false`) */
+  /** Attempt WebFinger look-up */
+  resolve?: boolean | null;
+
+  /** Only who the user is following */
   following?: boolean | null;
 }
 
@@ -89,7 +104,7 @@ export interface FetchTimeline extends Pagination {
   only_media?: boolean | null;
 }
 
-export interface FetchAccountStatuses {
+export interface FetchAccountStatuses extends Pagination {
   /** Only return statuses that have media attachments */
   only_media?: boolean | null;
 
@@ -123,22 +138,17 @@ export interface AddPushSubscription {
   subscription: {
     /** Endpoint URL that called when notification is happen. */
     endpoint: string;
-    keys: {
 
+    keys: {
       /** User agent public key. Base64 encoded string of public key of ECDH key that using 'prime256v1' curve. */
       p256dh: string;
-
       /** Auth secret. Base64 encoded string of 16 bytes random data. */
       auth: string;
     }
   };
-  data: {
-    alerts: PushSubscriptionAlerts,
-  };
+  data?: {
+    alerts?: Partial<PushSubscriptionAlerts> | null,
+  } | null;
 }
 
-export interface UpdatePushSubscription {
-  data: {
-    alerts: PushSubscriptionAlerts,
-  };
-}
+export type UpdatePushSubscription = Pick<AddPushSubscription, 'data'>;

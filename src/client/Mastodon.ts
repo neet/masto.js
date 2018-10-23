@@ -3,21 +3,19 @@ import { EventHandler } from './EventHandler';
 import { getNextUrl } from './linkHeader';
 import * as Options from './options';
 
-import { Conversation } from 'src/entities/Conversation';
-import { Account } from '../entities/Account';
+import { Account, AccountCredentials } from '../entities/Account';
+import { Application, OAuth } from '../entities/Application';
 import { Attachment } from '../entities/Attachment';
 import { Card } from '../entities/Card';
 import { Context } from '../entities/Context';
-import { Credentials } from '../entities/Credentials';
+import { Conversation } from '../entities/Conversation';
 import { Emoji } from '../entities/Emoji';
 import { Filter, FilterContext } from '../entities/Filter';
 import { Instance, InstanceActivity } from '../entities/Instance';
 import { List } from '../entities/List';
 import { Notification } from '../entities/Notification';
-import { OAuth } from '../entities/OAuth';
 import { PushSubscription } from '../entities/PushSubscription';
 import { Relationship } from '../entities/Relationship';
-import { Report } from '../entities/Report';
 import { Results } from '../entities/Results';
 import { Status } from '../entities/Status';
 
@@ -28,7 +26,6 @@ export class Mastodon extends Gateway {
    * @param id Path to the API, e.g. `timelines/pulbic`, `accounts/1/statuses` e.g.
    * @param params Query parameters
    * @return An async iterable of statuses, most recent ones first.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
   protected async * paginationGenerator <T extends string[] | { id: string }[]> (path: string, params?: any) {
     let next: string|null = path;
@@ -52,35 +49,35 @@ export class Mastodon extends Gateway {
   /**
    * Starting home timeline and notification streaming
    * @return Instance of EventEmitter
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
+   * @see https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-user
    */
   public streamUser (): EventHandler {
     return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'user' });
   }
 
   /**
-   * Starting local timeline streaming
-   * @return Instance of EventEmitter
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
-   */
-  public streamCommunityTimeline (): EventHandler {
-    return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'public:local' });
-  }
-
-  /**
    * Starting federated timeline streaming
    * @return Instance of EventEmitter
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
+   * @see https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-public
    */
   public streamPublicTimeline (): EventHandler {
     return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'public' });
   }
 
   /**
+   * Starting local timeline streaming
+   * @return Instance of EventEmitter
+   * @see https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-public-local
+   */
+  public streamCommunityTimeline (): EventHandler {
+    return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'public:local' });
+  }
+
+  /**
    * Starting tag timeline streaming
    * @param id ID of the tag
    * @return Instance of EventEmitter
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
+   * @see https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-hashtag-tag-hashtag
    */
   public streamTagTimeline (id: string): EventHandler {
     return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'hashtag', tag: id });
@@ -90,7 +87,7 @@ export class Mastodon extends Gateway {
    * Starting local tag timeline streaming
    * @param id ID of the tag
    * @return Instance of EventEmitter
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
+   * @see https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-hashtag-local-tag-hashtag
    */
   public streamLocalTagTimeline (id: string): EventHandler {
     return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'hashtag:local', tag: id });
@@ -100,7 +97,7 @@ export class Mastodon extends Gateway {
    * Starting list timeline streaming
    * @param id ID of the list
    * @return Instance of EventEmitter
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
+   * @see https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-list-list-list-id
    */
   public streamListTimeline (id: string): EventHandler {
     return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'list', list: id });
@@ -109,7 +106,7 @@ export class Mastodon extends Gateway {
   /**
    * Starting direct timeline streaming
    * @return Instance of EventEmitter
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
+   * @see https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-direct
    */
   public streamDirectTimeline (): EventHandler {
     return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'direct' });
@@ -122,7 +119,8 @@ export class Mastodon extends Gateway {
    * @param client_secret client_secret of your app
    * @param redirect_uri redirect_uri of your app
    * @param grant_type grant_type
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/OAuth-details.md
+   * @see https://docs.joinmastodon.org/api/permissions/
+   * @see https://docs.joinmastodon.org/api/authentication/
    */
   public async fetchAccessToken (code: string, client_id: string, client_secret: string, redirect_uri: string, grant_type = 'authorization_code') {
     return (await this.post<{ access_token: string }>(`${this.url}/oauth/token`, { code, client_id, client_secret, redirect_uri, grant_type })).data;
@@ -131,136 +129,212 @@ export class Mastodon extends Gateway {
   /**
    * Fetching an account
    * @param id ID of the account
-   * @return An account
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-an-account
+   * @return Returns Account
+   * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id
    */
   public async fetchAccount (id: string) {
     return (await this.get<Account>(`${this.url}/api/v1/accounts/${id}`)).data;
   }
 
   /**
-   * Getting the current user
-   * @return The authenticated user's Account with an extra attribute source which contains these keys
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-the-current-user
+   * User’s own account.
+   * @return Returns Account with an extra source attribute.
+   * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-verify-credentials
    */
   public async verfiyCredentials () {
-    return (await this.get<Credentials>(`${this.url}/api/v1/accounts/verify_credentials`)).data;
+    return (await this.get<AccountCredentials>(`${this.url}/api/v1/accounts/verify_credentials`)).data;
   }
 
   /**
-   * Updating the current user
+   * Update user’s own account.
    * @param options Form data
-   * @return The authenticated user's Account.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#updating-the-current-user
+   * @return Returns Account
+   * @see https://docs.joinmastodon.org/api/rest/accounts/#patch-api-v1-accounts-update-credentials
    */
   public async updateCredentials (options?: Options.UpdateCredentials) {
-    return (await this.patch<Credentials>(`${this.url}/api/v1/accounts/update_credentials`, options, {headers: {'Content-Type': 'multipart/form-data'}})).data;
+    return (await this.patch<AccountCredentials>(`${this.url}/api/v1/accounts/update_credentials`, options, {headers: {'Content-Type': 'multipart/form-data'}})).data;
   }
 
   /**
-   * Getting an account's followers
-   * - Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
+   * Accounts which follow the given account.
    * @param id ID of the target account
    * @param options Query paramerters
-   * @return An array of accounts
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-followers
+   * @return Returns array of Account
+   * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-followers
    */
   public fetchAccountFollowers (id: string, options?: Options.Pagination) {
     return this.paginationGenerator(`${this.url}/api/v1/accounts/${id}/followers`, options);
   }
 
   /**
-   * Getting who account is following
-   * - Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
+   * Accounts which the given account is following.
    * @param id ID of the target account
    * @param options Query parameters
-   * @return An array of accounts
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-who-account-is-following
+   * @return Returns array of Account
+   * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-following
    */
   public fetchAccountFollowing (id: string, options?: Options.Pagination) {
     return this.paginationGenerator(`${this.url}/api/v1/accounts/${id}/following`, options);
   }
 
   /**
-   * Getting an account's statuses
-   * - Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
+   * An account’s statuses.
    * @param id ID of the target account
    * @param options Query parameters
-   * @return An array of statuses
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-statuses
+   * @return Returns array of Status
+   * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-statuses
    */
-  public fetchAccountStatuses (id: string, options?: Options.FetchTimeline) {
+  public fetchAccountStatuses (id: string, options?: Options.FetchAccountStatuses) {
     return this.paginationGenerator<Status[]>(`${this.url}/api/v1/accounts/${id}/statuses`, options);
   }
 
   /**
-   * Following an account
+   * Follow an account.
    * @param id ID of the target account
-   * @return The target account's relationship
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#followingunfollowing-an-account
+   * @param reblogs Whether the followed account’s reblogs will show up in the home timeline
+   * @return Returns Relationship
+   * @see https://docs.joinmastodon.org/api/rest/accounts/#post-api-v1-accounts-id-follow
    */
-  public async followAccount (id: string) {
-    return (await this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/follow`)).data;
+  public async followAccount (id: string, reblogs?: boolean) {
+    return (await this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/follow`, { reblogs })).data;
   }
 
   /**
-   * Unfollowing an account
+   * Unfollow an account.
    * @param id ID of the target account
-   * @return The target account's relationship
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#followingunfollowing-an-account
+   * @return Returns Relationship
+   * @see https://docs.joinmastodon.org/api/rest/accounts/#post-api-v1-accounts-id-unfollow
    */
   public async unfollowAccount (id: string) {
     return (await this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/unfollow`)).data;
   }
 
   /**
-   * Blocking an account
+   * Relationship of the user to the given accounts in regards to following, blocking, muting, etc.
+   * @param id Array of account IDs
+   * @return Returns array of Relationship
+   * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-relationships
+   */
+  public async fetchAccountRelationships (id: string[]) {
+    return (await this.get<Relationship[]>(`${this.url}/api/v1/accounts/relationship`, { id })).data;
+  }
+
+  /**
+   * Search for matching accounts by username, domain and display name.
+   * @param q What to search for
+   * @param options Query parameters
+   * @return Returns array of Account
+   * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-search
+   */
+  public async searchAccounts (q: string, options?: Options.SearchAccounts) {
+    return (await this.get<Account[]>(`${this.url}/api/v1/accounts/search`, { q, ...options })).data;
+  }
+
+  /**
+   * Create a new application to obtain OAuth2 credentials.
+   * @param client_name Name of your application
+   * @param redirect_uris Where the user should be redirected after authorization
+   * @param scopes Space separated list of scopes
+   * @param website URL to the homepage of your app
+   * @return Returns App with client_id and client_secret
+   * @see https://docs.joinmastodon.org/api/rest/apps/#post-api-v1-apps
+   */
+  public async createApp (client_name: string, redirect_uris: string, scopes: string, website?: string) {
+    return (await this.post<OAuth>(`${this.url}/api/v1/apps`, { client_name, redirect_uris, scopes, website })).data;
+  }
+
+  /**
+   * Confirm that the app’s OAuth2 credentials work.
+   * @return Returns App
+   * @see https://docs.joinmastodon.org/api/rest/apps/#get-api-v1-apps-verify-credentials
+   */
+  public async verifyAppCredential () {
+    return (await this.get<Application>(`${this.url}/api/v1/apps/verify_credentials`)).data;
+  }
+
+  /**
+   * Accounts the user has blocked.
+   * @param options Query parameters
+   * @return Returns array of Account
+   * @see https://docs.joinmastodon.org/api/rest/blocks/#get-api-v1-blocks
+   */
+  public async fetchBlocks (options?: Options.Pagination) {
+    return this.paginationGenerator<Account[]>(`${this.url}/api/v1/blocks`, options);
+  }
+
+  /**
+   * Block an account
    * @param id ID of the target account
-   * @return The target account's relationship
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blockingunblocking-an-account
+   * @return Returns Relationship
+   * @see https://docs.joinmastodon.org/api/rest/blocks/#post-api-v1-accounts-id-block
    */
   public async blockAccount (id: string) {
     return (await this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/block`)).data;
   }
 
   /**
-   * Unblocking an account
+   * Unblock an account
    * @param id ID of the target account
-   * @return The target account's relationship
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blockingunblocking-an-account
+   * @return Returns Relationship
+   * @see https://docs.joinmastodon.org/api/rest/blocks/#post-api-v1-accounts-id-unblock
    */
   public async unblockAccount (id: string) {
     return (await this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/unblock`)).data;
   }
 
   /**
-   * Muting an account
-   * @param id ID of the target account
-   * @param notifications Determines whether the mute will mute notifications or not. Default(true)
-   * @return The target account's relationship
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account
+   * Custom emojis that are available on the server.
+   * @return Returns array of Emoji
+   * @see https://docs.joinmastodon.org/api/rest/custom-emojis/#get-api-v1-custom-emojis
    */
-  public async muteAccount (id: string, notifications = true) {
-    return (await this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/mute`, { notifications })).data;
+  public async fetchCustomEmojis () {
+    return (await this.get<Emoji[]>(`${this.url}/api/v1/custom_emojis`)).data;
   }
 
   /**
-   * Unmuting an account
-   * @param id ID of the target account
-   * @param notifications Determines whether the mute will mute notifications or not. Default(true)
-   * @return The target account's relationship
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account
+   * Domains the user has blocked.
+   * @param options Query parameters
+   * @return Returns array of string.
+   * @see https://docs.joinmastodon.org/api/rest/domain-blocks/#get-api-v1-domain-blocks
    */
-  public async unmuteAccount (id: string, notifications = true) {
-    return (await this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/unmute`, { notifications })).data;
+  public fetchDomainBlocks (options?: Options.Pagination) {
+    return this.paginationGenerator<string[]>(`${this.url}/api/v1/domain_blocks`, options);
   }
 
   /**
-   * Pin an account to profile
+   * Block a domain to hide all public posts from it, all notifications from it, and remove all followers from it.
+   * @param domain Domain to block
+   * @return An empty object
+   * @see https://docs.joinmastodon.org/api/rest/domain-blocks/#post-api-v1-domain-blocks
+   */
+  public async blockDomain (domain: string) {
+    return (await this.post<void>(`${this.url}/api/v1/domain_blocks`, { domain })).data;
+  }
+
+  /**
+   * Remove a domain block.
+   * @param domain Domain to unblock
+   * @return An empty object
+   * @see https://docs.joinmastodon.org/api/rest/domain-blocks/#delete-api-v1-domain-blocks
+   */
+  public async unblockDomain (domain: string) {
+    return (await this.delete<void>(`${this.url}/api/v1/domain_blocks`, { domain })).data;
+  }
+
+  /**
+   * Accounts the user chose to endorse.
+   * @return Returns array of Account
+   * @see https://docs.joinmastodon.org/api/rest/endorsements/#get-api-v1-endorsements
+   */
+  public async fetchEndorsements (options?: Options.Pagination) {
+    return this.paginationGenerator<Account[]>(`${this.url}/api/v1/endorsements`, options);
+  }
+
+  /**
+   * Endorse an account, i.e. choose to feature the account on the user’s public profile.
    * @param id ID of the target account
-   * @param notifications Determines whether the mute will mute notifications or not. Default(true)
-   * @return The target account's relationship
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account
+   * @return Returns Relationship
+   * @see https://docs.joinmastodon.org/api/rest/endorsements/#post-api-v1-accounts-id-pin
    */
   public async pinAccount (id: string) {
     return (await this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/pin`)).data;
@@ -269,149 +343,148 @@ export class Mastodon extends Gateway {
   /**
    * Unpin an account
    * @param id ID of the target account
-   * @param notifications Determines whether the mute will mute notifications or not. Default(true)
-   * @return The target account's relationship
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account
+   * @return Returns Relationship
+   * @see https://docs.joinmastodon.org/api/rest/endorsements/#post-api-v1-accounts-id-unpin
    */
   public async unpinAccount (id: string) {
     return (await this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/unpin`)).data;
   }
 
   /**
-   * Getting an account's relationships
-   * @param id Account IDs (can be an array)
-   * @return An array of Relationships of the current user to a list of given accounts.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-relationships
-   */
-  public async fetchAccountRelationships (id: string|string[]) {
-    return (await this.get<Relationship[]>(`${this.url}/api/v1/accounts/relationship`, { id })).data;
-  }
-
-  /**
-   * Searching for accounts
-   * - Will lookup an account remotely if the search term is in the `username@domain` format and not yet in the database.
-   * @param q What to search for
+   * Statuses the user has favourited.
    * @param options Query parameters
-   * @return An array of matching accounts
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#searching-for-accounts
-   */
-  public async searchAccounts (q: string, options?: Options.SearchAccounts) {
-    return (await this.get<Account[]>(`${this.url}/api/v1/accounts/search`, { q, ...options })).data;
-  }
-
-  /**
-   * Registering an application
-   * - These values should be requested in the app itself from the API for each new app install + mastodon domain combo, and stored in the app for future requests.
-   * @param client_name Name of your application
-   * @param redirect_uris Where the user should be redirected after authorization (for no redirect, use `urn:ietf:wg:oauth:2.0:oob`)
-   * @param scopes This can be a space-separated list of the following items: "read", "write" and "follow" (see this page for details on what the scopes do)
-   * @param website URL to the homepage of your app
-   * @return Returns `id`, `client_id` and `client_secret` which can be used with OAuth authentication in your 3rd party app.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#registering-an-application
-   */
-  public async createApp (client_name: string, redirect_uris: string, scopes: string, website?: string) {
-    return (await this.post<OAuth>(`${this.url}/api/v1/apps`, { client_name, redirect_uris, scopes, website })).data;
-  }
-
-  /**
-   * Fetching a user's blocks
-   * - Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
-   * @param options Query parameters
-   * @return An array of accounts blocked by the atuhenticated user
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-blocks
-   */
-  public async fetchBlocks (options?: Options.Pagination) {
-    return this.paginationGenerator<Account[]>(`${this.url}/api/v1/blocks`, options);
-  }
-
-  /**
-   * Fetching a user's blocked domains
-   * - Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
-   * @param options Query parameters
-   * @return An array of strings
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-blocked-domains
-   */
-  public fetchDomainBlocks (options?: Options.Pagination) {
-    return this.paginationGenerator<string[]>(`${this.url}/api/v1/domain_blocks`, options);
-  }
-
-  /**
-   * Blocking a domain
-   * @param domain Domain to block
-   * @return An empty object
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blocking-a-domain
-   */
-  public async blockDomain (domain: string) {
-    return (await this.post<void>(`${this.url}/api/v1/domain_blocks`, { domain })).data;
-  }
-
-  /**
-   * Unblocking a domain
-   * @param domain Domain to unblock
-   * @return An empty object
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#unblocking-a-domain
-   */
-  public async unblockDomain (domain: string) {
-    return (await this.delete<void>(`${this.url}/api/v1/domain_blocks`, { domain })).data;
-  }
-
-  /**
-   * Fetching a user's favourites
-   * - Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
-   * @param options Query parameters
-   * @return Return an array of Statuses favourited by the authenticated user
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-favourites
+   * @return Returns array of Status
+   * @see https://docs.joinmastodon.org/api/rest/favourites/#get-api-v1-favourites
    */
   public async fetchFavouritedStatuses (options?: Options.Pagination) {
     return this.paginationGenerator<Status[]>(`${this.url}/api/v1/favourites`, options);
   }
 
   /**
-   * Fetching a list of follow requests
-   * - Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
+   * Favourite a status.
+   * @param id ID of the target status
+   * @return Returns Status
+   * @see https://docs.joinmastodon.org/api/rest/favourites/#post-api-v1-statuses-id-favourite
+   */
+  public async favouriteStatus (id: string) {
+    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/favourite`)).data;
+  }
+
+  /**
+   * Undo the favourite of a status.
+   * @param id ID of the target status
+   * @return Returns Status
+   * @see https://docs.joinmastodon.org/api/rest/favourites/#post-api-v1-statuses-id-unfavourite
+   */
+  public async unfavouriteStatus (id: string) {
+    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/unfavourite`)).data;
+  }
+
+  /**
+   * Text filters the user has configured that potentially must be applied client-side.
+   * @return An array of Filters
+   * @see https://docs.joinmastodon.org/api/rest/filters/#get-api-v1-filters
+   */
+  public async fetchFilters () {
+    return (await this.get<Filter[]>(`${this.url}/api/v1/filters`)).data;
+  }
+
+  /**
+   * Create a new filter.
+   * @param phrase Keyword or phrase to filter
+   * @param context Array of strings that means filtering context. each string is one of `home`, `notifications`, `public`, `thread`. At least one context must be specified
+   * @param options Optional parameters
+   * @return Returns Filter
+   * @see https://docs.joinmastodon.org/api/rest/filters/#post-api-v1-filters
+   */
+  public async createFiler (phrase: string, context: FilterContext, options?: Options.CreateFilter) {
+    return (await this.post<Filter>(`${this.url}/api/v1/filters`, { phrase, context, ...options })).data;
+  }
+
+  /**
+   * A text filter.
+   * @param id ID of the filter
+   * @return Returns Filter
+   * @see https://docs.joinmastodon.org/api/rest/filters/#get-api-v1-filters-id
+   */
+  public async fetchFilter (id: string) {
+    return (await this.get<Filter>(`${this.url}/api/v1/filters/${id}`)).data;
+  }
+
+  /**
+   * Update a text filter.
+   * @param id ID of the filter
+   * @param options Optinal parameters
+   * @return Returns Filter
+   * @see https://docs.joinmastodon.org/api/rest/filters/#put-api-v1-filters-id
+   */
+  public async updateFilter (id: string, options?: Options.UpdateFilter) {
+    return (await this.put<Filter>(`${this.url}/api/v1/filters/${id}`, options)).data;
+  }
+
+  /**
+   * Delete a text filter.
+   * @param id ID of the filter
+   * @return An empty object
+   * @see https://docs.joinmastodon.org/api/rest/filters/#delete-api-v1-filters-id
+   */
+  public async removeFilter (id: string) {
+    return (await this.delete<void>(`${this.url}/api/v1/filters/${id}`)).data;
+  }
+
+  /**
+   * Accounts that have requested to follow the user.
    * @param options Query parameters
-   * @return Returns an array of Accounts which have requested to follow the authenticated user.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-list-of-follow-requests
+   * @return Returns array of Account
+   * @see https://docs.joinmastodon.org/api/rest/follow-requests/#get-api-v1-follow-requests
    */
   public async fetchFollowRequests (options?: Options.Pagination) {
     return this.paginationGenerator<Account[]>(`${this.url}/api/v1/follow_requests`, options);
   }
 
   /**
-   * Authorizing follow requests
+   * Allow the account to follow the user.
    * @param id ID of the target account
    * @return An empty object
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#authorizing-or-rejecting-follow-requests
+   * @see https://docs.joinmastodon.org/api/rest/follow-requests/#post-api-v1-follow-requests-id-authorize
    */
   public async authorizeFollowRequest (id: string) {
     return (await this.post<void>(`${this.url}/api/v1/follow_requests/${id}/authorize`)).data;
   }
 
   /**
-   * Rejecting follow requests
+   * Do not allow the account to follow the user.
    * @param id ID of the target account
    * @return An empty object
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#authorizing-or-rejecting-follow-requests
+   * @see https://docs.joinmastodon.org/api/rest/follow-requests/#post-api-v1-follow-requests-id-reject
    */
   public async rejectFollowRequest (id: string) {
     return (await this.post<void>(`${this.url}/api/v1/follow_requests/${id}/reject`)).data;
   }
 
   /**
-   * Following a remote user
-   * @param uri `username@domain` of the person you want to follow
-   * @return The local representation of the followed account, as an Account.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#following-a-remote-user
+   * Accounts the user had past positive interactions with, but is not following yet.
+   * @return An array of Accounts
+   * @see https://docs.joinmastodon.org/api/rest/follow-suggestions/#get-api-v1-suggestions
    */
-  public async followAccountByUsername (uri: string) {
-    return (await this.post<Account>(`${this.url}/api/v1/follows`, { uri })).data;
+  public async fetchSuggestions () {
+    return (await this.get<Account[]>(`${this.url}/api/v1/suggestions`)).data;
   }
 
   /**
-   * Fetching current instance information
-   * - Does not require authentication
-   * @return The current instance.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-current-instance-information
+   * Remove account from suggestions.
+   * @param id ID of the target account
+   * @return An array of Accounts
+   * @see https://docs.joinmastodon.org/api/rest/follow-suggestions/#delete-api-v1-suggestions-account-id
+   */
+  public async removeSuggestion (id: string) {
+    return (await this.delete<void>(`${this.url}/api/v1/suggestions/${id}`)).data;
+  }
+
+  /**
+   * Information about the server.
+   * @return Returns Instance
+   * @see https://docs.joinmastodon.org/api/rest/instances/#get-api-v1-instance
    */
   public async fetchInstance () {
     return (await this.get<Instance>(`${this.url}/api/v1/instance`)).data;
@@ -419,7 +492,6 @@ export class Mastodon extends Gateway {
 
   /**
    * Fetching peer instances
-   * - Does not require authentication
    * @return An array of peer instance's domain
    */
   public async fetchPeerInstances () {
@@ -428,159 +500,183 @@ export class Mastodon extends Gateway {
 
   /**
    * Fetching activities of current instance
-   * - Does not require authentication
-   * @return An array of Activities
+   * @return An array of InstanceActivity
    */
   public async fetchInstanceActivity () {
     return (await this.get<InstanceActivity[]>(`${this.url}/api/v1/instance/activity`)).data;
   }
 
   /**
-   * Fetching current instance's custom emojis
-   * - Does not require authentication
-   * @return A list of Emoji
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-current-instances-custom-emojis
-   */
-  public async fetchCustomEmojis () {
-    return (await this.get<Emoji[]>(`${this.url}/api/v1/custom_emojis`)).data;
-  }
-
-  /**
-   * Retrieving lists
-   * @return At most 50 Lists without pagination
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-lists
+   * User’s lists.
+   * @return Returns array of List
+   * @see https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists
    */
   public async fetchLists () {
     return (await this.get<List[]>(`${this.url}/api/v1/lists`)).data;
   }
 
   /**
-   * Retrieving lists by membership
-   * @return At most 50 Lists without pagination
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-lists-by-membership
+   * User’s lists that a given account is part of.
+   * @param id ID of the target list
+   * @return Returns array of List
+   * @see https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-accounts-id-lists
    */
   public async fetchListByMembership (id: string) {
-    return (await this.get<List[]>(`${this.url}/api/v1/lists/${id}/lists`)).data;
+    return (await this.get<List[]>(`${this.url}/api/v1/accounts/${id}/lists`)).data;
   }
 
   /**
-   * Retrieving accounts in a list
-   * - If you specify `limit=0` in the query, all accounts will be returned without pagination. Otherwise, standard account pagination rules apply.
+   * Accounts that are in a given list.
    * @param id ID of the target list
    * @param options Optional params
-   * @return Returns Accounts in the list.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-accounts-in-a-list
+   * @return Returns array of Account
+   * @see https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists-id-accounts
    */
   public  fetchListAccounts (id: string, options: Options.Pagination) {
     return this.paginationGenerator<Account[]>(`${this.url}/api/v1/list/${id}/accounts`, options);
   }
 
   /**
-   * Retrieving a list
+   * A list
    * @param id ID of the targtet list
-   * @return The specified List.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-list
+   * @return Returns List
+   * @see https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists-id
    */
   public async fetchList (id: string) {
     return (await this.get<List>(`${this.url}/api/v1/lists/${id}`)).data;
   }
 
   /**
-   * Creating a list
+   * Create a new list.
    * @param title The title of the list
-   * @return A new List.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#creating-and-updating-a-list
+   * @return Returns List
+   * @see https://docs.joinmastodon.org/api/rest/lists/#post-api-v1-lists
    */
   public async createList (title: string) {
     return (await this.post<List>(`${this.url}/api/v1/lists`, { title })).data;
   }
 
   /**
-   * Updating a list
+   * Update a list.
    * @param id ID of the target list
    * @param title The title of the list
-   * @return A updated List.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#creating-and-updating-a-list
+   * @return Returns List
+   * @see https://docs.joinmastodon.org/api/rest/lists/#put-api-v1-lists-id
    */
   public async updateList (id: string, title: string) {
     return (await this.put<List>(`${this.url}/api/v1/lists/${id}`, { title })).data;
   }
 
   /**
-   * Removing a list
+   * Remove a list.
    * @param id ID of the target list
    * @return An empty object
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#deleting-a-list
+   * @see https://docs.joinmastodon.org/api/rest/lists/#delete-api-v1-lists-id
    */
   public async removeList (id: string) {
     return (await this.delete<void>(`${this.url}/api/v1/lists/${id}`)).data;
   }
 
   /**
-   * Adding accounts to a list
-   * - Note: Only accounts already followed by the authenticated user can be added to a list.
+   * Add accounts to a list.
    * @param id ID of the target list
    * @param account_ids Array of account IDs
    * @return An empty object
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#addingremoving-accounts-tofrom-a-list
+   * @see https://docs.joinmastodon.org/api/rest/lists/#post-api-v1-lists-id-accounts
    */
   public async addAccountToList (id: string, account_ids: string[]) {
     return (await this.post<void>(`${this.url}/api/v1/lists/${id}/accounts`, { account_ids })).data;
   }
 
   /**
-   * Removing accounts from a list
-   * - Note: Only accounts already followed by the authenticated user can be added to a list.
+   * Remove accounts from a list.
    * @param id ID of the target list
    * @param account_ids Array of account IDs
    * @return An empty object
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#addingremoving-accounts-tofrom-a-list
+   * @see https://docs.joinmastodon.org/api/rest/lists/#delete-api-v1-lists-id-accounts
    */
   public async removeAccountFromList (id: string, account_ids: string[]) {
     return (await this.post<void>(`${this.url}/api/v1/lists/${id}/accounts`, { account_ids })).data;
   }
 
   /**
-   * Uploading a media attachment
+   * Upload a media attachment that can be used with a new status.
    * @param file Media to be uploaded (encoded using `multipart/form-data`)
    * @param options Form data
-   * @return An Attachment that can be used when creating a status.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#uploading-a-media-attachment
+   * @return Returns Attachment
+   * @see https://docs.joinmastodon.org/api/rest/media/#post-api-v1-media
    */
   public async uploadMediaAttachment (file: File, options?: Options.UploadMedia) {
     return (await this.post<Attachment>(`${this.url}/api/v1/media`, { file, ...options}, {headers: {'Content-Type': 'multipart/form-data'}})).data;
   }
 
   /**
-   * Updating a media attachment
-   * - Can only be done before the media is attached to a status
-   * - Focal points: Server-side preview images are never cropped, to support a variety of apps and user interfaces. Therefore, the cropping must be done by those apps. To crop intelligently, focal points can be used to ensure a certain section of the image is always within the cropped viewport. See this for how to let users select focal point coordinates.
+   * Update a media attachment. Can only be done before the media is attached to a status.
    * @param id ID of the target attachment
    * @param options Form data
-   * @return Returns an Attachment that can be used when creating a status.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#updating-a-media-attachment
+   * @return Returns Returns Attachment
+   * @see https://docs.joinmastodon.org/api/rest/media/#put-api-v1-media-id
    */
   public async updateMediaAttachment (id: string, options?: Options.UpdateMedia) {
     return (await this.put<Attachment>(`${this.url}/api/v1/media/${id}`, options)).data;
   }
 
   /**
-   * Fetching a user's mutes
-   * - Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. It is not possible to use the `id` of the returned objects to construct your own URLs, because the results are sorted by an internal key.
+   * Accounts the user has muted.
    * @param options Query parameters
-   * @return An array of Accounts muted by the authenticated user.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-mutes
+   * @return Returns array of Account
+   * @see https://docs.joinmastodon.org/api/rest/mutes/#get-api-v1-mutes
    */
   public fetchMutes (options?: Options.Pagination) {
     return this.paginationGenerator<Account[]>(`${this.url}/api/v1/mutes`, options);
   }
 
   /**
-   * Fetching a user's notifications
-   * - Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. It is not possible to use the `id` of the returned objects to construct your own URLs, because the results are sorted by an internal key.
+   * Mute an account.
+   * @param id ID of the target account
+   * @param notifications Whether the mute will mute notifications or not
+   * @return Returns Relationship
+   * @see https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-accounts-id-mute
+   */
+  public async muteAccount (id: string, notifications = true) {
+    return (await this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/mute`, { notifications })).data;
+  }
+
+  /**
+   * Unmute an account
+   * @param id ID of the target account
+   * @return Returns Relationship
+   * @see https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-accounts-id-unmute
+   */
+  public async unmuteAccount (id: string) {
+    return (await this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/unmute`)).data;
+  }
+
+  /**
+   * Mute the conversation the status is part of, to no longer be notified about it.
+   * @param id ID of the target account
+   * @return Returns Status
+   * @see https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-status-id-mute
+   */
+  public async muteStatus (id: string) {
+    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/mute`)).data;
+  }
+
+  /**
+   * Unmute the conversation the status is part of.
+   * @param id ID of the target account
+   * @return Returns Status
+   * @see https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-status-id-unmute
+   */
+  public async unmuteStatus (id: string) {
+    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/unmute`)).data;
+  }
+
+  /**
+   * Notifications concerning the user.
    * @param options Query parameters
-   * @return A list of Notifications for the authenticated user.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-notifications
+   * @return Returns array of Notification
+   * @see https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-notifications
    */
   public async fetchNotifications (options?: Options.FetchNotifications) {
     return (await this.get<Notification[]>(`${this.url}/api/v1/notifications`, options)).data;
@@ -588,180 +684,153 @@ export class Mastodon extends Gateway {
 
   /**
    * Getting a single notification
-   * @param id ID of the target user
-   * @return The Notification.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-a-single-notification
+   * @param id Notification ID
+   * @return Returns Notification
+   * @see https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-notifications-id
    */
   public async fetchNotification (id: string) {
     return (await this.get<Notification>(`${this.url}/api/v1/notifications/${id}`)).data;
   }
 
   /**
-   * Clearing notifications
-   * - Deletes all notifications from the Mastodon server for the authenticated user.
+   * Delete all notifications from the server.
    * @return Returns an empty object.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#clearing-notifications
+   * @see https://docs.joinmastodon.org/api/rest/notifications/#post-api-v1-notifications-clear
    */
   public async clearNotifications () {
     return (await this.post<void>(`${this.url}/api/v1/notifications/clear`)).data;
   }
 
   /**
-   * Dismissing a single notification
-   * - Deletes a single notification from the Mastodon server for the authenticated user.
-   * @param id ID of the notification
+   * Delete a single notification from the server.
+   * @param id Notification ID
    * @return Returns an empty object.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#dismissing-a-single-notification
+   * @see https://docs.joinmastodon.org/api/rest/notifications/#post-api-v1-notifications-dismiss
    */
   public async dissmissNotification (id: string) {
     return (await this.post<void>(`${this.url}/api/v1/notifications/dismiss`, { id })).data;
   }
 
   /**
-   * Adding push subscription
-   * - Each access token can have one push subscription. If you post new subscription. the old subscription is deleted.
-   * - The endpoint URL is called when notification event is happen, and its payload is encrypted according to The Web Push Protocol.
+   * Add a Web Push API subscription to receive notifications. See also: Web Push API
    * @param options Form data
-   * @return Returns the Push Subscription
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#adding-push-subscription
-   * @see https://developers.google.com/web/updates/2016/03/web-push-encryption
-   * @see https://developers.google.com/web/fundamentals/push-notifications/web-push-protocol
+   * @return Returns Push Subscription
+   * @see https://docs.joinmastodon.org/api/rest/notifications/#put-api-v1-push-subscription
    */
   public async addPushSubscription (options: Options.AddPushSubscription) {
     return (await this.post<PushSubscription>(`${this.url}/api/v1/push/subscription`, options)).data;
   }
 
   /**
-   * Get current push subscription status
-   * @return Returns the Push Subscription
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#get-current-push-subscription-status
+   * Push Subscription
+   * @return Returns Push Subscription
+   * @see https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-push-subscription
    */
   public async fetchPushSubscription () {
     return (await this.get<PushSubscription>(`${this.url}/api/v1/push/subscription`)).data;
   }
 
   /**
-   * Updating push subscription
-   * - This API updates 'data' part of push subscription. If you want to change 'subscription', you have to use 'POST /api/api/v1/push/subscription'.
+   * Update current Web Push API subscription. Only the `data` part can be updated, e.g. which types of notifications are desired. To change fundamentals, a new subscription must be created instead.
    * @param options Form data
-   * @return Returns the Push Subscription
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#updating-push-subscription
+   * @return Returns Push Subscription
+   * @see https://docs.joinmastodon.org/api/rest/notifications/#put-api-v1-push-subscription
    */
   public async updatePushSubscription (options: Options.UpdatePushSubscription) {
     return (await this.put<PushSubscription>(`${this.url}/api/v1/push/subscription`, options)).data;
   }
 
   /**
-   * Removing push subscription
-   * - This API removes push subscription that bind to access token.
+   * Remove the current Web Push API subscription.
    * @return An empty object
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#removing-push-subscription
+   * @see https://docs.joinmastodon.org/api/rest/notifications/#delete-api-v1-push-subscription
    */
   public async removePushSubscription () {
     return (await this.delete<void>(`${this.url}/api/v1/push/subscription`)).data;
   }
 
   /**
-   * Fetching a user's reports
-   * - This method is not entirely implemented and contains no useful information at this point
-   * @return Returns a list of Reports made by the authenticated user.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-reports
-   */
-  public async fetchReports () {
-    return (await this.post<Report[]>(`${this.url}/api/v1/reports`)).data;
-  }
-
-  /**
-   * Reporting a user
+   * Report an account.
    * @param account_id The ID of the account to report
-   * @param status_ids The IDs of statuses to report (can be an array)
-   * @param comment A comment to associate with the report (up to 1000 characters)
-   * @return The finished Report
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#reporting-a-user
+   * @param status_ids The IDs of statuses to report as array
+   * @param comment Reason for the report (up to 1,000 characters)
+   * @return An empty object
+   * @see https://docs.joinmastodon.org/api/rest/reports/#post-api-v1-reports
    */
-  public async reportUser (account_id: string, status_ids: string|string[], comment: string) {
-    return (await this.post<Report>(`${this.url}/api/v1/reports`, { account_id, status_ids, comment })).data;
+  public async reportAccount (account_id: string, status_ids?: string[]|null, comment?: string|null) {
+    return (await this.post<void>(`${this.url}/api/v1/reports`, { account_id, status_ids, comment })).data;
   }
 
   /**
-   * Searching for content
-   * - If `q` is a URL, Mastodon will attempt to fetch the provided account or status. Otherwise, it will do a local account and hashtag search.
+   * Search for content in accounts, statuses and hashtags.
    * @param q The search query
-   * @param resolve Whether to resolve non-local accounts (default: don't resolve)
-   * @param version Version of Mastodon API (default: v2)
-   * @return Results
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#searching-for-content
+   * @param resolve Attempt WebFinger look-up
+   * @param version Version of Mastodon API (default: `'v2'`)
+   * @return Returns Results
+   * @see https://docs.joinmastodon.org/api/rest/search/#get-api-v2-search
    */
   public async search <V extends 'v1'|'v2' = 'v2'> (q: string, resolve = false, version?: V) {
     return (await this.post<Results<V>>(`${this.url}/api/${version}/search`, { q, resolve })).data;
   }
 
   /**
-   * Fetching a status
-   * - Does not require authentication.
+   * Status
    * @param id ID of the target status
-   * @return A status
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-status
+   * @return Returns Status
+   * @see https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id
    */
   public async fetchStatus (id: string) {
     return (await this.get<Status>(`${this.url}/api/v1/statuses/${id}`)).data;
   }
 
   /**
-   * Getting status context
-   * - Does not require authentication.
+   * What the status replies to, and replies to it.
    * @param id ID of the target status
-   * @return A Context.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-status-context
+   * @return Returns Context
+   * @see https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-context
    */
   public async fetchStatusContext (id: string) {
     return (await this.get<Context>(`${this.url}/api/v1/statuses/${id}/context`)).data;
   }
 
   /**
-   * Getting a card associated with a status
-   * - Does not require authentication.
-   * @return A Card.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-a-card-associated-with-a-status
+   * Link preview card for a status, if available.
+   * @return Returns Card
+   * @see https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-card
    */
   public async fetchStatusCard (id: string) {
     return (await this.get<Card>(`${this.url}/api/v1/statuses/${id}/card`)).data;
   }
 
   /**
-   * Getting who reblogged a status
-   * - Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. It is not possible to use the `id` of the returned objects to construct your own URLs, because the results are sorted by an internal key.
-   * - Does not require authentication
+   * Accounts that reblogged the status.
    * @param id ID of target status
    * @param options Query parameters
-   * @return An array of Accounts
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-who-rebloggedfavourited-a-status
+   * @return Returns array of Account
+   * @see https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-reblogged-by
    */
-  public fetchReblogs (id: string, options?: Options.Pagination) {
+  public fetchStatusRebloggedBy (id: string, options?: Options.Pagination) {
     return this.paginationGenerator<Account[]>(`${this.url}/api/v1/statuses/${id}/reblogged_by`, options);
   }
 
   /**
-   * Getting who favourited a status
-   * - Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. It is not possible to use the `id` of the returned objects to construct your own URLs, because the results are sorted by an internal key.
-   * - Does not require authentication
+   * Accounts that favourited the status.
    * @param id ID of target status
    * @param options Query parameters
-   * @return An array of Accounts
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-who-rebloggedfavourited-a-status
+   * @return Returns array of Account
+   * @see https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-favourited-by
    */
-  public fetchFavourites (id: string, options?: Options.Pagination) {
+  public fetchStatusFavouritedBy (id: string, options?: Options.Pagination) {
     return this.paginationGenerator<Account[]>(`${this.url}/api/v1/statuses/${id}/favourited_by`, options);
   }
 
   /**
-   * Posting a new status
-   * - Note: In order to prevent duplicate statuses, this endpoint accepts an `Idempotency-Key` header, which should be set to a unique string for each new status. In the event of a network error, a request can be retried with the same `Idempotency-Key`. Only one status will be created regardless of how many requests with the same `Idempotency-Key` did go through. See https://stripe.com/blog/idempotency for more on idempotency and idempotency keys.
+   * Publish a new status.
    * @param status The text of the status
    * @param options Optional parameter
    * @param idempotencyKey The Idempotency-Key of request header
-   * @return The new Status
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#posting-a-new-status
+   * @return Returns Status
+   * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses
    */
   public async createStatus (status: string, options?: Options.CreateStatus, idempotencyKey?: string) {
     if ( idempotencyKey ) {
@@ -771,119 +840,60 @@ export class Mastodon extends Gateway {
   }
 
   /**
-   * Removing a status
+   * Remove a status. The status may still be available a short while after the call.
    * @param id ID of the target status
    * @return An empty object
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#deleting-a-status
+   * @see https://docs.joinmastodon.org/api/rest/statuses/#delete-api-v1-statuses-id
    */
   public async removeStatus (id: string) {
     return (await this.delete<void>(`${this.url}/api/v1/statuses/${id}`)).data;
   }
 
   /**
-   * Reblogging a status
+   * Reblog a status.
    * @param id ID of the target status
-   * @return The reblog Status.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#rebloggingunreblogging-a-status
+   * @return Returns Status
+   * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-reblog
    */
   public async reblogStatus (id: string) {
     return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/reblog`)).data;
   }
 
   /**
-   * Unreblogging a status
+   * Undo the reblog of a status.
    * @param id ID of the target status
-   * @return The target Status.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#rebloggingunreblogging-a-status
+   * @return Returns Status
+   * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-unreblog
    */
   public async unreblogStatus (id: string) {
     return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/unreblog`)).data;
   }
 
   /**
-   * Favouriting status
+   * Pin user’s own status to user’s profile.
    * @param id ID of the target status
-   * @return The target status
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#favouritingunfavouriting-a-status
-   */
-  public async favouriteStatus (id: string) {
-    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/favourite`)).data;
-  }
-
-  /**
-   * Unfavouriting status
-   * @param id ID of the target status
-   * @return The target status
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#favouritingunfavouriting-a-status
-   */
-  public async unfavouriteStatus (id: string) {
-    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/unfavourite`)).data;
-  }
-
-  /**
-   * Pinning a status
-   * @param id ID of the target status
-   * @return The target Status.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#pinningunpinning-a-status
+   * @return Returns Status
+   * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-pin
    */
   public async pinStatus (id: string) {
     return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/pin`)).data;
   }
 
   /**
-   * Unpinning a status
+   * Remove pinned status from user’s profile.
    * @param id ID of the target status
-   * @return The target Status.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#pinningunpinning-a-status
+   * @return Returns Status
+   * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-unpin
    */
   public async unpinStatus (id: string) {
     return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/unpin`)).data;
   }
 
   /**
-   * Muting a conversation of a status
-   * @param id ID of the target status
-   * @return The target Status.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-a-conversation-of-a-status
-   */
-  public async muteStatus (id: string) {
-    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/mute`)).data;
-  }
-
-  /**
-   * Unmuting a conversation of a status
-   * @param id ID of the target status
-   * @return The target Status.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-a-conversation-of-a-status
-   */
-  public async unmuteStatus (id: string) {
-    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/unmute`)).data;
-  }
-
-  /**
-   * Fetching accounts who reblogged the status
-   * @param id ID of the status
-   * @return Array of accounts
-   */
-  public async fetchStatusRebloggedBy (id: string, options?: Options.Pagination) {
-    return this.paginationGenerator<Account[]>(`${this.url}/api/v1/statuses/${id}/reblogged_by`, options);
-  }
-
-  /**
-   * Fetching accounts who reblogged the status
-   * @param id ID of the status
-   * @return Array of accounts
-   */
-  public fetchStatusFavouritedBy (id: string, options?: Options.Pagination) {
-    return this.paginationGenerator<Account[]>(`${this.url}/api/v1/statuses/${id}/favourited_by`, options);
-  }
-
-  /**
    * Retrieving the home timeline
-   * - Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. However, it is possible to use the `id` of the returned objects to construct your own URLs.
    * @param options Query parameters
    * @return An array of Statuses, most recent ones first.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
+   * @see https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-home
    */
   public fetchHomeTimeline (options?: Options.FetchTimeline) {
     return this.paginationGenerator<Status[]>(`${this.url}/api/v1/timelines/home`, options);
@@ -891,11 +901,9 @@ export class Mastodon extends Gateway {
 
   /**
    * Retrieving the community timeline (aka "Local timeline" in the UI)
-   * - Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. However, it is possible to use the `id` of the returned objects to construct your own URLs.
-   * - Does not require authentication.
    * @param options Query parameters
    * @return An iterable of Statuses, most recent ones first.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
+   * @see https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-public
    */
   public fetchCommunityTimeline (options?: Options.FetchTimeline) {
     return this.paginationGenerator<Status[]>(`${this.url}/api/v1/timelines/public`, { local: true, ...options});
@@ -903,11 +911,9 @@ export class Mastodon extends Gateway {
 
   /**
    * Retrieving the public timeline (aka "Federated timeline" in the UI)
-   * - Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. However, it is possible to use the `id` of the returned objects to construct your own URLs.
-   * - Does not require authentication.
    * @param options Query parameters
    * @return An iterable of Statuses, most recent ones first.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
+   * @see https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-public
    */
   public fetchPublicTimeline (options?: Options.FetchTimeline) {
     return this.paginationGenerator<Status[]>(`${this.url}/api/v1/timelines/public`, options);
@@ -915,12 +921,10 @@ export class Mastodon extends Gateway {
 
   /**
    * Retrieving a tag timeline
-   * - Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. However, it is possible to use the `id` of the returned objects to construct your own URLs.
-   * - Does not require authentication.
    * @param id ID of the hashtag
    * @param options Query parameters
    * @return An iterable of Statuses, most recent ones first.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
+   * @see https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-tag-hashtag
    */
   public fetchTagTimeline (id: string, options?: Options.FetchTimeline) {
     return this.paginationGenerator<Status[]>(`${this.url}/api/v1/timelines/tag/${id}`, options);
@@ -928,11 +932,10 @@ export class Mastodon extends Gateway {
 
   /**
    * Retrieving a list timeline
-   * - Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. However, it is possible to use the `id` of the returned objects to construct your own URLs.
    * @param id ID of the list
    * @param options Query parameters
    * @return An iterable of Statuses, most recent ones first.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
+   * @see https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-list-list-id
    */
   public fetchListTimeline (id: string, options?: Options.FetchTimeline) {
     return this.paginationGenerator<Status[]>(`${this.url}/api/v1/timelines/list/${id}`, options);
@@ -941,7 +944,6 @@ export class Mastodon extends Gateway {
   /**
    * Retrieving a direct timeline
    * @return An iterable of Statuses, most recent ones first.
-   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline
    */
   public fetchDirectTimeline (options?: Options.FetchTimeline) {
     // tslint:disable-next-line no-console
@@ -954,69 +956,18 @@ export class Mastodon extends Gateway {
    * @return An array of Conversation
    */
   public async fetchConversations () {
+    // tslint:disable-next-line no-console
+    console.warn('Conversations API is not in stable release yet. See https://github.com/tootsuite/mastodon/releases/tag/v2.6.0rc1');
     return this.get<Conversation>(`${this.url}/api/v1/conversations`);
   }
 
   /**
-   * Fetching filters
-   * @return An array of Filters
+   * Following a remote user
+   * @param uri `username@domain` of the person you want to follow
+   * @return The local representation of the followed account, as an Account.
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#following-a-remote-user
    */
-  public async fetchFilters () {
-    return (await this.get<Filter[]>(`${this.url}/api/v1/filters`)).data;
-  }
-
-  /**
-   * Fethcing a filter by id
-   * @param id ID of the filter
-   * @return A filter
-   */
-  public async fetchFilter (id: string) {
-    return (await this.get<Filter>(`${this.url}/api/v1/filters/${id}`)).data;
-  }
-
-  /**
-   * Creating a filter
-   * @param phrase String that contains keyword or phrase
-   * @param context Array of strings that means filtering context. each string is one of `home`, `notifications`, `public`, `thread`. At least one context must be specified
-   * @param options Optional parameters
-   * @return A filter
-   */
-  public async createFiler (phrase: string, context: FilterContext, options?: Options.CreateFilter) {
-    return (await this.post<Filter>(`${this.url}/api/v1/filters`, { phrase, context, ...options })).data;
-  }
-
-  /**
-   * Updating a filter
-   * @param id ID of the filter
-   * @param options Optinal parameters
-   * @return A filter
-   */
-  public async updateFilter (id: string, options?: Options.UpdateFilter) {
-    return (await this.patch<Filter>(`${this.url}/api/v1/filters/${id}`, options)).data;
-  }
-
-  /**
-   * Removing filter by id
-   * @param id ID of the filter
-   * @return An empty object
-   */
-  public async removeFilter (id: string) {
-    return (await this.delete<void>(`${this.url}/api/v1/filters/${id}`)).data;
-  }
-
-  /**
-   * Fething user recommendation
-   * @return An array of Accounts
-   */
-  public async fetchSuggestions () {
-    return (await this.get<Account[]>(`${this.url}/api/v1/suggestions`)).data;
-  }
-
-  /**
-   * Fetching endorsements
-   * @return An array of Accounts
-   */
-  public async fetchEndorsements (options?: Options.Pagination) {
-    return this.paginationGenerator<Account[]>(`${this.url}/api/v1/endorsements`, options);
+  public async followAccountByUsername (uri: string) {
+    return (await this.post<Account>(`${this.url}/api/v1/follows`, { uri })).data;
   }
 }
