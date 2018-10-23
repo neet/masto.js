@@ -98,6 +98,15 @@ export class Mastodon extends Gateway {
   }
 
   /**
+   * Starting direct timeline streaming
+   * @return Instance of EventEmitter
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
+   */
+  public streamDirectTimeline (): EventHandler {
+    return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'direct' });
+  }
+
+  /**
    * Fetch access token from authorization code
    * @param code code
    * @param client_id client_id of your app
