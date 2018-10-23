@@ -1,7 +1,7 @@
 {
   "name": "@lagunehq/core",
   "private": false,
-  "version": "1.3.6",
+  "version": "1.3.7-rc1",
   "description": "Mastodon API client for Browser and Node.js",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -9,8 +9,7 @@
     "test": "tslint -c tslint.yml 'src/**/*.{ts,tsx}'",
     "build": "tsc",
     "docs:build": "typedoc ./src --out ./docs --theme markdown --mdEngine gitbook --excludeNotExported",
-    "docs:serve": "gitbook serve",
-    "publish": "npm publish --access=public"
+    "docs:serve": "gitbook serve"
   },
   "repository": {
     "type": "git",
