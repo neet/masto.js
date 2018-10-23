@@ -1,18 +1,21 @@
 # @lagunehq/core
-Mastodon API client for TypeScript
+[![npm](https://img.shields.io/npm/v/@lagunehq/core.svg)](https://www.npmjs.com/package/@lagunehq/core)
+
+Most powerful Mastodon API client for TypeScript/JavaScript/Node.js/Browser
+
+## Whats is the deference between other Mastodon packages?
+- ✅ Georgeous hovering menu provided by TSDoc
+- ✅ Each API has each function so you don't need to type annoying API URLs
+- ✅ Static typing with TypeScript
 
 ## Installation
-**npm:**
 ```
 npm i @lagunehq/core --save
 ```
 
-**yarn:**
-```
-yarn add @lagunehq/core
-```
+<a href='https://www.patreon.com/neetshin'><img src='https://c5.patreon.com/external/logo/become_a_patron_button.png' alt='Become a patron' width='140px' /></a>
 
-## Using the api
+## Using the API
 Here's a simple example which creates a new status:
 ```ts
 import Mastodon from '@lagunehq/core';
@@ -29,3 +32,22 @@ client.createStatus('Toot from TypeScript').then((newStatus) => {
 ```
 
 All of available methods/interfaces are described in the [documentation](https://lagunehq.gitbook.io/core/_client_mastodon_/_client_mastodon_.mastodon)
+
+## Maintainers
+
+<table>
+  <tbody>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/neet">
+          <img width="120" height="120" src="https://github.com/neet.png?size=120">
+          </br>
+          Neetshin
+        </a>
+      </td>
+    </tr>
+  <tbody>
+</table>
+
+## License
+AGPLv3
