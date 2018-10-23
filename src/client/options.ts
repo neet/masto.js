@@ -7,8 +7,11 @@ export interface Pagination {
   /** Get a list of items with ID less than this value */
   max_id?: string;
 
-  /** Get a list of items with ID greater than this value */
+  /** Get a list of items with ID greater than this value including this ID */
   since_id?: string;
+
+  /** Get a list of items with ID greater than this value exluding this ID */
+  min_id?: number;
 
   /** Maximum number of items to get */
   limit?: number;
