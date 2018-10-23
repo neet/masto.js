@@ -65,7 +65,7 @@ export class Mastodon extends Gateway {
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
    */
   public streamCommunityTimeline (): EventHandler {
-    return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'public/local' });
+    return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'public:local' });
   }
 
   /**
@@ -85,6 +85,16 @@ export class Mastodon extends Gateway {
    */
   public streamTagTimeline (id: string): EventHandler {
     return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'hashtag', tag: id });
+  }
+
+  /**
+   * Starting local tag timeline streaming
+   * @param id ID of the tag
+   * @return Instance of EventEmitter
+   * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md
+   */
+  public streamLocalTagTimeline (id: string): EventHandler {
+    return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'hashtag:local', tag: id });
   }
 
   /**
@@ -242,8 +252,8 @@ export class Mastodon extends Gateway {
    * @return The target account's relationship
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account
    */
-  public ummuteAccount (id: string, notifications = true) {
-    return this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/ummute`, { notifications });
+  public unmuteAccount (id: string, notifications = true) {
+    return this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/unmute`, { notifications });
   }
 
   /**
