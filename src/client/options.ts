@@ -1,119 +1,120 @@
 import { AccountField } from '../entities/Account';
 import { FilterContext } from '../entities/Filter';
-import { NotificationTypes } from '../entities/Notification';
+import { NotificationType } from '../entities/Notification';
+import { PushSubscriptionAlerts } from '../entities/PushSubscription';
 import { StatusVisibility } from '../entities/Status';
 
 export interface Pagination {
   /** Get a list of items with ID less than this value */
-  max_id?: string;
+  max_id?: string | null;
 
   /** Get a list of items with ID greater than this value including this ID */
-  since_id?: string;
+  since_id?: string | null;
 
   /** Get a list of items with ID greater than this value exluding this ID */
-  min_id?: number;
+  min_id?: number | null;
 
   /** Maximum number of items to get */
-  limit?: number;
+  limit?: number | null;
 }
 
 export interface UpdateCredentials {
   /** The name to display in the user's profile */
-  display_name?: string;
+  display_name?: string | null;
 
   /** A new biography for the user */
-  note?: string;
+  note?: string | null;
 
   /** An avatar for the user (encoded using `multipart/form-data`) */
-  avatar?: File;
+  avatar?: File | null;
 
   /** A header image for the user (encoded using `multipart/form-data`) */
-  header?: File;
+  header?: File | null;
 
   /** Manually approve followers? */
-  locked?: boolean;
+  locked?: boolean | null;
 
   /** Array of profile metadata, each element has 'name' and 'value' */
-  fields_attributes?: AccountField[];
+  fields_attributes?: AccountField[] | null;
 }
 
 export interface SearchAccounts {
   /** Maximum number of matching accounts to return (default: `40`) */
-  limit?: number;
+  limit?: number | null;
 
   /** Limit the search to following (boolean, default `false`) */
-  following?: boolean;
+  following?: boolean | null;
 }
 
 export interface UploadMedia {
   /** A plain-text description of the media, for accessibility (max 420 chars) */
-  descriptions?: string;
+  descriptions?: string | null;
 
   /** Focal point: Two floating points, comma-delimited */
-  focus?: string;
+  focus?: string | null;
 }
 
 export type UpdateMedia = UploadMedia;
 
 export interface FetchNotifications extends Pagination {
   /** Array of notifications to exclude (Allowed values: "follow", "favourite", "reblog", "mention") */
-  exclude_types?: NotificationTypes[];
+  exclude_types?: NotificationType[] | null;
 }
 
 export interface CreateStatus {
   /** local ID of the status you want to reply to */
-  in_reply_to_id?: string;
+  in_reply_to_id?: string | null;
 
   /** Array of media IDs to attach to the status (maximum 4) */
-  media_ids?: string[];
+  media_ids?: string[] | null;
 
   /** Set this to mark the media of the status as NSFW */
-  sensitive?: boolean;
+  sensitive?: boolean | null;
 
   /** Text to be shown as a warning before the actual content */
-  spoiler_text?: string;
+  spoiler_text?: string | null;
 
   /** Either "direct", "private", "unlisted" or "public" */
-  visibility?: StatusVisibility;
+  visibility?: StatusVisibility | null;
 
   /** ISO 639-2 language code of the toot, to skip automatic detection */
-  language?: string;
+  language?: string | null;
 }
 
 export interface FetchTimeline extends Pagination {
   /** Only return statuses originating from this instance (public and tag timelines only) */
-  local?: boolean;
+  local?: boolean | null;
 
   /** Only return statuses that have media attachments */
-  only_media?: boolean;
+  only_media?: boolean | null;
 }
 
 export interface FetchAccountStatuses {
   /** Only return statuses that have media attachments */
-  only_media?: boolean;
+  only_media?: boolean | null;
 
   /** Only return statuses that have been pinned */
-  pinned?: boolean;
+  pinned?: boolean | null;
 
   /** Skip statuses that reply to other statuses */
-  exclude_replies?: boolean;
+  exclude_replies?: boolean | null;
 }
 
 export interface UpdateFilter {
   /** String that contains keyword or phrase */
-  phrase?: string;
+  phrase?: string | null;
 
   /** Array of strings that means filtering context. each string is one of `home`, `notifications`, `public`, `thread`. At least one context must be specified */
-  context?: FilterContext;
+  context?: FilterContext | null;
 
   /** Filtered toots will disappear irreversibly, even if filter is later removed */
-  irreversible?: boolean;
+  irreversible?: boolean | null;
 
   /** Boolean that indicates word match. */
-  whole_word?: boolean;
+  whole_word?: boolean | null;
 
   /** The simestamp for expire time */
-  expires_in?: number;
+  expires_in?: number | null;
 }
 
 export type CreateFilter = Pick<UpdateFilter, 'irreversible'|'whole_word'|'expires_in'>;
@@ -132,36 +133,12 @@ export interface AddPushSubscription {
     }
   };
   data: {
-    alerts: {
-      /** Boolean of whether you want to receive follow notification event. */
-      follow: boolean;
-
-      /** Boolean of whether you want to receive favourite notification event. */
-      favourite: boolean;
-
-      /** Boolean of whether you want to receive reblog notification event. */
-      reblog: boolean;
-
-      /** Boolean of whether you want to receive mention notification event. */
-      mention: boolean;
-    },
+    alerts: PushSubscriptionAlerts,
   };
 }
 
 export interface UpdatePushSubscription {
   data: {
-    alerts: {
-      /** Boolean of whether you want to receive follow notification event. */
-      follow: boolean;
-
-      /** Boolean of whether you want to receive favourite notification event. */
-      favourite: boolean;
-
-      /** Boolean of whether you want to receive reblog notification event. */
-      reblog: boolean;
-
-      /** Boolean of whether you want to receive mention notification event. */
-      mention: boolean;
-    },
+    alerts: PushSubscriptionAlerts,
   };
 }

@@ -1,18 +1,23 @@
-import { Account, AccountField } from './Account';
+import { Account, Field } from './Account';
 import { StatusVisibility } from './Status';
 
 export interface Credentials extends Account {
-  source: {
-    /** Selected preference: Default privacy of new toots */
-    privacy: StatusVisibility;
+  source: Source;
+}
 
-    /** Selected preference: Mark media as sensitive by default? */
-    sensitive: boolean;
+export interface Source {
+  /** Selected preference: Default privacy of new toots */
+  privacy?: StatusVisibility | null;
 
-    /** Plain-text version of the account's `note` */
-    note: string;
+  /** Selected preference: Mark media as sensitive by default? */
+  sensitive?: boolean | null;
 
-    /** Plain-text version of the account's field */
-    fields: AccountField;
-  };
+  /** User's default language */
+  language: string | null;
+
+  /** Plain-text version of the account's `note` */
+  note: string;
+
+  /** Plain-text version of the account's field */
+  fields: Field;
 }

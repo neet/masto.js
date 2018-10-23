@@ -5,8 +5,6 @@ import { Emoji } from './Emoji';
 import { Mention } from './Mention';
 import { Tag } from './Tag';
 
-export type StatusVisibility = 'public'|'unlisted'|'private'|'direct';
-
 export interface Status {
   /** The ID of the status */
   id: string;
@@ -15,19 +13,19 @@ export interface Status {
   uri: string;
 
   /** URL to the status page (can be remote) */
-  url?: string;
+  url?: string | null;
 
   /** The Account which posted the status */
   account: Account;
 
   /** `null` or the ID of the status it replies to */
-  in_reply_to_id?: null|string;
+  in_reply_to_id?: string | null;
 
   /** `null` or the ID of the account it replies to */
-  in_reply_to_account_id?: null|string;
+  in_reply_to_account_id?: string | null;
 
   /** `null` or the reblogged Status */
-  reblog?: null|Status;
+  reblog?: Status | null;
 
   /** Body of the status; this will contain HTML (remote HTML already sanitized) */
   content: string;
@@ -48,13 +46,13 @@ export interface Status {
   favourites_count: number;
 
   /** Whether the authenticated user has reblogged the status */
-  reblogged?: boolean;
+  reblogged?: boolean | null;
 
   /** Whether the authenticated user has favourited the status */
-  favourited?: boolean;
+  favourited?: boolean | null;
 
   /** Whether the authenticated user has muted the conversation this status from */
-  muted?: boolean;
+  muted?: boolean | null;
 
   /** Whether media attachments should be hidden by default */
   sensitive: boolean;
@@ -75,11 +73,13 @@ export interface Status {
   tags: Tag[];
 
   /** Application from which the status was posted */
-  application?: Application;
+  application?: Application | null;
 
   /** The detected language for the status, if detected */
-  language?: string;
+  language?: string | null;
 
   /** Whether this is the pinned status for the account that posted it */
-  pinned?: boolean;
+  pinned?: boolean | null;
 }
+
+export type StatusVisibility = 'public'|'unlisted'|'private'|'direct';

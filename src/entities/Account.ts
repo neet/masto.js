@@ -1,13 +1,5 @@
 import { Emoji } from './Emoji';
 
-export interface AccountField {
-  /** (2.4 or later) Label of profile metadata field. */
-  name?: string;
-
-  /** (2.4 or later) Value of profile metadata field. */
-  value?: string;
-}
-
 export interface Account {
   /** The ID of the account */
   id: string;
@@ -25,7 +17,7 @@ export interface Account {
   locked: boolean;
 
   /** Boolean to indicate that the account performs automated actions */
-  bot?: boolean;
+  bot?: boolean | null;
 
   /** The time the account was created */
   created_at: string;
@@ -61,8 +53,16 @@ export interface Account {
   emojis: Emoji[];
 
   /** If the owner decided to switch accounts, new account is in this attribute */
-  moved?: boolean;
+  moved?: boolean | null;
 
   /** Array of profile metadata field, each element has 'name' and 'value' */
-  fields?: AccountField[];
+  fields?: AccountField[] | null;
+}
+
+export interface AccountField {
+  /** (2.4 or later) Label of profile metadata field. */
+  name?: string | null;
+
+  /** (2.4 or later) Value of profile metadata field. */
+  value?: string | null;
 }
