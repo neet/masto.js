@@ -25,16 +25,16 @@
   },
   "homepage": "https://github.com/lagunehq/core#readme",
   "dependencies": {
-    "@types/http-link-header": "^0.6.2",
-    "@types/node-fetch": "^2.1.2",
-    "@types/query-string": "^6.1.0",
-    "@types/websocket": "^0.0.39",
     "axios": "^0.18.0",
     "eventemitter3": "^3.1.0",
     "http-link-header": "^0.8.0",
     "websocket": "^1.0.26"
   },
   "devDependencies": {
+    "@types/http-link-header": "^0.6.2",
+    "@types/node-fetch": "^2.1.2",
+    "@types/query-string": "^6.1.0",
+    "@types/websocket": "^0.0.39",
     "gitbook-cli": "^2.3.2",
     "tslint": "^5.11.0",
     "typedoc": "^0.12.0",
