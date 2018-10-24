@@ -956,8 +956,6 @@ export class Mastodon extends Gateway {
    * @return An array of Conversation
    */
   public async fetchConversations () {
-    // tslint:disable-next-line no-console
-    console.warn('Conversations API is not in stable release yet. See https://github.com/tootsuite/mastodon/releases/tag/v2.6.0rc1');
     return (await this.get<Conversation[]>(`${this.url}/api/v1/conversations`)).data;
   }
 
