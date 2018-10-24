@@ -10,10 +10,10 @@
 
 ## `<Optional>` author_name
 
-**● author_name**: * `undefined` &#124; `string`
+**● author_name**: * `string` &#124; `null`
 *
 
-*Defined in [entities/Card.ts:20](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Card.ts#L20)*
+*Defined in [entities/Card.ts:18](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Card.ts#L18)*
 
 OEmbed data
 
@@ -22,10 +22,10 @@ ___
 
 ## `<Optional>` author_url
 
-**● author_url**: * `undefined` &#124; `string`
+**● author_url**: * `string` &#124; `null`
 *
 
-*Defined in [entities/Card.ts:23](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Card.ts#L23)*
+*Defined in [entities/Card.ts:21](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Card.ts#L21)*
 
 OEmbed data
 
@@ -36,7 +36,7 @@ ___
 
 **● description**: *`string`*
 
-*Defined in [entities/Card.ts:11](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Card.ts#L11)*
+*Defined in [entities/Card.ts:9](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Card.ts#L9)*
 
 The card description
 
@@ -45,10 +45,10 @@ ___
 
 ## `<Optional>` height
 
-**● height**: * `undefined` &#124; `string`
+**● height**: * `string` &#124; `null`
 *
 
-*Defined in [entities/Card.ts:38](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Card.ts#L38)*
+*Defined in [entities/Card.ts:36](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Card.ts#L36)*
 
 OEmbed data
 
@@ -57,10 +57,10 @@ ___
 
 ## `<Optional>` html
 
-**● html**: * `undefined` &#124; `string`
+**● html**: * `string` &#124; `null`
 *
 
-*Defined in [entities/Card.ts:32](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Card.ts#L32)*
+*Defined in [entities/Card.ts:30](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Card.ts#L30)*
 
 OEmbed data
 
@@ -69,10 +69,10 @@ ___
 
 ## `<Optional>` image
 
-**● image**: * `undefined` &#124; `string`
+**● image**: * `string` &#124; `null`
 *
 
-*Defined in [entities/Card.ts:14](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Card.ts#L14)*
+*Defined in [entities/Card.ts:12](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Card.ts#L12)*
 
 The image associated with the card, if any
 
@@ -81,10 +81,10 @@ ___
 
 ## `<Optional>` provider_name
 
-**● provider_name**: * `undefined` &#124; `string`
+**● provider_name**: * `string` &#124; `null`
 *
 
-*Defined in [entities/Card.ts:26](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Card.ts#L26)*
+*Defined in [entities/Card.ts:24](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Card.ts#L24)*
 
 OEmbed data
 
@@ -93,10 +93,10 @@ ___
 
 ## `<Optional>` provider_url
 
-**● provider_url**: * `undefined` &#124; `string`
+**● provider_url**: * `string` &#124; `null`
 *
 
-*Defined in [entities/Card.ts:29](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Card.ts#L29)*
+*Defined in [entities/Card.ts:27](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Card.ts#L27)*
 
 OEmbed data
 
@@ -107,7 +107,7 @@ ___
 
 **● title**: *`string`*
 
-*Defined in [entities/Card.ts:8](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Card.ts#L8)*
+*Defined in [entities/Card.ts:6](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Card.ts#L6)*
 
 The title of the card
 
@@ -118,7 +118,7 @@ ___
 
 **● type**: *[CardType](../modules/_entities_card_.md#cardtype)*
 
-*Defined in [entities/Card.ts:17](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Card.ts#L17)*
+*Defined in [entities/Card.ts:15](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Card.ts#L15)*
 
 "link", "photo", "video", or "rich"
 
@@ -129,7 +129,7 @@ ___
 
 **● url**: *`string`*
 
-*Defined in [entities/Card.ts:5](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Card.ts#L5)*
+*Defined in [entities/Card.ts:3](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Card.ts#L3)*
 
 The url associated with the card
 
@@ -138,10 +138,10 @@ ___
 
 ## `<Optional>` width
 
-**● width**: * `undefined` &#124; `string`
+**● width**: * `string` &#124; `null`
 *
 
-*Defined in [entities/Card.ts:35](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Card.ts#L35)*
+*Defined in [entities/Card.ts:33](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Card.ts#L33)*
 
 OEmbed data
 

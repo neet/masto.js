@@ -2,7 +2,7 @@
 
 # Hierarchy
 
-**InstanceUrls**
+**InstanceURLs**
 
 # Properties
 
@@ -12,7 +12,7 @@
 
 **● streaming_api**: *`string`*
 
-*Defined in [entities/Instance.ts:4](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Instance.ts#L4)*
+*Defined in [entities/Instance.ts:36](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Instance.ts#L36)*
 
 ___
 

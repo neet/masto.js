@@ -12,7 +12,7 @@
 
 **● x**: *`number`*
 
-*Defined in [entities/Attachment.ts:26](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Attachment.ts#L26)*
+*Defined in [entities/Attachment.ts:52](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Attachment.ts#L52)*
 
 ___
 <a id="y"></a>
@@ -21,7 +21,7 @@ ___
 
 **● y**: *`number`*
 
-*Defined in [entities/Attachment.ts:27](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Attachment.ts#L27)*
+*Defined in [entities/Attachment.ts:53](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Attachment.ts#L53)*
 
 ___
 

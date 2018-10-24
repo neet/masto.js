@@ -10,13 +10,11 @@
 
 ##  alerts
 
-**● alerts**: *`object`*
+**● alerts**: *[PushSubscriptionAlerts](_entities_pushsubscription_.pushsubscriptionalerts.md)*
 
-*Defined in [entities/PushSubscription.ts:12](https://github.com/lagunehq/core/blob/dae58ab/src/entities/PushSubscription.ts#L12)*
+*Defined in [entities/PushSubscription.ts:12](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/PushSubscription.ts#L12)*
 
 Map of 'notification event type' and 'push is requested or not'
-
-#### Type declaration
 
 ___
 <a id="endpoint"></a>
@@ -25,7 +23,7 @@ ___
 
 **● endpoint**: *`string`*
 
-*Defined in [entities/PushSubscription.ts:6](https://github.com/lagunehq/core/blob/dae58ab/src/entities/PushSubscription.ts#L6)*
+*Defined in [entities/PushSubscription.ts:6](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/PushSubscription.ts#L6)*
 
 The endpoint URL
 
@@ -36,7 +34,7 @@ ___
 
 **● id**: *`string`*
 
-*Defined in [entities/PushSubscription.ts:3](https://github.com/lagunehq/core/blob/dae58ab/src/entities/PushSubscription.ts#L3)*
+*Defined in [entities/PushSubscription.ts:3](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/PushSubscription.ts#L3)*
 
 The push subscription ID
 
@@ -47,7 +45,7 @@ ___
 
 **● server_key**: *`string`*
 
-*Defined in [entities/PushSubscription.ts:9](https://github.com/lagunehq/core/blob/dae58ab/src/entities/PushSubscription.ts#L9)*
+*Defined in [entities/PushSubscription.ts:9](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/PushSubscription.ts#L9)*
 
 The server public key for signature verification. (not for decoding)
 

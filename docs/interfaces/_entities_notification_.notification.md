@@ -12,7 +12,7 @@
 
 **● account**: *[Account](_entities_account_.account.md)*
 
-*Defined in [entities/Notification.ts:17](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Notification.ts#L17)*
+*Defined in [entities/Notification.ts:15](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Notification.ts#L15)*
 
 The Account sending the notification to the user
 
@@ -23,7 +23,7 @@ ___
 
 **● created_at**: *`string`*
 
-*Defined in [entities/Notification.ts:14](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Notification.ts#L14)*
+*Defined in [entities/Notification.ts:12](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Notification.ts#L12)*
 
 The time the notification was created
 
@@ -34,7 +34,7 @@ ___
 
 **● id**: *`string`*
 
-*Defined in [entities/Notification.ts:8](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Notification.ts#L8)*
+*Defined in [entities/Notification.ts:6](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Notification.ts#L6)*
 
 The notification ID
 
@@ -43,9 +43,10 @@ ___
 
 ## `<Optional>` status
 
-**● status**: *[Status](_entities_status_.status.md)*
+**● status**: * [Status](_entities_status_.status.md) &#124; `null`
+*
 
-*Defined in [entities/Notification.ts:20](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Notification.ts#L20)*
+*Defined in [entities/Notification.ts:18](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Notification.ts#L18)*
 
 The Status associated with the notification, if applicable
 
@@ -54,9 +55,9 @@ ___
 
 ##  type
 
-**● type**: *[NotificationTypes](../modules/_entities_notification_.md#notificationtypes)*
+**● type**: *[NotificationType](../modules/_entities_notification_.md#notificationtype)*
 
-*Defined in [entities/Notification.ts:11](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Notification.ts#L11)*
+*Defined in [entities/Notification.ts:9](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Notification.ts#L9)*
 
 One of: "mention", "reblog", "favourite", "follow"
 

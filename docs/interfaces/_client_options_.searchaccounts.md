@@ -10,24 +10,36 @@
 
 ## `<Optional>` following
 
-**● following**: * `undefined` &#124; `false` &#124; `true`
+**● following**: * `boolean` &#124; `null`
 *
 
-*Defined in [client/options.ts:42](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L42)*
+*Defined in [client/options.ts:61](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L61)*
 
-Limit the search to following (boolean, default `false`)
+Only who the user is following
 
 ___
 <a id="limit"></a>
 
 ## `<Optional>` limit
 
-**● limit**: * `undefined` &#124; `number`
+**● limit**: * `number` &#124; `null`
 *
 
-*Defined in [client/options.ts:39](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L39)*
+*Defined in [client/options.ts:55](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L55)*
 
 Maximum number of matching accounts to return (default: `40`)
+
+___
+<a id="resolve"></a>
+
+## `<Optional>` resolve
+
+**● resolve**: * `boolean` &#124; `null`
+*
+
+*Defined in [client/options.ts:58](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L58)*
+
+Attempt WebFinger look-up
 
 ___
 

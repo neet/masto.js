@@ -10,10 +10,10 @@
 
 ## `<Optional>` name
 
-**● name**: * `undefined` &#124; `string`
+**● name**: * `string` &#124; `null`
 *
 
-*Defined in [entities/Account.ts:5](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Account.ts#L5)*
+*Defined in [entities/Account.ts:65](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Account.ts#L65)*
 
 (2.4 or later) Label of profile metadata field.
 
@@ -22,10 +22,10 @@ ___
 
 ## `<Optional>` value
 
-**● value**: * `undefined` &#124; `string`
+**● value**: * `string` &#124; `null`
 *
 
-*Defined in [entities/Account.ts:8](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Account.ts#L8)*
+*Defined in [entities/Account.ts:68](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Account.ts#L68)*
 
 (2.4 or later) Value of profile metadata field.
 

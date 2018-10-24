@@ -10,10 +10,10 @@
 
 ## `<Optional>` descriptions
 
-**● descriptions**: * `undefined` &#124; `string`
+**● descriptions**: * `string` &#124; `null`
 *
 
-*Defined in [client/options.ts:47](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L47)*
+*Defined in [client/options.ts:66](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L66)*
 
 A plain-text description of the media, for accessibility (max 420 chars)
 
@@ -22,10 +22,10 @@ ___
 
 ## `<Optional>` focus
 
-**● focus**: * `undefined` &#124; `string`
+**● focus**: * `string` &#124; `null`
 *
 
-*Defined in [client/options.ts:50](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L50)*
+*Defined in [client/options.ts:69](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L69)*
 
 Focal point: Two floating points, comma-delimited
 

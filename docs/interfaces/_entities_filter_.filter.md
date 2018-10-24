@@ -12,7 +12,7 @@
 
 **● context**: *[FilterContext](../modules/_entities_filter_.md#filtercontext)[]*
 
-*Defined in [entities/Filter.ts:13](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Filter.ts#L13)*
+*Defined in [entities/Filter.ts:9](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Filter.ts#L9)*
 
 Array of strings that indicate filter context. each string is ont of `home`, `notifications`, `public`, `thread`
 
@@ -21,10 +21,10 @@ ___
 
 ## `<Optional>` expires_at
 
-**● expires_at**: * `undefined` &#124; `string`
+**● expires_at**: * `string` &#124; `null`
 *
 
-*Defined in [entities/Filter.ts:16](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Filter.ts#L16)*
+*Defined in [entities/Filter.ts:12](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Filter.ts#L12)*
 
 String such as `2018-07-06T00:59:13.161Z` that indicates when this filter is expired.
 
@@ -35,7 +35,7 @@ ___
 
 **● id**: *`number`*
 
-*Defined in [entities/Filter.ts:7](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Filter.ts#L7)*
+*Defined in [entities/Filter.ts:3](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Filter.ts#L3)*
 
 ID of the filter
 
@@ -46,7 +46,7 @@ ___
 
 **● irreversible**: *`boolean`*
 
-*Defined in [entities/Filter.ts:19](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Filter.ts#L19)*
+*Defined in [entities/Filter.ts:15](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Filter.ts#L15)*
 
 Boolean that indicates irreversible server side filtering.
 
@@ -57,7 +57,7 @@ ___
 
 **● phrase**: *`string`*
 
-*Defined in [entities/Filter.ts:10](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Filter.ts#L10)*
+*Defined in [entities/Filter.ts:6](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Filter.ts#L6)*
 
 Keyword or phrase
 
@@ -68,7 +68,7 @@ ___
 
 **● whole_word**: *`string`*
 
-*Defined in [entities/Filter.ts:22](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Filter.ts#L22)*
+*Defined in [entities/Filter.ts:18](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Filter.ts#L18)*
 
 Boolean that indicates word match.
 

@@ -16,7 +16,7 @@
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[constructor](_client_gateway_.gateway.md#constructor)*
 
-*Defined in [client/Gateway.ts:19](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L19)*
+*Defined in [client/Gateway.ts:19](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Gateway.ts#L19)*
 
 **Parameters:**
 
@@ -38,7 +38,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[streamingUrl](_client_gateway_.gateway.md#streamingurl)*
 
-*Defined in [client/Gateway.ts:16](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L16)*
+*Defined in [client/Gateway.ts:16](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Gateway.ts#L16)*
 
 Streaming API URL of the instance
 
@@ -52,7 +52,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[token](_client_gateway_.gateway.md#token)*
 
-*Defined in [client/Gateway.ts:19](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L19)*
+*Defined in [client/Gateway.ts:19](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Gateway.ts#L19)*
 
 API token of the user
 
@@ -65,7 +65,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[url](_client_gateway_.gateway.md#url)*
 
-*Defined in [client/Gateway.ts:13](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L13)*
+*Defined in [client/Gateway.ts:13](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Gateway.ts#L13)*
 
 Rest API URL of the instance
 
@@ -79,12 +79,10 @@ ___
 
 ▸ **addAccountToList**(id: *`string`*, account_ids: *`string`[]*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:509](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L509)*
+*Defined in [client/Mastodon.ts:587](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L587)*
 
-Adding accounts to a list
-
-*   Note: Only accounts already followed by the authenticated user can be added to a list.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#addingremoving-accounts-tofrom-a-list](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#addingremoving-accounts-tofrom-a-list)
+Add accounts to a list.
+*__see__*: [https://docs.joinmastodon.org/api/rest/lists/#post-api-v1-lists-id-accounts](https://docs.joinmastodon.org/api/rest/lists/#post-api-v1-lists-id-accounts)
 
 **Parameters:**
 
@@ -103,17 +101,10 @@ ___
 
 ▸ **addPushSubscription**(options: *[AddPushSubscription](../interfaces/_client_options_.addpushsubscription.md)*): `Promise`<[PushSubscription](../interfaces/_entities_pushsubscription_.pushsubscription.md)>
 
-*Defined in [client/Mastodon.ts:612](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L612)*
+*Defined in [client/Mastodon.ts:720](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L720)*
 
-Adding push subscription
-
-*   Each access token can have one push subscription. If you post new subscription. the old subscription is deleted.
-*   The endpoint URL is called when notification event is happen, and its payload is encrypted according to The Web Push Protocol.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#adding-push-subscription](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#adding-push-subscription)
-
-*__see__*: [https://developers.google.com/web/updates/2016/03/web-push-encryption](https://developers.google.com/web/updates/2016/03/web-push-encryption)
-
-*__see__*: [https://developers.google.com/web/fundamentals/push-notifications/web-push-protocol](https://developers.google.com/web/fundamentals/push-notifications/web-push-protocol)
+Add a Web Push API subscription to receive notifications. See also: Web Push API
+*__see__*: [https://docs.joinmastodon.org/api/rest/notifications/#put-api-v1-push-subscription](https://docs.joinmastodon.org/api/rest/notifications/#put-api-v1-push-subscription)
 
 **Parameters:**
 
@@ -122,7 +113,7 @@ Adding push subscription
 | options | [AddPushSubscription](../interfaces/_client_options_.addpushsubscription.md) |  Form data |
 
 **Returns:** `Promise`<[PushSubscription](../interfaces/_entities_pushsubscription_.pushsubscription.md)>
-Returns the Push Subscription
+Returns Push Subscription
 
 ___
 <a id="authorizefollowrequest"></a>
@@ -131,10 +122,10 @@ ___
 
 ▸ **authorizeFollowRequest**(id: *`string`*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:367](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L367)*
+*Defined in [client/Mastodon.ts:451](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L451)*
 
-Authorizing follow requests
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#authorizing-or-rejecting-follow-requests](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#authorizing-or-rejecting-follow-requests)
+Allow the account to follow the user.
+*__see__*: [https://docs.joinmastodon.org/api/rest/follow-requests/#post-api-v1-follow-requests-id-authorize](https://docs.joinmastodon.org/api/rest/follow-requests/#post-api-v1-follow-requests-id-authorize)
 
 **Parameters:**
 
@@ -152,10 +143,10 @@ ___
 
 ▸ **blockAccount**(id: *`string`*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
 
-*Defined in [client/Mastodon.ts:203](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L203)*
+*Defined in [client/Mastodon.ts:271](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L271)*
 
-Blocking an account
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blockingunblocking-an-account](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blockingunblocking-an-account)
+Block an account
+*__see__*: [https://docs.joinmastodon.org/api/rest/blocks/#post-api-v1-accounts-id-block](https://docs.joinmastodon.org/api/rest/blocks/#post-api-v1-accounts-id-block)
 
 **Parameters:**
 
@@ -164,7 +155,7 @@ Blocking an account
 | id | `string` |  ID of the target account |
 
 **Returns:** `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
-The target account's relationship
+Returns Relationship
 
 ___
 <a id="blockdomain"></a>
@@ -173,10 +164,10 @@ ___
 
 ▸ **blockDomain**(domain: *`string`*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:325](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L325)*
+*Defined in [client/Mastodon.ts:310](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L310)*
 
-Blocking a domain
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blocking-a-domain](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blocking-a-domain)
+Block a domain to hide all public posts from it, all notifications from it, and remove all followers from it.
+*__see__*: [https://docs.joinmastodon.org/api/rest/domain-blocks/#post-api-v1-domain-blocks](https://docs.joinmastodon.org/api/rest/domain-blocks/#post-api-v1-domain-blocks)
 
 **Parameters:**
 
@@ -194,12 +185,10 @@ ___
 
 ▸ **clearNotifications**(): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:587](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L587)*
+*Defined in [client/Mastodon.ts:700](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L700)*
 
-Clearing notifications
-
-*   Deletes all notifications from the Mastodon server for the authenticated user.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#clearing-notifications](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#clearing-notifications)
+Delete all notifications from the server.
+*__see__*: [https://docs.joinmastodon.org/api/rest/notifications/#post-api-v1-notifications-clear](https://docs.joinmastodon.org/api/rest/notifications/#post-api-v1-notifications-clear)
 
 **Returns:** `Promise`<`void`>
 Returns an empty object.
@@ -209,26 +198,24 @@ ___
 
 ##  createApp
 
-▸ **createApp**(client_name: *`string`*, redirect_uris: *`string`*, scopes: *`string`*, website?: * `undefined` &#124; `string`*): `Promise`<[OAuth](../interfaces/_entities_oauth_.oauth.md)>
+▸ **createApp**(client_name: *`string`*, redirect_uris: *`string`*, scopes: *`string`*, website?: * `undefined` &#124; `string`*): `Promise`<[OAuth](../interfaces/_entities_application_.oauth.md)>
 
-*Defined in [client/Mastodon.ts:293](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L293)*
+*Defined in [client/Mastodon.ts:242](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L242)*
 
-Registering an application
-
-*   These values should be requested in the app itself from the API for each new app install + mastodon domain combo, and stored in the app for future requests.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#registering-an-application](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#registering-an-application)
+Create a new application to obtain OAuth2 credentials.
+*__see__*: [https://docs.joinmastodon.org/api/rest/apps/#post-api-v1-apps](https://docs.joinmastodon.org/api/rest/apps/#post-api-v1-apps)
 
 **Parameters:**
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
 | client_name | `string` |  Name of your application |
-| redirect_uris | `string` |  Where the user should be redirected after authorization (for no redirect, use \`urn:ietf:wg:oauth:2.0:oob\`) |
-| scopes | `string` |  This can be a space-separated list of the following items: "read", "write" and "follow" (see this page for details on what the scopes do) |
+| redirect_uris | `string` |  Where the user should be redirected after authorization |
+| scopes | `string` |  Space separated list of scopes |
 | `Optional` website |  `undefined` &#124; `string`|  URL to the homepage of your app |
 
-**Returns:** `Promise`<[OAuth](../interfaces/_entities_oauth_.oauth.md)>
-Returns `id`, `client_id` and `client_secret` which can be used with OAuth authentication in your 3rd party app.
+**Returns:** `Promise`<[OAuth](../interfaces/_entities_application_.oauth.md)>
+Returns App with client_id and client_secret
 
 ___
 <a id="createfiler"></a>
@@ -237,20 +224,21 @@ ___
 
 ▸ **createFiler**(phrase: *`string`*, context: *[FilterContext](../modules/_entities_filter_.md#filtercontext)*, options?: *`Options.CreateFilter`*): `Promise`<[Filter](../interfaces/_entities_filter_.filter.md)>
 
-*Defined in [client/Mastodon.ts:956](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L956)*
+*Defined in [client/Mastodon.ts:400](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L400)*
 
-Creating a filter
+Create a new filter.
+*__see__*: [https://docs.joinmastodon.org/api/rest/filters/#post-api-v1-filters](https://docs.joinmastodon.org/api/rest/filters/#post-api-v1-filters)
 
 **Parameters:**
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| phrase | `string` |  String that contains keyword or phrase |
+| phrase | `string` |  Keyword or phrase to filter |
 | context | [FilterContext](../modules/_entities_filter_.md#filtercontext) |  Array of strings that means filtering context. each string is one of \`home\`, \`notifications\`, \`public\`, \`thread\`. At least one context must be specified |
 | `Optional` options | `Options.CreateFilter` |  Optional parameters |
 
 **Returns:** `Promise`<[Filter](../interfaces/_entities_filter_.filter.md)>
-A filter
+Returns Filter
 
 ___
 <a id="createlist"></a>
@@ -259,10 +247,10 @@ ___
 
 ▸ **createList**(title: *`string`*): `Promise`<[List](../interfaces/_entities_list_.list.md)>
 
-*Defined in [client/Mastodon.ts:476](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L476)*
+*Defined in [client/Mastodon.ts:555](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L555)*
 
-Creating a list
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#creating-and-updating-a-list](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#creating-and-updating-a-list)
+Create a new list.
+*__see__*: [https://docs.joinmastodon.org/api/rest/lists/#post-api-v1-lists](https://docs.joinmastodon.org/api/rest/lists/#post-api-v1-lists)
 
 **Parameters:**
 
@@ -271,43 +259,41 @@ Creating a list
 | title | `string` |  The title of the list |
 
 **Returns:** `Promise`<[List](../interfaces/_entities_list_.list.md)>
-A new List.
+Returns List
 
 ___
 <a id="createstatus"></a>
 
 ##  createStatus
 
-▸ **createStatus**(status: *`string`*, options?: *`Options.CreateStatus`*, idempotencyKey?: * `undefined` &#124; `string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
+▸ **createStatus**(status: *`string`*, options?: *`Options.CreateStatus`*, idempotencyKey?: * `undefined` &#124; `string`*): `Promise`<`Object`>
 
-*Defined in [client/Mastodon.ts:748](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L748)*
+*Defined in [client/Mastodon.ts:835](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L835)*
 
-Posting a new status
-
-*   Note: In order to prevent duplicate statuses, this endpoint accepts an `Idempotency-Key` header, which should be set to a unique string for each new status. In the event of a network error, a request can be retried with the same `Idempotency-Key`. Only one status will be created regardless of how many requests with the same `Idempotency-Key` did go through. See [https://stripe.com/blog/idempotency](https://stripe.com/blog/idempotency) for more on idempotency and idempotency keys.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#posting-a-new-status](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#posting-a-new-status)
+Publish a new status.
+*__see__*: [https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses](https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses)
 
 **Parameters:**
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
 | status | `string` |  The text of the status |
-| `Optional` options | `Options.CreateStatus` |  Form data |
+| `Optional` options | `Options.CreateStatus` |  Optional parameter |
 | `Optional` idempotencyKey |  `undefined` &#124; `string`|  The Idempotency-Key of request header |
 
-**Returns:** `Promise`<[Status](../interfaces/_entities_status_.status.md)>
-The new Status
+**Returns:** `Promise`<`Object`>
+Returns Status
 
 ___
 <a id="delete"></a>
 
 ## `<Protected>` delete
 
-▸ **delete**<`T`>(url: *`string`*, body?: *`object`*, options?: *`object`*, parse?: *`boolean`*): `Promise`<`T`>
+▸ **delete**<`T`>(url: *`string`*, body?: *`object`*, options?: *`object`*): `Promise`<`AxiosResponse`<`T`>>
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[delete](_client_gateway_.gateway.md#delete)*
 
-*Defined in [client/Gateway.ts:162](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L162)*
+*Defined in [client/Gateway.ts:181](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Gateway.ts#L181)*
 
 HTTP DELETE
 
@@ -321,9 +307,8 @@ HTTP DELETE
 | url | `string` | - |  URL to request |
 | `Default value` body | `object` |  {} |  Payload |
 | `Default value` options | `object` |  {} |  Fetch API options |
-| `Default value` parse | `boolean` | true |  Whether parse response before return |
 
-**Returns:** `Promise`<`T`>
+**Returns:** `Promise`<`AxiosResponse`<`T`>>
 
 ___
 <a id="dissmissnotification"></a>
@@ -332,18 +317,16 @@ ___
 
 ▸ **dissmissNotification**(id: *`string`*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:598](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L598)*
+*Defined in [client/Mastodon.ts:710](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L710)*
 
-Dismissing a single notification
-
-*   Deletes a single notification from the Mastodon server for the authenticated user.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#dismissing-a-single-notification](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#dismissing-a-single-notification)
+Delete a single notification from the server.
+*__see__*: [https://docs.joinmastodon.org/api/rest/notifications/#post-api-v1-notifications-dismiss](https://docs.joinmastodon.org/api/rest/notifications/#post-api-v1-notifications-dismiss)
 
 **Parameters:**
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| id | `string` |  ID of the notification |
+| id | `string` |  Notification ID |
 
 **Returns:** `Promise`<`void`>
 Returns an empty object.
@@ -355,10 +338,10 @@ ___
 
 ▸ **favouriteStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:791](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L791)*
+*Defined in [client/Mastodon.ts:369](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L369)*
 
-Favouriting status
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#favouritingunfavouriting-a-status](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#favouritingunfavouriting-a-status)
+Favourite a status.
+*__see__*: [https://docs.joinmastodon.org/api/rest/favourites/#post-api-v1-statuses-id-favourite](https://docs.joinmastodon.org/api/rest/favourites/#post-api-v1-statuses-id-favourite)
 
 **Parameters:**
 
@@ -367,7 +350,7 @@ Favouriting status
 | id | `string` |  ID of the target status |
 
 **Returns:** `Promise`<[Status](../interfaces/_entities_status_.status.md)>
-The target status
+Returns Status
 
 ___
 <a id="fetchaccesstoken"></a>
@@ -376,10 +359,12 @@ ___
 
 ▸ **fetchAccessToken**(code: *`string`*, client_id: *`string`*, client_secret: *`string`*, redirect_uri: *`string`*, grant_type?: *`string`*): `Promise`<`object`>
 
-*Defined in [client/Mastodon.ts:108](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L108)*
+*Defined in [client/Mastodon.ts:125](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L125)*
 
 Fetch access token from authorization code
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/OAuth-details.md](https://github.com/tootsuite/documentation/blob/master/Using-the-API/OAuth-details.md)
+*__see__*: [https://docs.joinmastodon.org/api/permissions/](https://docs.joinmastodon.org/api/permissions/)
+
+*__see__*: [https://docs.joinmastodon.org/api/authentication/](https://docs.joinmastodon.org/api/authentication/)
 
 **Parameters:**
 
@@ -400,10 +385,10 @@ ___
 
 ▸ **fetchAccount**(id: *`string`*): `Promise`<[Account](../interfaces/_entities_account_.account.md)>
 
-*Defined in [client/Mastodon.ts:118](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L118)*
+*Defined in [client/Mastodon.ts:135](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L135)*
 
 Fetching an account
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-an-account](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-an-account)
+*__see__*: [https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id](https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id)
 
 **Parameters:**
 
@@ -412,7 +397,7 @@ Fetching an account
 | id | `string` |  ID of the account |
 
 **Returns:** `Promise`<[Account](../interfaces/_entities_account_.account.md)>
-An account
+Returns Account
 
 ___
 <a id="fetchaccountfollowers"></a>
@@ -421,12 +406,10 @@ ___
 
 ▸ **fetchAccountFollowers**(id: *`string`*, options?: *`Options.Pagination`*): `AsyncIterableIterator`< `string`[] &#124; `object`[]>
 
-*Defined in [client/Mastodon.ts:149](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L149)*
+*Defined in [client/Mastodon.ts:165](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L165)*
 
-Getting an account's followers
-
-*   Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-followers](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-followers)
+Accounts which follow the given account.
+*__see__*: [https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-followers](https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-followers)
 
 **Parameters:**
 
@@ -436,7 +419,7 @@ Getting an account's followers
 | `Optional` options | `Options.Pagination` |  Query paramerters |
 
 **Returns:** `AsyncIterableIterator`< `string`[] &#124; `object`[]>
-An array of accounts
+Returns array of Account
 
 ___
 <a id="fetchaccountfollowing"></a>
@@ -445,12 +428,10 @@ ___
 
 ▸ **fetchAccountFollowing**(id: *`string`*, options?: *`Options.Pagination`*): `AsyncIterableIterator`< `string`[] &#124; `object`[]>
 
-*Defined in [client/Mastodon.ts:161](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L161)*
+*Defined in [client/Mastodon.ts:176](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L176)*
 
-Getting who account is following
-
-*   Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-who-account-is-following](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-who-account-is-following)
+Accounts which the given account is following.
+*__see__*: [https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-following](https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-following)
 
 **Parameters:**
 
@@ -460,66 +441,62 @@ Getting who account is following
 | `Optional` options | `Options.Pagination` |  Query parameters |
 
 **Returns:** `AsyncIterableIterator`< `string`[] &#124; `object`[]>
-An array of accounts
+Returns array of Account
 
 ___
 <a id="fetchaccountrelationships"></a>
 
 ##  fetchAccountRelationships
 
-▸ **fetchAccountRelationships**(id: * `string` &#124; `string`[]*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)[]>
+▸ **fetchAccountRelationships**(id: *`string`[]*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)[]>
 
-*Defined in [client/Mastodon.ts:267](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L267)*
+*Defined in [client/Mastodon.ts:218](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L218)*
 
-Getting an account's relationships
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-relationships](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-relationships)
+Relationship of the user to the given accounts in regards to following, blocking, muting, etc.
+*__see__*: [https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-relationships](https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-relationships)
 
 **Parameters:**
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| id |  `string` &#124; `string`[]|  Account IDs (can be an array) |
+| id | `string`[] |  Array of account IDs |
 
 **Returns:** `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)[]>
-An array of Relationships of the current user to a list of given accounts.
+Returns array of Relationship
 
 ___
 <a id="fetchaccountstatuses"></a>
 
 ##  fetchAccountStatuses
 
-▸ **fetchAccountStatuses**(id: *`string`*, options?: *`Options.FetchTimeline`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
+▸ **fetchAccountStatuses**(id: *`string`*, options?: *`Options.FetchAccountStatuses`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 
-*Defined in [client/Mastodon.ts:173](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L173)*
+*Defined in [client/Mastodon.ts:187](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L187)*
 
-Getting an account's statuses
-
-*   Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-statuses](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-an-accounts-statuses)
+An account’s statuses.
+*__see__*: [https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-statuses](https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-statuses)
 
 **Parameters:**
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
 | id | `string` |  ID of the target account |
-| `Optional` options | `Options.FetchTimeline` |  Query parameters |
+| `Optional` options | `Options.FetchAccountStatuses` |  Query parameters |
 
 **Returns:** `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
-An array of statuses
+Returns array of Status
 
 ___
 <a id="fetchblocks"></a>
 
 ##  fetchBlocks
 
-▸ **fetchBlocks**(options?: *`Options.Pagination`*): `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
+▸ **fetchBlocks**(options?: *`Options.Pagination`*): `Promise`<`AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>>
 
-*Defined in [client/Mastodon.ts:304](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L304)*
+*Defined in [client/Mastodon.ts:261](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L261)*
 
-Fetching a user's blocks
-
-*   Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-blocks](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-blocks)
+Accounts the user has blocked.
+*__see__*: [https://docs.joinmastodon.org/api/rest/blocks/#get-api-v1-blocks](https://docs.joinmastodon.org/api/rest/blocks/#get-api-v1-blocks)
 
 **Parameters:**
 
@@ -527,8 +504,8 @@ Fetching a user's blocks
 | ------ | ------ | ------ |
 | `Optional` options | `Options.Pagination` |  Query parameters |
 
-**Returns:** `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
-An array of accounts blocked by the atuhenticated user
+**Returns:** `Promise`<`AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>>
+Returns array of Account
 
 ___
 <a id="fetchcommunitytimeline"></a>
@@ -537,13 +514,10 @@ ___
 
 ▸ **fetchCommunityTimeline**(options?: *`Options.FetchTimeline`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 
-*Defined in [client/Mastodon.ts:882](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L882)*
+*Defined in [client/Mastodon.ts:908](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L908)*
 
 Retrieving the community timeline (aka "Local timeline" in the UI)
-
-*   Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. However, it is possible to use the `id` of the returned objects to construct your own URLs.
-*   Does not require authentication.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline)
+*__see__*: [https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-public](https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-public)
 
 **Parameters:**
 
@@ -555,21 +529,33 @@ Retrieving the community timeline (aka "Local timeline" in the UI)
 An iterable of Statuses, most recent ones first.
 
 ___
+<a id="fetchconversations"></a>
+
+##  fetchConversations
+
+▸ **fetchConversations**(): `Promise`<[Conversation](../interfaces/_entities_conversation_.conversation.md)[]>
+
+*Defined in [client/Mastodon.ts:958](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L958)*
+
+Retrieving a conversation timeline
+
+**Returns:** `Promise`<[Conversation](../interfaces/_entities_conversation_.conversation.md)[]>
+An array of Conversation
+
+___
 <a id="fetchcustomemojis"></a>
 
 ##  fetchCustomEmojis
 
 ▸ **fetchCustomEmojis**(): `Promise`<[Emoji](../interfaces/_entities_emoji_.emoji.md)[]>
 
-*Defined in [client/Mastodon.ts:425](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L425)*
+*Defined in [client/Mastodon.ts:290](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L290)*
 
-Fetching current instance's custom emojis
-
-*   Does not require authentication
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-current-instances-custom-emojis](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-current-instances-custom-emojis)
+Custom emojis that are available on the server.
+*__see__*: [https://docs.joinmastodon.org/api/rest/custom-emojis/#get-api-v1-custom-emojis](https://docs.joinmastodon.org/api/rest/custom-emojis/#get-api-v1-custom-emojis)
 
 **Returns:** `Promise`<[Emoji](../interfaces/_entities_emoji_.emoji.md)[]>
-A list of Emoji
+Returns array of Emoji
 
 ___
 <a id="fetchdirecttimeline"></a>
@@ -578,10 +564,9 @@ ___
 
 ▸ **fetchDirectTimeline**(options?: *`Options.FetchTimeline`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 
-*Defined in [client/Mastodon.ts:928](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L928)*
+*Defined in [client/Mastodon.ts:948](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L948)*
 
 Retrieving a direct timeline
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline)
 
 **Parameters:**
 
@@ -599,12 +584,10 @@ ___
 
 ▸ **fetchDomainBlocks**(options?: *`Options.Pagination`*): `AsyncIterableIterator`<`string`[]>
 
-*Defined in [client/Mastodon.ts:315](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L315)*
+*Defined in [client/Mastodon.ts:300](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L300)*
 
-Fetching a user's blocked domains
-
-*   Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-blocked-domains](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-blocked-domains)
+Domains the user has blocked.
+*__see__*: [https://docs.joinmastodon.org/api/rest/domain-blocks/#get-api-v1-domain-blocks](https://docs.joinmastodon.org/api/rest/domain-blocks/#get-api-v1-domain-blocks)
 
 **Parameters:**
 
@@ -613,18 +596,19 @@ Fetching a user's blocked domains
 | `Optional` options | `Options.Pagination` |  Query parameters |
 
 **Returns:** `AsyncIterableIterator`<`string`[]>
-An array of strings
+Returns array of string.
 
 ___
 <a id="fetchendorsements"></a>
 
 ##  fetchEndorsements
 
-▸ **fetchEndorsements**(options?: *`Options.Pagination`*): `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
+▸ **fetchEndorsements**(options?: *`Options.Pagination`*): `Promise`<`AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>>
 
-*Defined in [client/Mastodon.ts:991](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L991)*
+*Defined in [client/Mastodon.ts:329](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L329)*
 
-Fetching endorsements
+Accounts the user chose to endorse.
+*__see__*: [https://docs.joinmastodon.org/api/rest/endorsements/#get-api-v1-endorsements](https://docs.joinmastodon.org/api/rest/endorsements/#get-api-v1-endorsements)
 
 **Parameters:**
 
@@ -632,22 +616,20 @@ Fetching endorsements
 | ------ | ------ |
 | `Optional` options | `Options.Pagination` |
 
-**Returns:** `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
-An array of Accounts
+**Returns:** `Promise`<`AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>>
+Returns array of Account
 
 ___
 <a id="fetchfavouritedstatuses"></a>
 
 ##  fetchFavouritedStatuses
 
-▸ **fetchFavouritedStatuses**(options?: *`Options.Pagination`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
+▸ **fetchFavouritedStatuses**(options?: *`Options.Pagination`*): `Promise`<`AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>>
 
-*Defined in [client/Mastodon.ts:346](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L346)*
+*Defined in [client/Mastodon.ts:359](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L359)*
 
-Fetching a user's favourites
-
-*   Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-favourites](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-favourites)
+Statuses the user has favourited.
+*__see__*: [https://docs.joinmastodon.org/api/rest/favourites/#get-api-v1-favourites](https://docs.joinmastodon.org/api/rest/favourites/#get-api-v1-favourites)
 
 **Parameters:**
 
@@ -655,33 +637,8 @@ Fetching a user's favourites
 | ------ | ------ | ------ |
 | `Optional` options | `Options.Pagination` |  Query parameters |
 
-**Returns:** `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
-Return an array of Statuses favourited by the authenticated user
-
-___
-<a id="fetchfavourites"></a>
-
-##  fetchFavourites
-
-▸ **fetchFavourites**(id: *`string`*, options?: *`Options.Pagination`*): `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
-
-*Defined in [client/Mastodon.ts:735](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L735)*
-
-Getting who favourited a status
-
-*   Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. It is not possible to use the `id` of the returned objects to construct your own URLs, because the results are sorted by an internal key.
-*   Does not require authentication
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-who-rebloggedfavourited-a-status](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-who-rebloggedfavourited-a-status)
-
-**Parameters:**
-
-| Param | Type | Description |
-| ------ | ------ | ------ |
-| id | `string` |  ID of target status |
-| `Optional` options | `Options.Pagination` |  Query parameters |
-
-**Returns:** `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
-An array of Accounts
+**Returns:** `Promise`<`AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>>
+Returns array of Status
 
 ___
 <a id="fetchfilter"></a>
@@ -690,9 +647,10 @@ ___
 
 ▸ **fetchFilter**(id: *`string`*): `Promise`<[Filter](../interfaces/_entities_filter_.filter.md)>
 
-*Defined in [client/Mastodon.ts:945](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L945)*
+*Defined in [client/Mastodon.ts:410](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L410)*
 
-Fethcing a filter by id
+A text filter.
+*__see__*: [https://docs.joinmastodon.org/api/rest/filters/#get-api-v1-filters-id](https://docs.joinmastodon.org/api/rest/filters/#get-api-v1-filters-id)
 
 **Parameters:**
 
@@ -701,7 +659,7 @@ Fethcing a filter by id
 | id | `string` |  ID of the filter |
 
 **Returns:** `Promise`<[Filter](../interfaces/_entities_filter_.filter.md)>
-A filter
+Returns Filter
 
 ___
 <a id="fetchfilters"></a>
@@ -710,9 +668,10 @@ ___
 
 ▸ **fetchFilters**(): `Promise`<[Filter](../interfaces/_entities_filter_.filter.md)[]>
 
-*Defined in [client/Mastodon.ts:936](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L936)*
+*Defined in [client/Mastodon.ts:388](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L388)*
 
-Fetching filters
+Text filters the user has configured that potentially must be applied client-side.
+*__see__*: [https://docs.joinmastodon.org/api/rest/filters/#get-api-v1-filters](https://docs.joinmastodon.org/api/rest/filters/#get-api-v1-filters)
 
 **Returns:** `Promise`<[Filter](../interfaces/_entities_filter_.filter.md)[]>
 An array of Filters
@@ -722,14 +681,12 @@ ___
 
 ##  fetchFollowRequests
 
-▸ **fetchFollowRequests**(options?: *`Options.Pagination`*): `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
+▸ **fetchFollowRequests**(options?: *`Options.Pagination`*): `Promise`<`AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>>
 
-*Defined in [client/Mastodon.ts:357](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L357)*
+*Defined in [client/Mastodon.ts:441](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L441)*
 
-Fetching a list of follow requests
-
-*   Note: `max_id` and `since_id` for next and previous pages are provided in the Link header. It is not possible to use the id of the returned objects to construct your own URLs, because the results are sorted by an internal key.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-list-of-follow-requests](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-list-of-follow-requests)
+Accounts that have requested to follow the user.
+*__see__*: [https://docs.joinmastodon.org/api/rest/follow-requests/#get-api-v1-follow-requests](https://docs.joinmastodon.org/api/rest/follow-requests/#get-api-v1-follow-requests)
 
 **Parameters:**
 
@@ -737,8 +694,8 @@ Fetching a list of follow requests
 | ------ | ------ | ------ |
 | `Optional` options | `Options.Pagination` |  Query parameters |
 
-**Returns:** `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
-Returns an array of Accounts which have requested to follow the authenticated user.
+**Returns:** `Promise`<`AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>>
+Returns array of Account
 
 ___
 <a id="fetchhometimeline"></a>
@@ -747,12 +704,10 @@ ___
 
 ▸ **fetchHomeTimeline**(options?: *`Options.FetchTimeline`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 
-*Defined in [client/Mastodon.ts:870](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L870)*
+*Defined in [client/Mastodon.ts:898](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L898)*
 
 Retrieving the home timeline
-
-*   Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. However, it is possible to use the `id` of the returned objects to construct your own URLs.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline)
+*__see__*: [https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-home](https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-home)
 
 **Parameters:**
 
@@ -770,15 +725,13 @@ ___
 
 ▸ **fetchInstance**(): `Promise`<[Instance](../interfaces/_entities_instance_.instance.md)>
 
-*Defined in [client/Mastodon.ts:397](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L397)*
+*Defined in [client/Mastodon.ts:489](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L489)*
 
-Fetching current instance information
-
-*   Does not require authentication
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-current-instance-information](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-current-instance-information)
+Information about the server.
+*__see__*: [https://docs.joinmastodon.org/api/rest/instances/#get-api-v1-instance](https://docs.joinmastodon.org/api/rest/instances/#get-api-v1-instance)
 
 **Returns:** `Promise`<[Instance](../interfaces/_entities_instance_.instance.md)>
-The current instance.
+Returns Instance
 
 ___
 <a id="fetchinstanceactivity"></a>
@@ -787,14 +740,12 @@ ___
 
 ▸ **fetchInstanceActivity**(): `Promise`<[InstanceActivity](../interfaces/_entities_instance_.instanceactivity.md)[]>
 
-*Defined in [client/Mastodon.ts:415](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L415)*
+*Defined in [client/Mastodon.ts:505](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L505)*
 
 Fetching activities of current instance
 
-*   Does not require authentication
-
 **Returns:** `Promise`<[InstanceActivity](../interfaces/_entities_instance_.instanceactivity.md)[]>
-An array of Activities
+An array of InstanceActivity
 
 ___
 <a id="fetchlist"></a>
@@ -803,10 +754,10 @@ ___
 
 ▸ **fetchList**(id: *`string`*): `Promise`<[List](../interfaces/_entities_list_.list.md)>
 
-*Defined in [client/Mastodon.ts:466](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L466)*
+*Defined in [client/Mastodon.ts:545](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L545)*
 
-Retrieving a list
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-list](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-list)
+A list
+*__see__*: [https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists-id](https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists-id)
 
 **Parameters:**
 
@@ -815,7 +766,7 @@ Retrieving a list
 | id | `string` |  ID of the targtet list |
 
 **Returns:** `Promise`<[List](../interfaces/_entities_list_.list.md)>
-The specified List.
+Returns List
 
 ___
 <a id="fetchlistaccounts"></a>
@@ -824,12 +775,10 @@ ___
 
 ▸ **fetchListAccounts**(id: *`string`*, options: *[Pagination](../interfaces/_client_options_.pagination.md)*): `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
 
-*Defined in [client/Mastodon.ts:456](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L456)*
+*Defined in [client/Mastodon.ts:535](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L535)*
 
-Retrieving accounts in a list
-
-*   If you specify `limit=0` in the query, all accounts will be returned without pagination. Otherwise, standard account pagination rules apply.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-accounts-in-a-list](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-accounts-in-a-list)
+Accounts that are in a given list.
+*__see__*: [https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists-id-accounts](https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists-id-accounts)
 
 **Parameters:**
 
@@ -839,7 +788,7 @@ Retrieving accounts in a list
 | options | [Pagination](../interfaces/_client_options_.pagination.md) |  Optional params |
 
 **Returns:** `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
-Returns Accounts in the list.
+Returns array of Account
 
 ___
 <a id="fetchlistbymembership"></a>
@@ -848,19 +797,19 @@ ___
 
 ▸ **fetchListByMembership**(id: *`string`*): `Promise`<[List](../interfaces/_entities_list_.list.md)[]>
 
-*Defined in [client/Mastodon.ts:443](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L443)*
+*Defined in [client/Mastodon.ts:524](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L524)*
 
-Retrieving lists by membership
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-lists-by-membership](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-lists-by-membership)
+User’s lists that a given account is part of.
+*__see__*: [https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-accounts-id-lists](https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-accounts-id-lists)
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| id | `string` |
+| Param | Type | Description |
+| ------ | ------ | ------ |
+| id | `string` |  ID of the target list |
 
 **Returns:** `Promise`<[List](../interfaces/_entities_list_.list.md)[]>
-At most 50 Lists without pagination
+Returns array of List
 
 ___
 <a id="fetchlisttimeline"></a>
@@ -869,12 +818,10 @@ ___
 
 ▸ **fetchListTimeline**(id: *`string`*, options?: *`Options.FetchTimeline`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 
-*Defined in [client/Mastodon.ts:919](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L919)*
+*Defined in [client/Mastodon.ts:940](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L940)*
 
 Retrieving a list timeline
-
-*   Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. However, it is possible to use the `id` of the returned objects to construct your own URLs.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline)
+*__see__*: [https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-list-list-id](https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-list-list-id)
 
 **Parameters:**
 
@@ -893,13 +840,13 @@ ___
 
 ▸ **fetchLists**(): `Promise`<[List](../interfaces/_entities_list_.list.md)[]>
 
-*Defined in [client/Mastodon.ts:434](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L434)*
+*Defined in [client/Mastodon.ts:514](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L514)*
 
-Retrieving lists
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-lists](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-lists)
+User’s lists.
+*__see__*: [https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists](https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists)
 
 **Returns:** `Promise`<[List](../interfaces/_entities_list_.list.md)[]>
-At most 50 Lists without pagination
+Returns array of List
 
 ___
 <a id="fetchmutes"></a>
@@ -908,12 +855,10 @@ ___
 
 ▸ **fetchMutes**(options?: *`Options.Pagination`*): `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
 
-*Defined in [client/Mastodon.ts:556](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L556)*
+*Defined in [client/Mastodon.ts:630](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L630)*
 
-Fetching a user's mutes
-
-*   Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. It is not possible to use the `id` of the returned objects to construct your own URLs, because the results are sorted by an internal key.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-mutes](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-mutes)
+Accounts the user has muted.
+*__see__*: [https://docs.joinmastodon.org/api/rest/mutes/#get-api-v1-mutes](https://docs.joinmastodon.org/api/rest/mutes/#get-api-v1-mutes)
 
 **Parameters:**
 
@@ -922,7 +867,7 @@ Fetching a user's mutes
 | `Optional` options | `Options.Pagination` |  Query parameters |
 
 **Returns:** `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
-An array of Accounts muted by the authenticated user.
+Returns array of Account
 
 ___
 <a id="fetchnotification"></a>
@@ -931,19 +876,19 @@ ___
 
 ▸ **fetchNotification**(id: *`string`*): `Promise`<[Notification](../interfaces/_entities_notification_.notification.md)>
 
-*Defined in [client/Mastodon.ts:577](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L577)*
+*Defined in [client/Mastodon.ts:691](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L691)*
 
 Getting a single notification
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-a-single-notification](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-a-single-notification)
+*__see__*: [https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-notifications-id](https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-notifications-id)
 
 **Parameters:**
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| id | `string` |  ID of the target user |
+| id | `string` |  Notification ID |
 
 **Returns:** `Promise`<[Notification](../interfaces/_entities_notification_.notification.md)>
-The Notification.
+Returns Notification
 
 ___
 <a id="fetchnotifications"></a>
@@ -952,12 +897,10 @@ ___
 
 ▸ **fetchNotifications**(options?: *`Options.FetchNotifications`*): `Promise`<[Notification](../interfaces/_entities_notification_.notification.md)[]>
 
-*Defined in [client/Mastodon.ts:567](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L567)*
+*Defined in [client/Mastodon.ts:681](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L681)*
 
-Fetching a user's notifications
-
-*   Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. It is not possible to use the `id` of the returned objects to construct your own URLs, because the results are sorted by an internal key.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-notifications](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-notifications)
+Notifications concerning the user.
+*__see__*: [https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-notifications](https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-notifications)
 
 **Parameters:**
 
@@ -966,7 +909,7 @@ Fetching a user's notifications
 | `Optional` options | `Options.FetchNotifications` |  Query parameters |
 
 **Returns:** `Promise`<[Notification](../interfaces/_entities_notification_.notification.md)[]>
-A list of Notifications for the authenticated user.
+Returns array of Notification
 
 ___
 <a id="fetchpeerinstances"></a>
@@ -975,11 +918,9 @@ ___
 
 ▸ **fetchPeerInstances**(): `Promise`<`string`[]>
 
-*Defined in [client/Mastodon.ts:406](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L406)*
+*Defined in [client/Mastodon.ts:497](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L497)*
 
 Fetching peer instances
-
-*   Does not require authentication
 
 **Returns:** `Promise`<`string`[]>
 An array of peer instance's domain
@@ -991,13 +932,10 @@ ___
 
 ▸ **fetchPublicTimeline**(options?: *`Options.FetchTimeline`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 
-*Defined in [client/Mastodon.ts:894](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L894)*
+*Defined in [client/Mastodon.ts:918](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L918)*
 
 Retrieving the public timeline (aka "Federated timeline" in the UI)
-
-*   Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. However, it is possible to use the `id` of the returned objects to construct your own URLs.
-*   Does not require authentication.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline)
+*__see__*: [https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-public](https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-public)
 
 **Parameters:**
 
@@ -1015,28 +953,88 @@ ___
 
 ▸ **fetchPushSubscription**(): `Promise`<[PushSubscription](../interfaces/_entities_pushsubscription_.pushsubscription.md)>
 
-*Defined in [client/Mastodon.ts:621](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L621)*
+*Defined in [client/Mastodon.ts:729](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L729)*
 
-Get current push subscription status
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#get-current-push-subscription-status](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#get-current-push-subscription-status)
+Push Subscription
+*__see__*: [https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-push-subscription](https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-push-subscription)
 
 **Returns:** `Promise`<[PushSubscription](../interfaces/_entities_pushsubscription_.pushsubscription.md)>
-Returns the Push Subscription
+Returns Push Subscription
 
 ___
-<a id="fetchreblogs"></a>
+<a id="fetchstatus"></a>
 
-##  fetchReblogs
+##  fetchStatus
 
-▸ **fetchReblogs**(id: *`string`*, options?: *`Options.Pagination`*): `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
+▸ **fetchStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:722](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L722)*
+*Defined in [client/Mastodon.ts:782](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L782)*
 
-Getting who reblogged a status
+Status
+*__see__*: [https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id](https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id)
 
-*   Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. It is not possible to use the `id` of the returned objects to construct your own URLs, because the results are sorted by an internal key.
-*   Does not require authentication
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-who-rebloggedfavourited-a-status](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-who-rebloggedfavourited-a-status)
+**Parameters:**
+
+| Param | Type | Description |
+| ------ | ------ | ------ |
+| id | `string` |  ID of the target status |
+
+**Returns:** `Promise`<[Status](../interfaces/_entities_status_.status.md)>
+Returns Status
+
+___
+<a id="fetchstatuscard"></a>
+
+##  fetchStatusCard
+
+▸ **fetchStatusCard**(id: *`string`*): `Promise`<[Card](../interfaces/_entities_card_.card.md)>
+
+*Defined in [client/Mastodon.ts:801](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L801)*
+
+Link preview card for a status, if available.
+*__see__*: [https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-card](https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-card)
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| id | `string` |
+
+**Returns:** `Promise`<[Card](../interfaces/_entities_card_.card.md)>
+Returns Card
+
+___
+<a id="fetchstatuscontext"></a>
+
+##  fetchStatusContext
+
+▸ **fetchStatusContext**(id: *`string`*): `Promise`<[Context](../interfaces/_entities_context_.context.md)>
+
+*Defined in [client/Mastodon.ts:792](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L792)*
+
+What the status replies to, and replies to it.
+*__see__*: [https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-context](https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-context)
+
+**Parameters:**
+
+| Param | Type | Description |
+| ------ | ------ | ------ |
+| id | `string` |  ID of the target status |
+
+**Returns:** `Promise`<[Context](../interfaces/_entities_context_.context.md)>
+Returns Context
+
+___
+<a id="fetchstatusfavouritedby"></a>
+
+##  fetchStatusFavouritedBy
+
+▸ **fetchStatusFavouritedBy**(id: *`string`*, options?: *`Options.Pagination`*): `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
+
+*Defined in [client/Mastodon.ts:823](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L823)*
+
+Accounts that favourited the status.
+*__see__*: [https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-favourited-by](https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-favourited-by)
 
 **Parameters:**
 
@@ -1046,114 +1044,7 @@ Getting who reblogged a status
 | `Optional` options | `Options.Pagination` |  Query parameters |
 
 **Returns:** `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
-An array of Accounts
-
-___
-<a id="fetchreports"></a>
-
-##  fetchReports
-
-▸ **fetchReports**(): `Promise`<[Report](../interfaces/_entities_report_.report.md)[]>
-
-*Defined in [client/Mastodon.ts:652](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L652)*
-
-Fetching a user's reports
-
-*   This method is not entirely implemented and contains no useful information at this point
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-reports](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-users-reports)
-
-**Returns:** `Promise`<[Report](../interfaces/_entities_report_.report.md)[]>
-Returns a list of Reports made by the authenticated user.
-
-___
-<a id="fetchstatus"></a>
-
-##  fetchStatus
-
-▸ **fetchStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
-
-*Defined in [client/Mastodon.ts:688](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L688)*
-
-Fetching a status
-
-*   Does not require authentication.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-status](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#fetching-a-status)
-
-**Parameters:**
-
-| Param | Type | Description |
-| ------ | ------ | ------ |
-| id | `string` |  ID of the target status |
-
-**Returns:** `Promise`<[Status](../interfaces/_entities_status_.status.md)>
-A status
-
-___
-<a id="fetchstatuscard"></a>
-
-##  fetchStatusCard
-
-▸ **fetchStatusCard**(id: *`string`*): `Promise`<[Card](../interfaces/_entities_card_.card.md)>
-
-*Defined in [client/Mastodon.ts:709](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L709)*
-
-Getting a card associated with a status
-
-*   Does not require authentication.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-a-card-associated-with-a-status](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-a-card-associated-with-a-status)
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| id | `string` |
-
-**Returns:** `Promise`<[Card](../interfaces/_entities_card_.card.md)>
-A Card.
-
-___
-<a id="fetchstatuscontext"></a>
-
-##  fetchStatusContext
-
-▸ **fetchStatusContext**(id: *`string`*): `Promise`<[Context](../interfaces/_entities_context_.context.md)>
-
-*Defined in [client/Mastodon.ts:699](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L699)*
-
-Getting status context
-
-*   Does not require authentication.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-status-context](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-status-context)
-
-**Parameters:**
-
-| Param | Type | Description |
-| ------ | ------ | ------ |
-| id | `string` |  ID of the target status |
-
-**Returns:** `Promise`<[Context](../interfaces/_entities_context_.context.md)>
-A Context.
-
-___
-<a id="fetchstatusfavouritedby"></a>
-
-##  fetchStatusFavouritedBy
-
-▸ **fetchStatusFavouritedBy**(id: *`string`*, options?: *`Options.Pagination`*): `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
-
-*Defined in [client/Mastodon.ts:859](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L859)*
-
-Fetching accounts who reblogged the status
-
-**Parameters:**
-
-| Param | Type | Description |
-| ------ | ------ | ------ |
-| id | `string` |  ID of the status |
-| `Optional` options | `Options.Pagination` |
-
-**Returns:** `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
-Array of accounts
+Returns array of Account
 
 ___
 <a id="fetchstatusrebloggedby"></a>
@@ -1162,19 +1053,20 @@ ___
 
 ▸ **fetchStatusRebloggedBy**(id: *`string`*, options?: *`Options.Pagination`*): `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
 
-*Defined in [client/Mastodon.ts:850](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L850)*
+*Defined in [client/Mastodon.ts:812](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L812)*
 
-Fetching accounts who reblogged the status
+Accounts that reblogged the status.
+*__see__*: [https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-reblogged-by](https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-reblogged-by)
 
 **Parameters:**
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| id | `string` |  ID of the status |
-| `Optional` options | `Options.Pagination` |
+| id | `string` |  ID of target status |
+| `Optional` options | `Options.Pagination` |  Query parameters |
 
 **Returns:** `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
-Array of accounts
+Returns array of Account
 
 ___
 <a id="fetchsuggestions"></a>
@@ -1183,9 +1075,10 @@ ___
 
 ▸ **fetchSuggestions**(): `Promise`<[Account](../interfaces/_entities_account_.account.md)[]>
 
-*Defined in [client/Mastodon.ts:983](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L983)*
+*Defined in [client/Mastodon.ts:470](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L470)*
 
-Fething user recommendation
+Accounts the user had past positive interactions with, but is not following yet.
+*__see__*: [https://docs.joinmastodon.org/api/rest/follow-suggestions/#get-api-v1-suggestions](https://docs.joinmastodon.org/api/rest/follow-suggestions/#get-api-v1-suggestions)
 
 **Returns:** `Promise`<[Account](../interfaces/_entities_account_.account.md)[]>
 An array of Accounts
@@ -1197,13 +1090,10 @@ ___
 
 ▸ **fetchTagTimeline**(id: *`string`*, options?: *`Options.FetchTimeline`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 
-*Defined in [client/Mastodon.ts:907](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L907)*
+*Defined in [client/Mastodon.ts:929](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L929)*
 
 Retrieving a tag timeline
-
-*   Note: `max_id` and `since_id` for next and previous pages are provided in the `Link` header. However, it is possible to use the `id` of the returned objects to construct your own URLs.
-*   Does not require authentication.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline)
+*__see__*: [https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-tag-hashtag](https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-tag-hashtag)
 
 **Parameters:**
 
@@ -1220,21 +1110,22 @@ ___
 
 ##  followAccount
 
-▸ **followAccount**(id: *`string`*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
+▸ **followAccount**(id: *`string`*, reblogs?: * `undefined` &#124; `false` &#124; `true`*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
 
-*Defined in [client/Mastodon.ts:183](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L183)*
+*Defined in [client/Mastodon.ts:198](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L198)*
 
-Following an account
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#followingunfollowing-an-account](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#followingunfollowing-an-account)
+Follow an account.
+*__see__*: [https://docs.joinmastodon.org/api/rest/accounts/#post-api-v1-accounts-id-follow](https://docs.joinmastodon.org/api/rest/accounts/#post-api-v1-accounts-id-follow)
 
 **Parameters:**
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
 | id | `string` |  ID of the target account |
+| `Optional` reblogs |  `undefined` &#124; `false` &#124; `true`|  Whether the followed account’s reblogs will show up in the home timeline |
 
 **Returns:** `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
-The target account's relationship
+Returns Relationship
 
 ___
 <a id="followaccountbyusername"></a>
@@ -1243,7 +1134,7 @@ ___
 
 ▸ **followAccountByUsername**(uri: *`string`*): `Promise`<[Account](../interfaces/_entities_account_.account.md)>
 
-*Defined in [client/Mastodon.ts:387](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L387)*
+*Defined in [client/Mastodon.ts:968](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L968)*
 
 Following a remote user
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#following-a-remote-user](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#following-a-remote-user)
@@ -1262,11 +1153,11 @@ ___
 
 ## `<Protected>` get
 
-▸ **get**<`T`>(url: *`string`*, params?: *`object`*, options?: *`object`*, parse?: *`boolean`*): `Promise`<`T`>
+▸ **get**<`T`>(url: *`string`*, params?: *`object`*, options?: *`object`*): `Promise`<`AxiosResponse`<`T`>>
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[get](_client_gateway_.gateway.md#get)*
 
-*Defined in [client/Gateway.ts:129](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L129)*
+*Defined in [client/Gateway.ts:134](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Gateway.ts#L134)*
 
 HTTP GET
 
@@ -1280,9 +1171,8 @@ HTTP GET
 | url | `string` | - |  URL to request |
 | `Default value` params | `object` |  {} |  Query strings |
 | `Default value` options | `object` |  {} |  Fetch API options |
-| `Default value` parse | `boolean` | true |  Whether parse response before return |
 
-**Returns:** `Promise`<`T`>
+**Returns:** `Promise`<`AxiosResponse`<`T`>>
 
 ___
 <a id="getstreamingurl"></a>
@@ -1293,7 +1183,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[getStreamingUrl](_client_gateway_.gateway.md#getstreamingurl)*
 
-*Defined in [client/Gateway.ts:48](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L48)*
+*Defined in [client/Gateway.ts:48](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Gateway.ts#L48)*
 
 Getting streaming API URL of the instance
 
@@ -1309,7 +1199,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[getToken](_client_gateway_.gateway.md#gettoken)*
 
-*Defined in [client/Gateway.ts:54](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L54)*
+*Defined in [client/Gateway.ts:54](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Gateway.ts#L54)*
 
 Getting token of authenticated user
 
@@ -1326,7 +1216,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[getUrl](_client_gateway_.gateway.md#geturl)*
 
-*Defined in [client/Gateway.ts:42](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L42)*
+*Defined in [client/Gateway.ts:42](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Gateway.ts#L42)*
 
 Getting rest API URL of the instance
 
@@ -1340,20 +1230,20 @@ ___
 
 ▸ **muteAccount**(id: *`string`*, notifications?: *`boolean`*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
 
-*Defined in [client/Mastodon.ts:224](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L224)*
+*Defined in [client/Mastodon.ts:641](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L641)*
 
-Muting an account
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account)
+Mute an account.
+*__see__*: [https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-accounts-id-mute](https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-accounts-id-mute)
 
 **Parameters:**
 
 | Param | Type | Default value | Description |
 | ------ | ------ | ------ | ------ |
 | id | `string` | - |  ID of the target account |
-| `Default value` notifications | `boolean` | true |  Determines whether the mute will mute notifications or not. Default(true) |
+| `Default value` notifications | `boolean` | true |  Whether the mute will mute notifications or not |
 
 **Returns:** `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
-The target account's relationship
+Returns Relationship
 
 ___
 <a id="mutestatus"></a>
@@ -1362,19 +1252,19 @@ ___
 
 ▸ **muteStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:831](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L831)*
+*Defined in [client/Mastodon.ts:661](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L661)*
 
-Muting a conversation of a status
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-a-conversation-of-a-status](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-a-conversation-of-a-status)
+Mute the conversation the status is part of, to no longer be notified about it.
+*__see__*: [https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-status-id-mute](https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-status-id-mute)
 
 **Parameters:**
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| id | `string` |  ID of the target status |
+| id | `string` |  ID of the target account |
 
 **Returns:** `Promise`<[Status](../interfaces/_entities_status_.status.md)>
-The target Status.
+Returns Status
 
 ___
 <a id="paginationgenerator"></a>
@@ -1383,10 +1273,9 @@ ___
 
 ▸ **paginationGenerator**<`T`>(path: *`string`*, params?: *`any`*): `AsyncIterableIterator`<`T`>
 
-*Defined in [client/Mastodon.ts:32](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L32)*
+*Defined in [client/Mastodon.ts:30](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L30)*
 
 Generate an iterable of the pagination
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#retrieving-a-timeline)
 
 **Type parameters:**
 
@@ -1407,11 +1296,11 @@ ___
 
 ## `<Protected>` patch
 
-▸ **patch**<`T`>(url: *`string`*, body?: *`object`*, options?: *`object`*, parse?: *`boolean`*): `Promise`<`T`>
+▸ **patch**<`T`>(url: *`string`*, body?: *`object`*, options?: *`object`*): `Promise`<`AxiosResponse`<`T`>>
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[patch](_client_gateway_.gateway.md#patch)*
 
-*Defined in [client/Gateway.ts:173](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L173)*
+*Defined in [client/Gateway.ts:197](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Gateway.ts#L197)*
 
 HTTP PATCH
 
@@ -1425,9 +1314,8 @@ HTTP PATCH
 | url | `string` | - |  URL to request |
 | `Default value` body | `object` |  {} |  Payload |
 | `Default value` options | `object` |  {} |  Fetch API options |
-| `Default value` parse | `boolean` | true |  Whether parse response before return |
 
-**Returns:** `Promise`<`T`>
+**Returns:** `Promise`<`AxiosResponse`<`T`>>
 
 ___
 <a id="pinaccount"></a>
@@ -1436,10 +1324,10 @@ ___
 
 ▸ **pinAccount**(id: *`string`*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
 
-*Defined in [client/Mastodon.ts:246](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L246)*
+*Defined in [client/Mastodon.ts:339](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L339)*
 
-Pin an account to profile
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account)
+Endorse an account, i.e. choose to feature the account on the user’s public profile.
+*__see__*: [https://docs.joinmastodon.org/api/rest/endorsements/#post-api-v1-accounts-id-pin](https://docs.joinmastodon.org/api/rest/endorsements/#post-api-v1-accounts-id-pin)
 
 **Parameters:**
 
@@ -1448,7 +1336,7 @@ Pin an account to profile
 | id | `string` |  ID of the target account |
 
 **Returns:** `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
-The target account's relationship
+Returns Relationship
 
 ___
 <a id="pinstatus"></a>
@@ -1457,10 +1345,10 @@ ___
 
 ▸ **pinStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:811](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L811)*
+*Defined in [client/Mastodon.ts:878](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L878)*
 
-Pinning a status
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#pinningunpinning-a-status](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#pinningunpinning-a-status)
+Pin user’s own status to user’s profile.
+*__see__*: [https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-pin](https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-pin)
 
 **Parameters:**
 
@@ -1469,18 +1357,18 @@ Pinning a status
 | id | `string` |  ID of the target status |
 
 **Returns:** `Promise`<[Status](../interfaces/_entities_status_.status.md)>
-The target Status.
+Returns Status
 
 ___
 <a id="post"></a>
 
 ## `<Protected>` post
 
-▸ **post**<`T`>(url: *`string`*, body?: *`object`*, options?: *`object`*, parse?: *`boolean`*): `Promise`<`T`>
+▸ **post**<`T`>(url: *`string`*, body?: *`object`*, options?: *`object`*): `Promise`<`AxiosResponse`<`T`>>
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[post](_client_gateway_.gateway.md#post)*
 
-*Defined in [client/Gateway.ts:140](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L140)*
+*Defined in [client/Gateway.ts:149](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Gateway.ts#L149)*
 
 HTTP POST
 
@@ -1494,20 +1382,19 @@ HTTP POST
 | url | `string` | - |  URL to request |
 | `Default value` body | `object` |  {} |  Payload |
 | `Default value` options | `object` |  {} |  Fetch API options |
-| `Default value` parse | `boolean` | true |  Whether parse response before return |
 
-**Returns:** `Promise`<`T`>
+**Returns:** `Promise`<`AxiosResponse`<`T`>>
 
 ___
 <a id="put"></a>
 
 ## `<Protected>` put
 
-▸ **put**<`T`>(url: *`string`*, body?: *`object`*, options?: *`object`*, parse?: *`boolean`*): `Promise`<`T`>
+▸ **put**<`T`>(url: *`string`*, body?: *`object`*, options?: *`object`*): `Promise`<`AxiosResponse`<`T`>>
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[put](_client_gateway_.gateway.md#put)*
 
-*Defined in [client/Gateway.ts:151](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L151)*
+*Defined in [client/Gateway.ts:165](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Gateway.ts#L165)*
 
 HTTP PUT
 
@@ -1521,9 +1408,8 @@ HTTP PUT
 | url | `string` | - |  URL to request |
 | `Default value` body | `object` |  {} |  Payload |
 | `Default value` options | `object` |  {} |  Fetch API options |
-| `Default value` parse | `boolean` | true |  Whether parse response before return |
 
-**Returns:** `Promise`<`T`>
+**Returns:** `Promise`<`AxiosResponse`<`T`>>
 
 ___
 <a id="reblogstatus"></a>
@@ -1532,10 +1418,10 @@ ___
 
 ▸ **reblogStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:771](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L771)*
+*Defined in [client/Mastodon.ts:858](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L858)*
 
-Reblogging a status
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#rebloggingunreblogging-a-status](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#rebloggingunreblogging-a-status)
+Reblog a status.
+*__see__*: [https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-reblog](https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-reblog)
 
 **Parameters:**
 
@@ -1544,7 +1430,7 @@ Reblogging a status
 | id | `string` |  ID of the target status |
 
 **Returns:** `Promise`<[Status](../interfaces/_entities_status_.status.md)>
-The reblog Status.
+Returns Status
 
 ___
 <a id="rejectfollowrequest"></a>
@@ -1553,10 +1439,10 @@ ___
 
 ▸ **rejectFollowRequest**(id: *`string`*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:377](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L377)*
+*Defined in [client/Mastodon.ts:461](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L461)*
 
-Rejecting follow requests
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#authorizing-or-rejecting-follow-requests](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#authorizing-or-rejecting-follow-requests)
+Do not allow the account to follow the user.
+*__see__*: [https://docs.joinmastodon.org/api/rest/follow-requests/#post-api-v1-follow-requests-id-reject](https://docs.joinmastodon.org/api/rest/follow-requests/#post-api-v1-follow-requests-id-reject)
 
 **Parameters:**
 
@@ -1574,12 +1460,10 @@ ___
 
 ▸ **removeAccountFromList**(id: *`string`*, account_ids: *`string`[]*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:521](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L521)*
+*Defined in [client/Mastodon.ts:598](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L598)*
 
-Removing accounts from a list
-
-*   Note: Only accounts already followed by the authenticated user can be added to a list.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#addingremoving-accounts-tofrom-a-list](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#addingremoving-accounts-tofrom-a-list)
+Remove accounts from a list.
+*__see__*: [https://docs.joinmastodon.org/api/rest/lists/#delete-api-v1-lists-id-accounts](https://docs.joinmastodon.org/api/rest/lists/#delete-api-v1-lists-id-accounts)
 
 **Parameters:**
 
@@ -1598,9 +1482,10 @@ ___
 
 ▸ **removeFilter**(id: *`string`*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:975](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L975)*
+*Defined in [client/Mastodon.ts:431](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L431)*
 
-Removing filter by id
+Delete a text filter.
+*__see__*: [https://docs.joinmastodon.org/api/rest/filters/#delete-api-v1-filters-id](https://docs.joinmastodon.org/api/rest/filters/#delete-api-v1-filters-id)
 
 **Parameters:**
 
@@ -1618,10 +1503,10 @@ ___
 
 ▸ **removeList**(id: *`string`*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:497](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L497)*
+*Defined in [client/Mastodon.ts:576](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L576)*
 
-Removing a list
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#deleting-a-list](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#deleting-a-list)
+Remove a list.
+*__see__*: [https://docs.joinmastodon.org/api/rest/lists/#delete-api-v1-lists-id](https://docs.joinmastodon.org/api/rest/lists/#delete-api-v1-lists-id)
 
 **Parameters:**
 
@@ -1639,12 +1524,10 @@ ___
 
 ▸ **removePushSubscription**(): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:642](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L642)*
+*Defined in [client/Mastodon.ts:748](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L748)*
 
-Removing push subscription
-
-*   This API removes push subscription that bind to access token.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#removing-push-subscription](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#removing-push-subscription)
+Remove the current Web Push API subscription.
+*__see__*: [https://docs.joinmastodon.org/api/rest/notifications/#delete-api-v1-push-subscription](https://docs.joinmastodon.org/api/rest/notifications/#delete-api-v1-push-subscription)
 
 **Returns:** `Promise`<`void`>
 An empty object
@@ -1656,10 +1539,10 @@ ___
 
 ▸ **removeStatus**(id: *`string`*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:761](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L761)*
+*Defined in [client/Mastodon.ts:848](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L848)*
 
-Removing a status
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#deleting-a-status](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#deleting-a-status)
+Remove a status. The status may still be available a short while after the call.
+*__see__*: [https://docs.joinmastodon.org/api/rest/statuses/#delete-api-v1-statuses-id](https://docs.joinmastodon.org/api/rest/statuses/#delete-api-v1-statuses-id)
 
 **Parameters:**
 
@@ -1671,50 +1554,72 @@ Removing a status
 An empty object
 
 ___
-<a id="reportuser"></a>
+<a id="removesuggestion"></a>
 
-##  reportUser
+##  removeSuggestion
 
-▸ **reportUser**(account_id: *`string`*, status_ids: * `string` &#124; `string`[]*, comment: *`string`*): `Promise`<[Report](../interfaces/_entities_report_.report.md)>
+▸ **removeSuggestion**(id: *`string`*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:664](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L664)*
+*Defined in [client/Mastodon.ts:480](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L480)*
 
-Reporting a user
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#reporting-a-user](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#reporting-a-user)
+Remove account from suggestions.
+*__see__*: [https://docs.joinmastodon.org/api/rest/follow-suggestions/#delete-api-v1-suggestions-account-id](https://docs.joinmastodon.org/api/rest/follow-suggestions/#delete-api-v1-suggestions-account-id)
+
+**Parameters:**
+
+| Param | Type | Description |
+| ------ | ------ | ------ |
+| id | `string` |  ID of the target account |
+
+**Returns:** `Promise`<`void`>
+An array of Accounts
+
+___
+<a id="reportaccount"></a>
+
+##  reportAccount
+
+▸ **reportAccount**(account_id: *`string`*, status_ids?: * `string`[] &#124; `null`*, comment?: * `string` &#124; `null`*): `Promise`<`void`>
+
+*Defined in [client/Mastodon.ts:760](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L760)*
+
+Report an account.
+*__see__*: [https://docs.joinmastodon.org/api/rest/reports/#post-api-v1-reports](https://docs.joinmastodon.org/api/rest/reports/#post-api-v1-reports)
 
 **Parameters:**
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
 | account_id | `string` |  The ID of the account to report |
-| status_ids |  `string` &#124; `string`[]|  The IDs of statuses to report (can be an array) |
-| comment | `string` |  A comment to associate with the report (up to 1000 characters) |
+| `Optional` status_ids |  `string`[] &#124; `null`|  The IDs of statuses to report as array |
+| `Optional` comment |  `string` &#124; `null`|  Reason for the report (up to 1,000 characters) |
 
-**Returns:** `Promise`<[Report](../interfaces/_entities_report_.report.md)>
-The finished Report
+**Returns:** `Promise`<`void`>
+An empty object
 
 ___
 <a id="request"></a>
 
 ## `<Protected>` request
 
-▸ **request**(url: *`string`*, options?: *`object`*, parse?: *`boolean`*): `Promise`<`any`>
+▸ **request**<`T`>(options: *`AxiosRequestConfig`*): `Promise`<`AxiosResponse`<`T`>>
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[request](_client_gateway_.gateway.md#request)*
 
-*Defined in [client/Gateway.ts:81](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L81)*
+*Defined in [client/Gateway.ts:80](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Gateway.ts#L80)*
 
 Fetch API wrapper function
 
+**Type parameters:**
+
+#### T 
 **Parameters:**
 
-| Param | Type | Default value | Description |
-| ------ | ------ | ------ | ------ |
-| url | `string` | - |  URL to request |
-| `Default value` options | `object` |  {} |  Fetch API options |
-| `Default value` parse | `boolean` | true |  Whether parse response before return |
+| Param | Type | Description |
+| ------ | ------ | ------ |
+| options | `AxiosRequestConfig` |  Axios options |
 
-**Returns:** `Promise`<`any`>
+**Returns:** `Promise`<`AxiosResponse`<`T`>>
 Parsed response object
 
 ___
@@ -1724,12 +1629,10 @@ ___
 
 ▸ **search**<`V`>(q: *`string`*, resolve?: *`boolean`*, version?: *[V]()*): `Promise`<[Results](../interfaces/_entities_results_.results.md)<`V`>>
 
-*Defined in [client/Mastodon.ts:677](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L677)*
+*Defined in [client/Mastodon.ts:772](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L772)*
 
-Searching for content
-
-*   If `q` is a URL, Mastodon will attempt to fetch the provided account or status. Otherwise, it will do a local account and hashtag search.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#searching-for-content](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#searching-for-content)
+Search for content in accounts, statuses and hashtags.
+*__see__*: [https://docs.joinmastodon.org/api/rest/search/#get-api-v2-search](https://docs.joinmastodon.org/api/rest/search/#get-api-v2-search)
 
 **Type parameters:**
 
@@ -1740,11 +1643,11 @@ Searching for content
 | Param | Type | Default value | Description |
 | ------ | ------ | ------ | ------ |
 | q | `string` | - |  The search query |
-| `Default value` resolve | `boolean` | false |  Whether to resolve non-local accounts (default: don't resolve) |
-| `Optional` version | [V]() | - |  Version of Mastodon API (default: v2) |
+| `Default value` resolve | `boolean` | false |  Attempt WebFinger look-up |
+| `Optional` version | [V]() | - |  Version of Mastodon API (default: `'v2'`) |
 
 **Returns:** `Promise`<[Results](../interfaces/_entities_results_.results.md)<`V`>>
-Results
+Returns Results
 
 ___
 <a id="searchaccounts"></a>
@@ -1753,12 +1656,10 @@ ___
 
 ▸ **searchAccounts**(q: *`string`*, options?: *`Options.SearchAccounts`*): `Promise`<[Account](../interfaces/_entities_account_.account.md)[]>
 
-*Defined in [client/Mastodon.ts:279](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L279)*
+*Defined in [client/Mastodon.ts:229](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L229)*
 
-Searching for accounts
-
-*   Will lookup an account remotely if the search term is in the `username@domain` format and not yet in the database.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#searching-for-accounts](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#searching-for-accounts)
+Search for matching accounts by username, domain and display name.
+*__see__*: [https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-search](https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-search)
 
 **Parameters:**
 
@@ -1768,7 +1669,7 @@ Searching for accounts
 | `Optional` options | `Options.SearchAccounts` |  Query parameters |
 
 **Returns:** `Promise`<[Account](../interfaces/_entities_account_.account.md)[]>
-An array of matching accounts
+Returns array of Account
 
 ___
 <a id="setstreamingurl"></a>
@@ -1779,7 +1680,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[setStreamingUrl](_client_gateway_.gateway.md#setstreamingurl)*
 
-*Defined in [client/Gateway.ts:66](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L66)*
+*Defined in [client/Gateway.ts:66](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Gateway.ts#L66)*
 
 Setting streaming API URL of the instance
 
@@ -1800,7 +1701,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[setToken](_client_gateway_.gateway.md#settoken)*
 
-*Defined in [client/Gateway.ts:72](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L72)*
+*Defined in [client/Gateway.ts:72](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Gateway.ts#L72)*
 
 Setting token of authenticated user
 
@@ -1821,7 +1722,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[setUrl](_client_gateway_.gateway.md#seturl)*
 
-*Defined in [client/Gateway.ts:60](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L60)*
+*Defined in [client/Gateway.ts:60](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Gateway.ts#L60)*
 
 Setting rest API URL of the instance
 
@@ -1842,7 +1743,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[stream](_client_gateway_.gateway.md#stream)*
 
-*Defined in [client/Gateway.ts:182](https://github.com/lagunehq/core/blob/dae58ab/src/client/Gateway.ts#L182)*
+*Defined in [client/Gateway.ts:211](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Gateway.ts#L211)*
 
 Start streaming
 
@@ -1863,10 +1764,25 @@ ___
 
 ▸ **streamCommunityTimeline**(): [EventHandler](_client_eventhandler_.eventhandler.md)
 
-*Defined in [client/Mastodon.ts:66](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L66)*
+*Defined in [client/Mastodon.ts:72](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L72)*
 
 Starting local timeline streaming
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md)
+*__see__*: [https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-public-local](https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-public-local)
+
+**Returns:** [EventHandler](_client_eventhandler_.eventhandler.md)
+Instance of EventEmitter
+
+___
+<a id="streamdirecttimeline"></a>
+
+##  streamDirectTimeline
+
+▸ **streamDirectTimeline**(): [EventHandler](_client_eventhandler_.eventhandler.md)
+
+*Defined in [client/Mastodon.ts:111](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L111)*
+
+Starting direct timeline streaming
+*__see__*: [https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-direct](https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-direct)
 
 **Returns:** [EventHandler](_client_eventhandler_.eventhandler.md)
 Instance of EventEmitter
@@ -1878,10 +1794,10 @@ ___
 
 ▸ **streamListTimeline**(id: *`string`*): [EventHandler](_client_eventhandler_.eventhandler.md)
 
-*Defined in [client/Mastodon.ts:95](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L95)*
+*Defined in [client/Mastodon.ts:102](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L102)*
 
 Starting list timeline streaming
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md)
+*__see__*: [https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-list-list-list-id](https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-list-list-list-id)
 
 **Parameters:**
 
@@ -1893,16 +1809,37 @@ Starting list timeline streaming
 Instance of EventEmitter
 
 ___
+<a id="streamlocaltagtimeline"></a>
+
+##  streamLocalTagTimeline
+
+▸ **streamLocalTagTimeline**(id: *`string`*): [EventHandler](_client_eventhandler_.eventhandler.md)
+
+*Defined in [client/Mastodon.ts:92](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L92)*
+
+Starting local tag timeline streaming
+*__see__*: [https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-hashtag-local-tag-hashtag](https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-hashtag-local-tag-hashtag)
+
+**Parameters:**
+
+| Param | Type | Description |
+| ------ | ------ | ------ |
+| id | `string` |  ID of the tag |
+
+**Returns:** [EventHandler](_client_eventhandler_.eventhandler.md)
+Instance of EventEmitter
+
+___
 <a id="streampublictimeline"></a>
 
 ##  streamPublicTimeline
 
 ▸ **streamPublicTimeline**(): [EventHandler](_client_eventhandler_.eventhandler.md)
 
-*Defined in [client/Mastodon.ts:75](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L75)*
+*Defined in [client/Mastodon.ts:63](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L63)*
 
 Starting federated timeline streaming
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md)
+*__see__*: [https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-public](https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-public)
 
 **Returns:** [EventHandler](_client_eventhandler_.eventhandler.md)
 Instance of EventEmitter
@@ -1914,10 +1851,10 @@ ___
 
 ▸ **streamTagTimeline**(id: *`string`*): [EventHandler](_client_eventhandler_.eventhandler.md)
 
-*Defined in [client/Mastodon.ts:85](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L85)*
+*Defined in [client/Mastodon.ts:82](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L82)*
 
 Starting tag timeline streaming
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md)
+*__see__*: [https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-hashtag-tag-hashtag](https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-hashtag-tag-hashtag)
 
 **Parameters:**
 
@@ -1935,35 +1872,13 @@ ___
 
 ▸ **streamUser**(): [EventHandler](_client_eventhandler_.eventhandler.md)
 
-*Defined in [client/Mastodon.ts:57](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L57)*
+*Defined in [client/Mastodon.ts:54](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L54)*
 
 Starting home timeline and notification streaming
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md](https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md)
+*__see__*: [https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-user](https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-user)
 
 **Returns:** [EventHandler](_client_eventhandler_.eventhandler.md)
 Instance of EventEmitter
-
-___
-<a id="ummuteaccount"></a>
-
-##  ummuteAccount
-
-▸ **ummuteAccount**(id: *`string`*, notifications?: *`boolean`*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
-
-*Defined in [client/Mastodon.ts:235](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L235)*
-
-Unmuting an account
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account)
-
-**Parameters:**
-
-| Param | Type | Default value | Description |
-| ------ | ------ | ------ | ------ |
-| id | `string` | - |  ID of the target account |
-| `Default value` notifications | `boolean` | true |  Determines whether the mute will mute notifications or not. Default(true) |
-
-**Returns:** `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
-The target account's relationship
 
 ___
 <a id="unblockaccount"></a>
@@ -1972,10 +1887,10 @@ ___
 
 ▸ **unblockAccount**(id: *`string`*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
 
-*Defined in [client/Mastodon.ts:213](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L213)*
+*Defined in [client/Mastodon.ts:281](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L281)*
 
-Unblocking an account
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blockingunblocking-an-account](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#blockingunblocking-an-account)
+Unblock an account
+*__see__*: [https://docs.joinmastodon.org/api/rest/blocks/#post-api-v1-accounts-id-unblock](https://docs.joinmastodon.org/api/rest/blocks/#post-api-v1-accounts-id-unblock)
 
 **Parameters:**
 
@@ -1984,7 +1899,7 @@ Unblocking an account
 | id | `string` |  ID of the target account |
 
 **Returns:** `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
-The target account's relationship
+Returns Relationship
 
 ___
 <a id="unblockdomain"></a>
@@ -1993,10 +1908,10 @@ ___
 
 ▸ **unblockDomain**(domain: *`string`*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:335](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L335)*
+*Defined in [client/Mastodon.ts:320](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L320)*
 
-Unblocking a domain
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#unblocking-a-domain](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#unblocking-a-domain)
+Remove a domain block.
+*__see__*: [https://docs.joinmastodon.org/api/rest/domain-blocks/#delete-api-v1-domain-blocks](https://docs.joinmastodon.org/api/rest/domain-blocks/#delete-api-v1-domain-blocks)
 
 **Parameters:**
 
@@ -2014,10 +1929,10 @@ ___
 
 ▸ **unfavouriteStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:801](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L801)*
+*Defined in [client/Mastodon.ts:379](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L379)*
 
-Unfavouriting status
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#favouritingunfavouriting-a-status](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#favouritingunfavouriting-a-status)
+Undo the favourite of a status.
+*__see__*: [https://docs.joinmastodon.org/api/rest/favourites/#post-api-v1-statuses-id-unfavourite](https://docs.joinmastodon.org/api/rest/favourites/#post-api-v1-statuses-id-unfavourite)
 
 **Parameters:**
 
@@ -2026,7 +1941,7 @@ Unfavouriting status
 | id | `string` |  ID of the target status |
 
 **Returns:** `Promise`<[Status](../interfaces/_entities_status_.status.md)>
-The target status
+Returns Status
 
 ___
 <a id="unfollowaccount"></a>
@@ -2035,10 +1950,10 @@ ___
 
 ▸ **unfollowAccount**(id: *`string`*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
 
-*Defined in [client/Mastodon.ts:193](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L193)*
+*Defined in [client/Mastodon.ts:208](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L208)*
 
-Unfollowing an account
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#followingunfollowing-an-account](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#followingunfollowing-an-account)
+Unfollow an account.
+*__see__*: [https://docs.joinmastodon.org/api/rest/accounts/#post-api-v1-accounts-id-unfollow](https://docs.joinmastodon.org/api/rest/accounts/#post-api-v1-accounts-id-unfollow)
 
 **Parameters:**
 
@@ -2047,7 +1962,28 @@ Unfollowing an account
 | id | `string` |  ID of the target account |
 
 **Returns:** `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
-The target account's relationship
+Returns Relationship
+
+___
+<a id="unmuteaccount"></a>
+
+##  unmuteAccount
+
+▸ **unmuteAccount**(id: *`string`*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
+
+*Defined in [client/Mastodon.ts:651](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L651)*
+
+Unmute an account
+*__see__*: [https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-accounts-id-unmute](https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-accounts-id-unmute)
+
+**Parameters:**
+
+| Param | Type | Description |
+| ------ | ------ | ------ |
+| id | `string` |  ID of the target account |
+
+**Returns:** `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
+Returns Relationship
 
 ___
 <a id="unmutestatus"></a>
@@ -2056,19 +1992,19 @@ ___
 
 ▸ **unmuteStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:841](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L841)*
+*Defined in [client/Mastodon.ts:671](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L671)*
 
-Unmuting a conversation of a status
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-a-conversation-of-a-status](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-a-conversation-of-a-status)
+Unmute the conversation the status is part of.
+*__see__*: [https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-status-id-unmute](https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-status-id-unmute)
 
 **Parameters:**
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| id | `string` |  ID of the target status |
+| id | `string` |  ID of the target account |
 
 **Returns:** `Promise`<[Status](../interfaces/_entities_status_.status.md)>
-The target Status.
+Returns Status
 
 ___
 <a id="unpinaccount"></a>
@@ -2077,10 +2013,10 @@ ___
 
 ▸ **unpinAccount**(id: *`string`*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
 
-*Defined in [client/Mastodon.ts:257](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L257)*
+*Defined in [client/Mastodon.ts:349](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L349)*
 
 Unpin an account
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#mutingunmuting-an-account)
+*__see__*: [https://docs.joinmastodon.org/api/rest/endorsements/#post-api-v1-accounts-id-unpin](https://docs.joinmastodon.org/api/rest/endorsements/#post-api-v1-accounts-id-unpin)
 
 **Parameters:**
 
@@ -2089,7 +2025,7 @@ Unpin an account
 | id | `string` |  ID of the target account |
 
 **Returns:** `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
-The target account's relationship
+Returns Relationship
 
 ___
 <a id="unpinstatus"></a>
@@ -2098,10 +2034,10 @@ ___
 
 ▸ **unpinStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:821](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L821)*
+*Defined in [client/Mastodon.ts:888](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L888)*
 
-Unpinning a status
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#pinningunpinning-a-status](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#pinningunpinning-a-status)
+Remove pinned status from user’s profile.
+*__see__*: [https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-unpin](https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-unpin)
 
 **Parameters:**
 
@@ -2110,7 +2046,7 @@ Unpinning a status
 | id | `string` |  ID of the target status |
 
 **Returns:** `Promise`<[Status](../interfaces/_entities_status_.status.md)>
-The target Status.
+Returns Status
 
 ___
 <a id="unreblogstatus"></a>
@@ -2119,10 +2055,10 @@ ___
 
 ▸ **unreblogStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:781](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L781)*
+*Defined in [client/Mastodon.ts:868](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L868)*
 
-Unreblogging a status
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#rebloggingunreblogging-a-status](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#rebloggingunreblogging-a-status)
+Undo the reblog of a status.
+*__see__*: [https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-unreblog](https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-unreblog)
 
 **Parameters:**
 
@@ -2131,19 +2067,19 @@ Unreblogging a status
 | id | `string` |  ID of the target status |
 
 **Returns:** `Promise`<[Status](../interfaces/_entities_status_.status.md)>
-The target Status.
+Returns Status
 
 ___
 <a id="updatecredentials"></a>
 
 ##  updateCredentials
 
-▸ **updateCredentials**(options?: *`Options.UpdateCredentials`*): `Promise`<[Credentials](../interfaces/_entities_credentials_.credentials.md)>
+▸ **updateCredentials**(options?: *`Options.UpdateCredentials`*): `Promise`<[AccountCredentials](../interfaces/_entities_account_.accountcredentials.md)>
 
-*Defined in [client/Mastodon.ts:137](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L137)*
+*Defined in [client/Mastodon.ts:154](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L154)*
 
-Updating the current user
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#updating-the-current-user](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#updating-the-current-user)
+Update user’s own account.
+*__see__*: [https://docs.joinmastodon.org/api/rest/accounts/#patch-api-v1-accounts-update-credentials](https://docs.joinmastodon.org/api/rest/accounts/#patch-api-v1-accounts-update-credentials)
 
 **Parameters:**
 
@@ -2151,8 +2087,8 @@ Updating the current user
 | ------ | ------ | ------ |
 | `Optional` options | `Options.UpdateCredentials` |  Form data |
 
-**Returns:** `Promise`<[Credentials](../interfaces/_entities_credentials_.credentials.md)>
-The authenticated user's Account.
+**Returns:** `Promise`<[AccountCredentials](../interfaces/_entities_account_.accountcredentials.md)>
+Returns Account
 
 ___
 <a id="updatefilter"></a>
@@ -2161,9 +2097,10 @@ ___
 
 ▸ **updateFilter**(id: *`string`*, options?: *`Options.UpdateFilter`*): `Promise`<[Filter](../interfaces/_entities_filter_.filter.md)>
 
-*Defined in [client/Mastodon.ts:966](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L966)*
+*Defined in [client/Mastodon.ts:421](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L421)*
 
-Updating a filter
+Update a text filter.
+*__see__*: [https://docs.joinmastodon.org/api/rest/filters/#put-api-v1-filters-id](https://docs.joinmastodon.org/api/rest/filters/#put-api-v1-filters-id)
 
 **Parameters:**
 
@@ -2173,7 +2110,7 @@ Updating a filter
 | `Optional` options | `Options.UpdateFilter` |  Optinal parameters |
 
 **Returns:** `Promise`<[Filter](../interfaces/_entities_filter_.filter.md)>
-A filter
+Returns Filter
 
 ___
 <a id="updatelist"></a>
@@ -2182,10 +2119,10 @@ ___
 
 ▸ **updateList**(id: *`string`*, title: *`string`*): `Promise`<[List](../interfaces/_entities_list_.list.md)>
 
-*Defined in [client/Mastodon.ts:487](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L487)*
+*Defined in [client/Mastodon.ts:566](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L566)*
 
-Updating a list
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#creating-and-updating-a-list](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#creating-and-updating-a-list)
+Update a list.
+*__see__*: [https://docs.joinmastodon.org/api/rest/lists/#put-api-v1-lists-id](https://docs.joinmastodon.org/api/rest/lists/#put-api-v1-lists-id)
 
 **Parameters:**
 
@@ -2195,7 +2132,7 @@ Updating a list
 | title | `string` |  The title of the list |
 
 **Returns:** `Promise`<[List](../interfaces/_entities_list_.list.md)>
-A updated List.
+Returns List
 
 ___
 <a id="updatemediaattachment"></a>
@@ -2204,13 +2141,10 @@ ___
 
 ▸ **updateMediaAttachment**(id: *`string`*, options?: *`Options.UpdateMedia`*): `Promise`<[Attachment](../interfaces/_entities_attachment_.attachment.md)>
 
-*Defined in [client/Mastodon.ts:545](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L545)*
+*Defined in [client/Mastodon.ts:620](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L620)*
 
-Updating a media attachment
-
-*   Can only be done before the media is attached to a status
-*   Focal points: Server-side preview images are never cropped, to support a variety of apps and user interfaces. Therefore, the cropping must be done by those apps. To crop intelligently, focal points can be used to ensure a certain section of the image is always within the cropped viewport. See this for how to let users select focal point coordinates.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#updating-a-media-attachment](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#updating-a-media-attachment)
+Update a media attachment. Can only be done before the media is attached to a status.
+*__see__*: [https://docs.joinmastodon.org/api/rest/media/#put-api-v1-media-id](https://docs.joinmastodon.org/api/rest/media/#put-api-v1-media-id)
 
 **Parameters:**
 
@@ -2220,30 +2154,28 @@ Updating a media attachment
 | `Optional` options | `Options.UpdateMedia` |  Form data |
 
 **Returns:** `Promise`<[Attachment](../interfaces/_entities_attachment_.attachment.md)>
-Returns an Attachment that can be used when creating a status.
+Returns Returns Attachment
 
 ___
 <a id="updatepushsubscription"></a>
 
 ##  updatePushSubscription
 
-▸ **updatePushSubscription**(options: *[UpdatePushSubscription](../interfaces/_client_options_.updatepushsubscription.md)*): `Promise`<[PushSubscription](../interfaces/_entities_pushsubscription_.pushsubscription.md)>
+▸ **updatePushSubscription**(options: *`Options.UpdatePushSubscription`*): `Promise`<[PushSubscription](../interfaces/_entities_pushsubscription_.pushsubscription.md)>
 
-*Defined in [client/Mastodon.ts:632](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L632)*
+*Defined in [client/Mastodon.ts:739](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L739)*
 
-Updating push subscription
-
-*   This API updates 'data' part of push subscription. If you want to change 'subscription', you have to use 'POST /api/api/v1/push/subscription'.
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#updating-push-subscription](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#updating-push-subscription)
+Update current Web Push API subscription. Only the `data` part can be updated, e.g. which types of notifications are desired. To change fundamentals, a new subscription must be created instead.
+*__see__*: [https://docs.joinmastodon.org/api/rest/notifications/#put-api-v1-push-subscription](https://docs.joinmastodon.org/api/rest/notifications/#put-api-v1-push-subscription)
 
 **Parameters:**
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| options | [UpdatePushSubscription](../interfaces/_client_options_.updatepushsubscription.md) |  Form data |
+| options | `Options.UpdatePushSubscription` |  Form data |
 
 **Returns:** `Promise`<[PushSubscription](../interfaces/_entities_pushsubscription_.pushsubscription.md)>
-Returns the Push Subscription
+Returns Push Subscription
 
 ___
 <a id="uploadmediaattachment"></a>
@@ -2252,10 +2184,10 @@ ___
 
 ▸ **uploadMediaAttachment**(file: *`File`*, options?: *`Options.UploadMedia`*): `Promise`<[Attachment](../interfaces/_entities_attachment_.attachment.md)>
 
-*Defined in [client/Mastodon.ts:532](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L532)*
+*Defined in [client/Mastodon.ts:609](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L609)*
 
-Uploading a media attachment
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#uploading-a-media-attachment](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#uploading-a-media-attachment)
+Upload a media attachment that can be used with a new status.
+*__see__*: [https://docs.joinmastodon.org/api/rest/media/#post-api-v1-media](https://docs.joinmastodon.org/api/rest/media/#post-api-v1-media)
 
 **Parameters:**
 
@@ -2265,22 +2197,37 @@ Uploading a media attachment
 | `Optional` options | `Options.UploadMedia` |  Form data |
 
 **Returns:** `Promise`<[Attachment](../interfaces/_entities_attachment_.attachment.md)>
-An Attachment that can be used when creating a status.
+Returns Attachment
 
 ___
 <a id="verfiycredentials"></a>
 
 ##  verfiyCredentials
 
-▸ **verfiyCredentials**(): `Promise`<[Credentials](../interfaces/_entities_credentials_.credentials.md)>
+▸ **verfiyCredentials**(): `Promise`<[AccountCredentials](../interfaces/_entities_account_.accountcredentials.md)>
 
-*Defined in [client/Mastodon.ts:127](https://github.com/lagunehq/core/blob/dae58ab/src/client/Mastodon.ts#L127)*
+*Defined in [client/Mastodon.ts:144](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L144)*
 
-Getting the current user
-*__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-the-current-user](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#getting-the-current-user)
+User’s own account.
+*__see__*: [https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-verify-credentials](https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-verify-credentials)
 
-**Returns:** `Promise`<[Credentials](../interfaces/_entities_credentials_.credentials.md)>
-The authenticated user's Account with an extra attribute source which contains these keys
+**Returns:** `Promise`<[AccountCredentials](../interfaces/_entities_account_.accountcredentials.md)>
+Returns Account with an extra source attribute.
+
+___
+<a id="verifyappcredential"></a>
+
+##  verifyAppCredential
+
+▸ **verifyAppCredential**(): `Promise`<[Application](../interfaces/_entities_application_.application.md)>
+
+*Defined in [client/Mastodon.ts:251](https://github.com/lagunehq/core/blob/ad87ae7/src/client/Mastodon.ts#L251)*
+
+Confirm that the app’s OAuth2 credentials work.
+*__see__*: [https://docs.joinmastodon.org/api/rest/apps/#get-api-v1-apps-verify-credentials](https://docs.joinmastodon.org/api/rest/apps/#get-api-v1-apps-verify-credentials)
+
+**Returns:** `Promise`<[Application](../interfaces/_entities_application_.application.md)>
+Returns App
 
 ___
 

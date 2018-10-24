@@ -10,69 +10,84 @@
 
 ## `<Optional>` avatar
 
-**● avatar**: *`File`*
+**● avatar**: * `File` &#124; `null`
+*
 
-*Defined in [client/options.ts:25](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L25)*
+*Defined in [client/options.ts:29](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L29)*
 
-An avatar for the user (encoded using `multipart/form-data`)
+Avatar encoded using `multipart/form-data`
 
 ___
 <a id="display_name"></a>
 
 ## `<Optional>` display_name
 
-**● display_name**: * `undefined` &#124; `string`
+**● display_name**: * `string` &#124; `null`
 *
 
-*Defined in [client/options.ts:19](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L19)*
+*Defined in [client/options.ts:23](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L23)*
 
-The name to display in the user's profile
+Display name
 
 ___
 <a id="fields_attributes"></a>
 
 ## `<Optional>` fields_attributes
 
-**● fields_attributes**: *[AccountField](_entities_account_.accountfield.md)[]*
+**● fields_attributes**: * [[AccountField](_entities_account_.accountfield.md)] &#124; [[AccountField](_entities_account_.accountfield.md), [AccountField](_entities_account_.accountfield.md)] &#124; [[AccountField](_entities_account_.accountfield.md), [AccountField](_entities_account_.accountfield.md), [AccountField](_entities_account_.accountfield.md)] &#124; [[AccountField](_entities_account_.accountfield.md), [AccountField](_entities_account_.accountfield.md), [AccountField](_entities_account_.accountfield.md), [AccountField](_entities_account_.accountfield.md)] &#124; `null`
+*
 
-*Defined in [client/options.ts:34](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L34)*
+*Defined in [client/options.ts:45](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L45)*
 
-Array of profile metadata, each element has 'name' and 'value'
+Profile metadata (max. 4)
 
 ___
 <a id="header"></a>
 
 ## `<Optional>` header
 
-**● header**: *`File`*
+**● header**: * `File` &#124; `null`
+*
 
-*Defined in [client/options.ts:28](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L28)*
+*Defined in [client/options.ts:32](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L32)*
 
-A header image for the user (encoded using `multipart/form-data`)
+Header image encoded using `multipart/form-data`
 
 ___
 <a id="locked"></a>
 
 ## `<Optional>` locked
 
-**● locked**: * `undefined` &#124; `false` &#124; `true`
+**● locked**: * `boolean` &#124; `null`
 *
 
-*Defined in [client/options.ts:31](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L31)*
+*Defined in [client/options.ts:35](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L35)*
 
-Manually approve followers?
+Enable follow requests
 
 ___
 <a id="note"></a>
 
 ## `<Optional>` note
 
-**● note**: * `undefined` &#124; `string`
+**● note**: * `string` &#124; `null`
 *
 
-*Defined in [client/options.ts:22](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L22)*
+*Defined in [client/options.ts:26](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L26)*
 
-A new biography for the user
+Biography
+
+___
+<a id="source"></a>
+
+## `<Optional>` source
+
+**● source**: * `Pick`<[AccountCredentialsSource](_entities_account_.accountcredentialssource.md),  "privacy" &#124; "sensitive" &#124; "language"> &#124; `null`
+*
+
+*Defined in [client/options.ts:42](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L42)*
+
+privacy: Default post privacy preference sensitive: Whether to mark statuses as sensitive by default language: Override language on statuses by default (ISO6391)
 
 ___
 

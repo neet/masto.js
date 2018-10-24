@@ -4,6 +4,8 @@
 
 **Application**
 
+↳  [OAuth](_entities_application_.oauth.md)
+
 # Properties
 
 <a id="name"></a>
@@ -12,7 +14,7 @@
 
 **● name**: *`string`*
 
-*Defined in [entities/Application.ts:3](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Application.ts#L3)*
+*Defined in [entities/Application.ts:3](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Application.ts#L3)*
 
 Name of the app
 
@@ -21,10 +23,10 @@ ___
 
 ## `<Optional>` website
 
-**● website**: * `undefined` &#124; `string`
+**● website**: * `string` &#124; `null`
 *
 
-*Defined in [entities/Application.ts:6](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Application.ts#L6)*
+*Defined in [entities/Application.ts:6](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Application.ts#L6)*
 
 Homepage URL of the app
 

@@ -10,10 +10,10 @@
 
 ## `<Optional>` in_reply_to_id
 
-**● in_reply_to_id**: * `undefined` &#124; `string`
+**● in_reply_to_id**: * `string` &#124; `null`
 *
 
-*Defined in [client/options.ts:62](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L62)*
+*Defined in [client/options.ts:81](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L81)*
 
 local ID of the status you want to reply to
 
@@ -22,10 +22,10 @@ ___
 
 ## `<Optional>` language
 
-**● language**: * `undefined` &#124; `string`
+**● language**: * `string` &#124; `null`
 *
 
-*Defined in [client/options.ts:77](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L77)*
+*Defined in [client/options.ts:96](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L96)*
 
 ISO 639-2 language code of the toot, to skip automatic detection
 
@@ -34,9 +34,10 @@ ___
 
 ## `<Optional>` media_ids
 
-**● media_ids**: *`string`[]*
+**● media_ids**: * `string`[] &#124; `null`
+*
 
-*Defined in [client/options.ts:65](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L65)*
+*Defined in [client/options.ts:84](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L84)*
 
 Array of media IDs to attach to the status (maximum 4)
 
@@ -45,10 +46,10 @@ ___
 
 ## `<Optional>` sensitive
 
-**● sensitive**: * `undefined` &#124; `false` &#124; `true`
+**● sensitive**: * `boolean` &#124; `null`
 *
 
-*Defined in [client/options.ts:68](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L68)*
+*Defined in [client/options.ts:87](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L87)*
 
 Set this to mark the media of the status as NSFW
 
@@ -57,10 +58,10 @@ ___
 
 ## `<Optional>` spoiler_text
 
-**● spoiler_text**: * `undefined` &#124; `string`
+**● spoiler_text**: * `string` &#124; `null`
 *
 
-*Defined in [client/options.ts:71](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L71)*
+*Defined in [client/options.ts:90](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L90)*
 
 Text to be shown as a warning before the actual content
 
@@ -69,9 +70,10 @@ ___
 
 ## `<Optional>` visibility
 
-**● visibility**: *[StatusVisibility](../modules/_entities_status_.md#statusvisibility)*
+**● visibility**: * [StatusVisibility](../modules/_entities_status_.md#statusvisibility) &#124; `null`
+*
 
-*Defined in [client/options.ts:74](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L74)*
+*Defined in [client/options.ts:93](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L93)*
 
 Either "direct", "private", "unlisted" or "public"
 

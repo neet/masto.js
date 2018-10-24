@@ -2,14 +2,14 @@
 
 # Type aliases
 
-<a id="notificationtypes"></a>
+<a id="notificationtype"></a>
 
-##  NotificationTypes
+##  NotificationType
 
-**Ƭ NotificationTypes**: * "mention" &#124; "reblog" &#124; "favourite" &#124; "follow"
+**Ƭ NotificationType**: * "mention" &#124; "reblog" &#124; "favourite" &#124; "follow"
 *
 
-*Defined in [entities/Notification.ts:4](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Notification.ts#L4)*
+*Defined in [entities/Notification.ts:21](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Notification.ts#L21)*
 
 ___
 

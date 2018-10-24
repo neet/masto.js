@@ -8,11 +8,12 @@
 
 <a id="contact_account"></a>
 
-##  contact_account
+## `<Optional>` contact_account
 
-**● contact_account**: *[Account](_entities_account_.account.md)*
+**● contact_account**: * [Account](_entities_account_.account.md) &#124; `null`
+*
 
-*Defined in [entities/Instance.ts:50](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Instance.ts#L50)*
+*Defined in [entities/Instance.ts:32](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Instance.ts#L32)*
 
 Account of the admin or another contact person
 
@@ -23,7 +24,7 @@ ___
 
 **● description**: *`string`*
 
-*Defined in [entities/Instance.ts:35](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Instance.ts#L35)*
+*Defined in [entities/Instance.ts:11](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Instance.ts#L11)*
 
 A description for the instance
 
@@ -34,7 +35,7 @@ ___
 
 **● email**: *`string`*
 
-*Defined in [entities/Instance.ts:38](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Instance.ts#L38)*
+*Defined in [entities/Instance.ts:14](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Instance.ts#L14)*
 
 An email address which can be used to contact the instance administrator
 
@@ -45,18 +46,18 @@ ___
 
 **● languages**: *`string`[]*
 
-*Defined in [entities/Instance.ts:47](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Instance.ts#L47)*
+*Defined in [entities/Instance.ts:29](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Instance.ts#L29)*
 
 Array of ISO 6391 language codes the instance has chosen to advertise
 
 ___
 <a id="stats"></a>
 
-## `<Optional>` stats
+##  stats
 
 **● stats**: *[InstanceStats](_entities_instance_.instancestats.md)*
 
-*Defined in [entities/Instance.ts:56](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Instance.ts#L56)*
+*Defined in [entities/Instance.ts:26](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Instance.ts#L26)*
 
 stats of the instance
 
@@ -65,10 +66,10 @@ ___
 
 ## `<Optional>` thumbnail
 
-**● thumbnail**: * `undefined` &#124; `string`
+**● thumbnail**: * `string` &#124; `null`
 *
 
-*Defined in [entities/Instance.ts:53](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Instance.ts#L53)*
+*Defined in [entities/Instance.ts:20](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Instance.ts#L20)*
 
 thumbnail of the instance
 
@@ -79,7 +80,7 @@ ___
 
 **● title**: *`string`*
 
-*Defined in [entities/Instance.ts:32](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Instance.ts#L32)*
+*Defined in [entities/Instance.ts:8](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Instance.ts#L8)*
 
 The instance's title
 
@@ -90,7 +91,7 @@ ___
 
 **● uri**: *`string`*
 
-*Defined in [entities/Instance.ts:29](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Instance.ts#L29)*
+*Defined in [entities/Instance.ts:5](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Instance.ts#L5)*
 
 URI of the current instance
 
@@ -99,9 +100,9 @@ ___
 
 ##  urls
 
-**● urls**: *[InstanceUrls](_entities_instance_.instanceurls.md)*
+**● urls**: *[InstanceURLs](_entities_instance_.instanceurls.md)*
 
-*Defined in [entities/Instance.ts:44](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Instance.ts#L44)*
+*Defined in [entities/Instance.ts:23](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Instance.ts#L23)*
 
 `streaming_api`
 
@@ -112,7 +113,7 @@ ___
 
 **● version**: *`string`*
 
-*Defined in [entities/Instance.ts:41](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Instance.ts#L41)*
+*Defined in [entities/Instance.ts:17](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Instance.ts#L17)*
 
 The Mastodon version used by instance.
 

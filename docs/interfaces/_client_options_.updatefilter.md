@@ -10,9 +10,10 @@
 
 ## `<Optional>` context
 
-**● context**: *[FilterContext](../modules/_entities_filter_.md#filtercontext)*
+**● context**: * [FilterContext](../modules/_entities_filter_.md#filtercontext) &#124; `null`
+*
 
-*Defined in [client/options.ts:104](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L104)*
+*Defined in [client/options.ts:123](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L123)*
 
 Array of strings that means filtering context. each string is one of `home`, `notifications`, `public`, `thread`. At least one context must be specified
 
@@ -21,10 +22,10 @@ ___
 
 ## `<Optional>` expires_in
 
-**● expires_in**: * `undefined` &#124; `number`
+**● expires_in**: * `number` &#124; `null`
 *
 
-*Defined in [client/options.ts:113](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L113)*
+*Defined in [client/options.ts:132](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L132)*
 
 The simestamp for expire time
 
@@ -33,10 +34,10 @@ ___
 
 ## `<Optional>` irreversible
 
-**● irreversible**: * `undefined` &#124; `false` &#124; `true`
+**● irreversible**: * `boolean` &#124; `null`
 *
 
-*Defined in [client/options.ts:107](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L107)*
+*Defined in [client/options.ts:126](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L126)*
 
 Filtered toots will disappear irreversibly, even if filter is later removed
 
@@ -45,10 +46,10 @@ ___
 
 ## `<Optional>` phrase
 
-**● phrase**: * `undefined` &#124; `string`
+**● phrase**: * `string` &#124; `null`
 *
 
-*Defined in [client/options.ts:101](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L101)*
+*Defined in [client/options.ts:120](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L120)*
 
 String that contains keyword or phrase
 
@@ -57,10 +58,10 @@ ___
 
 ## `<Optional>` whole_word
 
-**● whole_word**: * `undefined` &#124; `false` &#124; `true`
+**● whole_word**: * `boolean` &#124; `null`
 *
 
-*Defined in [client/options.ts:110](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L110)*
+*Defined in [client/options.ts:129](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L129)*
 
 Boolean that indicates word match.
 

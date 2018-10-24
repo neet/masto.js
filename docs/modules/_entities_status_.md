@@ -9,7 +9,7 @@
 **Ƭ StatusVisibility**: * "public" &#124; "unlisted" &#124; "private" &#124; "direct"
 *
 
-*Defined in [entities/Status.ts:8](https://github.com/lagunehq/core/blob/dae58ab/src/entities/Status.ts#L8)*
+*Defined in [entities/Status.ts:85](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Status.ts#L85)*
 
 ___
 

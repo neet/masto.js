@@ -12,12 +12,12 @@
 
 ## `<Optional>` limit
 
-**● limit**: * `undefined` &#124; `number`
+**● limit**: * `number` &#124; `null`
 *
 
 *Inherited from [Pagination](_client_options_.pagination.md).[limit](_client_options_.pagination.md#limit)*
 
-*Defined in [client/options.ts:14](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L14)*
+*Defined in [client/options.ts:18](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L18)*
 
 Maximum number of items to get
 
@@ -26,10 +26,10 @@ ___
 
 ## `<Optional>` local
 
-**● local**: * `undefined` &#124; `false` &#124; `true`
+**● local**: * `boolean` &#124; `null`
 *
 
-*Defined in [client/options.ts:82](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L82)*
+*Defined in [client/options.ts:101](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L101)*
 
 Only return statuses originating from this instance (public and tag timelines only)
 
@@ -38,24 +38,38 @@ ___
 
 ## `<Optional>` max_id
 
-**● max_id**: * `undefined` &#124; `string`
+**● max_id**: * `string` &#124; `null`
 *
 
 *Inherited from [Pagination](_client_options_.pagination.md).[max_id](_client_options_.pagination.md#max_id)*
 
-*Defined in [client/options.ts:8](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L8)*
+*Defined in [client/options.ts:9](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L9)*
 
 Get a list of items with ID less than this value
+
+___
+<a id="min_id"></a>
+
+## `<Optional>` min_id
+
+**● min_id**: * `string` &#124; `null`
+*
+
+*Inherited from [Pagination](_client_options_.pagination.md).[min_id](_client_options_.pagination.md#min_id)*
+
+*Defined in [client/options.ts:15](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L15)*
+
+Get a list of items with ID greater than this value exluding this ID
 
 ___
 <a id="only_media"></a>
 
 ## `<Optional>` only_media
 
-**● only_media**: * `undefined` &#124; `false` &#124; `true`
+**● only_media**: * `boolean` &#124; `null`
 *
 
-*Defined in [client/options.ts:85](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L85)*
+*Defined in [client/options.ts:104](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L104)*
 
 Only return statuses that have media attachments
 
@@ -64,14 +78,14 @@ ___
 
 ## `<Optional>` since_id
 
-**● since_id**: * `undefined` &#124; `string`
+**● since_id**: * `string` &#124; `null`
 *
 
 *Inherited from [Pagination](_client_options_.pagination.md).[since_id](_client_options_.pagination.md#since_id)*
 
-*Defined in [client/options.ts:11](https://github.com/lagunehq/core/blob/dae58ab/src/client/options.ts#L11)*
+*Defined in [client/options.ts:12](https://github.com/lagunehq/core/blob/ad87ae7/src/client/options.ts#L12)*
 
-Get a list of items with ID greater than this value
+Get a list of items with ID greater than this value including this ID
 
 ___
 
