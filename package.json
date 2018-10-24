@@ -27,18 +27,18 @@
   "dependencies": {
     "axios": "^0.18.0",
     "eventemitter3": "^3.1.0",
-    "http-link-header": "^0.8.0",
-    "websocket": "^1.0.26"
+    "http-link-header": "^1.0.0",
+    "websocket": "^1.0.28"
   },
   "devDependencies": {
     "@types/http-link-header": "^0.6.2",
     "@types/node-fetch": "^2.1.2",
-    "@types/query-string": "^6.1.0",
-    "@types/websocket": "^0.0.39",
+    "@types/query-string": "^6.1.1",
+    "@types/websocket": "^0.0.40",
     "gitbook-cli": "^2.3.2",
     "tslint": "^5.11.0",
-    "typedoc": "^0.12.0",
-    "typedoc-plugin-markdown": "^1.1.15",
-    "typescript": "^3.0.1"
+    "typedoc": "^0.13.0",
+    "typedoc-plugin-markdown": "^1.1.17",
+    "typescript": "^3.1.3"
   }
 }
