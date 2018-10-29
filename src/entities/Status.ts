@@ -1,6 +1,7 @@
 import { Account } from './Account';
 import { Application } from './Application';
 import { Attachment } from './Attachment';
+import { Card } from './Card';
 import { Emoji } from './Emoji';
 import { Mention } from './Mention';
 import { Tag } from './Tag';
@@ -26,6 +27,9 @@ export interface Status {
 
   /** `null` or the reblogged Status */
   reblog?: Status | null;
+
+  /** Embeded card */
+  card?: Card;
 
   /** Body of the status; this will contain HTML (remote HTML already sanitized) */
   content: string;
