@@ -1,5 +1,17 @@
 
 
+# Index
+
+### Interfaces
+
+* [Filter](../interfaces/_entities_filter_.filter.md)
+
+### Type aliases
+
+* [FilterContext](_entities_filter_.md#filtercontext)
+
+---
+
 # Type aliases
 
 <a id="filtercontext"></a>
@@ -9,7 +21,7 @@
 **Ƭ FilterContext**: * "home" &#124; "notifications" &#124; "public" &#124; "thread"
 *
 
-*Defined in [entities/Filter.ts:22](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Filter.ts#L22)*
+*Defined in [entities/Filter.ts:22](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Filter.ts#L22)*
 
 Type of filter context
 

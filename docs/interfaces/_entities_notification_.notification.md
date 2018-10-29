@@ -12,7 +12,7 @@
 
 **● account**: *[Account](_entities_account_.account.md)*
 
-*Defined in [entities/Notification.ts:15](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Notification.ts#L15)*
+*Defined in [entities/Notification.ts:15](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Notification.ts#L15)*
 
 The Account sending the notification to the user
 
@@ -23,7 +23,7 @@ ___
 
 **● created_at**: *`string`*
 
-*Defined in [entities/Notification.ts:12](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Notification.ts#L12)*
+*Defined in [entities/Notification.ts:12](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Notification.ts#L12)*
 
 The time the notification was created
 
@@ -34,7 +34,7 @@ ___
 
 **● id**: *`string`*
 
-*Defined in [entities/Notification.ts:6](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Notification.ts#L6)*
+*Defined in [entities/Notification.ts:6](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Notification.ts#L6)*
 
 The notification ID
 
@@ -46,7 +46,7 @@ ___
 **● status**: * [Status](_entities_status_.status.md) &#124; `null`
 *
 
-*Defined in [entities/Notification.ts:18](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Notification.ts#L18)*
+*Defined in [entities/Notification.ts:18](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Notification.ts#L18)*
 
 The Status associated with the notification, if applicable
 
@@ -57,7 +57,7 @@ ___
 
 **● type**: *[NotificationType](../modules/_entities_notification_.md#notificationtype)*
 
-*Defined in [entities/Notification.ts:9](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Notification.ts#L9)*
+*Defined in [entities/Notification.ts:9](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Notification.ts#L9)*
 
 One of: "mention", "reblog", "favourite", "follow"
 

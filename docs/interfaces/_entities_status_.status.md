@@ -12,7 +12,7 @@
 
 **● account**: *[Account](_entities_account_.account.md)*
 
-*Defined in [entities/Status.ts:19](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Status.ts#L19)*
+*Defined in [entities/Status.ts:20](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Status.ts#L20)*
 
 The Account which posted the status
 
@@ -24,9 +24,20 @@ ___
 **● application**: * [Application](_entities_application_.application.md) &#124; `null`
 *
 
-*Defined in [entities/Status.ts:76](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Status.ts#L76)*
+*Defined in [entities/Status.ts:80](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Status.ts#L80)*
 
 Application from which the status was posted
+
+___
+<a id="card"></a>
+
+## `<Optional>` card
+
+**● card**: *[Card](_entities_card_.card.md)*
+
+*Defined in [entities/Status.ts:32](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Status.ts#L32)*
+
+Embeded card
 
 ___
 <a id="content"></a>
@@ -35,7 +46,7 @@ ___
 
 **● content**: *`string`*
 
-*Defined in [entities/Status.ts:31](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Status.ts#L31)*
+*Defined in [entities/Status.ts:35](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Status.ts#L35)*
 
 Body of the status; this will contain HTML (remote HTML already sanitized)
 
@@ -46,7 +57,7 @@ ___
 
 **● created_at**: *`string`*
 
-*Defined in [entities/Status.ts:34](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Status.ts#L34)*
+*Defined in [entities/Status.ts:38](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Status.ts#L38)*
 
 The time the status was created
 
@@ -57,7 +68,7 @@ ___
 
 **● emojis**: *[Emoji](_entities_emoji_.emoji.md)[]*
 
-*Defined in [entities/Status.ts:37](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Status.ts#L37)*
+*Defined in [entities/Status.ts:41](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Status.ts#L41)*
 
 An array of Emoji
 
@@ -69,7 +80,7 @@ ___
 **● favourited**: * `boolean` &#124; `null`
 *
 
-*Defined in [entities/Status.ts:52](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Status.ts#L52)*
+*Defined in [entities/Status.ts:56](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Status.ts#L56)*
 
 Whether the authenticated user has favourited the status
 
@@ -80,7 +91,7 @@ ___
 
 **● favourites_count**: *`number`*
 
-*Defined in [entities/Status.ts:46](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Status.ts#L46)*
+*Defined in [entities/Status.ts:50](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Status.ts#L50)*
 
 The number of favourites for the status
 
@@ -91,7 +102,7 @@ ___
 
 **● id**: *`string`*
 
-*Defined in [entities/Status.ts:10](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Status.ts#L10)*
+*Defined in [entities/Status.ts:11](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Status.ts#L11)*
 
 The ID of the status
 
@@ -103,7 +114,7 @@ ___
 **● in_reply_to_account_id**: * `string` &#124; `null`
 *
 
-*Defined in [entities/Status.ts:25](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Status.ts#L25)*
+*Defined in [entities/Status.ts:26](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Status.ts#L26)*
 
 `null` or the ID of the account it replies to
 
@@ -115,7 +126,7 @@ ___
 **● in_reply_to_id**: * `string` &#124; `null`
 *
 
-*Defined in [entities/Status.ts:22](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Status.ts#L22)*
+*Defined in [entities/Status.ts:23](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Status.ts#L23)*
 
 `null` or the ID of the status it replies to
 
@@ -127,7 +138,7 @@ ___
 **● language**: * `string` &#124; `null`
 *
 
-*Defined in [entities/Status.ts:79](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Status.ts#L79)*
+*Defined in [entities/Status.ts:83](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Status.ts#L83)*
 
 The detected language for the status, if detected
 
@@ -138,7 +149,7 @@ ___
 
 **● media_attachments**: *[Attachment](_entities_attachment_.attachment.md)[]*
 
-*Defined in [entities/Status.ts:67](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Status.ts#L67)*
+*Defined in [entities/Status.ts:71](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Status.ts#L71)*
 
 An array of Attachments
 
@@ -149,7 +160,7 @@ ___
 
 **● mentions**: *[Mention](_entities_mention_.mention.md)[]*
 
-*Defined in [entities/Status.ts:70](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Status.ts#L70)*
+*Defined in [entities/Status.ts:74](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Status.ts#L74)*
 
 An array of Mentions
 
@@ -161,7 +172,7 @@ ___
 **● muted**: * `boolean` &#124; `null`
 *
 
-*Defined in [entities/Status.ts:55](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Status.ts#L55)*
+*Defined in [entities/Status.ts:59](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Status.ts#L59)*
 
 Whether the authenticated user has muted the conversation this status from
 
@@ -173,7 +184,7 @@ ___
 **● pinned**: * `boolean` &#124; `null`
 *
 
-*Defined in [entities/Status.ts:82](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Status.ts#L82)*
+*Defined in [entities/Status.ts:86](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Status.ts#L86)*
 
 Whether this is the pinned status for the account that posted it
 
@@ -185,7 +196,7 @@ ___
 **● reblog**: * [Status](_entities_status_.status.md) &#124; `null`
 *
 
-*Defined in [entities/Status.ts:28](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Status.ts#L28)*
+*Defined in [entities/Status.ts:29](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Status.ts#L29)*
 
 `null` or the reblogged Status
 
@@ -197,7 +208,7 @@ ___
 **● reblogged**: * `boolean` &#124; `null`
 *
 
-*Defined in [entities/Status.ts:49](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Status.ts#L49)*
+*Defined in [entities/Status.ts:53](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Status.ts#L53)*
 
 Whether the authenticated user has reblogged the status
 
@@ -208,7 +219,7 @@ ___
 
 **● reblogs_count**: *`number`*
 
-*Defined in [entities/Status.ts:43](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Status.ts#L43)*
+*Defined in [entities/Status.ts:47](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Status.ts#L47)*
 
 The number of reblogs for the status
 
@@ -219,7 +230,7 @@ ___
 
 **● replies_count**: *`number`*
 
-*Defined in [entities/Status.ts:40](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Status.ts#L40)*
+*Defined in [entities/Status.ts:44](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Status.ts#L44)*
 
 The number of replies for the status
 
@@ -230,7 +241,7 @@ ___
 
 **● sensitive**: *`boolean`*
 
-*Defined in [entities/Status.ts:58](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Status.ts#L58)*
+*Defined in [entities/Status.ts:62](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Status.ts#L62)*
 
 Whether media attachments should be hidden by default
 
@@ -241,7 +252,7 @@ ___
 
 **● spoiler_text**: *`string`*
 
-*Defined in [entities/Status.ts:61](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Status.ts#L61)*
+*Defined in [entities/Status.ts:65](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Status.ts#L65)*
 
 If not empty, warning text that should be displayed before the actual content
 
@@ -252,7 +263,7 @@ ___
 
 **● tags**: *[Tag](_entities_tag_.tag.md)[]*
 
-*Defined in [entities/Status.ts:73](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Status.ts#L73)*
+*Defined in [entities/Status.ts:77](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Status.ts#L77)*
 
 An array of Tags
 
@@ -263,7 +274,7 @@ ___
 
 **● uri**: *`string`*
 
-*Defined in [entities/Status.ts:13](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Status.ts#L13)*
+*Defined in [entities/Status.ts:14](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Status.ts#L14)*
 
 A Fediverse-unique resource ID
 
@@ -275,7 +286,7 @@ ___
 **● url**: * `string` &#124; `null`
 *
 
-*Defined in [entities/Status.ts:16](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Status.ts#L16)*
+*Defined in [entities/Status.ts:17](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Status.ts#L17)*
 
 URL to the status page (can be remote)
 
@@ -286,7 +297,7 @@ ___
 
 **● visibility**: *[StatusVisibility](../modules/_entities_status_.md#statusvisibility)*
 
-*Defined in [entities/Status.ts:64](https://github.com/lagunehq/core/blob/ad87ae7/src/entities/Status.ts#L64)*
+*Defined in [entities/Status.ts:68](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Status.ts#L68)*
 
 One of: `public`, `unlisted`, `private`, `direct`
 
