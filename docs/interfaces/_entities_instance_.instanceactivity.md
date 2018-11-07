@@ -12,7 +12,7 @@
 
 **● logins**: *`string`*
 
-*Defined in [entities/Instance.ts:53](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Instance.ts#L53)*
+*Defined in [entities/Instance.ts:53](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Instance.ts#L53)*
 
 Active users while the week
 
@@ -23,7 +23,7 @@ ___
 
 **● registrations**: *`string`*
 
-*Defined in [entities/Instance.ts:56](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Instance.ts#L56)*
+*Defined in [entities/Instance.ts:56](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Instance.ts#L56)*
 
 New registrations while the week
 
@@ -34,7 +34,7 @@ ___
 
 **● statuses**: *`string`*
 
-*Defined in [entities/Instance.ts:50](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Instance.ts#L50)*
+*Defined in [entities/Instance.ts:50](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Instance.ts#L50)*
 
 Number of statuses created while the week
 
@@ -45,7 +45,7 @@ ___
 
 **● week**: *`string`*
 
-*Defined in [entities/Instance.ts:47](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Instance.ts#L47)*
+*Defined in [entities/Instance.ts:47](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Instance.ts#L47)*
 
 Timestamp of 0 o'clock on Monday of the week
 

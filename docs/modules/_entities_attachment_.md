@@ -25,7 +25,7 @@
 **Ƭ AttachmentType**: * "image" &#124; "video" &#124; "gifv" &#124; "unknown"
 *
 
-*Defined in [entities/Attachment.ts:27](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Attachment.ts#L27)*
+*Defined in [entities/Attachment.ts:27](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Attachment.ts#L27)*
 
 ___
 

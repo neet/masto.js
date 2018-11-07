@@ -22,7 +22,7 @@
 
 ⊕ **new MastodonError**(name: *`string`*, message: *`string`*): [MastodonError](_errors_mastodonerror_.mastodonerror.md)
 
-*Defined in [errors/MastodonError.ts:1](https://github.com/lagunehq/core/blob/5d4ee10/src/errors/MastodonError.ts#L1)*
+*Defined in [errors/MastodonError.ts:1](https://github.com/lagunehq/core/blob/e57dc9c/src/errors/MastodonError.ts#L1)*
 
 **Parameters:**
 
@@ -45,7 +45,7 @@ ___
 
 *Overrides Error.message*
 
-*Defined in [errors/MastodonError.ts:2](https://github.com/lagunehq/core/blob/5d4ee10/src/errors/MastodonError.ts#L2)*
+*Defined in [errors/MastodonError.ts:2](https://github.com/lagunehq/core/blob/e57dc9c/src/errors/MastodonError.ts#L2)*
 
 ___
 <a id="name"></a>
@@ -56,7 +56,7 @@ ___
 
 *Overrides Error.name*
 
-*Defined in [errors/MastodonError.ts:2](https://github.com/lagunehq/core/blob/5d4ee10/src/errors/MastodonError.ts#L2)*
+*Defined in [errors/MastodonError.ts:2](https://github.com/lagunehq/core/blob/e57dc9c/src/errors/MastodonError.ts#L2)*
 
 ___
 <a id="stack"></a>

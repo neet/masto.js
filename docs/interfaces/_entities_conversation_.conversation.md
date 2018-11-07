@@ -12,7 +12,7 @@
 
 **● accounts**: *[Account](_entities_account_.account.md)[]*
 
-*Defined in [entities/Conversation.ts:12](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Conversation.ts#L12)*
+*Defined in [entities/Conversation.ts:12](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Conversation.ts#L12)*
 
 An array of accounts that mentioned this conversation
 
@@ -23,7 +23,7 @@ ___
 
 **● id**: *`string`*
 
-*Defined in [entities/Conversation.ts:6](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Conversation.ts#L6)*
+*Defined in [entities/Conversation.ts:6](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Conversation.ts#L6)*
 
 The ID of the conversation
 
@@ -34,7 +34,7 @@ ___
 
 **● last_status**: *[Status](_entities_status_.status.md)*
 
-*Defined in [entities/Conversation.ts:15](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Conversation.ts#L15)*
+*Defined in [entities/Conversation.ts:15](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Conversation.ts#L15)*
 
 The latest status of this conversation
 
@@ -45,7 +45,7 @@ ___
 
 **● unread**: *`boolean`*
 
-*Defined in [entities/Conversation.ts:9](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Conversation.ts#L9)*
+*Defined in [entities/Conversation.ts:9](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Conversation.ts#L9)*
 
 Wether authorized user has read latest status
 

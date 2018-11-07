@@ -16,7 +16,7 @@
 
 *Overrides [MastodonError](_errors_mastodonerror_.mastodonerror.md).[constructor](_errors_mastodonerror_.mastodonerror.md#constructor)*
 
-*Defined in [errors/MastodonRatelimitError.ts:3](https://github.com/lagunehq/core/blob/5d4ee10/src/errors/MastodonRatelimitError.ts#L3)*
+*Defined in [errors/MastodonRatelimitError.ts:3](https://github.com/lagunehq/core/blob/e57dc9c/src/errors/MastodonRatelimitError.ts#L3)*
 
 **Parameters:**
 
@@ -40,7 +40,7 @@ ___
 
 *Overrides Error.message*
 
-*Defined in [errors/MastodonError.ts:2](https://github.com/lagunehq/core/blob/5d4ee10/src/errors/MastodonError.ts#L2)*
+*Defined in [errors/MastodonError.ts:2](https://github.com/lagunehq/core/blob/e57dc9c/src/errors/MastodonError.ts#L2)*
 
 ___
 <a id="name"></a>
@@ -53,7 +53,7 @@ ___
 
 *Overrides Error.name*
 
-*Defined in [errors/MastodonError.ts:2](https://github.com/lagunehq/core/blob/5d4ee10/src/errors/MastodonError.ts#L2)*
+*Defined in [errors/MastodonError.ts:2](https://github.com/lagunehq/core/blob/e57dc9c/src/errors/MastodonError.ts#L2)*
 
 ___
 <a id="stack"></a>

@@ -14,7 +14,7 @@
 
 **● name**: *`string`*
 
-*Defined in [entities/Application.ts:3](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Application.ts#L3)*
+*Defined in [entities/Application.ts:3](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Application.ts#L3)*
 
 Name of the app
 
@@ -26,7 +26,7 @@ ___
 **● website**: * `string` &#124; `null`
 *
 
-*Defined in [entities/Application.ts:6](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Application.ts#L6)*
+*Defined in [entities/Application.ts:6](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Application.ts#L6)*
 
 Homepage URL of the app
 

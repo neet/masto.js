@@ -12,7 +12,7 @@
 
 **● aspect**: *`number`*
 
-*Defined in [entities/Attachment.ts:39](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Attachment.ts#L39)*
+*Defined in [entities/Attachment.ts:39](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Attachment.ts#L39)*
 
 ___
 <a id="height"></a>
@@ -21,7 +21,7 @@ ___
 
 **● height**: *`number`*
 
-*Defined in [entities/Attachment.ts:37](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Attachment.ts#L37)*
+*Defined in [entities/Attachment.ts:37](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Attachment.ts#L37)*
 
 ___
 <a id="size"></a>
@@ -30,7 +30,7 @@ ___
 
 **● size**: *`string`*
 
-*Defined in [entities/Attachment.ts:38](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Attachment.ts#L38)*
+*Defined in [entities/Attachment.ts:38](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Attachment.ts#L38)*
 
 ___
 <a id="width"></a>
@@ -39,7 +39,7 @@ ___
 
 **● width**: *`number`*
 
-*Defined in [entities/Attachment.ts:36](https://github.com/lagunehq/core/blob/5d4ee10/src/entities/Attachment.ts#L36)*
+*Defined in [entities/Attachment.ts:36](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Attachment.ts#L36)*
 
 ___
 

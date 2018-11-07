@@ -15,7 +15,7 @@
 **● exclude_replies**: * `boolean` &#124; `null`
 *
 
-*Defined in [client/options.ts:115](https://github.com/lagunehq/core/blob/5d4ee10/src/client/options.ts#L115)*
+*Defined in [client/options.ts:115](https://github.com/lagunehq/core/blob/e57dc9c/src/client/options.ts#L115)*
 
 Skip statuses that reply to other statuses
 
@@ -29,7 +29,7 @@ ___
 
 *Inherited from [Pagination](_client_options_.pagination.md).[limit](_client_options_.pagination.md#limit)*
 
-*Defined in [client/options.ts:18](https://github.com/lagunehq/core/blob/5d4ee10/src/client/options.ts#L18)*
+*Defined in [client/options.ts:18](https://github.com/lagunehq/core/blob/e57dc9c/src/client/options.ts#L18)*
 
 Maximum number of items to get
 
@@ -43,7 +43,7 @@ ___
 
 *Inherited from [Pagination](_client_options_.pagination.md).[max_id](_client_options_.pagination.md#max_id)*
 
-*Defined in [client/options.ts:9](https://github.com/lagunehq/core/blob/5d4ee10/src/client/options.ts#L9)*
+*Defined in [client/options.ts:9](https://github.com/lagunehq/core/blob/e57dc9c/src/client/options.ts#L9)*
 
 Get a list of items with ID less than this value
 
@@ -57,7 +57,7 @@ ___
 
 *Inherited from [Pagination](_client_options_.pagination.md).[min_id](_client_options_.pagination.md#min_id)*
 
-*Defined in [client/options.ts:15](https://github.com/lagunehq/core/blob/5d4ee10/src/client/options.ts#L15)*
+*Defined in [client/options.ts:15](https://github.com/lagunehq/core/blob/e57dc9c/src/client/options.ts#L15)*
 
 Get a list of items with ID greater than this value exluding this ID
 
@@ -69,7 +69,7 @@ ___
 **● only_media**: * `boolean` &#124; `null`
 *
 
-*Defined in [client/options.ts:109](https://github.com/lagunehq/core/blob/5d4ee10/src/client/options.ts#L109)*
+*Defined in [client/options.ts:109](https://github.com/lagunehq/core/blob/e57dc9c/src/client/options.ts#L109)*
 
 Only return statuses that have media attachments
 
@@ -81,7 +81,7 @@ ___
 **● pinned**: * `boolean` &#124; `null`
 *
 
-*Defined in [client/options.ts:112](https://github.com/lagunehq/core/blob/5d4ee10/src/client/options.ts#L112)*
+*Defined in [client/options.ts:112](https://github.com/lagunehq/core/blob/e57dc9c/src/client/options.ts#L112)*
 
 Only return statuses that have been pinned
 
@@ -95,7 +95,7 @@ ___
 
 *Inherited from [Pagination](_client_options_.pagination.md).[since_id](_client_options_.pagination.md#since_id)*
 
-*Defined in [client/options.ts:12](https://github.com/lagunehq/core/blob/5d4ee10/src/client/options.ts#L12)*
+*Defined in [client/options.ts:12](https://github.com/lagunehq/core/blob/e57dc9c/src/client/options.ts#L12)*
 
 Get a list of items with ID greater than this value including this ID
 
