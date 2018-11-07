@@ -4,6 +4,26 @@ import { NotificationType } from '../entities/Notification';
 import { PushSubscriptionAlerts } from '../entities/PushSubscription';
 import { StatusVisibility } from '../entities/Status';
 
+export interface FetchAccessTokenOptions {
+  /** code */
+  code: string;
+
+  /** client_id of your app */
+  client_id: string;
+
+  /** client_secret of your app */
+  client_secret: string;
+
+  /** redirect_uri of your app */
+  redirect_uri: string;
+
+  /** Type of permission to be granted, e.g. `authorization_code` */
+  grant_type: string;
+
+  /** Wether force the user to re-login */
+  force_login: boolean;
+}
+
 export interface Pagination {
   /** Get a list of items with ID less than this value */
   max_id?: string | null;
