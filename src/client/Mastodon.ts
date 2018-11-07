@@ -114,12 +114,16 @@ export class Mastodon extends Gateway {
 
   /**
    * Fetch access token from authorization code
-   * @param options Options for the authroization
+   * @param code code
+   * @param client_id client_id of your app
+   * @param client_secret client_secret of your app
+   * @param redirect_uri redirect_uri of your app
+   * @param grant_type grant_type
    * @see https://docs.joinmastodon.org/api/permissions/
    * @see https://docs.joinmastodon.org/api/authentication/
    */
-  public async fetchAccessToken (options: Options.FetchAccessTokenOptions) {
-    return (await this.post<{ access_token: string }>(`${this.url}/oauth/token`, options)).data;
+  public async fetchAccessToken (code: string, client_id: string, client_secret: string, redirect_uri: string, grant_type = 'authorization_code') {
+    return (await this.post<{ access_token: string }>(`${this.url}/oauth/token`, { code, client_id, client_secret, redirect_uri, grant_type })).data;
   }
 
   /**
