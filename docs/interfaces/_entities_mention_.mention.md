@@ -12,7 +12,7 @@
 
 **● acct**: *`string`*
 
-*Defined in [entities/Mention.ts:9](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Mention.ts#L9)*
+*Defined in [entities/Mention.ts:9](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Mention.ts#L9)*
 
 Equals `username` for local users, includes `@domain` for remote ones
 
@@ -23,7 +23,7 @@ ___
 
 **● id**: *`string`*
 
-*Defined in [entities/Mention.ts:12](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Mention.ts#L12)*
+*Defined in [entities/Mention.ts:12](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Mention.ts#L12)*
 
 Account ID
 
@@ -34,7 +34,7 @@ ___
 
 **● url**: *`string`*
 
-*Defined in [entities/Mention.ts:3](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Mention.ts#L3)*
+*Defined in [entities/Mention.ts:3](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Mention.ts#L3)*
 
 URL of user's profile (can be remote)
 
@@ -45,7 +45,7 @@ ___
 
 **● username**: *`string`*
 
-*Defined in [entities/Mention.ts:6](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Mention.ts#L6)*
+*Defined in [entities/Mention.ts:6](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Mention.ts#L6)*
 
 The username of the account
 

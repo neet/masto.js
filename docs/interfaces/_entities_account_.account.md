@@ -14,7 +14,7 @@
 
 **● acct**: *`string`*
 
-*Defined in [entities/Account.ts:12](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Account.ts#L12)*
+*Defined in [entities/Account.ts:12](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Account.ts#L12)*
 
 Equals username for local users, includes `@domain` for remote ones
 
@@ -25,7 +25,7 @@ ___
 
 **● avatar**: *`string`*
 
-*Defined in [entities/Account.ts:42](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Account.ts#L42)*
+*Defined in [entities/Account.ts:42](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Account.ts#L42)*
 
 URL to the avatar image
 
@@ -36,7 +36,7 @@ ___
 
 **● avatar_static**: *`string`*
 
-*Defined in [entities/Account.ts:45](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Account.ts#L45)*
+*Defined in [entities/Account.ts:45](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Account.ts#L45)*
 
 URL to the avatar static image (gif)
 
@@ -48,7 +48,7 @@ ___
 **● bot**: * `boolean` &#124; `null`
 *
 
-*Defined in [entities/Account.ts:21](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Account.ts#L21)*
+*Defined in [entities/Account.ts:21](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Account.ts#L21)*
 
 Boolean to indicate that the account performs automated actions
 
@@ -59,7 +59,7 @@ ___
 
 **● created_at**: *`string`*
 
-*Defined in [entities/Account.ts:24](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Account.ts#L24)*
+*Defined in [entities/Account.ts:24](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Account.ts#L24)*
 
 The time the account was created
 
@@ -70,7 +70,7 @@ ___
 
 **● display_name**: *`string`*
 
-*Defined in [entities/Account.ts:15](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Account.ts#L15)*
+*Defined in [entities/Account.ts:15](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Account.ts#L15)*
 
 The account's display name
 
@@ -81,7 +81,7 @@ ___
 
 **● emojis**: *[Emoji](_entities_emoji_.emoji.md)[]*
 
-*Defined in [entities/Account.ts:54](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Account.ts#L54)*
+*Defined in [entities/Account.ts:54](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Account.ts#L54)*
 
 Array of Emoji in account username and note
 
@@ -93,7 +93,7 @@ ___
 **● fields**: * [AccountField](_entities_account_.accountfield.md)[] &#124; `null`
 *
 
-*Defined in [entities/Account.ts:60](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Account.ts#L60)*
+*Defined in [entities/Account.ts:60](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Account.ts#L60)*
 
 Array of profile metadata field, each element has 'name' and 'value'
 
@@ -104,7 +104,7 @@ ___
 
 **● followers_count**: *`number`*
 
-*Defined in [entities/Account.ts:27](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Account.ts#L27)*
+*Defined in [entities/Account.ts:27](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Account.ts#L27)*
 
 The number of followers for the account
 
@@ -115,7 +115,7 @@ ___
 
 **● following_count**: *`number`*
 
-*Defined in [entities/Account.ts:30](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Account.ts#L30)*
+*Defined in [entities/Account.ts:30](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Account.ts#L30)*
 
 The number of accounts the given account is following
 
@@ -126,7 +126,7 @@ ___
 
 **● header**: *`string`*
 
-*Defined in [entities/Account.ts:48](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Account.ts#L48)*
+*Defined in [entities/Account.ts:48](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Account.ts#L48)*
 
 URL to the header image
 
@@ -137,7 +137,7 @@ ___
 
 **● header_static**: *`string`*
 
-*Defined in [entities/Account.ts:51](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Account.ts#L51)*
+*Defined in [entities/Account.ts:51](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Account.ts#L51)*
 
 URL to the header static image (gif)
 
@@ -148,7 +148,7 @@ ___
 
 **● id**: *`string`*
 
-*Defined in [entities/Account.ts:6](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Account.ts#L6)*
+*Defined in [entities/Account.ts:6](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Account.ts#L6)*
 
 The ID of the account
 
@@ -159,7 +159,7 @@ ___
 
 **● locked**: *`boolean`*
 
-*Defined in [entities/Account.ts:18](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Account.ts#L18)*
+*Defined in [entities/Account.ts:18](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Account.ts#L18)*
 
 Boolean for when the account cannot be followed without waiting for approval first
 
@@ -171,7 +171,7 @@ ___
 **● moved**: * `boolean` &#124; `null`
 *
 
-*Defined in [entities/Account.ts:57](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Account.ts#L57)*
+*Defined in [entities/Account.ts:57](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Account.ts#L57)*
 
 If the owner decided to switch accounts, new account is in this attribute
 
@@ -182,7 +182,7 @@ ___
 
 **● note**: *`string`*
 
-*Defined in [entities/Account.ts:36](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Account.ts#L36)*
+*Defined in [entities/Account.ts:36](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Account.ts#L36)*
 
 Biography of user
 
@@ -193,7 +193,7 @@ ___
 
 **● statuses_count**: *`number`*
 
-*Defined in [entities/Account.ts:33](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Account.ts#L33)*
+*Defined in [entities/Account.ts:33](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Account.ts#L33)*
 
 The number of statuses the account has made
 
@@ -204,7 +204,7 @@ ___
 
 **● url**: *`string`*
 
-*Defined in [entities/Account.ts:39](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Account.ts#L39)*
+*Defined in [entities/Account.ts:39](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Account.ts#L39)*
 
 URL of the user's profile page (can be remote)
 
@@ -215,7 +215,7 @@ ___
 
 **● username**: *`string`*
 
-*Defined in [entities/Account.ts:9](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Account.ts#L9)*
+*Defined in [entities/Account.ts:9](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Account.ts#L9)*
 
 The username of the account
 

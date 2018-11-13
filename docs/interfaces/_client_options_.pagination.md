@@ -19,7 +19,7 @@
 **● limit**: * `number` &#124; `null`
 *
 
-*Defined in [client/options.ts:18](https://github.com/lagunehq/core/blob/e57dc9c/src/client/options.ts#L18)*
+*Defined in [client/options.ts:18](https://github.com/lagunehq/core/blob/8aa3625/src/client/options.ts#L18)*
 
 Maximum number of items to get
 
@@ -31,7 +31,7 @@ ___
 **● max_id**: * `string` &#124; `null`
 *
 
-*Defined in [client/options.ts:9](https://github.com/lagunehq/core/blob/e57dc9c/src/client/options.ts#L9)*
+*Defined in [client/options.ts:9](https://github.com/lagunehq/core/blob/8aa3625/src/client/options.ts#L9)*
 
 Get a list of items with ID less than this value
 
@@ -43,7 +43,7 @@ ___
 **● min_id**: * `string` &#124; `null`
 *
 
-*Defined in [client/options.ts:15](https://github.com/lagunehq/core/blob/e57dc9c/src/client/options.ts#L15)*
+*Defined in [client/options.ts:15](https://github.com/lagunehq/core/blob/8aa3625/src/client/options.ts#L15)*
 
 Get a list of items with ID greater than this value exluding this ID
 
@@ -55,7 +55,7 @@ ___
 **● since_id**: * `string` &#124; `null`
 *
 
-*Defined in [client/options.ts:12](https://github.com/lagunehq/core/blob/e57dc9c/src/client/options.ts#L12)*
+*Defined in [client/options.ts:12](https://github.com/lagunehq/core/blob/8aa3625/src/client/options.ts#L12)*
 
 Get a list of items with ID greater than this value including this ID
 

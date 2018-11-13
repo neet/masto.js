@@ -21,7 +21,7 @@
 **Ƭ CardType**: * "link" &#124; "photo" &#124; "video" &#124; "rich"
 *
 
-*Defined in [entities/Card.ts:39](https://github.com/lagunehq/core/blob/e57dc9c/src/entities/Card.ts#L39)*
+*Defined in [entities/Card.ts:39](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Card.ts#L39)*
 
 ___
 
