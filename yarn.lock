@@ -3044,9 +3044,9 @@ typedoc-default-themes@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/typedoc-default-themes/-/typedoc-default-themes-0.5.0.tgz#6dc2433e78ed8bea8e887a3acde2f31785bd6227"
 
-typedoc-plugin-markdown@^1.1.17:
-  version "1.1.17"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-markdown/-/typedoc-plugin-markdown-1.1.17.tgz#1b179a9f35ccffc5c0e5c23224cfa1515aa3d2d8"
+typedoc-plugin-markdown@^1.1.18:
+  version "1.1.18"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-markdown/-/typedoc-plugin-markdown-1.1.18.tgz#dc4cb51b411f3773bcc2ffc45b808fee71e681bf"
   dependencies:
     turndown "^5.0.1"
 
@@ -3072,9 +3072,13 @@ typedoc@^0.13.0:
     typedoc-default-themes "^0.5.0"
     typescript "3.1.x"
 
-typescript@3.1.x, typescript@^3.1.3:
+typescript@3.1.x:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.1.3.tgz#01b70247a6d3c2467f70c45795ef5ea18ce191d5"
+
+typescript@^3.1.6:
+  version "3.1.6"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.1.6.tgz#b6543a83cfc8c2befb3f4c8fba6896f5b0c9be68"
 
 uglify-js@^2.6:
   version "2.8.29"
