@@ -1,6 +1,6 @@
 import { EventEmitter } from 'eventemitter3';
 import * as querystring from 'querystring';
-import { Conversation } from 'src/entities/Conversation';
+import { Conversation } from '../entities/Conversation';
 import * as WebSocket from 'websocket';
 import { Notification } from '../entities/Notification';
 import { Status } from '../entities/Status';
