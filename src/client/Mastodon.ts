@@ -769,8 +769,8 @@ export class Mastodon extends Gateway {
    * @return Returns Results
    * @see https://docs.joinmastodon.org/api/rest/search/#get-api-v2-search
    */
-  public async search <V extends 'v1'|'v2' = 'v2'> (q: string, resolve = false, version?: V) {
-    return (await this.post<Results<V>>(`${this.url}/api/${version}/search`, { q, resolve })).data;
+  public async search <V extends 'v1'|'v2' = 'v2'> (q: string, resolve = false, version = 'v2' as V) {
+    return (await this.get<Results<V>>(`${this.url}/api/${version}/search`, { q, resolve })).data;
   }
 
   /**
