@@ -22,11 +22,11 @@
 
 ⊕ **new MastodonError**(name: *`string`*, message: *`string`*): [MastodonError](_errors_mastodonerror_.mastodonerror.md)
 
-*Defined in [errors/MastodonError.ts:1](https://github.com/lagunehq/core/blob/8aa3625/src/errors/MastodonError.ts#L1)*
+*Defined in [errors/MastodonError.ts:1](https://github.com/lagunehq/core/blob/b472bda/src/errors/MastodonError.ts#L1)*
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | name | `string` |
 | message | `string` |
@@ -45,7 +45,7 @@ ___
 
 *Overrides Error.message*
 
-*Defined in [errors/MastodonError.ts:2](https://github.com/lagunehq/core/blob/8aa3625/src/errors/MastodonError.ts#L2)*
+*Defined in [errors/MastodonError.ts:2](https://github.com/lagunehq/core/blob/b472bda/src/errors/MastodonError.ts#L2)*
 
 ___
 <a id="name"></a>
@@ -56,7 +56,7 @@ ___
 
 *Overrides Error.name*
 
-*Defined in [errors/MastodonError.ts:2](https://github.com/lagunehq/core/blob/8aa3625/src/errors/MastodonError.ts#L2)*
+*Defined in [errors/MastodonError.ts:2](https://github.com/lagunehq/core/blob/b472bda/src/errors/MastodonError.ts#L2)*
 
 ___
 <a id="stack"></a>
@@ -70,7 +70,7 @@ ___
 
 *Overrides Error.stack*
 
-*Defined in /Users/nucx/Developments/lagune/core/node_modules/typescript/lib/lib.es5.d.ts:905*
+*Defined in /Users/nucx/Developments/lagune/core/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:905*
 
 ___
 <a id="error"></a>
@@ -79,7 +79,7 @@ ___
 
 **● Error**: *`ErrorConstructor`*
 
-*Defined in /Users/nucx/Developments/lagune/core/node_modules/typescript/lib/lib.es5.d.ts:914*
+*Defined in /Users/nucx/Developments/lagune/core/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:914*
 
 ___
 

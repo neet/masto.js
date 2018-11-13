@@ -17,13 +17,13 @@
 
 ⊕ **new EventHandler**(url: *`string`*, options: *`object`*): [EventHandler](_client_eventhandler_.eventhandler.md)
 
-*Defined in [client/EventHandler.ts:31](https://github.com/lagunehq/core/blob/8aa3625/src/client/EventHandler.ts#L31)*
+*Defined in [client/EventHandler.ts:31](https://github.com/lagunehq/core/blob/b472bda/src/client/EventHandler.ts#L31)*
 
 Starting stream with a specified channel
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | url | `string` |
 | options | `object` |
@@ -61,7 +61,7 @@ ___
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | event | `EventTypes` |
 | fn | `ListenerFn` |
@@ -84,7 +84,7 @@ Calls each of the listeners registered for a given event.
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | event | `EventTypes` |
 | `Rest` args | `Array`<`any`> |
@@ -121,7 +121,7 @@ Return the number of listeners listening to a given event.
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | event | `EventTypes` |
 
@@ -142,7 +142,7 @@ Return the listeners registered for a given event.
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | event | `EventTypes` |
 
@@ -161,7 +161,7 @@ ___
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | event | `EventTypes` |
 | `Optional` fn | [ListenerFn](../interfaces/_client_eventhandler_.eventhandler.eventemitter.listenerfn.md) |
@@ -179,7 +179,7 @@ ___
 
 *Overrides EventEmitter.on*
 
-*Defined in [client/EventHandler.ts:73](https://github.com/lagunehq/core/blob/8aa3625/src/client/EventHandler.ts#L73)*
+*Defined in [client/EventHandler.ts:73](https://github.com/lagunehq/core/blob/b472bda/src/client/EventHandler.ts#L73)*
 
 **Type parameters:**
 
@@ -187,7 +187,7 @@ ___
 #### P 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | event | `E` |
 | callback | `function` |
@@ -209,7 +209,7 @@ Add a one-time listener for a given event.
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | event | `EventTypes` |
 | fn | `ListenerFn` |
@@ -232,7 +232,7 @@ Remove all listeners, or those of the specified event.
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | `Optional` event | [EventTypes]() |
 
@@ -253,7 +253,7 @@ Remove the listeners of a given event.
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | event | `EventTypes` |
 | `Optional` fn | [ListenerFn](../interfaces/_client_eventhandler_.eventhandler.eventemitter.listenerfn.md) |

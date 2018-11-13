@@ -12,7 +12,7 @@
 
 **● aspect**: *`number`*
 
-*Defined in [entities/Attachment.ts:48](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Attachment.ts#L48)*
+*Defined in [entities/Attachment.ts:48](https://github.com/lagunehq/core/blob/b472bda/src/entities/Attachment.ts#L48)*
 
 ___
 <a id="bitrate"></a>
@@ -21,7 +21,7 @@ ___
 
 **● bitrate**: *`number`*
 
-*Defined in [entities/Attachment.ts:47](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Attachment.ts#L47)*
+*Defined in [entities/Attachment.ts:47](https://github.com/lagunehq/core/blob/b472bda/src/entities/Attachment.ts#L47)*
 
 ___
 <a id="duration"></a>
@@ -30,7 +30,7 @@ ___
 
 **● duration**: *`number`*
 
-*Defined in [entities/Attachment.ts:46](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Attachment.ts#L46)*
+*Defined in [entities/Attachment.ts:46](https://github.com/lagunehq/core/blob/b472bda/src/entities/Attachment.ts#L46)*
 
 ___
 <a id="frame_rate"></a>
@@ -39,7 +39,7 @@ ___
 
 **● frame_rate**: *`string`*
 
-*Defined in [entities/Attachment.ts:45](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Attachment.ts#L45)*
+*Defined in [entities/Attachment.ts:45](https://github.com/lagunehq/core/blob/b472bda/src/entities/Attachment.ts#L45)*
 
 ___
 <a id="height"></a>
@@ -48,7 +48,7 @@ ___
 
 **● height**: *`number`*
 
-*Defined in [entities/Attachment.ts:44](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Attachment.ts#L44)*
+*Defined in [entities/Attachment.ts:44](https://github.com/lagunehq/core/blob/b472bda/src/entities/Attachment.ts#L44)*
 
 ___
 <a id="width"></a>
@@ -57,7 +57,7 @@ ___
 
 **● width**: *`number`*
 
-*Defined in [entities/Attachment.ts:43](https://github.com/lagunehq/core/blob/8aa3625/src/entities/Attachment.ts#L43)*
+*Defined in [entities/Attachment.ts:43](https://github.com/lagunehq/core/blob/b472bda/src/entities/Attachment.ts#L43)*
 
 ___
 

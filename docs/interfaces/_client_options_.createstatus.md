@@ -13,7 +13,7 @@
 **● in_reply_to_id**: * `string` &#124; `null`
 *
 
-*Defined in [client/options.ts:81](https://github.com/lagunehq/core/blob/8aa3625/src/client/options.ts#L81)*
+*Defined in [client/options.ts:81](https://github.com/lagunehq/core/blob/b472bda/src/client/options.ts#L81)*
 
 local ID of the status you want to reply to
 
@@ -25,7 +25,7 @@ ___
 **● language**: * `string` &#124; `null`
 *
 
-*Defined in [client/options.ts:96](https://github.com/lagunehq/core/blob/8aa3625/src/client/options.ts#L96)*
+*Defined in [client/options.ts:96](https://github.com/lagunehq/core/blob/b472bda/src/client/options.ts#L96)*
 
 ISO 639-2 language code of the toot, to skip automatic detection
 
@@ -37,7 +37,7 @@ ___
 **● media_ids**: * `string`[] &#124; `null`
 *
 
-*Defined in [client/options.ts:84](https://github.com/lagunehq/core/blob/8aa3625/src/client/options.ts#L84)*
+*Defined in [client/options.ts:84](https://github.com/lagunehq/core/blob/b472bda/src/client/options.ts#L84)*
 
 Array of media IDs to attach to the status (maximum 4)
 
@@ -49,7 +49,7 @@ ___
 **● sensitive**: * `boolean` &#124; `null`
 *
 
-*Defined in [client/options.ts:87](https://github.com/lagunehq/core/blob/8aa3625/src/client/options.ts#L87)*
+*Defined in [client/options.ts:87](https://github.com/lagunehq/core/blob/b472bda/src/client/options.ts#L87)*
 
 Set this to mark the media of the status as NSFW
 
@@ -61,7 +61,7 @@ ___
 **● spoiler_text**: * `string` &#124; `null`
 *
 
-*Defined in [client/options.ts:90](https://github.com/lagunehq/core/blob/8aa3625/src/client/options.ts#L90)*
+*Defined in [client/options.ts:90](https://github.com/lagunehq/core/blob/b472bda/src/client/options.ts#L90)*
 
 Text to be shown as a warning before the actual content
 
@@ -73,7 +73,7 @@ ___
 **● visibility**: * [StatusVisibility](../modules/_entities_status_.md#statusvisibility) &#124; `null`
 *
 
-*Defined in [client/options.ts:93](https://github.com/lagunehq/core/blob/8aa3625/src/client/options.ts#L93)*
+*Defined in [client/options.ts:93](https://github.com/lagunehq/core/blob/b472bda/src/client/options.ts#L93)*
 
 Either "direct", "private", "unlisted" or "public"
 

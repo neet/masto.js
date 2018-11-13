@@ -13,7 +13,7 @@
 **● following**: * `boolean` &#124; `null`
 *
 
-*Defined in [client/options.ts:61](https://github.com/lagunehq/core/blob/8aa3625/src/client/options.ts#L61)*
+*Defined in [client/options.ts:61](https://github.com/lagunehq/core/blob/b472bda/src/client/options.ts#L61)*
 
 Only who the user is following
 
@@ -25,7 +25,7 @@ ___
 **● limit**: * `number` &#124; `null`
 *
 
-*Defined in [client/options.ts:55](https://github.com/lagunehq/core/blob/8aa3625/src/client/options.ts#L55)*
+*Defined in [client/options.ts:55](https://github.com/lagunehq/core/blob/b472bda/src/client/options.ts#L55)*
 
 Maximum number of matching accounts to return (default: `40`)
 
@@ -37,7 +37,7 @@ ___
 **● resolve**: * `boolean` &#124; `null`
 *
 
-*Defined in [client/options.ts:58](https://github.com/lagunehq/core/blob/8aa3625/src/client/options.ts#L58)*
+*Defined in [client/options.ts:58](https://github.com/lagunehq/core/blob/b472bda/src/client/options.ts#L58)*
 
 Attempt WebFinger look-up
 

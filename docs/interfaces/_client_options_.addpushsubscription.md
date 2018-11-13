@@ -13,7 +13,7 @@
 **● data**: * `object` &#124; `null`
 *
 
-*Defined in [client/options.ts:149](https://github.com/lagunehq/core/blob/8aa3625/src/client/options.ts#L149)*
+*Defined in [client/options.ts:149](https://github.com/lagunehq/core/blob/b472bda/src/client/options.ts#L149)*
 
 ___
 <a id="subscription"></a>
@@ -22,7 +22,7 @@ ___
 
 **● subscription**: *`object`*
 
-*Defined in [client/options.ts:138](https://github.com/lagunehq/core/blob/8aa3625/src/client/options.ts#L138)*
+*Defined in [client/options.ts:138](https://github.com/lagunehq/core/blob/b472bda/src/client/options.ts#L138)*
 
 #### Type declaration
 

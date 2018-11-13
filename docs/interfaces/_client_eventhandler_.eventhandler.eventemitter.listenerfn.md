@@ -11,7 +11,7 @@
 
 **Parameters:**
 
-| Param | Type |
+| Name | Type |
 | ------ | ------ |
 | `Rest` args | `Array`<`any`> |
 

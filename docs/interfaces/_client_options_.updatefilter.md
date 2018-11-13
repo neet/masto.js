@@ -13,7 +13,7 @@
 **● context**: * [FilterContext](../modules/_entities_filter_.md#filtercontext) &#124; `null`
 *
 
-*Defined in [client/options.ts:123](https://github.com/lagunehq/core/blob/8aa3625/src/client/options.ts#L123)*
+*Defined in [client/options.ts:123](https://github.com/lagunehq/core/blob/b472bda/src/client/options.ts#L123)*
 
 Array of strings that means filtering context. each string is one of `home`, `notifications`, `public`, `thread`. At least one context must be specified
 
@@ -25,7 +25,7 @@ ___
 **● expires_in**: * `number` &#124; `null`
 *
 
-*Defined in [client/options.ts:132](https://github.com/lagunehq/core/blob/8aa3625/src/client/options.ts#L132)*
+*Defined in [client/options.ts:132](https://github.com/lagunehq/core/blob/b472bda/src/client/options.ts#L132)*
 
 The simestamp for expire time
 
@@ -37,7 +37,7 @@ ___
 **● irreversible**: * `boolean` &#124; `null`
 *
 
-*Defined in [client/options.ts:126](https://github.com/lagunehq/core/blob/8aa3625/src/client/options.ts#L126)*
+*Defined in [client/options.ts:126](https://github.com/lagunehq/core/blob/b472bda/src/client/options.ts#L126)*
 
 Filtered toots will disappear irreversibly, even if filter is later removed
 
@@ -49,7 +49,7 @@ ___
 **● phrase**: * `string` &#124; `null`
 *
 
-*Defined in [client/options.ts:120](https://github.com/lagunehq/core/blob/8aa3625/src/client/options.ts#L120)*
+*Defined in [client/options.ts:120](https://github.com/lagunehq/core/blob/b472bda/src/client/options.ts#L120)*
 
 String that contains keyword or phrase
 
@@ -61,7 +61,7 @@ ___
 **● whole_word**: * `boolean` &#124; `null`
 *
 
-*Defined in [client/options.ts:129](https://github.com/lagunehq/core/blob/8aa3625/src/client/options.ts#L129)*
+*Defined in [client/options.ts:129](https://github.com/lagunehq/core/blob/b472bda/src/client/options.ts#L129)*
 
 Boolean that indicates word match.
 

@@ -13,7 +13,7 @@
 **● descriptions**: * `string` &#124; `null`
 *
 
-*Defined in [client/options.ts:66](https://github.com/lagunehq/core/blob/8aa3625/src/client/options.ts#L66)*
+*Defined in [client/options.ts:66](https://github.com/lagunehq/core/blob/b472bda/src/client/options.ts#L66)*
 
 A plain-text description of the media, for accessibility (max 420 chars)
 
@@ -25,7 +25,7 @@ ___
 **● focus**: * `string` &#124; `null`
 *
 
-*Defined in [client/options.ts:69](https://github.com/lagunehq/core/blob/8aa3625/src/client/options.ts#L69)*
+*Defined in [client/options.ts:69](https://github.com/lagunehq/core/blob/b472bda/src/client/options.ts#L69)*
 
 Focal point: Two floating points, comma-delimited
 
