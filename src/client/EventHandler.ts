@@ -49,12 +49,14 @@ export class EventHandler extends EventEmitter {
         }
 
         const parsedMessage = JSON.parse(message.utf8Data);
-
         const { event } = parsedMessage;
-        let payload = parsedMessage.payload;
 
-        if (event === 'update' || event === 'notification') {
+        let payload: string = '';
+
+        try {
           payload = JSON.parse(parsedMessage.payload);
+        } catch {
+          payload = parsedMessage.payload;
         }
 
         this.emit(event, payload);
