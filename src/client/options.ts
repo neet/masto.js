@@ -120,7 +120,7 @@ export interface UpdateFilter {
   phrase?: string | null;
 
   /** Array of strings that means filtering context. each string is one of `home`, `notifications`, `public`, `thread`. At least one context must be specified */
-  context?: FilterContext | null;
+  context?: FilterContext[] | null;
 
   /** Filtered toots will disappear irreversibly, even if filter is later removed */
   irreversible?: boolean | null;
