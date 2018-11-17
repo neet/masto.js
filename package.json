@@ -8,6 +8,7 @@
   "scripts": {
     "test": "tslint -c tslint.yml 'src/**/*.{ts,tsx}'",
     "build": "tsc",
+    "prepare": "yarn run test && yarn run build",
     "docs:build": "typedoc ./src --out ./docs --theme markdown --mdEngine gitbook --excludeNotExported",
     "docs:serve": "gitbook serve"
   },
