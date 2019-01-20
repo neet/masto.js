@@ -152,3 +152,17 @@ export interface AddPushSubscription {
 }
 
 export type UpdatePushSubscription = Pick<AddPushSubscription, 'data'>;
+
+export interface CreateAccount {
+  /** Username to create */
+  username: string;
+
+  /** Password of the user */
+  password: string;
+
+  /** Email of the user */
+  email: string;
+
+  /** Whether the user has been agreed to the agreement of the Mastodon instance */
+  agreement: boolean;
+}
