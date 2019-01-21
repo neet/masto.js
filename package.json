@@ -25,6 +25,9 @@
     "url": "https://github.com/lagunehq/core/issues"
   },
   "homepage": "https://github.com/lagunehq/core#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "eventemitter3": "^3.1.0",
