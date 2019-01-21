@@ -3,7 +3,7 @@ import { EventHandler } from './EventHandler';
 import { getNextUrl } from './linkHeader';
 import * as Options from './options';
 
-import { Account, AccountCredentials } from '../entities/Account';
+import { Account, AccountCredentials, AccountToken } from '../entities/Account';
 import { Application, OAuth } from '../entities/Application';
 import { Attachment } from '../entities/Attachment';
 import { Card } from '../entities/Card';
@@ -123,7 +123,7 @@ export class Mastodon extends Gateway {
    * @see https://docs.joinmastodon.org/api/authentication/
    */
   public async fetchAccessToken (code: string, client_id: string, client_secret: string, redirect_uri: string, grant_type = 'authorization_code') {
-    return (await this.post<{ access_token: string }>(`${this.url}/oauth/token`, { code, client_id, client_secret, redirect_uri, grant_type })).data;
+    return (await this.post<AccountToken>(`${this.url}/oauth/token`, { code, client_id, client_secret, redirect_uri, grant_type })).data;
   }
 
   /**
@@ -134,6 +134,15 @@ export class Mastodon extends Gateway {
    */
   public async fetchAccount (id: string) {
     return (await this.get<Account>(`${this.url}/api/v1/accounts/${id}`)).data;
+  }
+
+  /**
+   * Create an account
+   * @param options Data of the user to create
+   * @return Access token
+   */
+  public async createAccount (options: Options.CreateAccount) {
+    return (await this.post<AccountToken>(`${this.url}/api/v1/accounts`, options));
   }
 
   /**
