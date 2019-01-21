@@ -69,10 +69,10 @@ export interface AccountField {
 }
 
 export interface AccountCredentials extends Account {
-  source: AccountCredentialsSource;
+  source: AccountSource;
 }
 
-export interface AccountCredentialsSource {
+export interface AccountSource {
   /** Selected preference: Default privacy of new toots */
   privacy?: StatusVisibility | null;
 
@@ -89,3 +89,16 @@ export interface AccountCredentialsSource {
   fields: AccountField;
 }
 
+export interface AccountToken {
+  /** Access token of the account */
+  access_token: string;
+
+  /** Type of the token */
+  token_type: string;
+
+  /** Scope of the token */
+  scope: string;
+
+  /** Created date of the token */
+  created_at: string;
+}
