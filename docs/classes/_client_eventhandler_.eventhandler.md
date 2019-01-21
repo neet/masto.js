@@ -17,7 +17,7 @@
 
 ⊕ **new EventHandler**(url: *`string`*, options: *`object`*): [EventHandler](_client_eventhandler_.eventhandler.md)
 
-*Defined in [client/EventHandler.ts:31](https://github.com/lagunehq/core/blob/b472bda/src/client/EventHandler.ts#L31)*
+*Defined in [client/EventHandler.ts:31](https://github.com/lagunehq/core/blob/6d71f33/src/client/EventHandler.ts#L31)*
 
 Starting stream with a specified channel
 
@@ -43,7 +43,7 @@ ___
 
 *Inherited from EventEmitter.prefixed*
 
-*Defined in /Users/nucx/Developments/lagune/core/node_modules/eventemitter3/index.d.ts:6*
+*Defined in /Users/nucx/Developments/core/node_modules/eventemitter3/index.d.ts:6*
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 *Inherited from EventEmitter.addListener*
 
-*Defined in /Users/nucx/Developments/lagune/core/node_modules/eventemitter3/index.d.ts:33*
+*Defined in /Users/nucx/Developments/core/node_modules/eventemitter3/index.d.ts:33*
 
 **Parameters:**
 
@@ -78,7 +78,7 @@ ___
 
 *Inherited from EventEmitter.emit*
 
-*Defined in /Users/nucx/Developments/lagune/core/node_modules/eventemitter3/index.d.ts:27*
+*Defined in /Users/nucx/Developments/core/node_modules/eventemitter3/index.d.ts:27*
 
 Calls each of the listeners registered for a given event.
 
@@ -100,7 +100,7 @@ ___
 
 *Inherited from EventEmitter.eventNames*
 
-*Defined in /Users/nucx/Developments/lagune/core/node_modules/eventemitter3/index.d.ts:12*
+*Defined in /Users/nucx/Developments/core/node_modules/eventemitter3/index.d.ts:12*
 
 Return an array listing the events for which the emitter has registered listeners.
 
@@ -115,7 +115,7 @@ ___
 
 *Inherited from EventEmitter.listenerCount*
 
-*Defined in /Users/nucx/Developments/lagune/core/node_modules/eventemitter3/index.d.ts:22*
+*Defined in /Users/nucx/Developments/core/node_modules/eventemitter3/index.d.ts:22*
 
 Return the number of listeners listening to a given event.
 
@@ -136,7 +136,7 @@ ___
 
 *Inherited from EventEmitter.listeners*
 
-*Defined in /Users/nucx/Developments/lagune/core/node_modules/eventemitter3/index.d.ts:17*
+*Defined in /Users/nucx/Developments/core/node_modules/eventemitter3/index.d.ts:17*
 
 Return the listeners registered for a given event.
 
@@ -157,7 +157,7 @@ ___
 
 *Inherited from EventEmitter.off*
 
-*Defined in /Users/nucx/Developments/lagune/core/node_modules/eventemitter3/index.d.ts:44*
+*Defined in /Users/nucx/Developments/core/node_modules/eventemitter3/index.d.ts:44*
 
 **Parameters:**
 
@@ -179,7 +179,7 @@ ___
 
 *Overrides EventEmitter.on*
 
-*Defined in [client/EventHandler.ts:73](https://github.com/lagunehq/core/blob/b472bda/src/client/EventHandler.ts#L73)*
+*Defined in [client/EventHandler.ts:74](https://github.com/lagunehq/core/blob/6d71f33/src/client/EventHandler.ts#L74)*
 
 **Type parameters:**
 
@@ -203,7 +203,7 @@ ___
 
 *Inherited from EventEmitter.once*
 
-*Defined in /Users/nucx/Developments/lagune/core/node_modules/eventemitter3/index.d.ts:38*
+*Defined in /Users/nucx/Developments/core/node_modules/eventemitter3/index.d.ts:38*
 
 Add a one-time listener for a given event.
 
@@ -226,7 +226,7 @@ ___
 
 *Inherited from EventEmitter.removeAllListeners*
 
-*Defined in /Users/nucx/Developments/lagune/core/node_modules/eventemitter3/index.d.ts:49*
+*Defined in /Users/nucx/Developments/core/node_modules/eventemitter3/index.d.ts:49*
 
 Remove all listeners, or those of the specified event.
 
@@ -247,7 +247,7 @@ ___
 
 *Inherited from EventEmitter.removeListener*
 
-*Defined in /Users/nucx/Developments/lagune/core/node_modules/eventemitter3/index.d.ts:43*
+*Defined in /Users/nucx/Developments/core/node_modules/eventemitter3/index.d.ts:43*
 
 Remove the listeners of a given event.
 

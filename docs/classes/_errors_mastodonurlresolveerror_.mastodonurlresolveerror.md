@@ -16,7 +16,7 @@
 
 *Overrides [MastodonError](_errors_mastodonerror_.mastodonerror.md).[constructor](_errors_mastodonerror_.mastodonerror.md#constructor)*
 
-*Defined in [errors/MastodonURLResolveError.ts:3](https://github.com/lagunehq/core/blob/b472bda/src/errors/MastodonURLResolveError.ts#L3)*
+*Defined in [errors/MastodonURLResolveError.ts:3](https://github.com/lagunehq/core/blob/6d71f33/src/errors/MastodonURLResolveError.ts#L3)*
 
 **Parameters:**
 
@@ -40,7 +40,7 @@ ___
 
 *Overrides Error.message*
 
-*Defined in [errors/MastodonError.ts:2](https://github.com/lagunehq/core/blob/b472bda/src/errors/MastodonError.ts#L2)*
+*Defined in [errors/MastodonError.ts:2](https://github.com/lagunehq/core/blob/6d71f33/src/errors/MastodonError.ts#L2)*
 
 ___
 <a id="name"></a>
@@ -53,7 +53,7 @@ ___
 
 *Overrides Error.name*
 
-*Defined in [errors/MastodonError.ts:2](https://github.com/lagunehq/core/blob/b472bda/src/errors/MastodonError.ts#L2)*
+*Defined in [errors/MastodonError.ts:2](https://github.com/lagunehq/core/blob/6d71f33/src/errors/MastodonError.ts#L2)*
 
 ___
 <a id="stack"></a>
@@ -67,7 +67,7 @@ ___
 
 *Overrides Error.stack*
 
-*Defined in /Users/nucx/Developments/lagune/core/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:905*
+*Defined in /Users/nucx/Developments/core/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:905*
 
 ___
 

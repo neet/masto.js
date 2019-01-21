@@ -13,7 +13,7 @@
 **● focus**: * [AttachmentMetaFocus](_entities_attachment_.attachmentmetafocus.md) &#124; `null`
 *
 
-*Defined in [entities/Attachment.ts:32](https://github.com/lagunehq/core/blob/b472bda/src/entities/Attachment.ts#L32)*
+*Defined in [entities/Attachment.ts:32](https://github.com/lagunehq/core/blob/6d71f33/src/entities/Attachment.ts#L32)*
 
 ___
 <a id="original"></a>
@@ -23,7 +23,7 @@ ___
 **● original**: * [AttachmentMetaImage](_entities_attachment_.attachmentmetaimage.md) &#124; [AttachmentMetaVideo](_entities_attachment_.attachmentmetavideo.md) &#124; `null`
 *
 
-*Defined in [entities/Attachment.ts:31](https://github.com/lagunehq/core/blob/b472bda/src/entities/Attachment.ts#L31)*
+*Defined in [entities/Attachment.ts:31](https://github.com/lagunehq/core/blob/6d71f33/src/entities/Attachment.ts#L31)*
 
 ___
 <a id="small"></a>
@@ -33,7 +33,7 @@ ___
 **● small**: * [AttachmentMetaImage](_entities_attachment_.attachmentmetaimage.md) &#124; [AttachmentMetaVideo](_entities_attachment_.attachmentmetavideo.md) &#124; `null`
 *
 
-*Defined in [entities/Attachment.ts:30](https://github.com/lagunehq/core/blob/b472bda/src/entities/Attachment.ts#L30)*
+*Defined in [entities/Attachment.ts:30](https://github.com/lagunehq/core/blob/6d71f33/src/entities/Attachment.ts#L30)*
 
 ___
 
