@@ -1,4 +1,4 @@
-import { AccountCredentialsSource, AccountField } from '../entities/Account';
+import { AccountField, AccountSource } from '../entities/Account';
 import { FilterContext } from '../entities/Filter';
 import { NotificationType } from '../entities/Notification';
 import { PushSubscriptionAlerts } from '../entities/PushSubscription';
@@ -39,7 +39,7 @@ export interface UpdateCredentials {
    * sensitive: Whether to mark statuses as sensitive by default
    * language: Override language on statuses by default (ISO6391)
    */
-  source?: Pick<AccountCredentialsSource, 'privacy'|'sensitive'|'language'> | null;
+  source?: Pick<AccountSource, 'privacy'|'sensitive'|'language'> | null;
 
   /** Profile metadata (max. 4) */
   fields_attributes?:
