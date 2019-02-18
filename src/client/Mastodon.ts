@@ -1,7 +1,7 @@
 import { Gateway } from '../client/Gateway';
 import { EventHandler } from './EventHandler';
 import { getNextUrl } from './linkHeader';
-import * as Options from './options';
+import * as Parameters from './parameters';
 
 import { Account, AccountCredentials, AccountToken } from '../entities/Account';
 import { Application, OAuth } from '../entities/Application';
@@ -23,7 +23,7 @@ export class Mastodon extends Gateway {
   /**
    * Generate an iterable of the pagination
    * @param id Path to the API, e.g. `timelines/pulbic`, `accounts/1/statuses` e.g.
-   * @param params Query parameters
+   * @param params Query parameter
    * @return An async iterable of statuses, most recent ones first.
    */
   protected async *paginationGenerator<T extends string[] | { id: string }[]>(
@@ -169,13 +169,13 @@ export class Mastodon extends Gateway {
 
   /**
    * Create an account with given profile
-   * @param options Data of the user to create
+   * @param parameter Data of the user to create
    * @return Access token
    */
-  public async createAccount(options: Options.CreateAccount) {
+  public async createAccount(parameter: Parameters.CreateAccount) {
     return (await this.post<AccountToken>(
       `${this.url}/api/v1/accounts`,
-      options,
+      parameter,
     )).data;
   }
 
@@ -192,14 +192,14 @@ export class Mastodon extends Gateway {
 
   /**
    * Update user’s own account.
-   * @param options Form data
+   * @param parameter Form data
    * @return Returns Account
    * @see https://docs.joinmastodon.org/api/rest/accounts/#patch-api-v1-accounts-update-credentials
    */
-  public async updateCredentials(options?: Options.UpdateCredentials) {
+  public async updateCredentials(parameter?: Parameters.UpdateCredentials) {
     return (await this.patch<AccountCredentials>(
       `${this.url}/api/v1/accounts/update_credentials`,
-      options,
+      parameter,
       { headers: { 'Content-Type': 'multipart/form-data' } },
     )).data;
   }
@@ -207,45 +207,45 @@ export class Mastodon extends Gateway {
   /**
    * Accounts which follow the given account.
    * @param id ID of the target account
-   * @param options Query paramerters
+   * @param parameter Query paramerters
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-followers
    */
-  public fetchAccountFollowers(id: string, options?: Options.Pagination) {
+  public fetchAccountFollowers(id: string, parameter?: Parameters.Pagination) {
     return this.paginationGenerator(
       `${this.url}/api/v1/accounts/${id}/followers`,
-      options,
+      parameter,
     );
   }
 
   /**
    * Accounts which the given account is following.
    * @param id ID of the target account
-   * @param options Query parameters
+   * @param parameter Query parameter
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-following
    */
-  public fetchAccountFollowing(id: string, options?: Options.Pagination) {
+  public fetchAccountFollowing(id: string, parameter?: Parameters.Pagination) {
     return this.paginationGenerator(
       `${this.url}/api/v1/accounts/${id}/following`,
-      options,
+      parameter,
     );
   }
 
   /**
    * An account’s statuses.
    * @param id ID of the target account
-   * @param options Query parameters
+   * @param parameter Query parameter
    * @return Returns array of Status
    * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-statuses
    */
   public fetchAccountStatuses(
     id: string,
-    options?: Options.FetchAccountStatuses,
+    parameter?: Parameters.FetchAccountStatuses,
   ) {
     return this.paginationGenerator<Status[]>(
       `${this.url}/api/v1/accounts/${id}/statuses`,
-      options,
+      parameter,
     );
   }
 
@@ -291,14 +291,17 @@ export class Mastodon extends Gateway {
   /**
    * Search for matching accounts by username, domain and display name.
    * @param q What to search for
-   * @param options Query parameters
+   * @param parameter Query parameter
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-search
    */
-  public async searchAccounts(q: string, options?: Options.SearchAccounts) {
+  public async searchAccounts(
+    q: string,
+    parameter?: Parameters.SearchAccounts,
+  ) {
     return (await this.get<Account[]>(`${this.url}/api/v1/accounts/search`, {
       q,
-      ...options,
+      ...parameter,
     })).data;
   }
 
@@ -338,14 +341,14 @@ export class Mastodon extends Gateway {
 
   /**
    * Accounts the user has blocked.
-   * @param options Query parameters
+   * @param parameter Query parameter
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/blocks/#get-api-v1-blocks
    */
-  public async fetchBlocks(options?: Options.Pagination) {
+  public async fetchBlocks(parameter?: Parameters.Pagination) {
     return this.paginationGenerator<Account[]>(
       `${this.url}/api/v1/blocks`,
-      options,
+      parameter,
     );
   }
 
@@ -384,14 +387,14 @@ export class Mastodon extends Gateway {
 
   /**
    * Domains the user has blocked.
-   * @param options Query parameters
+   * @param parameter Query parameter
    * @return Returns array of string.
    * @see https://docs.joinmastodon.org/api/rest/domain-blocks/#get-api-v1-domain-blocks
    */
-  public fetchDomainBlocks(options?: Options.Pagination) {
+  public fetchDomainBlocks(parameter?: Parameters.Pagination) {
     return this.paginationGenerator<string[]>(
       `${this.url}/api/v1/domain_blocks`,
-      options,
+      parameter,
     );
   }
 
@@ -424,10 +427,10 @@ export class Mastodon extends Gateway {
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/endorsements/#get-api-v1-endorsements
    */
-  public async fetchEndorsements(options?: Options.Pagination) {
+  public async fetchEndorsements(parameter?: Parameters.Pagination) {
     return this.paginationGenerator<Account[]>(
       `${this.url}/api/v1/endorsements`,
-      options,
+      parameter,
     );
   }
 
@@ -457,14 +460,14 @@ export class Mastodon extends Gateway {
 
   /**
    * Statuses the user has favourited.
-   * @param options Query parameters
+   * @param parameter Query parameter
    * @return Returns array of Status
    * @see https://docs.joinmastodon.org/api/rest/favourites/#get-api-v1-favourites
    */
-  public async fetchFavouritedStatuses(options?: Options.Pagination) {
+  public async fetchFavouritedStatuses(parameter?: Parameters.Pagination) {
     return this.paginationGenerator<Status[]>(
       `${this.url}/api/v1/favourites`,
-      options,
+      parameter,
     );
   }
 
@@ -505,19 +508,19 @@ export class Mastodon extends Gateway {
    * Create a new filter.
    * @param phrase Keyword or phrase to filter
    * @param context Array of strings that means filtering context. each string is one of `home`, `notifications`, `public`, `thread`. At least one context must be specified
-   * @param options Optional parameters
+   * @param parameter Optional parameter
    * @return Returns Filter
    * @see https://docs.joinmastodon.org/api/rest/filters/#post-api-v1-filters
    */
   public async createFiler(
     phrase: string,
     context: FilterContext,
-    options?: Options.CreateFilter,
+    parameter?: Parameters.CreateFilter,
   ) {
     return (await this.post<Filter>(`${this.url}/api/v1/filters`, {
       phrase,
       context,
-      ...options,
+      ...parameter,
     })).data;
   }
 
@@ -534,13 +537,15 @@ export class Mastodon extends Gateway {
   /**
    * Update a text filter.
    * @param id ID of the filter
-   * @param options Optinal parameters
+   * @param parameter Optinal parameter
    * @return Returns Filter
    * @see https://docs.joinmastodon.org/api/rest/filters/#put-api-v1-filters-id
    */
-  public async updateFilter(id: string, options?: Options.UpdateFilter) {
-    return (await this.put<Filter>(`${this.url}/api/v1/filters/${id}`, options))
-      .data;
+  public async updateFilter(id: string, parameter?: Parameters.UpdateFilter) {
+    return (await this.put<Filter>(
+      `${this.url}/api/v1/filters/${id}`,
+      parameter,
+    )).data;
   }
 
   /**
@@ -555,14 +560,14 @@ export class Mastodon extends Gateway {
 
   /**
    * Accounts that have requested to follow the user.
-   * @param options Query parameters
+   * @param parameter Query parameter
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/follow-requests/#get-api-v1-follow-requests
    */
-  public async fetchFollowRequests(options?: Options.Pagination) {
+  public async fetchFollowRequests(parameter?: Parameters.Pagination) {
     return this.paginationGenerator<Account[]>(
       `${this.url}/api/v1/follow_requests`,
-      options,
+      parameter,
     );
   }
 
@@ -660,14 +665,14 @@ export class Mastodon extends Gateway {
   /**
    * Accounts that are in a given list.
    * @param id ID of the target list
-   * @param options Optional params
+   * @param parameter Optional params
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists-id-accounts
    */
-  public fetchListAccounts(id: string, options: Options.Pagination) {
+  public fetchListAccounts(id: string, parameter: Parameters.Pagination) {
     return this.paginationGenerator<Account[]>(
       `${this.url}/api/v1/list/${id}/accounts`,
-      options,
+      parameter,
     );
   }
 
@@ -742,17 +747,17 @@ export class Mastodon extends Gateway {
   /**
    * Upload a media attachment that can be used with a new status.
    * @param file Media to be uploaded (encoded using `multipart/form-data`)
-   * @param options Form data
+   * @param parameter Form data
    * @return Returns Attachment
    * @see https://docs.joinmastodon.org/api/rest/media/#post-api-v1-media
    */
   public async uploadMediaAttachment(
     file: File,
-    options?: Options.UploadMedia,
+    parameter?: Parameters.UploadMedia,
   ) {
     return (await this.post<Attachment>(
       `${this.url}/api/v1/media`,
-      { file, ...options },
+      { file, ...parameter },
       { headers: { 'Content-Type': 'multipart/form-data' } },
     )).data;
   }
@@ -760,30 +765,30 @@ export class Mastodon extends Gateway {
   /**
    * Update a media attachment. Can only be done before the media is attached to a status.
    * @param id ID of the target attachment
-   * @param options Form data
+   * @param parameter Form data
    * @return Returns Returns Attachment
    * @see https://docs.joinmastodon.org/api/rest/media/#put-api-v1-media-id
    */
   public async updateMediaAttachment(
     id: string,
-    options?: Options.UpdateMedia,
+    parameter?: Parameters.UpdateMedia,
   ) {
     return (await this.put<Attachment>(
       `${this.url}/api/v1/media/${id}`,
-      options,
+      parameter,
     )).data;
   }
 
   /**
    * Accounts the user has muted.
-   * @param options Query parameters
+   * @param parameter Query parameter
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/mutes/#get-api-v1-mutes
    */
-  public fetchMutes(options?: Options.Pagination) {
+  public fetchMutes(parameter?: Parameters.Pagination) {
     return this.paginationGenerator<Account[]>(
       `${this.url}/api/v1/mutes`,
-      options,
+      parameter,
     );
   }
 
@@ -837,14 +842,14 @@ export class Mastodon extends Gateway {
 
   /**
    * Notifications concerning the user.
-   * @param options Query parameters
+   * @param parameter Query parameter
    * @return Returns array of Notification
    * @see https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-notifications
    */
-  public async fetchNotifications(options?: Options.FetchNotifications) {
+  public async fetchNotifications(parameter?: Parameters.FetchNotifications) {
     return (await this.get<Notification[]>(
       `${this.url}/api/v1/notifications`,
-      options,
+      parameter,
     )).data;
   }
 
@@ -884,14 +889,14 @@ export class Mastodon extends Gateway {
 
   /**
    * Add a Web Push API subscription to receive notifications. See also: Web Push API
-   * @param options Form data
+   * @param parameter Form data
    * @return Returns Push Subscription
    * @see https://docs.joinmastodon.org/api/rest/notifications/#put-api-v1-push-subscription
    */
-  public async addPushSubscription(options: Options.AddPushSubscription) {
+  public async addPushSubscription(parameter: Parameters.AddPushSubscription) {
     return (await this.post<PushSubscription>(
       `${this.url}/api/v1/push/subscription`,
-      options,
+      parameter,
     )).data;
   }
 
@@ -908,14 +913,16 @@ export class Mastodon extends Gateway {
 
   /**
    * Update current Web Push API subscription. Only the `data` part can be updated, e.g. which types of notifications are desired. To change fundamentals, a new subscription must be created instead.
-   * @param options Form data
+   * @param parameter Form data
    * @return Returns Push Subscription
    * @see https://docs.joinmastodon.org/api/rest/notifications/#put-api-v1-push-subscription
    */
-  public async updatePushSubscription(options: Options.UpdatePushSubscription) {
+  public async updatePushSubscription(
+    parameter: Parameters.UpdatePushSubscription,
+  ) {
     return (await this.put<PushSubscription>(
       `${this.url}/api/v1/push/subscription`,
-      options,
+      parameter,
     )).data;
   }
 
@@ -1003,55 +1010,58 @@ export class Mastodon extends Gateway {
   /**
    * Accounts that reblogged the status.
    * @param id ID of target status
-   * @param options Query parameters
+   * @param parameter Query parameter
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-reblogged-by
    */
-  public fetchStatusRebloggedBy(id: string, options?: Options.Pagination) {
+  public fetchStatusRebloggedBy(id: string, parameter?: Parameters.Pagination) {
     return this.paginationGenerator<Account[]>(
       `${this.url}/api/v1/statuses/${id}/reblogged_by`,
-      options,
+      parameter,
     );
   }
 
   /**
    * Accounts that favourited the status.
    * @param id ID of target status
-   * @param options Query parameters
+   * @param parameter Query parameter
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-favourited-by
    */
-  public fetchStatusFavouritedBy(id: string, options?: Options.Pagination) {
+  public fetchStatusFavouritedBy(
+    id: string,
+    parameter?: Parameters.Pagination,
+  ) {
     return this.paginationGenerator<Account[]>(
       `${this.url}/api/v1/statuses/${id}/favourited_by`,
-      options,
+      parameter,
     );
   }
 
   /**
    * Publish a new status.
    * @param status The text of the status
-   * @param options Optional parameter
+   * @param parameter Optional parameter
    * @param idempotencyKey The Idempotency-Key of request header
    * @return Returns Status
    * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses
    */
   public async createStatus(
     status: string,
-    options?: Options.CreateStatus,
+    parameter?: Parameters.CreateStatus,
     idempotencyKey?: string,
   ) {
     if (idempotencyKey) {
       return (await this.post(
         `${this.url}/api/v1/statuses`,
-        { status, ...options },
+        { status, ...parameter },
         { headers: { 'Idempotency-Key': idempotencyKey } },
       )).data;
     }
 
     return (await this.post(`${this.url}/api/v1/statuses`, {
       status,
-      ...options,
+      ...parameter,
     })).data;
   }
 
@@ -1112,68 +1122,68 @@ export class Mastodon extends Gateway {
 
   /**
    * Retrieving the home timeline
-   * @param options Query parameters
+   * @param parameter Query parameter
    * @return An array of Statuses, most recent ones first.
    * @see https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-home
    */
-  public fetchHomeTimeline(options?: Options.FetchTimeline) {
+  public fetchHomeTimeline(parameter?: Parameters.FetchTimeline) {
     return this.paginationGenerator<Status[]>(
       `${this.url}/api/v1/timelines/home`,
-      options,
+      parameter,
     );
   }
 
   /**
    * Retrieving the community timeline (aka "Local timeline" in the UI)
-   * @param options Query parameters
+   * @param parameter Query parameter
    * @return An iterable of Statuses, most recent ones first.
    * @see https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-public
    */
-  public fetchCommunityTimeline(options?: Options.FetchTimeline) {
+  public fetchCommunityTimeline(parameter?: Parameters.FetchTimeline) {
     return this.paginationGenerator<Status[]>(
       `${this.url}/api/v1/timelines/public`,
-      { local: true, ...options },
+      { local: true, ...parameter },
     );
   }
 
   /**
    * Retrieving the public timeline (aka "Federated timeline" in the UI)
-   * @param options Query parameters
+   * @param parameter Query parameter
    * @return An iterable of Statuses, most recent ones first.
    * @see https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-public
    */
-  public fetchPublicTimeline(options?: Options.FetchTimeline) {
+  public fetchPublicTimeline(parameter?: Parameters.FetchTimeline) {
     return this.paginationGenerator<Status[]>(
       `${this.url}/api/v1/timelines/public`,
-      options,
+      parameter,
     );
   }
 
   /**
    * Retrieving a tag timeline
    * @param id ID of the hashtag
-   * @param options Query parameters
+   * @param parameter Query parameter
    * @return An iterable of Statuses, most recent ones first.
    * @see https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-tag-hashtag
    */
-  public fetchTagTimeline(id: string, options?: Options.FetchTimeline) {
+  public fetchTagTimeline(id: string, parameter?: Parameters.FetchTimeline) {
     return this.paginationGenerator<Status[]>(
       `${this.url}/api/v1/timelines/tag/${id}`,
-      options,
+      parameter,
     );
   }
 
   /**
    * Retrieving a list timeline
    * @param id ID of the list
-   * @param options Query parameters
+   * @param parameter Query parameter
    * @return An iterable of Statuses, most recent ones first.
    * @see https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-list-list-id
    */
-  public fetchListTimeline(id: string, options?: Options.FetchTimeline) {
+  public fetchListTimeline(id: string, parameter?: Parameters.FetchTimeline) {
     return this.paginationGenerator<Status[]>(
       `${this.url}/api/v1/timelines/list/${id}`,
-      options,
+      parameter,
     );
   }
 
@@ -1181,7 +1191,7 @@ export class Mastodon extends Gateway {
    * Retrieving a direct timeline
    * @return An iterable of Statuses, most recent ones first.
    */
-  public fetchDirectTimeline(options?: Options.FetchTimeline) {
+  public fetchDirectTimeline(parameter?: Parameters.FetchTimeline) {
     // tslint:disable-next-line no-console
     console.warn(
       'Direct timeline API has been deprecated. See https://github.com/tootsuite/mastodon/releases/tag/v2.6.0rc1',
@@ -1189,7 +1199,7 @@ export class Mastodon extends Gateway {
 
     return this.paginationGenerator<Status[]>(
       `${this.url}/api/v1/timelines/direct`,
-      options,
+      parameter,
     );
   }
 
