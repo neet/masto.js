@@ -12,7 +12,7 @@
 
 **● domain_count**: *`number`*
 
-*Defined in [entities/Instance.ts:42](https://github.com/lagunehq/core/blob/6d71f33/src/entities/Instance.ts#L42)*
+*Defined in [entities/Instance.ts:45](https://github.com/lagunehq/core/blob/daa242c/src/entities/Instance.ts#L45)*
 
 ___
 <a id="status_count"></a>
@@ -21,7 +21,7 @@ ___
 
 **● status_count**: *`number`*
 
-*Defined in [entities/Instance.ts:41](https://github.com/lagunehq/core/blob/6d71f33/src/entities/Instance.ts#L41)*
+*Defined in [entities/Instance.ts:44](https://github.com/lagunehq/core/blob/daa242c/src/entities/Instance.ts#L44)*
 
 ___
 <a id="user_count"></a>
@@ -30,7 +30,7 @@ ___
 
 **● user_count**: *`number`*
 
-*Defined in [entities/Instance.ts:40](https://github.com/lagunehq/core/blob/6d71f33/src/entities/Instance.ts#L40)*
+*Defined in [entities/Instance.ts:43](https://github.com/lagunehq/core/blob/daa242c/src/entities/Instance.ts#L43)*
 
 ___
 

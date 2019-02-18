@@ -4,6 +4,9 @@ export interface Application {
 
   /** Homepage URL of the app */
   website?: string | null;
+
+  /** VAPID key */
+  vapid_key?: string | null;
 }
 
 export interface OAuth extends Application {

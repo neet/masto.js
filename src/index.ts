@@ -1,3 +1,8 @@
+export * from './client/EventHandler';
+export * from './client/Gateway';
+export * from './client/linkHeader';
+export * from './client/parameters';
+
 export * from './entities/Account';
 export * from './entities/Application';
 export * from './entities/Attachment';

@@ -13,7 +13,7 @@
 **● avatar**: * `File` &#124; `null`
 *
 
-*Defined in [client/options.ts:29](https://github.com/lagunehq/core/blob/6d71f33/src/client/options.ts#L29)*
+*Defined in [client/parameters.ts:29](https://github.com/lagunehq/core/blob/daa242c/src/client/parameters.ts#L29)*
 
 Avatar encoded using `multipart/form-data`
 
@@ -25,7 +25,7 @@ ___
 **● display_name**: * `string` &#124; `null`
 *
 
-*Defined in [client/options.ts:23](https://github.com/lagunehq/core/blob/6d71f33/src/client/options.ts#L23)*
+*Defined in [client/parameters.ts:23](https://github.com/lagunehq/core/blob/daa242c/src/client/parameters.ts#L23)*
 
 Display name
 
@@ -37,7 +37,7 @@ ___
 **● fields_attributes**: * [[AccountField](_entities_account_.accountfield.md)] &#124; [[AccountField](_entities_account_.accountfield.md), [AccountField](_entities_account_.accountfield.md)] &#124; [[AccountField](_entities_account_.accountfield.md), [AccountField](_entities_account_.accountfield.md), [AccountField](_entities_account_.accountfield.md)] &#124; [[AccountField](_entities_account_.accountfield.md), [AccountField](_entities_account_.accountfield.md), [AccountField](_entities_account_.accountfield.md), [AccountField](_entities_account_.accountfield.md)] &#124; `null`
 *
 
-*Defined in [client/options.ts:45](https://github.com/lagunehq/core/blob/6d71f33/src/client/options.ts#L45)*
+*Defined in [client/parameters.ts:45](https://github.com/lagunehq/core/blob/daa242c/src/client/parameters.ts#L45)*
 
 Profile metadata (max. 4)
 
@@ -49,7 +49,7 @@ ___
 **● header**: * `File` &#124; `null`
 *
 
-*Defined in [client/options.ts:32](https://github.com/lagunehq/core/blob/6d71f33/src/client/options.ts#L32)*
+*Defined in [client/parameters.ts:32](https://github.com/lagunehq/core/blob/daa242c/src/client/parameters.ts#L32)*
 
 Header image encoded using `multipart/form-data`
 
@@ -61,7 +61,7 @@ ___
 **● locked**: * `boolean` &#124; `null`
 *
 
-*Defined in [client/options.ts:35](https://github.com/lagunehq/core/blob/6d71f33/src/client/options.ts#L35)*
+*Defined in [client/parameters.ts:35](https://github.com/lagunehq/core/blob/daa242c/src/client/parameters.ts#L35)*
 
 Enable follow requests
 
@@ -73,7 +73,7 @@ ___
 **● note**: * `string` &#124; `null`
 *
 
-*Defined in [client/options.ts:26](https://github.com/lagunehq/core/blob/6d71f33/src/client/options.ts#L26)*
+*Defined in [client/parameters.ts:26](https://github.com/lagunehq/core/blob/daa242c/src/client/parameters.ts#L26)*
 
 Biography
 
@@ -85,7 +85,7 @@ ___
 **● source**: * `Pick`<[AccountSource](_entities_account_.accountsource.md),  "privacy" &#124; "sensitive" &#124; "language"> &#124; `null`
 *
 
-*Defined in [client/options.ts:42](https://github.com/lagunehq/core/blob/6d71f33/src/client/options.ts#L42)*
+*Defined in [client/parameters.ts:42](https://github.com/lagunehq/core/blob/daa242c/src/client/parameters.ts#L42)*
 
 privacy: Default post privacy preference sensitive: Whether to mark statuses as sensitive by default language: Override language on statuses by default (ISO6391)
 

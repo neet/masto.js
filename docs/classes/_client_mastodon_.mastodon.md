@@ -16,7 +16,7 @@
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[constructor](_client_gateway_.gateway.md#constructor)*
 
-*Defined in [client/Gateway.ts:19](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L19)*
+*Defined in [client/Gateway.ts:18](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L18)*
 
 **Parameters:**
 
@@ -38,7 +38,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[streamingUrl](_client_gateway_.gateway.md#streamingurl)*
 
-*Defined in [client/Gateway.ts:16](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L16)*
+*Defined in [client/Gateway.ts:15](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L15)*
 
 Streaming API URL of the instance
 
@@ -52,7 +52,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[token](_client_gateway_.gateway.md#token)*
 
-*Defined in [client/Gateway.ts:19](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L19)*
+*Defined in [client/Gateway.ts:18](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L18)*
 
 API token of the user
 
@@ -65,7 +65,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[url](_client_gateway_.gateway.md#url)*
 
-*Defined in [client/Gateway.ts:13](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L13)*
+*Defined in [client/Gateway.ts:12](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L12)*
 
 Rest API URL of the instance
 
@@ -79,7 +79,7 @@ ___
 
 ▸ **addAccountToList**(id: *`string`*, account_ids: *`string`[]*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:596](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L596)*
+*Defined in [client/Mastodon.ts:728](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L728)*
 
 Add accounts to a list.
 *__see__*: [https://docs.joinmastodon.org/api/rest/lists/#post-api-v1-lists-id-accounts](https://docs.joinmastodon.org/api/rest/lists/#post-api-v1-lists-id-accounts)
@@ -99,9 +99,9 @@ ___
 
 ##  addPushSubscription
 
-▸ **addPushSubscription**(options: *[AddPushSubscription](../interfaces/_client_options_.addpushsubscription.md)*): `Promise`<[PushSubscription](../interfaces/_entities_pushsubscription_.pushsubscription.md)>
+▸ **addPushSubscription**(parameter: *[AddPushSubscription](../interfaces/_client_parameters_.addpushsubscription.md)*): `Promise`<[PushSubscription](../interfaces/_entities_pushsubscription_.pushsubscription.md)>
 
-*Defined in [client/Mastodon.ts:729](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L729)*
+*Defined in [client/Mastodon.ts:896](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L896)*
 
 Add a Web Push API subscription to receive notifications. See also: Web Push API
 *__see__*: [https://docs.joinmastodon.org/api/rest/notifications/#put-api-v1-push-subscription](https://docs.joinmastodon.org/api/rest/notifications/#put-api-v1-push-subscription)
@@ -110,7 +110,7 @@ Add a Web Push API subscription to receive notifications. See also: Web Push API
 
 | Name | Type | Description |
 | ------ | ------ | ------ |
-| options | [AddPushSubscription](../interfaces/_client_options_.addpushsubscription.md) |  Form data |
+| parameter | [AddPushSubscription](../interfaces/_client_parameters_.addpushsubscription.md) |  Form data |
 
 **Returns:** `Promise`<[PushSubscription](../interfaces/_entities_pushsubscription_.pushsubscription.md)>
 Returns Push Subscription
@@ -122,7 +122,7 @@ ___
 
 ▸ **authorizeFollowRequest**(id: *`string`*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:460](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L460)*
+*Defined in [client/Mastodon.ts:580](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L580)*
 
 Allow the account to follow the user.
 *__see__*: [https://docs.joinmastodon.org/api/rest/follow-requests/#post-api-v1-follow-requests-id-authorize](https://docs.joinmastodon.org/api/rest/follow-requests/#post-api-v1-follow-requests-id-authorize)
@@ -143,9 +143,9 @@ ___
 
 ▸ **blockAccount**(id: *`string`*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
 
-*Defined in [client/Mastodon.ts:280](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L280)*
+*Defined in [client/Mastodon.ts:361](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L361)*
 
-Block an account
+Block an account with id
 *__see__*: [https://docs.joinmastodon.org/api/rest/blocks/#post-api-v1-accounts-id-block](https://docs.joinmastodon.org/api/rest/blocks/#post-api-v1-accounts-id-block)
 
 **Parameters:**
@@ -164,7 +164,7 @@ ___
 
 ▸ **blockDomain**(domain: *`string`*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:319](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L319)*
+*Defined in [client/Mastodon.ts:407](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L407)*
 
 Block a domain to hide all public posts from it, all notifications from it, and remove all followers from it.
 *__see__*: [https://docs.joinmastodon.org/api/rest/domain-blocks/#post-api-v1-domain-blocks](https://docs.joinmastodon.org/api/rest/domain-blocks/#post-api-v1-domain-blocks)
@@ -185,7 +185,7 @@ ___
 
 ▸ **clearNotifications**(): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:709](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L709)*
+*Defined in [client/Mastodon.ts:873](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L873)*
 
 Delete all notifications from the server.
 *__see__*: [https://docs.joinmastodon.org/api/rest/notifications/#post-api-v1-notifications-clear](https://docs.joinmastodon.org/api/rest/notifications/#post-api-v1-notifications-clear)
@@ -198,19 +198,19 @@ ___
 
 ##  createAccount
 
-▸ **createAccount**(options: *[CreateAccount](../interfaces/_client_options_.createaccount.md)*): `Promise`<`AxiosResponse`<[AccountToken](../interfaces/_entities_account_.accounttoken.md)>>
+▸ **createAccount**(parameter: *[CreateAccount](../interfaces/_client_parameters_.createaccount.md)*): `Promise`<[AccountToken](../interfaces/_entities_account_.accounttoken.md)>
 
-*Defined in [client/Mastodon.ts:144](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L144)*
+*Defined in [client/Mastodon.ts:175](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L175)*
 
-Create an account
+Create an account with given profile
 
 **Parameters:**
 
 | Name | Type | Description |
 | ------ | ------ | ------ |
-| options | [CreateAccount](../interfaces/_client_options_.createaccount.md) |  Data of the user to create |
+| parameter | [CreateAccount](../interfaces/_client_parameters_.createaccount.md) |  Data of the user to create |
 
-**Returns:** `Promise`<`AxiosResponse`<[AccountToken](../interfaces/_entities_account_.accounttoken.md)>>
+**Returns:** `Promise`<[AccountToken](../interfaces/_entities_account_.accounttoken.md)>
 Access token
 
 ___
@@ -220,7 +220,7 @@ ___
 
 ▸ **createApp**(client_name: *`string`*, redirect_uris: *`string`*, scopes: *`string`*, website?: * `undefined` &#124; `string`*): `Promise`<[OAuth](../interfaces/_entities_application_.oauth.md)>
 
-*Defined in [client/Mastodon.ts:251](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L251)*
+*Defined in [client/Mastodon.ts:317](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L317)*
 
 Create a new application to obtain OAuth2 credentials.
 *__see__*: [https://docs.joinmastodon.org/api/rest/apps/#post-api-v1-apps](https://docs.joinmastodon.org/api/rest/apps/#post-api-v1-apps)
@@ -242,9 +242,9 @@ ___
 
 ##  createFiler
 
-▸ **createFiler**(phrase: *`string`*, context: *[FilterContext](../modules/_entities_filter_.md#filtercontext)*, options?: *`Options.CreateFilter`*): `Promise`<[Filter](../interfaces/_entities_filter_.filter.md)>
+▸ **createFiler**(phrase: *`string`*, context: *[FilterContext](../modules/_entities_filter_.md#filtercontext)*, parameter?: *`Parameters.CreateFilter`*): `Promise`<[Filter](../interfaces/_entities_filter_.filter.md)>
 
-*Defined in [client/Mastodon.ts:409](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L409)*
+*Defined in [client/Mastodon.ts:515](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L515)*
 
 Create a new filter.
 *__see__*: [https://docs.joinmastodon.org/api/rest/filters/#post-api-v1-filters](https://docs.joinmastodon.org/api/rest/filters/#post-api-v1-filters)
@@ -255,7 +255,7 @@ Create a new filter.
 | ------ | ------ | ------ |
 | phrase | `string` |  Keyword or phrase to filter |
 | context | [FilterContext](../modules/_entities_filter_.md#filtercontext) |  Array of strings that means filtering context. each string is one of \`home\`, \`notifications\`, \`public\`, \`thread\`. At least one context must be specified |
-| `Optional` options | `Options.CreateFilter` |  Optional parameters |
+| `Optional` parameter | `Parameters.CreateFilter` |  Optional parameter |
 
 **Returns:** `Promise`<[Filter](../interfaces/_entities_filter_.filter.md)>
 Returns Filter
@@ -267,7 +267,7 @@ ___
 
 ▸ **createList**(title: *`string`*): `Promise`<[List](../interfaces/_entities_list_.list.md)>
 
-*Defined in [client/Mastodon.ts:564](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L564)*
+*Defined in [client/Mastodon.ts:695](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L695)*
 
 Create a new list.
 *__see__*: [https://docs.joinmastodon.org/api/rest/lists/#post-api-v1-lists](https://docs.joinmastodon.org/api/rest/lists/#post-api-v1-lists)
@@ -286,9 +286,9 @@ ___
 
 ##  createStatus
 
-▸ **createStatus**(status: *`string`*, options?: *`Options.CreateStatus`*, idempotencyKey?: * `undefined` &#124; `string`*): `Promise`<`Object`>
+▸ **createStatus**(status: *`string`*, parameter?: *`Parameters.CreateStatus`*, idempotencyKey?: * `undefined` &#124; `string`*): `Promise`<`Object`>
 
-*Defined in [client/Mastodon.ts:844](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L844)*
+*Defined in [client/Mastodon.ts:1049](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L1049)*
 
 Publish a new status.
 *__see__*: [https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses](https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses)
@@ -298,7 +298,7 @@ Publish a new status.
 | Name | Type | Description |
 | ------ | ------ | ------ |
 | status | `string` |  The text of the status |
-| `Optional` options | `Options.CreateStatus` |  Optional parameter |
+| `Optional` parameter | `Parameters.CreateStatus` |  Optional parameter |
 | `Optional` idempotencyKey |  `undefined` &#124; `string`|  The Idempotency-Key of request header |
 
 **Returns:** `Promise`<`Object`>
@@ -313,7 +313,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[delete](_client_gateway_.gateway.md#delete)*
 
-*Defined in [client/Gateway.ts:181](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L181)*
+*Defined in [client/Gateway.ts:202](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L202)*
 
 HTTP DELETE
 
@@ -337,7 +337,7 @@ ___
 
 ▸ **dissmissNotification**(id: *`string`*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:719](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L719)*
+*Defined in [client/Mastodon.ts:884](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L884)*
 
 Delete a single notification from the server.
 *__see__*: [https://docs.joinmastodon.org/api/rest/notifications/#post-api-v1-notifications-dismiss](https://docs.joinmastodon.org/api/rest/notifications/#post-api-v1-notifications-dismiss)
@@ -358,9 +358,9 @@ ___
 
 ▸ **favouriteStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:378](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L378)*
+*Defined in [client/Mastodon.ts:480](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L480)*
 
-Favourite a status.
+Favourite a status with id
 *__see__*: [https://docs.joinmastodon.org/api/rest/favourites/#post-api-v1-statuses-id-favourite](https://docs.joinmastodon.org/api/rest/favourites/#post-api-v1-statuses-id-favourite)
 
 **Parameters:**
@@ -379,7 +379,7 @@ ___
 
 ▸ **fetchAccessToken**(code: *`string`*, client_id: *`string`*, client_secret: *`string`*, redirect_uri: *`string`*, grant_type?: *`string`*): `Promise`<[AccountToken](../interfaces/_entities_account_.accounttoken.md)>
 
-*Defined in [client/Mastodon.ts:125](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L125)*
+*Defined in [client/Mastodon.ts:144](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L144)*
 
 Fetch access token from authorization code
 *__see__*: [https://docs.joinmastodon.org/api/permissions/](https://docs.joinmastodon.org/api/permissions/)
@@ -405,7 +405,7 @@ ___
 
 ▸ **fetchAccount**(id: *`string`*): `Promise`<[Account](../interfaces/_entities_account_.account.md)>
 
-*Defined in [client/Mastodon.ts:135](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L135)*
+*Defined in [client/Mastodon.ts:166](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L166)*
 
 Fetching an account
 *__see__*: [https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id](https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id)
@@ -424,9 +424,9 @@ ___
 
 ##  fetchAccountFollowers
 
-▸ **fetchAccountFollowers**(id: *`string`*, options?: *`Options.Pagination`*): `AsyncIterableIterator`< `string`[] &#124; `object`[]>
+▸ **fetchAccountFollowers**(id: *`string`*, parameter?: *`Parameters.Pagination`*): `AsyncIterableIterator`< `string`[] &#124; `object`[]>
 
-*Defined in [client/Mastodon.ts:174](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L174)*
+*Defined in [client/Mastodon.ts:214](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L214)*
 
 Accounts which follow the given account.
 *__see__*: [https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-followers](https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-followers)
@@ -436,7 +436,7 @@ Accounts which follow the given account.
 | Name | Type | Description |
 | ------ | ------ | ------ |
 | id | `string` |  ID of the target account |
-| `Optional` options | `Options.Pagination` |  Query paramerters |
+| `Optional` parameter | `Parameters.Pagination` |  Query paramerters |
 
 **Returns:** `AsyncIterableIterator`< `string`[] &#124; `object`[]>
 Returns array of Account
@@ -446,9 +446,9 @@ ___
 
 ##  fetchAccountFollowing
 
-▸ **fetchAccountFollowing**(id: *`string`*, options?: *`Options.Pagination`*): `AsyncIterableIterator`< `string`[] &#124; `object`[]>
+▸ **fetchAccountFollowing**(id: *`string`*, parameter?: *`Parameters.Pagination`*): `AsyncIterableIterator`< `string`[] &#124; `object`[]>
 
-*Defined in [client/Mastodon.ts:185](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L185)*
+*Defined in [client/Mastodon.ts:228](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L228)*
 
 Accounts which the given account is following.
 *__see__*: [https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-following](https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-following)
@@ -458,7 +458,7 @@ Accounts which the given account is following.
 | Name | Type | Description |
 | ------ | ------ | ------ |
 | id | `string` |  ID of the target account |
-| `Optional` options | `Options.Pagination` |  Query parameters |
+| `Optional` parameter | `Parameters.Pagination` |  Query parameter |
 
 **Returns:** `AsyncIterableIterator`< `string`[] &#124; `object`[]>
 Returns array of Account
@@ -470,7 +470,7 @@ ___
 
 ▸ **fetchAccountRelationships**(id: *`string`[]*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)[]>
 
-*Defined in [client/Mastodon.ts:227](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L227)*
+*Defined in [client/Mastodon.ts:284](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L284)*
 
 Relationship of the user to the given accounts in regards to following, blocking, muting, etc.
 *__see__*: [https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-relationships](https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-relationships)
@@ -489,9 +489,9 @@ ___
 
 ##  fetchAccountStatuses
 
-▸ **fetchAccountStatuses**(id: *`string`*, options?: *`Options.FetchAccountStatuses`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
+▸ **fetchAccountStatuses**(id: *`string`*, parameter?: *`Parameters.FetchAccountStatuses`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 
-*Defined in [client/Mastodon.ts:196](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L196)*
+*Defined in [client/Mastodon.ts:242](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L242)*
 
 An account’s statuses.
 *__see__*: [https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-statuses](https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-statuses)
@@ -501,7 +501,7 @@ An account’s statuses.
 | Name | Type | Description |
 | ------ | ------ | ------ |
 | id | `string` |  ID of the target account |
-| `Optional` options | `Options.FetchAccountStatuses` |  Query parameters |
+| `Optional` parameter | `Parameters.FetchAccountStatuses` |  Query parameter |
 
 **Returns:** `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 Returns array of Status
@@ -511,9 +511,9 @@ ___
 
 ##  fetchBlocks
 
-▸ **fetchBlocks**(options?: *`Options.Pagination`*): `Promise`<`AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>>
+▸ **fetchBlocks**(parameter?: *`Parameters.Pagination`*): `Promise`<`AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>>
 
-*Defined in [client/Mastodon.ts:270](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L270)*
+*Defined in [client/Mastodon.ts:348](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L348)*
 
 Accounts the user has blocked.
 *__see__*: [https://docs.joinmastodon.org/api/rest/blocks/#get-api-v1-blocks](https://docs.joinmastodon.org/api/rest/blocks/#get-api-v1-blocks)
@@ -522,7 +522,7 @@ Accounts the user has blocked.
 
 | Name | Type | Description |
 | ------ | ------ | ------ |
-| `Optional` options | `Options.Pagination` |  Query parameters |
+| `Optional` parameter | `Parameters.Pagination` |  Query parameter |
 
 **Returns:** `Promise`<`AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>>
 Returns array of Account
@@ -532,9 +532,9 @@ ___
 
 ##  fetchCommunityTimeline
 
-▸ **fetchCommunityTimeline**(options?: *`Options.FetchTimeline`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
+▸ **fetchCommunityTimeline**(parameter?: *`Parameters.FetchTimeline`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 
-*Defined in [client/Mastodon.ts:917](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L917)*
+*Defined in [client/Mastodon.ts:1142](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L1142)*
 
 Retrieving the community timeline (aka "Local timeline" in the UI)
 *__see__*: [https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-public](https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-public)
@@ -543,7 +543,7 @@ Retrieving the community timeline (aka "Local timeline" in the UI)
 
 | Name | Type | Description |
 | ------ | ------ | ------ |
-| `Optional` options | `Options.FetchTimeline` |  Query parameters |
+| `Optional` parameter | `Parameters.FetchTimeline` |  Query parameter |
 
 **Returns:** `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 An iterable of Statuses, most recent ones first.
@@ -555,7 +555,7 @@ ___
 
 ▸ **fetchConversations**(): `Promise`<[Conversation](../interfaces/_entities_conversation_.conversation.md)[]>
 
-*Defined in [client/Mastodon.ts:967](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L967)*
+*Defined in [client/Mastodon.ts:1210](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L1210)*
 
 Retrieving a conversation timeline
 
@@ -569,7 +569,7 @@ ___
 
 ▸ **fetchCustomEmojis**(): `Promise`<[Emoji](../interfaces/_entities_emoji_.emoji.md)[]>
 
-*Defined in [client/Mastodon.ts:299](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L299)*
+*Defined in [client/Mastodon.ts:384](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L384)*
 
 Custom emojis that are available on the server.
 *__see__*: [https://docs.joinmastodon.org/api/rest/custom-emojis/#get-api-v1-custom-emojis](https://docs.joinmastodon.org/api/rest/custom-emojis/#get-api-v1-custom-emojis)
@@ -582,9 +582,9 @@ ___
 
 ##  fetchDirectTimeline
 
-▸ **fetchDirectTimeline**(options?: *`Options.FetchTimeline`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
+▸ **fetchDirectTimeline**(parameter?: *`Parameters.FetchTimeline`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 
-*Defined in [client/Mastodon.ts:957](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L957)*
+*Defined in [client/Mastodon.ts:1194](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L1194)*
 
 Retrieving a direct timeline
 
@@ -592,7 +592,7 @@ Retrieving a direct timeline
 
 | Name | Type |
 | ------ | ------ |
-| `Optional` options | `Options.FetchTimeline` |
+| `Optional` parameter | `Parameters.FetchTimeline` |
 
 **Returns:** `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 An iterable of Statuses, most recent ones first.
@@ -602,9 +602,9 @@ ___
 
 ##  fetchDomainBlocks
 
-▸ **fetchDomainBlocks**(options?: *`Options.Pagination`*): `AsyncIterableIterator`<`string`[]>
+▸ **fetchDomainBlocks**(parameter?: *`Parameters.Pagination`*): `AsyncIterableIterator`<`string`[]>
 
-*Defined in [client/Mastodon.ts:309](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L309)*
+*Defined in [client/Mastodon.ts:394](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L394)*
 
 Domains the user has blocked.
 *__see__*: [https://docs.joinmastodon.org/api/rest/domain-blocks/#get-api-v1-domain-blocks](https://docs.joinmastodon.org/api/rest/domain-blocks/#get-api-v1-domain-blocks)
@@ -613,7 +613,7 @@ Domains the user has blocked.
 
 | Name | Type | Description |
 | ------ | ------ | ------ |
-| `Optional` options | `Options.Pagination` |  Query parameters |
+| `Optional` parameter | `Parameters.Pagination` |  Query parameter |
 
 **Returns:** `AsyncIterableIterator`<`string`[]>
 Returns array of string.
@@ -623,9 +623,9 @@ ___
 
 ##  fetchEndorsements
 
-▸ **fetchEndorsements**(options?: *`Options.Pagination`*): `Promise`<`AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>>
+▸ **fetchEndorsements**(parameter?: *`Parameters.Pagination`*): `Promise`<`AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>>
 
-*Defined in [client/Mastodon.ts:338](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L338)*
+*Defined in [client/Mastodon.ts:430](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L430)*
 
 Accounts the user chose to endorse.
 *__see__*: [https://docs.joinmastodon.org/api/rest/endorsements/#get-api-v1-endorsements](https://docs.joinmastodon.org/api/rest/endorsements/#get-api-v1-endorsements)
@@ -634,7 +634,7 @@ Accounts the user chose to endorse.
 
 | Name | Type |
 | ------ | ------ |
-| `Optional` options | `Options.Pagination` |
+| `Optional` parameter | `Parameters.Pagination` |
 
 **Returns:** `Promise`<`AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>>
 Returns array of Account
@@ -644,9 +644,9 @@ ___
 
 ##  fetchFavouritedStatuses
 
-▸ **fetchFavouritedStatuses**(options?: *`Options.Pagination`*): `Promise`<`AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>>
+▸ **fetchFavouritedStatuses**(parameter?: *`Parameters.Pagination`*): `Promise`<`AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>>
 
-*Defined in [client/Mastodon.ts:368](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L368)*
+*Defined in [client/Mastodon.ts:467](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L467)*
 
 Statuses the user has favourited.
 *__see__*: [https://docs.joinmastodon.org/api/rest/favourites/#get-api-v1-favourites](https://docs.joinmastodon.org/api/rest/favourites/#get-api-v1-favourites)
@@ -655,7 +655,7 @@ Statuses the user has favourited.
 
 | Name | Type | Description |
 | ------ | ------ | ------ |
-| `Optional` options | `Options.Pagination` |  Query parameters |
+| `Optional` parameter | `Parameters.Pagination` |  Query parameter |
 
 **Returns:** `Promise`<`AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>>
 Returns array of Status
@@ -667,7 +667,7 @@ ___
 
 ▸ **fetchFilter**(id: *`string`*): `Promise`<[Filter](../interfaces/_entities_filter_.filter.md)>
 
-*Defined in [client/Mastodon.ts:419](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L419)*
+*Defined in [client/Mastodon.ts:533](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L533)*
 
 A text filter.
 *__see__*: [https://docs.joinmastodon.org/api/rest/filters/#get-api-v1-filters-id](https://docs.joinmastodon.org/api/rest/filters/#get-api-v1-filters-id)
@@ -688,7 +688,7 @@ ___
 
 ▸ **fetchFilters**(): `Promise`<[Filter](../interfaces/_entities_filter_.filter.md)[]>
 
-*Defined in [client/Mastodon.ts:397](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L397)*
+*Defined in [client/Mastodon.ts:503](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L503)*
 
 Text filters the user has configured that potentially must be applied client-side.
 *__see__*: [https://docs.joinmastodon.org/api/rest/filters/#get-api-v1-filters](https://docs.joinmastodon.org/api/rest/filters/#get-api-v1-filters)
@@ -701,9 +701,9 @@ ___
 
 ##  fetchFollowRequests
 
-▸ **fetchFollowRequests**(options?: *`Options.Pagination`*): `Promise`<`AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>>
+▸ **fetchFollowRequests**(parameter?: *`Parameters.Pagination`*): `Promise`<`AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>>
 
-*Defined in [client/Mastodon.ts:450](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L450)*
+*Defined in [client/Mastodon.ts:567](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L567)*
 
 Accounts that have requested to follow the user.
 *__see__*: [https://docs.joinmastodon.org/api/rest/follow-requests/#get-api-v1-follow-requests](https://docs.joinmastodon.org/api/rest/follow-requests/#get-api-v1-follow-requests)
@@ -712,7 +712,7 @@ Accounts that have requested to follow the user.
 
 | Name | Type | Description |
 | ------ | ------ | ------ |
-| `Optional` options | `Options.Pagination` |  Query parameters |
+| `Optional` parameter | `Parameters.Pagination` |  Query parameter |
 
 **Returns:** `Promise`<`AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>>
 Returns array of Account
@@ -722,9 +722,9 @@ ___
 
 ##  fetchHomeTimeline
 
-▸ **fetchHomeTimeline**(options?: *`Options.FetchTimeline`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
+▸ **fetchHomeTimeline**(parameter?: *`Parameters.FetchTimeline`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 
-*Defined in [client/Mastodon.ts:907](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L907)*
+*Defined in [client/Mastodon.ts:1129](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L1129)*
 
 Retrieving the home timeline
 *__see__*: [https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-home](https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-home)
@@ -733,7 +733,7 @@ Retrieving the home timeline
 
 | Name | Type | Description |
 | ------ | ------ | ------ |
-| `Optional` options | `Options.FetchTimeline` |  Query parameters |
+| `Optional` parameter | `Parameters.FetchTimeline` |  Query parameter |
 
 **Returns:** `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 An array of Statuses, most recent ones first.
@@ -745,7 +745,7 @@ ___
 
 ▸ **fetchInstance**(): `Promise`<[Instance](../interfaces/_entities_instance_.instance.md)>
 
-*Defined in [client/Mastodon.ts:498](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L498)*
+*Defined in [client/Mastodon.ts:623](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L623)*
 
 Information about the server.
 *__see__*: [https://docs.joinmastodon.org/api/rest/instances/#get-api-v1-instance](https://docs.joinmastodon.org/api/rest/instances/#get-api-v1-instance)
@@ -760,7 +760,7 @@ ___
 
 ▸ **fetchInstanceActivity**(): `Promise`<[InstanceActivity](../interfaces/_entities_instance_.instanceactivity.md)[]>
 
-*Defined in [client/Mastodon.ts:514](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L514)*
+*Defined in [client/Mastodon.ts:639](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L639)*
 
 Fetching activities of current instance
 
@@ -774,9 +774,9 @@ ___
 
 ▸ **fetchList**(id: *`string`*): `Promise`<[List](../interfaces/_entities_list_.list.md)>
 
-*Defined in [client/Mastodon.ts:554](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L554)*
+*Defined in [client/Mastodon.ts:685](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L685)*
 
-A list
+Fetch a list with id
 *__see__*: [https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists-id](https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists-id)
 
 **Parameters:**
@@ -793,9 +793,9 @@ ___
 
 ##  fetchListAccounts
 
-▸ **fetchListAccounts**(id: *`string`*, options: *[Pagination](../interfaces/_client_options_.pagination.md)*): `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
+▸ **fetchListAccounts**(id: *`string`*, parameter: *[Pagination](../interfaces/_client_parameters_.pagination.md)*): `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
 
-*Defined in [client/Mastodon.ts:544](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L544)*
+*Defined in [client/Mastodon.ts:672](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L672)*
 
 Accounts that are in a given list.
 *__see__*: [https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists-id-accounts](https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists-id-accounts)
@@ -805,7 +805,7 @@ Accounts that are in a given list.
 | Name | Type | Description |
 | ------ | ------ | ------ |
 | id | `string` |  ID of the target list |
-| options | [Pagination](../interfaces/_client_options_.pagination.md) |  Optional params |
+| parameter | [Pagination](../interfaces/_client_parameters_.pagination.md) |  Optional params |
 
 **Returns:** `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
 Returns array of Account
@@ -817,7 +817,7 @@ ___
 
 ▸ **fetchListByMembership**(id: *`string`*): `Promise`<[List](../interfaces/_entities_list_.list.md)[]>
 
-*Defined in [client/Mastodon.ts:533](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L533)*
+*Defined in [client/Mastodon.ts:660](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L660)*
 
 User’s lists that a given account is part of.
 *__see__*: [https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-accounts-id-lists](https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-accounts-id-lists)
@@ -836,9 +836,9 @@ ___
 
 ##  fetchListTimeline
 
-▸ **fetchListTimeline**(id: *`string`*, options?: *`Options.FetchTimeline`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
+▸ **fetchListTimeline**(id: *`string`*, parameter?: *`Parameters.FetchTimeline`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 
-*Defined in [client/Mastodon.ts:949](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L949)*
+*Defined in [client/Mastodon.ts:1183](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L1183)*
 
 Retrieving a list timeline
 *__see__*: [https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-list-list-id](https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-list-list-id)
@@ -848,7 +848,7 @@ Retrieving a list timeline
 | Name | Type | Description |
 | ------ | ------ | ------ |
 | id | `string` |  ID of the list |
-| `Optional` options | `Options.FetchTimeline` |  Query parameters |
+| `Optional` parameter | `Parameters.FetchTimeline` |  Query parameter |
 
 **Returns:** `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 An iterable of Statuses, most recent ones first.
@@ -860,7 +860,7 @@ ___
 
 ▸ **fetchLists**(): `Promise`<[List](../interfaces/_entities_list_.list.md)[]>
 
-*Defined in [client/Mastodon.ts:523](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L523)*
+*Defined in [client/Mastodon.ts:650](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L650)*
 
 User’s lists.
 *__see__*: [https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists](https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists)
@@ -873,9 +873,9 @@ ___
 
 ##  fetchMutes
 
-▸ **fetchMutes**(options?: *`Options.Pagination`*): `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
+▸ **fetchMutes**(parameter?: *`Parameters.Pagination`*): `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
 
-*Defined in [client/Mastodon.ts:639](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L639)*
+*Defined in [client/Mastodon.ts:788](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L788)*
 
 Accounts the user has muted.
 *__see__*: [https://docs.joinmastodon.org/api/rest/mutes/#get-api-v1-mutes](https://docs.joinmastodon.org/api/rest/mutes/#get-api-v1-mutes)
@@ -884,7 +884,7 @@ Accounts the user has muted.
 
 | Name | Type | Description |
 | ------ | ------ | ------ |
-| `Optional` options | `Options.Pagination` |  Query parameters |
+| `Optional` parameter | `Parameters.Pagination` |  Query parameter |
 
 **Returns:** `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
 Returns array of Account
@@ -896,7 +896,7 @@ ___
 
 ▸ **fetchNotification**(id: *`string`*): `Promise`<[Notification](../interfaces/_entities_notification_.notification.md)>
 
-*Defined in [client/Mastodon.ts:700](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L700)*
+*Defined in [client/Mastodon.ts:862](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L862)*
 
 Getting a single notification
 *__see__*: [https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-notifications-id](https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-notifications-id)
@@ -915,9 +915,9 @@ ___
 
 ##  fetchNotifications
 
-▸ **fetchNotifications**(options?: *`Options.FetchNotifications`*): `Promise`<[Notification](../interfaces/_entities_notification_.notification.md)[]>
+▸ **fetchNotifications**(parameter?: *`Parameters.FetchNotifications`*): `Promise`<[Notification](../interfaces/_entities_notification_.notification.md)[]>
 
-*Defined in [client/Mastodon.ts:690](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L690)*
+*Defined in [client/Mastodon.ts:849](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L849)*
 
 Notifications concerning the user.
 *__see__*: [https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-notifications](https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-notifications)
@@ -926,7 +926,7 @@ Notifications concerning the user.
 
 | Name | Type | Description |
 | ------ | ------ | ------ |
-| `Optional` options | `Options.FetchNotifications` |  Query parameters |
+| `Optional` parameter | `Parameters.FetchNotifications` |  Query parameter |
 
 **Returns:** `Promise`<[Notification](../interfaces/_entities_notification_.notification.md)[]>
 Returns array of Notification
@@ -938,7 +938,7 @@ ___
 
 ▸ **fetchPeerInstances**(): `Promise`<`string`[]>
 
-*Defined in [client/Mastodon.ts:506](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L506)*
+*Defined in [client/Mastodon.ts:631](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L631)*
 
 Fetching peer instances
 
@@ -950,9 +950,9 @@ ___
 
 ##  fetchPublicTimeline
 
-▸ **fetchPublicTimeline**(options?: *`Options.FetchTimeline`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
+▸ **fetchPublicTimeline**(parameter?: *`Parameters.FetchTimeline`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 
-*Defined in [client/Mastodon.ts:927](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L927)*
+*Defined in [client/Mastodon.ts:1155](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L1155)*
 
 Retrieving the public timeline (aka "Federated timeline" in the UI)
 *__see__*: [https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-public](https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-public)
@@ -961,7 +961,7 @@ Retrieving the public timeline (aka "Federated timeline" in the UI)
 
 | Name | Type | Description |
 | ------ | ------ | ------ |
-| `Optional` options | `Options.FetchTimeline` |  Query parameters |
+| `Optional` parameter | `Parameters.FetchTimeline` |  Query parameter |
 
 **Returns:** `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 An iterable of Statuses, most recent ones first.
@@ -973,9 +973,9 @@ ___
 
 ▸ **fetchPushSubscription**(): `Promise`<[PushSubscription](../interfaces/_entities_pushsubscription_.pushsubscription.md)>
 
-*Defined in [client/Mastodon.ts:738](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L738)*
+*Defined in [client/Mastodon.ts:908](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L908)*
 
-Push Subscription
+Fetch Push Subscription for notifications
 *__see__*: [https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-push-subscription](https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-push-subscription)
 
 **Returns:** `Promise`<[PushSubscription](../interfaces/_entities_pushsubscription_.pushsubscription.md)>
@@ -988,9 +988,9 @@ ___
 
 ▸ **fetchStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:791](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L791)*
+*Defined in [client/Mastodon.ts:984](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L984)*
 
-Status
+Fetch a status with id
 *__see__*: [https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id](https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id)
 
 **Parameters:**
@@ -1009,7 +1009,7 @@ ___
 
 ▸ **fetchStatusCard**(id: *`string`*): `Promise`<[Card](../interfaces/_entities_card_.card.md)>
 
-*Defined in [client/Mastodon.ts:810](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L810)*
+*Defined in [client/Mastodon.ts:1005](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L1005)*
 
 Link preview card for a status, if available.
 *__see__*: [https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-card](https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-card)
@@ -1030,7 +1030,7 @@ ___
 
 ▸ **fetchStatusContext**(id: *`string`*): `Promise`<[Context](../interfaces/_entities_context_.context.md)>
 
-*Defined in [client/Mastodon.ts:801](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L801)*
+*Defined in [client/Mastodon.ts:994](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L994)*
 
 What the status replies to, and replies to it.
 *__see__*: [https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-context](https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-context)
@@ -1049,9 +1049,9 @@ ___
 
 ##  fetchStatusFavouritedBy
 
-▸ **fetchStatusFavouritedBy**(id: *`string`*, options?: *`Options.Pagination`*): `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
+▸ **fetchStatusFavouritedBy**(id: *`string`*, parameter?: *`Parameters.Pagination`*): `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
 
-*Defined in [client/Mastodon.ts:832](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L832)*
+*Defined in [client/Mastodon.ts:1031](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L1031)*
 
 Accounts that favourited the status.
 *__see__*: [https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-favourited-by](https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-favourited-by)
@@ -1061,7 +1061,7 @@ Accounts that favourited the status.
 | Name | Type | Description |
 | ------ | ------ | ------ |
 | id | `string` |  ID of target status |
-| `Optional` options | `Options.Pagination` |  Query parameters |
+| `Optional` parameter | `Parameters.Pagination` |  Query parameter |
 
 **Returns:** `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
 Returns array of Account
@@ -1071,9 +1071,9 @@ ___
 
 ##  fetchStatusRebloggedBy
 
-▸ **fetchStatusRebloggedBy**(id: *`string`*, options?: *`Options.Pagination`*): `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
+▸ **fetchStatusRebloggedBy**(id: *`string`*, parameter?: *`Parameters.Pagination`*): `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
 
-*Defined in [client/Mastodon.ts:821](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L821)*
+*Defined in [client/Mastodon.ts:1017](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L1017)*
 
 Accounts that reblogged the status.
 *__see__*: [https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-reblogged-by](https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-reblogged-by)
@@ -1083,7 +1083,7 @@ Accounts that reblogged the status.
 | Name | Type | Description |
 | ------ | ------ | ------ |
 | id | `string` |  ID of target status |
-| `Optional` options | `Options.Pagination` |  Query parameters |
+| `Optional` parameter | `Parameters.Pagination` |  Query parameter |
 
 **Returns:** `AsyncIterableIterator`<[Account](../interfaces/_entities_account_.account.md)[]>
 Returns array of Account
@@ -1095,7 +1095,7 @@ ___
 
 ▸ **fetchSuggestions**(): `Promise`<[Account](../interfaces/_entities_account_.account.md)[]>
 
-*Defined in [client/Mastodon.ts:479](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L479)*
+*Defined in [client/Mastodon.ts:603](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L603)*
 
 Accounts the user had past positive interactions with, but is not following yet.
 *__see__*: [https://docs.joinmastodon.org/api/rest/follow-suggestions/#get-api-v1-suggestions](https://docs.joinmastodon.org/api/rest/follow-suggestions/#get-api-v1-suggestions)
@@ -1108,9 +1108,9 @@ ___
 
 ##  fetchTagTimeline
 
-▸ **fetchTagTimeline**(id: *`string`*, options?: *`Options.FetchTimeline`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
+▸ **fetchTagTimeline**(id: *`string`*, parameter?: *`Parameters.FetchTimeline`*): `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 
-*Defined in [client/Mastodon.ts:938](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L938)*
+*Defined in [client/Mastodon.ts:1169](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L1169)*
 
 Retrieving a tag timeline
 *__see__*: [https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-tag-hashtag](https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-tag-hashtag)
@@ -1120,7 +1120,7 @@ Retrieving a tag timeline
 | Name | Type | Description |
 | ------ | ------ | ------ |
 | id | `string` |  ID of the hashtag |
-| `Optional` options | `Options.FetchTimeline` |  Query parameters |
+| `Optional` parameter | `Parameters.FetchTimeline` |  Query parameter |
 
 **Returns:** `AsyncIterableIterator`<[Status](../interfaces/_entities_status_.status.md)[]>
 An iterable of Statuses, most recent ones first.
@@ -1132,9 +1132,9 @@ ___
 
 ▸ **followAccount**(id: *`string`*, reblogs?: * `undefined` &#124; `false` &#124; `true`*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
 
-*Defined in [client/Mastodon.ts:207](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L207)*
+*Defined in [client/Mastodon.ts:259](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L259)*
 
-Follow an account.
+Follow an account by id
 *__see__*: [https://docs.joinmastodon.org/api/rest/accounts/#post-api-v1-accounts-id-follow](https://docs.joinmastodon.org/api/rest/accounts/#post-api-v1-accounts-id-follow)
 
 **Parameters:**
@@ -1154,7 +1154,7 @@ ___
 
 ▸ **followAccountByUsername**(uri: *`string`*): `Promise`<[Account](../interfaces/_entities_account_.account.md)>
 
-*Defined in [client/Mastodon.ts:977](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L977)*
+*Defined in [client/Mastodon.ts:1221](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L1221)*
 
 Following a remote user
 *__see__*: [https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#following-a-remote-user](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#following-a-remote-user)
@@ -1177,7 +1177,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[get](_client_gateway_.gateway.md#get)*
 
-*Defined in [client/Gateway.ts:134](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L134)*
+*Defined in [client/Gateway.ts:153](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L153)*
 
 HTTP GET
 
@@ -1203,7 +1203,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[getStreamingUrl](_client_gateway_.gateway.md#getstreamingurl)*
 
-*Defined in [client/Gateway.ts:48](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L48)*
+*Defined in [client/Gateway.ts:51](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L51)*
 
 Getting streaming API URL of the instance
 
@@ -1219,7 +1219,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[getToken](_client_gateway_.gateway.md#gettoken)*
 
-*Defined in [client/Gateway.ts:54](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L54)*
+*Defined in [client/Gateway.ts:57](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L57)*
 
 Getting token of authenticated user
 
@@ -1236,7 +1236,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[getUrl](_client_gateway_.gateway.md#geturl)*
 
-*Defined in [client/Gateway.ts:42](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L42)*
+*Defined in [client/Gateway.ts:45](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L45)*
 
 Getting rest API URL of the instance
 
@@ -1250,9 +1250,9 @@ ___
 
 ▸ **muteAccount**(id: *`string`*, notifications?: *`boolean`*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
 
-*Defined in [client/Mastodon.ts:650](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L650)*
+*Defined in [client/Mastodon.ts:802](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L802)*
 
-Mute an account.
+Mute an account with id
 *__see__*: [https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-accounts-id-mute](https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-accounts-id-mute)
 
 **Parameters:**
@@ -1272,7 +1272,7 @@ ___
 
 ▸ **muteStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:670](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L670)*
+*Defined in [client/Mastodon.ts:827](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L827)*
 
 Mute the conversation the status is part of, to no longer be notified about it.
 *__see__*: [https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-status-id-mute](https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-status-id-mute)
@@ -1293,7 +1293,7 @@ ___
 
 ▸ **paginationGenerator**<`T`>(path: *`string`*, params?: *`any`*): `AsyncIterableIterator`<`T`>
 
-*Defined in [client/Mastodon.ts:30](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L30)*
+*Defined in [client/Mastodon.ts:29](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L29)*
 
 Generate an iterable of the pagination
 
@@ -1306,7 +1306,7 @@ Generate an iterable of the pagination
 | Name | Type | Description |
 | ------ | ------ | ------ |
 | path | `string` |
-| `Optional` params | `any` |  Query parameters |
+| `Optional` params | `any` |  Query parameter |
 
 **Returns:** `AsyncIterableIterator`<`T`>
 An async iterable of statuses, most recent ones first.
@@ -1320,7 +1320,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[patch](_client_gateway_.gateway.md#patch)*
 
-*Defined in [client/Gateway.ts:197](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L197)*
+*Defined in [client/Gateway.ts:218](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L218)*
 
 HTTP PATCH
 
@@ -1344,7 +1344,7 @@ ___
 
 ▸ **pinAccount**(id: *`string`*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
 
-*Defined in [client/Mastodon.ts:348](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L348)*
+*Defined in [client/Mastodon.ts:443](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L443)*
 
 Endorse an account, i.e. choose to feature the account on the user’s public profile.
 *__see__*: [https://docs.joinmastodon.org/api/rest/endorsements/#post-api-v1-accounts-id-pin](https://docs.joinmastodon.org/api/rest/endorsements/#post-api-v1-accounts-id-pin)
@@ -1365,7 +1365,7 @@ ___
 
 ▸ **pinStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:887](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L887)*
+*Defined in [client/Mastodon.ts:1107](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L1107)*
 
 Pin user’s own status to user’s profile.
 *__see__*: [https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-pin](https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-pin)
@@ -1388,7 +1388,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[post](_client_gateway_.gateway.md#post)*
 
-*Defined in [client/Gateway.ts:149](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L149)*
+*Defined in [client/Gateway.ts:170](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L170)*
 
 HTTP POST
 
@@ -1414,7 +1414,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[put](_client_gateway_.gateway.md#put)*
 
-*Defined in [client/Gateway.ts:165](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L165)*
+*Defined in [client/Gateway.ts:186](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L186)*
 
 HTTP PUT
 
@@ -1438,9 +1438,9 @@ ___
 
 ▸ **reblogStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:867](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L867)*
+*Defined in [client/Mastodon.ts:1084](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L1084)*
 
-Reblog a status.
+Reblog a status with id.
 *__see__*: [https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-reblog](https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-reblog)
 
 **Parameters:**
@@ -1459,7 +1459,7 @@ ___
 
 ▸ **rejectFollowRequest**(id: *`string`*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:470](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L470)*
+*Defined in [client/Mastodon.ts:592](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L592)*
 
 Do not allow the account to follow the user.
 *__see__*: [https://docs.joinmastodon.org/api/rest/follow-requests/#post-api-v1-follow-requests-id-reject](https://docs.joinmastodon.org/api/rest/follow-requests/#post-api-v1-follow-requests-id-reject)
@@ -1480,7 +1480,7 @@ ___
 
 ▸ **removeAccountFromList**(id: *`string`*, account_ids: *`string`[]*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:607](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L607)*
+*Defined in [client/Mastodon.ts:741](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L741)*
 
 Remove accounts from a list.
 *__see__*: [https://docs.joinmastodon.org/api/rest/lists/#delete-api-v1-lists-id-accounts](https://docs.joinmastodon.org/api/rest/lists/#delete-api-v1-lists-id-accounts)
@@ -1502,7 +1502,7 @@ ___
 
 ▸ **removeFilter**(id: *`string`*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:440](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L440)*
+*Defined in [client/Mastodon.ts:557](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L557)*
 
 Delete a text filter.
 *__see__*: [https://docs.joinmastodon.org/api/rest/filters/#delete-api-v1-filters-id](https://docs.joinmastodon.org/api/rest/filters/#delete-api-v1-filters-id)
@@ -1523,9 +1523,9 @@ ___
 
 ▸ **removeList**(id: *`string`*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:585](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L585)*
+*Defined in [client/Mastodon.ts:717](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L717)*
 
-Remove a list.
+Remove a list with id
 *__see__*: [https://docs.joinmastodon.org/api/rest/lists/#delete-api-v1-lists-id](https://docs.joinmastodon.org/api/rest/lists/#delete-api-v1-lists-id)
 
 **Parameters:**
@@ -1544,7 +1544,7 @@ ___
 
 ▸ **removePushSubscription**(): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:757](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L757)*
+*Defined in [client/Mastodon.ts:934](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L934)*
 
 Remove the current Web Push API subscription.
 *__see__*: [https://docs.joinmastodon.org/api/rest/notifications/#delete-api-v1-push-subscription](https://docs.joinmastodon.org/api/rest/notifications/#delete-api-v1-push-subscription)
@@ -1559,7 +1559,7 @@ ___
 
 ▸ **removeStatus**(id: *`string`*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:857](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L857)*
+*Defined in [client/Mastodon.ts:1074](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L1074)*
 
 Remove a status. The status may still be available a short while after the call.
 *__see__*: [https://docs.joinmastodon.org/api/rest/statuses/#delete-api-v1-statuses-id](https://docs.joinmastodon.org/api/rest/statuses/#delete-api-v1-statuses-id)
@@ -1580,7 +1580,7 @@ ___
 
 ▸ **removeSuggestion**(id: *`string`*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:489](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L489)*
+*Defined in [client/Mastodon.ts:613](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L613)*
 
 Remove account from suggestions.
 *__see__*: [https://docs.joinmastodon.org/api/rest/follow-suggestions/#delete-api-v1-suggestions-account-id](https://docs.joinmastodon.org/api/rest/follow-suggestions/#delete-api-v1-suggestions-account-id)
@@ -1601,9 +1601,9 @@ ___
 
 ▸ **reportAccount**(account_id: *`string`*, status_ids?: * `string`[] &#124; `null`*, comment?: * `string` &#124; `null`*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:769](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L769)*
+*Defined in [client/Mastodon.ts:947](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L947)*
 
-Report an account.
+Report an account to moderators/administrators
 *__see__*: [https://docs.joinmastodon.org/api/rest/reports/#post-api-v1-reports](https://docs.joinmastodon.org/api/rest/reports/#post-api-v1-reports)
 
 **Parameters:**
@@ -1626,7 +1626,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[request](_client_gateway_.gateway.md#request)*
 
-*Defined in [client/Gateway.ts:80](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L80)*
+*Defined in [client/Gateway.ts:89](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L89)*
 
 Fetch API wrapper function
 
@@ -1649,7 +1649,7 @@ ___
 
 ▸ **search**<`V`>(q: *`string`*, resolve?: *`boolean`*, version?: *`V`*): `Promise`<[Results](../interfaces/_entities_results_.results.md)<`V`>>
 
-*Defined in [client/Mastodon.ts:781](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L781)*
+*Defined in [client/Mastodon.ts:967](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L967)*
 
 Search for content in accounts, statuses and hashtags.
 *__see__*: [https://docs.joinmastodon.org/api/rest/search/#get-api-v2-search](https://docs.joinmastodon.org/api/rest/search/#get-api-v2-search)
@@ -1674,9 +1674,9 @@ ___
 
 ##  searchAccounts
 
-▸ **searchAccounts**(q: *`string`*, options?: *`Options.SearchAccounts`*): `Promise`<[Account](../interfaces/_entities_account_.account.md)[]>
+▸ **searchAccounts**(q: *`string`*, parameter?: *`Parameters.SearchAccounts`*): `Promise`<[Account](../interfaces/_entities_account_.account.md)[]>
 
-*Defined in [client/Mastodon.ts:238](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L238)*
+*Defined in [client/Mastodon.ts:298](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L298)*
 
 Search for matching accounts by username, domain and display name.
 *__see__*: [https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-search](https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-search)
@@ -1686,7 +1686,7 @@ Search for matching accounts by username, domain and display name.
 | Name | Type | Description |
 | ------ | ------ | ------ |
 | q | `string` |  What to search for |
-| `Optional` options | `Options.SearchAccounts` |  Query parameters |
+| `Optional` parameter | `Parameters.SearchAccounts` |  Query parameter |
 
 **Returns:** `Promise`<[Account](../interfaces/_entities_account_.account.md)[]>
 Returns array of Account
@@ -1700,7 +1700,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[setStreamingUrl](_client_gateway_.gateway.md#setstreamingurl)*
 
-*Defined in [client/Gateway.ts:66](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L66)*
+*Defined in [client/Gateway.ts:71](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L71)*
 
 Setting streaming API URL of the instance
 
@@ -1721,7 +1721,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[setToken](_client_gateway_.gateway.md#settoken)*
 
-*Defined in [client/Gateway.ts:72](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L72)*
+*Defined in [client/Gateway.ts:79](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L79)*
 
 Setting token of authenticated user
 
@@ -1742,7 +1742,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[setUrl](_client_gateway_.gateway.md#seturl)*
 
-*Defined in [client/Gateway.ts:60](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L60)*
+*Defined in [client/Gateway.ts:63](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L63)*
 
 Setting rest API URL of the instance
 
@@ -1763,7 +1763,7 @@ ___
 
 *Inherited from [Gateway](_client_gateway_.gateway.md).[stream](_client_gateway_.gateway.md#stream)*
 
-*Defined in [client/Gateway.ts:211](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L211)*
+*Defined in [client/Gateway.ts:232](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L232)*
 
 Start streaming
 
@@ -1784,7 +1784,7 @@ ___
 
 ▸ **streamCommunityTimeline**(): [EventHandler](_client_eventhandler_.eventhandler.md)
 
-*Defined in [client/Mastodon.ts:72](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L72)*
+*Defined in [client/Mastodon.ts:78](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L78)*
 
 Starting local timeline streaming
 *__see__*: [https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-public-local](https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-public-local)
@@ -1799,7 +1799,7 @@ ___
 
 ▸ **streamDirectTimeline**(): [EventHandler](_client_eventhandler_.eventhandler.md)
 
-*Defined in [client/Mastodon.ts:111](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L111)*
+*Defined in [client/Mastodon.ts:128](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L128)*
 
 Starting direct timeline streaming
 *__see__*: [https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-direct](https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-direct)
@@ -1814,7 +1814,7 @@ ___
 
 ▸ **streamListTimeline**(id: *`string`*): [EventHandler](_client_eventhandler_.eventhandler.md)
 
-*Defined in [client/Mastodon.ts:102](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L102)*
+*Defined in [client/Mastodon.ts:116](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L116)*
 
 Starting list timeline streaming
 *__see__*: [https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-list-list-list-id](https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-list-list-list-id)
@@ -1835,7 +1835,7 @@ ___
 
 ▸ **streamLocalTagTimeline**(id: *`string`*): [EventHandler](_client_eventhandler_.eventhandler.md)
 
-*Defined in [client/Mastodon.ts:92](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L92)*
+*Defined in [client/Mastodon.ts:103](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L103)*
 
 Starting local tag timeline streaming
 *__see__*: [https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-hashtag-local-tag-hashtag](https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-hashtag-local-tag-hashtag)
@@ -1856,7 +1856,7 @@ ___
 
 ▸ **streamPublicTimeline**(): [EventHandler](_client_eventhandler_.eventhandler.md)
 
-*Defined in [client/Mastodon.ts:63](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L63)*
+*Defined in [client/Mastodon.ts:67](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L67)*
 
 Starting federated timeline streaming
 *__see__*: [https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-public](https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-public)
@@ -1871,7 +1871,7 @@ ___
 
 ▸ **streamTagTimeline**(id: *`string`*): [EventHandler](_client_eventhandler_.eventhandler.md)
 
-*Defined in [client/Mastodon.ts:82](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L82)*
+*Defined in [client/Mastodon.ts:90](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L90)*
 
 Starting tag timeline streaming
 *__see__*: [https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-hashtag-tag-hashtag](https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-hashtag-tag-hashtag)
@@ -1892,7 +1892,7 @@ ___
 
 ▸ **streamUser**(): [EventHandler](_client_eventhandler_.eventhandler.md)
 
-*Defined in [client/Mastodon.ts:54](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L54)*
+*Defined in [client/Mastodon.ts:56](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L56)*
 
 Starting home timeline and notification streaming
 *__see__*: [https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-user](https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-user)
@@ -1907,9 +1907,9 @@ ___
 
 ▸ **unblockAccount**(id: *`string`*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
 
-*Defined in [client/Mastodon.ts:290](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L290)*
+*Defined in [client/Mastodon.ts:373](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L373)*
 
-Unblock an account
+Unblock an account with id
 *__see__*: [https://docs.joinmastodon.org/api/rest/blocks/#post-api-v1-accounts-id-unblock](https://docs.joinmastodon.org/api/rest/blocks/#post-api-v1-accounts-id-unblock)
 
 **Parameters:**
@@ -1928,7 +1928,7 @@ ___
 
 ▸ **unblockDomain**(domain: *`string`*): `Promise`<`void`>
 
-*Defined in [client/Mastodon.ts:329](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L329)*
+*Defined in [client/Mastodon.ts:419](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L419)*
 
 Remove a domain block.
 *__see__*: [https://docs.joinmastodon.org/api/rest/domain-blocks/#delete-api-v1-domain-blocks](https://docs.joinmastodon.org/api/rest/domain-blocks/#delete-api-v1-domain-blocks)
@@ -1949,7 +1949,7 @@ ___
 
 ▸ **unfavouriteStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:388](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L388)*
+*Defined in [client/Mastodon.ts:492](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L492)*
 
 Undo the favourite of a status.
 *__see__*: [https://docs.joinmastodon.org/api/rest/favourites/#post-api-v1-statuses-id-unfavourite](https://docs.joinmastodon.org/api/rest/favourites/#post-api-v1-statuses-id-unfavourite)
@@ -1970,9 +1970,9 @@ ___
 
 ▸ **unfollowAccount**(id: *`string`*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
 
-*Defined in [client/Mastodon.ts:217](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L217)*
+*Defined in [client/Mastodon.ts:272](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L272)*
 
-Unfollow an account.
+Unfollow an account by id
 *__see__*: [https://docs.joinmastodon.org/api/rest/accounts/#post-api-v1-accounts-id-unfollow](https://docs.joinmastodon.org/api/rest/accounts/#post-api-v1-accounts-id-unfollow)
 
 **Parameters:**
@@ -1991,9 +1991,9 @@ ___
 
 ▸ **unmuteAccount**(id: *`string`*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
 
-*Defined in [client/Mastodon.ts:660](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L660)*
+*Defined in [client/Mastodon.ts:815](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L815)*
 
-Unmute an account
+Unmute an account with id
 *__see__*: [https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-accounts-id-unmute](https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-accounts-id-unmute)
 
 **Parameters:**
@@ -2012,7 +2012,7 @@ ___
 
 ▸ **unmuteStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:680](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L680)*
+*Defined in [client/Mastodon.ts:838](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L838)*
 
 Unmute the conversation the status is part of.
 *__see__*: [https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-status-id-unmute](https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-status-id-unmute)
@@ -2033,9 +2033,9 @@ ___
 
 ▸ **unpinAccount**(id: *`string`*): `Promise`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>
 
-*Defined in [client/Mastodon.ts:358](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L358)*
+*Defined in [client/Mastodon.ts:455](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L455)*
 
-Unpin an account
+Unpin an account with id
 *__see__*: [https://docs.joinmastodon.org/api/rest/endorsements/#post-api-v1-accounts-id-unpin](https://docs.joinmastodon.org/api/rest/endorsements/#post-api-v1-accounts-id-unpin)
 
 **Parameters:**
@@ -2054,7 +2054,7 @@ ___
 
 ▸ **unpinStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:897](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L897)*
+*Defined in [client/Mastodon.ts:1118](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L1118)*
 
 Remove pinned status from user’s profile.
 *__see__*: [https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-unpin](https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-unpin)
@@ -2075,7 +2075,7 @@ ___
 
 ▸ **unreblogStatus**(id: *`string`*): `Promise`<[Status](../interfaces/_entities_status_.status.md)>
 
-*Defined in [client/Mastodon.ts:877](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L877)*
+*Defined in [client/Mastodon.ts:1095](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L1095)*
 
 Undo the reblog of a status.
 *__see__*: [https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-unreblog](https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-unreblog)
@@ -2094,9 +2094,9 @@ ___
 
 ##  updateCredentials
 
-▸ **updateCredentials**(options?: *`Options.UpdateCredentials`*): `Promise`<[AccountCredentials](../interfaces/_entities_account_.accountcredentials.md)>
+▸ **updateCredentials**(parameter?: *`Parameters.UpdateCredentials`*): `Promise`<[AccountCredentials](../interfaces/_entities_account_.accountcredentials.md)>
 
-*Defined in [client/Mastodon.ts:163](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L163)*
+*Defined in [client/Mastodon.ts:199](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L199)*
 
 Update user’s own account.
 *__see__*: [https://docs.joinmastodon.org/api/rest/accounts/#patch-api-v1-accounts-update-credentials](https://docs.joinmastodon.org/api/rest/accounts/#patch-api-v1-accounts-update-credentials)
@@ -2105,7 +2105,7 @@ Update user’s own account.
 
 | Name | Type | Description |
 | ------ | ------ | ------ |
-| `Optional` options | `Options.UpdateCredentials` |  Form data |
+| `Optional` parameter | `Parameters.UpdateCredentials` |  Form data |
 
 **Returns:** `Promise`<[AccountCredentials](../interfaces/_entities_account_.accountcredentials.md)>
 Returns Account
@@ -2115,9 +2115,9 @@ ___
 
 ##  updateFilter
 
-▸ **updateFilter**(id: *`string`*, options?: *`Options.UpdateFilter`*): `Promise`<[Filter](../interfaces/_entities_filter_.filter.md)>
+▸ **updateFilter**(id: *`string`*, parameter?: *`Parameters.UpdateFilter`*): `Promise`<[Filter](../interfaces/_entities_filter_.filter.md)>
 
-*Defined in [client/Mastodon.ts:430](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L430)*
+*Defined in [client/Mastodon.ts:544](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L544)*
 
 Update a text filter.
 *__see__*: [https://docs.joinmastodon.org/api/rest/filters/#put-api-v1-filters-id](https://docs.joinmastodon.org/api/rest/filters/#put-api-v1-filters-id)
@@ -2127,7 +2127,7 @@ Update a text filter.
 | Name | Type | Description |
 | ------ | ------ | ------ |
 | id | `string` |  ID of the filter |
-| `Optional` options | `Options.UpdateFilter` |  Optinal parameters |
+| `Optional` parameter | `Parameters.UpdateFilter` |  Optinal parameter |
 
 **Returns:** `Promise`<[Filter](../interfaces/_entities_filter_.filter.md)>
 Returns Filter
@@ -2139,9 +2139,9 @@ ___
 
 ▸ **updateList**(id: *`string`*, title: *`string`*): `Promise`<[List](../interfaces/_entities_list_.list.md)>
 
-*Defined in [client/Mastodon.ts:575](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L575)*
+*Defined in [client/Mastodon.ts:706](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L706)*
 
-Update a list.
+Update a list with title and id
 *__see__*: [https://docs.joinmastodon.org/api/rest/lists/#put-api-v1-lists-id](https://docs.joinmastodon.org/api/rest/lists/#put-api-v1-lists-id)
 
 **Parameters:**
@@ -2159,9 +2159,9 @@ ___
 
 ##  updateMediaAttachment
 
-▸ **updateMediaAttachment**(id: *`string`*, options?: *`Options.UpdateMedia`*): `Promise`<[Attachment](../interfaces/_entities_attachment_.attachment.md)>
+▸ **updateMediaAttachment**(id: *`string`*, parameter?: *`Parameters.UpdateMedia`*): `Promise`<[Attachment](../interfaces/_entities_attachment_.attachment.md)>
 
-*Defined in [client/Mastodon.ts:629](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L629)*
+*Defined in [client/Mastodon.ts:772](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L772)*
 
 Update a media attachment. Can only be done before the media is attached to a status.
 *__see__*: [https://docs.joinmastodon.org/api/rest/media/#put-api-v1-media-id](https://docs.joinmastodon.org/api/rest/media/#put-api-v1-media-id)
@@ -2171,7 +2171,7 @@ Update a media attachment. Can only be done before the media is attached to a st
 | Name | Type | Description |
 | ------ | ------ | ------ |
 | id | `string` |  ID of the target attachment |
-| `Optional` options | `Options.UpdateMedia` |  Form data |
+| `Optional` parameter | `Parameters.UpdateMedia` |  Form data |
 
 **Returns:** `Promise`<[Attachment](../interfaces/_entities_attachment_.attachment.md)>
 Returns Returns Attachment
@@ -2181,9 +2181,9 @@ ___
 
 ##  updatePushSubscription
 
-▸ **updatePushSubscription**(options: *`Options.UpdatePushSubscription`*): `Promise`<[PushSubscription](../interfaces/_entities_pushsubscription_.pushsubscription.md)>
+▸ **updatePushSubscription**(parameter: *`Parameters.UpdatePushSubscription`*): `Promise`<[PushSubscription](../interfaces/_entities_pushsubscription_.pushsubscription.md)>
 
-*Defined in [client/Mastodon.ts:748](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L748)*
+*Defined in [client/Mastodon.ts:920](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L920)*
 
 Update current Web Push API subscription. Only the `data` part can be updated, e.g. which types of notifications are desired. To change fundamentals, a new subscription must be created instead.
 *__see__*: [https://docs.joinmastodon.org/api/rest/notifications/#put-api-v1-push-subscription](https://docs.joinmastodon.org/api/rest/notifications/#put-api-v1-push-subscription)
@@ -2192,7 +2192,7 @@ Update current Web Push API subscription. Only the `data` part can be updated, e
 
 | Name | Type | Description |
 | ------ | ------ | ------ |
-| options | `Options.UpdatePushSubscription` |  Form data |
+| parameter | `Parameters.UpdatePushSubscription` |  Form data |
 
 **Returns:** `Promise`<[PushSubscription](../interfaces/_entities_pushsubscription_.pushsubscription.md)>
 Returns Push Subscription
@@ -2202,9 +2202,9 @@ ___
 
 ##  uploadMediaAttachment
 
-▸ **uploadMediaAttachment**(file: *`File`*, options?: *`Options.UploadMedia`*): `Promise`<[Attachment](../interfaces/_entities_attachment_.attachment.md)>
+▸ **uploadMediaAttachment**(file: *`File`*, parameter?: *`Parameters.UploadMedia`*): `Promise`<[Attachment](../interfaces/_entities_attachment_.attachment.md)>
 
-*Defined in [client/Mastodon.ts:618](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L618)*
+*Defined in [client/Mastodon.ts:754](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L754)*
 
 Upload a media attachment that can be used with a new status.
 *__see__*: [https://docs.joinmastodon.org/api/rest/media/#post-api-v1-media](https://docs.joinmastodon.org/api/rest/media/#post-api-v1-media)
@@ -2214,7 +2214,7 @@ Upload a media attachment that can be used with a new status.
 | Name | Type | Description |
 | ------ | ------ | ------ |
 | file | `File` |  Media to be uploaded (encoded using \`multipart/form-data\`) |
-| `Optional` options | `Options.UploadMedia` |  Form data |
+| `Optional` parameter | `Parameters.UploadMedia` |  Form data |
 
 **Returns:** `Promise`<[Attachment](../interfaces/_entities_attachment_.attachment.md)>
 Returns Attachment
@@ -2226,7 +2226,7 @@ ___
 
 ▸ **verfiyCredentials**(): `Promise`<[AccountCredentials](../interfaces/_entities_account_.accountcredentials.md)>
 
-*Defined in [client/Mastodon.ts:153](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L153)*
+*Defined in [client/Mastodon.ts:187](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L187)*
 
 User’s own account.
 *__see__*: [https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-verify-credentials](https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-verify-credentials)
@@ -2241,7 +2241,7 @@ ___
 
 ▸ **verifyAppCredential**(): `Promise`<[Application](../interfaces/_entities_application_.application.md)>
 
-*Defined in [client/Mastodon.ts:260](https://github.com/lagunehq/core/blob/6d71f33/src/client/Mastodon.ts#L260)*
+*Defined in [client/Mastodon.ts:336](https://github.com/lagunehq/core/blob/daa242c/src/client/Mastodon.ts#L336)*
 
 Confirm that the app’s OAuth2 credentials work.
 *__see__*: [https://docs.joinmastodon.org/api/rest/apps/#get-api-v1-apps-verify-credentials](https://docs.joinmastodon.org/api/rest/apps/#get-api-v1-apps-verify-credentials)
