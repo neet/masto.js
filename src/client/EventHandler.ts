@@ -29,26 +29,25 @@ interface EventTypes {
 }
 
 export class EventHandler extends EventEmitter {
-
   /**
    * Starting stream with a specified channel
    * @param id URL of the websocket endpoint
    * @param token Access token
    */
-  constructor (url: string, options: { [key: string]: string }) {
+  constructor(url: string, options: { [key: string]: string }) {
     super();
 
     const client = new WebSocket.client();
 
     client.connect(`${url}?${querystring.stringify(options)}`);
 
-    client.on('connect', (connection) => {
-      connection.on('message', (message) => {
+    client.on('connect', connection => {
+      connection.on('message', message => {
         if (message.type !== 'utf8' || !message.utf8Data) {
           return;
         }
 
-        const data  = JSON.parse(message.utf8Data);
+        const data = JSON.parse(message.utf8Data);
         const event = data.event;
         let payload = '';
 
@@ -64,14 +63,19 @@ export class EventHandler extends EventEmitter {
       this.emit('connect', connection);
     });
 
-    client.on('connectFailed', (errorDescription) => {
+    client.on('connectFailed', errorDescription => {
       this.emit('connectFailed', errorDescription);
     });
 
     return this;
   }
 
-  public on <E extends keyof EventTypes, P = EventTypes[E]> (event: E, callback: (payload: P) => void): this {
+  // Adds type information
+  // tslint:disable-next-line no-unnecessary-override
+  public on<E extends keyof EventTypes, P = EventTypes[E]>(
+    event: E,
+    callback: (payload: P) => void,
+  ): this {
     return super.on(event, callback);
   }
 }

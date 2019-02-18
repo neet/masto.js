@@ -24,7 +24,7 @@ export interface Attachment {
   description?: string | null;
 }
 
-export type AttachmentType = 'image'|'video'|'gifv'|'unknown';
+export type AttachmentType = 'image' | 'video' | 'gifv' | 'unknown';
 
 export interface AttachmentMeta {
   small?: AttachmentMetaImage | AttachmentMetaVideo | null;

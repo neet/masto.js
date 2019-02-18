@@ -86,4 +86,4 @@ export interface Status {
   pinned?: boolean | null;
 }
 
-export type StatusVisibility = 'public'|'unlisted'|'private'|'direct';
+export type StatusVisibility = 'public' | 'unlisted' | 'private' | 'direct';

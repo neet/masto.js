@@ -20,19 +20,21 @@ import { Results } from '../entities/Results';
 import { Status } from '../entities/Status';
 
 export class Mastodon extends Gateway {
-
   /**
    * Generate an iterable of the pagination
    * @param id Path to the API, e.g. `timelines/pulbic`, `accounts/1/statuses` e.g.
    * @param params Query parameters
    * @return An async iterable of statuses, most recent ones first.
    */
-  protected async * paginationGenerator <T extends string[] | { id: string }[]> (path: string, params?: any) {
-    let next: string|null = path;
+  protected async *paginationGenerator<T extends string[] | { id: string }[]>(
+    path: string,
+    params?: any,
+  ) {
+    let next: string | null = path;
 
     while (true) {
       const response = await this.get<T>(next, params);
-      const result: T|'reset' = yield response.data;
+      const result: T | 'reset' = yield response.data;
 
       if (result === 'reset') {
         next = path;
@@ -51,8 +53,10 @@ export class Mastodon extends Gateway {
    * @return Instance of EventEmitter
    * @see https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-user
    */
-  public streamUser (): EventHandler {
-    return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'user' });
+  public streamUser(): EventHandler {
+    return this.stream(`${this.streamingUrl}/api/v1/streaming`, {
+      stream: 'user',
+    });
   }
 
   /**
@@ -60,8 +64,10 @@ export class Mastodon extends Gateway {
    * @return Instance of EventEmitter
    * @see https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-public
    */
-  public streamPublicTimeline (): EventHandler {
-    return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'public' });
+  public streamPublicTimeline(): EventHandler {
+    return this.stream(`${this.streamingUrl}/api/v1/streaming`, {
+      stream: 'public',
+    });
   }
 
   /**
@@ -69,8 +75,10 @@ export class Mastodon extends Gateway {
    * @return Instance of EventEmitter
    * @see https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-public-local
    */
-  public streamCommunityTimeline (): EventHandler {
-    return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'public:local' });
+  public streamCommunityTimeline(): EventHandler {
+    return this.stream(`${this.streamingUrl}/api/v1/streaming`, {
+      stream: 'public:local',
+    });
   }
 
   /**
@@ -79,8 +87,11 @@ export class Mastodon extends Gateway {
    * @return Instance of EventEmitter
    * @see https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-hashtag-tag-hashtag
    */
-  public streamTagTimeline (id: string): EventHandler {
-    return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'hashtag', tag: id });
+  public streamTagTimeline(id: string): EventHandler {
+    return this.stream(`${this.streamingUrl}/api/v1/streaming`, {
+      stream: 'hashtag',
+      tag: id,
+    });
   }
 
   /**
@@ -89,8 +100,11 @@ export class Mastodon extends Gateway {
    * @return Instance of EventEmitter
    * @see https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-hashtag-local-tag-hashtag
    */
-  public streamLocalTagTimeline (id: string): EventHandler {
-    return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'hashtag:local', tag: id });
+  public streamLocalTagTimeline(id: string): EventHandler {
+    return this.stream(`${this.streamingUrl}/api/v1/streaming`, {
+      stream: 'hashtag:local',
+      tag: id,
+    });
   }
 
   /**
@@ -99,8 +113,11 @@ export class Mastodon extends Gateway {
    * @return Instance of EventEmitter
    * @see https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-list-list-list-id
    */
-  public streamListTimeline (id: string): EventHandler {
-    return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'list', list: id });
+  public streamListTimeline(id: string): EventHandler {
+    return this.stream(`${this.streamingUrl}/api/v1/streaming`, {
+      stream: 'list',
+      list: id,
+    });
   }
 
   /**
@@ -108,8 +125,10 @@ export class Mastodon extends Gateway {
    * @return Instance of EventEmitter
    * @see https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-direct
    */
-  public streamDirectTimeline (): EventHandler {
-    return this.stream(`${this.streamingUrl}/api/v1/streaming`, { stream: 'direct' });
+  public streamDirectTimeline(): EventHandler {
+    return this.stream(`${this.streamingUrl}/api/v1/streaming`, {
+      stream: 'direct',
+    });
   }
 
   /**
@@ -122,8 +141,20 @@ export class Mastodon extends Gateway {
    * @see https://docs.joinmastodon.org/api/permissions/
    * @see https://docs.joinmastodon.org/api/authentication/
    */
-  public async fetchAccessToken (code: string, client_id: string, client_secret: string, redirect_uri: string, grant_type = 'authorization_code') {
-    return (await this.post<AccountToken>(`${this.url}/oauth/token`, { code, client_id, client_secret, redirect_uri, grant_type })).data;
+  public async fetchAccessToken(
+    code: string,
+    client_id: string,
+    client_secret: string,
+    redirect_uri: string,
+    grant_type = 'authorization_code',
+  ) {
+    return (await this.post<AccountToken>(`${this.url}/oauth/token`, {
+      code,
+      client_id,
+      client_secret,
+      redirect_uri,
+      grant_type,
+    })).data;
   }
 
   /**
@@ -132,17 +163,20 @@ export class Mastodon extends Gateway {
    * @return Returns Account
    * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id
    */
-  public async fetchAccount (id: string) {
+  public async fetchAccount(id: string) {
     return (await this.get<Account>(`${this.url}/api/v1/accounts/${id}`)).data;
   }
 
   /**
-   * Create an account
+   * Create an account with given profile
    * @param options Data of the user to create
    * @return Access token
    */
-  public async createAccount (options: Options.CreateAccount) {
-    return (await this.post<AccountToken>(`${this.url}/api/v1/accounts`, options));
+  public async createAccount(options: Options.CreateAccount) {
+    return (await this.post<AccountToken>(
+      `${this.url}/api/v1/accounts`,
+      options,
+    )).data;
   }
 
   /**
@@ -150,8 +184,10 @@ export class Mastodon extends Gateway {
    * @return Returns Account with an extra source attribute.
    * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-verify-credentials
    */
-  public async verfiyCredentials () {
-    return (await this.get<AccountCredentials>(`${this.url}/api/v1/accounts/verify_credentials`)).data;
+  public async verfiyCredentials() {
+    return (await this.get<AccountCredentials>(
+      `${this.url}/api/v1/accounts/verify_credentials`,
+    )).data;
   }
 
   /**
@@ -160,8 +196,12 @@ export class Mastodon extends Gateway {
    * @return Returns Account
    * @see https://docs.joinmastodon.org/api/rest/accounts/#patch-api-v1-accounts-update-credentials
    */
-  public async updateCredentials (options?: Options.UpdateCredentials) {
-    return (await this.patch<AccountCredentials>(`${this.url}/api/v1/accounts/update_credentials`, options, {headers: {'Content-Type': 'multipart/form-data'}})).data;
+  public async updateCredentials(options?: Options.UpdateCredentials) {
+    return (await this.patch<AccountCredentials>(
+      `${this.url}/api/v1/accounts/update_credentials`,
+      options,
+      { headers: { 'Content-Type': 'multipart/form-data' } },
+    )).data;
   }
 
   /**
@@ -171,8 +211,11 @@ export class Mastodon extends Gateway {
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-followers
    */
-  public fetchAccountFollowers (id: string, options?: Options.Pagination) {
-    return this.paginationGenerator(`${this.url}/api/v1/accounts/${id}/followers`, options);
+  public fetchAccountFollowers(id: string, options?: Options.Pagination) {
+    return this.paginationGenerator(
+      `${this.url}/api/v1/accounts/${id}/followers`,
+      options,
+    );
   }
 
   /**
@@ -182,8 +225,11 @@ export class Mastodon extends Gateway {
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-following
    */
-  public fetchAccountFollowing (id: string, options?: Options.Pagination) {
-    return this.paginationGenerator(`${this.url}/api/v1/accounts/${id}/following`, options);
+  public fetchAccountFollowing(id: string, options?: Options.Pagination) {
+    return this.paginationGenerator(
+      `${this.url}/api/v1/accounts/${id}/following`,
+      options,
+    );
   }
 
   /**
@@ -193,29 +239,40 @@ export class Mastodon extends Gateway {
    * @return Returns array of Status
    * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-statuses
    */
-  public fetchAccountStatuses (id: string, options?: Options.FetchAccountStatuses) {
-    return this.paginationGenerator<Status[]>(`${this.url}/api/v1/accounts/${id}/statuses`, options);
+  public fetchAccountStatuses(
+    id: string,
+    options?: Options.FetchAccountStatuses,
+  ) {
+    return this.paginationGenerator<Status[]>(
+      `${this.url}/api/v1/accounts/${id}/statuses`,
+      options,
+    );
   }
 
   /**
-   * Follow an account.
+   * Follow an account by id
    * @param id ID of the target account
    * @param reblogs Whether the followed account’s reblogs will show up in the home timeline
    * @return Returns Relationship
    * @see https://docs.joinmastodon.org/api/rest/accounts/#post-api-v1-accounts-id-follow
    */
-  public async followAccount (id: string, reblogs?: boolean) {
-    return (await this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/follow`, { reblogs })).data;
+  public async followAccount(id: string, reblogs?: boolean) {
+    return (await this.post<Relationship>(
+      `${this.url}/api/v1/accounts/${id}/follow`,
+      { reblogs },
+    )).data;
   }
 
   /**
-   * Unfollow an account.
+   * Unfollow an account by id
    * @param id ID of the target account
    * @return Returns Relationship
    * @see https://docs.joinmastodon.org/api/rest/accounts/#post-api-v1-accounts-id-unfollow
    */
-  public async unfollowAccount (id: string) {
-    return (await this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/unfollow`)).data;
+  public async unfollowAccount(id: string) {
+    return (await this.post<Relationship>(
+      `${this.url}/api/v1/accounts/${id}/unfollow`,
+    )).data;
   }
 
   /**
@@ -224,8 +281,11 @@ export class Mastodon extends Gateway {
    * @return Returns array of Relationship
    * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-relationships
    */
-  public async fetchAccountRelationships (id: string[]) {
-    return (await this.get<Relationship[]>(`${this.url}/api/v1/accounts/relationship`, { id })).data;
+  public async fetchAccountRelationships(id: string[]) {
+    return (await this.get<Relationship[]>(
+      `${this.url}/api/v1/accounts/relationship`,
+      { id },
+    )).data;
   }
 
   /**
@@ -235,8 +295,11 @@ export class Mastodon extends Gateway {
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-search
    */
-  public async searchAccounts (q: string, options?: Options.SearchAccounts) {
-    return (await this.get<Account[]>(`${this.url}/api/v1/accounts/search`, { q, ...options })).data;
+  public async searchAccounts(q: string, options?: Options.SearchAccounts) {
+    return (await this.get<Account[]>(`${this.url}/api/v1/accounts/search`, {
+      q,
+      ...options,
+    })).data;
   }
 
   /**
@@ -248,8 +311,18 @@ export class Mastodon extends Gateway {
    * @return Returns App with client_id and client_secret
    * @see https://docs.joinmastodon.org/api/rest/apps/#post-api-v1-apps
    */
-  public async createApp (client_name: string, redirect_uris: string, scopes: string, website?: string) {
-    return (await this.post<OAuth>(`${this.url}/api/v1/apps`, { client_name, redirect_uris, scopes, website })).data;
+  public async createApp(
+    client_name: string,
+    redirect_uris: string,
+    scopes: string,
+    website?: string,
+  ) {
+    return (await this.post<OAuth>(`${this.url}/api/v1/apps`, {
+      client_name,
+      redirect_uris,
+      scopes,
+      website,
+    })).data;
   }
 
   /**
@@ -257,8 +330,10 @@ export class Mastodon extends Gateway {
    * @return Returns App
    * @see https://docs.joinmastodon.org/api/rest/apps/#get-api-v1-apps-verify-credentials
    */
-  public async verifyAppCredential () {
-    return (await this.get<Application>(`${this.url}/api/v1/apps/verify_credentials`)).data;
+  public async verifyAppCredential() {
+    return (await this.get<Application>(
+      `${this.url}/api/v1/apps/verify_credentials`,
+    )).data;
   }
 
   /**
@@ -267,28 +342,35 @@ export class Mastodon extends Gateway {
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/blocks/#get-api-v1-blocks
    */
-  public async fetchBlocks (options?: Options.Pagination) {
-    return this.paginationGenerator<Account[]>(`${this.url}/api/v1/blocks`, options);
+  public async fetchBlocks(options?: Options.Pagination) {
+    return this.paginationGenerator<Account[]>(
+      `${this.url}/api/v1/blocks`,
+      options,
+    );
   }
 
   /**
-   * Block an account
+   * Block an account with id
    * @param id ID of the target account
    * @return Returns Relationship
    * @see https://docs.joinmastodon.org/api/rest/blocks/#post-api-v1-accounts-id-block
    */
-  public async blockAccount (id: string) {
-    return (await this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/block`)).data;
+  public async blockAccount(id: string) {
+    return (await this.post<Relationship>(
+      `${this.url}/api/v1/accounts/${id}/block`,
+    )).data;
   }
 
   /**
-   * Unblock an account
+   * Unblock an account with id
    * @param id ID of the target account
    * @return Returns Relationship
    * @see https://docs.joinmastodon.org/api/rest/blocks/#post-api-v1-accounts-id-unblock
    */
-  public async unblockAccount (id: string) {
-    return (await this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/unblock`)).data;
+  public async unblockAccount(id: string) {
+    return (await this.post<Relationship>(
+      `${this.url}/api/v1/accounts/${id}/unblock`,
+    )).data;
   }
 
   /**
@@ -296,7 +378,7 @@ export class Mastodon extends Gateway {
    * @return Returns array of Emoji
    * @see https://docs.joinmastodon.org/api/rest/custom-emojis/#get-api-v1-custom-emojis
    */
-  public async fetchCustomEmojis () {
+  public async fetchCustomEmojis() {
     return (await this.get<Emoji[]>(`${this.url}/api/v1/custom_emojis`)).data;
   }
 
@@ -306,8 +388,11 @@ export class Mastodon extends Gateway {
    * @return Returns array of string.
    * @see https://docs.joinmastodon.org/api/rest/domain-blocks/#get-api-v1-domain-blocks
    */
-  public fetchDomainBlocks (options?: Options.Pagination) {
-    return this.paginationGenerator<string[]>(`${this.url}/api/v1/domain_blocks`, options);
+  public fetchDomainBlocks(options?: Options.Pagination) {
+    return this.paginationGenerator<string[]>(
+      `${this.url}/api/v1/domain_blocks`,
+      options,
+    );
   }
 
   /**
@@ -316,8 +401,10 @@ export class Mastodon extends Gateway {
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/domain-blocks/#post-api-v1-domain-blocks
    */
-  public async blockDomain (domain: string) {
-    return (await this.post<void>(`${this.url}/api/v1/domain_blocks`, { domain })).data;
+  public async blockDomain(domain: string) {
+    return (await this.post<void>(`${this.url}/api/v1/domain_blocks`, {
+      domain,
+    })).data;
   }
 
   /**
@@ -326,8 +413,10 @@ export class Mastodon extends Gateway {
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/domain-blocks/#delete-api-v1-domain-blocks
    */
-  public async unblockDomain (domain: string) {
-    return (await this.delete<void>(`${this.url}/api/v1/domain_blocks`, { domain })).data;
+  public async unblockDomain(domain: string) {
+    return (await this.delete<void>(`${this.url}/api/v1/domain_blocks`, {
+      domain,
+    })).data;
   }
 
   /**
@@ -335,8 +424,11 @@ export class Mastodon extends Gateway {
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/endorsements/#get-api-v1-endorsements
    */
-  public async fetchEndorsements (options?: Options.Pagination) {
-    return this.paginationGenerator<Account[]>(`${this.url}/api/v1/endorsements`, options);
+  public async fetchEndorsements(options?: Options.Pagination) {
+    return this.paginationGenerator<Account[]>(
+      `${this.url}/api/v1/endorsements`,
+      options,
+    );
   }
 
   /**
@@ -345,18 +437,22 @@ export class Mastodon extends Gateway {
    * @return Returns Relationship
    * @see https://docs.joinmastodon.org/api/rest/endorsements/#post-api-v1-accounts-id-pin
    */
-  public async pinAccount (id: string) {
-    return (await this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/pin`)).data;
+  public async pinAccount(id: string) {
+    return (await this.post<Relationship>(
+      `${this.url}/api/v1/accounts/${id}/pin`,
+    )).data;
   }
 
   /**
-   * Unpin an account
+   * Unpin an account with id
    * @param id ID of the target account
    * @return Returns Relationship
    * @see https://docs.joinmastodon.org/api/rest/endorsements/#post-api-v1-accounts-id-unpin
    */
-  public async unpinAccount (id: string) {
-    return (await this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/unpin`)).data;
+  public async unpinAccount(id: string) {
+    return (await this.post<Relationship>(
+      `${this.url}/api/v1/accounts/${id}/unpin`,
+    )).data;
   }
 
   /**
@@ -365,18 +461,23 @@ export class Mastodon extends Gateway {
    * @return Returns array of Status
    * @see https://docs.joinmastodon.org/api/rest/favourites/#get-api-v1-favourites
    */
-  public async fetchFavouritedStatuses (options?: Options.Pagination) {
-    return this.paginationGenerator<Status[]>(`${this.url}/api/v1/favourites`, options);
+  public async fetchFavouritedStatuses(options?: Options.Pagination) {
+    return this.paginationGenerator<Status[]>(
+      `${this.url}/api/v1/favourites`,
+      options,
+    );
   }
 
   /**
-   * Favourite a status.
+   * Favourite a status with id
    * @param id ID of the target status
    * @return Returns Status
    * @see https://docs.joinmastodon.org/api/rest/favourites/#post-api-v1-statuses-id-favourite
    */
-  public async favouriteStatus (id: string) {
-    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/favourite`)).data;
+  public async favouriteStatus(id: string) {
+    return (await this.post<Status>(
+      `${this.url}/api/v1/statuses/${id}/favourite`,
+    )).data;
   }
 
   /**
@@ -385,8 +486,10 @@ export class Mastodon extends Gateway {
    * @return Returns Status
    * @see https://docs.joinmastodon.org/api/rest/favourites/#post-api-v1-statuses-id-unfavourite
    */
-  public async unfavouriteStatus (id: string) {
-    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/unfavourite`)).data;
+  public async unfavouriteStatus(id: string) {
+    return (await this.post<Status>(
+      `${this.url}/api/v1/statuses/${id}/unfavourite`,
+    )).data;
   }
 
   /**
@@ -394,7 +497,7 @@ export class Mastodon extends Gateway {
    * @return An array of Filters
    * @see https://docs.joinmastodon.org/api/rest/filters/#get-api-v1-filters
    */
-  public async fetchFilters () {
+  public async fetchFilters() {
     return (await this.get<Filter[]>(`${this.url}/api/v1/filters`)).data;
   }
 
@@ -406,8 +509,16 @@ export class Mastodon extends Gateway {
    * @return Returns Filter
    * @see https://docs.joinmastodon.org/api/rest/filters/#post-api-v1-filters
    */
-  public async createFiler (phrase: string, context: FilterContext, options?: Options.CreateFilter) {
-    return (await this.post<Filter>(`${this.url}/api/v1/filters`, { phrase, context, ...options })).data;
+  public async createFiler(
+    phrase: string,
+    context: FilterContext,
+    options?: Options.CreateFilter,
+  ) {
+    return (await this.post<Filter>(`${this.url}/api/v1/filters`, {
+      phrase,
+      context,
+      ...options,
+    })).data;
   }
 
   /**
@@ -416,7 +527,7 @@ export class Mastodon extends Gateway {
    * @return Returns Filter
    * @see https://docs.joinmastodon.org/api/rest/filters/#get-api-v1-filters-id
    */
-  public async fetchFilter (id: string) {
+  public async fetchFilter(id: string) {
     return (await this.get<Filter>(`${this.url}/api/v1/filters/${id}`)).data;
   }
 
@@ -427,8 +538,9 @@ export class Mastodon extends Gateway {
    * @return Returns Filter
    * @see https://docs.joinmastodon.org/api/rest/filters/#put-api-v1-filters-id
    */
-  public async updateFilter (id: string, options?: Options.UpdateFilter) {
-    return (await this.put<Filter>(`${this.url}/api/v1/filters/${id}`, options)).data;
+  public async updateFilter(id: string, options?: Options.UpdateFilter) {
+    return (await this.put<Filter>(`${this.url}/api/v1/filters/${id}`, options))
+      .data;
   }
 
   /**
@@ -437,7 +549,7 @@ export class Mastodon extends Gateway {
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/filters/#delete-api-v1-filters-id
    */
-  public async removeFilter (id: string) {
+  public async removeFilter(id: string) {
     return (await this.delete<void>(`${this.url}/api/v1/filters/${id}`)).data;
   }
 
@@ -447,8 +559,11 @@ export class Mastodon extends Gateway {
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/follow-requests/#get-api-v1-follow-requests
    */
-  public async fetchFollowRequests (options?: Options.Pagination) {
-    return this.paginationGenerator<Account[]>(`${this.url}/api/v1/follow_requests`, options);
+  public async fetchFollowRequests(options?: Options.Pagination) {
+    return this.paginationGenerator<Account[]>(
+      `${this.url}/api/v1/follow_requests`,
+      options,
+    );
   }
 
   /**
@@ -457,8 +572,10 @@ export class Mastodon extends Gateway {
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/follow-requests/#post-api-v1-follow-requests-id-authorize
    */
-  public async authorizeFollowRequest (id: string) {
-    return (await this.post<void>(`${this.url}/api/v1/follow_requests/${id}/authorize`)).data;
+  public async authorizeFollowRequest(id: string) {
+    return (await this.post<void>(
+      `${this.url}/api/v1/follow_requests/${id}/authorize`,
+    )).data;
   }
 
   /**
@@ -467,8 +584,10 @@ export class Mastodon extends Gateway {
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/follow-requests/#post-api-v1-follow-requests-id-reject
    */
-  public async rejectFollowRequest (id: string) {
-    return (await this.post<void>(`${this.url}/api/v1/follow_requests/${id}/reject`)).data;
+  public async rejectFollowRequest(id: string) {
+    return (await this.post<void>(
+      `${this.url}/api/v1/follow_requests/${id}/reject`,
+    )).data;
   }
 
   /**
@@ -476,7 +595,7 @@ export class Mastodon extends Gateway {
    * @return An array of Accounts
    * @see https://docs.joinmastodon.org/api/rest/follow-suggestions/#get-api-v1-suggestions
    */
-  public async fetchSuggestions () {
+  public async fetchSuggestions() {
     return (await this.get<Account[]>(`${this.url}/api/v1/suggestions`)).data;
   }
 
@@ -486,8 +605,9 @@ export class Mastodon extends Gateway {
    * @return An array of Accounts
    * @see https://docs.joinmastodon.org/api/rest/follow-suggestions/#delete-api-v1-suggestions-account-id
    */
-  public async removeSuggestion (id: string) {
-    return (await this.delete<void>(`${this.url}/api/v1/suggestions/${id}`)).data;
+  public async removeSuggestion(id: string) {
+    return (await this.delete<void>(`${this.url}/api/v1/suggestions/${id}`))
+      .data;
   }
 
   /**
@@ -495,7 +615,7 @@ export class Mastodon extends Gateway {
    * @return Returns Instance
    * @see https://docs.joinmastodon.org/api/rest/instances/#get-api-v1-instance
    */
-  public async fetchInstance () {
+  public async fetchInstance() {
     return (await this.get<Instance>(`${this.url}/api/v1/instance`)).data;
   }
 
@@ -503,7 +623,7 @@ export class Mastodon extends Gateway {
    * Fetching peer instances
    * @return An array of peer instance's domain
    */
-  public async fetchPeerInstances () {
+  public async fetchPeerInstances() {
     return (await this.get<string[]>(`${this.url}/api/v1/instance/peers`)).data;
   }
 
@@ -511,8 +631,10 @@ export class Mastodon extends Gateway {
    * Fetching activities of current instance
    * @return An array of InstanceActivity
    */
-  public async fetchInstanceActivity () {
-    return (await this.get<InstanceActivity[]>(`${this.url}/api/v1/instance/activity`)).data;
+  public async fetchInstanceActivity() {
+    return (await this.get<InstanceActivity[]>(
+      `${this.url}/api/v1/instance/activity`,
+    )).data;
   }
 
   /**
@@ -520,7 +642,7 @@ export class Mastodon extends Gateway {
    * @return Returns array of List
    * @see https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists
    */
-  public async fetchLists () {
+  public async fetchLists() {
     return (await this.get<List[]>(`${this.url}/api/v1/lists`)).data;
   }
 
@@ -530,8 +652,9 @@ export class Mastodon extends Gateway {
    * @return Returns array of List
    * @see https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-accounts-id-lists
    */
-  public async fetchListByMembership (id: string) {
-    return (await this.get<List[]>(`${this.url}/api/v1/accounts/${id}/lists`)).data;
+  public async fetchListByMembership(id: string) {
+    return (await this.get<List[]>(`${this.url}/api/v1/accounts/${id}/lists`))
+      .data;
   }
 
   /**
@@ -541,17 +664,20 @@ export class Mastodon extends Gateway {
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists-id-accounts
    */
-  public  fetchListAccounts (id: string, options: Options.Pagination) {
-    return this.paginationGenerator<Account[]>(`${this.url}/api/v1/list/${id}/accounts`, options);
+  public fetchListAccounts(id: string, options: Options.Pagination) {
+    return this.paginationGenerator<Account[]>(
+      `${this.url}/api/v1/list/${id}/accounts`,
+      options,
+    );
   }
 
   /**
-   * A list
+   * Fetch a list with id
    * @param id ID of the targtet list
    * @return Returns List
    * @see https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists-id
    */
-  public async fetchList (id: string) {
+  public async fetchList(id: string) {
     return (await this.get<List>(`${this.url}/api/v1/lists/${id}`)).data;
   }
 
@@ -561,28 +687,29 @@ export class Mastodon extends Gateway {
    * @return Returns List
    * @see https://docs.joinmastodon.org/api/rest/lists/#post-api-v1-lists
    */
-  public async createList (title: string) {
+  public async createList(title: string) {
     return (await this.post<List>(`${this.url}/api/v1/lists`, { title })).data;
   }
 
   /**
-   * Update a list.
+   * Update a list with title and id
    * @param id ID of the target list
    * @param title The title of the list
    * @return Returns List
    * @see https://docs.joinmastodon.org/api/rest/lists/#put-api-v1-lists-id
    */
-  public async updateList (id: string, title: string) {
-    return (await this.put<List>(`${this.url}/api/v1/lists/${id}`, { title })).data;
+  public async updateList(id: string, title: string) {
+    return (await this.put<List>(`${this.url}/api/v1/lists/${id}`, { title }))
+      .data;
   }
 
   /**
-   * Remove a list.
+   * Remove a list with id
    * @param id ID of the target list
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/lists/#delete-api-v1-lists-id
    */
-  public async removeList (id: string) {
+  public async removeList(id: string) {
     return (await this.delete<void>(`${this.url}/api/v1/lists/${id}`)).data;
   }
 
@@ -593,8 +720,10 @@ export class Mastodon extends Gateway {
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/lists/#post-api-v1-lists-id-accounts
    */
-  public async addAccountToList (id: string, account_ids: string[]) {
-    return (await this.post<void>(`${this.url}/api/v1/lists/${id}/accounts`, { account_ids })).data;
+  public async addAccountToList(id: string, account_ids: string[]) {
+    return (await this.post<void>(`${this.url}/api/v1/lists/${id}/accounts`, {
+      account_ids,
+    })).data;
   }
 
   /**
@@ -604,8 +733,10 @@ export class Mastodon extends Gateway {
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/lists/#delete-api-v1-lists-id-accounts
    */
-  public async removeAccountFromList (id: string, account_ids: string[]) {
-    return (await this.post<void>(`${this.url}/api/v1/lists/${id}/accounts`, { account_ids })).data;
+  public async removeAccountFromList(id: string, account_ids: string[]) {
+    return (await this.post<void>(`${this.url}/api/v1/lists/${id}/accounts`, {
+      account_ids,
+    })).data;
   }
 
   /**
@@ -615,8 +746,15 @@ export class Mastodon extends Gateway {
    * @return Returns Attachment
    * @see https://docs.joinmastodon.org/api/rest/media/#post-api-v1-media
    */
-  public async uploadMediaAttachment (file: File, options?: Options.UploadMedia) {
-    return (await this.post<Attachment>(`${this.url}/api/v1/media`, { file, ...options}, {headers: {'Content-Type': 'multipart/form-data'}})).data;
+  public async uploadMediaAttachment(
+    file: File,
+    options?: Options.UploadMedia,
+  ) {
+    return (await this.post<Attachment>(
+      `${this.url}/api/v1/media`,
+      { file, ...options },
+      { headers: { 'Content-Type': 'multipart/form-data' } },
+    )).data;
   }
 
   /**
@@ -626,8 +764,14 @@ export class Mastodon extends Gateway {
    * @return Returns Returns Attachment
    * @see https://docs.joinmastodon.org/api/rest/media/#put-api-v1-media-id
    */
-  public async updateMediaAttachment (id: string, options?: Options.UpdateMedia) {
-    return (await this.put<Attachment>(`${this.url}/api/v1/media/${id}`, options)).data;
+  public async updateMediaAttachment(
+    id: string,
+    options?: Options.UpdateMedia,
+  ) {
+    return (await this.put<Attachment>(
+      `${this.url}/api/v1/media/${id}`,
+      options,
+    )).data;
   }
 
   /**
@@ -636,29 +780,37 @@ export class Mastodon extends Gateway {
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/mutes/#get-api-v1-mutes
    */
-  public fetchMutes (options?: Options.Pagination) {
-    return this.paginationGenerator<Account[]>(`${this.url}/api/v1/mutes`, options);
+  public fetchMutes(options?: Options.Pagination) {
+    return this.paginationGenerator<Account[]>(
+      `${this.url}/api/v1/mutes`,
+      options,
+    );
   }
 
   /**
-   * Mute an account.
+   * Mute an account with id
    * @param id ID of the target account
    * @param notifications Whether the mute will mute notifications or not
    * @return Returns Relationship
    * @see https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-accounts-id-mute
    */
-  public async muteAccount (id: string, notifications = true) {
-    return (await this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/mute`, { notifications })).data;
+  public async muteAccount(id: string, notifications = true) {
+    return (await this.post<Relationship>(
+      `${this.url}/api/v1/accounts/${id}/mute`,
+      { notifications },
+    )).data;
   }
 
   /**
-   * Unmute an account
+   * Unmute an account with id
    * @param id ID of the target account
    * @return Returns Relationship
    * @see https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-accounts-id-unmute
    */
-  public async unmuteAccount (id: string) {
-    return (await this.post<Relationship>(`${this.url}/api/v1/accounts/${id}/unmute`)).data;
+  public async unmuteAccount(id: string) {
+    return (await this.post<Relationship>(
+      `${this.url}/api/v1/accounts/${id}/unmute`,
+    )).data;
   }
 
   /**
@@ -667,8 +819,9 @@ export class Mastodon extends Gateway {
    * @return Returns Status
    * @see https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-status-id-mute
    */
-  public async muteStatus (id: string) {
-    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/mute`)).data;
+  public async muteStatus(id: string) {
+    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/mute`))
+      .data;
   }
 
   /**
@@ -677,8 +830,9 @@ export class Mastodon extends Gateway {
    * @return Returns Status
    * @see https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-status-id-unmute
    */
-  public async unmuteStatus (id: string) {
-    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/unmute`)).data;
+  public async unmuteStatus(id: string) {
+    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/unmute`))
+      .data;
   }
 
   /**
@@ -687,8 +841,11 @@ export class Mastodon extends Gateway {
    * @return Returns array of Notification
    * @see https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-notifications
    */
-  public async fetchNotifications (options?: Options.FetchNotifications) {
-    return (await this.get<Notification[]>(`${this.url}/api/v1/notifications`, options)).data;
+  public async fetchNotifications(options?: Options.FetchNotifications) {
+    return (await this.get<Notification[]>(
+      `${this.url}/api/v1/notifications`,
+      options,
+    )).data;
   }
 
   /**
@@ -697,8 +854,10 @@ export class Mastodon extends Gateway {
    * @return Returns Notification
    * @see https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-notifications-id
    */
-  public async fetchNotification (id: string) {
-    return (await this.get<Notification>(`${this.url}/api/v1/notifications/${id}`)).data;
+  public async fetchNotification(id: string) {
+    return (await this.get<Notification>(
+      `${this.url}/api/v1/notifications/${id}`,
+    )).data;
   }
 
   /**
@@ -706,8 +865,9 @@ export class Mastodon extends Gateway {
    * @return Returns an empty object.
    * @see https://docs.joinmastodon.org/api/rest/notifications/#post-api-v1-notifications-clear
    */
-  public async clearNotifications () {
-    return (await this.post<void>(`${this.url}/api/v1/notifications/clear`)).data;
+  public async clearNotifications() {
+    return (await this.post<void>(`${this.url}/api/v1/notifications/clear`))
+      .data;
   }
 
   /**
@@ -716,8 +876,10 @@ export class Mastodon extends Gateway {
    * @return Returns an empty object.
    * @see https://docs.joinmastodon.org/api/rest/notifications/#post-api-v1-notifications-dismiss
    */
-  public async dissmissNotification (id: string) {
-    return (await this.post<void>(`${this.url}/api/v1/notifications/dismiss`, { id })).data;
+  public async dissmissNotification(id: string) {
+    return (await this.post<void>(`${this.url}/api/v1/notifications/dismiss`, {
+      id,
+    })).data;
   }
 
   /**
@@ -726,17 +888,22 @@ export class Mastodon extends Gateway {
    * @return Returns Push Subscription
    * @see https://docs.joinmastodon.org/api/rest/notifications/#put-api-v1-push-subscription
    */
-  public async addPushSubscription (options: Options.AddPushSubscription) {
-    return (await this.post<PushSubscription>(`${this.url}/api/v1/push/subscription`, options)).data;
+  public async addPushSubscription(options: Options.AddPushSubscription) {
+    return (await this.post<PushSubscription>(
+      `${this.url}/api/v1/push/subscription`,
+      options,
+    )).data;
   }
 
   /**
-   * Push Subscription
+   * Fetch Push Subscription for notifications
    * @return Returns Push Subscription
    * @see https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-push-subscription
    */
-  public async fetchPushSubscription () {
-    return (await this.get<PushSubscription>(`${this.url}/api/v1/push/subscription`)).data;
+  public async fetchPushSubscription() {
+    return (await this.get<PushSubscription>(
+      `${this.url}/api/v1/push/subscription`,
+    )).data;
   }
 
   /**
@@ -745,8 +912,11 @@ export class Mastodon extends Gateway {
    * @return Returns Push Subscription
    * @see https://docs.joinmastodon.org/api/rest/notifications/#put-api-v1-push-subscription
    */
-  public async updatePushSubscription (options: Options.UpdatePushSubscription) {
-    return (await this.put<PushSubscription>(`${this.url}/api/v1/push/subscription`, options)).data;
+  public async updatePushSubscription(options: Options.UpdatePushSubscription) {
+    return (await this.put<PushSubscription>(
+      `${this.url}/api/v1/push/subscription`,
+      options,
+    )).data;
   }
 
   /**
@@ -754,20 +924,29 @@ export class Mastodon extends Gateway {
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/notifications/#delete-api-v1-push-subscription
    */
-  public async removePushSubscription () {
-    return (await this.delete<void>(`${this.url}/api/v1/push/subscription`)).data;
+  public async removePushSubscription() {
+    return (await this.delete<void>(`${this.url}/api/v1/push/subscription`))
+      .data;
   }
 
   /**
-   * Report an account.
+   * Report an account to moderators/administrators
    * @param account_id The ID of the account to report
    * @param status_ids The IDs of statuses to report as array
    * @param comment Reason for the report (up to 1,000 characters)
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/reports/#post-api-v1-reports
    */
-  public async reportAccount (account_id: string, status_ids?: string[]|null, comment?: string|null) {
-    return (await this.post<void>(`${this.url}/api/v1/reports`, { account_id, status_ids, comment })).data;
+  public async reportAccount(
+    account_id: string,
+    status_ids?: string[] | null,
+    comment?: string | null,
+  ) {
+    return (await this.post<void>(`${this.url}/api/v1/reports`, {
+      account_id,
+      status_ids,
+      comment,
+    })).data;
   }
 
   /**
@@ -778,17 +957,24 @@ export class Mastodon extends Gateway {
    * @return Returns Results
    * @see https://docs.joinmastodon.org/api/rest/search/#get-api-v2-search
    */
-  public async search <V extends 'v1'|'v2' = 'v2'> (q: string, resolve = false, version = 'v2' as V) {
-    return (await this.get<Results<V>>(`${this.url}/api/${version}/search`, { q, resolve })).data;
+  public async search<V extends 'v1' | 'v2' = 'v2'>(
+    q: string,
+    resolve = false,
+    version = 'v2' as V,
+  ) {
+    return (await this.get<Results<V>>(`${this.url}/api/${version}/search`, {
+      q,
+      resolve,
+    })).data;
   }
 
   /**
-   * Status
+   * Fetch a status with id
    * @param id ID of the target status
    * @return Returns Status
    * @see https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id
    */
-  public async fetchStatus (id: string) {
+  public async fetchStatus(id: string) {
     return (await this.get<Status>(`${this.url}/api/v1/statuses/${id}`)).data;
   }
 
@@ -798,8 +984,10 @@ export class Mastodon extends Gateway {
    * @return Returns Context
    * @see https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-context
    */
-  public async fetchStatusContext (id: string) {
-    return (await this.get<Context>(`${this.url}/api/v1/statuses/${id}/context`)).data;
+  public async fetchStatusContext(id: string) {
+    return (await this.get<Context>(
+      `${this.url}/api/v1/statuses/${id}/context`,
+    )).data;
   }
 
   /**
@@ -807,8 +995,9 @@ export class Mastodon extends Gateway {
    * @return Returns Card
    * @see https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-card
    */
-  public async fetchStatusCard (id: string) {
-    return (await this.get<Card>(`${this.url}/api/v1/statuses/${id}/card`)).data;
+  public async fetchStatusCard(id: string) {
+    return (await this.get<Card>(`${this.url}/api/v1/statuses/${id}/card`))
+      .data;
   }
 
   /**
@@ -818,8 +1007,11 @@ export class Mastodon extends Gateway {
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-reblogged-by
    */
-  public fetchStatusRebloggedBy (id: string, options?: Options.Pagination) {
-    return this.paginationGenerator<Account[]>(`${this.url}/api/v1/statuses/${id}/reblogged_by`, options);
+  public fetchStatusRebloggedBy(id: string, options?: Options.Pagination) {
+    return this.paginationGenerator<Account[]>(
+      `${this.url}/api/v1/statuses/${id}/reblogged_by`,
+      options,
+    );
   }
 
   /**
@@ -829,8 +1021,11 @@ export class Mastodon extends Gateway {
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-favourited-by
    */
-  public fetchStatusFavouritedBy (id: string, options?: Options.Pagination) {
-    return this.paginationGenerator<Account[]>(`${this.url}/api/v1/statuses/${id}/favourited_by`, options);
+  public fetchStatusFavouritedBy(id: string, options?: Options.Pagination) {
+    return this.paginationGenerator<Account[]>(
+      `${this.url}/api/v1/statuses/${id}/favourited_by`,
+      options,
+    );
   }
 
   /**
@@ -841,11 +1036,23 @@ export class Mastodon extends Gateway {
    * @return Returns Status
    * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses
    */
-  public async createStatus (status: string, options?: Options.CreateStatus, idempotencyKey?: string) {
-    if ( idempotencyKey ) {
-      return (await this.post(`${this.url}/api/v1/statuses`, {status, ...options}, { headers: {'Idempotency-Key': idempotencyKey }} )).data;
+  public async createStatus(
+    status: string,
+    options?: Options.CreateStatus,
+    idempotencyKey?: string,
+  ) {
+    if (idempotencyKey) {
+      return (await this.post(
+        `${this.url}/api/v1/statuses`,
+        { status, ...options },
+        { headers: { 'Idempotency-Key': idempotencyKey } },
+      )).data;
     }
-    return (await this.post(`${this.url}/api/v1/statuses`, {status, ...options} )).data;
+
+    return (await this.post(`${this.url}/api/v1/statuses`, {
+      status,
+      ...options,
+    })).data;
   }
 
   /**
@@ -854,18 +1061,19 @@ export class Mastodon extends Gateway {
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/statuses/#delete-api-v1-statuses-id
    */
-  public async removeStatus (id: string) {
+  public async removeStatus(id: string) {
     return (await this.delete<void>(`${this.url}/api/v1/statuses/${id}`)).data;
   }
 
   /**
-   * Reblog a status.
+   * Reblog a status with id.
    * @param id ID of the target status
    * @return Returns Status
    * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-reblog
    */
-  public async reblogStatus (id: string) {
-    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/reblog`)).data;
+  public async reblogStatus(id: string) {
+    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/reblog`))
+      .data;
   }
 
   /**
@@ -874,8 +1082,10 @@ export class Mastodon extends Gateway {
    * @return Returns Status
    * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-unreblog
    */
-  public async unreblogStatus (id: string) {
-    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/unreblog`)).data;
+  public async unreblogStatus(id: string) {
+    return (await this.post<Status>(
+      `${this.url}/api/v1/statuses/${id}/unreblog`,
+    )).data;
   }
 
   /**
@@ -884,8 +1094,9 @@ export class Mastodon extends Gateway {
    * @return Returns Status
    * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-pin
    */
-  public async pinStatus (id: string) {
-    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/pin`)).data;
+  public async pinStatus(id: string) {
+    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/pin`))
+      .data;
   }
 
   /**
@@ -894,8 +1105,9 @@ export class Mastodon extends Gateway {
    * @return Returns Status
    * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-unpin
    */
-  public async unpinStatus (id: string) {
-    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/unpin`)).data;
+  public async unpinStatus(id: string) {
+    return (await this.post<Status>(`${this.url}/api/v1/statuses/${id}/unpin`))
+      .data;
   }
 
   /**
@@ -904,8 +1116,11 @@ export class Mastodon extends Gateway {
    * @return An array of Statuses, most recent ones first.
    * @see https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-home
    */
-  public fetchHomeTimeline (options?: Options.FetchTimeline) {
-    return this.paginationGenerator<Status[]>(`${this.url}/api/v1/timelines/home`, options);
+  public fetchHomeTimeline(options?: Options.FetchTimeline) {
+    return this.paginationGenerator<Status[]>(
+      `${this.url}/api/v1/timelines/home`,
+      options,
+    );
   }
 
   /**
@@ -914,8 +1129,11 @@ export class Mastodon extends Gateway {
    * @return An iterable of Statuses, most recent ones first.
    * @see https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-public
    */
-  public fetchCommunityTimeline (options?: Options.FetchTimeline) {
-    return this.paginationGenerator<Status[]>(`${this.url}/api/v1/timelines/public`, { local: true, ...options});
+  public fetchCommunityTimeline(options?: Options.FetchTimeline) {
+    return this.paginationGenerator<Status[]>(
+      `${this.url}/api/v1/timelines/public`,
+      { local: true, ...options },
+    );
   }
 
   /**
@@ -924,8 +1142,11 @@ export class Mastodon extends Gateway {
    * @return An iterable of Statuses, most recent ones first.
    * @see https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-public
    */
-  public fetchPublicTimeline (options?: Options.FetchTimeline) {
-    return this.paginationGenerator<Status[]>(`${this.url}/api/v1/timelines/public`, options);
+  public fetchPublicTimeline(options?: Options.FetchTimeline) {
+    return this.paginationGenerator<Status[]>(
+      `${this.url}/api/v1/timelines/public`,
+      options,
+    );
   }
 
   /**
@@ -935,8 +1156,11 @@ export class Mastodon extends Gateway {
    * @return An iterable of Statuses, most recent ones first.
    * @see https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-tag-hashtag
    */
-  public fetchTagTimeline (id: string, options?: Options.FetchTimeline) {
-    return this.paginationGenerator<Status[]>(`${this.url}/api/v1/timelines/tag/${id}`, options);
+  public fetchTagTimeline(id: string, options?: Options.FetchTimeline) {
+    return this.paginationGenerator<Status[]>(
+      `${this.url}/api/v1/timelines/tag/${id}`,
+      options,
+    );
   }
 
   /**
@@ -946,26 +1170,36 @@ export class Mastodon extends Gateway {
    * @return An iterable of Statuses, most recent ones first.
    * @see https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-list-list-id
    */
-  public fetchListTimeline (id: string, options?: Options.FetchTimeline) {
-    return this.paginationGenerator<Status[]>(`${this.url}/api/v1/timelines/list/${id}`, options);
+  public fetchListTimeline(id: string, options?: Options.FetchTimeline) {
+    return this.paginationGenerator<Status[]>(
+      `${this.url}/api/v1/timelines/list/${id}`,
+      options,
+    );
   }
 
   /**
    * Retrieving a direct timeline
    * @return An iterable of Statuses, most recent ones first.
    */
-  public fetchDirectTimeline (options?: Options.FetchTimeline) {
+  public fetchDirectTimeline(options?: Options.FetchTimeline) {
     // tslint:disable-next-line no-console
-    console.warn('Direct timeline API has been deprecated. See https://github.com/tootsuite/mastodon/releases/tag/v2.6.0rc1');
-    return this.paginationGenerator<Status[]>(`${this.url}/api/v1/timelines/direct`, options);
+    console.warn(
+      'Direct timeline API has been deprecated. See https://github.com/tootsuite/mastodon/releases/tag/v2.6.0rc1',
+    );
+
+    return this.paginationGenerator<Status[]>(
+      `${this.url}/api/v1/timelines/direct`,
+      options,
+    );
   }
 
   /**
    * Retrieving a conversation timeline
    * @return An array of Conversation
    */
-  public async fetchConversations () {
-    return (await this.get<Conversation[]>(`${this.url}/api/v1/conversations`)).data;
+  public async fetchConversations() {
+    return (await this.get<Conversation[]>(`${this.url}/api/v1/conversations`))
+      .data;
   }
 
   /**
@@ -974,7 +1208,8 @@ export class Mastodon extends Gateway {
    * @return The local representation of the followed account, as an Account.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#following-a-remote-user
    */
-  public async followAccountByUsername (uri: string) {
-    return (await this.post<Account>(`${this.url}/api/v1/follows`, { uri })).data;
+  public async followAccountByUsername(uri: string) {
+    return (await this.post<Account>(`${this.url}/api/v1/follows`, { uri }))
+      .data;
   }
 }

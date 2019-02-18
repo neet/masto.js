@@ -39,15 +39,15 @@ export interface UpdateCredentials {
    * sensitive: Whether to mark statuses as sensitive by default
    * language: Override language on statuses by default (ISO6391)
    */
-  source?: Pick<AccountSource, 'privacy'|'sensitive'|'language'> | null;
+  source?: Pick<AccountSource, 'privacy' | 'sensitive' | 'language'> | null;
 
   /** Profile metadata (max. 4) */
   fields_attributes?:
-    [AccountField] |
-    [AccountField, AccountField] |
-    [AccountField, AccountField, AccountField] |
-    [AccountField, AccountField, AccountField, AccountField] |
-    null;
+    | [AccountField]
+    | [AccountField, AccountField]
+    | [AccountField, AccountField, AccountField]
+    | [AccountField, AccountField, AccountField, AccountField]
+    | null;
 }
 
 export interface SearchAccounts {
@@ -132,7 +132,10 @@ export interface UpdateFilter {
   expires_in?: number | null;
 }
 
-export type CreateFilter = Pick<UpdateFilter, 'irreversible'|'whole_word'|'expires_in'>;
+export type CreateFilter = Pick<
+  UpdateFilter,
+  'irreversible' | 'whole_word' | 'expires_in'
+>;
 
 export interface AddPushSubscription {
   subscription: {
@@ -144,10 +147,10 @@ export interface AddPushSubscription {
       p256dh: string;
       /** Auth secret. Base64 encoded string of 16 bytes random data. */
       auth: string;
-    }
+    };
   };
   data?: {
-    alerts?: Partial<PushSubscriptionAlerts> | null,
+    alerts?: Partial<PushSubscriptionAlerts> | null;
   } | null;
 }
 

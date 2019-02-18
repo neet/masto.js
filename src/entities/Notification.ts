@@ -18,4 +18,4 @@ export interface Notification {
   status?: Status | null;
 }
 
-export type NotificationType  = 'mention'|'reblog'|'favourite'|'follow';
+export type NotificationType = 'mention' | 'reblog' | 'favourite' | 'follow';

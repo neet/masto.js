@@ -36,4 +36,4 @@ export interface Card {
   height?: string | null;
 }
 
-export type CardType = 'link'|'photo'|'video'|'rich';
+export type CardType = 'link' | 'photo' | 'video' | 'rich';

@@ -2,13 +2,12 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import * as querystring from 'querystring';
 import { MastodonError } from '../errors/MastodonError';
 import { MastodonNotFoundError } from '../errors/MastodonNotFoundError';
-import { MastodonRatelimitError} from '../errors/MastodonRatelimitError';
+import { MastodonRatelimitError } from '../errors/MastodonRatelimitError';
 import { MastodonUnauthorizedError } from '../errors/MastodonUnauthorizedError';
 import { MastodonURLResolveError } from '../errors/MastodonURLResolveError';
 import { EventHandler } from './EventHandler';
 
 export class Gateway {
-
   /** Rest API URL of the instance */
   protected url: string = '';
 
@@ -24,9 +23,13 @@ export class Gateway {
    * @param options.streamingUrl Streaming API URL of the instance
    * @param options.token API token of the user
    */
-  constructor (options: { url?: string, streamingUrl?: string, token?: string }) {
+  constructor(options: {
+    url?: string;
+    streamingUrl?: string;
+    token?: string;
+  }) {
     if (options) {
-      this.url          = options.url || '';
+      this.url = options.url || '';
       this.streamingUrl = options.streamingUrl || '';
 
       if (options.token) {
@@ -57,19 +60,25 @@ export class Gateway {
    * Setting rest API URL of the instance
    * @param url URL of the instance
    */
-  public setUrl (url: string) { this.url = url.replace(/\/$/, ''); }
+  public setUrl(url: string) {
+    this.url = url.replace(/\/$/, '');
+  }
 
   /**
    * Setting streaming API URL of the instance
    * @param url URL of the instance
    */
-  public setStreamingUrl (url: string) { this.streamingUrl = url.replace(/\/$/, ''); }
+  public setStreamingUrl(url: string) {
+    this.streamingUrl = url.replace(/\/$/, '');
+  }
 
   /**
    * Setting token of authenticated user
    * @param token Token of the user
    */
-  public setToken (token: string) { this.token = token; }
+  public setToken(token: string) {
+    this.token = token;
+  }
 
   /**
    * Fetch API wrapper function
@@ -77,7 +86,9 @@ export class Gateway {
    * @param parse Whether parse response before return
    * @return Parsed response object
    */
-  protected async request <T> (options: AxiosRequestConfig): Promise<AxiosResponse<T>> {
+  protected async request<T>(
+    options: AxiosRequestConfig,
+  ): Promise<AxiosResponse<T>> {
     if (!options.headers) {
       options.headers = {};
     }
@@ -87,20 +98,24 @@ export class Gateway {
     }
 
     if (!this.url) {
-      throw new MastodonURLResolveError('REST API URL has not been specified, Use Mastodon.setUrl to set your instance\'s URL');
+      throw new MastodonURLResolveError(
+        "REST API URL has not been specified, Use Mastodon.setUrl to set your instance's URL",
+      );
     }
 
     if (this.token) {
       options.headers.Authorization = `Bearer ${this.token}`;
     }
 
-    options.transformResponse = [(data: any) => {
-      try {
-        return JSON.parse(data);
-      } catch {
-        return data;
-      }
-    }];
+    options.transformResponse = [
+      (data: any) => {
+        try {
+          return JSON.parse(data);
+        } catch {
+          return data;
+        }
+      },
+    ];
 
     try {
       return await axios.request<T>(options);
@@ -109,7 +124,8 @@ export class Gateway {
 
       // Error response from REST API might contain error key
       // https://docs.joinmastodon.org/api/entities/#error
-      const { error: errorMessage } = error && error.response && error.response.data;
+      const { error: errorMessage } =
+        error && error.response && error.response.data;
 
       switch (status) {
         case 401:
@@ -119,7 +135,10 @@ export class Gateway {
         case 429:
           throw new MastodonRatelimitError(errorMessage);
         default:
-          throw new MastodonError('MastodonError', errorMessage || 'Unexpected error occurred');
+          throw new MastodonError(
+            'MastodonError',
+            errorMessage || 'Unexpected error occurred',
+          );
       }
     }
   }
@@ -131,10 +150,12 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected get <T> (url: string, params = {}, options = {}) {
+  protected get<T>(url: string, params = {}, options = {}) {
     return this.request<T>({
       method: 'GET',
-      url: url + (Object.keys(params).length ? '?' + querystring.stringify(params) : ''),
+      url:
+        url +
+        (Object.keys(params).length ? `?${querystring.stringify(params)}` : ''),
       ...options,
     });
   }
@@ -146,7 +167,7 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected post <T> (url: string, body = {}, options = {}) {
+  protected post<T>(url: string, body = {}, options = {}) {
     return this.request<T>({
       method: 'POST',
       url,
@@ -162,7 +183,7 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected put <T> (url: string, body = {}, options = {}) {
+  protected put<T>(url: string, body = {}, options = {}) {
     return this.request<T>({
       method: 'PUT',
       url,
@@ -178,7 +199,7 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected delete <T> (url: string, body = {}, options = {}) {
+  protected delete<T>(url: string, body = {}, options = {}) {
     return this.request<T>({
       method: 'DELETE',
       url,
@@ -194,7 +215,7 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected patch <T> (url: string, body = {}, options = {}) {
+  protected patch<T>(url: string, body = {}, options = {}) {
     return this.request<T>({
       method: 'PATCH',
       url,
@@ -208,9 +229,14 @@ export class Gateway {
    * @param id ID of the channel, e.g. `public`, `user`, `public/local` etc
    * @return Instance of EventEmitter
    */
-  protected stream (url: string, params: { [key: string]: string }): EventHandler {
+  protected stream(
+    url: string,
+    params: { [key: string]: string },
+  ): EventHandler {
     if (!this.streamingUrl) {
-      throw new MastodonURLResolveError('Streaming API URL has not been specified, Use Mastodon.setStreamingUrl to set your instance\'s URL');
+      throw new MastodonURLResolveError(
+        "Streaming API URL has not been specified, Use Mastodon.setStreamingUrl to set your instance's URL",
+      );
     }
 
     if (this.token) {
