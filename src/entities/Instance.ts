@@ -30,6 +30,9 @@ export interface Instance {
 
   /** Account of the admin or another contact person */
   contact_account?: Account | null;
+
+  /** Whether registration is open or not */
+  registrations: boolean;
 }
 
 export interface InstanceURLs {
