@@ -12,7 +12,7 @@
 
 **● agreement**: *`boolean`*
 
-*Defined in [client/options.ts:167](https://github.com/lagunehq/core/blob/6d71f33/src/client/options.ts#L167)*
+*Defined in [client/parameters.ts:170](https://github.com/lagunehq/core/blob/daa242c/src/client/parameters.ts#L170)*
 
 Whether the user has been agreed to the agreement of the Mastodon instance
 
@@ -23,7 +23,7 @@ ___
 
 **● email**: *`string`*
 
-*Defined in [client/options.ts:164](https://github.com/lagunehq/core/blob/6d71f33/src/client/options.ts#L164)*
+*Defined in [client/parameters.ts:167](https://github.com/lagunehq/core/blob/daa242c/src/client/parameters.ts#L167)*
 
 Email of the user
 
@@ -34,7 +34,7 @@ ___
 
 **● password**: *`string`*
 
-*Defined in [client/options.ts:161](https://github.com/lagunehq/core/blob/6d71f33/src/client/options.ts#L161)*
+*Defined in [client/parameters.ts:164](https://github.com/lagunehq/core/blob/daa242c/src/client/parameters.ts#L164)*
 
 Password of the user
 
@@ -45,7 +45,7 @@ ___
 
 **● username**: *`string`*
 
-*Defined in [client/options.ts:158](https://github.com/lagunehq/core/blob/6d71f33/src/client/options.ts#L158)*
+*Defined in [client/parameters.ts:161](https://github.com/lagunehq/core/blob/daa242c/src/client/parameters.ts#L161)*
 
 Username to create
 

@@ -14,7 +14,7 @@
 
 **● client_id**: *`string`*
 
-*Defined in [entities/Application.ts:10](https://github.com/lagunehq/core/blob/6d71f33/src/entities/Application.ts#L10)*
+*Defined in [entities/Application.ts:13](https://github.com/lagunehq/core/blob/daa242c/src/entities/Application.ts#L13)*
 
 ___
 <a id="client_secret"></a>
@@ -23,7 +23,7 @@ ___
 
 **● client_secret**: *`string`*
 
-*Defined in [entities/Application.ts:11](https://github.com/lagunehq/core/blob/6d71f33/src/entities/Application.ts#L11)*
+*Defined in [entities/Application.ts:14](https://github.com/lagunehq/core/blob/daa242c/src/entities/Application.ts#L14)*
 
 ___
 <a id="name"></a>
@@ -34,9 +34,23 @@ ___
 
 *Inherited from [Application](_entities_application_.application.md).[name](_entities_application_.application.md#name)*
 
-*Defined in [entities/Application.ts:3](https://github.com/lagunehq/core/blob/6d71f33/src/entities/Application.ts#L3)*
+*Defined in [entities/Application.ts:3](https://github.com/lagunehq/core/blob/daa242c/src/entities/Application.ts#L3)*
 
 Name of the app
+
+___
+<a id="vapid_key"></a>
+
+## `<Optional>` vapid_key
+
+**● vapid_key**: * `string` &#124; `null`
+*
+
+*Inherited from [Application](_entities_application_.application.md).[vapid_key](_entities_application_.application.md#vapid_key)*
+
+*Defined in [entities/Application.ts:9](https://github.com/lagunehq/core/blob/daa242c/src/entities/Application.ts#L9)*
+
+VAPID key
 
 ___
 <a id="website"></a>
@@ -48,7 +62,7 @@ ___
 
 *Inherited from [Application](_entities_application_.application.md).[website](_entities_application_.application.md#website)*
 
-*Defined in [entities/Application.ts:6](https://github.com/lagunehq/core/blob/6d71f33/src/entities/Application.ts#L6)*
+*Defined in [entities/Application.ts:6](https://github.com/lagunehq/core/blob/daa242c/src/entities/Application.ts#L6)*
 
 Homepage URL of the app
 

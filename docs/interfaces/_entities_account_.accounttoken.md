@@ -12,7 +12,7 @@
 
 **● access_token**: *`string`*
 
-*Defined in [entities/Account.ts:94](https://github.com/lagunehq/core/blob/6d71f33/src/entities/Account.ts#L94)*
+*Defined in [entities/Account.ts:94](https://github.com/lagunehq/core/blob/daa242c/src/entities/Account.ts#L94)*
 
 Access token of the account
 
@@ -23,7 +23,7 @@ ___
 
 **● created_at**: *`string`*
 
-*Defined in [entities/Account.ts:103](https://github.com/lagunehq/core/blob/6d71f33/src/entities/Account.ts#L103)*
+*Defined in [entities/Account.ts:103](https://github.com/lagunehq/core/blob/daa242c/src/entities/Account.ts#L103)*
 
 Created date of the token
 
@@ -34,7 +34,7 @@ ___
 
 **● scope**: *`string`*
 
-*Defined in [entities/Account.ts:100](https://github.com/lagunehq/core/blob/6d71f33/src/entities/Account.ts#L100)*
+*Defined in [entities/Account.ts:100](https://github.com/lagunehq/core/blob/daa242c/src/entities/Account.ts#L100)*
 
 Scope of the token
 
@@ -45,7 +45,7 @@ ___
 
 **● token_type**: *`string`*
 
-*Defined in [entities/Account.ts:97](https://github.com/lagunehq/core/blob/6d71f33/src/entities/Account.ts#L97)*
+*Defined in [entities/Account.ts:97](https://github.com/lagunehq/core/blob/daa242c/src/entities/Account.ts#L97)*
 
 Type of the token
 

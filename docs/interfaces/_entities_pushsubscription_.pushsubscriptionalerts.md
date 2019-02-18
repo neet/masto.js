@@ -12,7 +12,7 @@
 
 **● favourite**: *`boolean`*
 
-*Defined in [entities/PushSubscription.ts:20](https://github.com/lagunehq/core/blob/6d71f33/src/entities/PushSubscription.ts#L20)*
+*Defined in [entities/PushSubscription.ts:20](https://github.com/lagunehq/core/blob/daa242c/src/entities/PushSubscription.ts#L20)*
 
 Boolean of whether you want to receive favaourite notification event.
 
@@ -23,7 +23,7 @@ ___
 
 **● follow**: *`boolean`*
 
-*Defined in [entities/PushSubscription.ts:17](https://github.com/lagunehq/core/blob/6d71f33/src/entities/PushSubscription.ts#L17)*
+*Defined in [entities/PushSubscription.ts:17](https://github.com/lagunehq/core/blob/daa242c/src/entities/PushSubscription.ts#L17)*
 
 Boolean of whether you want to receive follow notification event.
 
@@ -34,7 +34,7 @@ ___
 
 **● mention**: *`boolean`*
 
-*Defined in [entities/PushSubscription.ts:26](https://github.com/lagunehq/core/blob/6d71f33/src/entities/PushSubscription.ts#L26)*
+*Defined in [entities/PushSubscription.ts:26](https://github.com/lagunehq/core/blob/daa242c/src/entities/PushSubscription.ts#L26)*
 
 Boolean of whether you want to receive mention notification event.
 
@@ -45,7 +45,7 @@ ___
 
 **● reblog**: *`boolean`*
 
-*Defined in [entities/PushSubscription.ts:23](https://github.com/lagunehq/core/blob/6d71f33/src/entities/PushSubscription.ts#L23)*
+*Defined in [entities/PushSubscription.ts:23](https://github.com/lagunehq/core/blob/daa242c/src/entities/PushSubscription.ts#L23)*
 
 Boolean of whether you want to receive reblog notification event.
 

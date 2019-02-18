@@ -14,7 +14,7 @@
 
 ⊕ **new Gateway**(options: *`object`*): [Gateway](_client_gateway_.gateway.md)
 
-*Defined in [client/Gateway.ts:19](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L19)*
+*Defined in [client/Gateway.ts:18](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L18)*
 
 **Parameters:**
 
@@ -34,7 +34,7 @@ ___
 
 **● streamingUrl**: *`string`* = ""
 
-*Defined in [client/Gateway.ts:16](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L16)*
+*Defined in [client/Gateway.ts:15](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L15)*
 
 Streaming API URL of the instance
 
@@ -46,7 +46,7 @@ ___
 **● token**: * `undefined` &#124; `string`
 *
 
-*Defined in [client/Gateway.ts:19](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L19)*
+*Defined in [client/Gateway.ts:18](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L18)*
 
 API token of the user
 
@@ -57,7 +57,7 @@ ___
 
 **● url**: *`string`* = ""
 
-*Defined in [client/Gateway.ts:13](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L13)*
+*Defined in [client/Gateway.ts:12](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L12)*
 
 Rest API URL of the instance
 
@@ -71,7 +71,7 @@ ___
 
 ▸ **delete**<`T`>(url: *`string`*, body?: *`object`*, options?: *`object`*): `Promise`<`AxiosResponse`<`T`>>
 
-*Defined in [client/Gateway.ts:181](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L181)*
+*Defined in [client/Gateway.ts:202](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L202)*
 
 HTTP DELETE
 
@@ -95,7 +95,7 @@ ___
 
 ▸ **get**<`T`>(url: *`string`*, params?: *`object`*, options?: *`object`*): `Promise`<`AxiosResponse`<`T`>>
 
-*Defined in [client/Gateway.ts:134](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L134)*
+*Defined in [client/Gateway.ts:153](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L153)*
 
 HTTP GET
 
@@ -119,7 +119,7 @@ ___
 
 ▸ **getStreamingUrl**(): `string`
 
-*Defined in [client/Gateway.ts:48](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L48)*
+*Defined in [client/Gateway.ts:51](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L51)*
 
 Getting streaming API URL of the instance
 
@@ -133,7 +133,7 @@ ___
 
 ▸ **getToken**():  `undefined` &#124; `string`
 
-*Defined in [client/Gateway.ts:54](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L54)*
+*Defined in [client/Gateway.ts:57](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L57)*
 
 Getting token of authenticated user
 
@@ -148,7 +148,7 @@ ___
 
 ▸ **getUrl**(): `string`
 
-*Defined in [client/Gateway.ts:42](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L42)*
+*Defined in [client/Gateway.ts:45](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L45)*
 
 Getting rest API URL of the instance
 
@@ -162,7 +162,7 @@ ___
 
 ▸ **patch**<`T`>(url: *`string`*, body?: *`object`*, options?: *`object`*): `Promise`<`AxiosResponse`<`T`>>
 
-*Defined in [client/Gateway.ts:197](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L197)*
+*Defined in [client/Gateway.ts:218](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L218)*
 
 HTTP PATCH
 
@@ -186,7 +186,7 @@ ___
 
 ▸ **post**<`T`>(url: *`string`*, body?: *`object`*, options?: *`object`*): `Promise`<`AxiosResponse`<`T`>>
 
-*Defined in [client/Gateway.ts:149](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L149)*
+*Defined in [client/Gateway.ts:170](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L170)*
 
 HTTP POST
 
@@ -210,7 +210,7 @@ ___
 
 ▸ **put**<`T`>(url: *`string`*, body?: *`object`*, options?: *`object`*): `Promise`<`AxiosResponse`<`T`>>
 
-*Defined in [client/Gateway.ts:165](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L165)*
+*Defined in [client/Gateway.ts:186](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L186)*
 
 HTTP PUT
 
@@ -234,7 +234,7 @@ ___
 
 ▸ **request**<`T`>(options: *`AxiosRequestConfig`*): `Promise`<`AxiosResponse`<`T`>>
 
-*Defined in [client/Gateway.ts:80](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L80)*
+*Defined in [client/Gateway.ts:89](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L89)*
 
 Fetch API wrapper function
 
@@ -257,7 +257,7 @@ ___
 
 ▸ **setStreamingUrl**(url: *`string`*): `void`
 
-*Defined in [client/Gateway.ts:66](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L66)*
+*Defined in [client/Gateway.ts:71](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L71)*
 
 Setting streaming API URL of the instance
 
@@ -276,7 +276,7 @@ ___
 
 ▸ **setToken**(token: *`string`*): `void`
 
-*Defined in [client/Gateway.ts:72](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L72)*
+*Defined in [client/Gateway.ts:79](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L79)*
 
 Setting token of authenticated user
 
@@ -295,7 +295,7 @@ ___
 
 ▸ **setUrl**(url: *`string`*): `void`
 
-*Defined in [client/Gateway.ts:60](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L60)*
+*Defined in [client/Gateway.ts:63](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L63)*
 
 Setting rest API URL of the instance
 
@@ -314,7 +314,7 @@ ___
 
 ▸ **stream**(url: *`string`*, params: *`object`*): [EventHandler](_client_eventhandler_.eventhandler.md)
 
-*Defined in [client/Gateway.ts:211](https://github.com/lagunehq/core/blob/6d71f33/src/client/Gateway.ts#L211)*
+*Defined in [client/Gateway.ts:232](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L232)*
 
 Start streaming
 
