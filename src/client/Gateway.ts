@@ -238,7 +238,7 @@ export class Gateway {
 
     while (true) {
       const response = await this.get<T>(next, params);
-      const result: T | 'reset' = yield response.data;
+      const result: T | 'reset' = yield response;
 
       if (result === 'reset') {
         next = path;
