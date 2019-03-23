@@ -21,7 +21,13 @@
     "skipLibCheck": true,
     "experimentalDecorators": true,
     "removeComments": false,
-    "pretty": true
+    "pretty": true,
+    "plugins": [
+      {
+        "name": "typescript-tslint-plugin",
+        "configFile": "./tslint.yml",
+      }
+    ]
   },
   "include": [
     "src/**/*"
