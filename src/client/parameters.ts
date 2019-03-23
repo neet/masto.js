@@ -82,15 +82,12 @@ export interface FetchNotifications extends Pagination {
   exclude_types?: NotificationType[] | null;
 }
 
-export interface CreateStatus {
-  /** Text of the status */
-  status: string;
-
+export type CreateStatus<MediaIds = string[]> = {
   /** local ID of the status you want to reply to */
   in_reply_to_id?: string | null;
 
   /** Array of media IDs to attach to the status (maximum 4) */
-  media_ids?: string[] | null;
+  media_ids?: MediaIds | null;
 
   /** Set this to mark the media of the status as NSFW */
   sensitive?: boolean | null;
@@ -103,7 +100,15 @@ export interface CreateStatus {
 
   /** ISO 639-2 language code of the toot, to skip automatic detection */
   language?: string | null;
-}
+} & (MediaIds extends string[]
+  ? {
+      /** Text of the status */
+      status?: string | null;
+    }
+  : {
+      /** Text of the status */
+      status: string;
+    });
 
 export interface FetchTimeline extends Pagination {
   /** Only return statuses originating from this instance (public and tag timelines only) */
