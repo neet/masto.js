@@ -1,19 +1,15 @@
 // tslint:disable no-console
 import Mastodon from '../src';
 
-const client = new Mastodon({
-  url: 'https://mastodon.social',
-  streamingUrl: 'wss://mastodon.social',
-  token: 'YOUR TOKEN',
-});
-
-
 (async () => {
+  const client = await Mastodon.login({
+    uri: 'https://mastodon.social',
+    token: 'YOUR TOKEN',
+  });
 
   for await (const statuses of client.fetchPublicTimeline()) {
-    statuses.forEach((status) => {
+    statuses.data.forEach((status) => {
       client.favouriteStatus(status.id);
     });
   }
-
 })();
