@@ -40,6 +40,9 @@ import {
   UpdatePushSubscriptionParams,
 } from './params';
 
+/**
+ * Mastodon API client
+ */
 export class Mastodon extends Gateway {
   /**
    * Login to Mastodon

@@ -28,12 +28,12 @@ interface EventTypes {
   connectFailed: Error;
 }
 
+/**
+ * Mastodon streaming api wrapper
+ * @param id URL of the websocket endpoint
+ * @param token Access token
+ */
 export class EventHandler extends EventEmitter {
-  /**
-   * Starting stream with a specified channel
-   * @param id URL of the websocket endpoint
-   * @param token Access token
-   */
   constructor(url: string, options: { [key: string]: string }) {
     super();
 

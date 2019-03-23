@@ -4,10 +4,16 @@ import { MastodonError } from '../errors/mastodon-error';
 import { MastodonNotFoundError } from '../errors/mastodon-not-found-error';
 import { MastodonRateLimitError } from '../errors/mastodon-rate-limit-error';
 import { MastodonUnauthorizedError } from '../errors/mastodon-unauthorized-error';
-import { MastodonURLResolveError } from '../errors/mastodon-url-resolve-error';
 import { EventHandler } from './event-handler';
 import { getNextUrl } from './link-header';
 
+/**
+ * Mastodon network request wrapper
+ * @param options Optional params
+ * @param options.url URL of the instance
+ * @param options.streamingUrl Streaming API URL of the instance
+ * @param options.token API token of the user
+ */
 export class Gateway {
   /** URI of the instance */
   public uri = '';
@@ -21,12 +27,6 @@ export class Gateway {
   /** API token of the user */
   public token = '';
 
-  /**
-   * @param options Optional params
-   * @param options.url URL of the instance
-   * @param options.streamingUrl Streaming API URL of the instance
-   * @param options.token API token of the user
-   */
   protected constructor(options: {
     uri: string;
     streamingUrl?: string;
@@ -49,16 +49,6 @@ export class Gateway {
   }
 
   /**
-   * Setting token of authenticated user
-   * @param token Token of the user
-   */
-  public setToken(token: string) {
-    this.token = token;
-
-    return this;
-  }
-
-  /**
    * Fetch API wrapper function
    * @param options Axios options
    * @param parse Whether parse response before return
@@ -73,12 +63,6 @@ export class Gateway {
 
     if (!options.headers['Content-Type']) {
       options.headers['Content-Type'] = 'application/json';
-    }
-
-    if (!this.uri) {
-      throw new MastodonURLResolveError(
-        "REST API URL has not been specified, Use Mastodon.setUrl to set your instance's URL",
-      );
     }
 
     if (this.token) {
@@ -211,12 +195,6 @@ export class Gateway {
     url: string,
     params: { [key: string]: string },
   ): EventHandler {
-    if (!this.streamingUrl) {
-      throw new MastodonURLResolveError(
-        "Streaming API URL has not been specified, Use Mastodon.setStreamingUrl to set your instance's URL",
-      );
-    }
-
     if (this.token) {
       params.access_token = this.token;
     }
