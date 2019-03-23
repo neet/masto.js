@@ -50,18 +50,26 @@ export interface UpdateCredentials {
     | null;
 }
 
-export interface SearchAccounts {
-  /** Maximum number of matching accounts to return (default: `40`) */
-  limit?: number | null;
+export interface Search {
+  /** The search query */
+  q: string;
 
   /** Attempt WebFinger look-up */
   resolve?: boolean | null;
+}
+
+export interface SearchAccounts extends Search {
+  /** Maximum number of matching accounts to return (default: `40`) */
+  limit?: number | null;
 
   /** Only who the user is following */
   following?: boolean | null;
 }
 
-export interface UploadMedia {
+export interface ModifyMedia {
+  /** Media to be uploaded (encoded using `multipart/form-data`) */
+  file: BinaryType;
+
   /** A plain-text description of the media, for accessibility (max 420 chars) */
   descriptions?: string | null;
 
@@ -69,14 +77,15 @@ export interface UploadMedia {
   focus?: string | null;
 }
 
-export type UpdateMedia = UploadMedia;
-
 export interface FetchNotifications extends Pagination {
   /** Array of notifications to exclude (Allowed values: "follow", "favourite", "reblog", "mention") */
   exclude_types?: NotificationType[] | null;
 }
 
 export interface CreateStatus {
+  /** Text of the status */
+  status: string;
+
   /** local ID of the status you want to reply to */
   in_reply_to_id?: string | null;
 
@@ -115,7 +124,7 @@ export interface FetchAccountStatuses extends Pagination {
   exclude_replies?: boolean | null;
 }
 
-export interface UpdateFilter {
+export interface ModifyFilter {
   /** String that contains keyword or phrase */
   phrase?: string | null;
 
@@ -131,11 +140,6 @@ export interface UpdateFilter {
   /** The simestamp for expire time */
   expires_in?: number | null;
 }
-
-export type CreateFilter = Pick<
-  UpdateFilter,
-  'irreversible' | 'whole_word' | 'expires_in'
->;
 
 export interface AddPushSubscription {
   subscription: {
@@ -168,4 +172,66 @@ export interface CreateAccount {
 
   /** Whether the user has been agreed to the agreement of the Mastodon instance */
   agreement: boolean;
+}
+
+export interface FollowAccount {
+  /** Whether the followed account’s reblogs will show up in the home timeline */
+  reblogs?: boolean;
+}
+
+export interface ModifyList {
+  /** Title of the list */
+  title: string;
+}
+
+export interface MuteAccount {
+  /** Whether the mute will mute notifications or not */
+  notifications: boolean;
+}
+
+export interface ReportAccount {
+  /** The ID of the account to report */
+  account_id: string;
+
+  /** The IDs of statuses to report as array */
+  status_ids?: string[];
+
+  /** Reason for the report (up to 1,000 characters) */
+  comment?: string;
+}
+
+export interface ModifyListAccounts {
+  /** Array of account IDs */
+  account_ids: string[];
+}
+
+export interface CreateApp {
+  /** Name of your application */
+  client_name: string;
+
+  /** Where the user should be redirected after authorization */
+  redirect_uris: string;
+
+  /** Space separated list of scopes */
+  scopes: string;
+
+  /** URL to the homepage of your app */
+  website?: string;
+}
+
+export interface FetchAccessToken {
+  /** Authorization code */
+  code: string;
+
+  /** `client_id` of your app */
+  client_id: string;
+
+  /** `client_secret` of your app */
+  client_secret: string;
+
+  /** `redirect_uri` which used to the authorization */
+  redirect_uri: string;
+
+  /** Grant type */
+  grant_type: 'authorization_code';
 }

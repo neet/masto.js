@@ -10,7 +10,7 @@ import { Card } from '../entities/Card';
 import { Context } from '../entities/Context';
 import { Conversation } from '../entities/Conversation';
 import { Emoji } from '../entities/Emoji';
-import { Filter, FilterContext } from '../entities/Filter';
+import { Filter } from '../entities/Filter';
 import { Instance, InstanceActivity } from '../entities/Instance';
 import { List } from '../entities/List';
 import { Notification } from '../entities/Notification';
@@ -133,28 +133,15 @@ export class Mastodon extends Gateway {
 
   /**
    * Fetch access token from authorization code
-   * @param code code
-   * @param client_id client_id of your app
-   * @param client_secret client_secret of your app
-   * @param redirect_uri redirect_uri of your app
-   * @param grant_type grant_type
+   * @param parameters Parameters
    * @see https://docs.joinmastodon.org/api/permissions/
    * @see https://docs.joinmastodon.org/api/authentication/
    */
-  public async fetchAccessToken(
-    code: string,
-    client_id: string,
-    client_secret: string,
-    redirect_uri: string,
-    grant_type = 'authorization_code',
-  ) {
-    return (await this.post<AccountToken>(`${this.url}/oauth/token`, {
-      code,
-      client_id,
-      client_secret,
-      redirect_uri,
-      grant_type,
-    })).data;
+  public async fetchAccessToken(parameters: Parameters.FetchAccessToken) {
+    return (await this.post<AccountToken>(
+      `${this.url}/oauth/token`,
+      parameters,
+    )).data;
   }
 
   /**
@@ -207,7 +194,7 @@ export class Mastodon extends Gateway {
   /**
    * Accounts which follow the given account.
    * @param id ID of the target account
-   * @param parameter Query paramerters
+   * @param parameter Query parameters
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-followers
    */
@@ -252,14 +239,14 @@ export class Mastodon extends Gateway {
   /**
    * Follow an account by id
    * @param id ID of the target account
-   * @param reblogs Whether the followed account’s reblogs will show up in the home timeline
+   * @param parameter Options
    * @return Returns Relationship
    * @see https://docs.joinmastodon.org/api/rest/accounts/#post-api-v1-accounts-id-follow
    */
-  public async followAccount(id: string, reblogs?: boolean) {
+  public async followAccount(id: string, parameter: Parameters.FollowAccount) {
     return (await this.post<Relationship>(
       `${this.url}/api/v1/accounts/${id}/follow`,
-      { reblogs },
+      parameter,
     )).data;
   }
 
@@ -290,42 +277,25 @@ export class Mastodon extends Gateway {
 
   /**
    * Search for matching accounts by username, domain and display name.
-   * @param q What to search for
    * @param parameter Query parameter
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-search
    */
-  public async searchAccounts(
-    q: string,
-    parameter?: Parameters.SearchAccounts,
-  ) {
-    return (await this.get<Account[]>(`${this.url}/api/v1/accounts/search`, {
-      q,
-      ...parameter,
-    })).data;
+  public async searchAccounts(parameter?: Parameters.SearchAccounts) {
+    return (await this.get<Account[]>(
+      `${this.url}/api/v1/accounts/search`,
+      parameter,
+    )).data;
   }
 
   /**
    * Create a new application to obtain OAuth2 credentials.
-   * @param client_name Name of your application
-   * @param redirect_uris Where the user should be redirected after authorization
-   * @param scopes Space separated list of scopes
-   * @param website URL to the homepage of your app
+   * @param parameter Parameters
    * @return Returns App with client_id and client_secret
    * @see https://docs.joinmastodon.org/api/rest/apps/#post-api-v1-apps
    */
-  public async createApp(
-    client_name: string,
-    redirect_uris: string,
-    scopes: string,
-    website?: string,
-  ) {
-    return (await this.post<OAuth>(`${this.url}/api/v1/apps`, {
-      client_name,
-      redirect_uris,
-      scopes,
-      website,
-    })).data;
+  public async createApp(parameter: Parameters.CreateApp) {
+    return (await this.post<OAuth>(`${this.url}/api/v1/apps`, parameter)).data;
   }
 
   /**
@@ -512,16 +482,9 @@ export class Mastodon extends Gateway {
    * @return Returns Filter
    * @see https://docs.joinmastodon.org/api/rest/filters/#post-api-v1-filters
    */
-  public async createFiler(
-    phrase: string,
-    context: FilterContext,
-    parameter?: Parameters.CreateFilter,
-  ) {
-    return (await this.post<Filter>(`${this.url}/api/v1/filters`, {
-      phrase,
-      context,
-      ...parameter,
-    })).data;
+  public async createFiler(parameter?: Parameters.ModifyFilter) {
+    return (await this.post<Filter>(`${this.url}/api/v1/filters`, parameter))
+      .data;
   }
 
   /**
@@ -541,7 +504,7 @@ export class Mastodon extends Gateway {
    * @return Returns Filter
    * @see https://docs.joinmastodon.org/api/rest/filters/#put-api-v1-filters-id
    */
-  public async updateFilter(id: string, parameter?: Parameters.UpdateFilter) {
+  public async updateFilter(id: string, parameter?: Parameters.ModifyFilter) {
     return (await this.put<Filter>(
       `${this.url}/api/v1/filters/${id}`,
       parameter,
@@ -688,23 +651,23 @@ export class Mastodon extends Gateway {
 
   /**
    * Create a new list.
-   * @param title The title of the list
+   * @param parameter Options
    * @return Returns List
    * @see https://docs.joinmastodon.org/api/rest/lists/#post-api-v1-lists
    */
-  public async createList(title: string) {
-    return (await this.post<List>(`${this.url}/api/v1/lists`, { title })).data;
+  public async createList(parameter: Parameters.ModifyList) {
+    return (await this.post<List>(`${this.url}/api/v1/lists`, parameter)).data;
   }
 
   /**
    * Update a list with title and id
    * @param id ID of the target list
-   * @param title The title of the list
+   * @param parameter Options
    * @return Returns List
    * @see https://docs.joinmastodon.org/api/rest/lists/#put-api-v1-lists-id
    */
-  public async updateList(id: string, title: string) {
-    return (await this.put<List>(`${this.url}/api/v1/lists/${id}`, { title }))
+  public async updateList(id: string, parameter: Parameters.ModifyList) {
+    return (await this.put<List>(`${this.url}/api/v1/lists/${id}`, parameter))
       .data;
   }
 
@@ -721,45 +684,47 @@ export class Mastodon extends Gateway {
   /**
    * Add accounts to a list.
    * @param id ID of the target list
-   * @param account_ids Array of account IDs
+   * @param parameter Parameter
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/lists/#post-api-v1-lists-id-accounts
    */
-  public async addAccountToList(id: string, account_ids: string[]) {
-    return (await this.post<void>(`${this.url}/api/v1/lists/${id}/accounts`, {
-      account_ids,
-    })).data;
+  public async addAccountToList(
+    id: string,
+    parameter: Parameters.ModifyListAccounts,
+  ) {
+    return (await this.post<void>(
+      `${this.url}/api/v1/lists/${id}/accounts`,
+      parameter,
+    )).data;
   }
 
   /**
    * Remove accounts from a list.
    * @param id ID of the target list
-   * @param account_ids Array of account IDs
+   * @param parameter Parameter
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/lists/#delete-api-v1-lists-id-accounts
    */
-  public async removeAccountFromList(id: string, account_ids: string[]) {
-    return (await this.post<void>(`${this.url}/api/v1/lists/${id}/accounts`, {
-      account_ids,
-    })).data;
+  public async removeAccountFromList(
+    id: string,
+    parameter: Parameters.ModifyListAccounts,
+  ) {
+    return (await this.post<void>(
+      `${this.url}/api/v1/lists/${id}/accounts`,
+      parameter,
+    )).data;
   }
 
   /**
    * Upload a media attachment that can be used with a new status.
-   * @param file Media to be uploaded (encoded using `multipart/form-data`)
    * @param parameter Form data
    * @return Returns Attachment
    * @see https://docs.joinmastodon.org/api/rest/media/#post-api-v1-media
    */
-  public async uploadMediaAttachment(
-    file: File,
-    parameter?: Parameters.UploadMedia,
-  ) {
-    return (await this.post<Attachment>(
-      `${this.url}/api/v1/media`,
-      { file, ...parameter },
-      { headers: { 'Content-Type': 'multipart/form-data' } },
-    )).data;
+  public async uploadMediaAttachment(parameter: Parameters.ModifyMedia) {
+    return (await this.post<Attachment>(`${this.url}/api/v1/media`, parameter, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    })).data;
   }
 
   /**
@@ -771,7 +736,7 @@ export class Mastodon extends Gateway {
    */
   public async updateMediaAttachment(
     id: string,
-    parameter?: Parameters.UpdateMedia,
+    parameter: Parameters.ModifyMedia,
   ) {
     return (await this.put<Attachment>(
       `${this.url}/api/v1/media/${id}`,
@@ -795,14 +760,14 @@ export class Mastodon extends Gateway {
   /**
    * Mute an account with id
    * @param id ID of the target account
-   * @param notifications Whether the mute will mute notifications or not
+   * @param parameters Options
    * @return Returns Relationship
    * @see https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-accounts-id-mute
    */
-  public async muteAccount(id: string, notifications = true) {
+  public async muteAccount(id: string, parameters: Parameters.MuteAccount) {
     return (await this.post<Relationship>(
       `${this.url}/api/v1/accounts/${id}/mute`,
-      { notifications },
+      parameters,
     )).data;
   }
 
@@ -938,41 +903,30 @@ export class Mastodon extends Gateway {
 
   /**
    * Report an account to moderators/administrators
-   * @param account_id The ID of the account to report
-   * @param status_ids The IDs of statuses to report as array
-   * @param comment Reason for the report (up to 1,000 characters)
+   * @param parameter Parameters
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/reports/#post-api-v1-reports
    */
-  public async reportAccount(
-    account_id: string,
-    status_ids?: string[] | null,
-    comment?: string | null,
-  ) {
-    return (await this.post<void>(`${this.url}/api/v1/reports`, {
-      account_id,
-      status_ids,
-      comment,
-    })).data;
+  public async reportAccount(parameter: Parameters.ReportAccount) {
+    return (await this.post<void>(`${this.url}/api/v1/reports`, parameter))
+      .data;
   }
 
   /**
    * Search for content in accounts, statuses and hashtags.
-   * @param q The search query
-   * @param resolve Attempt WebFinger look-up
+   * @param parameter Parameters
    * @param version Version of Mastodon API (default: `'v2'`)
    * @return Returns Results
    * @see https://docs.joinmastodon.org/api/rest/search/#get-api-v2-search
    */
-  public async search<V extends 'v1' | 'v2' = 'v2'>(
-    q: string,
-    resolve = false,
+  public async search<V extends 'v1' | 'v2'>(
+    parameter: Parameters.Search,
     version = 'v2' as V,
   ) {
-    return (await this.get<Results<V>>(`${this.url}/api/${version}/search`, {
-      q,
-      resolve,
-    })).data;
+    return (await this.get<Results<V>>(
+      `${this.url}/api/${version}/search`,
+      parameter,
+    )).data;
   }
 
   /**
@@ -1040,29 +994,22 @@ export class Mastodon extends Gateway {
 
   /**
    * Publish a new status.
-   * @param status The text of the status
-   * @param parameter Optional parameter
+   * @param parameter Parameters
    * @param idempotencyKey The Idempotency-Key of request header
    * @return Returns Status
    * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses
    */
   public async createStatus(
-    status: string,
     parameter?: Parameters.CreateStatus,
     idempotencyKey?: string,
   ) {
     if (idempotencyKey) {
-      return (await this.post(
-        `${this.url}/api/v1/statuses`,
-        { status, ...parameter },
-        { headers: { 'Idempotency-Key': idempotencyKey } },
-      )).data;
+      return (await this.post(`${this.url}/api/v1/statuses`, parameter, {
+        headers: { 'Idempotency-Key': idempotencyKey },
+      })).data;
     }
 
-    return (await this.post(`${this.url}/api/v1/statuses`, {
-      status,
-      ...parameter,
-    })).data;
+    return (await this.post(`${this.url}/api/v1/statuses`, parameter)).data;
   }
 
   /**
