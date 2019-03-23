@@ -6,70 +6,46 @@ import { MastodonRateLimitError } from '../errors/mastodon-rate-limit-error';
 import { MastodonUnauthorizedError } from '../errors/mastodon-unauthorized-error';
 import { MastodonURLResolveError } from '../errors/mastodon-url-resolve-error';
 import { EventHandler } from './event-handler';
+import { getNextUrl } from './link-header';
 
 export class Gateway {
-  /** Rest API URL of the instance */
-  protected url: string = '';
+  /** URI of the instance */
+  protected uri = '';
+
+  /** Version of the current instance */
+  protected version = '';
 
   /** Streaming API URL of the instance */
-  protected streamingUrl: string = '';
+  protected streamingUrl = '';
 
   /** API token of the user */
-  protected token?: string;
+  protected token = '';
 
   /**
    * @param options Optional params
-   * @param options.url Rest API URL of the instance
+   * @param options.url URL of the instance
    * @param options.streamingUrl Streaming API URL of the instance
    * @param options.token API token of the user
    */
-  constructor(options: {
-    url?: string;
+  private constructor(options: {
+    uri: string;
     streamingUrl?: string;
+    version?: string;
     token?: string;
   }) {
-    if (options) {
-      this.url = options.url || '';
-      this.streamingUrl = options.streamingUrl || '';
+    this.uri = options.uri;
 
-      if (options.token) {
-        this.token = options.token;
-      }
+    if (options.streamingUrl) {
+      this.streamingUrl = options.streamingUrl;
     }
-  }
 
-  /**
-   * Getting rest API URL of the instance
-   * @return Rest API URL
-   */
-  public getUrl = () => this.url;
+    if (options.version) {
+      this.version = options.version;
+    }
 
-  /**
-   * Getting streaming API URL of the instance
-   * @return Streaming API URL
-   */
-  public getStreamingUrl = () => this.streamingUrl;
-
-  /**
-   * Getting token of authenticated user
-   * @return The token
-   */
-  public getToken = () => this.token;
-
-  /**
-   * Setting rest API URL of the instance
-   * @param url URL of the instance
-   */
-  public setUrl(url: string) {
-    this.url = url.replace(/\/$/, '');
-  }
-
-  /**
-   * Setting streaming API URL of the instance
-   * @param url URL of the instance
-   */
-  public setStreamingUrl(url: string) {
-    this.streamingUrl = url.replace(/\/$/, '');
+    if (options.token) {
+      this.token = options.token;
+    }
   }
 
   /**
@@ -78,6 +54,8 @@ export class Gateway {
    */
   public setToken(token: string) {
     this.token = token;
+
+    return this;
   }
 
   /**
@@ -97,7 +75,7 @@ export class Gateway {
       options.headers['Content-Type'] = 'application/json';
     }
 
-    if (!this.url) {
+    if (!this.uri) {
       throw new MastodonURLResolveError(
         "REST API URL has not been specified, Use Mastodon.setUrl to set your instance's URL",
       );
@@ -244,5 +222,33 @@ export class Gateway {
     }
 
     return new EventHandler(url, params);
+  }
+
+  /**
+   * Generate an iterable of the pagination
+   * @param id Path to the API, e.g. `timelines/pulbic`, `accounts/1/statuses` e.g.
+   * @param params Query parameter
+   * @return An async iterable of statuses, most recent ones first.
+   */
+  protected async *paginationGenerator<T extends string[] | { id: string }[]>(
+    path: string,
+    params?: any,
+  ) {
+    let next: string | null = path;
+
+    while (true) {
+      const response = await this.get<T>(next, params);
+      const result: T | 'reset' = yield response.data;
+
+      if (result === 'reset') {
+        next = path;
+      } else {
+        next = getNextUrl(response.headers);
+
+        if (!next) {
+          break;
+        }
+      }
+    }
   }
 }

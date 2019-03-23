@@ -4,6 +4,14 @@ import { NotificationType } from '../entities/notification';
 import { PushSubscriptionAlerts } from '../entities/push-subscription';
 import { StatusVisibility } from '../entities/status';
 
+export interface Login {
+  /** URI of the instance */
+  uri: string;
+
+  /** Token of your account */
+  token?: string;
+}
+
 export interface Pagination {
   /** Get a list of items with ID less than this value */
   max_id?: string | null;
