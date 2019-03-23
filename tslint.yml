@@ -25,6 +25,7 @@ rules:
   interface-name:
     - true
     - never-prefix
+  function-name: false
   max-line-length: false
   member-ordering: false
   no-angle-bracket-type-assertion: true
