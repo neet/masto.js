@@ -43,7 +43,7 @@ import {
 export class Mastodon extends Gateway {
   /**
    * Login to Mastodon
-   * @param paramters Paramters
+   * @param params Paramters
    * @return Instance of Mastodon class
    */
   public static async login(params: LoginParams) {
@@ -143,7 +143,7 @@ export class Mastodon extends Gateway {
 
   /**
    * Fetch access token from authorization code
-   * @param parameters Parameters
+   * @param params Parameters
    * @see https://docs.joinmastodon.org/api/permissions/
    * @see https://docs.joinmastodon.org/api/authentication/
    */
@@ -164,7 +164,7 @@ export class Mastodon extends Gateway {
 
   /**
    * Create an account with given profile
-   * @param parameter Data of the user to create
+   * @param params Data of the user to create
    * @return Access token
    */
   @requiresAuthentication
@@ -188,7 +188,7 @@ export class Mastodon extends Gateway {
 
   /**
    * Update user’s own account.
-   * @param parameter Form data
+   * @param params Form data
    * @return Returns Account
    * @see https://docs.joinmastodon.org/api/rest/accounts/#patch-api-v1-accounts-update-credentials
    */
@@ -205,7 +205,7 @@ export class Mastodon extends Gateway {
   /**
    * Accounts which follow the given account.
    * @param id ID of the target account
-   * @param parameter Query parameters
+   * @param params Query parameters
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-followers
    */
@@ -221,7 +221,7 @@ export class Mastodon extends Gateway {
   /**
    * Accounts which the given account is following.
    * @param id ID of the target account
-   * @param parameter Query parameter
+   * @param params Query parameter
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-following
    */
@@ -237,7 +237,7 @@ export class Mastodon extends Gateway {
   /**
    * An account’s statuses.
    * @param id ID of the target account
-   * @param parameter Query parameter
+   * @param params Query parameter
    * @return Returns array of Status
    * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-statuses
    */
@@ -253,7 +253,7 @@ export class Mastodon extends Gateway {
   /**
    * Follow an account by id
    * @param id ID of the target account
-   * @param parameter Options
+   * @param params Options
    * @return Returns Relationship
    * @see https://docs.joinmastodon.org/api/rest/accounts/#post-api-v1-accounts-id-follow
    */
@@ -297,7 +297,7 @@ export class Mastodon extends Gateway {
 
   /**
    * Search for matching accounts by username, domain and display name.
-   * @param parameter Query parameter
+   * @param params Query parameter
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-search
    */
@@ -309,7 +309,7 @@ export class Mastodon extends Gateway {
 
   /**
    * Create a new application to obtain OAuth2 credentials.
-   * @param parameter Parameters
+   * @param params Parameters
    * @return Returns App with client_id and client_secret
    * @see https://docs.joinmastodon.org/api/rest/apps/#post-api-v1-apps
    */
@@ -331,7 +331,7 @@ export class Mastodon extends Gateway {
 
   /**
    * Accounts the user has blocked.
-   * @param parameter Query parameter
+   * @param params Query parameter
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/blocks/#get-api-v1-blocks
    */
@@ -380,7 +380,7 @@ export class Mastodon extends Gateway {
 
   /**
    * Domains the user has blocked.
-   * @param parameter Query parameter
+   * @param params Query parameter
    * @return Returns array of string.
    * @see https://docs.joinmastodon.org/api/rest/domain-blocks/#get-api-v1-domain-blocks
    */
@@ -461,7 +461,7 @@ export class Mastodon extends Gateway {
 
   /**
    * Statuses the user has favourited.
-   * @param parameter Query parameter
+   * @param params Query parameter
    * @return Returns array of Status
    * @see https://docs.joinmastodon.org/api/rest/favourites/#get-api-v1-favourites
    */
@@ -511,7 +511,7 @@ export class Mastodon extends Gateway {
 
   /**
    * Create a new filter.
-   * @param parameter Parameters
+   * @param params Parameters
    * @return Returns Filter
    * @see https://docs.joinmastodon.org/api/rest/filters/#post-api-v1-filters
    */
@@ -536,7 +536,7 @@ export class Mastodon extends Gateway {
   /**
    * Update a text filter.
    * @param id ID of the filter
-   * @param parameter Optinal parameter
+   * @param params Optinal parameter
    * @return Returns Filter
    * @see https://docs.joinmastodon.org/api/rest/filters/#put-api-v1-filters-id
    */
@@ -560,7 +560,7 @@ export class Mastodon extends Gateway {
 
   /**
    * Accounts that have requested to follow the user.
-   * @param parameter Query parameter
+   * @param params Query parameter
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/follow-requests/#get-api-v1-follow-requests
    */
@@ -678,7 +678,7 @@ export class Mastodon extends Gateway {
   /**
    * Accounts that are in a given list.
    * @param id ID of the target list
-   * @param parameter Optional params
+   * @param params Optional params
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists-id-accounts
    */
@@ -705,7 +705,7 @@ export class Mastodon extends Gateway {
 
   /**
    * Create a new list.
-   * @param parameter Options
+   * @param params Options
    * @return Returns List
    * @see https://docs.joinmastodon.org/api/rest/lists/#post-api-v1-lists
    */
@@ -718,7 +718,7 @@ export class Mastodon extends Gateway {
   /**
    * Update a list with title and id
    * @param id ID of the target list
-   * @param parameter Options
+   * @param params Options
    * @return Returns List
    * @see https://docs.joinmastodon.org/api/rest/lists/#put-api-v1-lists-id
    */
@@ -743,7 +743,7 @@ export class Mastodon extends Gateway {
   /**
    * Add accounts to a list.
    * @param id ID of the target list
-   * @param parameter Parameter
+   * @param params Parameter
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/lists/#post-api-v1-lists-id-accounts
    */
@@ -756,7 +756,7 @@ export class Mastodon extends Gateway {
   /**
    * Remove accounts from a list.
    * @param id ID of the target list
-   * @param parameter Parameter
+   * @param params Parameter
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/lists/#delete-api-v1-lists-id-accounts
    */
@@ -771,7 +771,7 @@ export class Mastodon extends Gateway {
 
   /**
    * Upload a media attachment that can be used with a new status.
-   * @param parameter Form data
+   * @param params Form data
    * @return Returns Attachment
    * @see https://docs.joinmastodon.org/api/rest/media/#post-api-v1-media
    */
@@ -786,7 +786,7 @@ export class Mastodon extends Gateway {
   /**
    * Update a media attachment. Can only be done before the media is attached to a status.
    * @param id ID of the target attachment
-   * @param parameter Form data
+   * @param params Form data
    * @return Returns Returns Attachment
    * @see https://docs.joinmastodon.org/api/rest/media/#put-api-v1-media-id
    */
@@ -801,7 +801,7 @@ export class Mastodon extends Gateway {
 
   /**
    * Accounts the user has muted.
-   * @param parameter Query parameter
+   * @param params Query parameter
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/mutes/#get-api-v1-mutes
    */
@@ -817,7 +817,7 @@ export class Mastodon extends Gateway {
   /**
    * Mute an account with id
    * @param id ID of the target account
-   * @param parameters Options
+   * @param params Options
    * @return Returns Relationship
    * @see https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-accounts-id-mute
    */
@@ -868,7 +868,7 @@ export class Mastodon extends Gateway {
 
   /**
    * Notifications concerning the user.
-   * @param parameter Query parameter
+   * @param params Query parameter
    * @return Returns array of Notification
    * @see https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-notifications
    */
@@ -917,7 +917,7 @@ export class Mastodon extends Gateway {
 
   /**
    * Add a Web Push API subscription to receive notifications. See also: Web Push API
-   * @param parameter Form data
+   * @param params Form data
    * @return Returns Push Subscription
    * @see https://docs.joinmastodon.org/api/rest/notifications/#put-api-v1-push-subscription
    */
@@ -943,7 +943,7 @@ export class Mastodon extends Gateway {
 
   /**
    * Update current Web Push API subscription. Only the `data` part can be updated, e.g. which types of notifications are desired. To change fundamentals, a new subscription must be created instead.
-   * @param parameter Form data
+   * @param params Form data
    * @return Returns Push Subscription
    * @see https://docs.joinmastodon.org/api/rest/notifications/#put-api-v1-push-subscription
    */
@@ -969,7 +969,7 @@ export class Mastodon extends Gateway {
 
   /**
    * Report an account to moderators/administrators
-   * @param parameter Parameters
+   * @param params Parameters
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/reports/#post-api-v1-reports
    */
@@ -981,7 +981,7 @@ export class Mastodon extends Gateway {
 
   /**
    * Search for content in accounts, statuses and hashtags.
-   * @param parameter Parameters
+   * @param params Parameters
    * @param version Version of Mastodon API (default: `'v2'`)
    * @return Returns Results
    * @see https://docs.joinmastodon.org/api/rest/search/#get-api-v2-search
@@ -1030,7 +1030,7 @@ export class Mastodon extends Gateway {
   /**
    * Accounts that reblogged the status.
    * @param id ID of target status
-   * @param parameter Query parameter
+   * @param params Query parameter
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-reblogged-by
    */
@@ -1045,7 +1045,7 @@ export class Mastodon extends Gateway {
   /**
    * Accounts that favourited the status.
    * @param id ID of target status
-   * @param parameter Query parameter
+   * @param params Query parameter
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-favourited-by
    */
@@ -1059,7 +1059,7 @@ export class Mastodon extends Gateway {
 
   /**
    * Publish a new status.
-   * @param parameter Parameters
+   * @param params Parameters
    * @param idempotencyKey The Idempotency-Key of request header
    * @return Returns Status
    * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses
@@ -1141,7 +1141,7 @@ export class Mastodon extends Gateway {
 
   /**
    * Retrieving the home timeline
-   * @param parameter Query parameter
+   * @param params Query parameter
    * @return An array of Statuses, most recent ones first.
    * @see https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-home
    */
@@ -1156,7 +1156,7 @@ export class Mastodon extends Gateway {
 
   /**
    * Retrieving the community timeline (aka "Local timeline" in the UI)
-   * @param parameter Query parameter
+   * @param params Query parameter
    * @return An iterable of Statuses, most recent ones first.
    * @see https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-public
    */
@@ -1170,7 +1170,7 @@ export class Mastodon extends Gateway {
 
   /**
    * Retrieving the public timeline (aka "Federated timeline" in the UI)
-   * @param parameter Query parameter
+   * @param params Query parameter
    * @return An iterable of Statuses, most recent ones first.
    * @see https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-public
    */
@@ -1185,7 +1185,7 @@ export class Mastodon extends Gateway {
   /**
    * Retrieving a tag timeline
    * @param id ID of the hashtag
-   * @param parameter Query parameter
+   * @param params Query parameter
    * @return An iterable of Statuses, most recent ones first.
    * @see https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-tag-hashtag
    */
@@ -1200,7 +1200,7 @@ export class Mastodon extends Gateway {
   /**
    * Retrieving a list timeline
    * @param id ID of the list
-   * @param parameter Query parameter
+   * @param params Query parameter
    * @return An iterable of Statuses, most recent ones first.
    * @see https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-list-list-id
    */
