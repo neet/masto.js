@@ -1,5 +1,5 @@
-import { Account } from './Account';
-import { Status } from './Status';
+import { Account } from './account';
+import { Status } from './status';
 
 export interface Notification {
   /** The notification ID */

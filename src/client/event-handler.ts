@@ -1,9 +1,9 @@
 import { EventEmitter } from 'eventemitter3';
 import * as querystring from 'querystring';
 import * as WebSocket from 'websocket';
-import { Conversation } from '../entities/Conversation';
-import { Notification } from '../entities/Notification';
-import { Status } from '../entities/Status';
+import { Conversation } from '../entities/conversation';
+import { Notification } from '../entities/notification';
+import { Status } from '../entities/status';
 
 interface EventTypes {
   /** Status posted */

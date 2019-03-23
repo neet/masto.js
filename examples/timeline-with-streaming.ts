@@ -1,3 +1,4 @@
+// tslint:disable no-console
 import Mastodon from '../src';
 
 const client = new Mastodon({

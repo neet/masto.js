@@ -1,11 +1,11 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import * as querystring from 'querystring';
-import { MastodonError } from '../errors/MastodonError';
-import { MastodonNotFoundError } from '../errors/MastodonNotFoundError';
-import { MastodonRatelimitError } from '../errors/MastodonRatelimitError';
-import { MastodonUnauthorizedError } from '../errors/MastodonUnauthorizedError';
-import { MastodonURLResolveError } from '../errors/MastodonURLResolveError';
-import { EventHandler } from './EventHandler';
+import { MastodonError } from '../errors/mastodon-error';
+import { MastodonNotFoundError } from '../errors/mastodon-not-found-error';
+import { MastodonRateLimitError } from '../errors/mastodon-rate-limit-error';
+import { MastodonUnauthorizedError } from '../errors/mastodon-unauthorized-error';
+import { MastodonURLResolveError } from '../errors/mastodon-url-resolve-error';
+import { EventHandler } from './event-handler';
 
 export class Gateway {
   /** Rest API URL of the instance */
@@ -133,7 +133,7 @@ export class Gateway {
         case 404:
           throw new MastodonNotFoundError(errorMessage);
         case 429:
-          throw new MastodonRatelimitError(errorMessage);
+          throw new MastodonRateLimitError(errorMessage);
         default:
           throw new MastodonError(
             'MastodonError',

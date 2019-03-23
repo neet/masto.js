@@ -1,23 +1,23 @@
-import { Gateway } from '../client/Gateway';
-import { EventHandler } from './EventHandler';
-import { getNextUrl } from './linkHeader';
+import { EventHandler } from './event-handler';
+import { Gateway } from './gateway';
+import { getNextUrl } from './link-header';
 import * as Parameters from './parameters';
 
-import { Account, AccountCredentials, AccountToken } from '../entities/Account';
-import { Application, OAuth } from '../entities/Application';
-import { Attachment } from '../entities/Attachment';
-import { Card } from '../entities/Card';
-import { Context } from '../entities/Context';
-import { Conversation } from '../entities/Conversation';
-import { Emoji } from '../entities/Emoji';
-import { Filter } from '../entities/Filter';
-import { Instance, InstanceActivity } from '../entities/Instance';
-import { List } from '../entities/List';
-import { Notification } from '../entities/Notification';
-import { PushSubscription } from '../entities/PushSubscription';
-import { Relationship } from '../entities/Relationship';
-import { Results } from '../entities/Results';
-import { Status } from '../entities/Status';
+import { Account, AccountCredentials, AccountToken } from '../entities/account';
+import { Application, OAuth } from '../entities/application';
+import { Attachment } from '../entities/attachment';
+import { Card } from '../entities/card';
+import { Context } from '../entities/context';
+import { Conversation } from '../entities/conversation';
+import { Emoji } from '../entities/emoji';
+import { Filter } from '../entities/filter';
+import { Instance, InstanceActivity } from '../entities/instance';
+import { List } from '../entities/list';
+import { Notification } from '../entities/notification';
+import { PushSubscription } from '../entities/push-subscription';
+import { Relationship } from '../entities/relationship';
+import { Results } from '../entities/results';
+import { Status } from '../entities/status';
 
 export class Mastodon extends Gateway {
   /**

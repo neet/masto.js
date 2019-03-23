@@ -1,3 +1,4 @@
+// tslint:disable no-console
 import Mastodon from '../src';
 
 const client = new Mastodon({
@@ -6,6 +7,6 @@ const client = new Mastodon({
   token: 'YOUR TOKEN',
 });
 
-client.createStatus('Toot from TypeScript', { visibility: 'direct' }).then((newStatus) => {
+client.createStatus({ status: 'Toot from TypeScript', visibility: 'direct' }).then((newStatus) => {
   console.log(newStatus);
 });

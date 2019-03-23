@@ -1,5 +1,5 @@
-import { Emoji } from './Emoji';
-import { StatusVisibility } from './Status';
+import { Emoji } from './emoji';
+import { StatusVisibility } from './status';
 
 export interface Account {
   /** The ID of the account */

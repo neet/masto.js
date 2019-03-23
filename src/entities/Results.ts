@@ -1,6 +1,6 @@
-import { Account } from './Account';
-import { Status } from './Status';
-import { Tag } from './Tag';
+import { Account } from './account';
+import { Status } from './status';
+import { Tag } from './tag';
 
 export interface Results<V extends 'v1' | 'v2'> {
   /** An array of matched Accounts */

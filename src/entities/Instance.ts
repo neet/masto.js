@@ -1,4 +1,4 @@
-import { Account } from './Account';
+import { Account } from './account';
 
 export interface Instance {
   /** URI of the current instance */

@@ -1,10 +1,10 @@
-import { Account } from './Account';
-import { Application } from './Application';
-import { Attachment } from './Attachment';
-import { Card } from './Card';
-import { Emoji } from './Emoji';
-import { Mention } from './Mention';
-import { Tag } from './Tag';
+import { Account } from './account';
+import { Application } from './application';
+import { Attachment } from './attachment';
+import { Card } from './card';
+import { Emoji } from './emoji';
+import { Mention } from './mention';
+import { Tag } from './tag';
 
 export interface Status {
   /** The ID of the status */
