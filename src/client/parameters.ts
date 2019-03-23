@@ -211,6 +211,9 @@ export interface ReportAccount {
 
   /** Reason for the report (up to 1,000 characters) */
   comment?: string;
+
+  /** Whether to forward to the remote admin (in case of a remote account) */
+  forward?: boolean;
 }
 
 export interface ModifyListAccounts {

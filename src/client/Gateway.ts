@@ -10,16 +10,16 @@ import { getNextUrl } from './link-header';
 
 export class Gateway {
   /** URI of the instance */
-  protected uri = '';
+  public uri = '';
 
   /** Version of the current instance */
-  protected version = '';
+  public version = '';
 
   /** Streaming API URL of the instance */
-  protected streamingUrl = '';
+  public streamingUrl = '';
 
   /** API token of the user */
-  protected token = '';
+  public token = '';
 
   /**
    * @param options Optional params
