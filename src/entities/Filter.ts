@@ -1,3 +1,6 @@
+/** Type of filter context */
+export type FilterContext = 'home' | 'notifications' | 'public' | 'thread';
+
 export interface Filter {
   /** ID of the filter */
   id: number;
@@ -17,6 +20,3 @@ export interface Filter {
   /** Boolean that indicates word match. */
   whole_word: string;
 }
-
-/** Type of filter context */
-export type FilterContext = 'home' | 'notifications' | 'public' | 'thread';

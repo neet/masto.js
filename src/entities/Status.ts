@@ -6,6 +6,8 @@ import { Emoji } from './emoji';
 import { Mention } from './mention';
 import { Tag } from './tag';
 
+export type StatusVisibility = 'public' | 'unlisted' | 'private' | 'direct';
+
 export interface Status {
   /** The ID of the status */
   id: string;
@@ -85,5 +87,3 @@ export interface Status {
   /** Whether this is the pinned status for the account that posted it */
   pinned?: boolean | null;
 }
-
-export type StatusVisibility = 'public' | 'unlisted' | 'private' | 'direct';

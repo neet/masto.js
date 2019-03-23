@@ -1,6 +1,8 @@
 import { Account } from './account';
 import { Status } from './status';
 
+export type NotificationType = 'mention' | 'reblog' | 'favourite' | 'follow';
+
 export interface Notification {
   /** The notification ID */
   id: string;
@@ -17,5 +19,3 @@ export interface Notification {
   /** The Status associated with the notification, if applicable */
   status?: Status | null;
 }
-
-export type NotificationType = 'mention' | 'reblog' | 'favourite' | 'follow';

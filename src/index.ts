@@ -1,7 +1,7 @@
 export * from './client/event-handler';
 export * from './client/gateway';
 export * from './client/link-header';
-export * from './client/parameters';
+export * from './client/params';
 
 export * from './entities/account';
 export * from './entities/application';

@@ -1,3 +1,5 @@
+export type CardType = 'link' | 'photo' | 'video' | 'rich';
+
 export interface Card {
   /** The url associated with the card */
   url: string;
@@ -35,5 +37,3 @@ export interface Card {
   /** OEmbed data */
   height?: string | null;
 }
-
-export type CardType = 'link' | 'photo' | 'video' | 'rich';
