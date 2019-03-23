@@ -27,7 +27,7 @@ export class Gateway {
    * @param options.streamingUrl Streaming API URL of the instance
    * @param options.token API token of the user
    */
-  private constructor(options: {
+  protected constructor(options: {
     uri: string;
     streamingUrl?: string;
     version?: string;
