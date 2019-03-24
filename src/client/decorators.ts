@@ -1,14 +1,15 @@
 import { gt, lt } from 'semver';
-import { MastodonError } from '../errors/mastodon-error';
+import { MastodonNotFoundError } from '../errors/mastodon-not-found-error';
+import { MastodonUnauthorizedError } from '../errors/mastodon-unauthorized-error';
 import { Mastodon } from './mastodon';
 
-type Decorator = (
+export type Decorator = (
   mastodon: Mastodon,
   name: string,
   descriptor: TypedPropertyDescriptor<(...args: any[]) => any>,
 ) => void;
 
-interface AvailabeParams {
+export interface AvailabeParams {
   since?: string;
   until?: string;
 }
@@ -34,10 +35,7 @@ export const requiresAuthentication: Decorator = (
 
   descriptor.value = (...args: any[]) => {
     if (!mastodon.accessToken) {
-      throw new MastodonError(
-        'MastodonError',
-        `${name} requires authentication`,
-      );
+      throw new MastodonUnauthorizedError(`${name} requires authentication`);
     }
 
     return original(...args);
@@ -56,20 +54,18 @@ export const available = (parameters: AvailabeParams): Decorator => (
 
   descriptor.value = (...args: any[]) => {
     if (since && lt(since, mastodon.version)) {
-      throw new MastodonError(
-        'MastodonVersionError',
-        `${name} is not compatible with current Mastodon version ${
-          mastodon.version
-        }`,
+      throw new MastodonNotFoundError(
+        `${name} is not available with the current` +
+          `Mastodon version ${mastodon.version}.` +
+          `It requires greater than or equal to version ${since}`,
       );
     }
 
     if (until && gt(until, mastodon.version)) {
-      throw new MastodonError(
-        'MastodonVersionError',
-        `${name} is not compatible with current Mastodon version ${
-          mastodon.version
-        }`,
+      throw new MastodonNotFoundError(
+        `${name} is not available with the current` +
+          `Mastodon version ${mastodon.version}.` +
+          `It requires lesser than or equal to version ${until}`,
       );
     }
 
