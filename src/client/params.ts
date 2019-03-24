@@ -1,8 +1,8 @@
-import { StatusVisibility } from 'src/entities/status';
 import { AccountField, AccountSource } from '../entities/account';
 import { FilterContext } from '../entities/filter';
 import { NotificationType } from '../entities/notification';
 import { PushSubscriptionAlerts } from '../entities/push-subscription';
+import { StatusVisibility } from '../entities/status';
 
 export interface LoginParams {
   /** URI of the instance */

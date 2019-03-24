@@ -10,6 +10,17 @@ import { EventHandler } from './event-handler';
 /** Type to determine whether paginate-able entity */
 export type Paginatable = string[] | { id: string }[];
 
+export type PaginateNextOptions<Params> = {
+  /** Reset pagination */
+  reset?: boolean;
+
+  /** URL */
+  url?: string;
+
+  /** Query parameters */
+  params?: Params;
+};
+
 /**
  * Mastodon network request wrapper
  * @param options Optional params
@@ -203,49 +214,53 @@ export class Gateway {
   }
 
   /**
-   * Generate an iterable of the pagination
-   * @param initialUrl URL to the endpoint
-   * @param params Query parameter
-   * @return An async iterable of statuses, most recent ones first.
+   * Generate an iterable of the pagination.
+   * The default generator implementation of JS cannot change the value of `done` depend on the result of yield,
+   * Therefore we define custom generator to reproduce Mastodon's link header behaviour faithfully.
+   * @param initialUrl URL for the endpoint
+   * @param initialParams Query parameter
+   * @return Async iterable iterator of the pages.
+   * See also [MDN article about generator/iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators)
    */
-  protected paginate<T extends Paginatable>(
+  protected paginate<Data extends Paginatable, Params = any>(
     initialUrl: string,
-    initialParams?: any,
-  ): AsyncIterableIterator<T | undefined> {
+    initialParams?: Params,
+  ): AsyncIterableIterator<Data | undefined> {
     const get = this.get;
 
-    let url: string | undefined = initialUrl;
-    let params = { ...initialParams };
+    let url: string = initialUrl;
+    let params: Params | undefined = initialParams;
 
     return {
-      async next(action?: 'reset') {
-        if (action === 'reset') {
+      async next(value?: PaginateNextOptions<Params>) {
+        if (value && value.reset) {
           url = initialUrl;
+          params = initialParams;
         }
 
-        if (!url) {
-          return { done: true, value: undefined };
-        }
+        const response = await get<Data>(
+          (value && value.url) || url,
+          (value && value.params) || params,
+        );
 
-        const response = await get<T>(url, params);
-
+        // Set next url from the link header
         const link = response.headers.get('Link') || '';
         const next = LinkHeader.parse(link).refs.find(
           ({ rel }) => rel === 'next',
         );
-        url = next ? next.uri : undefined;
 
-        // Params are included in the `next` link header the 2nd time and afterward
-        params = {};
+        if (!next || !next.uri) {
+          return { done: true, value: undefined };
+        }
+
+        url = next.uri;
+        params = undefined;
 
         // Return `done: true` immediately if no next url returned
-        return {
-          done: !url,
-          value: response.data,
-        };
+        return { done: !url, value: response.data };
       },
 
-      async return(value: T) {
+      async return(value: Data) {
         return { value, done: true };
       },
 
