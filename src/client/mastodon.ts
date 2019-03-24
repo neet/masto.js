@@ -221,7 +221,7 @@ export class Mastodon extends Gateway {
   @requiresAuthentication
   @available({ since: '0.0.0' })
   public fetchAccountFollowers(id: string, params?: PaginationParams) {
-    return this.paginationGenerator(
+    return this.paginate<Account[]>(
       `${this.uri}/api/v1/accounts/${id}/followers`,
       params,
     );
@@ -237,7 +237,7 @@ export class Mastodon extends Gateway {
   @requiresAuthentication
   @available({ since: '0.0.0' })
   public fetchAccountFollowing(id: string, params?: PaginationParams) {
-    return this.paginationGenerator(
+    return this.paginate<Account[]>(
       `${this.uri}/api/v1/accounts/${id}/following`,
       params,
     );
@@ -253,7 +253,7 @@ export class Mastodon extends Gateway {
   @requiresAuthentication
   @available({ since: '0.0.0' })
   public fetchAccountStatuses(id: string, params?: FetchAccountStatusesParams) {
-    return this.paginationGenerator<Status[]>(
+    return this.paginate<Status[]>(
       `${this.uri}/api/v1/accounts/${id}/statuses`,
       params,
     );
@@ -347,10 +347,7 @@ export class Mastodon extends Gateway {
   @requiresAuthentication
   @available({ since: '0.0.0' })
   public async fetchBlocks(params?: PaginationParams) {
-    return this.paginationGenerator<Account[]>(
-      `${this.uri}/api/v1/blocks`,
-      params,
-    );
+    return this.paginate<Account[]>(`${this.uri}/api/v1/blocks`, params);
   }
 
   /**
@@ -396,10 +393,7 @@ export class Mastodon extends Gateway {
   @requiresAuthentication
   @available({ since: '1.4.0' })
   public fetchDomainBlocks(params?: PaginationParams) {
-    return this.paginationGenerator<string[]>(
-      `${this.uri}/api/v1/domain_blocks`,
-      params,
-    );
+    return this.paginate<string[]>(`${this.uri}/api/v1/domain_blocks`, params);
   }
 
   /**
@@ -438,10 +432,7 @@ export class Mastodon extends Gateway {
   @requiresAuthentication
   @available({ since: '2.5.0' })
   public async fetchEndorsements(params?: PaginationParams) {
-    return this.paginationGenerator<Account[]>(
-      `${this.uri}/api/v1/endorsements`,
-      params,
-    );
+    return this.paginate<Account[]>(`${this.uri}/api/v1/endorsements`, params);
   }
 
   /**
@@ -477,10 +468,7 @@ export class Mastodon extends Gateway {
   @requiresAuthentication
   @available({ since: '0.0.0' })
   public async fetchFavouritedStatuses(params?: PaginationParams) {
-    return this.paginationGenerator<Status[]>(
-      `${this.uri}/api/v1/favourites`,
-      params,
-    );
+    return this.paginate<Status[]>(`${this.uri}/api/v1/favourites`, params);
   }
 
   /**
@@ -576,7 +564,7 @@ export class Mastodon extends Gateway {
   @requiresAuthentication
   @available({ since: '0.0.0' })
   public async fetchFollowRequests(params?: PaginationParams) {
-    return this.paginationGenerator<Account[]>(
+    return this.paginate<Account[]>(
       `${this.uri}/api/v1/follow_requests`,
       params,
     );
@@ -694,7 +682,7 @@ export class Mastodon extends Gateway {
   @requiresAuthentication
   @available({ since: '2.1.0' })
   public fetchListAccounts(id: string, params: PaginationParams) {
-    return this.paginationGenerator<Account[]>(
+    return this.paginate<Account[]>(
       `${this.uri}/api/v1/list/${id}/accounts`,
       params,
     );
@@ -817,10 +805,7 @@ export class Mastodon extends Gateway {
   @requiresAuthentication
   @available({ since: '0.0.0' })
   public fetchMutes(params?: PaginationParams) {
-    return this.paginationGenerator<Account[]>(
-      `${this.uri}/api/v1/mutes`,
-      params,
-    );
+    return this.paginate<Account[]>(`${this.uri}/api/v1/mutes`, params);
   }
 
   /**
@@ -1045,7 +1030,7 @@ export class Mastodon extends Gateway {
    */
   @available({ since: '0.0.0' })
   public fetchStatusRebloggedBy(id: string, params?: PaginationParams) {
-    return this.paginationGenerator<Account[]>(
+    return this.paginate<Account[]>(
       `${this.uri}/api/v1/statuses/${id}/reblogged_by`,
       params,
     );
@@ -1060,7 +1045,7 @@ export class Mastodon extends Gateway {
    */
   @available({ since: '0.0.0' })
   public fetchStatusFavouritedBy(id: string, params?: PaginationParams) {
-    return this.paginationGenerator<Account[]>(
+    return this.paginate<Account[]>(
       `${this.uri}/api/v1/statuses/${id}/favourited_by`,
       params,
     );
@@ -1157,10 +1142,7 @@ export class Mastodon extends Gateway {
   @requiresAuthentication
   @available({ since: '0.0.0' })
   public fetchHomeTimeline(params?: FetchTimelineParams) {
-    return this.paginationGenerator<Status[]>(
-      `${this.uri}/api/v1/timelines/home`,
-      params,
-    );
+    return this.paginate<Status[]>(`${this.uri}/api/v1/timelines/home`, params);
   }
 
   /**
@@ -1171,10 +1153,10 @@ export class Mastodon extends Gateway {
    */
   @available({ since: '0.0.0' })
   public fetchCommunityTimeline(params?: FetchTimelineParams) {
-    return this.paginationGenerator<Status[]>(
-      `${this.uri}/api/v1/timelines/public`,
-      { local: true, ...params },
-    );
+    return this.paginate<Status[]>(`${this.uri}/api/v1/timelines/public`, {
+      local: true,
+      ...params,
+    });
   }
 
   /**
@@ -1185,7 +1167,7 @@ export class Mastodon extends Gateway {
    */
   @available({ since: '0.0.0' })
   public fetchPublicTimeline(params?: FetchTimelineParams) {
-    return this.paginationGenerator<Status[]>(
+    return this.paginate<Status[]>(
       `${this.uri}/api/v1/timelines/public`,
       params,
     );
@@ -1200,7 +1182,7 @@ export class Mastodon extends Gateway {
    */
   @available({ since: '0.0.0' })
   public fetchTagTimeline(id: string, params?: FetchTimelineParams) {
-    return this.paginationGenerator<Status[]>(
+    return this.paginate<Status[]>(
       `${this.uri}/api/v1/timelines/tag/${id}`,
       params,
     );
@@ -1216,7 +1198,7 @@ export class Mastodon extends Gateway {
   @requiresAuthentication
   @available({ since: '2.1.0' })
   public fetchListTimeline(id: string, params?: FetchTimelineParams) {
-    return this.paginationGenerator<Status[]>(
+    return this.paginate<Status[]>(
       `${this.uri}/api/v1/timelines/list/${id}`,
       params,
     );
@@ -1229,7 +1211,7 @@ export class Mastodon extends Gateway {
   @requiresAuthentication
   @available({ since: '0.0.0', until: '2.6.0' })
   public fetchDirectTimeline(params?: FetchTimelineParams) {
-    return this.paginationGenerator<Status[]>(
+    return this.paginate<Status[]>(
       `${this.uri}/api/v1/timelines/direct`,
       params,
     );

@@ -1,11 +1,14 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import * as LinkHeader from 'http-link-header';
 import * as querystring from 'querystring';
 import { MastodonError } from '../errors/mastodon-error';
 import { MastodonNotFoundError } from '../errors/mastodon-not-found-error';
 import { MastodonRateLimitError } from '../errors/mastodon-rate-limit-error';
 import { MastodonUnauthorizedError } from '../errors/mastodon-unauthorized-error';
 import { EventHandler } from './event-handler';
-import { getNextUrl } from './link-header';
+
+/** Type to determine whether paginate-able entity */
+export type Paginatable = string[] | { id: string }[];
 
 /**
  * Mastodon network request wrapper
@@ -201,29 +204,58 @@ export class Gateway {
 
   /**
    * Generate an iterable of the pagination
-   * @param id Path to the API, e.g. `timelines/pulbic`, `accounts/1/statuses` e.g.
+   * @param initialUrl URL to the endpoint
    * @param params Query parameter
    * @return An async iterable of statuses, most recent ones first.
    */
-  protected async *paginationGenerator<T extends string[] | { id: string }[]>(
-    path: string,
-    params?: any,
-  ) {
-    let next: string | null = path;
+  protected paginate<T extends Paginatable>(
+    initialUrl: string,
+    initialParams?: any,
+  ): AsyncIterableIterator<T | undefined> {
+    const get = this.get;
 
-    while (true) {
-      const response = await this.get<T>(next, params);
-      const result: T | 'reset' = yield response;
+    let url: string | undefined = initialUrl;
+    let params = { ...initialParams };
 
-      if (result === 'reset') {
-        next = path;
-      } else {
-        next = getNextUrl(response.headers);
-
-        if (!next) {
-          break;
+    return {
+      async next(action?: 'reset') {
+        if (action === 'reset') {
+          url = initialUrl;
         }
-      }
-    }
+
+        if (!url) {
+          return { done: true, value: undefined };
+        }
+
+        const response = await get<T>(url, params);
+
+        const link = response.headers.get('Link') || '';
+        const next = LinkHeader.parse(link).refs.find(
+          ({ rel }) => rel === 'next',
+        );
+        url = next ? next.uri : undefined;
+
+        // Params are included in the `next` link header the 2nd time and afterward
+        params = {};
+
+        // Return `done: true` immediately if no next url returned
+        return {
+          done: !url,
+          value: response.data,
+        };
+      },
+
+      async return(value: T) {
+        return { value, done: true };
+      },
+
+      async throw(error?: Error) {
+        throw error;
+      },
+
+      [Symbol.asyncIterator]() {
+        return this;
+      },
+    };
   }
 }
