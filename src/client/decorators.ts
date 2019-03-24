@@ -33,7 +33,7 @@ export const requiresAuthentication: Decorator = (
   if (!original) return;
 
   descriptor.value = (...args: any[]) => {
-    if (!mastodon.token) {
+    if (!mastodon.accessToken) {
       throw new MastodonError(
         'MastodonError',
         `${name} requires authentication`,

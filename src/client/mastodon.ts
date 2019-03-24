@@ -56,7 +56,7 @@ export class Mastodon extends Gateway {
     return new Mastodon({
       uri: params.uri,
       token: params.token,
-      streamingUrl: instance.urls.streaming_api,
+      streamingApiUrl: instance.urls.streaming_api,
       version: instance.version,
     });
   }
@@ -70,7 +70,7 @@ export class Mastodon extends Gateway {
   @requiresUser
   @available({ since: '0.0.0' })
   public streamUser() {
-    return this.stream(`${this.streamingUrl}/api/v1/streaming`, {
+    return this.stream(`${this.streamingApiUrl}/api/v1/streaming`, {
       stream: 'user',
     });
   }
@@ -82,7 +82,7 @@ export class Mastodon extends Gateway {
    */
   @available({ since: '0.0.0' })
   public streamPublicTimeline() {
-    return this.stream(`${this.streamingUrl}/api/v1/streaming`, {
+    return this.stream(`${this.streamingApiUrl}/api/v1/streaming`, {
       stream: 'public',
     });
   }
@@ -94,7 +94,7 @@ export class Mastodon extends Gateway {
    */
   @available({ since: '0.0.0' })
   public streamCommunityTimeline() {
-    return this.stream(`${this.streamingUrl}/api/v1/streaming`, {
+    return this.stream(`${this.streamingApiUrl}/api/v1/streaming`, {
       stream: 'public:local',
     });
   }
@@ -107,7 +107,7 @@ export class Mastodon extends Gateway {
    */
   @available({ since: '0.0.0' })
   public streamTagTimeline(id: string) {
-    return this.stream(`${this.streamingUrl}/api/v1/streaming`, {
+    return this.stream(`${this.streamingApiUrl}/api/v1/streaming`, {
       stream: 'hashtag',
       tag: id,
     });
@@ -121,7 +121,7 @@ export class Mastodon extends Gateway {
    */
   @available({ since: '0.0.0' })
   public streamLocalTagTimeline(id: string) {
-    return this.stream(`${this.streamingUrl}/api/v1/streaming`, {
+    return this.stream(`${this.streamingApiUrl}/api/v1/streaming`, {
       stream: 'hashtag:local',
       tag: id,
     });
@@ -135,7 +135,7 @@ export class Mastodon extends Gateway {
    */
   @available({ since: '0.0.0' })
   public streamListTimeline(id: string) {
-    return this.stream(`${this.streamingUrl}/api/v1/streaming`, {
+    return this.stream(`${this.streamingApiUrl}/api/v1/streaming`, {
       stream: 'list',
       list: id,
     });
@@ -150,7 +150,7 @@ export class Mastodon extends Gateway {
   @requiresUser
   @available({ since: '0.0.0' })
   public streamDirectTimeline() {
-    return this.stream(`${this.streamingUrl}/api/v1/streaming`, {
+    return this.stream(`${this.streamingApiUrl}/api/v1/streaming`, {
       stream: 'direct',
     });
   }

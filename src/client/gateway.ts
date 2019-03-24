@@ -21,6 +21,13 @@ export type PaginateNextOptions<Params> = {
   params?: Params;
 };
 
+export interface GatewayConstructor {
+  uri: string;
+  streamingApiUrl?: string;
+  version?: string;
+  token?: string;
+}
+
 /**
  * Mastodon network request wrapper
  * @param options Optional params
@@ -30,36 +37,51 @@ export type PaginateNextOptions<Params> = {
  */
 export class Gateway {
   /** URI of the instance */
-  public uri = '';
+  private _uri = '';
 
   /** Version of the current instance */
-  public version = '';
+  private _version = '';
 
   /** Streaming API URL of the instance */
-  public streamingUrl = '';
+  private _streamingApiUrl = '';
 
   /** API token of the user */
-  public token = '';
+  private _accessToken = '';
 
-  protected constructor(options: {
-    uri: string;
-    streamingUrl?: string;
-    version?: string;
-    token?: string;
-  }) {
-    this.uri = options.uri;
+  protected constructor(params: GatewayConstructor) {
+    this._uri = params.uri;
 
-    if (options.streamingUrl) {
-      this.streamingUrl = options.streamingUrl;
+    if (params.streamingApiUrl) {
+      this._streamingApiUrl = params.streamingApiUrl;
     }
 
-    if (options.version) {
-      this.version = options.version;
+    if (params.version) {
+      this._version = params.version;
     }
 
-    if (options.token) {
-      this.token = options.token;
+    if (params.token) {
+      this._accessToken = params.token;
     }
+  }
+
+  /** Accessor for this._uri */
+  get uri() {
+    return this._uri;
+  }
+
+  /** Accessor for this._version  */
+  get version() {
+    return this._version;
+  }
+
+  /** Accessor for this._streamingApiUrl */
+  get streamingApiUrl() {
+    return this._streamingApiUrl;
+  }
+
+  /** Accessor for this._accessToken */
+  get accessToken() {
+    return this._accessToken;
   }
 
   /**
@@ -79,8 +101,8 @@ export class Gateway {
       options.headers['Content-Type'] = 'application/json';
     }
 
-    if (this.token) {
-      options.headers.Authorization = `Bearer ${this.token}`;
+    if (this.accessToken) {
+      options.headers.Authorization = `Bearer ${this.accessToken}`;
     }
 
     options.transformResponse = [
@@ -206,8 +228,8 @@ export class Gateway {
    * @return Instance of EventEmitter
    */
   protected stream(url: string, params: { [key: string]: string }) {
-    if (this.token) {
-      params.access_token = this.token;
+    if (this.accessToken) {
+      params.access_token = this.accessToken;
     }
 
     return new EventHandler().connect(url, params);
@@ -225,7 +247,7 @@ export class Gateway {
   protected paginate<Data extends Paginatable, Params = any>(
     initialUrl: string,
     initialParams?: Params,
-  ): AsyncIterableIterator<Data | undefined> {
+  ): AsyncIterableIterator<AxiosResponse<Data> | undefined> {
     const get = this.get;
 
     let url: string = initialUrl;
@@ -257,10 +279,10 @@ export class Gateway {
         params = undefined;
 
         // Return `done: true` immediately if no next url returned
-        return { done: !url, value: response.data };
+        return { done: !url, value: response };
       },
 
-      async return(value: Data) {
+      async return(value: AxiosResponse<Data>) {
         return { value, done: true };
       },
 
