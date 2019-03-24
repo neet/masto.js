@@ -78,13 +78,13 @@ export interface ReportAccountParams {
   account_id: string;
 
   /** The IDs of statuses to report as array */
-  status_ids?: string[];
+  status_ids?: string[] | null;
 
   /** Reason for the report (up to 1,000 characters) */
-  comment?: string;
+  comment?: string | null;
 
   /** Whether to forward to the remote admin (in case of a remote account) */
-  forward?: boolean;
+  forward?: boolean | null;
 }
 
 export interface CreateAppParams {
@@ -98,7 +98,7 @@ export interface CreateAppParams {
   scopes: string;
 
   /** URL to the homepage of your app */
-  website?: string;
+  website?: string | null;
 }
 
 export type GrantType = 'authorization_code' | 'password';
@@ -193,7 +193,7 @@ export type UpdatePushSubscriptionParams = Pick<
 
 export interface FollowAccountParams {
   /** Whether the followed account’s reblogs will show up in the home timeline */
-  reblogs?: boolean;
+  reblogs?: boolean | null;
 }
 
 export interface MuteAccountParams {
