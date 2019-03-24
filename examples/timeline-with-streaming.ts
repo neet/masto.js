@@ -7,19 +7,11 @@ import Mastodon from '../src';
     token: 'YOUR TOKEN',
   });
 
-  const stream = client.streamPublicTimeline();
+  const stream = await client.streamPublicTimeline();
 
   stream.on('update', (payload) => {
     // When new toot was posted
-    console.log(`${payload.account.username}: ${payload.content}`);
-  });
-
-  stream.on('connect', () => {
-    console.log('Connected Successfully!');
-  });
-
-  stream.on('connectFailed', (error) => {
-    console.log(error);
+    console.log(`${payload.data.account.username}: ${payload.data.content}`);
   });
 })()
 

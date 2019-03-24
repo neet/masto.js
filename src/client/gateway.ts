@@ -187,19 +187,16 @@ export class Gateway {
   }
 
   /**
-   * Start streaming
-   * @param id ID of the channel, e.g. `public`, `user`, `public/local` etc
+   * Connect to a streaming
+   * @param id ID of the channel, e.g. `public`, `user`, `public:local`
    * @return Instance of EventEmitter
    */
-  protected stream(
-    url: string,
-    params: { [key: string]: string },
-  ): EventHandler {
+  protected stream(url: string, params: { [key: string]: string }) {
     if (this.token) {
       params.access_token = this.token;
     }
 
-    return new EventHandler(url, params);
+    return new EventHandler().connect(url, params);
   }
 
   /**

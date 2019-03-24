@@ -14,7 +14,6 @@ import { Relationship } from '../entities/relationship';
 import { Results } from '../entities/results';
 import { Status } from '../entities/status';
 import { available, requiresAuthentication } from './decorators';
-import { EventHandler } from './event-handler';
 import { Gateway } from './gateway';
 import {
   AddPushSubscriptionParams,
@@ -66,7 +65,8 @@ export class Mastodon extends Gateway {
    * @return Instance of EventEmitter
    * @see https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-user
    */
-  public streamUser(): EventHandler {
+  @available({ since: '0.0.0' })
+  public streamUser() {
     return this.stream(`${this.streamingUrl}/api/v1/streaming`, {
       stream: 'user',
     });
@@ -77,7 +77,8 @@ export class Mastodon extends Gateway {
    * @return Instance of EventEmitter
    * @see https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-public
    */
-  public streamPublicTimeline(): EventHandler {
+  @available({ since: '0.0.0' })
+  public streamPublicTimeline() {
     return this.stream(`${this.streamingUrl}/api/v1/streaming`, {
       stream: 'public',
     });
@@ -88,7 +89,8 @@ export class Mastodon extends Gateway {
    * @return Instance of EventEmitter
    * @see https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-public-local
    */
-  public streamCommunityTimeline(): EventHandler {
+  @available({ since: '0.0.0' })
+  public streamCommunityTimeline() {
     return this.stream(`${this.streamingUrl}/api/v1/streaming`, {
       stream: 'public:local',
     });
@@ -100,7 +102,8 @@ export class Mastodon extends Gateway {
    * @return Instance of EventEmitter
    * @see https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-hashtag-tag-hashtag
    */
-  public streamTagTimeline(id: string): EventHandler {
+  @available({ since: '0.0.0' })
+  public streamTagTimeline(id: string) {
     return this.stream(`${this.streamingUrl}/api/v1/streaming`, {
       stream: 'hashtag',
       tag: id,
@@ -113,7 +116,8 @@ export class Mastodon extends Gateway {
    * @return Instance of EventEmitter
    * @see https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-hashtag-local-tag-hashtag
    */
-  public streamLocalTagTimeline(id: string): EventHandler {
+  @available({ since: '0.0.0' })
+  public streamLocalTagTimeline(id: string) {
     return this.stream(`${this.streamingUrl}/api/v1/streaming`, {
       stream: 'hashtag:local',
       tag: id,
@@ -126,7 +130,8 @@ export class Mastodon extends Gateway {
    * @return Instance of EventEmitter
    * @see https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-list-list-list-id
    */
-  public streamListTimeline(id: string): EventHandler {
+  @available({ since: '0.0.0' })
+  public streamListTimeline(id: string) {
     return this.stream(`${this.streamingUrl}/api/v1/streaming`, {
       stream: 'list',
       list: id,
@@ -138,7 +143,8 @@ export class Mastodon extends Gateway {
    * @return Instance of EventEmitter
    * @see https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-direct
    */
-  public streamDirectTimeline(): EventHandler {
+  @available({ since: '0.0.0' })
+  public streamDirectTimeline() {
     return this.stream(`${this.streamingUrl}/api/v1/streaming`, {
       stream: 'direct',
     });
