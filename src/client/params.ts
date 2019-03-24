@@ -1,6 +1,7 @@
 import { AccountField, AccountSource } from '../entities/account';
 import { FilterContext } from '../entities/filter';
 import { NotificationType } from '../entities/notification';
+import { OAuthClient } from '../entities/oauth';
 import { PushSubscriptionAlerts } from '../entities/push-subscription';
 import { StatusVisibility } from '../entities/status';
 
@@ -100,22 +101,30 @@ export interface CreateAppParams {
   website?: string;
 }
 
-export interface FetchAccessTokenParams {
-  /** Authorization code */
-  code: string;
+export type GrantType = 'authorization_code' | 'password';
 
-  /** `client_id` of your app */
-  client_id: string;
-
-  /** `client_secret` of your app */
-  client_secret: string;
-
-  /** `redirect_uri` which used to the authorization */
-  redirect_uri: string;
-
+export type FetchAccessTokenParams<
+  T extends GrantType | undefined = undefined
+> = {
   /** Grant type */
-  grant_type: 'authorization_code';
-}
+  grant_type: T;
+} & (T extends 'authorization_code'
+  ? OAuthClient & {
+      /** Authorization code */
+      code: string;
+
+      /** Redirect URI which used for the authorization */
+      redirect_uri: string;
+    }
+  : T extends 'password'
+  ? {
+      /** Password */
+      password: string;
+
+      /** Username */
+      username: string;
+    }
+  : never);
 
 export interface ModifyMediaAttachmentParams {
   /** Media to be uploaded (encoded using `multipart/form-data`) */

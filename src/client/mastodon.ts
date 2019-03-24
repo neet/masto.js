@@ -1,5 +1,5 @@
-import { Account, AccountCredentials, AccountToken } from '../entities/account';
-import { Application, OAuth } from '../entities/application';
+import { Account, AccountCredentials } from '../entities/account';
+import { Application } from '../entities/application';
 import { Attachment } from '../entities/attachment';
 import { Card } from '../entities/card';
 import { Context } from '../entities/context';
@@ -9,6 +9,7 @@ import { Filter } from '../entities/filter';
 import { Instance, InstanceActivity } from '../entities/instance';
 import { List } from '../entities/list';
 import { Notification } from '../entities/notification';
+import { OAuthClient, OAuthToken } from '../entities/oauth';
 import { PushSubscription } from '../entities/push-subscription';
 import { Relationship } from '../entities/relationship';
 import { Results } from '../entities/results';
@@ -157,11 +158,20 @@ export class Mastodon extends Gateway {
   /**
    * Fetch access token from authorization code
    * @param params Parameters
-   * @see https://docs.joinmastodon.org/api/permissions/
-   * @see https://docs.joinmastodon.org/api/authentication/
+   * @return OauthToken
+   * @see https://docs.joinmastodon.org/api/authentication/#post-oauth-token
    */
   public async fetchAccessToken(params: FetchAccessTokenParams) {
-    return this.post<AccountToken>(`${this.uri}/oauth/token`, params);
+    return this.post<OAuthToken>(`${this.uri}/oauth/token`, params);
+  }
+
+  /**
+   * Revoke access token parmanently
+   * @param params Client credentials
+   * @see https://docs.joinmastodon.org/api/authentication/#post-oauth-revoke
+   */
+  public async revokeAccessToken(params: OAuthClient) {
+    return this.post<void>(`${this.uri}/oauth/revoke`, params);
   }
 
   /**
@@ -183,7 +193,7 @@ export class Mastodon extends Gateway {
   @requiresAuthentication
   @available({ since: '2.7.0' })
   public async createAccount(params: CreateAccountParams) {
-    return this.post<AccountToken>(`${this.uri}/api/v1/accounts`, params);
+    return this.post<OAuthToken>(`${this.uri}/api/v1/accounts`, params);
   }
 
   /**
@@ -334,7 +344,7 @@ export class Mastodon extends Gateway {
    */
   @available({ since: '0.0.0' })
   public async createApp(params: CreateAppParams) {
-    return this.post<OAuth>(`${this.uri}/api/v1/apps`, params);
+    return this.post<OAuthClient>(`${this.uri}/api/v1/apps`, params);
   }
 
   /**

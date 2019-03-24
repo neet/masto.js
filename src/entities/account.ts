@@ -88,17 +88,3 @@ export interface AccountSource {
   /** Plain-text version of the account's field */
   fields: AccountField;
 }
-
-export interface AccountToken {
-  /** Access token of the account */
-  access_token: string;
-
-  /** Type of the token */
-  token_type: string;
-
-  /** Scope of the token */
-  scope: string;
-
-  /** Created date of the token */
-  created_at: string;
-}

@@ -8,8 +8,3 @@ export interface Application {
   /** VAPID key */
   vapid_key?: string | null;
 }
-
-export interface OAuth extends Application {
-  client_id: string;
-  client_secret: string;
-}
