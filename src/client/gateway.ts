@@ -5,7 +5,7 @@ import { MastodonError } from '../errors/mastodon-error';
 import { MastodonNotFoundError } from '../errors/mastodon-not-found-error';
 import { MastodonRateLimitError } from '../errors/mastodon-rate-limit-error';
 import { MastodonUnauthorizedError } from '../errors/mastodon-unauthorized-error';
-import { EventHandler } from './event-handler';
+import { StreamingHandler } from './streaming-handler';
 
 /** Type to determine whether paginate-able entity */
 export type Paginatable = string[] | { id: string }[];
@@ -85,7 +85,7 @@ export class Gateway {
   }
 
   /**
-   * Fetch API wrapper function
+   * Wrapper function for Axios
    * @param options Axios options
    * @param parse Whether parse response before return
    * @return Parsed response object
@@ -232,7 +232,7 @@ export class Gateway {
       params.access_token = this.accessToken;
     }
 
-    return new EventHandler().connect(url, params);
+    return new StreamingHandler().connect(url, params);
   }
 
   /**

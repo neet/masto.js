@@ -1,6 +1,5 @@
-export * from './client/event-handler';
+export * from './client/streaming-handler';
 export * from './client/gateway';
-export * from './client/link-header';
 export * from './client/params';
 
 export * from './entities/account';
@@ -24,6 +23,5 @@ export * from './errors/mastodon-error';
 export * from './errors/mastodon-not-found-error';
 export * from './errors/mastodon-rate-limit-error';
 export * from './errors/mastodon-unauthorized-error';
-export * from './errors/mastodon-url-resolve-error';
 
 export { Mastodon as default } from './client/mastodon';

@@ -36,14 +36,14 @@ export interface Message<Event extends EventTypes> {
 /**
  * Mastodon streaming api wrapper
  */
-export class EventHandler extends EventEmitter {
+export class StreamingHandler extends EventEmitter {
   /**
    * Connect to the websocket endpoint
    * @param url URL of the websocket endpoint
    * @param params URL parameters
    */
   public connect = async (url: string, params: { [key: string]: string }) =>
-    new Promise<EventHandler>((resolve, reject) => {
+    new Promise<StreamingHandler>((resolve, reject) => {
       new WebSocket.client()
         .on('connectFailed', reject)
         .on('connect', connection => {
