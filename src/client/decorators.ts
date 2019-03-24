@@ -8,6 +8,22 @@ type Decorator = (
   descriptor: TypedPropertyDescriptor<(...args: any[]) => any>,
 ) => void;
 
+interface AvailabeParams {
+  since?: string;
+  until?: string;
+}
+
+export const requiresUser: Decorator = (_1, _2, descriptor) => {
+  const original = descriptor.value;
+  if (!original) return;
+
+  descriptor.value = (...args: any[]) => {
+    // This actually does nothing because we don't
+    // have the method to check if the authenticated user is an actual user
+    return original(...args);
+  };
+};
+
 export const requiresAuthentication: Decorator = (
   mastodon,
   name,
@@ -27,11 +43,6 @@ export const requiresAuthentication: Decorator = (
     return original(...args);
   };
 };
-
-interface AvailabeParams {
-  since?: string;
-  until?: string;
-}
 
 export const available = (parameters: AvailabeParams): Decorator => (
   mastodon,
