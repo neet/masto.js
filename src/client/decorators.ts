@@ -14,6 +14,10 @@ export interface AvailabeParams {
   until?: string;
 }
 
+/**
+ * Decorator that indicates the function requires user
+ * (placeholder for the future implementation)
+ */
 export const requiresUser: Decorator = (_target, _name, descriptor) => {
   const original = descriptor.value;
 
@@ -22,12 +26,13 @@ export const requiresUser: Decorator = (_target, _name, descriptor) => {
   }
 
   descriptor.value = function(this: Mastodon, ...args: any[]) {
-    // This actually does nothing because we don't
-    // have the method to check if the authenticated user is an actual user
     return original.apply(this, args);
   };
 };
 
+/**
+ * Decorator that indicates the function requires authentication
+ */
 export const requiresAuthentication: Decorator = (
   _target,
   name,
@@ -41,13 +46,21 @@ export const requiresAuthentication: Decorator = (
 
   descriptor.value = function(this: Mastodon, ...args: any[]) {
     if (!this.accessToken) {
-      throw new MastodonUnauthorizedError(`${name} requires authentication`);
+      throw new MastodonUnauthorizedError(
+        `Endpoint ${name} requires authentication. ` +
+          'Check Setting > Development of your Mastodon instance ' +
+          'to register application.',
+      );
     }
 
     return original.apply(this, args);
   };
 };
 
+/**
+ * Decorator that verifies the version of the Mastodon instance
+ * @param parameters Optional params
+ */
 export const available = (parameters: AvailabeParams): Decorator => (
   _target,
   name,
@@ -62,7 +75,7 @@ export const available = (parameters: AvailabeParams): Decorator => (
   const { since, until } = parameters;
 
   descriptor.value = function(this: Mastodon, ...args: any[]) {
-    if (since && this.version && lt(since, this.version)) {
+    if (since && this.version && lt(this.version, since)) {
       throw new MastodonNotFoundError(
         `${name} is not available with the current ` +
           `Mastodon version ${this.version}. ` +
@@ -70,7 +83,7 @@ export const available = (parameters: AvailabeParams): Decorator => (
       );
     }
 
-    if (until && this.version && gt(until, this.version)) {
+    if (until && this.version && gt(this.version, until)) {
       throw new MastodonNotFoundError(
         `${name} is not available with the current ` +
           `Mastodon version ${this.version}. ` +
