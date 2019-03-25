@@ -147,7 +147,13 @@ export class Gateway {
         }
 
         options.data = formData;
-        options.headers = { ...options.headers, ...formData.getHeaders() };
+
+        if (typeof formData.getHeaders === 'function') {
+          options.headers = {
+            ...options.headers,
+            ...formData.getHeaders(),
+          };
+        }
 
         return options;
 
