@@ -1,6 +1,5 @@
 // tslint:disable no-unnecessary-override
 import { EventEmitter } from 'eventemitter3';
-import * as querystring from 'querystring';
 import * as WebSocket from 'websocket';
 import { Conversation } from '../entities/conversation';
 import { Notification } from '../entities/notification';

@@ -724,7 +724,7 @@ export class Mastodon extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.1.0' })
-  public fetchListAccounts(id: string, params: PaginationParams) {
+  public fetchListAccounts(id: string, params?: PaginationParams) {
     return this.paginate<Account[]>(
       `${this.uri}/api/v1/list/${id}/accounts`,
       params,

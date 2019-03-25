@@ -169,7 +169,7 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected post<T>(url: string, body: any = {}, options: AxiosRequestConfig) {
+  protected post<T>(url: string, body: any = {}, options?: AxiosRequestConfig) {
     return this.request<T>({
       method: 'POST',
       url,
@@ -185,7 +185,7 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected put<T>(url: string, body: any = {}, options: AxiosRequestConfig) {
+  protected put<T>(url: string, body: any = {}, options?: AxiosRequestConfig) {
     return this.request<T>({
       method: 'PUT',
       url,
@@ -204,7 +204,7 @@ export class Gateway {
   protected delete<T>(
     url: string,
     body: any = {},
-    options: AxiosRequestConfig,
+    options?: AxiosRequestConfig,
   ) {
     return this.request<T>({
       method: 'DELETE',
@@ -221,7 +221,11 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected patch<T>(url: string, body: any = {}, options: AxiosRequestConfig) {
+  protected patch<T>(
+    url: string,
+    body: any = {},
+    options?: AxiosRequestConfig,
+  ) {
     return this.request<T>({
       method: 'PATCH',
       url,
