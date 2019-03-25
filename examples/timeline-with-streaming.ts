@@ -4,7 +4,7 @@ import Mastodon from '../src';
 (async () => {
   const client = await Mastodon.login({
     uri: 'https://mastodon.social',
-    token: 'YOUR TOKEN',
+    accessToken: 'YOUR TOKEN',
   });
 
   const stream = await client.streamPublicTimeline();

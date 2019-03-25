@@ -1,3 +1,4 @@
+// tslint:disable no-function-expression no-invalid-this
 import { gt, lt } from 'semver';
 import { MastodonNotFoundError } from '../errors/mastodon-not-found-error';
 import { MastodonUnauthorizedError } from '../errors/mastodon-unauthorized-error';
@@ -14,61 +15,70 @@ export interface AvailabeParams {
   until?: string;
 }
 
-export const requiresUser: Decorator = (_1, _2, descriptor) => {
+export const requiresUser: Decorator = (_target, _name, descriptor) => {
   const original = descriptor.value;
-  if (!original) return;
 
-  descriptor.value = (...args: any[]) => {
+  if (typeof original !== 'function') {
+    return;
+  }
+
+  descriptor.value = function(this: Mastodon, ...args: any[]) {
     // This actually does nothing because we don't
     // have the method to check if the authenticated user is an actual user
-    return original(...args);
+    return original.apply(this, args);
   };
 };
 
 export const requiresAuthentication: Decorator = (
-  mastodon,
+  _target,
   name,
   descriptor,
 ) => {
   const original = descriptor.value;
-  if (!original) return;
 
-  descriptor.value = (...args: any[]) => {
-    if (!mastodon.accessToken) {
+  if (typeof original !== 'function') {
+    return;
+  }
+
+  descriptor.value = function(this: Mastodon, ...args: any[]) {
+    if (!this.accessToken) {
       throw new MastodonUnauthorizedError(`${name} requires authentication`);
     }
 
-    return original(...args);
+    return original.apply(this, args);
   };
 };
 
 export const available = (parameters: AvailabeParams): Decorator => (
-  mastodon,
+  _target,
   name,
   descriptor,
 ) => {
   const original = descriptor.value;
-  if (!original) return;
+
+  if (typeof original !== 'function') {
+    return;
+  }
 
   const { since, until } = parameters;
 
-  descriptor.value = (...args: any[]) => {
-    if (since && lt(since, mastodon.version)) {
+  descriptor.value = function(this: Mastodon, ...args: any[]) {
+    if (since && this.version && lt(since, this.version)) {
       throw new MastodonNotFoundError(
-        `${name} is not available with the current` +
-          `Mastodon version ${mastodon.version}.` +
-          `It requires greater than or equal to version ${since}`,
+        `${name} is not available with the current ` +
+          `Mastodon version ${this.version}. ` +
+          `It requires greater than or equal to version ${since}.`,
       );
     }
 
-    if (until && gt(until, mastodon.version)) {
+    if (until && this.version && gt(until, this.version)) {
       throw new MastodonNotFoundError(
-        `${name} is not available with the current` +
-          `Mastodon version ${mastodon.version}.` +
-          `It requires lesser than or equal to version ${until}`,
+        `${name} is not available with the current ` +
+          `Mastodon version ${this.version}. ` +
+          `It was removed on version ${until}.`,
       );
     }
 
-    return original(...args);
+    return original.apply(this, args);
   };
 };

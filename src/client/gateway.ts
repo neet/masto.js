@@ -1,7 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import * as LinkHeader from 'http-link-header';
 import * as querystring from 'querystring';
-import { MastodonError } from '../errors/mastodon-error';
 import { MastodonNotFoundError } from '../errors/mastodon-not-found-error';
 import { MastodonRateLimitError } from '../errors/mastodon-rate-limit-error';
 import { MastodonUnauthorizedError } from '../errors/mastodon-unauthorized-error';
@@ -25,7 +24,7 @@ export interface GatewayConstructor {
   uri: string;
   streamingApiUrl?: string;
   version?: string;
-  token?: string;
+  accessToken?: string;
 }
 
 /**
@@ -59,28 +58,28 @@ export class Gateway {
       this._version = params.version;
     }
 
-    if (params.token) {
-      this._accessToken = params.token;
+    if (params.accessToken) {
+      this._accessToken = params.accessToken;
     }
   }
 
   /** Accessor for this._uri */
-  get uri() {
+  public get uri() {
     return this._uri;
   }
 
   /** Accessor for this._version  */
-  get version() {
+  public get version() {
     return this._version;
   }
 
   /** Accessor for this._streamingApiUrl */
-  get streamingApiUrl() {
+  public get streamingApiUrl() {
     return this._streamingApiUrl;
   }
 
   /** Accessor for this._accessToken */
-  get accessToken() {
+  public get accessToken() {
     return this._accessToken;
   }
 
@@ -101,8 +100,8 @@ export class Gateway {
       options.headers['Content-Type'] = 'application/json';
     }
 
-    if (this.accessToken) {
-      options.headers.Authorization = `Bearer ${this.accessToken}`;
+    if (this._accessToken) {
+      options.headers.Authorization = `Bearer ${this._accessToken}`;
     }
 
     options.transformResponse = [
@@ -118,12 +117,16 @@ export class Gateway {
     try {
       return await axios.request<T>(options);
     } catch (error) {
-      const { status } = error && error.response;
+      const status =
+        error && error.response ? error.response.status : undefined;
 
       // Error response from REST API might contain error key
       // https://docs.joinmastodon.org/api/entities/#error
-      const { error: errorMessage } =
-        error && error.response && error.response.data;
+      const errorMessage =
+        error &&
+        error.response &&
+        error.response.data &&
+        error.response.data.error;
 
       switch (status) {
         case 401:
@@ -133,10 +136,7 @@ export class Gateway {
         case 429:
           throw new MastodonRateLimitError(errorMessage);
         default:
-          throw new MastodonError(
-            'MastodonError',
-            errorMessage || 'Unexpected error occurred',
-          );
+          throw error;
       }
     }
   }
@@ -228,8 +228,8 @@ export class Gateway {
    * @return Instance of EventEmitter
    */
   protected stream(url: string, params: { [key: string]: string }) {
-    if (this.accessToken) {
-      params.access_token = this.accessToken;
+    if (this._accessToken) {
+      params.access_token = this._accessToken;
     }
 
     return new StreamingHandler().connect(url, params);
@@ -248,7 +248,7 @@ export class Gateway {
     initialUrl: string,
     initialParams?: Params,
   ): AsyncIterableIterator<AxiosResponse<Data> | undefined> {
-    const get = this.get;
+    const get = this.get.bind(this);
 
     let url: string = initialUrl;
     let params: Params | undefined = initialParams;
@@ -260,22 +260,22 @@ export class Gateway {
           params = initialParams;
         }
 
+        if (!url) {
+          return { done: true, value: undefined };
+        }
+
         const response = await get<Data>(
           (value && value.url) || url,
           (value && value.params) || params,
         );
 
         // Set next url from the link header
-        const link = response.headers.get('Link') || '';
+        const link = (response.headers && response.headers.link) || '';
         const next = LinkHeader.parse(link).refs.find(
           ({ rel }) => rel === 'next',
         );
 
-        if (!next || !next.uri) {
-          return { done: true, value: undefined };
-        }
-
-        url = next.uri;
+        url = (next && next.uri) || '';
         params = undefined;
 
         // Return `done: true` immediately if no next url returned

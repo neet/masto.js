@@ -10,7 +10,7 @@ export interface LoginParams {
   uri: string;
 
   /** Token of your account */
-  token?: string;
+  accessToken?: string;
 }
 
 export interface PaginationParams {

@@ -54,8 +54,7 @@ export class Mastodon extends Gateway {
     const instance = await mastodon.fetchInstance().then(res => res.data);
 
     return new Mastodon({
-      uri: params.uri,
-      token: params.token,
+      ...params,
       streamingApiUrl: instance.urls.streaming_api,
       version: instance.version,
     });
@@ -367,7 +366,7 @@ export class Mastodon extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public async fetchBlocks(params?: PaginationParams) {
+  public fetchBlocks(params?: PaginationParams) {
     return this.paginate<Account[]>(`${this.uri}/api/v1/blocks`, params);
   }
 
@@ -458,7 +457,7 @@ export class Mastodon extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.5.0' })
-  public async fetchEndorsements(params?: PaginationParams) {
+  public fetchEndorsements(params?: PaginationParams) {
     return this.paginate<Account[]>(`${this.uri}/api/v1/endorsements`, params);
   }
 
@@ -497,7 +496,7 @@ export class Mastodon extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public async fetchFavourites(params?: PaginationParams) {
+  public fetchFavourites(params?: PaginationParams) {
     return this.paginate<Status[]>(`${this.uri}/api/v1/favourites`, params);
   }
 
@@ -600,7 +599,7 @@ export class Mastodon extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public async fetchFollowRequests(params?: PaginationParams) {
+  public fetchFollowRequests(params?: PaginationParams) {
     return this.paginate<Account[]>(
       `${this.uri}/api/v1/follow_requests`,
       params,
