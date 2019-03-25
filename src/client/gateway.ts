@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import * as LinkHeader from 'http-link-header';
 import * as querystring from 'querystring';
+import { oc } from 'ts-optchain';
 import { MastodonNotFoundError } from '../errors/mastodon-not-found-error';
 import { MastodonRateLimitError } from '../errors/mastodon-rate-limit-error';
 import { MastodonUnauthorizedError } from '../errors/mastodon-unauthorized-error';
@@ -142,16 +143,13 @@ export class Gateway {
     try {
       return await axios.request<T>(options);
     } catch (error) {
-      const status =
-        error && error.response ? error.response.status : undefined;
+      const status = oc(error.response.status)();
 
       // Error response from REST API might contain error key
       // https://docs.joinmastodon.org/api/entities/#error
-      const errorMessage =
-        error &&
-        error.response &&
-        error.response.data &&
-        error.response.data.error;
+      const errorMessage = oc(error.response.data.error)(
+        'Unexpected error occurred',
+      );
 
       switch (status) {
         case 401:
@@ -295,7 +293,7 @@ export class Gateway {
 
     return {
       async next(value?: PaginateNextOptions<Params>) {
-        if (value && value.reset) {
+        if (oc(value).reset()) {
           url = initialUrl;
           params = initialParams;
         }
@@ -305,17 +303,17 @@ export class Gateway {
         }
 
         const response = await get<Data>(
-          (value && value.url) || url,
-          (value && value.params) || params,
+          oc(value).url(url),
+          oc(value).params() || params,
         );
 
         // Set next url from the link header
-        const link = (response.headers && response.headers.link) || '';
+        const link = oc(response.headers.link)('');
         const next = LinkHeader.parse(link).refs.find(
           ({ rel }) => rel === 'next',
         );
 
-        url = (next && next.uri) || '';
+        url = oc(next).uri('');
         params = undefined;
 
         // Return `done: true` immediately if no next url returned
