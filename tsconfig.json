@@ -6,7 +6,7 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "lib": [
-      "es6",
+      "es2018",
       "dom",
       "esnext.asynciterable"
     ],

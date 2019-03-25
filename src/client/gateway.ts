@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import * as FormData from 'form-data';
 import * as LinkHeader from 'http-link-header';
 import * as querystring from 'querystring';
 import { oc } from 'ts-optchain';
@@ -110,6 +111,52 @@ export class Gateway {
   }
 
   /**
+   * Encode data in request options and add authorization / content-type header
+   * @param data Any data
+   * @param options Axios options
+   */
+  private decorateRequestConfig(
+    data: any,
+    options: AxiosRequestConfig = {},
+  ): AxiosRequestConfig | void {
+    if (!options.headers) {
+      options.headers = {};
+    }
+
+    // Set `application/json` as the default
+    if (!options.headers['Content-Type']) {
+      options.headers['Content-Type'] = 'application/json';
+    }
+
+    // Add oauth header
+    if (this.accessToken) {
+      options.headers.Authorization = `Bearer ${this.accessToken}`;
+    }
+
+    switch (options.headers['Content-Type']) {
+      case 'application/json':
+        options.data = JSON.stringify(data);
+
+        return options;
+
+      case 'multipart/form-data':
+        const formData = new FormData();
+
+        for (const [key, value] of Object.entries(data)) {
+          formData.append(key, value);
+        }
+
+        options.data = formData;
+        options.headers = { ...options.headers, ...formData.getHeaders() };
+
+        return options;
+
+      default:
+        return;
+    }
+  }
+
+  /**
    * Wrapper function for Axios
    * @param options Axios options
    * @param parse Whether parse response before return
@@ -118,18 +165,6 @@ export class Gateway {
   protected async request<T>(
     options: AxiosRequestConfig,
   ): Promise<AxiosResponse<T>> {
-    if (!options.headers) {
-      options.headers = {};
-    }
-
-    if (!options.headers['Content-Type']) {
-      options.headers['Content-Type'] = 'application/json';
-    }
-
-    if (this.accessToken) {
-      options.headers.Authorization = `Bearer ${this.accessToken}`;
-    }
-
     options.transformResponse = [
       (data: any) => {
         try {
@@ -178,82 +213,82 @@ export class Gateway {
   ) {
     return this.request<T>({
       method: 'GET',
-      url:
-        url +
-        (Object.keys(params).length ? `?${querystring.stringify(params)}` : ''),
+      url,
+      params,
       ...options,
+      ...this.decorateRequestConfig({}, options),
     });
   }
 
   /**
    * HTTP POST
    * @param url URL to request
-   * @param body Payload
+   * @param data Payload
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected post<T>(url: string, body: any = {}, options?: AxiosRequestConfig) {
+  protected post<T>(url: string, data: any = {}, options?: AxiosRequestConfig) {
     return this.request<T>({
       method: 'POST',
       url,
-      data: JSON.stringify(body),
       ...options,
+      ...this.decorateRequestConfig(data, options),
     });
   }
 
   /**
    * HTTP PUT
    * @param url URL to request
-   * @param body Payload
+   * @param data Payload
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected put<T>(url: string, body: any = {}, options?: AxiosRequestConfig) {
+  protected put<T>(url: string, data: any = {}, options?: AxiosRequestConfig) {
     return this.request<T>({
       method: 'PUT',
       url,
-      data: JSON.stringify(body),
       ...options,
+      ...this.decorateRequestConfig(data, options),
     });
   }
 
   /**
    * HTTP DELETE
    * @param url URL to request
-   * @param body Payload
+   * @param data jPayload
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
   protected delete<T>(
     url: string,
-    body: any = {},
+    data: any = {},
     options?: AxiosRequestConfig,
   ) {
     return this.request<T>({
       method: 'DELETE',
       url,
-      data: JSON.stringify(body),
       ...options,
+      ...this.decorateRequestConfig(data, options),
     });
   }
 
   /**
    * HTTP PATCH
    * @param url URL to request
-   * @param body Payload
+   * @param data Payload
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
   protected patch<T>(
     url: string,
-    body: any = {},
+    data: any = {},
     options?: AxiosRequestConfig,
   ) {
     return this.request<T>({
       method: 'PATCH',
       url,
-      data: JSON.stringify(body),
       ...options,
+      ...this.decorateRequestConfig(data, options),
     });
   }
 

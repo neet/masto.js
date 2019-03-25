@@ -35,10 +35,10 @@ export interface UpdateCredentialsParams {
   note?: string | null;
 
   /** Avatar encoded using `multipart/form-data` */
-  avatar?: File | null;
+  avatar?: any | null;
 
   /** Header image encoded using `multipart/form-data` */
-  header?: File | null;
+  header?: any | null;
 
   /** Enable follow requests */
   locked?: boolean | null;
@@ -128,7 +128,7 @@ export type FetchAccessTokenParams<
 
 export interface ModifyMediaAttachmentParams {
   /** Media to be uploaded (encoded using `multipart/form-data`) */
-  file: BinaryType;
+  file: any;
 
   /** A plain-text description of the media, for accessibility (max 420 chars) */
   descriptions?: string | null;
