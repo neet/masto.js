@@ -52,12 +52,10 @@ export class Mastodon extends Gateway {
   public static async login(params: LoginParams) {
     const mastodon = new Mastodon(params);
     const instance = await mastodon.fetchInstance().then(res => res.data);
+    mastodon.streamingApiUrl = instance.urls.streaming_api;
+    mastodon.version = instance.version;
 
-    return new Mastodon({
-      ...params,
-      streamingApiUrl: instance.urls.streaming_api,
-      version: instance.version,
-    });
+    return mastodon;
   }
 
   /**

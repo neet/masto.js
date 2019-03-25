@@ -27,6 +27,11 @@ export interface GatewayConstructor {
   accessToken?: string;
 }
 
+const normalizeUrl = (url: string) => {
+  // Remove trailing slash
+  return url.replace(/\/$/, '');
+};
+
 /**
  * Mastodon network request wrapper
  * @param options Optional params
@@ -48,7 +53,7 @@ export class Gateway {
   private _accessToken = '';
 
   protected constructor(params: GatewayConstructor) {
-    this._uri = params.uri;
+    this._uri = normalizeUrl(params.uri);
 
     if (params.streamingApiUrl) {
       this._streamingApiUrl = params.streamingApiUrl;
@@ -63,24 +68,44 @@ export class Gateway {
     }
   }
 
-  /** Accessor for this._uri */
+  /** Getter for this._uri */
   public get uri() {
     return this._uri;
   }
 
-  /** Accessor for this._version  */
+  /** Setter for this._uri */
+  public set uri(newUri: string) {
+    this._uri = normalizeUrl(newUri);
+  }
+
+  /** Getter for this._version  */
   public get version() {
     return this._version;
   }
 
-  /** Accessor for this._streamingApiUrl */
+  /** Setter for this._version */
+  public set version(newVersion: string) {
+    this._version = newVersion;
+  }
+
+  /** Getter for this._streamingApiUrl */
   public get streamingApiUrl() {
     return this._streamingApiUrl;
   }
 
-  /** Accessor for this._accessToken */
+  /** Setter for this._streamingApiUrl */
+  public set streamingApiUrl(newStreamingApiUrl: string) {
+    this._streamingApiUrl = normalizeUrl(newStreamingApiUrl);
+  }
+
+  /** Getter for this._accessToken */
   public get accessToken() {
     return this._accessToken;
+  }
+
+  /** Setter for this._accessToken */
+  public set accessToken(newAccessToken: string) {
+    this._accessToken = newAccessToken;
   }
 
   /**
