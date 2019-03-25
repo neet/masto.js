@@ -100,8 +100,8 @@ export class Gateway {
       options.headers['Content-Type'] = 'application/json';
     }
 
-    if (this._accessToken) {
-      options.headers.Authorization = `Bearer ${this._accessToken}`;
+    if (this.accessToken) {
+      options.headers.Authorization = `Bearer ${this.accessToken}`;
     }
 
     options.transformResponse = [
@@ -148,7 +148,11 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected get<T>(url: string, params = {}, options = {}) {
+  protected get<T>(
+    url: string,
+    params: { [key: string]: any } = {},
+    options?: AxiosRequestConfig,
+  ) {
     return this.request<T>({
       method: 'GET',
       url:
@@ -165,7 +169,7 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected post<T>(url: string, body = {}, options = {}) {
+  protected post<T>(url: string, body: any = {}, options: AxiosRequestConfig) {
     return this.request<T>({
       method: 'POST',
       url,
@@ -181,7 +185,7 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected put<T>(url: string, body = {}, options = {}) {
+  protected put<T>(url: string, body: any = {}, options: AxiosRequestConfig) {
     return this.request<T>({
       method: 'PUT',
       url,
@@ -197,7 +201,11 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected delete<T>(url: string, body = {}, options = {}) {
+  protected delete<T>(
+    url: string,
+    body: any = {},
+    options: AxiosRequestConfig,
+  ) {
     return this.request<T>({
       method: 'DELETE',
       url,
@@ -213,7 +221,7 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected patch<T>(url: string, body = {}, options = {}) {
+  protected patch<T>(url: string, body: any = {}, options: AxiosRequestConfig) {
     return this.request<T>({
       method: 'PATCH',
       url,
@@ -227,12 +235,16 @@ export class Gateway {
    * @param id ID of the channel, e.g. `public`, `user`, `public:local`
    * @return Instance of EventEmitter
    */
-  protected stream(url: string, params: { [key: string]: string }) {
-    if (this._accessToken) {
-      params.access_token = this._accessToken;
+  protected stream(url: string, params: { [key: string]: any } = {}) {
+    if (this.accessToken) {
+      params.access_token = this.accessToken;
     }
 
-    return new StreamingHandler().connect(url, params);
+    return new StreamingHandler().connect(
+      url + Object.keys(params).length
+        ? `${querystring.stringify(params)}`
+        : '',
+    );
   }
 
   /**

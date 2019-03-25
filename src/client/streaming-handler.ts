@@ -42,7 +42,7 @@ export class StreamingHandler extends EventEmitter {
    * @param url URL of the websocket endpoint
    * @param params URL parameters
    */
-  public connect = async (url: string, params: { [key: string]: string }) =>
+  public connect = async (url: string) =>
     new Promise<StreamingHandler>((resolve, reject) => {
       new WebSocket.client()
         .on('connectFailed', reject)
@@ -50,7 +50,7 @@ export class StreamingHandler extends EventEmitter {
           connection.on('message', this.handleMessage);
           resolve(this);
         })
-        .connect(`${url}?${querystring.stringify(params)}`);
+        .connect(url);
     });
 
   /**

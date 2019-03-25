@@ -1,4 +1,3 @@
-// tslint:disable no-function-expression no-invalid-this
 import { gt, lt } from 'semver';
 import { MastodonNotFoundError } from '../errors/mastodon-not-found-error';
 import { MastodonUnauthorizedError } from '../errors/mastodon-unauthorized-error';
