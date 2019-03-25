@@ -270,9 +270,8 @@ export class Gateway {
     }
 
     return new StreamingHandler().connect(
-      url + Object.keys(params).length
-        ? `${querystring.stringify(params)}`
-        : '',
+      url +
+        (Object.keys(params).length ? `?${querystring.stringify(params)}` : ''),
     );
   }
 

@@ -61,20 +61,18 @@ export class StreamingHandler extends EventEmitter {
       return;
     }
 
-    const parsedData = JSON.parse(message.utf8Data);
-    const event = parsedData.event;
-    let parsedPayload = '';
+    const parsedMessage = JSON.parse(message.utf8Data);
 
     try {
-      parsedPayload = JSON.parse(parsedData.payload);
+      parsedMessage.data = JSON.parse(parsedMessage.payload);
     } catch {
       // If parsing failed, returns raw data
       // Basically this is handling for `filters_changed` event
       // Which doesn't contain payload in the data
-      parsedPayload = parsedData.payload;
+      parsedMessage.data = parsedMessage.payload;
     }
 
-    this.emit(event, parsedPayload);
+    this.emit(parsedMessage.event, parsedMessage);
   };
 
   /**
