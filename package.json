@@ -6,6 +6,7 @@
   "author": "neetshin",
   "license": "AGPL-3.0",
   "main": "dist/index.js",
+  "browser": "dist/browser.js",
   "typings": "dist/index.d.ts",
   "scripts": {
     "test": "npm-run-all test:*",
@@ -14,34 +15,6 @@
     "build": "rollup -c rollup.config.js",
     "prepare": "yarn run test && yarn run build",
     "docs:build": "typedoc ./src"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "linters": {
-      "*.{ts,tsx}": [
-        "tslint --fix",
-        "prettier --write",
-        "git add"
-      ]
-    }
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/neet/masto.git"
-  },
-  "keywords": [
-    "mastodon"
-  ],
-  "bugs": {
-    "url": "https://github.com/neet/masto/issues"
-  },
-  "homepage": "https://github.com/neet/masto#readme",
-  "publishConfig": {
-    "access": "public"
   },
   "dependencies": {
     "@types/ws": "^6.0.1",
@@ -82,5 +55,33 @@
     "typedoc-plugin-markdown": "^1.1.27",
     "typescript": "^3.3.4000",
     "typescript-tslint-plugin": "^0.3.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neet/masto.git"
+  },
+  "keywords": [
+    "mastodon"
+  ],
+  "bugs": {
+    "url": "https://github.com/neet/masto/issues"
+  },
+  "homepage": "https://github.com/neet/masto#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "*.{ts,tsx}": [
+        "tslint --fix",
+        "prettier --write",
+        "git add"
+      ]
+    }
   }
 }
