@@ -30,5 +30,5 @@ export * from './errors/mastodon-not-found-error';
 export * from './errors/mastodon-rate-limit-error';
 export * from './errors/mastodon-unauthorized-error';
 
-export * from './client/mastodon';
-export { Mastodon as default } from './client/mastodon';
+export * from './client/masto';
+export { Masto as default } from './client/masto';

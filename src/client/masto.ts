@@ -47,14 +47,14 @@ import {
 /**
  * Mastodon API client
  */
-export class Mastodon extends Gateway {
+export class Masto extends Gateway {
   /**
    * Login to Mastodon
    * @param params Paramters
    * @return Instance of Mastodon class
    */
   public static async login(params: LoginParams) {
-    const mastodon = new Mastodon(params);
+    const mastodon = new Masto(params);
     const instance = await mastodon.fetchInstance().then(res => res.data);
     mastodon.streamingApiUrl = instance.urls.streaming_api;
     mastodon.version = instance.version;

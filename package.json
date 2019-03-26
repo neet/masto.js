@@ -1,5 +1,5 @@
 {
-  "name": "@lagunehq/core",
+  "name": "masto",
   "description": "Mastodon API client for browser and Node.js",
   "private": false,
   "version": "1.5.0",
@@ -31,15 +31,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lagunehq/core.git"
+    "url": "git+https://github.com/neet/masto.git"
   },
   "keywords": [
     "mastodon"
   ],
   "bugs": {
-    "url": "https://github.com/lagunehq/core/issues"
+    "url": "https://github.com/neet/masto/issues"
   },
-  "homepage": "https://github.com/lagunehq/core#readme",
+  "homepage": "https://github.com/neet/masto#readme",
   "publishConfig": {
     "access": "public"
   },
