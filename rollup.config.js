@@ -16,14 +16,12 @@ export default [
     },
     plugins: [
       resolve({
-        browser: false,
         preferBuiltins: true,
       }),
-      // builtins(),
       commonjs(),
       json(),
       typescript(),
-      // terser(),
+      terser(),
     ],
   },
   // Browser
@@ -43,7 +41,7 @@ export default [
       commonjs(),
       json(),
       typescript(),
-      // terser(),
+      terser(),
     ],
   },
 ];
