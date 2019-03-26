@@ -10,9 +10,10 @@ export default [
   {
     input: './src/index.ts',
     output: {
-      file: './dist/index.js',
-      format: 'cjs',
       name: '@laugnehq/core',
+      file: './dist/index.js',
+      format: 'umd',
+      exports: 'named',
     },
     plugins: [
       resolve({
@@ -28,9 +29,10 @@ export default [
   {
     input: './src/index.ts',
     output: {
+      name: '@lagunehq/core',
       file: './dist/browser.js',
-      format: 'iife',
-      name: 'laugnehq-core.js',
+      format: 'umd',
+      exports: 'named',
     },
     plugins: [
       resolve({
