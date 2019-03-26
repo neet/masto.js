@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import Masto from '../src';
 
 // For more information:
-// https://github.com/neet/masto.js/blob/master/docs/classes/_client_mastodon_.mastodon.md#updatecredentials
+// https://github.com/neet/masto.js/blob/master/docs/classes/_client_masto_.masto.md#updatecredentials
 (async () => {
   const masto = await Masto.login({
     uri: 'https://example.com',

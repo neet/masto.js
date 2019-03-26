@@ -2,7 +2,7 @@
 import Mastodon from '../src';
 
 // For more inromation:
-// https://github.com/neet/masto.js/blob/master/docs/classes/_client_mastodon_.mastodon.md#streampublictimeline
+// https://github.com/neet/masto.js/blob/master/docs/classes/_client_masto_.masto.md#streampublictimeline
 (async () => {
   const client = await Mastodon.login({
     uri: 'https://example.com',
