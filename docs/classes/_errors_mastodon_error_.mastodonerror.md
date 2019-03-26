@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["errors/mastodon-error"](../modules/_errors_mastodon_error_.md) > [MastodonError](../classes/_errors_mastodon_error_.mastodonerror.md)
+[masto](../README.md) > ["errors/mastodon-error"](../modules/_errors_mastodon_error_.md) > [MastodonError](../classes/_errors_mastodon_error_.mastodonerror.md)
 
 # Class: MastodonError
 
@@ -43,7 +43,7 @@ Mastodon generic error
 
 ⊕ **new MastodonError**(name: *`string`*, message: *`string`*): [MastodonError](_errors_mastodon_error_.mastodonerror.md)
 
-*Defined in [errors/mastodon-error.ts:6](https://github.com/lagunehq/core/blob/9f0a933/src/errors/mastodon-error.ts#L6)*
+*Defined in [errors/mastodon-error.ts:6](https://github.com/lagunehq/core/blob/84abcd4/src/errors/mastodon-error.ts#L6)*
 
 **Parameters:**
 
@@ -66,7 +66,7 @@ ___
 
 *Overrides Error.message*
 
-*Defined in [errors/mastodon-error.ts:7](https://github.com/lagunehq/core/blob/9f0a933/src/errors/mastodon-error.ts#L7)*
+*Defined in [errors/mastodon-error.ts:7](https://github.com/lagunehq/core/blob/84abcd4/src/errors/mastodon-error.ts#L7)*
 
 ___
 <a id="name"></a>
@@ -77,7 +77,7 @@ ___
 
 *Overrides Error.name*
 
-*Defined in [errors/mastodon-error.ts:7](https://github.com/lagunehq/core/blob/9f0a933/src/errors/mastodon-error.ts#L7)*
+*Defined in [errors/mastodon-error.ts:7](https://github.com/lagunehq/core/blob/84abcd4/src/errors/mastodon-error.ts#L7)*
 
 ___
 <a id="stack"></a>

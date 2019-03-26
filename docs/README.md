@@ -1,10 +1,46 @@
 
-@lagunehq/core
-==============
+![](https://i.imgur.com/z47VXyd.png)
+====================================
 
-[![npm](https://img.shields.io/npm/v/@lagunehq/core.svg)](https://www.npmjs.com/package/@lagunehq/core)
+Mastodon API client for TypeScript/JavaScript/Node.js/Browser
 
-Most powerful Mastodon API client for TypeScript/JavaScript/Node.js/Browser
+[![npm](https://img.shields.io/npm/v/masto.svg)](https://www.npmjs.com/package/masto) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
+
+Installation
+------------
+
+```
+npm i masto --save
+```
+
+[![Become a patron](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://www.patreon.com/neetshin)
+
+Basic Usage
+-----------
+
+Here's a simple example which creates a new status:
+
+```ts
+import Masto from 'masto';
+
+(async () => {
+  const client = new Masto.login({
+    uri:   'https://example.com', // your instance
+    token: 'my token', // Optional
+  });
+
+  await client.createStatus({
+    status: 'Toot from TypeScript',
+  }).then((newStatus) => {
+    console.log(newStatus.data);
+  });
+})()
+```
+
+All of available methods/interfaces are described in the [documentation](https://github.com/neet/masto.js/blob/master/docs/classes/_client_mastodon_.mastodon.md) or you can also refer the [exmaples](https://github.com/neet/masto.js/tree/master/examples) on this repository.
+
+FAQ
+---
 
 ### What is the deference between other Mastodon packages?
 
@@ -12,43 +48,11 @@ Most powerful Mastodon API client for TypeScript/JavaScript/Node.js/Browser
 *    Each API has each function, you don't need to type annoying API URLs
 *    Static typing with TypeScript
 *    Georgeous hovering menu provided by TSDoc
-*    Iterable timeline
+*    Timeline implemented with Async Iterable
 
-Installation
-------------
+### I got an error `Symbol.asyncIterator is not defined`
 
-```
-npm i @lagunehq/core --save
-```
-
-[![Become a patron](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://www.patreon.com/neetshin)
-
-Using the API
--------------
-
-Here's a simple example which creates a new status:
-
-```ts
-import Mastodon from '@lagunehq/core';
-
-const client = new Mastodon({
-  url:          'https://mastodon.social',
-  streamingUrl: 'wss://mastodon.social',
-  token:        'my token', // Optional
-});
-
-client.createStatus('Toot from TypeScript').then((newStatus) => {
-  console.log(newStatus);
-});
-```
-
-All of available methods/interfaces are described in the [documentation](https://lagunehq.gitbook.io/core/_client_mastodon_/_client_mastodon_.mastodon)
-
-Maintainers
------------
-
-[![](https://github.com/neet.png?size=120)  
-Neetshin](https://github.com/neet)
+Masto.js using [AsyncIterator](https://github.com/tc39/proposal-async-iteration) which is very new JS feature and it is not supported in some environments. Therefore, you can use polyfill like [Babel's](https://babeljs.io/docs/en/babel-plugin-proposal-async-generator-functions). In Node.js, it is supported on [v10](https://medium.com/@nairihar/async-iteration-in-nodejs-v10-3c17dc00ed9f) so you can update to use it.
 
 License
 -------
@@ -61,7 +65,7 @@ AGPLv3
 
 * ["client/decorators"](modules/_client_decorators_.md)
 * ["client/gateway"](modules/_client_gateway_.md)
-* ["client/mastodon"](modules/_client_mastodon_.md)
+* ["client/masto"](modules/_client_masto_.md)
 * ["client/params"](modules/_client_params_.md)
 * ["client/streaming-handler"](modules/_client_streaming_handler_.md)
 * ["client/utils"](modules/_client_utils_.md)

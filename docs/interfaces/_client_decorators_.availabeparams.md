@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["client/decorators"](../modules/_client_decorators_.md) > [AvailabeParams](../interfaces/_client_decorators_.availabeparams.md)
+[masto](../README.md) > ["client/decorators"](../modules/_client_decorators_.md) > [AvailabeParams](../interfaces/_client_decorators_.availabeparams.md)
 
 # Interface: AvailabeParams
 
@@ -23,7 +23,7 @@
 
 **● since**: *`undefined` \| `string`*
 
-*Defined in [client/decorators.ts:13](https://github.com/lagunehq/core/blob/9f0a933/src/client/decorators.ts#L13)*
+*Defined in [client/decorators.ts:13](https://github.com/lagunehq/core/blob/84abcd4/src/client/decorators.ts#L13)*
 
 ___
 <a id="until"></a>
@@ -32,7 +32,7 @@ ___
 
 **● until**: *`undefined` \| `string`*
 
-*Defined in [client/decorators.ts:14](https://github.com/lagunehq/core/blob/9f0a933/src/client/decorators.ts#L14)*
+*Defined in [client/decorators.ts:14](https://github.com/lagunehq/core/blob/84abcd4/src/client/decorators.ts#L14)*
 
 ___
 

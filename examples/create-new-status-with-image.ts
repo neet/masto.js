@@ -1,4 +1,5 @@
 // tslint:disable no-console
+import * as fs from 'fs';
 import Masto from '../src';
 
 // For more inromation:
@@ -9,9 +10,17 @@ import Masto from '../src';
     accessToken: 'YOUR TOKEN',
   });
 
+  // Upload the image
+  const attachment = await masto.uploadMediaAttachment({
+    file: fs.createReadStream('../some_image.png'),
+    descriptions: 'Some image',
+  });
+
+  // Toot!
   masto.createStatus({
     status: 'Toot from TypeScript',
     visibility: 'direct',
+    media_ids: [attachment.data.id],
   }).then((newStatus) => {
     console.log(newStatus.data);
   });

@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["client/params"](../modules/_client_params_.md) > [CreateStatusPollParam](../interfaces/_client_params_.createstatuspollparam.md)
+[masto](../README.md) > ["client/params"](../modules/_client_params_.md) > [CreateStatusPollParam](../interfaces/_client_params_.createstatuspollparam.md)
 
 # Interface: CreateStatusPollParam
 
@@ -25,7 +25,7 @@
 
 **● expires_in**: *`number`*
 
-*Defined in [client/params.ts:197](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L197)*
+*Defined in [client/params.ts:197](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L197)*
 
 Duration the poll should be open for in seconds
 
@@ -36,7 +36,7 @@ ___
 
 **● hide_totals**: *`boolean` \| `null`*
 
-*Defined in [client/params.ts:201](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L201)*
+*Defined in [client/params.ts:201](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L201)*
 
 Whether to hide totals until the poll ends
 
@@ -47,7 +47,7 @@ ___
 
 **● multiple**: *`boolean` \| `null`*
 
-*Defined in [client/params.ts:199](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L199)*
+*Defined in [client/params.ts:199](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L199)*
 
 Whether multiple choices should be allowed
 
@@ -58,7 +58,7 @@ ___
 
 **● options**: *`string`[]*
 
-*Defined in [client/params.ts:195](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L195)*
+*Defined in [client/params.ts:195](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L195)*
 
 Array of poll answer strings
 

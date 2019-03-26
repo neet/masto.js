@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["errors/mastodon-rate-limit-error"](../modules/_errors_mastodon_rate_limit_error_.md) > [MastodonRateLimitError](../classes/_errors_mastodon_rate_limit_error_.mastodonratelimiterror.md)
+[masto](../README.md) > ["errors/mastodon-rate-limit-error"](../modules/_errors_mastodon_rate_limit_error_.md) > [MastodonRateLimitError](../classes/_errors_mastodon_rate_limit_error_.mastodonratelimiterror.md)
 
 # Class: MastodonRateLimitError
 
@@ -36,7 +36,7 @@ Mastodon rate limit error class
 
 *Overrides [MastodonError](_errors_mastodon_error_.mastodonerror.md).[constructor](_errors_mastodon_error_.mastodonerror.md#constructor)*
 
-*Defined in [errors/mastodon-rate-limit-error.ts:7](https://github.com/lagunehq/core/blob/9f0a933/src/errors/mastodon-rate-limit-error.ts#L7)*
+*Defined in [errors/mastodon-rate-limit-error.ts:7](https://github.com/lagunehq/core/blob/84abcd4/src/errors/mastodon-rate-limit-error.ts#L7)*
 
 **Parameters:**
 
@@ -60,7 +60,7 @@ ___
 
 *Overrides Error.message*
 
-*Defined in [errors/mastodon-error.ts:7](https://github.com/lagunehq/core/blob/9f0a933/src/errors/mastodon-error.ts#L7)*
+*Defined in [errors/mastodon-error.ts:7](https://github.com/lagunehq/core/blob/84abcd4/src/errors/mastodon-error.ts#L7)*
 
 ___
 <a id="name"></a>
@@ -73,7 +73,7 @@ ___
 
 *Overrides Error.name*
 
-*Defined in [errors/mastodon-error.ts:7](https://github.com/lagunehq/core/blob/9f0a933/src/errors/mastodon-error.ts#L7)*
+*Defined in [errors/mastodon-error.ts:7](https://github.com/lagunehq/core/blob/84abcd4/src/errors/mastodon-error.ts#L7)*
 
 ___
 <a id="stack"></a>

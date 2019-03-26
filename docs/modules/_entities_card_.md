@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["entities/card"](../modules/_entities_card_.md)
+[masto](../README.md) > ["entities/card"](../modules/_entities_card_.md)
 
 # External module: "entities/card"
 
@@ -22,7 +22,7 @@
 
 **Ƭ CardType**: *"link" \| "photo" \| "video" \| "rich"*
 
-*Defined in [entities/card.ts:1](https://github.com/lagunehq/core/blob/9f0a933/src/entities/card.ts#L1)*
+*Defined in [entities/card.ts:1](https://github.com/lagunehq/core/blob/84abcd4/src/entities/card.ts#L1)*
 
 ___
 

@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["client/streaming-handler"](../modules/_client_streaming_handler_.md) > [EventTypesMap](../interfaces/_client_streaming_handler_.eventtypesmap.md)
+[masto](../README.md) > ["client/streaming-handler"](../modules/_client_streaming_handler_.md) > [EventTypesMap](../interfaces/_client_streaming_handler_.eventtypesmap.md)
 
 # Interface: EventTypesMap
 
@@ -26,7 +26,7 @@
 
 **● conversation**: *[Conversation](_entities_conversation_.conversation.md)*
 
-*Defined in [client/streaming-handler.ts:25](https://github.com/lagunehq/core/blob/9f0a933/src/client/streaming-handler.ts#L25)*
+*Defined in [client/streaming-handler.ts:25](https://github.com/lagunehq/core/blob/84abcd4/src/client/streaming-handler.ts#L25)*
 
 Status added to a conversation
 
@@ -37,7 +37,7 @@ ___
 
 **● delete**: *`string`*
 
-*Defined in [client/streaming-handler.ts:19](https://github.com/lagunehq/core/blob/9f0a933/src/client/streaming-handler.ts#L19)*
+*Defined in [client/streaming-handler.ts:19](https://github.com/lagunehq/core/blob/84abcd4/src/client/streaming-handler.ts#L19)*
 
 Status deleted
 
@@ -48,7 +48,7 @@ ___
 
 **● filters_changed**: *`undefined`*
 
-*Defined in [client/streaming-handler.ts:23](https://github.com/lagunehq/core/blob/9f0a933/src/client/streaming-handler.ts#L23)*
+*Defined in [client/streaming-handler.ts:23](https://github.com/lagunehq/core/blob/84abcd4/src/client/streaming-handler.ts#L23)*
 
 User's filter changed
 
@@ -59,7 +59,7 @@ ___
 
 **● notification**: *[Notification](_entities_notification_.notification.md)*
 
-*Defined in [client/streaming-handler.ts:21](https://github.com/lagunehq/core/blob/9f0a933/src/client/streaming-handler.ts#L21)*
+*Defined in [client/streaming-handler.ts:21](https://github.com/lagunehq/core/blob/84abcd4/src/client/streaming-handler.ts#L21)*
 
 User's notification
 
@@ -70,7 +70,7 @@ ___
 
 **● update**: *[Status](_entities_status_.status.md)*
 
-*Defined in [client/streaming-handler.ts:17](https://github.com/lagunehq/core/blob/9f0a933/src/client/streaming-handler.ts#L17)*
+*Defined in [client/streaming-handler.ts:17](https://github.com/lagunehq/core/blob/84abcd4/src/client/streaming-handler.ts#L17)*
 
 Status posted
 

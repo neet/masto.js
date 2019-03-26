@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["entities/poll"](../modules/_entities_poll_.md)
+[masto](../README.md) > ["entities/poll"](../modules/_entities_poll_.md)
 
 # External module: "entities/poll"
 

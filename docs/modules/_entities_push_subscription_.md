@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["entities/push-subscription"](../modules/_entities_push_subscription_.md)
+[masto](../README.md) > ["entities/push-subscription"](../modules/_entities_push_subscription_.md)
 
 # External module: "entities/push-subscription"
 

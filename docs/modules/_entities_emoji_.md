@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["entities/emoji"](../modules/_entities_emoji_.md)
+[masto](../README.md) > ["entities/emoji"](../modules/_entities_emoji_.md)
 
 # External module: "entities/emoji"
 

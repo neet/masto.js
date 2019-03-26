@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["entities/application"](../modules/_entities_application_.md)
+[masto](../README.md) > ["entities/application"](../modules/_entities_application_.md)
 
 # External module: "entities/application"
 

@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["entities/attachment"](../modules/_entities_attachment_.md) > [AttachmentMetaFocus](../interfaces/_entities_attachment_.attachmentmetafocus.md)
+[masto](../README.md) > ["entities/attachment"](../modules/_entities_attachment_.md) > [AttachmentMetaFocus](../interfaces/_entities_attachment_.attachmentmetafocus.md)
 
 # Interface: AttachmentMetaFocus
 
@@ -23,7 +23,7 @@
 
 **● x**: *`number`*
 
-*Defined in [entities/attachment.ts:45](https://github.com/lagunehq/core/blob/9f0a933/src/entities/attachment.ts#L45)*
+*Defined in [entities/attachment.ts:45](https://github.com/lagunehq/core/blob/84abcd4/src/entities/attachment.ts#L45)*
 
 ___
 <a id="y"></a>
@@ -32,7 +32,7 @@ ___
 
 **● y**: *`number`*
 
-*Defined in [entities/attachment.ts:46](https://github.com/lagunehq/core/blob/9f0a933/src/entities/attachment.ts#L46)*
+*Defined in [entities/attachment.ts:46](https://github.com/lagunehq/core/blob/84abcd4/src/entities/attachment.ts#L46)*
 
 ___
 

@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["client/streaming-handler"](../modules/_client_streaming_handler_.md)
+[masto](../README.md) > ["client/streaming-handler"](../modules/_client_streaming_handler_.md)
 
 # External module: "client/streaming-handler"
 
@@ -28,7 +28,7 @@
 
 **Ƭ EventTypes**: *`keyof EventTypesMap`*
 
-*Defined in [client/streaming-handler.ts:28](https://github.com/lagunehq/core/blob/9f0a933/src/client/streaming-handler.ts#L28)*
+*Defined in [client/streaming-handler.ts:28](https://github.com/lagunehq/core/blob/84abcd4/src/client/streaming-handler.ts#L28)*
 
 ___
 
