@@ -1,0 +1,7 @@
+---
+version: '2'
+checks:
+  similar-code:
+    enabled: false
+exclude_patterns:
+  - '**/__tests__/'
