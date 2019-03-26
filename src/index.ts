@@ -17,10 +17,12 @@ export * from './entities/list';
 export * from './entities/mention';
 export * from './entities/notification';
 export * from './entities/oauth';
+export * from './entities/poll';
 export * from './entities/push-subscription';
 export * from './entities/relationship';
 export * from './entities/results';
 export * from './entities/status';
+export * from './entities/scheduled-status';
 export * from './entities/tag';
 
 export * from './errors/mastodon-error';
