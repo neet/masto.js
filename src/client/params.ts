@@ -202,7 +202,7 @@ export interface CreateStatusPollParam {
 }
 
 export type CreateStatusParams<
-  MediaIds extends string[] | null | undefined = undefined,
+  MediaIds extends string[] | null | undefined = string[],
   Poll extends CreateStatusPollParam = CreateStatusPollParam
 > = {
   /** Text of the status */

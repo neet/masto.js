@@ -11,7 +11,7 @@ export default [
   {
     input: './src/index.ts',
     output: {
-      name: '@laugnehq/core',
+      name: 'masto',
       file: './dist/index.js',
       format: 'cjs',
       exports: 'named',
@@ -32,7 +32,7 @@ export default [
   {
     input: './src/index.ts',
     output: {
-      name: '@lagunehq/core',
+      name: 'masto',
       file: './dist/browser.js',
       format: 'umd',
       exports: 'named',

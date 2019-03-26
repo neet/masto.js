@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["client/streaming-handler"](../modules/_client_streaming_handler_.md) > [StreamingHandler](../classes/_client_streaming_handler_.streaminghandler.md) > [EventEmitterStatic](../interfaces/_client_streaming_handler_.streaminghandler.eventemitterstatic.md)
+[masto](../README.md) > ["client/streaming-handler"](../modules/_client_streaming_handler_.md) > [StreamingHandler](../classes/_client_streaming_handler_.streaminghandler.md) > [EventEmitterStatic](../interfaces/_client_streaming_handler_.streaminghandler.eventemitterstatic.md)
 
 # Interface: EventEmitterStatic
 

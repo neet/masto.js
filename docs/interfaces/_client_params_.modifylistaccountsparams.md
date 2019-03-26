@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["client/params"](../modules/_client_params_.md) > [ModifyListAccountsParams](../interfaces/_client_params_.modifylistaccountsparams.md)
+[masto](../README.md) > ["client/params"](../modules/_client_params_.md) > [ModifyListAccountsParams](../interfaces/_client_params_.modifylistaccountsparams.md)
 
 # Interface: ModifyListAccountsParams
 
@@ -22,7 +22,7 @@
 
 **● account_ids**: *`string`[]*
 
-*Defined in [client/params.ts:139](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L139)*
+*Defined in [client/params.ts:139](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L139)*
 
 Array of account IDs
 

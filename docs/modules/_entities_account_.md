@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["entities/account"](../modules/_entities_account_.md)
+[masto](../README.md) > ["entities/account"](../modules/_entities_account_.md)
 
 # External module: "entities/account"
 

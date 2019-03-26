@@ -1,55 +1,53 @@
-# @lagunehq/core
-[![npm](https://img.shields.io/npm/v/@lagunehq/core.svg)](https://www.npmjs.com/package/@lagunehq/core)
+<h1 align="center">
+  <img src="https://i.imgur.com/z47VXyd.png" width="300px">
+</h1>
 
-Most powerful Mastodon API client for TypeScript/JavaScript/Node.js/Browser
+<p align="center">Mastodon API client for TypeScript/JavaScript/Node.js/Browser</p>
 
+<p align="center">
+  <a href="https://www.npmjs.com/package/masto"><img src="https://img.shields.io/npm/v/masto.svg" alt="npm"/></a>
+  <a href="https://www.gnu.org/licenses/agpl-3.0"><img src="https://img.shields.io/badge/License-AGPL%20v3-blue.svg" alt="License: AGPL v3" /></a>
+</p>
+
+## Installation
+```
+npm i masto --save
+```
+
+<a href='https://www.patreon.com/neetshin'><img src='https://c5.patreon.com/external/logo/become_a_patron_button.png' alt='Become a patron' width='140px' /></a>
+
+
+## Basic Usage
+Here's a simple example which creates a new status:
+```ts
+import Masto from 'masto';
+
+(async () => {
+  const client = new Masto.login({
+    uri:   'https://example.com', // your instance
+    token: 'my token', // Optional
+  });
+
+  await client.createStatus({
+    status: 'Toot from TypeScript',
+  }).then((newStatus) => {
+    console.log(newStatus.data);
+  });
+})()
+```
+
+All of available methods/interfaces are described in the [documentation](https://github.com/neet/masto.js/blob/master/docs/classes/_client_mastodon_.mastodon.md) or you can also refer the [exmaples](https://github.com/neet/masto.js/tree/master/examples) on this repository.
+
+## FAQ
 ### What is the deference between other Mastodon packages?
 - [x] Compatible with both of browser and Node.js
 - [x] Each API has each function, you don't need to type annoying API URLs
 - [x] Static typing with TypeScript
 - [x] Georgeous hovering menu provided by TSDoc
-- [x] Iterable timeline
+- [x] Timeline implemented with Async Iterable
 
-## Installation
-```
-npm i @lagunehq/core --save
-```
-
-<a href='https://www.patreon.com/neetshin'><img src='https://c5.patreon.com/external/logo/become_a_patron_button.png' alt='Become a patron' width='140px' /></a>
-
-## Using the API
-Here's a simple example which creates a new status:
-```ts
-import Mastodon from '@lagunehq/core';
-
-const client = new Mastodon({
-  url:          'https://mastodon.social',
-  streamingUrl: 'wss://mastodon.social',
-  token:        'my token', // Optional
-});
-
-client.createStatus('Toot from TypeScript').then((newStatus) => {
-  console.log(newStatus);
-});
-```
-
-All of available methods/interfaces are described in the [documentation](https://lagunehq.gitbook.io/core/_client_mastodon_/_client_mastodon_.mastodon)
-
-## Maintainers
-
-<table>
-  <tbody>
-    <tr>
-      <td align="center">
-        <a href="https://github.com/neet">
-          <img width="120" height="120" src="https://github.com/neet.png?size=120">
-          </br>
-          Neetshin
-        </a>
-      </td>
-    </tr>
-  <tbody>
-</table>
+### I got an error `Symbol.asyncIterator is not defined`
+Masto.js using [AsyncIterator](https://github.com/tc39/proposal-async-iteration) which is very new JS feature and it is not supported in some environments. Therefore, you can use polyfill like [Babel's](https://babeljs.io/docs/en/babel-plugin-proposal-async-generator-functions). In Node.js, it is supported on [v10](https://medium.com/@nairihar/async-iteration-in-nodejs-v10-3c17dc00ed9f) so you can update to use it.
 
 ## License
 AGPLv3

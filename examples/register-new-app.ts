@@ -1,12 +1,14 @@
 // tslint:disable no-console
-import Mastodon from '../src';
+import Masto from '../src';
 
+// For more inromation:
+// https://github.com/neet/masto.js/blob/master/docs/classes/_client_mastodon_.mastodon.md#createApp
 (async () => {
-  const client = await Mastodon.login({
-    uri: 'https://mastodon.social',
+  const masto = await Masto.login({
+    uri: 'https://example.com',
   });
 
-  client.createApp({
+  masto.createApp({
     client_name: 'My app',
     redirect_uris: 'urn:ietf:wg:oauth:2.0:oob',
     scopes: 'read write',

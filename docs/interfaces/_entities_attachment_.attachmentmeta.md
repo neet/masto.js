@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["entities/attachment"](../modules/_entities_attachment_.md) > [AttachmentMeta](../interfaces/_entities_attachment_.attachmentmeta.md)
+[masto](../README.md) > ["entities/attachment"](../modules/_entities_attachment_.md) > [AttachmentMeta](../interfaces/_entities_attachment_.attachmentmeta.md)
 
 # Interface: AttachmentMeta
 
@@ -24,7 +24,7 @@
 
 **● focus**: *[AttachmentMetaFocus](_entities_attachment_.attachmentmetafocus.md) \| `null`*
 
-*Defined in [entities/attachment.ts:25](https://github.com/lagunehq/core/blob/9f0a933/src/entities/attachment.ts#L25)*
+*Defined in [entities/attachment.ts:25](https://github.com/lagunehq/core/blob/84abcd4/src/entities/attachment.ts#L25)*
 
 ___
 <a id="original"></a>
@@ -33,7 +33,7 @@ ___
 
 **● original**: *[AttachmentMetaImage](_entities_attachment_.attachmentmetaimage.md) \| [AttachmentMetaVideo](_entities_attachment_.attachmentmetavideo.md) \| `null`*
 
-*Defined in [entities/attachment.ts:24](https://github.com/lagunehq/core/blob/9f0a933/src/entities/attachment.ts#L24)*
+*Defined in [entities/attachment.ts:24](https://github.com/lagunehq/core/blob/84abcd4/src/entities/attachment.ts#L24)*
 
 ___
 <a id="small"></a>
@@ -42,7 +42,7 @@ ___
 
 **● small**: *[AttachmentMetaImage](_entities_attachment_.attachmentmetaimage.md) \| [AttachmentMetaVideo](_entities_attachment_.attachmentmetavideo.md) \| `null`*
 
-*Defined in [entities/attachment.ts:23](https://github.com/lagunehq/core/blob/9f0a933/src/entities/attachment.ts#L23)*
+*Defined in [entities/attachment.ts:23](https://github.com/lagunehq/core/blob/84abcd4/src/entities/attachment.ts#L23)*
 
 ___
 

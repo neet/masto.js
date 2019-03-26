@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["client/params"](../modules/_client_params_.md) > [UpdateScheduledStatusParams](../interfaces/_client_params_.updatescheduledstatusparams.md)
+[masto](../README.md) > ["client/params"](../modules/_client_params_.md) > [UpdateScheduledStatusParams](../interfaces/_client_params_.updatescheduledstatusparams.md)
 
 # Interface: UpdateScheduledStatusParams
 
@@ -22,7 +22,7 @@
 
 **● scheduled_at**: *`string`*
 
-*Defined in [client/params.ts:258](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L258)*
+*Defined in [client/params.ts:258](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L258)*
 
 Timestamp string to schedule posting of status (ISO 8601)
 

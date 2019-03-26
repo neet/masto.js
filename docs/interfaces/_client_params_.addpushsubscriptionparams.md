@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["client/params"](../modules/_client_params_.md) > [AddPushSubscriptionParams](../interfaces/_client_params_.addpushsubscriptionparams.md)
+[masto](../README.md) > ["client/params"](../modules/_client_params_.md) > [AddPushSubscriptionParams](../interfaces/_client_params_.addpushsubscriptionparams.md)
 
 # Interface: AddPushSubscriptionParams
 
@@ -23,7 +23,7 @@
 
 **● data**: *`object` \| `null`*
 
-*Defined in [client/params.ts:159](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L159)*
+*Defined in [client/params.ts:159](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L159)*
 
 ___
 <a id="subscription"></a>
@@ -32,7 +32,7 @@ ___
 
 **● subscription**: *`object`*
 
-*Defined in [client/params.ts:148](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L148)*
+*Defined in [client/params.ts:148](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L148)*
 
 #### Type declaration
 

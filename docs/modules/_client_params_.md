@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["client/params"](../modules/_client_params_.md)
+[masto](../README.md) > ["client/params"](../modules/_client_params_.md)
 
 # External module: "client/params"
 
@@ -45,7 +45,7 @@
 
 **Ƭ CreateStatusParams**: *`object` & `MediaIds extends string[] ? { status?: string | null | undefined; poll?: void | undefined; } : {}`*
 
-*Defined in [client/params.ts:204](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L204)*
+*Defined in [client/params.ts:204](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L204)*
 
 ___
 <a id="fetchaccesstokenparams"></a>
@@ -54,7 +54,7 @@ ___
 
 **Ƭ FetchAccessTokenParams**: *`object` & `T extends "authorization_code" ? OAuthClient & { code: string; redirect_uri: string; } : T extends "password" ? { password: string; username: string; } : never`*
 
-*Defined in [client/params.ts:87](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L87)*
+*Defined in [client/params.ts:87](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L87)*
 
 ___
 <a id="granttype"></a>
@@ -63,7 +63,7 @@ ___
 
 **Ƭ GrantType**: *"authorization_code" \| "password"*
 
-*Defined in [client/params.ts:85](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L85)*
+*Defined in [client/params.ts:85](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L85)*
 
 ___
 <a id="updatepushsubscriptionparams"></a>
@@ -72,7 +72,7 @@ ___
 
 **Ƭ UpdatePushSubscriptionParams**: *`Pick`<[AddPushSubscriptionParams](../interfaces/_client_params_.addpushsubscriptionparams.md), "data">*
 
-*Defined in [client/params.ts:164](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L164)*
+*Defined in [client/params.ts:164](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L164)*
 
 ___
 

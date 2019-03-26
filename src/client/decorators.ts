@@ -1,10 +1,10 @@
 import { gt, lt } from 'semver';
 import { MastodonNotFoundError } from '../errors/mastodon-not-found-error';
 import { MastodonUnauthorizedError } from '../errors/mastodon-unauthorized-error';
-import { Mastodon } from './mastodon';
+import { Masto } from './masto';
 
 export type Decorator = (
-  mastodon: Mastodon,
+  masto: Masto,
   name: string,
   descriptor: TypedPropertyDescriptor<(...args: any[]) => any>,
 ) => void;
@@ -25,7 +25,7 @@ export const requiresUser: Decorator = (_target, _name, descriptor) => {
     return;
   }
 
-  descriptor.value = function(this: Mastodon, ...args: any[]) {
+  descriptor.value = function(this: Masto, ...args: any[]) {
     return original.apply(this, args);
   };
 };
@@ -44,7 +44,7 @@ export const requiresAuthentication: Decorator = (
     return;
   }
 
-  descriptor.value = function(this: Mastodon, ...args: any[]) {
+  descriptor.value = function(this: Masto, ...args: any[]) {
     if (!this.accessToken) {
       throw new MastodonUnauthorizedError(
         `Endpoint ${name} requires authentication. ` +
@@ -74,7 +74,7 @@ export const available = (parameters: AvailabeParams): Decorator => (
 
   const { since, until } = parameters;
 
-  descriptor.value = function(this: Mastodon, ...args: any[]) {
+  descriptor.value = function(this: Masto, ...args: any[]) {
     if (since && this.version && lt(this.version, since)) {
       throw new MastodonNotFoundError(
         `${name} is not available with the current ` +
