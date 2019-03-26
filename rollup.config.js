@@ -4,6 +4,7 @@ import json from 'rollup-plugin-json';
 import resolve from 'rollup-plugin-node-resolve';
 import typescript from 'rollup-plugin-typescript2';
 import builtins from 'rollup-plugin-node-builtins';
+import autoExternal from 'rollup-plugin-auto-external';
 
 export default [
   // Node.js
@@ -12,7 +13,7 @@ export default [
     output: {
       name: '@laugnehq/core',
       file: './dist/index.js',
-      format: 'umd',
+      format: 'cjs',
       exports: 'named',
     },
     plugins: [
@@ -23,8 +24,10 @@ export default [
       json(),
       typescript(),
       terser(),
+      autoExternal(),
     ],
   },
+
   // Browser
   {
     input: './src/index.ts',
