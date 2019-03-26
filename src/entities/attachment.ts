@@ -1,25 +1,18 @@
 export interface Attachment {
   /** ID of the attachment */
   id: string;
-
   /** One of: "image", "video", "gifv", "unknown" */
   type: AttachmentType;
-
   /** URL of the locally hosted version of the image */
   url: string;
-
   /** For remote images, the remote URL of the original image */
   remote_url?: string | null;
-
   /** URL of the preview image */
   preview_url: string;
-
   /** Shorter URL for the image, for insertion into text (only present on local images) */
   text_url?: string | null;
-
   /** See attachment metadata below */
   meta?: AttachmentMeta | null;
-
   /** A description of the image for the visually impaired (maximum 420 characters), or null if none provided */
   description?: string | null;
 }

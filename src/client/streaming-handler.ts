@@ -39,7 +39,6 @@ export interface Event<T extends EventTypes = EventTypes> {
  */
 export class StreamingHandler extends EventEmitter {
   private ws?: WebSocket;
-
   /**
    * Connect to the websocket endpoint
    * @param url URL of the websocket endpoint
@@ -55,7 +54,6 @@ export class StreamingHandler extends EventEmitter {
         resolve(this);
       });
     });
-
   /**
    * Disconnect from the websocket endpoint
    */
@@ -63,7 +61,6 @@ export class StreamingHandler extends EventEmitter {
     if (!this.ws) return;
     this.ws.close();
   };
-
   /**
    * Parse JSON data and emit it as an event
    * @param message Websocket message
@@ -86,7 +83,6 @@ export class StreamingHandler extends EventEmitter {
 
     this.emit(parsedMessage.event, parsedMessage);
   };
-
   /**
    * Add listener for the event
    * @param event Type of the event. One of `update`, `delete`, `notification`, `filters_changed`, `conversation`

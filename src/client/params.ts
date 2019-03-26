@@ -8,7 +8,6 @@ import { StatusVisibility } from '../entities/status';
 export interface LoginParams {
   /** URI of the instance */
   uri: string;
-
   /** Token of your account */
   accessToken?: string;
 }
@@ -16,13 +15,10 @@ export interface LoginParams {
 export interface PaginationParams {
   /** Get a list of items with ID less than this value */
   max_id?: string | null;
-
   /** Get a list of items with ID greater than this value including this ID */
   since_id?: string | null;
-
   /** Get a list of items with ID greater than this value exluding this ID */
   min_id?: string | null;
-
   /** Maximum number of items to get */
   limit?: number | null;
 }
@@ -30,26 +26,20 @@ export interface PaginationParams {
 export interface UpdateCredentialsParams {
   /** Display name */
   display_name?: string | null;
-
   /** Biography */
   note?: string | null;
-
   /** Avatar encoded using `multipart/form-data` */
   avatar?: any | null;
-
   /** Header image encoded using `multipart/form-data` */
   header?: any | null;
-
   /** Enable follow requests */
   locked?: boolean | null;
-
   /**
    * privacy: Default post privacy preference
    * sensitive: Whether to mark statuses as sensitive by default
    * language: Override language on statuses by default (ISO6391)
    */
   source?: Pick<AccountSource, 'privacy' | 'sensitive' | 'language'> | null;
-
   /** Profile metadata (max. 4) */
   fields_attributes?:
     | [AccountField]
@@ -62,13 +52,10 @@ export interface UpdateCredentialsParams {
 export interface CreateAccountParams {
   /** Username to create */
   username: string;
-
   /** Password of the user */
   password: string;
-
   /** Email of the user */
   email: string;
-
   /** Whether the user has been agreed to the agreement of the Mastodon instance */
   agreement: boolean;
 }
@@ -76,13 +63,10 @@ export interface CreateAccountParams {
 export interface ReportAccountParams {
   /** The ID of the account to report */
   account_id: string;
-
   /** The IDs of statuses to report as array */
   status_ids?: string[] | null;
-
   /** Reason for the report (up to 1,000 characters) */
   comment?: string | null;
-
   /** Whether to forward to the remote admin (in case of a remote account) */
   forward?: boolean | null;
 }
@@ -90,13 +74,10 @@ export interface ReportAccountParams {
 export interface CreateAppParams {
   /** Name of your application */
   client_name: string;
-
   /** Where the user should be redirected after authorization */
   redirect_uris: string;
-
   /** Space separated list of scopes */
   scopes: string;
-
   /** URL to the homepage of your app */
   website?: string | null;
 }
@@ -129,10 +110,8 @@ export type FetchAccessTokenParams<
 export interface ModifyMediaAttachmentParams {
   /** Media to be uploaded (encoded using `multipart/form-data`) */
   file: any;
-
   /** A plain-text description of the media, for accessibility (max 420 chars) */
   descriptions?: string | null;
-
   /** Focal point: Two floating points, comma-delimited */
   focus?: string | null;
 }
@@ -140,16 +119,12 @@ export interface ModifyMediaAttachmentParams {
 export interface ModifyFilterParams {
   /** String that contains keyword or phrase */
   phrase?: string | null;
-
   /** Array of strings that means filtering context. each string is one of `home`, `notifications`, `public`, `thread`. At least one context must be specified */
   context?: FilterContext[] | null;
-
   /** Filtered toots will disappear irreversibly, even if filter is later removed */
   irreversible?: boolean | null;
-
   /** Boolean that indicates word match. */
   whole_word?: boolean | null;
-
   /** The simestamp for expire time */
   expires_in?: number | null;
 }
@@ -204,7 +179,6 @@ export interface MuteAccountParams {
 export interface SearchParams {
   /** The search query */
   q: string;
-
   /** Attempt WebFinger look-up */
   resolve?: boolean | null;
 }
@@ -212,7 +186,6 @@ export interface SearchParams {
 export interface SearchAccountsParams extends SearchParams {
   /** Maximum number of matching accounts to return (default: `40`) */
   limit?: number | null;
-
   /** Only who the user is following */
   following?: boolean | null;
 }
@@ -222,19 +195,14 @@ export type CreateStatusParams<
 > = {
   /** local ID of the status you want to reply to */
   in_reply_to_id?: string | null;
-
   /** Array of media IDs to attach to the status (maximum 4) */
   media_ids?: MediaIds | null;
-
   /** Set this to mark the media of the status as NSFW */
   sensitive?: boolean | null;
-
   /** Text to be shown as a warning before the actual content */
   spoiler_text?: string | null;
-
   /** Either "direct", "private", "unlisted" or "public" */
   visibility?: StatusVisibility | null;
-
   /** ISO 639-2 language code of the toot, to skip automatic detection */
   language?: string | null;
 } & (MediaIds extends string[]
@@ -250,7 +218,6 @@ export type CreateStatusParams<
 export interface FetchTimelineParams extends PaginationParams {
   /** Only return statuses originating from this instance (public and tag timelines only) */
   local?: boolean | null;
-
   /** Only return statuses that have media attachments */
   only_media?: boolean | null;
 }
@@ -258,10 +225,8 @@ export interface FetchTimelineParams extends PaginationParams {
 export interface FetchAccountStatusesParams extends PaginationParams {
   /** Only return statuses that have media attachments */
   only_media?: boolean | null;
-
   /** Only return statuses that have been pinned */
   pinned?: boolean | null;
-
   /** Skip statuses that reply to other statuses */
   exclude_replies?: boolean | null;
 }

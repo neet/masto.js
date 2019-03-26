@@ -37,13 +37,10 @@ export interface GatewayConstructor {
 export abstract class Gateway {
   /** URI of the instance */
   private _uri = '';
-
   /** Version of the current instance */
   private _version = '';
-
   /** Streaming API URL of the instance */
   private _streamingApiUrl = '';
-
   /** API token of the user */
   private _accessToken = '';
 
