@@ -44,7 +44,7 @@ export const requiresAuthentication: Decorator = (
     return;
   }
 
-  descriptor.value = function(this: Mastodon, ...args: any[]) {
+  descriptor.value = function(this: Masto, ...args: any[]) {
     if (!this.accessToken) {
       throw new MastodonUnauthorizedError(
         `Endpoint ${name} requires authentication. ` +

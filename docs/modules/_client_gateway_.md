@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["client/gateway"](../modules/_client_gateway_.md)
+[masto](../README.md) > ["client/gateway"](../modules/_client_gateway_.md)
 
 # External module: "client/gateway"
 
@@ -26,7 +26,7 @@
 
 **Ƭ PaginateNextOptions**: *`object`*
 
-*Defined in [client/gateway.ts:13](https://github.com/lagunehq/core/blob/9f0a933/src/client/gateway.ts#L13)*
+*Defined in [client/gateway.ts:13](https://github.com/lagunehq/core/blob/84abcd4/src/client/gateway.ts#L13)*
 
 #### Type declaration
 

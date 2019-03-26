@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["client/params"](../modules/_client_params_.md) > [ModifyMediaAttachmentParams](../interfaces/_client_params_.modifymediaattachmentparams.md)
+[masto](../README.md) > ["client/params"](../modules/_client_params_.md) > [ModifyMediaAttachmentParams](../interfaces/_client_params_.modifymediaattachmentparams.md)
 
 # Interface: ModifyMediaAttachmentParams
 
@@ -24,7 +24,7 @@
 
 **● descriptions**: *`string` \| `null`*
 
-*Defined in [client/params.ts:114](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L114)*
+*Defined in [client/params.ts:114](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L114)*
 
 A plain-text description of the media, for accessibility (max 420 chars)
 
@@ -35,7 +35,7 @@ ___
 
 **● file**: *`any`*
 
-*Defined in [client/params.ts:112](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L112)*
+*Defined in [client/params.ts:112](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L112)*
 
 Media to be uploaded (encoded using `multipart/form-data`)
 
@@ -46,7 +46,7 @@ ___
 
 **● focus**: *`string` \| `null`*
 
-*Defined in [client/params.ts:116](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L116)*
+*Defined in [client/params.ts:116](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L116)*
 
 Focal point: Two floating points, comma-delimited
 

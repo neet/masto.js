@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["entities/notification"](../modules/_entities_notification_.md)
+[masto](../README.md) > ["entities/notification"](../modules/_entities_notification_.md)
 
 # External module: "entities/notification"
 
@@ -22,7 +22,7 @@
 
 **Ƭ NotificationType**: *"mention" \| "reblog" \| "favourite" \| "follow"*
 
-*Defined in [entities/notification.ts:4](https://github.com/lagunehq/core/blob/9f0a933/src/entities/notification.ts#L4)*
+*Defined in [entities/notification.ts:4](https://github.com/lagunehq/core/blob/84abcd4/src/entities/notification.ts#L4)*
 
 ___
 

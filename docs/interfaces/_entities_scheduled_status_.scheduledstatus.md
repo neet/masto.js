@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["entities/scheduled-status"](../modules/_entities_scheduled_status_.md) > [ScheduledStatus](../interfaces/_entities_scheduled_status_.scheduledstatus.md)
+[masto](../README.md) > ["entities/scheduled-status"](../modules/_entities_scheduled_status_.md) > [ScheduledStatus](../interfaces/_entities_scheduled_status_.scheduledstatus.md)
 
 # Interface: ScheduledStatus
 
@@ -25,7 +25,7 @@
 
 **● id**: *`string`*
 
-*Defined in [entities/scheduled-status.ts:19](https://github.com/lagunehq/core/blob/9f0a933/src/entities/scheduled-status.ts#L19)*
+*Defined in [entities/scheduled-status.ts:19](https://github.com/lagunehq/core/blob/84abcd4/src/entities/scheduled-status.ts#L19)*
 
 ID of the scheduled status
 
@@ -36,7 +36,7 @@ ___
 
 **● media_attachments**: *[Attachment](_entities_attachment_.attachment.md)*
 
-*Defined in [entities/scheduled-status.ts:25](https://github.com/lagunehq/core/blob/9f0a933/src/entities/scheduled-status.ts#L25)*
+*Defined in [entities/scheduled-status.ts:25](https://github.com/lagunehq/core/blob/84abcd4/src/entities/scheduled-status.ts#L25)*
 
 Media attachments
 
@@ -47,7 +47,7 @@ ___
 
 **● params**: *`any`*
 
-*Defined in [entities/scheduled-status.ts:23](https://github.com/lagunehq/core/blob/9f0a933/src/entities/scheduled-status.ts#L23)*
+*Defined in [entities/scheduled-status.ts:23](https://github.com/lagunehq/core/blob/84abcd4/src/entities/scheduled-status.ts#L23)*
 
 Parameters of the status
 
@@ -58,7 +58,7 @@ ___
 
 **● scheduled_at**: *`string`*
 
-*Defined in [entities/scheduled-status.ts:21](https://github.com/lagunehq/core/blob/9f0a933/src/entities/scheduled-status.ts#L21)*
+*Defined in [entities/scheduled-status.ts:21](https://github.com/lagunehq/core/blob/84abcd4/src/entities/scheduled-status.ts#L21)*
 
 Scheduled date
 

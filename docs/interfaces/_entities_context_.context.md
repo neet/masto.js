@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["entities/context"](../modules/_entities_context_.md) > [Context](../interfaces/_entities_context_.context.md)
+[masto](../README.md) > ["entities/context"](../modules/_entities_context_.md) > [Context](../interfaces/_entities_context_.context.md)
 
 # Interface: Context
 
@@ -23,7 +23,7 @@
 
 **● ancestors**: *[Status](_entities_status_.status.md)[]*
 
-*Defined in [entities/context.ts:5](https://github.com/lagunehq/core/blob/9f0a933/src/entities/context.ts#L5)*
+*Defined in [entities/context.ts:5](https://github.com/lagunehq/core/blob/84abcd4/src/entities/context.ts#L5)*
 
 The ancestors of the status in the conversation, as a list of Statuses
 
@@ -34,7 +34,7 @@ ___
 
 **● descendants**: *[Status](_entities_status_.status.md)[]*
 
-*Defined in [entities/context.ts:7](https://github.com/lagunehq/core/blob/9f0a933/src/entities/context.ts#L7)*
+*Defined in [entities/context.ts:7](https://github.com/lagunehq/core/blob/84abcd4/src/entities/context.ts#L7)*
 
 The descendants of the status in the conversation, as a list of Statuses
 

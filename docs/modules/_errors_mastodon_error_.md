@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["errors/mastodon-error"](../modules/_errors_mastodon_error_.md)
+[masto](../README.md) > ["errors/mastodon-error"](../modules/_errors_mastodon_error_.md)
 
 # External module: "errors/mastodon-error"
 

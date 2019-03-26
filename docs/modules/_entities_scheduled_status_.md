@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["entities/scheduled-status"](../modules/_entities_scheduled_status_.md)
+[masto](../README.md) > ["entities/scheduled-status"](../modules/_entities_scheduled_status_.md)
 
 # External module: "entities/scheduled-status"
 

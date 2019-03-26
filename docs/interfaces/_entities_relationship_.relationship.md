@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["entities/relationship"](../modules/_entities_relationship_.md) > [Relationship](../interfaces/_entities_relationship_.relationship.md)
+[masto](../README.md) > ["entities/relationship"](../modules/_entities_relationship_.md) > [Relationship](../interfaces/_entities_relationship_.relationship.md)
 
 # Interface: Relationship
 
@@ -31,7 +31,7 @@
 
 **● blocking**: *`boolean`*
 
-*Defined in [entities/relationship.ts:11](https://github.com/lagunehq/core/blob/9f0a933/src/entities/relationship.ts#L11)*
+*Defined in [entities/relationship.ts:11](https://github.com/lagunehq/core/blob/84abcd4/src/entities/relationship.ts#L11)*
 
 Whether the user is currently blocking the account
 
@@ -42,7 +42,7 @@ ___
 
 **● domain_blocking**: *`boolean`*
 
-*Defined in [entities/relationship.ts:19](https://github.com/lagunehq/core/blob/9f0a933/src/entities/relationship.ts#L19)*
+*Defined in [entities/relationship.ts:19](https://github.com/lagunehq/core/blob/84abcd4/src/entities/relationship.ts#L19)*
 
 Whether the user is currently blocking the accounts's domain
 
@@ -53,7 +53,7 @@ ___
 
 **● endorsed**: *`boolean`*
 
-*Defined in [entities/relationship.ts:21](https://github.com/lagunehq/core/blob/9f0a933/src/entities/relationship.ts#L21)*
+*Defined in [entities/relationship.ts:21](https://github.com/lagunehq/core/blob/84abcd4/src/entities/relationship.ts#L21)*
 
 Whether this user is endorsed by authenticated user
 
@@ -64,7 +64,7 @@ ___
 
 **● followed_by**: *`boolean`*
 
-*Defined in [entities/relationship.ts:9](https://github.com/lagunehq/core/blob/9f0a933/src/entities/relationship.ts#L9)*
+*Defined in [entities/relationship.ts:9](https://github.com/lagunehq/core/blob/84abcd4/src/entities/relationship.ts#L9)*
 
 Whether the user is currently being followed by the account
 
@@ -75,7 +75,7 @@ ___
 
 **● following**: *`boolean`*
 
-*Defined in [entities/relationship.ts:5](https://github.com/lagunehq/core/blob/9f0a933/src/entities/relationship.ts#L5)*
+*Defined in [entities/relationship.ts:5](https://github.com/lagunehq/core/blob/84abcd4/src/entities/relationship.ts#L5)*
 
 Whether the user is currently following the account
 
@@ -86,7 +86,7 @@ ___
 
 **● id**: *`string`*
 
-*Defined in [entities/relationship.ts:3](https://github.com/lagunehq/core/blob/9f0a933/src/entities/relationship.ts#L3)*
+*Defined in [entities/relationship.ts:3](https://github.com/lagunehq/core/blob/84abcd4/src/entities/relationship.ts#L3)*
 
 Target account id
 
@@ -97,7 +97,7 @@ ___
 
 **● muting**: *`boolean`*
 
-*Defined in [entities/relationship.ts:13](https://github.com/lagunehq/core/blob/9f0a933/src/entities/relationship.ts#L13)*
+*Defined in [entities/relationship.ts:13](https://github.com/lagunehq/core/blob/84abcd4/src/entities/relationship.ts#L13)*
 
 Whether the user is currently muting the account
 
@@ -108,7 +108,7 @@ ___
 
 **● muting_notifications**: *`boolean`*
 
-*Defined in [entities/relationship.ts:15](https://github.com/lagunehq/core/blob/9f0a933/src/entities/relationship.ts#L15)*
+*Defined in [entities/relationship.ts:15](https://github.com/lagunehq/core/blob/84abcd4/src/entities/relationship.ts#L15)*
 
 Whether the user is also muting notifications
 
@@ -119,7 +119,7 @@ ___
 
 **● requested**: *`boolean`*
 
-*Defined in [entities/relationship.ts:17](https://github.com/lagunehq/core/blob/9f0a933/src/entities/relationship.ts#L17)*
+*Defined in [entities/relationship.ts:17](https://github.com/lagunehq/core/blob/84abcd4/src/entities/relationship.ts#L17)*
 
 Whether the user has requested to follow the account
 
@@ -130,7 +130,7 @@ ___
 
 **● showing_reblogs**: *`boolean`*
 
-*Defined in [entities/relationship.ts:7](https://github.com/lagunehq/core/blob/9f0a933/src/entities/relationship.ts#L7)*
+*Defined in [entities/relationship.ts:7](https://github.com/lagunehq/core/blob/84abcd4/src/entities/relationship.ts#L7)*
 
 Whether reblog will be shown in your timeline
 

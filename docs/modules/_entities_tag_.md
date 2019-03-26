@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["entities/tag"](../modules/_entities_tag_.md)
+[masto](../README.md) > ["entities/tag"](../modules/_entities_tag_.md)
 
 # External module: "entities/tag"
 

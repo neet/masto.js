@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["client/streaming-handler"](../modules/_client_streaming_handler_.md) > [Message](../interfaces/_client_streaming_handler_.message.md)
+[masto](../README.md) > ["client/streaming-handler"](../modules/_client_streaming_handler_.md) > [Message](../interfaces/_client_streaming_handler_.message.md)
 
 # Interface: Message
 
@@ -26,7 +26,7 @@ Callback argument of `ws`
 
 **● data**: *`any`*
 
-*Defined in [client/streaming-handler.ts:10](https://github.com/lagunehq/core/blob/9f0a933/src/client/streaming-handler.ts#L10)*
+*Defined in [client/streaming-handler.ts:10](https://github.com/lagunehq/core/blob/84abcd4/src/client/streaming-handler.ts#L10)*
 
 ___
 <a id="target"></a>
@@ -35,7 +35,7 @@ ___
 
 **● target**: *`WebSocket`*
 
-*Defined in [client/streaming-handler.ts:12](https://github.com/lagunehq/core/blob/9f0a933/src/client/streaming-handler.ts#L12)*
+*Defined in [client/streaming-handler.ts:12](https://github.com/lagunehq/core/blob/84abcd4/src/client/streaming-handler.ts#L12)*
 
 ___
 <a id="type"></a>
@@ -44,7 +44,7 @@ ___
 
 **● type**: *`string`*
 
-*Defined in [client/streaming-handler.ts:11](https://github.com/lagunehq/core/blob/9f0a933/src/client/streaming-handler.ts#L11)*
+*Defined in [client/streaming-handler.ts:11](https://github.com/lagunehq/core/blob/84abcd4/src/client/streaming-handler.ts#L11)*
 
 ___
 

@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["client/params"](../modules/_client_params_.md) > [SearchParams](../interfaces/_client_params_.searchparams.md)
+[masto](../README.md) > ["client/params"](../modules/_client_params_.md) > [SearchParams](../interfaces/_client_params_.searchparams.md)
 
 # Interface: SearchParams
 
@@ -25,7 +25,7 @@
 
 **● q**: *`string`*
 
-*Defined in [client/params.ts:181](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L181)*
+*Defined in [client/params.ts:181](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L181)*
 
 The search query
 
@@ -36,7 +36,7 @@ ___
 
 **● resolve**: *`boolean` \| `null`*
 
-*Defined in [client/params.ts:183](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L183)*
+*Defined in [client/params.ts:183](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L183)*
 
 Attempt WebFinger look-up
 

@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["entities/oauth"](../modules/_entities_oauth_.md)
+[masto](../README.md) > ["entities/oauth"](../modules/_entities_oauth_.md)
 
 # External module: "entities/oauth"
 

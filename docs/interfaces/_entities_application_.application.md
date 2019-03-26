@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["entities/application"](../modules/_entities_application_.md) > [Application](../interfaces/_entities_application_.application.md)
+[masto](../README.md) > ["entities/application"](../modules/_entities_application_.md) > [Application](../interfaces/_entities_application_.application.md)
 
 # Interface: Application
 
@@ -26,7 +26,7 @@
 
 **● name**: *`string`*
 
-*Defined in [entities/application.ts:3](https://github.com/lagunehq/core/blob/9f0a933/src/entities/application.ts#L3)*
+*Defined in [entities/application.ts:3](https://github.com/lagunehq/core/blob/84abcd4/src/entities/application.ts#L3)*
 
 Name of the app
 
@@ -37,7 +37,7 @@ ___
 
 **● vapid_key**: *`string` \| `null`*
 
-*Defined in [entities/application.ts:7](https://github.com/lagunehq/core/blob/9f0a933/src/entities/application.ts#L7)*
+*Defined in [entities/application.ts:7](https://github.com/lagunehq/core/blob/84abcd4/src/entities/application.ts#L7)*
 
 VAPID key
 
@@ -48,7 +48,7 @@ ___
 
 **● website**: *`string` \| `null`*
 
-*Defined in [entities/application.ts:5](https://github.com/lagunehq/core/blob/9f0a933/src/entities/application.ts#L5)*
+*Defined in [entities/application.ts:5](https://github.com/lagunehq/core/blob/84abcd4/src/entities/application.ts#L5)*
 
 Homepage URL of the app
 

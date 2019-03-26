@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["client/params"](../modules/_client_params_.md) > [FetchTimelineParams](../interfaces/_client_params_.fetchtimelineparams.md)
+[masto](../README.md) > ["client/params"](../modules/_client_params_.md) > [FetchTimelineParams](../interfaces/_client_params_.fetchtimelineparams.md)
 
 # Interface: FetchTimelineParams
 
@@ -31,7 +31,7 @@
 
 *Inherited from [PaginationParams](_client_params_.paginationparams.md).[limit](_client_params_.paginationparams.md#limit)*
 
-*Defined in [client/params.ts:23](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L23)*
+*Defined in [client/params.ts:23](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L23)*
 
 Maximum number of items to get
 
@@ -42,7 +42,7 @@ ___
 
 **● local**: *`boolean` \| `null`*
 
-*Defined in [client/params.ts:237](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L237)*
+*Defined in [client/params.ts:237](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L237)*
 
 Only return statuses originating from this instance (public and tag timelines only)
 
@@ -55,7 +55,7 @@ ___
 
 *Inherited from [PaginationParams](_client_params_.paginationparams.md).[max_id](_client_params_.paginationparams.md#max_id)*
 
-*Defined in [client/params.ts:17](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L17)*
+*Defined in [client/params.ts:17](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L17)*
 
 Get a list of items with ID less than this value
 
@@ -68,7 +68,7 @@ ___
 
 *Inherited from [PaginationParams](_client_params_.paginationparams.md).[min_id](_client_params_.paginationparams.md#min_id)*
 
-*Defined in [client/params.ts:21](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L21)*
+*Defined in [client/params.ts:21](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L21)*
 
 Get a list of items with ID greater than this value exluding this ID
 
@@ -79,7 +79,7 @@ ___
 
 **● only_media**: *`boolean` \| `null`*
 
-*Defined in [client/params.ts:239](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L239)*
+*Defined in [client/params.ts:239](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L239)*
 
 Only return statuses that have media attachments
 
@@ -92,7 +92,7 @@ ___
 
 *Inherited from [PaginationParams](_client_params_.paginationparams.md).[since_id](_client_params_.paginationparams.md#since_id)*
 
-*Defined in [client/params.ts:19](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L19)*
+*Defined in [client/params.ts:19](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L19)*
 
 Get a list of items with ID greater than this value including this ID
 

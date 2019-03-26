@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["client/utils"](../modules/_client_utils_.md)
+[masto](../README.md) > ["client/utils"](../modules/_client_utils_.md)
 
 # External module: "client/utils"
 
@@ -19,7 +19,7 @@
 
 ▸ **isAxiosError**(error: *`any`*): `boolean`
 
-*Defined in [client/utils.ts:4](https://github.com/lagunehq/core/blob/9f0a933/src/client/utils.ts#L4)*
+*Defined in [client/utils.ts:4](https://github.com/lagunehq/core/blob/84abcd4/src/client/utils.ts#L4)*
 
 **Parameters:**
 
@@ -36,7 +36,7 @@ ___
 
 ▸ **normalizeUrl**(url: *`string`*): `string`
 
-*Defined in [client/utils.ts:13](https://github.com/lagunehq/core/blob/9f0a933/src/client/utils.ts#L13)*
+*Defined in [client/utils.ts:13](https://github.com/lagunehq/core/blob/84abcd4/src/client/utils.ts#L13)*
 
 **Parameters:**
 

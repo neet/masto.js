@@ -1,4 +1,4 @@
-[@lagunehq/core](../README.md) > ["client/streaming-handler"](../modules/_client_streaming_handler_.md) > [StreamingHandler](../classes/_client_streaming_handler_.streaminghandler.md) > [ListenerFn](../interfaces/_client_streaming_handler_.streaminghandler.listenerfn.md)
+[masto](../README.md) > ["client/streaming-handler"](../modules/_client_streaming_handler_.md) > [StreamingHandler](../classes/_client_streaming_handler_.streaminghandler.md) > [ListenerFn](../interfaces/_client_streaming_handler_.streaminghandler.listenerfn.md)
 
 # Interface: ListenerFn
 
