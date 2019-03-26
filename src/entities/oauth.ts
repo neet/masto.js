@@ -8,13 +8,10 @@ export interface OAuthClient extends Application {
 export interface OAuthToken {
   /** Access token of the account */
   access_token: string;
-
   /** Type of the token */
   token_type: string;
-
   /** Scope of the token */
   scope: string;
-
   /** Created date of the token */
   created_at: string;
 }
