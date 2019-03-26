@@ -1,7 +1,12 @@
 import { Account } from './account';
 import { Status } from './status';
 
-export type NotificationType = 'mention' | 'reblog' | 'favourite' | 'follow';
+export type NotificationType =
+  | 'mention'
+  | 'reblog'
+  | 'favourite'
+  | 'follow'
+  | 'poll';
 
 export interface Notification {
   /** The notification ID */
