@@ -58,15 +58,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/neet/masto.git"
+    "url": "git+https://github.com/neet/masto.js.git"
   },
   "keywords": [
     "mastodon"
   ],
   "bugs": {
-    "url": "https://github.com/neet/masto/issues"
+    "url": "https://github.com/neet/masto.js/issues"
   },
-  "homepage": "https://github.com/neet/masto#readme",
+  "homepage": "https://github.com/neet/masto.js#readme",
   "publishConfig": {
     "access": "public"
   },

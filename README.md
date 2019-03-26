@@ -20,16 +20,17 @@ npm i masto --save
 ## Basic Usage
 Here's a simple example which creates a new status:
 ```ts
-import Masto from 'masto';
+import Masto from '../src';
 
 (async () => {
-  const client = new Masto.login({
-    uri:   'https://example.com', // your instance
-    token: 'my token', // Optional
+  const masto = await Masto.login({
+    uri: 'https://example.com', // URL of your instance
+    accessToken: 'YOUR TOKEN',  // Your access token (optional)
   });
 
-  await client.createStatus({
-    status: 'Toot from TypeScript',
+  masto.createStatus({
+    status: 'Hello Mastodon!',
+    visibility: 'direct',
   }).then((newStatus) => {
     console.log(newStatus.data);
   });
