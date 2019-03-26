@@ -1,51 +1,64 @@
+[@lagunehq/core](../README.md) > ["entities/instance"](../modules/_entities_instance_.md) > [InstanceActivity](../interfaces/_entities_instance_.instanceactivity.md)
 
+# Interface: InstanceActivity
 
-# Hierarchy
+## Hierarchy
 
 **InstanceActivity**
 
-# Properties
+## Index
+
+### Properties
+
+* [logins](_entities_instance_.instanceactivity.md#logins)
+* [registrations](_entities_instance_.instanceactivity.md#registrations)
+* [statuses](_entities_instance_.instanceactivity.md#statuses)
+* [week](_entities_instance_.instanceactivity.md#week)
+
+---
+
+## Properties
 
 <a id="logins"></a>
 
-##  logins
+###  logins
 
 **● logins**: *`string`*
 
-*Defined in [entities/Instance.ts:56](https://github.com/lagunehq/core/blob/daa242c/src/entities/Instance.ts#L56)*
+*Defined in [entities/instance.ts:44](https://github.com/lagunehq/core/blob/35e3f58/src/entities/instance.ts#L44)*
 
 Active users while the week
 
 ___
 <a id="registrations"></a>
 
-##  registrations
+###  registrations
 
 **● registrations**: *`string`*
 
-*Defined in [entities/Instance.ts:59](https://github.com/lagunehq/core/blob/daa242c/src/entities/Instance.ts#L59)*
+*Defined in [entities/instance.ts:46](https://github.com/lagunehq/core/blob/35e3f58/src/entities/instance.ts#L46)*
 
 New registrations while the week
 
 ___
 <a id="statuses"></a>
 
-##  statuses
+###  statuses
 
 **● statuses**: *`string`*
 
-*Defined in [entities/Instance.ts:53](https://github.com/lagunehq/core/blob/daa242c/src/entities/Instance.ts#L53)*
+*Defined in [entities/instance.ts:42](https://github.com/lagunehq/core/blob/35e3f58/src/entities/instance.ts#L42)*
 
 Number of statuses created while the week
 
 ___
 <a id="week"></a>
 
-##  week
+###  week
 
 **● week**: *`string`*
 
-*Defined in [entities/Instance.ts:50](https://github.com/lagunehq/core/blob/daa242c/src/entities/Instance.ts#L50)*
+*Defined in [entities/instance.ts:40](https://github.com/lagunehq/core/blob/35e3f58/src/entities/instance.ts#L40)*
 
 Timestamp of 0 o'clock on Monday of the week
 

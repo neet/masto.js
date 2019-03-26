@@ -1,65 +1,76 @@
+[@lagunehq/core](../README.md) > ["entities/account"](../modules/_entities_account_.md) > [AccountSource](../interfaces/_entities_account_.accountsource.md)
 
+# Interface: AccountSource
 
-# Hierarchy
+## Hierarchy
 
 **AccountSource**
 
-# Properties
+## Index
+
+### Properties
+
+* [fields](_entities_account_.accountsource.md#fields)
+* [language](_entities_account_.accountsource.md#language)
+* [note](_entities_account_.accountsource.md#note)
+* [privacy](_entities_account_.accountsource.md#privacy)
+* [sensitive](_entities_account_.accountsource.md#sensitive)
+
+---
+
+## Properties
 
 <a id="fields"></a>
 
-##  fields
+###  fields
 
 **● fields**: *[AccountField](_entities_account_.accountfield.md)*
 
-*Defined in [entities/Account.ts:89](https://github.com/lagunehq/core/blob/daa242c/src/entities/Account.ts#L89)*
+*Defined in [entities/account.ts:66](https://github.com/lagunehq/core/blob/35e3f58/src/entities/account.ts#L66)*
 
 Plain-text version of the account's field
 
 ___
 <a id="language"></a>
 
-##  language
+###  language
 
-**● language**: * `string` &#124; `null`
-*
+**● language**: *`string` \| `null`*
 
-*Defined in [entities/Account.ts:83](https://github.com/lagunehq/core/blob/daa242c/src/entities/Account.ts#L83)*
+*Defined in [entities/account.ts:62](https://github.com/lagunehq/core/blob/35e3f58/src/entities/account.ts#L62)*
 
 User's default language
 
 ___
 <a id="note"></a>
 
-##  note
+###  note
 
 **● note**: *`string`*
 
-*Defined in [entities/Account.ts:86](https://github.com/lagunehq/core/blob/daa242c/src/entities/Account.ts#L86)*
+*Defined in [entities/account.ts:64](https://github.com/lagunehq/core/blob/35e3f58/src/entities/account.ts#L64)*
 
 Plain-text version of the account's `note`
 
 ___
 <a id="privacy"></a>
 
-## `<Optional>` privacy
+### `<Optional>` privacy
 
-**● privacy**: * [StatusVisibility](../modules/_entities_status_.md#statusvisibility) &#124; `null`
-*
+**● privacy**: *[StatusVisibility](../modules/_entities_status_.md#statusvisibility) \| `null`*
 
-*Defined in [entities/Account.ts:77](https://github.com/lagunehq/core/blob/daa242c/src/entities/Account.ts#L77)*
+*Defined in [entities/account.ts:58](https://github.com/lagunehq/core/blob/35e3f58/src/entities/account.ts#L58)*
 
 Selected preference: Default privacy of new toots
 
 ___
 <a id="sensitive"></a>
 
-## `<Optional>` sensitive
+### `<Optional>` sensitive
 
-**● sensitive**: * `boolean` &#124; `null`
-*
+**● sensitive**: *`boolean` \| `null`*
 
-*Defined in [entities/Account.ts:80](https://github.com/lagunehq/core/blob/daa242c/src/entities/Account.ts#L80)*
+*Defined in [entities/account.ts:60](https://github.com/lagunehq/core/blob/35e3f58/src/entities/account.ts#L60)*
 
 Selected preference: Mark media as sensitive by default?
 

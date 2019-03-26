@@ -1,6 +1,8 @@
+[@lagunehq/core](../README.md) > ["entities/attachment"](../modules/_entities_attachment_.md)
 
+# External module: "entities/attachment"
 
-# Index
+## Index
 
 ### Interfaces
 
@@ -16,16 +18,15 @@
 
 ---
 
-# Type aliases
+## Type aliases
 
 <a id="attachmenttype"></a>
 
-##  AttachmentType
+###  AttachmentType
 
-**Ƭ AttachmentType**: * "image" &#124; "video" &#124; "gifv" &#124; "unknown"
-*
+**Ƭ AttachmentType**: *"image" \| "video" \| "gifv" \| "unknown"*
 
-*Defined in [entities/Attachment.ts:27](https://github.com/lagunehq/core/blob/daa242c/src/entities/Attachment.ts#L27)*
+*Defined in [entities/attachment.ts:20](https://github.com/lagunehq/core/blob/35e3f58/src/entities/attachment.ts#L20)*
 
 ___
 

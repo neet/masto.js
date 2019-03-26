@@ -1,11 +1,12 @@
+[@lagunehq/core](../README.md) > ["entities/application"](../modules/_entities_application_.md)
 
+# External module: "entities/application"
 
-# Index
+## Index
 
 ### Interfaces
 
 * [Application](../interfaces/_entities_application_.application.md)
-* [OAuth](../interfaces/_entities_application_.oauth.md)
 
 ---
 

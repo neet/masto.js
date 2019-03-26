@@ -1,40 +1,52 @@
+[@lagunehq/core](../README.md) > ["entities/tag"](../modules/_entities_tag_.md) > [Tag](../interfaces/_entities_tag_.tag.md)
 
+# Interface: Tag
 
-# Hierarchy
+## Hierarchy
 
 **Tag**
 
-# Properties
+## Index
+
+### Properties
+
+* [history](_entities_tag_.tag.md#history)
+* [name](_entities_tag_.tag.md#name)
+* [url](_entities_tag_.tag.md#url)
+
+---
+
+## Properties
 
 <a id="history"></a>
 
-##  history
+###  history
 
 **● history**: *[TagHistory](_entities_tag_.taghistory.md)[]*
 
-*Defined in [entities/Tag.ts:9](https://github.com/lagunehq/core/blob/daa242c/src/entities/Tag.ts#L9)*
+*Defined in [entities/tag.ts:7](https://github.com/lagunehq/core/blob/35e3f58/src/entities/tag.ts#L7)*
 
 Array of History
 
 ___
 <a id="name"></a>
 
-##  name
+###  name
 
 **● name**: *`string`*
 
-*Defined in [entities/Tag.ts:3](https://github.com/lagunehq/core/blob/daa242c/src/entities/Tag.ts#L3)*
+*Defined in [entities/tag.ts:3](https://github.com/lagunehq/core/blob/35e3f58/src/entities/tag.ts#L3)*
 
 The hashtag, not including the preceding `#`
 
 ___
 <a id="url"></a>
 
-##  url
+###  url
 
 **● url**: *`string`*
 
-*Defined in [entities/Tag.ts:6](https://github.com/lagunehq/core/blob/daa242c/src/entities/Tag.ts#L6)*
+*Defined in [entities/tag.ts:5](https://github.com/lagunehq/core/blob/35e3f58/src/entities/tag.ts#L5)*
 
 The URL of the hashtag
 

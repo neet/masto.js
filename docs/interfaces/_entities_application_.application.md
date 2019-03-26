@@ -1,44 +1,54 @@
+[@lagunehq/core](../README.md) > ["entities/application"](../modules/_entities_application_.md) > [Application](../interfaces/_entities_application_.application.md)
 
+# Interface: Application
 
-# Hierarchy
+## Hierarchy
 
 **Application**
 
-↳  [OAuth](_entities_application_.oauth.md)
+↳  [OAuthClient](_entities_oauth_.oauthclient.md)
 
-# Properties
+## Index
+
+### Properties
+
+* [name](_entities_application_.application.md#name)
+* [vapid_key](_entities_application_.application.md#vapid_key)
+* [website](_entities_application_.application.md#website)
+
+---
+
+## Properties
 
 <a id="name"></a>
 
-##  name
+###  name
 
 **● name**: *`string`*
 
-*Defined in [entities/Application.ts:3](https://github.com/lagunehq/core/blob/daa242c/src/entities/Application.ts#L3)*
+*Defined in [entities/application.ts:3](https://github.com/lagunehq/core/blob/35e3f58/src/entities/application.ts#L3)*
 
 Name of the app
 
 ___
 <a id="vapid_key"></a>
 
-## `<Optional>` vapid_key
+### `<Optional>` vapid_key
 
-**● vapid_key**: * `string` &#124; `null`
-*
+**● vapid_key**: *`string` \| `null`*
 
-*Defined in [entities/Application.ts:9](https://github.com/lagunehq/core/blob/daa242c/src/entities/Application.ts#L9)*
+*Defined in [entities/application.ts:7](https://github.com/lagunehq/core/blob/35e3f58/src/entities/application.ts#L7)*
 
 VAPID key
 
 ___
 <a id="website"></a>
 
-## `<Optional>` website
+### `<Optional>` website
 
-**● website**: * `string` &#124; `null`
-*
+**● website**: *`string` \| `null`*
 
-*Defined in [entities/Application.ts:6](https://github.com/lagunehq/core/blob/daa242c/src/entities/Application.ts#L6)*
+*Defined in [entities/application.ts:5](https://github.com/lagunehq/core/blob/35e3f58/src/entities/application.ts#L5)*
 
 Homepage URL of the app
 

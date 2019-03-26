@@ -1,6 +1,8 @@
+[@lagunehq/core](../README.md) > ["entities/card"](../modules/_entities_card_.md)
 
+# External module: "entities/card"
 
-# Index
+## Index
 
 ### Interfaces
 
@@ -12,16 +14,15 @@
 
 ---
 
-# Type aliases
+## Type aliases
 
 <a id="cardtype"></a>
 
-##  CardType
+###  CardType
 
-**Ƭ CardType**: * "link" &#124; "photo" &#124; "video" &#124; "rich"
-*
+**Ƭ CardType**: *"link" \| "photo" \| "video" \| "rich"*
 
-*Defined in [entities/Card.ts:39](https://github.com/lagunehq/core/blob/daa242c/src/entities/Card.ts#L39)*
+*Defined in [entities/card.ts:1](https://github.com/lagunehq/core/blob/35e3f58/src/entities/card.ts#L1)*
 
 ___
 

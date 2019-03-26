@@ -1,27 +1,38 @@
+[@lagunehq/core](../README.md) > ["entities/attachment"](../modules/_entities_attachment_.md) > [AttachmentMetaFocus](../interfaces/_entities_attachment_.attachmentmetafocus.md)
 
+# Interface: AttachmentMetaFocus
 
-# Hierarchy
+## Hierarchy
 
 **AttachmentMetaFocus**
 
-# Properties
+## Index
+
+### Properties
+
+* [x](_entities_attachment_.attachmentmetafocus.md#x)
+* [y](_entities_attachment_.attachmentmetafocus.md#y)
+
+---
+
+## Properties
 
 <a id="x"></a>
 
-##  x
+###  x
 
 **● x**: *`number`*
 
-*Defined in [entities/Attachment.ts:52](https://github.com/lagunehq/core/blob/daa242c/src/entities/Attachment.ts#L52)*
+*Defined in [entities/attachment.ts:45](https://github.com/lagunehq/core/blob/35e3f58/src/entities/attachment.ts#L45)*
 
 ___
 <a id="y"></a>
 
-##  y
+###  y
 
 **● y**: *`number`*
 
-*Defined in [entities/Attachment.ts:53](https://github.com/lagunehq/core/blob/daa242c/src/entities/Attachment.ts#L53)*
+*Defined in [entities/attachment.ts:46](https://github.com/lagunehq/core/blob/35e3f58/src/entities/attachment.ts#L46)*
 
 ___
 

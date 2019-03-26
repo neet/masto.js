@@ -1,6 +1,8 @@
+[@lagunehq/core](../README.md) > ["entities/instance"](../modules/_entities_instance_.md)
 
+# External module: "entities/instance"
 
-# Index
+## Index
 
 ### Interfaces
 

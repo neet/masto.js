@@ -1,63 +1,78 @@
+[@lagunehq/core](../README.md) > ["entities/attachment"](../modules/_entities_attachment_.md) > [AttachmentMetaVideo](../interfaces/_entities_attachment_.attachmentmetavideo.md)
 
+# Interface: AttachmentMetaVideo
 
-# Hierarchy
+## Hierarchy
 
 **AttachmentMetaVideo**
 
-# Properties
+## Index
+
+### Properties
+
+* [aspect](_entities_attachment_.attachmentmetavideo.md#aspect)
+* [bitrate](_entities_attachment_.attachmentmetavideo.md#bitrate)
+* [duration](_entities_attachment_.attachmentmetavideo.md#duration)
+* [frame_rate](_entities_attachment_.attachmentmetavideo.md#frame_rate)
+* [height](_entities_attachment_.attachmentmetavideo.md#height)
+* [width](_entities_attachment_.attachmentmetavideo.md#width)
+
+---
+
+## Properties
 
 <a id="aspect"></a>
 
-##  aspect
+###  aspect
 
 **● aspect**: *`number`*
 
-*Defined in [entities/Attachment.ts:48](https://github.com/lagunehq/core/blob/daa242c/src/entities/Attachment.ts#L48)*
+*Defined in [entities/attachment.ts:41](https://github.com/lagunehq/core/blob/35e3f58/src/entities/attachment.ts#L41)*
 
 ___
 <a id="bitrate"></a>
 
-##  bitrate
+###  bitrate
 
 **● bitrate**: *`number`*
 
-*Defined in [entities/Attachment.ts:47](https://github.com/lagunehq/core/blob/daa242c/src/entities/Attachment.ts#L47)*
+*Defined in [entities/attachment.ts:40](https://github.com/lagunehq/core/blob/35e3f58/src/entities/attachment.ts#L40)*
 
 ___
 <a id="duration"></a>
 
-##  duration
+###  duration
 
 **● duration**: *`number`*
 
-*Defined in [entities/Attachment.ts:46](https://github.com/lagunehq/core/blob/daa242c/src/entities/Attachment.ts#L46)*
+*Defined in [entities/attachment.ts:39](https://github.com/lagunehq/core/blob/35e3f58/src/entities/attachment.ts#L39)*
 
 ___
 <a id="frame_rate"></a>
 
-##  frame_rate
+###  frame_rate
 
 **● frame_rate**: *`string`*
 
-*Defined in [entities/Attachment.ts:45](https://github.com/lagunehq/core/blob/daa242c/src/entities/Attachment.ts#L45)*
+*Defined in [entities/attachment.ts:38](https://github.com/lagunehq/core/blob/35e3f58/src/entities/attachment.ts#L38)*
 
 ___
 <a id="height"></a>
 
-##  height
+###  height
 
 **● height**: *`number`*
 
-*Defined in [entities/Attachment.ts:44](https://github.com/lagunehq/core/blob/daa242c/src/entities/Attachment.ts#L44)*
+*Defined in [entities/attachment.ts:37](https://github.com/lagunehq/core/blob/35e3f58/src/entities/attachment.ts#L37)*
 
 ___
 <a id="width"></a>
 
-##  width
+###  width
 
 **● width**: *`number`*
 
-*Defined in [entities/Attachment.ts:43](https://github.com/lagunehq/core/blob/daa242c/src/entities/Attachment.ts#L43)*
+*Defined in [entities/attachment.ts:36](https://github.com/lagunehq/core/blob/35e3f58/src/entities/attachment.ts#L36)*
 
 ___
 

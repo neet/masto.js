@@ -1,6 +1,8 @@
+[@lagunehq/core](../README.md) > ["entities/account"](../modules/_entities_account_.md)
 
+# External module: "entities/account"
 
-# Index
+## Index
 
 ### Interfaces
 
@@ -8,7 +10,6 @@
 * [AccountCredentials](../interfaces/_entities_account_.accountcredentials.md)
 * [AccountField](../interfaces/_entities_account_.accountfield.md)
 * [AccountSource](../interfaces/_entities_account_.accountsource.md)
-* [AccountToken](../interfaces/_entities_account_.accounttoken.md)
 
 ---
 

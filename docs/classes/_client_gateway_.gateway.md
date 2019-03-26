@@ -1,332 +1,136 @@
+[@lagunehq/core](../README.md) > ["client/gateway"](../modules/_client_gateway_.md) > [Gateway](../classes/_client_gateway_.gateway.md)
 
+# Class: Gateway
 
-# Hierarchy
+Mastodon network request wrapper
+
+*__param__*: Optional params
+
+## Hierarchy
 
 **Gateway**
 
 ↳  [Mastodon](_client_mastodon_.mastodon.md)
 
-# Constructors
+## Index
 
-<a id="constructor"></a>
+### Accessors
 
-##  constructor
+* [accessToken](_client_gateway_.gateway.md#accesstoken)
+* [streamingApiUrl](_client_gateway_.gateway.md#streamingapiurl)
+* [uri](_client_gateway_.gateway.md#uri)
+* [version](_client_gateway_.gateway.md#version)
 
-⊕ **new Gateway**(options: *`object`*): [Gateway](_client_gateway_.gateway.md)
+---
 
-*Defined in [client/Gateway.ts:18](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L18)*
+## Accessors
 
-**Parameters:**
+<a id="accesstoken"></a>
 
-| Name | Type | Description |
-| ------ | ------ | ------ |
-| options | `object` |  Optional params |
+###  accessToken
 
-**Returns:** [Gateway](_client_gateway_.gateway.md)
+**get accessToken**(): `string`
 
-___
+**set accessToken**(newAccessToken: *`string`*): `void`
 
-# Properties
+*Defined in [client/gateway.ts:94](https://github.com/lagunehq/core/blob/35e3f58/src/client/gateway.ts#L94)*
 
-<a id="streamingurl"></a>
-
-## `<Protected>` streamingUrl
-
-**● streamingUrl**: *`string`* = ""
-
-*Defined in [client/Gateway.ts:15](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L15)*
-
-Streaming API URL of the instance
-
-___
-<a id="token"></a>
-
-## `<Protected>``<Optional>` token
-
-**● token**: * `undefined` &#124; `string`
-*
-
-*Defined in [client/Gateway.ts:18](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L18)*
-
-API token of the user
-
-___
-<a id="url"></a>
-
-## `<Protected>` url
-
-**● url**: *`string`* = ""
-
-*Defined in [client/Gateway.ts:12](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L12)*
-
-Rest API URL of the instance
-
-___
-
-# Methods
-
-<a id="delete"></a>
-
-## `<Protected>` delete
-
-▸ **delete**<`T`>(url: *`string`*, body?: *`object`*, options?: *`object`*): `Promise`<`AxiosResponse`<`T`>>
-
-*Defined in [client/Gateway.ts:202](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L202)*
-
-HTTP DELETE
-
-**Type parameters:**
-
-#### T 
-**Parameters:**
-
-| Name | Type | Default value | Description |
-| ------ | ------ | ------ | ------ |
-| url | `string` | - |  URL to request |
-| `Default value` body | `object` |  {} |  Payload |
-| `Default value` options | `object` |  {} |  Fetch API options |
-
-**Returns:** `Promise`<`AxiosResponse`<`T`>>
-
-___
-<a id="get"></a>
-
-## `<Protected>` get
-
-▸ **get**<`T`>(url: *`string`*, params?: *`object`*, options?: *`object`*): `Promise`<`AxiosResponse`<`T`>>
-
-*Defined in [client/Gateway.ts:153](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L153)*
-
-HTTP GET
-
-**Type parameters:**
-
-#### T 
-**Parameters:**
-
-| Name | Type | Default value | Description |
-| ------ | ------ | ------ | ------ |
-| url | `string` | - |  URL to request |
-| `Default value` params | `object` |  {} |  Query strings |
-| `Default value` options | `object` |  {} |  Fetch API options |
-
-**Returns:** `Promise`<`AxiosResponse`<`T`>>
-
-___
-<a id="getstreamingurl"></a>
-
-##  getStreamingUrl
-
-▸ **getStreamingUrl**(): `string`
-
-*Defined in [client/Gateway.ts:51](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L51)*
-
-Getting streaming API URL of the instance
+Getter for this.\_accessToken
 
 **Returns:** `string`
-Streaming API URL
 
-___
-<a id="gettoken"></a>
+*Defined in [client/gateway.ts:99](https://github.com/lagunehq/core/blob/35e3f58/src/client/gateway.ts#L99)*
 
-##  getToken
-
-▸ **getToken**():  `undefined` &#124; `string`
-
-*Defined in [client/Gateway.ts:57](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L57)*
-
-Getting token of authenticated user
-
-**Returns:**  `undefined` &#124; `string`
-
-The token
-
-___
-<a id="geturl"></a>
-
-##  getUrl
-
-▸ **getUrl**(): `string`
-
-*Defined in [client/Gateway.ts:45](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L45)*
-
-Getting rest API URL of the instance
-
-**Returns:** `string`
-Rest API URL
-
-___
-<a id="patch"></a>
-
-## `<Protected>` patch
-
-▸ **patch**<`T`>(url: *`string`*, body?: *`object`*, options?: *`object`*): `Promise`<`AxiosResponse`<`T`>>
-
-*Defined in [client/Gateway.ts:218](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L218)*
-
-HTTP PATCH
-
-**Type parameters:**
-
-#### T 
-**Parameters:**
-
-| Name | Type | Default value | Description |
-| ------ | ------ | ------ | ------ |
-| url | `string` | - |  URL to request |
-| `Default value` body | `object` |  {} |  Payload |
-| `Default value` options | `object` |  {} |  Fetch API options |
-
-**Returns:** `Promise`<`AxiosResponse`<`T`>>
-
-___
-<a id="post"></a>
-
-## `<Protected>` post
-
-▸ **post**<`T`>(url: *`string`*, body?: *`object`*, options?: *`object`*): `Promise`<`AxiosResponse`<`T`>>
-
-*Defined in [client/Gateway.ts:170](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L170)*
-
-HTTP POST
-
-**Type parameters:**
-
-#### T 
-**Parameters:**
-
-| Name | Type | Default value | Description |
-| ------ | ------ | ------ | ------ |
-| url | `string` | - |  URL to request |
-| `Default value` body | `object` |  {} |  Payload |
-| `Default value` options | `object` |  {} |  Fetch API options |
-
-**Returns:** `Promise`<`AxiosResponse`<`T`>>
-
-___
-<a id="put"></a>
-
-## `<Protected>` put
-
-▸ **put**<`T`>(url: *`string`*, body?: *`object`*, options?: *`object`*): `Promise`<`AxiosResponse`<`T`>>
-
-*Defined in [client/Gateway.ts:186](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L186)*
-
-HTTP PUT
-
-**Type parameters:**
-
-#### T 
-**Parameters:**
-
-| Name | Type | Default value | Description |
-| ------ | ------ | ------ | ------ |
-| url | `string` | - |  URL to request |
-| `Default value` body | `object` |  {} |  Payload |
-| `Default value` options | `object` |  {} |  Fetch API options |
-
-**Returns:** `Promise`<`AxiosResponse`<`T`>>
-
-___
-<a id="request"></a>
-
-## `<Protected>` request
-
-▸ **request**<`T`>(options: *`AxiosRequestConfig`*): `Promise`<`AxiosResponse`<`T`>>
-
-*Defined in [client/Gateway.ts:89](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L89)*
-
-Fetch API wrapper function
-
-**Type parameters:**
-
-#### T 
-**Parameters:**
-
-| Name | Type | Description |
-| ------ | ------ | ------ |
-| options | `AxiosRequestConfig` |  Axios options |
-
-**Returns:** `Promise`<`AxiosResponse`<`T`>>
-Parsed response object
-
-___
-<a id="setstreamingurl"></a>
-
-##  setStreamingUrl
-
-▸ **setStreamingUrl**(url: *`string`*): `void`
-
-*Defined in [client/Gateway.ts:71](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L71)*
-
-Setting streaming API URL of the instance
-
-**Parameters:**
-
-| Name | Type | Description |
-| ------ | ------ | ------ |
-| url | `string` |  URL of the instance |
-
-**Returns:** `void`
-
-___
-<a id="settoken"></a>
-
-##  setToken
-
-▸ **setToken**(token: *`string`*): `void`
-
-*Defined in [client/Gateway.ts:79](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L79)*
-
-Setting token of authenticated user
-
-**Parameters:**
-
-| Name | Type | Description |
-| ------ | ------ | ------ |
-| token | `string` |  Token of the user |
-
-**Returns:** `void`
-
-___
-<a id="seturl"></a>
-
-##  setUrl
-
-▸ **setUrl**(url: *`string`*): `void`
-
-*Defined in [client/Gateway.ts:63](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L63)*
-
-Setting rest API URL of the instance
-
-**Parameters:**
-
-| Name | Type | Description |
-| ------ | ------ | ------ |
-| url | `string` |  URL of the instance |
-
-**Returns:** `void`
-
-___
-<a id="stream"></a>
-
-## `<Protected>` stream
-
-▸ **stream**(url: *`string`*, params: *`object`*): [EventHandler](_client_eventhandler_.eventhandler.md)
-
-*Defined in [client/Gateway.ts:232](https://github.com/lagunehq/core/blob/daa242c/src/client/Gateway.ts#L232)*
-
-Start streaming
+Setter for this.\_accessToken
 
 **Parameters:**
 
 | Name | Type |
 | ------ | ------ |
-| url | `string` |
-| params | `object` |
+| newAccessToken | `string` |
 
-**Returns:** [EventHandler](_client_eventhandler_.eventhandler.md)
-Instance of EventEmitter
+**Returns:** `void`
+
+___
+<a id="streamingapiurl"></a>
+
+###  streamingApiUrl
+
+**get streamingApiUrl**(): `string`
+
+**set streamingApiUrl**(newStreamingApiUrl: *`string`*): `void`
+
+*Defined in [client/gateway.ts:84](https://github.com/lagunehq/core/blob/35e3f58/src/client/gateway.ts#L84)*
+
+Getter for this.\_streamingApiUrl
+
+**Returns:** `string`
+
+*Defined in [client/gateway.ts:89](https://github.com/lagunehq/core/blob/35e3f58/src/client/gateway.ts#L89)*
+
+Setter for this.\_streamingApiUrl
+
+**Parameters:**
+
+| Name | Type |
+| ------ | ------ |
+| newStreamingApiUrl | `string` |
+
+**Returns:** `void`
+
+___
+<a id="uri"></a>
+
+###  uri
+
+**get uri**(): `string`
+
+**set uri**(newUri: *`string`*): `void`
+
+*Defined in [client/gateway.ts:64](https://github.com/lagunehq/core/blob/35e3f58/src/client/gateway.ts#L64)*
+
+Getter for this.\_uri
+
+**Returns:** `string`
+
+*Defined in [client/gateway.ts:69](https://github.com/lagunehq/core/blob/35e3f58/src/client/gateway.ts#L69)*
+
+Setter for this.\_uri
+
+**Parameters:**
+
+| Name | Type |
+| ------ | ------ |
+| newUri | `string` |
+
+**Returns:** `void`
+
+___
+<a id="version"></a>
+
+###  version
+
+**get version**(): `string`
+
+**set version**(newVersion: *`string`*): `void`
+
+*Defined in [client/gateway.ts:74](https://github.com/lagunehq/core/blob/35e3f58/src/client/gateway.ts#L74)*
+
+Getter for this.\_version
+
+**Returns:** `string`
+
+*Defined in [client/gateway.ts:79](https://github.com/lagunehq/core/blob/35e3f58/src/client/gateway.ts#L79)*
+
+Setter for this.\_version
+
+**Parameters:**
+
+| Name | Type |
+| ------ | ------ |
+| newVersion | `string` |
+
+**Returns:** `void`
 
 ___
 

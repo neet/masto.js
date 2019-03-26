@@ -1,31 +1,40 @@
+[@lagunehq/core](../README.md) > ["entities/account"](../modules/_entities_account_.md) > [AccountField](../interfaces/_entities_account_.accountfield.md)
 
+# Interface: AccountField
 
-# Hierarchy
+## Hierarchy
 
 **AccountField**
 
-# Properties
+## Index
+
+### Properties
+
+* [name](_entities_account_.accountfield.md#name)
+* [value](_entities_account_.accountfield.md#value)
+
+---
+
+## Properties
 
 <a id="name"></a>
 
-## `<Optional>` name
+### `<Optional>` name
 
-**● name**: * `string` &#124; `null`
-*
+**● name**: *`string` \| `null`*
 
-*Defined in [entities/Account.ts:65](https://github.com/lagunehq/core/blob/daa242c/src/entities/Account.ts#L65)*
+*Defined in [entities/account.ts:47](https://github.com/lagunehq/core/blob/35e3f58/src/entities/account.ts#L47)*
 
 (2.4 or later) Label of profile metadata field.
 
 ___
 <a id="value"></a>
 
-## `<Optional>` value
+### `<Optional>` value
 
-**● value**: * `string` &#124; `null`
-*
+**● value**: *`string` \| `null`*
 
-*Defined in [entities/Account.ts:68](https://github.com/lagunehq/core/blob/daa242c/src/entities/Account.ts#L68)*
+*Defined in [entities/account.ts:49](https://github.com/lagunehq/core/blob/35e3f58/src/entities/account.ts#L49)*
 
 (2.4 or later) Value of profile metadata field.
 

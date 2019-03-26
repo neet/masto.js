@@ -1,45 +1,58 @@
+[@lagunehq/core](../README.md) > ["entities/attachment"](../modules/_entities_attachment_.md) > [AttachmentMetaImage](../interfaces/_entities_attachment_.attachmentmetaimage.md)
 
+# Interface: AttachmentMetaImage
 
-# Hierarchy
+## Hierarchy
 
 **AttachmentMetaImage**
 
-# Properties
+## Index
+
+### Properties
+
+* [aspect](_entities_attachment_.attachmentmetaimage.md#aspect)
+* [height](_entities_attachment_.attachmentmetaimage.md#height)
+* [size](_entities_attachment_.attachmentmetaimage.md#size)
+* [width](_entities_attachment_.attachmentmetaimage.md#width)
+
+---
+
+## Properties
 
 <a id="aspect"></a>
 
-##  aspect
+###  aspect
 
 **● aspect**: *`number`*
 
-*Defined in [entities/Attachment.ts:39](https://github.com/lagunehq/core/blob/daa242c/src/entities/Attachment.ts#L39)*
+*Defined in [entities/attachment.ts:32](https://github.com/lagunehq/core/blob/35e3f58/src/entities/attachment.ts#L32)*
 
 ___
 <a id="height"></a>
 
-##  height
+###  height
 
 **● height**: *`number`*
 
-*Defined in [entities/Attachment.ts:37](https://github.com/lagunehq/core/blob/daa242c/src/entities/Attachment.ts#L37)*
+*Defined in [entities/attachment.ts:30](https://github.com/lagunehq/core/blob/35e3f58/src/entities/attachment.ts#L30)*
 
 ___
 <a id="size"></a>
 
-##  size
+###  size
 
 **● size**: *`string`*
 
-*Defined in [entities/Attachment.ts:38](https://github.com/lagunehq/core/blob/daa242c/src/entities/Attachment.ts#L38)*
+*Defined in [entities/attachment.ts:31](https://github.com/lagunehq/core/blob/35e3f58/src/entities/attachment.ts#L31)*
 
 ___
 <a id="width"></a>
 
-##  width
+###  width
 
 **● width**: *`number`*
 
-*Defined in [entities/Attachment.ts:36](https://github.com/lagunehq/core/blob/daa242c/src/entities/Attachment.ts#L36)*
+*Defined in [entities/attachment.ts:29](https://github.com/lagunehq/core/blob/35e3f58/src/entities/attachment.ts#L29)*
 
 ___
 

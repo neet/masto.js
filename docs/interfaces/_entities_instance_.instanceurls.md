@@ -1,18 +1,28 @@
+[@lagunehq/core](../README.md) > ["entities/instance"](../modules/_entities_instance_.md) > [InstanceURLs](../interfaces/_entities_instance_.instanceurls.md)
 
+# Interface: InstanceURLs
 
-# Hierarchy
+## Hierarchy
 
 **InstanceURLs**
 
-# Properties
+## Index
+
+### Properties
+
+* [streaming_api](_entities_instance_.instanceurls.md#streaming_api)
+
+---
+
+## Properties
 
 <a id="streaming_api"></a>
 
-##  streaming_api
+###  streaming_api
 
 **● streaming_api**: *`string`*
 
-*Defined in [entities/Instance.ts:39](https://github.com/lagunehq/core/blob/daa242c/src/entities/Instance.ts#L39)*
+*Defined in [entities/instance.ts:29](https://github.com/lagunehq/core/blob/35e3f58/src/entities/instance.ts#L29)*
 
 ___
 

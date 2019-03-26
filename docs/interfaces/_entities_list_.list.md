@@ -1,29 +1,40 @@
+[@lagunehq/core](../README.md) > ["entities/list"](../modules/_entities_list_.md) > [List](../interfaces/_entities_list_.list.md)
 
+# Interface: List
 
-# Hierarchy
+## Hierarchy
 
 **List**
 
-# Properties
+## Index
+
+### Properties
+
+* [id](_entities_list_.list.md#id)
+* [title](_entities_list_.list.md#title)
+
+---
+
+## Properties
 
 <a id="id"></a>
 
-##  id
+###  id
 
 **● id**: *`string`*
 
-*Defined in [entities/List.ts:3](https://github.com/lagunehq/core/blob/daa242c/src/entities/List.ts#L3)*
+*Defined in [entities/list.ts:3](https://github.com/lagunehq/core/blob/35e3f58/src/entities/list.ts#L3)*
 
 ID of the list
 
 ___
 <a id="title"></a>
 
-##  title
+###  title
 
 **● title**: *`string`*
 
-*Defined in [entities/List.ts:6](https://github.com/lagunehq/core/blob/daa242c/src/entities/List.ts#L6)*
+*Defined in [entities/list.ts:5](https://github.com/lagunehq/core/blob/35e3f58/src/entities/list.ts#L5)*
 
 Title of the list
 

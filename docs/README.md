@@ -55,3 +55,39 @@ License
 
 AGPLv3
 
+## Index
+
+### External modules
+
+* ["client/decorators"](modules/_client_decorators_.md)
+* ["client/gateway"](modules/_client_gateway_.md)
+* ["client/mastodon"](modules/_client_mastodon_.md)
+* ["client/params"](modules/_client_params_.md)
+* ["client/streaming-handler"](modules/_client_streaming_handler_.md)
+* ["client/utils"](modules/_client_utils_.md)
+* ["entities/account"](modules/_entities_account_.md)
+* ["entities/application"](modules/_entities_application_.md)
+* ["entities/attachment"](modules/_entities_attachment_.md)
+* ["entities/card"](modules/_entities_card_.md)
+* ["entities/context"](modules/_entities_context_.md)
+* ["entities/conversation"](modules/_entities_conversation_.md)
+* ["entities/emoji"](modules/_entities_emoji_.md)
+* ["entities/filter"](modules/_entities_filter_.md)
+* ["entities/instance"](modules/_entities_instance_.md)
+* ["entities/list"](modules/_entities_list_.md)
+* ["entities/mention"](modules/_entities_mention_.md)
+* ["entities/notification"](modules/_entities_notification_.md)
+* ["entities/oauth"](modules/_entities_oauth_.md)
+* ["entities/push-subscription"](modules/_entities_push_subscription_.md)
+* ["entities/relationship"](modules/_entities_relationship_.md)
+* ["entities/results"](modules/_entities_results_.md)
+* ["entities/status"](modules/_entities_status_.md)
+* ["entities/tag"](modules/_entities_tag_.md)
+* ["errors/mastodon-error"](modules/_errors_mastodon_error_.md)
+* ["errors/mastodon-not-found-error"](modules/_errors_mastodon_not_found_error_.md)
+* ["errors/mastodon-rate-limit-error"](modules/_errors_mastodon_rate_limit_error_.md)
+* ["errors/mastodon-unauthorized-error"](modules/_errors_mastodon_unauthorized_error_.md)
+* ["index"](modules/_index_.md)
+
+---
+

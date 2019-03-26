@@ -1,6 +1,8 @@
+[@lagunehq/core](../README.md) > ["entities/status"](../modules/_entities_status_.md)
 
+# External module: "entities/status"
 
-# Index
+## Index
 
 ### Interfaces
 
@@ -12,16 +14,15 @@
 
 ---
 
-# Type aliases
+## Type aliases
 
 <a id="statusvisibility"></a>
 
-##  StatusVisibility
+###  StatusVisibility
 
-**Ƭ StatusVisibility**: * "public" &#124; "unlisted" &#124; "private" &#124; "direct"
-*
+**Ƭ StatusVisibility**: *"public" \| "unlisted" \| "private" \| "direct"*
 
-*Defined in [entities/Status.ts:89](https://github.com/lagunehq/core/blob/daa242c/src/entities/Status.ts#L89)*
+*Defined in [entities/status.ts:9](https://github.com/lagunehq/core/blob/35e3f58/src/entities/status.ts#L9)*
 
 ___
 

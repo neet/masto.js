@@ -1,6 +1,8 @@
+[@lagunehq/core](../README.md) > ["entities/conversation"](../modules/_entities_conversation_.md)
 
+# External module: "entities/conversation"
 
-# Index
+## Index
 
 ### Interfaces
 

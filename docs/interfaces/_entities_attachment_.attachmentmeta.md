@@ -1,39 +1,48 @@
+[@lagunehq/core](../README.md) > ["entities/attachment"](../modules/_entities_attachment_.md) > [AttachmentMeta](../interfaces/_entities_attachment_.attachmentmeta.md)
 
+# Interface: AttachmentMeta
 
-# Hierarchy
+## Hierarchy
 
 **AttachmentMeta**
 
-# Properties
+## Index
+
+### Properties
+
+* [focus](_entities_attachment_.attachmentmeta.md#focus)
+* [original](_entities_attachment_.attachmentmeta.md#original)
+* [small](_entities_attachment_.attachmentmeta.md#small)
+
+---
+
+## Properties
 
 <a id="focus"></a>
 
-## `<Optional>` focus
+### `<Optional>` focus
 
-**● focus**: * [AttachmentMetaFocus](_entities_attachment_.attachmentmetafocus.md) &#124; `null`
-*
+**● focus**: *[AttachmentMetaFocus](_entities_attachment_.attachmentmetafocus.md) \| `null`*
 
-*Defined in [entities/Attachment.ts:32](https://github.com/lagunehq/core/blob/daa242c/src/entities/Attachment.ts#L32)*
+*Defined in [entities/attachment.ts:25](https://github.com/lagunehq/core/blob/35e3f58/src/entities/attachment.ts#L25)*
 
 ___
 <a id="original"></a>
 
-## `<Optional>` original
+### `<Optional>` original
 
-**● original**: * [AttachmentMetaImage](_entities_attachment_.attachmentmetaimage.md) &#124; [AttachmentMetaVideo](_entities_attachment_.attachmentmetavideo.md) &#124; `null`
-*
+**● original**: *[AttachmentMetaImage](_entities_attachment_.attachmentmetaimage.md) \| [AttachmentMetaVideo](_entities_attachment_.attachmentmetavideo.md) \| `null`*
 
-*Defined in [entities/Attachment.ts:31](https://github.com/lagunehq/core/blob/daa242c/src/entities/Attachment.ts#L31)*
+*Defined in [entities/attachment.ts:24](https://github.com/lagunehq/core/blob/35e3f58/src/entities/attachment.ts#L24)*
 
 ___
 <a id="small"></a>
 
-## `<Optional>` small
+### `<Optional>` small
 
-**● small**: * [AttachmentMetaImage](_entities_attachment_.attachmentmetaimage.md) &#124; [AttachmentMetaVideo](_entities_attachment_.attachmentmetavideo.md) &#124; `null`
-*
+**● small**: *[AttachmentMetaImage](_entities_attachment_.attachmentmetaimage.md) \| [AttachmentMetaVideo](_entities_attachment_.attachmentmetavideo.md) \| `null`*
 
-*Defined in [entities/Attachment.ts:30](https://github.com/lagunehq/core/blob/daa242c/src/entities/Attachment.ts#L30)*
+*Defined in [entities/attachment.ts:23](https://github.com/lagunehq/core/blob/35e3f58/src/entities/attachment.ts#L23)*
 
 ___
 

@@ -1,6 +1,8 @@
+[@lagunehq/core](../README.md) > ["entities/filter"](../modules/_entities_filter_.md)
 
+# External module: "entities/filter"
 
-# Index
+## Index
 
 ### Interfaces
 
@@ -12,16 +14,15 @@
 
 ---
 
-# Type aliases
+## Type aliases
 
 <a id="filtercontext"></a>
 
-##  FilterContext
+###  FilterContext
 
-**Ƭ FilterContext**: * "home" &#124; "notifications" &#124; "public" &#124; "thread"
-*
+**Ƭ FilterContext**: *"home" \| "notifications" \| "public" \| "thread"*
 
-*Defined in [entities/Filter.ts:22](https://github.com/lagunehq/core/blob/daa242c/src/entities/Filter.ts#L22)*
+*Defined in [entities/filter.ts:2](https://github.com/lagunehq/core/blob/35e3f58/src/entities/filter.ts#L2)*
 
 Type of filter context
 

@@ -34,5 +34,13 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "typedocOptions": {
+    "out": "./docs",
+    "theme": "markdown",
+    "excludeNotExported": true,
+    "excludePrivate": true,
+    "excludeProtected": true,
+    "mdEngine": "github",
+  }
 }

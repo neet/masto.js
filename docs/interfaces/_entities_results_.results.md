@@ -1,43 +1,54 @@
+[@lagunehq/core](../README.md) > ["entities/results"](../modules/_entities_results_.md) > [Results](../interfaces/_entities_results_.results.md)
 
+# Interface: Results
 
-# Type parameters
-#### V :   "v1" &#124; "v2"
-
-# Hierarchy
+## Type parameters
+#### V :  "v1" \| "v2"
+## Hierarchy
 
 **Results**
 
-# Properties
+## Index
+
+### Properties
+
+* [accounts](_entities_results_.results.md#accounts)
+* [hashtags](_entities_results_.results.md#hashtags)
+* [statuses](_entities_results_.results.md#statuses)
+
+---
+
+## Properties
 
 <a id="accounts"></a>
 
-##  accounts
+###  accounts
 
 **● accounts**: *[Account](_entities_account_.account.md)[]*
 
-*Defined in [entities/Results.ts:7](https://github.com/lagunehq/core/blob/daa242c/src/entities/Results.ts#L7)*
+*Defined in [entities/results.ts:7](https://github.com/lagunehq/core/blob/35e3f58/src/entities/results.ts#L7)*
 
 An array of matched Accounts
 
 ___
 <a id="hashtags"></a>
 
-##  hashtags
+###  hashtags
 
-**● hashtags**: *`V extends &quot;v1&quot; ? string[] : V extends &quot;v2&quot; ? Tag[] : never`*
+**● hashtags**: *`V extends "v1" ? string[] : V extends "v2" ? Tag[] : never`*
 
-*Defined in [entities/Results.ts:13](https://github.com/lagunehq/core/blob/daa242c/src/entities/Results.ts#L13)*
+*Defined in [entities/results.ts:11](https://github.com/lagunehq/core/blob/35e3f58/src/entities/results.ts#L11)*
 
 An array of matched hashtags, as strings
 
 ___
 <a id="statuses"></a>
 
-##  statuses
+###  statuses
 
 **● statuses**: *[Status](_entities_status_.status.md)[]*
 
-*Defined in [entities/Results.ts:10](https://github.com/lagunehq/core/blob/daa242c/src/entities/Results.ts#L10)*
+*Defined in [entities/results.ts:9](https://github.com/lagunehq/core/blob/35e3f58/src/entities/results.ts#L9)*
 
 An array of matched Statuses
 

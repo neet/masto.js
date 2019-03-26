@@ -323,7 +323,8 @@ export abstract class Gateway {
     initialUrl: string,
     initialParams?: Params,
   ): AsyncIterableIterator<AxiosResponse<Data> | undefined> {
-    const get = this.get.bind(this);
+    // tslint:disable-next-line no-this-assignment
+    const _this = this;
 
     let url: string = initialUrl;
     let params: Params | undefined = initialParams;
@@ -339,7 +340,7 @@ export abstract class Gateway {
           return { done: true, value: undefined };
         }
 
-        const response = await get<Data>(
+        const response = await _this.get<Data>(
           options.url || url,
           options.params || params,
         );
