@@ -9,24 +9,25 @@
       "dom",
       "esnext.asynciterable"
     ],
-    "moduleResolution": "node",
-    "declaration": true,
-    "allowSyntheticDefaultImports": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "strict": true,
-    "skipLibCheck": true,
-    "experimentalDecorators": true,
-    "removeComments": false,
-    "pretty": true,
     "plugins": [
       {
         "name": "typescript-tslint-plugin",
         "configFile": "./tslint.yml",
       }
-    ]
+    ],
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "pretty": true,
+    "removeComments": false,
+    "skipLibCheck": true,
+    "strict": true,
   },
   "include": [
     "src/**/*"
