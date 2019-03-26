@@ -230,3 +230,13 @@ export interface FetchAccountStatusesParams extends PaginationParams {
   /** Skip statuses that reply to other statuses */
   exclude_replies?: boolean | null;
 }
+
+export interface VotePollParams {
+  /** Array of choice indices */
+  choices: string[];
+}
+
+export interface UpdateScheduledStatusParams {
+  /** Timestamp string to schedule posting of status (ISO 8601) */
+  scheduled_at: string;
+}

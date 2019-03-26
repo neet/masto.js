@@ -1,3 +1,4 @@
+import { ScheduledStatus } from 'src/entities/scheduled-status';
 import { Account, AccountCredentials } from '../entities/account';
 import { Application } from '../entities/application';
 import { Attachment } from '../entities/attachment';
@@ -10,6 +11,7 @@ import { Instance, InstanceActivity } from '../entities/instance';
 import { List } from '../entities/list';
 import { Notification } from '../entities/notification';
 import { OAuthClient, OAuthToken } from '../entities/oauth';
+import { Poll } from '../entities/poll';
 import { PushSubscription } from '../entities/push-subscription';
 import { Relationship } from '../entities/relationship';
 import { Results } from '../entities/results';
@@ -38,6 +40,8 @@ import {
   SearchParams,
   UpdateCredentialsParams,
   UpdatePushSubscriptionParams,
+  UpdateScheduledStatusParams,
+  VotePollParams,
 } from './params';
 
 /**
@@ -1024,6 +1028,31 @@ export class Mastodon extends Gateway {
   }
 
   /**
+   * Fetch poll by its ID
+   * @param id ID of the poll
+   * @return Poll
+   * @see https://docs.joinmastodon.org/api/rest/polls/#get-api-v1-polls-id
+   */
+  @available({ since: '2.8.0' })
+  public async fetchPoll(id: string) {
+    return this.get<Poll>(`${this.uri}/api/v1/polls/${id}`);
+  }
+
+  /**
+   * Vote on a poll
+   * @param id ID of the poll
+   * @param options Options
+   * @return Poll
+   * @see https://docs.joinmastodon.org/api/rest/polls/#post-api-v1-polls-id-votes
+   */
+  @requiresAuthentication
+  @requiresUser
+  @available({ since: '2.8.0' })
+  public async votePoll(id: string, params: VotePollParams) {
+    return this.post<Poll>(`${this.uri}/api/v1/polls/${id}/votes`, params);
+  }
+
+  /**
    * Report an account to moderators/administrators
    * @param params Parameters
    * @return An empty object
@@ -1034,6 +1063,66 @@ export class Mastodon extends Gateway {
   @available({ since: '1.1.0' })
   public async reportAccount(params: ReportAccountParams) {
     return this.post<void>(`${this.uri}/api/v1/reports`, params);
+  }
+
+  /**
+   * Get scheduled statuses
+   * @return An array of ScheduledStatus
+   * @see https://docs.joinmastodon.org/api/rest/scheduled-statuses/#get-api-v1-scheduled-statuses
+   */
+  @requiresAuthentication
+  @requiresUser
+  @available({ since: '2.7.0' })
+  public async fetchScheduledStatuses() {
+    return this.get<ScheduledStatus[]>(`${this.uri}/api/v1/scheduled_statuses`);
+  }
+
+  /**
+   * Get scheduled status
+   * @param id ID of the scheduled status
+   * @return ScheduledStatus
+   * @see https://docs.joinmastodon.org/api/rest/scheduled-statuses/#get-api-v1-scheduled-statuses-id
+   */
+  @requiresAuthentication
+  @requiresUser
+  @available({ since: '2.7.0' })
+  public async fetchScheduledStatus(id: string) {
+    return this.get<ScheduledStatus>(
+      `${this.uri}/api/v1/scheduled_statuses/${id}`,
+    );
+  }
+
+  /**
+   * Update Scheduled status. Only `scheduled_at` can be changed. To change the content, delete it and post a new status.
+   * @param id ID of the scheduled status
+   * @param params Parameters
+   * @return ScheduledStatus
+   * @see https://docs.joinmastodon.org/api/rest/scheduled-statuses/#put-api-v1-scheduled-statuses-id
+   */
+  @requiresAuthentication
+  @requiresUser
+  @available({ since: '2.7.0' })
+  public async updateScheduledStatus(
+    id: string,
+    params: UpdateScheduledStatusParams,
+  ) {
+    return this.put<ScheduledStatus>(
+      `${this.uri}/api/v1/scheduled_statuses/${id}`,
+      params,
+    );
+  }
+
+  /**
+   * Remove scheduled status
+   * @param id ID of the status
+   * @return Nothing
+   * @see https://docs.joinmastodon.org/api/rest/scheduled-statuses/#delete-api-v1-scheduled-statuses-id
+   */
+  @requiresAuthentication
+  @requiresUser
+  @available({ since: '2.7.0' })
+  public async removeScheduledStatus(id: string) {
+    return this.delete<void>(`${this.uri}/api/v1/scheduled_statuses/${id}`);
   }
 
   /**
