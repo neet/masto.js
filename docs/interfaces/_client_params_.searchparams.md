@@ -25,7 +25,7 @@
 
 **● q**: *`string`*
 
-*Defined in [client/params.ts:181](https://github.com/lagunehq/core/blob/35e3f58/src/client/params.ts#L181)*
+*Defined in [client/params.ts:181](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L181)*
 
 The search query
 
@@ -36,7 +36,7 @@ ___
 
 **● resolve**: *`boolean` \| `null`*
 
-*Defined in [client/params.ts:183](https://github.com/lagunehq/core/blob/35e3f58/src/client/params.ts#L183)*
+*Defined in [client/params.ts:183](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L183)*
 
 Attempt WebFinger look-up
 

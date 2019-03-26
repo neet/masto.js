@@ -33,13 +33,13 @@ Mastodon network request wrapper
 
 **set accessToken**(newAccessToken: *`string`*): `void`
 
-*Defined in [client/gateway.ts:94](https://github.com/lagunehq/core/blob/35e3f58/src/client/gateway.ts#L94)*
+*Defined in [client/gateway.ts:94](https://github.com/lagunehq/core/blob/9f0a933/src/client/gateway.ts#L94)*
 
 Getter for this.\_accessToken
 
 **Returns:** `string`
 
-*Defined in [client/gateway.ts:99](https://github.com/lagunehq/core/blob/35e3f58/src/client/gateway.ts#L99)*
+*Defined in [client/gateway.ts:99](https://github.com/lagunehq/core/blob/9f0a933/src/client/gateway.ts#L99)*
 
 Setter for this.\_accessToken
 
@@ -60,13 +60,13 @@ ___
 
 **set streamingApiUrl**(newStreamingApiUrl: *`string`*): `void`
 
-*Defined in [client/gateway.ts:84](https://github.com/lagunehq/core/blob/35e3f58/src/client/gateway.ts#L84)*
+*Defined in [client/gateway.ts:84](https://github.com/lagunehq/core/blob/9f0a933/src/client/gateway.ts#L84)*
 
 Getter for this.\_streamingApiUrl
 
 **Returns:** `string`
 
-*Defined in [client/gateway.ts:89](https://github.com/lagunehq/core/blob/35e3f58/src/client/gateway.ts#L89)*
+*Defined in [client/gateway.ts:89](https://github.com/lagunehq/core/blob/9f0a933/src/client/gateway.ts#L89)*
 
 Setter for this.\_streamingApiUrl
 
@@ -87,13 +87,13 @@ ___
 
 **set uri**(newUri: *`string`*): `void`
 
-*Defined in [client/gateway.ts:64](https://github.com/lagunehq/core/blob/35e3f58/src/client/gateway.ts#L64)*
+*Defined in [client/gateway.ts:64](https://github.com/lagunehq/core/blob/9f0a933/src/client/gateway.ts#L64)*
 
 Getter for this.\_uri
 
 **Returns:** `string`
 
-*Defined in [client/gateway.ts:69](https://github.com/lagunehq/core/blob/35e3f58/src/client/gateway.ts#L69)*
+*Defined in [client/gateway.ts:69](https://github.com/lagunehq/core/blob/9f0a933/src/client/gateway.ts#L69)*
 
 Setter for this.\_uri
 
@@ -114,13 +114,13 @@ ___
 
 **set version**(newVersion: *`string`*): `void`
 
-*Defined in [client/gateway.ts:74](https://github.com/lagunehq/core/blob/35e3f58/src/client/gateway.ts#L74)*
+*Defined in [client/gateway.ts:74](https://github.com/lagunehq/core/blob/9f0a933/src/client/gateway.ts#L74)*
 
 Getter for this.\_version
 
 **Returns:** `string`
 
-*Defined in [client/gateway.ts:79](https://github.com/lagunehq/core/blob/35e3f58/src/client/gateway.ts#L79)*
+*Defined in [client/gateway.ts:79](https://github.com/lagunehq/core/blob/9f0a933/src/client/gateway.ts#L79)*
 
 Setter for this.\_version
 

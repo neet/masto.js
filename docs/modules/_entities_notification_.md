@@ -22,7 +22,7 @@
 
 **Ƭ NotificationType**: *"mention" \| "reblog" \| "favourite" \| "follow"*
 
-*Defined in [entities/notification.ts:4](https://github.com/lagunehq/core/blob/35e3f58/src/entities/notification.ts#L4)*
+*Defined in [entities/notification.ts:4](https://github.com/lagunehq/core/blob/9f0a933/src/entities/notification.ts#L4)*
 
 ___
 

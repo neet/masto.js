@@ -23,7 +23,7 @@
 
 **● name**: *`string` \| `null`*
 
-*Defined in [entities/account.ts:47](https://github.com/lagunehq/core/blob/35e3f58/src/entities/account.ts#L47)*
+*Defined in [entities/account.ts:47](https://github.com/lagunehq/core/blob/9f0a933/src/entities/account.ts#L47)*
 
 (2.4 or later) Label of profile metadata field.
 
@@ -34,7 +34,7 @@ ___
 
 **● value**: *`string` \| `null`*
 
-*Defined in [entities/account.ts:49](https://github.com/lagunehq/core/blob/35e3f58/src/entities/account.ts#L49)*
+*Defined in [entities/account.ts:49](https://github.com/lagunehq/core/blob/9f0a933/src/entities/account.ts#L49)*
 
 (2.4 or later) Value of profile metadata field.
 

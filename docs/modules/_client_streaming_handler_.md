@@ -28,7 +28,7 @@
 
 **Ƭ EventTypes**: *`keyof EventTypesMap`*
 
-*Defined in [client/streaming-handler.ts:28](https://github.com/lagunehq/core/blob/35e3f58/src/client/streaming-handler.ts#L28)*
+*Defined in [client/streaming-handler.ts:28](https://github.com/lagunehq/core/blob/9f0a933/src/client/streaming-handler.ts#L28)*
 
 ___
 

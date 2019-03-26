@@ -9,6 +9,7 @@
 * [AddPushSubscriptionParams](../interfaces/_client_params_.addpushsubscriptionparams.md)
 * [CreateAccountParams](../interfaces/_client_params_.createaccountparams.md)
 * [CreateAppParams](../interfaces/_client_params_.createappparams.md)
+* [CreateStatusPollParam](../interfaces/_client_params_.createstatuspollparam.md)
 * [FetchAccountStatusesParams](../interfaces/_client_params_.fetchaccountstatusesparams.md)
 * [FetchNotificationsParams](../interfaces/_client_params_.fetchnotificationsparams.md)
 * [FetchTimelineParams](../interfaces/_client_params_.fetchtimelineparams.md)
@@ -24,6 +25,8 @@
 * [SearchAccountsParams](../interfaces/_client_params_.searchaccountsparams.md)
 * [SearchParams](../interfaces/_client_params_.searchparams.md)
 * [UpdateCredentialsParams](../interfaces/_client_params_.updatecredentialsparams.md)
+* [UpdateScheduledStatusParams](../interfaces/_client_params_.updatescheduledstatusparams.md)
+* [VotePollParams](../interfaces/_client_params_.votepollparams.md)
 
 ### Type aliases
 
@@ -40,9 +43,9 @@
 
 ###  CreateStatusParams
 
-**Ƭ CreateStatusParams**: *`object` & `MediaIds extends string[] ? { status?: string | null | undefined; } : { status: string; }`*
+**Ƭ CreateStatusParams**: *`object` & `MediaIds extends string[] ? { status?: string | null | undefined; poll?: void | undefined; } : {}`*
 
-*Defined in [client/params.ts:193](https://github.com/lagunehq/core/blob/35e3f58/src/client/params.ts#L193)*
+*Defined in [client/params.ts:204](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L204)*
 
 ___
 <a id="fetchaccesstokenparams"></a>
@@ -51,7 +54,7 @@ ___
 
 **Ƭ FetchAccessTokenParams**: *`object` & `T extends "authorization_code" ? OAuthClient & { code: string; redirect_uri: string; } : T extends "password" ? { password: string; username: string; } : never`*
 
-*Defined in [client/params.ts:87](https://github.com/lagunehq/core/blob/35e3f58/src/client/params.ts#L87)*
+*Defined in [client/params.ts:87](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L87)*
 
 ___
 <a id="granttype"></a>
@@ -60,7 +63,7 @@ ___
 
 **Ƭ GrantType**: *"authorization_code" \| "password"*
 
-*Defined in [client/params.ts:85](https://github.com/lagunehq/core/blob/35e3f58/src/client/params.ts#L85)*
+*Defined in [client/params.ts:85](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L85)*
 
 ___
 <a id="updatepushsubscriptionparams"></a>
@@ -69,7 +72,7 @@ ___
 
 **Ƭ UpdatePushSubscriptionParams**: *`Pick`<[AddPushSubscriptionParams](../interfaces/_client_params_.addpushsubscriptionparams.md), "data">*
 
-*Defined in [client/params.ts:164](https://github.com/lagunehq/core/blob/35e3f58/src/client/params.ts#L164)*
+*Defined in [client/params.ts:164](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L164)*
 
 ___
 

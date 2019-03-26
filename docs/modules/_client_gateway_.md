@@ -26,7 +26,7 @@
 
 **Ƭ PaginateNextOptions**: *`object`*
 
-*Defined in [client/gateway.ts:13](https://github.com/lagunehq/core/blob/35e3f58/src/client/gateway.ts#L13)*
+*Defined in [client/gateway.ts:13](https://github.com/lagunehq/core/blob/9f0a933/src/client/gateway.ts#L13)*
 
 #### Type declaration
 

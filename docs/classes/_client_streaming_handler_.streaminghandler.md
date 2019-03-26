@@ -93,7 +93,7 @@ ___
 
 ▸ **connect**(url: *`string`*): `Promise`<[StreamingHandler](_client_streaming_handler_.streaminghandler.md)>
 
-*Defined in [client/streaming-handler.ts:47](https://github.com/lagunehq/core/blob/35e3f58/src/client/streaming-handler.ts#L47)*
+*Defined in [client/streaming-handler.ts:47](https://github.com/lagunehq/core/blob/9f0a933/src/client/streaming-handler.ts#L47)*
 
 Connect to the websocket endpoint
 
@@ -112,7 +112,7 @@ ___
 
 ▸ **disconnect**(): `void`
 
-*Defined in [client/streaming-handler.ts:60](https://github.com/lagunehq/core/blob/35e3f58/src/client/streaming-handler.ts#L60)*
+*Defined in [client/streaming-handler.ts:60](https://github.com/lagunehq/core/blob/9f0a933/src/client/streaming-handler.ts#L60)*
 
 Disconnect from the websocket endpoint
 
@@ -228,7 +228,7 @@ ___
 
 *Overrides EventEmitter.on*
 
-*Defined in [client/streaming-handler.ts:91](https://github.com/lagunehq/core/blob/35e3f58/src/client/streaming-handler.ts#L91)*
+*Defined in [client/streaming-handler.ts:91](https://github.com/lagunehq/core/blob/9f0a933/src/client/streaming-handler.ts#L91)*
 
 Add listener for the event
 

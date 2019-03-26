@@ -22,7 +22,7 @@
 
 **Ƭ FilterContext**: *"home" \| "notifications" \| "public" \| "thread"*
 
-*Defined in [entities/filter.ts:2](https://github.com/lagunehq/core/blob/35e3f58/src/entities/filter.ts#L2)*
+*Defined in [entities/filter.ts:2](https://github.com/lagunehq/core/blob/9f0a933/src/entities/filter.ts#L2)*
 
 Type of filter context
 

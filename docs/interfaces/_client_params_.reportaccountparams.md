@@ -25,7 +25,7 @@
 
 **● account_id**: *`string`*
 
-*Defined in [client/params.ts:65](https://github.com/lagunehq/core/blob/35e3f58/src/client/params.ts#L65)*
+*Defined in [client/params.ts:65](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L65)*
 
 The ID of the account to report
 
@@ -36,7 +36,7 @@ ___
 
 **● comment**: *`string` \| `null`*
 
-*Defined in [client/params.ts:69](https://github.com/lagunehq/core/blob/35e3f58/src/client/params.ts#L69)*
+*Defined in [client/params.ts:69](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L69)*
 
 Reason for the report (up to 1,000 characters)
 
@@ -47,7 +47,7 @@ ___
 
 **● forward**: *`boolean` \| `null`*
 
-*Defined in [client/params.ts:71](https://github.com/lagunehq/core/blob/35e3f58/src/client/params.ts#L71)*
+*Defined in [client/params.ts:71](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L71)*
 
 Whether to forward to the remote admin (in case of a remote account)
 
@@ -58,7 +58,7 @@ ___
 
 **● status_ids**: *`string`[] \| `null`*
 
-*Defined in [client/params.ts:67](https://github.com/lagunehq/core/blob/35e3f58/src/client/params.ts#L67)*
+*Defined in [client/params.ts:67](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L67)*
 
 The IDs of statuses to report as array
 
