@@ -23,7 +23,7 @@
 
 **● since**: *`undefined` \| `string`*
 
-*Defined in [client/decorators.ts:13](https://github.com/lagunehq/core/blob/35e3f58/src/client/decorators.ts#L13)*
+*Defined in [client/decorators.ts:13](https://github.com/lagunehq/core/blob/9f0a933/src/client/decorators.ts#L13)*
 
 ___
 <a id="until"></a>
@@ -32,7 +32,7 @@ ___
 
 **● until**: *`undefined` \| `string`*
 
-*Defined in [client/decorators.ts:14](https://github.com/lagunehq/core/blob/35e3f58/src/client/decorators.ts#L14)*
+*Defined in [client/decorators.ts:14](https://github.com/lagunehq/core/blob/9f0a933/src/client/decorators.ts#L14)*
 
 ___
 

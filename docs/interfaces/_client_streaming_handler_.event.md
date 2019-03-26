@@ -25,7 +25,7 @@
 
 **● data**: *`EventTypesMap[T]`*
 
-*Defined in [client/streaming-handler.ts:34](https://github.com/lagunehq/core/blob/35e3f58/src/client/streaming-handler.ts#L34)*
+*Defined in [client/streaming-handler.ts:34](https://github.com/lagunehq/core/blob/9f0a933/src/client/streaming-handler.ts#L34)*
 
 Parsed payload data
 
@@ -36,7 +36,7 @@ ___
 
 **● event**: *`T`*
 
-*Defined in [client/streaming-handler.ts:32](https://github.com/lagunehq/core/blob/35e3f58/src/client/streaming-handler.ts#L32)*
+*Defined in [client/streaming-handler.ts:32](https://github.com/lagunehq/core/blob/9f0a933/src/client/streaming-handler.ts#L32)*
 
 Event type
 

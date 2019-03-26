@@ -50,3 +50,4 @@ rules:
   prefer-type-cast: false
   typedef: false
   variable-name: false
+  informative-docs: false

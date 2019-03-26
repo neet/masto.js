@@ -22,7 +22,7 @@
 
 **● title**: *`string`*
 
-*Defined in [client/params.ts:134](https://github.com/lagunehq/core/blob/35e3f58/src/client/params.ts#L134)*
+*Defined in [client/params.ts:134](https://github.com/lagunehq/core/blob/9f0a933/src/client/params.ts#L134)*
 
 Title of the list
 
