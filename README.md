@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://i.imgur.com/z47VXyd.png" width="240px">
+  <img src="https://i.imgur.com/z47VXyd.png" width="300px">
 </h1>
 
 <p align="center">Mastodon API client for TypeScript/JavaScript/Node.js/Browser</p>
