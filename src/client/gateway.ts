@@ -1,47 +1,40 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import * as FormData from 'form-data';
-import * as LinkHeader from 'http-link-header';
-import * as querystring from 'querystring';
+import LinkHeader from 'http-link-header';
+// tslint:disable-next-line no-import-side-effect
+import 'isomorphic-form-data';
+import querystring from 'querystring';
 import { oc } from 'ts-optchain';
 import { MastodonNotFoundError } from '../errors/mastodon-not-found-error';
 import { MastodonRateLimitError } from '../errors/mastodon-rate-limit-error';
 import { MastodonUnauthorizedError } from '../errors/mastodon-unauthorized-error';
 import { StreamingHandler } from './streaming-handler';
-
-/** Type to determine whether paginate-able entity */
-export type Paginatable = string[] | { id: string }[];
+import { isAxiosError, normalizeUrl } from './utils';
 
 export type PaginateNextOptions<Params> = {
   /** Reset pagination */
   reset?: boolean;
-
   /** URL */
   url?: string;
-
   /** Query parameters */
   params?: Params;
 };
 
 export interface GatewayConstructor {
+  /** URI of the instance */
   uri: string;
+  /** Streaming API URL */
   streamingApiUrl?: string;
+  /** Version of the instance */
   version?: string;
+  /** Access token of the user */
   accessToken?: string;
 }
 
-const normalizeUrl = (url: string) => {
-  // Remove trailing slash
-  return url.replace(/\/$/, '');
-};
-
 /**
  * Mastodon network request wrapper
- * @param options Optional params
- * @param options.url URL of the instance
- * @param options.streamingUrl Streaming API URL of the instance
- * @param options.token API token of the user
+ * @param params Optional params
  */
-export class Gateway {
+export abstract class Gateway {
   /** URI of the instance */
   private _uri = '';
 
@@ -119,6 +112,16 @@ export class Gateway {
     data: any,
     options: AxiosRequestConfig = {},
   ): AxiosRequestConfig | void {
+    options.transformResponse = [
+      (res: any) => {
+        try {
+          return JSON.parse(res);
+        } catch {
+          return res;
+        }
+      },
+    ];
+
     if (!options.headers) {
       options.headers = {};
     }
@@ -142,16 +145,18 @@ export class Gateway {
       case 'multipart/form-data':
         const formData = new FormData();
 
-        for (const [key, value] of Object.entries(data)) {
+        for (const [key, value] of Object.entries<string | Blob>(data)) {
           formData.append(key, value);
         }
 
         options.data = formData;
 
-        if (typeof formData.getHeaders === 'function') {
+        // In Node.js, axios doesn't set boundary data in the content-type header
+        // so set it manually by using getHeaders of `form-data` node.js package
+        if (typeof (formData as any).getHeaders === 'function') {
           options.headers = {
             ...options.headers,
-            ...formData.getHeaders(),
+            ...(formData as any).getHeaders(),
           };
         }
 
@@ -171,37 +176,31 @@ export class Gateway {
   protected async request<T>(
     options: AxiosRequestConfig,
   ): Promise<AxiosResponse<T>> {
-    options.transformResponse = [
-      (data: any) => {
-        try {
-          return JSON.parse(data);
-        } catch {
-          return data;
-        }
-      },
-    ];
-
     try {
       return await axios.request<T>(options);
     } catch (error) {
-      const status = oc(error.response.status)();
+      if (isAxiosError(error)) {
+        const status = oc(error).response.status();
 
-      // Error response from REST API might contain error key
-      // https://docs.joinmastodon.org/api/entities/#error
-      const errorMessage = oc(error.response.data.error)(
-        'Unexpected error occurred',
-      );
+        // Error response from REST API might contain error key
+        // https://docs.joinmastodon.org/api/entities/#error
+        const { error: errorMessage } = oc(error).response.data({
+          error: 'Unexpected error',
+        });
 
-      switch (status) {
-        case 401:
-          throw new MastodonUnauthorizedError(errorMessage);
-        case 404:
-          throw new MastodonNotFoundError(errorMessage);
-        case 429:
-          throw new MastodonRateLimitError(errorMessage);
-        default:
-          throw error;
+        switch (status) {
+          case 401:
+            throw new MastodonUnauthorizedError(errorMessage);
+          case 404:
+            throw new MastodonNotFoundError(errorMessage);
+          case 429:
+            throw new MastodonRateLimitError(errorMessage);
+          default:
+            throw error;
+        }
       }
+
+      throw error;
     }
   }
 
@@ -323,7 +322,7 @@ export class Gateway {
    * @return Async iterable iterator of the pages.
    * See also [MDN article about generator/iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators)
    */
-  protected paginate<Data extends Paginatable, Params = any>(
+  protected paginate<Data, Params = any>(
     initialUrl: string,
     initialParams?: Params,
   ): AsyncIterableIterator<AxiosResponse<Data> | undefined> {
@@ -333,8 +332,8 @@ export class Gateway {
     let params: Params | undefined = initialParams;
 
     return {
-      async next(value?: PaginateNextOptions<Params>) {
-        if (oc(value).reset()) {
+      async next(options: PaginateNextOptions<Params> = {}) {
+        if (options.reset) {
           url = initialUrl;
           params = initialParams;
         }
@@ -344,8 +343,8 @@ export class Gateway {
         }
 
         const response = await get<Data>(
-          oc(value).url(url),
-          oc(value).params() || params,
+          options.url || url,
+          options.params || params,
         );
 
         // Set next url from the link header

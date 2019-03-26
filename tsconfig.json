@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "commonjs",
+    "module": "esNext",
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
