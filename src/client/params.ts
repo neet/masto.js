@@ -190,29 +190,47 @@ export interface SearchAccountsParams extends SearchParams {
   following?: boolean | null;
 }
 
+export interface CreateStatusPollParam {
+  /** Array of poll answer strings */
+  options: string[];
+  /** Duration the poll should be open for in seconds */
+  expires_in?: string | null;
+  /** Whether multiple choices should be allowed	 */
+  multiple?: boolean | null;
+  /** Whether to hide totals until the poll ends */
+  hide_totals?: boolean | null;
+}
+
 export type CreateStatusParams<
-  MediaIds extends string[] | null | undefined = string[]
+  MediaIds extends string[] | null | undefined = string[],
+  Poll extends CreateStatusPollParam = CreateStatusPollParam
 > = {
   /** local ID of the status you want to reply to */
   in_reply_to_id?: string | null;
   /** Array of media IDs to attach to the status (maximum 4) */
   media_ids?: MediaIds | null;
+  /** Nested parameters to attach a poll to the status */
+  poll?: Poll | null;
   /** Set this to mark the media of the status as NSFW */
   sensitive?: boolean | null;
   /** Text to be shown as a warning before the actual content */
   spoiler_text?: string | null;
   /** Either "direct", "private", "unlisted" or "public" */
   visibility?: StatusVisibility | null;
+  /** Timestamp string to schedule posting of status (ISO 8601) */
+  scheduled_at?: string | null;
   /** ISO 639-2 language code of the toot, to skip automatic detection */
   language?: string | null;
-} & (MediaIds extends string[]
+} & (MediaIds extends null | undefined
   ? {
       /** Text of the status */
-      status?: string | null;
+      status: string;
     }
   : {
       /** Text of the status */
-      status: string;
+      status?: string | null;
+      /** Polls cannot be combined with media */
+      poll: void;
     });
 
 export interface FetchTimelineParams extends PaginationParams {
