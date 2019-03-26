@@ -194,7 +194,7 @@ export interface CreateStatusPollParam {
   /** Array of poll answer strings */
   options: string[];
   /** Duration the poll should be open for in seconds */
-  expires_in?: string | null;
+  expires_in: number;
   /** Whether multiple choices should be allowed	 */
   multiple?: boolean | null;
   /** Whether to hide totals until the poll ends */
@@ -202,9 +202,11 @@ export interface CreateStatusPollParam {
 }
 
 export type CreateStatusParams<
-  MediaIds extends string[] | null | undefined = string[],
+  MediaIds extends string[] | null | undefined = undefined,
   Poll extends CreateStatusPollParam = CreateStatusPollParam
 > = {
+  /** Text of the status */
+  status: string;
   /** local ID of the status you want to reply to */
   in_reply_to_id?: string | null;
   /** Array of media IDs to attach to the status (maximum 4) */
@@ -221,17 +223,14 @@ export type CreateStatusParams<
   scheduled_at?: string | null;
   /** ISO 639-2 language code of the toot, to skip automatic detection */
   language?: string | null;
-} & (MediaIds extends null | undefined
+} & (MediaIds extends string[]
   ? {
-      /** Text of the status */
-      status: string;
-    }
-  : {
       /** Text of the status */
       status?: string | null;
       /** Polls cannot be combined with media */
-      poll: void;
-    });
+      poll?: void;
+    }
+  : {});
 
 export interface FetchTimelineParams extends PaginationParams {
   /** Only return statuses originating from this instance (public and tag timelines only) */

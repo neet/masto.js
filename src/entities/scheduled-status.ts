@@ -10,8 +10,6 @@ export interface StatusParams
   text: string;
   /** IDs of media attachments */
   media_ids?: string[] | null;
-  /** Scheduled date */
-  scheduled_at?: string | null;
   /** ID of the application */
   application_id: string;
 }
