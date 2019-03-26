@@ -1,18 +1,22 @@
 // tslint:disable no-console
-import Mastodon from '../src';
+import * as fs from 'fs';
+import Masto from '../src';
 
+// For more information:
+// https://github.com/neet/masto.js/blob/master/docs/classes/_client_mastodon_.mastodon.md#updatecredentials
 (async () => {
-  const client = await Mastodon.login({
-    uri: 'https://mastodon.social',
+  const masto = await Masto.login({
+    uri: 'https://example.com',
     accessToken: 'YOUR TOKEN',
   });
 
   const profile = {
-    display_name: 'Mastodon man',
-    note:         'I\'m the mastodon man',
+    display_name: 'Fluffy elephant friend',
+    note:         'Hi fediverse!',
+    avatar:       fs.createReadStream('../some_image.png'),
   }
 
-  client.updateCredentials(profile).then((newProfile) => {
+  masto.updateCredentials(profile).then((newProfile) => {
     console.log(newProfile.data);
   })
 })()
