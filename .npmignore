@@ -15,6 +15,8 @@ pids
 
 # Config files
 .editorconfig
+.prettierignore
+.prettierrc.yml
 tsconfig.json
 tslint.json
 tslint.yml
@@ -31,3 +33,7 @@ sandbox
 # TS files and maps
 src/
 *.map
+
+# Rollup
+.rp2_cache
+rollup.conifg.js
