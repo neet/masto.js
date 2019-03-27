@@ -1,16 +1,11 @@
 import { AccountField, AccountSource } from '../entities/account';
 import { FilterContext } from '../entities/filter';
 import { NotificationType } from '../entities/notification';
-import { OAuthClient } from '../entities/oauth';
 import { PushSubscriptionAlerts } from '../entities/push-subscription';
 import { StatusVisibility } from '../entities/status';
+import { GatewayConstructor } from './gateway';
 
-export interface LoginParams {
-  /** URI of the instance */
-  uri: string;
-  /** Token of your account */
-  accessToken?: string;
-}
+export type LoginParams = Pick<GatewayConstructor, 'uri' | 'accessToken'>;
 
 export interface PaginationParams {
   /** Get a list of items with ID less than this value */
@@ -39,7 +34,9 @@ export interface UpdateCredentialsParams {
    * sensitive: Whether to mark statuses as sensitive by default
    * language: Override language on statuses by default (ISO6391)
    */
-  source?: Pick<AccountSource, 'privacy' | 'sensitive' | 'language'> | null;
+  source?: Partial<
+    Pick<AccountSource, 'privacy' | 'sensitive' | 'language'>
+  > | null;
   /** Profile metadata (max. 4) */
   fields_attributes?:
     | [AccountField]
@@ -84,28 +81,35 @@ export interface CreateAppParams {
 
 export type GrantType = 'authorization_code' | 'password';
 
-export type FetchAccessTokenParams<
-  T extends GrantType | undefined = undefined
-> = {
+export type FetchAccessTokenParams<T extends GrantType = GrantType> = {
   /** Grant type */
   grant_type: T;
 } & (T extends 'authorization_code'
-  ? OAuthClient & {
+  ? {
       /** Authorization code */
       code: string;
-
       /** Redirect URI which used for the authorization */
       redirect_uri: string;
+      /** ID of the client */
+      client_id: string;
+      /** Secret of the client */
+      client_secret: string;
     }
   : T extends 'password'
   ? {
       /** Password */
       password: string;
-
       /** Username */
       username: string;
     }
   : never);
+
+export interface RevokeAccessTokenParams {
+  /** ID of the client */
+  client_id: string;
+  /** Secret of the client */
+  client_secret: string;
+}
 
 export interface ModifyMediaAttachmentParams {
   /** Media to be uploaded (encoded using `multipart/form-data`) */

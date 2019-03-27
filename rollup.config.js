@@ -6,6 +6,12 @@ import typescript from 'rollup-plugin-typescript2';
 import builtins from 'rollup-plugin-node-builtins';
 import autoExternal from 'rollup-plugin-auto-external';
 
+const tsconfigOverride = {
+  compilerOptions: {
+    module: 'es6',
+  },
+};
+
 export default [
   // Node.js
   {
@@ -22,7 +28,9 @@ export default [
       }),
       commonjs(),
       json(),
-      typescript(),
+      typescript({
+        tsconfigOverride,
+      }),
       terser(),
       autoExternal(),
     ],
@@ -45,7 +53,9 @@ export default [
       builtins(),
       commonjs(),
       json(),
-      typescript(),
+      typescript({
+        tsconfigOverride,
+      }),
       terser(),
     ],
   },

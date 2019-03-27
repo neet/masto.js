@@ -1,8 +1,8 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import LinkHeader from 'http-link-header';
+import * as LinkHeader from 'http-link-header';
 // tslint:disable-next-line no-import-side-effect
 import 'isomorphic-form-data';
-import querystring from 'querystring';
+import * as querystring from 'querystring';
 import { oc } from 'ts-optchain';
 import { MastodonNotFoundError } from '../errors/mastodon-not-found-error';
 import { MastodonRateLimitError } from '../errors/mastodon-rate-limit-error';
@@ -34,29 +34,29 @@ export interface GatewayConstructor {
  * Mastodon network request wrapper
  * @param params Optional params
  */
-export abstract class Gateway {
+export class Gateway {
   /** URI of the instance */
   private _uri = '';
-  /** Version of the current instance */
-  private _version = '';
   /** Streaming API URL of the instance */
   private _streamingApiUrl = '';
+  /** Version of the current instance */
+  private _version = '';
   /** API token of the user */
   private _accessToken = '';
 
-  protected constructor(params: GatewayConstructor) {
-    this._uri = normalizeUrl(params.uri);
+  public constructor(params: GatewayConstructor) {
+    this.uri = normalizeUrl(params.uri);
 
     if (params.streamingApiUrl) {
-      this._streamingApiUrl = params.streamingApiUrl;
+      this.streamingApiUrl = params.streamingApiUrl;
     }
 
     if (params.version) {
-      this._version = params.version;
+      this.version = params.version;
     }
 
     if (params.accessToken) {
-      this._accessToken = params.accessToken;
+      this.accessToken = params.accessToken;
     }
   }
 
@@ -108,7 +108,7 @@ export abstract class Gateway {
   private decorateRequestConfig(
     data: any,
     options: AxiosRequestConfig = {},
-  ): AxiosRequestConfig | void {
+  ): AxiosRequestConfig {
     options.transformResponse = [
       (res: any) => {
         try {
@@ -160,7 +160,7 @@ export abstract class Gateway {
         return options;
 
       default:
-        return;
+        return options;
     }
   }
 
@@ -208,7 +208,7 @@ export abstract class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected get<T>(
+  public get<T>(
     url: string,
     params: { [key: string]: any } = {},
     options?: AxiosRequestConfig,
@@ -229,7 +229,7 @@ export abstract class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected post<T>(url: string, data: any = {}, options?: AxiosRequestConfig) {
+  public post<T>(url: string, data: any = {}, options?: AxiosRequestConfig) {
     return this.request<T>({
       method: 'POST',
       url,
@@ -245,7 +245,7 @@ export abstract class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected put<T>(url: string, data: any = {}, options?: AxiosRequestConfig) {
+  public put<T>(url: string, data: any = {}, options?: AxiosRequestConfig) {
     return this.request<T>({
       method: 'PUT',
       url,
@@ -261,11 +261,7 @@ export abstract class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected delete<T>(
-    url: string,
-    data: any = {},
-    options?: AxiosRequestConfig,
-  ) {
+  public delete<T>(url: string, data: any = {}, options?: AxiosRequestConfig) {
     return this.request<T>({
       method: 'DELETE',
       url,
@@ -281,11 +277,7 @@ export abstract class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  protected patch<T>(
-    url: string,
-    data: any = {},
-    options?: AxiosRequestConfig,
-  ) {
+  public patch<T>(url: string, data: any = {}, options?: AxiosRequestConfig) {
     return this.request<T>({
       method: 'PATCH',
       url,
@@ -299,7 +291,7 @@ export abstract class Gateway {
    * @param id ID of the channel, e.g. `public`, `user`, `public:local`
    * @return Instance of EventEmitter
    */
-  protected stream(url: string, params: { [key: string]: any } = {}) {
+  public stream(url: string, params: { [key: string]: any } = {}) {
     if (this.accessToken) {
       params.access_token = this.accessToken;
     }
@@ -319,7 +311,7 @@ export abstract class Gateway {
    * @return Async iterable iterator of the pages.
    * See also [MDN article about generator/iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators)
    */
-  protected paginate<Data, Params = any>(
+  public paginate<Data, Params = any>(
     initialUrl: string,
     initialParams?: Params,
   ): AsyncIterableIterator<AxiosResponse<Data> | undefined> {

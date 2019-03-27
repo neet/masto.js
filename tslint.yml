@@ -51,3 +51,4 @@ rules:
   typedef: false
   variable-name: false
   informative-docs: false
+  mocha-no-side-effect-code: false

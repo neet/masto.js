@@ -25,7 +25,6 @@ export * from './entities/status';
 export * from './entities/scheduled-status';
 export * from './entities/tag';
 
-export * from './errors/mastodon-error';
 export * from './errors/mastodon-not-found-error';
 export * from './errors/mastodon-rate-limit-error';
 export * from './errors/mastodon-unauthorized-error';
