@@ -1,11 +1,10 @@
-import { MastodonError } from './mastodon-error';
-
 /**
  * Mastodon unauthorized error class
  * @param message Message for users
  */
-export class MastodonUnauthorizedError extends MastodonError {
-  constructor(message: string) {
-    super('MastodonUnauthorizedError', message);
+export class MastodonUnauthorizedError extends Error {
+  constructor(...args: any[]) {
+    super(...args);
+    this.name = 'MastodonUnauthorizedError';
   }
 }

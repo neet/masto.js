@@ -1,0 +1,264 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Masto createAccount 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"username\\":\\"username\\",\\"password\\":\\"password\\",\\"email\\":\\"example@example.com\\",\\"agreement\\":true}",
+        "headers": Object {
+          "Authorization": "Bearer token",
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/accounts",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchAccessToken 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"grant_type\\":\\"authorization_code\\",\\"client_id\\":\\"123123123\\",\\"client_secret\\":\\"456456456\\",\\"code\\":\\"789789789\\",\\"redirect_uri\\":\\"https://example.com\\"}",
+        "headers": Object {
+          "Authorization": "Bearer token",
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/oauth/token",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchAccount 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Authorization": "Bearer token",
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {},
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/accounts/123123123",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchAccountFollowers 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Authorization": "Bearer token",
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {
+          "limit": 10,
+          "max_id": "5",
+          "min_id": "2",
+          "since_id": "3",
+        },
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/accounts/123123123/followers",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchAccountFollowing 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Authorization": "Bearer token",
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {
+          "limit": 10,
+          "max_id": "5",
+          "min_id": "2",
+          "since_id": "3",
+        },
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/accounts/123123123/following",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchAccountStatuses 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Authorization": "Bearer token",
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {
+          "limit": 10,
+          "max_id": "5",
+          "min_id": "2",
+          "since_id": "3",
+        },
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/accounts/123123123/statuses",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto followAccount 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"reblogs\\":false}",
+        "headers": Object {
+          "Authorization": "Bearer token",
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/accounts/123123/follow",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto revokeAccessToken 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"client_id\\":\\"123123123\\",\\"client_secret\\":\\"456456456\\"}",
+        "headers": Object {
+          "Authorization": "Bearer token",
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/oauth/revoke",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto verifyCredentials 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Authorization": "Bearer token",
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {},
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/accounts/verify_credentials",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;

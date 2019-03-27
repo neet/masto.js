@@ -1,6 +1,6 @@
 // tslint:disable no-unnecessary-override
-import EventEmitter from 'eventemitter3';
-import WebSocket from 'isomorphic-ws';
+import * as EventEmitter from 'eventemitter3';
+import * as WebSocket from 'isomorphic-ws';
 import { Conversation } from '../entities/conversation';
 import { Notification } from '../entities/notification';
 import { Status } from '../entities/status';
@@ -39,13 +39,14 @@ export interface Event<T extends EventTypes = EventTypes> {
  */
 export class StreamingHandler extends EventEmitter {
   private ws?: WebSocket;
+
   /**
    * Connect to the websocket endpoint
    * @param url URL of the websocket endpoint
    * @param params URL parameters
    */
-  public connect = async (url: string) =>
-    new Promise<StreamingHandler>((resolve, reject) => {
+  public connect(url: string) {
+    return new Promise<StreamingHandler>((resolve, reject) => {
       this.ws = new WebSocket(url);
 
       this.ws.addEventListener('message', this.handleMessage);
@@ -54,13 +55,16 @@ export class StreamingHandler extends EventEmitter {
         resolve(this);
       });
     });
+  }
+
   /**
    * Disconnect from the websocket endpoint
    */
-  public disconnect = () => {
+  public disconnect() {
     if (!this.ws) return;
     this.ws.close();
-  };
+  }
+
   /**
    * Parse JSON data and emit it as an event
    * @param message Websocket message
@@ -83,6 +87,7 @@ export class StreamingHandler extends EventEmitter {
 
     this.emit(parsedMessage.event, parsedMessage);
   };
+
   /**
    * Add listener for the event
    * @param event Type of the event. One of `update`, `delete`, `notification`, `filters_changed`, `conversation`

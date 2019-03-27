@@ -36,6 +36,7 @@ import {
   MuteAccountParams,
   PaginationParams,
   ReportAccountParams,
+  RevokeAccessTokenParams,
   SearchAccountsParams,
   SearchParams,
   UpdateCredentialsParams,
@@ -54,12 +55,13 @@ export class Masto extends Gateway {
    * @return Instance of Mastodon class
    */
   public static async login(params: LoginParams) {
-    const mastodon = new Masto(params);
-    const instance = await mastodon.fetchInstance().then(res => res.data);
-    mastodon.streamingApiUrl = instance.urls.streaming_api;
-    mastodon.version = instance.version;
+    const masto = new Masto(params);
+    const instance = await masto.fetchInstance().then(res => res.data);
 
-    return mastodon;
+    masto.version = instance.version;
+    masto.streamingApiUrl = instance.urls.streaming_api;
+
+    return masto;
   }
 
   /**
@@ -162,7 +164,7 @@ export class Masto extends Gateway {
    * @return OauthToken
    * @see https://docs.joinmastodon.org/api/authentication/#post-oauth-token
    */
-  public async fetchAccessToken(params: FetchAccessTokenParams) {
+  public fetchAccessToken(params: FetchAccessTokenParams) {
     return this.post<OAuthToken>(`${this.uri}/oauth/token`, params);
   }
 
@@ -171,7 +173,7 @@ export class Masto extends Gateway {
    * @param params Client credentials
    * @see https://docs.joinmastodon.org/api/authentication/#post-oauth-revoke
    */
-  public async revokeAccessToken(params: OAuthClient) {
+  public revokeAccessToken(params: RevokeAccessTokenParams) {
     return this.post<void>(`${this.uri}/oauth/revoke`, params);
   }
 
@@ -182,7 +184,7 @@ export class Masto extends Gateway {
    * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id
    */
   @available({ since: '0.0.0' })
-  public async fetchAccount(id: string) {
+  public fetchAccount(id: string) {
     return this.get<Account>(`${this.uri}/api/v1/accounts/${id}`);
   }
 
@@ -193,7 +195,7 @@ export class Masto extends Gateway {
    */
   @requiresAuthentication
   @available({ since: '2.7.0' })
-  public async createAccount(params: CreateAccountParams) {
+  public createAccount(params: CreateAccountParams) {
     return this.post<OAuthToken>(`${this.uri}/api/v1/accounts`, params);
   }
 
@@ -205,7 +207,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public async verifyCredentials() {
+  public verifyCredentials() {
     return this.get<AccountCredentials>(
       `${this.uri}/api/v1/accounts/verify_credentials`,
     );
@@ -220,7 +222,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public async updateCredentials(params?: UpdateCredentialsParams) {
+  public updateCredentials(params?: UpdateCredentialsParams) {
     return this.patch<AccountCredentials>(
       `${this.uri}/api/v1/accounts/update_credentials`,
       params,
@@ -286,7 +288,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public async followAccount(id: string, params?: FollowAccountParams) {
+  public followAccount(id: string, params?: FollowAccountParams) {
     return this.post<Relationship>(
       `${this.uri}/api/v1/accounts/${id}/follow`,
       params,
@@ -302,7 +304,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public async unfollowAccount(id: string) {
+  public unfollowAccount(id: string) {
     return this.post<Relationship>(
       `${this.uri}/api/v1/accounts/${id}/unfollow`,
     );
@@ -317,7 +319,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public async fetchAccountRelationships(id: string[]) {
+  public fetchAccountRelationships(id: string[]) {
     return this.get<Relationship[]>(
       `${this.uri}/api/v1/accounts/relationship`,
       { id },
@@ -333,7 +335,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public async searchAccounts(params?: SearchAccountsParams) {
+  public searchAccounts(params?: SearchAccountsParams) {
     return this.get<Account[]>(`${this.uri}/api/v1/accounts/search`, params);
   }
 
@@ -344,7 +346,7 @@ export class Masto extends Gateway {
    * @see https://docs.joinmastodon.org/api/rest/apps/#post-api-v1-apps
    */
   @available({ since: '0.0.0' })
-  public async createApp(params: CreateAppParams) {
+  public createApp(params: CreateAppParams) {
     return this.post<OAuthClient>(`${this.uri}/api/v1/apps`, params);
   }
 
@@ -355,7 +357,7 @@ export class Masto extends Gateway {
    */
   @requiresAuthentication
   @available({ since: '2.0.0' })
-  public async verifyAppCredentials() {
+  public verifyAppCredentials() {
     return this.get<Application>(`${this.uri}/api/v1/apps/verify_credentials`);
   }
 
@@ -381,7 +383,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public async blockAccount(id: string) {
+  public blockAccount(id: string) {
     return this.post<Relationship>(`${this.uri}/api/v1/accounts/${id}/block`);
   }
 
@@ -394,7 +396,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public async unblockAccount(id: string) {
+  public unblockAccount(id: string) {
     return this.post<Relationship>(`${this.uri}/api/v1/accounts/${id}/unblock`);
   }
 
@@ -404,7 +406,7 @@ export class Masto extends Gateway {
    * @see https://docs.joinmastodon.org/api/rest/custom-emojis/#get-api-v1-custom-emojis
    */
   @available({ since: '2.0.0' })
-  public async fetchCustomEmojis() {
+  public fetchCustomEmojis() {
     return this.get<Emoji[]>(`${this.uri}/api/v1/custom_emojis`);
   }
 
@@ -430,7 +432,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '1.4.0' })
-  public async blockDomain(domain: string) {
+  public blockDomain(domain: string) {
     return this.post<void>(`${this.uri}/api/v1/domain_blocks`, {
       domain,
     });
@@ -445,7 +447,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '1.4.0' })
-  public async unblockDomain(domain: string) {
+  public unblockDomain(domain: string) {
     return this.delete<void>(`${this.uri}/api/v1/domain_blocks`, {
       domain,
     });
@@ -472,7 +474,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.5.0' })
-  public async pinAccount(id: string) {
+  public pinAccount(id: string) {
     return this.post<Relationship>(`${this.uri}/api/v1/accounts/${id}/pin`);
   }
 
@@ -485,7 +487,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.5.0' })
-  public async unpinAccount(id: string) {
+  public unpinAccount(id: string) {
     return this.post<Relationship>(`${this.uri}/api/v1/accounts/${id}/unpin`);
   }
 
@@ -510,7 +512,7 @@ export class Masto extends Gateway {
    */
   @requiresAuthentication
   @available({ since: '0.0.0' })
-  public async favouriteStatus(id: string) {
+  public favouriteStatus(id: string) {
     return this.post<Status>(`${this.uri}/api/v1/statuses/${id}/favourite`);
   }
 
@@ -523,7 +525,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public async unfavouriteStatus(id: string) {
+  public unfavouriteStatus(id: string) {
     return this.post<Status>(`${this.uri}/api/v1/statuses/${id}/unfavourite`);
   }
 
@@ -535,7 +537,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.4.3' })
-  public async fetchFilters() {
+  public fetchFilters() {
     return this.get<Filter[]>(`${this.uri}/api/v1/filters`);
   }
 
@@ -548,7 +550,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.4.3' })
-  public async fetchFilter(id: string) {
+  public fetchFilter(id: string) {
     return this.get<Filter>(`${this.uri}/api/v1/filters/${id}`);
   }
 
@@ -561,7 +563,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.4.3' })
-  public async createFiler(params?: ModifyFilterParams) {
+  public createFiler(params?: ModifyFilterParams) {
     return this.post<Filter>(`${this.uri}/api/v1/filters`, params);
   }
 
@@ -575,7 +577,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.4.3' })
-  public async updateFilter(id: string, params?: ModifyFilterParams) {
+  public updateFilter(id: string, params?: ModifyFilterParams) {
     return this.put<Filter>(`${this.uri}/api/v1/filters/${id}`, params);
   }
 
@@ -588,7 +590,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.4.3' })
-  public async removeFilter(id: string) {
+  public removeFilter(id: string) {
     return this.delete<void>(`${this.uri}/api/v1/filters/${id}`);
   }
 
@@ -617,7 +619,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public async authorizeFollowRequest(id: string) {
+  public authorizeFollowRequest(id: string) {
     return this.post<void>(
       `${this.uri}/api/v1/follow_requests/${id}/authorize`,
     );
@@ -632,7 +634,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public async rejectFollowRequest(id: string) {
+  public rejectFollowRequest(id: string) {
     return this.post<void>(`${this.uri}/api/v1/follow_requests/${id}/reject`);
   }
 
@@ -644,7 +646,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.4.3' })
-  public async fetchSuggestions() {
+  public fetchSuggestions() {
     return this.get<Account[]>(`${this.uri}/api/v1/suggestions`);
   }
 
@@ -657,7 +659,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.4.3' })
-  public async removeSuggestion(id: string) {
+  public removeSuggestion(id: string) {
     return this.delete<void>(`${this.uri}/api/v1/suggestions/${id}`);
   }
 
@@ -667,7 +669,7 @@ export class Masto extends Gateway {
    * @see https://docs.joinmastodon.org/api/rest/instances/#get-api-v1-instance
    */
   @available({ since: '0.0.0' })
-  public async fetchInstance() {
+  public fetchInstance() {
     return this.get<Instance>(`${this.uri}/api/v1/instance`);
   }
 
@@ -677,7 +679,7 @@ export class Masto extends Gateway {
    * @see https://github.com/tootsuite/mastodon/pull/6125
    */
   @available({ since: '2.1.2' })
-  public async fetchPeerInstances() {
+  public fetchPeerInstances() {
     return this.get<string[]>(`${this.uri}/api/v1/instance/peers`);
   }
 
@@ -687,7 +689,7 @@ export class Masto extends Gateway {
    * @see https://github.com/tootsuite/mastodon/pull/6125
    */
   @available({ since: '2.1.2' })
-  public async fetchInstanceActivity() {
+  public fetchInstanceActivity() {
     return this.get<InstanceActivity[]>(`${this.uri}/api/v1/instance/activity`);
   }
 
@@ -699,7 +701,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.1.0' })
-  public async fetchLists() {
+  public fetchLists() {
     return this.get<List[]>(`${this.uri}/api/v1/lists`);
   }
 
@@ -712,7 +714,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.1.0' })
-  public async fetchAccountLists(id: string) {
+  public fetchAccountLists(id: string) {
     return this.get<List[]>(`${this.uri}/api/v1/accounts/${id}/lists`);
   }
 
@@ -742,7 +744,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.1.0' })
-  public async fetchList(id: string) {
+  public fetchList(id: string) {
     return this.get<List>(`${this.uri}/api/v1/lists/${id}`);
   }
 
@@ -755,7 +757,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.1.0' })
-  public async createList(params: ModifyListParams) {
+  public createList(params: ModifyListParams) {
     return this.post<List>(`${this.uri}/api/v1/lists`, params);
   }
 
@@ -769,7 +771,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.1.0' })
-  public async updateList(id: string, params: ModifyListParams) {
+  public updateList(id: string, params: ModifyListParams) {
     return this.put<List>(`${this.uri}/api/v1/lists/${id}`, params);
   }
 
@@ -782,7 +784,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.1.0' })
-  public async removeList(id: string) {
+  public removeList(id: string) {
     return this.delete<void>(`${this.uri}/api/v1/lists/${id}`);
   }
 
@@ -796,7 +798,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.1.0' })
-  public async addAccountToList(id: string, params: ModifyListAccountsParams) {
+  public addAccountToList(id: string, params: ModifyListAccountsParams) {
     return this.post<void>(`${this.uri}/api/v1/lists/${id}/accounts`, params);
   }
 
@@ -810,10 +812,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.1.0' })
-  public async removeAccountFromList(
-    id: string,
-    params: ModifyListAccountsParams,
-  ) {
+  public removeAccountFromList(id: string, params: ModifyListAccountsParams) {
     return this.post<void>(`${this.uri}/api/v1/lists/${id}/accounts`, params);
   }
 
@@ -826,7 +825,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public async uploadMediaAttachment(params: ModifyMediaAttachmentParams) {
+  public uploadMediaAttachment(params: ModifyMediaAttachmentParams) {
     return this.post<Attachment>(`${this.uri}/api/v1/media`, params, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
@@ -842,7 +841,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public async updateMediaAttachment(
+  public updateMediaAttachment(
     id: string,
     params: ModifyMediaAttachmentParams,
   ) {
@@ -872,7 +871,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public async muteAccount(id: string, params: MuteAccountParams) {
+  public muteAccount(id: string, params: MuteAccountParams) {
     return this.post<Relationship>(
       `${this.uri}/api/v1/accounts/${id}/mute`,
       params,
@@ -888,7 +887,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public async unmuteAccount(id: string) {
+  public unmuteAccount(id: string) {
     return this.post<Relationship>(`${this.uri}/api/v1/accounts/${id}/unmute`);
   }
 
@@ -901,7 +900,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '1.4.2' })
-  public async muteStatus(id: string) {
+  public muteStatus(id: string) {
     return this.post<Status>(`${this.uri}/api/v1/statuses/${id}/mute`);
   }
 
@@ -914,7 +913,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '1.4.2' })
-  public async unmuteStatus(id: string) {
+  public unmuteStatus(id: string) {
     return this.post<Status>(`${this.uri}/api/v1/statuses/${id}/unmute`);
   }
 
@@ -927,7 +926,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public async fetchNotifications(params?: FetchNotificationsParams) {
+  public fetchNotifications(params?: FetchNotificationsParams) {
     return this.get<Notification[]>(`${this.uri}/api/v1/notifications`, params);
   }
 
@@ -940,7 +939,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public async fetchNotification(id: string) {
+  public fetchNotification(id: string) {
     return this.get<Notification>(`${this.uri}/api/v1/notifications/${id}`);
   }
 
@@ -952,7 +951,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public async clearNotifications() {
+  public clearNotifications() {
     return this.post<void>(`${this.uri}/api/v1/notifications/clear`);
   }
 
@@ -965,7 +964,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public async dissmissNotification(id: string) {
+  public dissmissNotification(id: string) {
     return this.post<void>(`${this.uri}/api/v1/notifications/dismiss`, {
       id,
     });
@@ -980,7 +979,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.4.0' })
-  public async addPushSubscription(params: AddPushSubscriptionParams) {
+  public addPushSubscription(params: AddPushSubscriptionParams) {
     return this.post<PushSubscription>(
       `${this.uri}/api/v1/push/subscription`,
       params,
@@ -995,7 +994,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.4.0' })
-  public async fetchPushSubscription() {
+  public fetchPushSubscription() {
     return this.get<PushSubscription>(`${this.uri}/api/v1/push/subscription`);
   }
 
@@ -1008,7 +1007,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.4.0' })
-  public async updatePushSubscription(params: UpdatePushSubscriptionParams) {
+  public updatePushSubscription(params: UpdatePushSubscriptionParams) {
     return this.put<PushSubscription>(
       `${this.uri}/api/v1/push/subscription`,
       params,
@@ -1023,7 +1022,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.4.0' })
-  public async removePushSubscription() {
+  public removePushSubscription() {
     return this.delete<void>(`${this.uri}/api/v1/push/subscription`);
   }
 
@@ -1034,7 +1033,7 @@ export class Masto extends Gateway {
    * @see https://docs.joinmastodon.org/api/rest/polls/#get-api-v1-polls-id
    */
   @available({ since: '2.8.0' })
-  public async fetchPoll(id: string) {
+  public fetchPoll(id: string) {
     return this.get<Poll>(`${this.uri}/api/v1/polls/${id}`);
   }
 
@@ -1048,7 +1047,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.8.0' })
-  public async votePoll(id: string, params: VotePollParams) {
+  public votePoll(id: string, params: VotePollParams) {
     return this.post<Poll>(`${this.uri}/api/v1/polls/${id}/votes`, params);
   }
 
@@ -1061,7 +1060,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '1.1.0' })
-  public async reportAccount(params: ReportAccountParams) {
+  public reportAccount(params: ReportAccountParams) {
     return this.post<void>(`${this.uri}/api/v1/reports`, params);
   }
 
@@ -1073,7 +1072,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.7.0' })
-  public async fetchScheduledStatuses() {
+  public fetchScheduledStatuses() {
     return this.get<ScheduledStatus[]>(`${this.uri}/api/v1/scheduled_statuses`);
   }
 
@@ -1086,7 +1085,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.7.0' })
-  public async fetchScheduledStatus(id: string) {
+  public fetchScheduledStatus(id: string) {
     return this.get<ScheduledStatus>(
       `${this.uri}/api/v1/scheduled_statuses/${id}`,
     );
@@ -1102,7 +1101,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.7.0' })
-  public async updateScheduledStatus(
+  public updateScheduledStatus(
     id: string,
     params: UpdateScheduledStatusParams,
   ) {
@@ -1121,7 +1120,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.7.0' })
-  public async removeScheduledStatus(id: string) {
+  public removeScheduledStatus(id: string) {
     return this.delete<void>(`${this.uri}/api/v1/scheduled_statuses/${id}`);
   }
 
@@ -1135,7 +1134,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.4.1' })
-  public async search<V extends 'v1' | 'v2'>(
+  public search<V extends 'v1' | 'v2'>(
     params: SearchParams,
     version = 'v2' as V,
   ) {
@@ -1149,7 +1148,7 @@ export class Masto extends Gateway {
    * @see https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id
    */
   @available({ since: '0.0.0' })
-  public async fetchStatus(id: string) {
+  public fetchStatus(id: string) {
     return this.get<Status>(`${this.uri}/api/v1/statuses/${id}`);
   }
 
@@ -1160,7 +1159,7 @@ export class Masto extends Gateway {
    * @see https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-context
    */
   @available({ since: '0.0.0' })
-  public async fetchStatusContext(id: string) {
+  public fetchStatusContext(id: string) {
     return this.get<Context>(`${this.uri}/api/v1/statuses/${id}/context`);
   }
 
@@ -1170,7 +1169,7 @@ export class Masto extends Gateway {
    * @see https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-card
    */
   @available({ since: '0.0.0' })
-  public async fetchStatusCard(id: string) {
+  public fetchStatusCard(id: string) {
     return this.get<Card>(`${this.uri}/api/v1/statuses/${id}/card`);
   }
 
@@ -1214,10 +1213,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public async createStatus(
-    params?: CreateStatusParams,
-    idempotencyKey?: string,
-  ) {
+  public createStatus(params?: CreateStatusParams, idempotencyKey?: string) {
     if (idempotencyKey) {
       return this.post(`${this.uri}/api/v1/statuses`, params, {
         headers: { 'Idempotency-Key': idempotencyKey },
@@ -1236,7 +1232,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public async removeStatus(id: string) {
+  public removeStatus(id: string) {
     return this.delete<void>(`${this.uri}/api/v1/statuses/${id}`);
   }
 
@@ -1249,7 +1245,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public async reblogStatus(id: string) {
+  public reblogStatus(id: string) {
     return this.post<Status>(`${this.uri}/api/v1/statuses/${id}/reblog`);
   }
 
@@ -1262,7 +1258,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public async unreblogStatus(id: string) {
+  public unreblogStatus(id: string) {
     return this.post<Status>(`${this.uri}/api/v1/statuses/${id}/unreblog`);
   }
 
@@ -1275,7 +1271,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '1.6.0' })
-  public async pinStatus(id: string) {
+  public pinStatus(id: string) {
     return this.post<Status>(`${this.uri}/api/v1/statuses/${id}/pin`);
   }
 
@@ -1288,7 +1284,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '1.6.0' })
-  public async unpinStatus(id: string) {
+  public unpinStatus(id: string) {
     return this.post<Status>(`${this.uri}/api/v1/statuses/${id}/unpin`);
   }
 
@@ -1386,7 +1382,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.6.0' })
-  public async fetchConversations() {
+  public fetchConversations() {
     return this.get<Conversation[]>(`${this.uri}/api/v1/conversations`);
   }
 
@@ -1398,7 +1394,7 @@ export class Masto extends Gateway {
    */
   @requiresAuthentication
   @available({ since: '0.0.0' })
-  public async followAccountByUsername(uri: string) {
+  public followAccountByUsername(uri: string) {
     return this.post<Account>(`${this.uri}/api/v1/follows`, { uri });
   }
 }
