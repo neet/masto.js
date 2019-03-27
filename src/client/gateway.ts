@@ -1,5 +1,4 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import * as LinkHeader from 'http-link-header';
 // tslint:disable-next-line no-import-side-effect
 import 'isomorphic-form-data';
 import * as querystring from 'querystring';
@@ -339,11 +338,9 @@ export class Gateway {
 
         // Set next url from the link header
         const link = oc(response.headers.link)('');
-        const next = LinkHeader.parse(link).refs.find(
-          ({ rel }) => rel === 'next',
-        );
+        const match = link.match(/<(.+?)>; rel="next"/) as string[];
 
-        url = oc(next).uri('');
+        url = (match && match.length && match[1]) || '';
         params = undefined;
 
         // Return `done: true` immediately if no next url returned
