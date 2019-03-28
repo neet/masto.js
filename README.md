@@ -1,10 +1,12 @@
 <h1 align="center">
-  <img src="https://i.imgur.com/z47VXyd.png" width="300px">
+  <img src="https://i.imgur.com/z47VXyd.png" width="260px">
 </h1>
 
-<p align="center">Mastodon API client for TypeScript/JavaScript/Node.js/Browser</p>
+<p align="center">Mastodon API client for JavaScript, TypeScript, Node.js, browsers</p>
 
 <p align="center">
+  <a href="https://circleci.com/gh/neet/masto.js"><img src="https://img.shields.io/circleci/project/github/neet/masto.js/master.svg" /></a>
+  <a href="https://codecov.io/gh/neet/masto.js"><img src="https://codecov.io/gh/neet/masto.js/branch/master/graph/badge.svg" /></a>
   <a href="https://codeclimate.com/github/neet/masto.js/maintainability"><img src="https://api.codeclimate.com/v1/badges/f56a1d2e6728a89d0a94/maintainability" /></a>
   <a href="https://www.npmjs.com/package/masto"><img src="https://img.shields.io/npm/v/masto.svg" alt="npm"/></a>
   <a href="https://www.gnu.org/licenses/agpl-3.0"><img src="https://img.shields.io/badge/License-AGPL%20v3-blue.svg" alt="License: AGPL v3" /></a>
@@ -14,7 +16,6 @@
 ```
 npm i masto --save
 ```
-
 <a href='https://www.patreon.com/neetshin'><img src='https://c5.patreon.com/external/logo/become_a_patron_button.png' alt='Become a patron' width='140px' /></a>
 
 
@@ -41,7 +42,7 @@ import Masto from '../src';
 All of available methods/interfaces are described in the [documentation](https://github.com/neet/masto.js/blob/master/docs/classes/_client_mastodon_.mastodon.md) or you can also refer the [exmaples](https://github.com/neet/masto.js/tree/master/examples) on this repository.
 
 ## FAQ
-### What is the deference between other Mastodon packages?
+### What is the deference between Masto.js and other Mastodon packages?
 - [x] Compatible with both of browser and Node.js
 - [x] Each API has each function, you don't need to type annoying API URLs
 - [x] Static typing with TypeScript
