@@ -5,11 +5,10 @@
 <p align="center">Mastodon API client for JavaScript, TypeScript, Node.js, browsers</p>
 
 <p align="center">
+  <a href="https://www.npmjs.com/package/masto"><img src="https://img.shields.io/npm/v/masto.svg" alt="npm"/></a>
   <a href="https://circleci.com/gh/neet/masto.js"><img src="https://img.shields.io/circleci/project/github/neet/masto.js/master.svg" /></a>
   <a href="https://codecov.io/gh/neet/masto.js"><img src="https://codecov.io/gh/neet/masto.js/branch/master/graph/badge.svg" /></a>
   <a href="https://codeclimate.com/github/neet/masto.js/maintainability"><img src="https://api.codeclimate.com/v1/badges/f56a1d2e6728a89d0a94/maintainability" /></a>
-  <a href="https://www.npmjs.com/package/masto"><img src="https://img.shields.io/npm/v/masto.svg" alt="npm"/></a>
-  <a href="https://www.gnu.org/licenses/agpl-3.0"><img src="https://img.shields.io/badge/License-AGPL%20v3-blue.svg" alt="License: AGPL v3" /></a>
 </p>
 
 ## Installation
@@ -20,9 +19,10 @@ npm i masto --save
 
 
 ## Basic Usage
-Here's a simple example which creates a new status:
+This is a simple example which creates a new status:
+
 ```ts
-import Masto from '../src';
+import Masto from 'masto';
 
 (async () => {
   const masto = await Masto.login({
@@ -39,18 +39,18 @@ import Masto from '../src';
 })()
 ```
 
-All of available methods/interfaces are described in the [documentation](https://github.com/neet/masto.js/blob/master/docs/classes/_client_mastodon_.mastodon.md) or you can also refer the [exmaples](https://github.com/neet/masto.js/tree/master/examples) on this repository.
+All of available methods / interfaces are described in the [documentation](https://github.com/neet/masto.js/blob/master/docs/classes/_client_masto_.masto.md). You can also refer the some [examples](https://github.com/neet/masto.js/tree/master/examples) on this repository.
 
 ## FAQ
-### What is the deference between Masto.js and other Mastodon packages?
-- [x] Compatible with both of browser and Node.js
-- [x] Each API has each function, you don't need to type annoying API URLs
-- [x] Static typing with TypeScript
-- [x] Georgeous hovering menu provided by TSDoc
-- [x] Timeline implemented with Async Iterable
+### Q. What is the deference between Masto.js and the others?
+- [x] **Browsers** and **Node.js** are both supported
+- [x] **TypeScript** powers static typing.
+- [x] **You don't need to type API URLs** because each endpoints have their own function
+- [x] **Detailed docs** and rich hovering menu for IDE, provided by TSDoc
+- [x] **AsyncIterator** makes timeline pagination easier.
 
-### I got an error `Symbol.asyncIterator is not defined`
-Masto.js using [AsyncIterator](https://github.com/tc39/proposal-async-iteration) which is very new JS feature and it is not supported in some environments. Therefore, you can use polyfill like [Babel's](https://babeljs.io/docs/en/babel-plugin-proposal-async-generator-functions). In Node.js, it is supported on [v10](https://medium.com/@nairihar/async-iteration-in-nodejs-v10-3c17dc00ed9f) so you can update to use it.
+### Q. I got an error `Symbol.asyncIterator is not defined`
+A. Masto.js using [AsyncIterator](https://github.com/tc39/proposal-async-iteration) which is very new JS feature and it may not be supported in particular environments. So in browsers, you need to use a polyfill like [Babel's](https://babeljs.io/docs/en/babel-plugin-proposal-async-generator-functions). In Node.js, it is supported on [v10](https://medium.com/@nairihar/async-iteration-in-nodejs-v10-3c17dc00ed9f) so you can update and use it.
 
 ## License
-AGPLv3
+<a href="https://www.gnu.org/licenses/agpl-3.0"><img src="https://img.shields.io/badge/License-AGPL%20v3-blue.svg" alt="License: AGPL v3" /></a>
