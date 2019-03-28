@@ -4370,6 +4370,11 @@ simple-git@^1.85.0:
   dependencies:
     debug "^4.0.1"
 
+simplytyped@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/simplytyped/-/simplytyped-3.0.0.tgz#cbf147b4635d5081de99eb955ff1e7aec250a80c"
+  integrity sha512-jUCWBvwmk5Ox5/ZgkV6lKrLRta1kJFDzfYFnUni3BeWws27eXdwzxCknQyOgD1EVXGH+uUWzcEoylNMhfR10Og==
+
 sisteransi@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/sisteransi/-/sisteransi-1.0.0.tgz#77d9622ff909080f1c19e5f4a1df0c1b0a27b88c"

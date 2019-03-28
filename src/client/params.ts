@@ -1,3 +1,4 @@
+import { Omit } from 'simplytyped';
 import { AccountField, AccountSource } from '../entities/account';
 import { FilterContext } from '../entities/filter';
 import { NotificationType } from '../entities/notification';
@@ -81,28 +82,34 @@ export interface CreateAppParams {
 
 export type GrantType = 'authorization_code' | 'password';
 
-export type FetchAccessTokenParams<T extends GrantType = GrantType> = {
+export interface FetchAccessTokenParamsBase<T extends GrantType> {
   /** Grant type */
   grant_type: T;
-} & (T extends 'authorization_code'
-  ? {
-      /** Authorization code */
-      code: string;
-      /** Redirect URI which used for the authorization */
-      redirect_uri: string;
-      /** ID of the client */
-      client_id: string;
-      /** Secret of the client */
-      client_secret: string;
-    }
-  : T extends 'password'
-  ? {
-      /** Password */
-      password: string;
-      /** Username */
-      username: string;
-    }
-  : never);
+}
+
+export interface FetchAccessTokenParamsWithAuthorizationCode
+  extends FetchAccessTokenParamsBase<'authorization_code'> {
+  /** Authorization code */
+  code: string;
+  /** Redirect URI which used for the authorization */
+  redirect_uri: string;
+  /** ID of the client */
+  client_id: string;
+  /** Secret of the client */
+  client_secret: string;
+}
+
+export interface FetchAccessTokenParamsWithPassowrd
+  extends FetchAccessTokenParamsBase<'password'> {
+  /** Password */
+  password: string;
+  /** Username */
+  username: string;
+}
+
+export type FetchAccessTokenParams =
+  | FetchAccessTokenParamsWithAuthorizationCode
+  | FetchAccessTokenParamsWithPassowrd;
 
 export interface RevokeAccessTokenParams {
   /** ID of the client */
@@ -111,7 +118,7 @@ export interface RevokeAccessTokenParams {
   client_secret: string;
 }
 
-export interface ModifyMediaAttachmentParams {
+export interface UploadMediaAttachmentParams {
   /** Media to be uploaded (encoded using `multipart/form-data`) */
   file: any;
   /** A plain-text description of the media, for accessibility (max 420 chars) */
@@ -120,16 +127,21 @@ export interface ModifyMediaAttachmentParams {
   focus?: string | null;
 }
 
+export type UpdateMediaAttachmentParams = Omit<
+  UploadMediaAttachmentParams,
+  'file'
+>;
+
 export interface ModifyFilterParams {
-  /** String that contains keyword or phrase */
+  /** Keyword or phrase to filter */
   phrase?: string | null;
   /** Array of strings that means filtering context. each string is one of `home`, `notifications`, `public`, `thread`. At least one context must be specified */
   context?: FilterContext[] | null;
-  /** Filtered toots will disappear irreversibly, even if filter is later removed */
+  /** Irreversible filtering will only work in home and notifications contexts by fully dropping the records. Otherwise, filtering is up to the client. */
   irreversible?: boolean | null;
-  /** Boolean that indicates word match. */
+  /** Whether to consider word boundaries when matching */
   whole_word?: boolean | null;
-  /** The simestamp for expire time */
+  /** Number that indicates seconds. Filter will be expire in seconds after API processed. Leave blank for no expiration */
   expires_in?: number | null;
 }
 
@@ -205,18 +217,9 @@ export interface CreateStatusPollParam {
   hide_totals?: boolean | null;
 }
 
-export type CreateStatusParams<
-  MediaIds extends string[] | null | undefined = string[],
-  Poll extends CreateStatusPollParam = CreateStatusPollParam
-> = {
-  /** Text of the status */
-  status: string;
+export interface CreateStatusParamsBase {
   /** local ID of the status you want to reply to */
   in_reply_to_id?: string | null;
-  /** Array of media IDs to attach to the status (maximum 4) */
-  media_ids?: MediaIds | null;
-  /** Nested parameters to attach a poll to the status */
-  poll?: Poll | null;
   /** Set this to mark the media of the status as NSFW */
   sensitive?: boolean | null;
   /** Text to be shown as a warning before the actual content */
@@ -227,14 +230,29 @@ export type CreateStatusParams<
   scheduled_at?: string | null;
   /** ISO 639-2 language code of the toot, to skip automatic detection */
   language?: string | null;
-} & (MediaIds extends string[]
-  ? {
-      /** Text of the status */
-      status?: string | null;
-      /** Polls cannot be combined with media */
-      poll?: void;
-    }
-  : {});
+}
+
+export interface CreateStatusParamsWithStatus extends CreateStatusParamsBase {
+  /** Text of the status */
+  status: string;
+  /** Array of media IDs to attach to the status (maximum 4) */
+  media_ids?: string[] | null;
+  /** Nested parameters to attach a poll to the status */
+  poll?: CreateStatusPollParam | null;
+}
+
+export interface CreateStatusParamsWithMediaIds extends CreateStatusParamsBase {
+  /** Text of the status */
+  status?: string | null;
+  /** Array of media IDs to attach to the status (maximum 4) */
+  media_ids: string[] | null;
+  /** Poll cannot be combined with media ids */
+  poll?: never;
+}
+
+export type CreateStatusParams =
+  | CreateStatusParamsWithStatus
+  | CreateStatusParamsWithMediaIds;
 
 export interface FetchTimelineParams extends PaginationParams {
   /** Only return statuses originating from this instance (public and tag timelines only) */

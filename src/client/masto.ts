@@ -14,7 +14,7 @@ import { OAuthClient, OAuthToken } from '../entities/oauth';
 import { Poll } from '../entities/poll';
 import { PushSubscription } from '../entities/push-subscription';
 import { Relationship } from '../entities/relationship';
-import { Results } from '../entities/results';
+import { Results, ResultsV1 } from '../entities/results';
 import { Status } from '../entities/status';
 import { available, requiresAuthentication, requiresUser } from './decorators';
 import { Gateway } from './gateway';
@@ -32,7 +32,6 @@ import {
   ModifyFilterParams,
   ModifyListAccountsParams,
   ModifyListParams,
-  ModifyMediaAttachmentParams,
   MuteAccountParams,
   PaginationParams,
   ReportAccountParams,
@@ -40,8 +39,10 @@ import {
   SearchAccountsParams,
   SearchParams,
   UpdateCredentialsParams,
+  UpdateMediaAttachmentParams,
   UpdatePushSubscriptionParams,
   UpdateScheduledStatusParams,
+  UploadMediaAttachmentParams,
   VotePollParams,
 } from './params';
 
@@ -674,12 +675,12 @@ export class Masto extends Gateway {
   }
 
   /**
-   * Fetching peer instances
+   * Fetching instance's peers
    * @return An array of peer instance's domain
    * @see https://github.com/tootsuite/mastodon/pull/6125
    */
   @available({ since: '2.1.2' })
-  public fetchPeerInstances() {
+  public fetchInstancesPeers() {
     return this.get<string[]>(`${this.uri}/api/v1/instance/peers`);
   }
 
@@ -813,7 +814,7 @@ export class Masto extends Gateway {
   @requiresUser
   @available({ since: '2.1.0' })
   public removeAccountFromList(id: string, params: ModifyListAccountsParams) {
-    return this.post<void>(`${this.uri}/api/v1/lists/${id}/accounts`, params);
+    return this.delete<void>(`${this.uri}/api/v1/lists/${id}/accounts`, params);
   }
 
   /**
@@ -825,7 +826,7 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public uploadMediaAttachment(params: ModifyMediaAttachmentParams) {
+  public uploadMediaAttachment(params: UploadMediaAttachmentParams) {
     return this.post<Attachment>(`${this.uri}/api/v1/media`, params, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
@@ -843,7 +844,7 @@ export class Masto extends Gateway {
   @available({ since: '0.0.0' })
   public updateMediaAttachment(
     id: string,
-    params: ModifyMediaAttachmentParams,
+    params: UpdateMediaAttachmentParams,
   ) {
     return this.put<Attachment>(`${this.uri}/api/v1/media/${id}`, params);
   }
@@ -1138,7 +1139,10 @@ export class Masto extends Gateway {
     params: SearchParams,
     version = 'v2' as V,
   ) {
-    return this.get<Results<V>>(`${this.uri}/api/${version}/search`, params);
+    return this.get<V extends 'v2' ? Results : ResultsV1>(
+      `${this.uri}/api/${version}/search`,
+      params,
+    );
   }
 
   /**
@@ -1367,7 +1371,7 @@ export class Masto extends Gateway {
    */
   @requiresAuthentication
   @requiresUser
-  @available({ since: '0.0.0', until: '2.6.0' })
+  @available({ since: '0.0.0', until: '2.5.2' })
   public fetchDirectTimeline(params?: FetchTimelineParams) {
     return this.paginate<Status[]>(
       `${this.uri}/api/v1/timelines/direct`,
@@ -1382,8 +1386,11 @@ export class Masto extends Gateway {
   @requiresAuthentication
   @requiresUser
   @available({ since: '2.6.0' })
-  public fetchConversations() {
-    return this.get<Conversation[]>(`${this.uri}/api/v1/conversations`);
+  public fetchConversations(params?: PaginationParams) {
+    return this.paginate<Conversation[]>(
+      `${this.uri}/api/v1/conversations`,
+      params,
+    );
   }
 
   /**
