@@ -40,8 +40,8 @@ jobs:
           command: yarn test
 
       - run:
-          name: Send codecov to Coveralls
-          command: cat ./coverage/lcov.info | ./node_modules/.bin/coveralls
+          name: Send codecov to Codecov.io
+          command: ./node_modules/.bin/codecov
 
       - run:
           name: Build rollup.js
