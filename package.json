@@ -14,7 +14,7 @@
     "test:tslint": "tslint -c tslint.yml 'src/**/*.{ts,tsx}'",
     "test:prettier": "prettier -c 'src/**/*.{ts,tsx}'",
     "build": "rollup -c rollup.config.js",
-    "prepare": "yarn run test && yarn run build",
+    "prepublishOnly": "yarn run test && yarn run build",
     "docs:build": "typedoc ./src"
   },
   "dependencies": {
