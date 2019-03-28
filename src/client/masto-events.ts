@@ -37,7 +37,7 @@ export interface Event<T extends EventTypes = EventTypes> {
 /**
  * Mastodon streaming api wrapper
  */
-export class StreamingHandler extends EventEmitter {
+export class MastoEvents extends EventEmitter {
   private ws?: WebSocket;
 
   /**
@@ -46,7 +46,7 @@ export class StreamingHandler extends EventEmitter {
    * @param params URL parameters
    */
   public connect(url: string) {
-    return new Promise<StreamingHandler>((resolve, reject) => {
+    return new Promise<MastoEvents>((resolve, reject) => {
       this.ws = new WebSocket(url);
 
       this.ws.addEventListener('message', this.handleMessage);
@@ -69,7 +69,7 @@ export class StreamingHandler extends EventEmitter {
    * Parse JSON data and emit it as an event
    * @param message Websocket message
    */
-  private handleMessage = (message: Message) => {
+  public handleMessage = (message: Message) => {
     if (message.type !== 'utf8') {
       return;
     }
@@ -84,6 +84,9 @@ export class StreamingHandler extends EventEmitter {
       // Which doesn't contain payload in the data
       parsedMessage.data = parsedMessage.payload;
     }
+
+    // Remove original payload
+    delete parsedMessage.payload;
 
     this.emit(parsedMessage.event, parsedMessage);
   };

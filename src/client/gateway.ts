@@ -3,10 +3,10 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import 'isomorphic-form-data';
 import * as querystring from 'querystring';
 import { oc } from 'ts-optchain';
-import { MastodonNotFoundError } from '../errors/mastodon-not-found-error';
-import { MastodonRateLimitError } from '../errors/mastodon-rate-limit-error';
-import { MastodonUnauthorizedError } from '../errors/mastodon-unauthorized-error';
-import { StreamingHandler } from './streaming-handler';
+import { MastoNotFoundError } from '../errors/masto-not-found-error';
+import { MastoRateLimitError } from '../errors/masto-rate-limit-error';
+import { MastoUnauthorizedError } from '../errors/masto-unauthorized-error';
+import { MastoEvents } from './masto-events';
 import { isAxiosError, normalizeUrl } from './utils';
 
 export type PaginateNextOptions<Params> = {
@@ -186,11 +186,11 @@ export class Gateway {
 
         switch (status) {
           case 401:
-            throw new MastodonUnauthorizedError(errorMessage);
+            throw new MastoUnauthorizedError(errorMessage);
           case 404:
-            throw new MastodonNotFoundError(errorMessage);
+            throw new MastoNotFoundError(errorMessage);
           case 429:
-            throw new MastodonRateLimitError(errorMessage);
+            throw new MastoRateLimitError(errorMessage);
           default:
             throw error;
         }
@@ -295,7 +295,7 @@ export class Gateway {
       params.access_token = this.accessToken;
     }
 
-    return new StreamingHandler().connect(
+    return new MastoEvents().connect(
       url +
         (Object.keys(params).length ? `?${querystring.stringify(params)}` : ''),
     );

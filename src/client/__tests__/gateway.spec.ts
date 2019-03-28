@@ -3,13 +3,13 @@ import axios from 'axios';
 import * as FormData from 'form-data';
 import { Gateway } from '../gateway';
 // @ts-ignore
-import { StreamingHandler, connectMock } from '../streaming-handler';
-import { MastodonUnauthorizedError } from '../../errors/mastodon-unauthorized-error';
-import { MastodonNotFoundError } from '../../errors/mastodon-not-found-error';
-import { MastodonRateLimitError } from '../../errors/mastodon-rate-limit-error';
+import { MastoEvents, connectMock } from '../masto-events';
+import { MastoUnauthorizedError } from '../../errors/masto-unauthorized-error';
+import { MastoNotFoundError } from '../../errors/masto-not-found-error';
+import { MastoRateLimitError } from '../../errors/masto-rate-limit-error';
 
 jest.mock('axios');
-jest.mock('../streaming-handler');
+jest.mock('../masto-events');
 
 describe('Gateway', () => {
   let gateway!: Gateway;
@@ -107,7 +107,7 @@ describe('Gateway', () => {
 
     // @ts-ignore
     expect(gateway.request(options)).rejects.toThrow(
-      new MastodonUnauthorizedError('Unauthorized'),
+      new MastoUnauthorizedError('Unauthorized'),
     );
   });
 
@@ -128,7 +128,7 @@ describe('Gateway', () => {
 
     // @ts-ignore
     expect(gateway.request(options)).rejects.toThrow(
-      new MastodonNotFoundError('NotFound'),
+      new MastoNotFoundError('NotFound'),
     );
   });
 
@@ -149,13 +149,12 @@ describe('Gateway', () => {
 
     // @ts-ignore
     expect(gateway.request(options)).rejects.toThrow(
-      new MastodonRateLimitError('RateLimit'),
+      new MastoRateLimitError('RateLimit'),
     );
   });
 
   test('call axiso.request with GET param', async () => {
     const params = { a: 'a', b: 'b' };
-    // @ts-ignore
     await gateway.get('https://exmaple.com', params);
 
     expect(axios.request as jest.Mock).toBeCalledWith(
@@ -168,7 +167,6 @@ describe('Gateway', () => {
   });
 
   test('call axiso.request with POST param', async () => {
-    // @ts-ignore
     await gateway.post('https://exmaple.com');
 
     expect(axios.request as jest.Mock).toBeCalledWith(
@@ -180,7 +178,6 @@ describe('Gateway', () => {
   });
 
   test('call axiso.request with PUT param', async () => {
-    // @ts-ignore
     await gateway.put('https://exmaple.com');
 
     expect(axios.request as jest.Mock).toBeCalledWith(
@@ -192,7 +189,6 @@ describe('Gateway', () => {
   });
 
   test('call axiso.request with DELETE param', async () => {
-    // @ts-ignore
     await gateway.delete('https://exmaple.com');
 
     expect(axios.request as jest.Mock).toBeCalledWith(
@@ -204,7 +200,6 @@ describe('Gateway', () => {
   });
 
   test('call axiso.request with PATCH param', async () => {
-    // @ts-ignore
     await gateway.patch('https://exmaple.com');
 
     expect(axios.request as jest.Mock).toBeCalledWith(
@@ -215,15 +210,13 @@ describe('Gateway', () => {
     );
   });
 
-  test('initialize StreamingHandler and call connect with given params', async () => {
+  test('initialize MastoEvents and call connect with given params', async () => {
     const params = { a: 'a', b: 'b' };
-    // @ts-ignore
     await gateway.stream('wss://example.com', params);
     expect(connectMock).toBeCalledWith('wss://example.com?a=a&b=b');
   });
 
   test('call next to paginate, finish if nothing in link header', async () => {
-    // @ts-ignore
     const iterable = gateway.paginate('https://example.com', {
       since_id: '123',
     });
@@ -294,7 +287,6 @@ describe('Gateway', () => {
   });
 
   test('finish pagination with given value', async () => {
-    // @ts-ignore
     const iterable = gateway.paginate('https://example.com');
     const value = Symbol('hehehe');
     const result = await iterable.return!(value);
@@ -304,7 +296,6 @@ describe('Gateway', () => {
   });
 
   test('throw given error in the pagination', () => {
-    // @ts-ignore
     const iterable = gateway.paginate('https://example.com');
     const error = new Error('hehehe');
     expect(iterable.throw!(error)).rejects.toThrow(error);

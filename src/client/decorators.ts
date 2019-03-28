@@ -1,6 +1,6 @@
 import { gt, lt } from 'semver';
-import { MastodonNotFoundError } from '../errors/mastodon-not-found-error';
-import { MastodonUnauthorizedError } from '../errors/mastodon-unauthorized-error';
+import { MastoNotFoundError } from '../errors/masto-not-found-error';
+import { MastoUnauthorizedError } from '../errors/masto-unauthorized-error';
 import { Masto } from './masto';
 
 export type Decorator = (
@@ -46,7 +46,7 @@ export const requiresAuthentication: Decorator = (
 
   descriptor.value = function(this: Masto, ...args: any[]) {
     if (!this.accessToken) {
-      throw new MastodonUnauthorizedError(
+      throw new MastoUnauthorizedError(
         `Endpoint ${name} requires authentication. ` +
           'Check Setting > Development of your Mastodon instance ' +
           'to register application.',
@@ -76,7 +76,7 @@ export const available = (parameters: AvailabeParams): Decorator => (
 
   descriptor.value = function(this: Masto, ...args: any[]) {
     if (since && this.version && lt(this.version, since)) {
-      throw new MastodonNotFoundError(
+      throw new MastoNotFoundError(
         `${name} is not available with the current ` +
           `Mastodon version ${this.version}. ` +
           `It requires greater than or equal to version ${since}.`,
@@ -84,7 +84,7 @@ export const available = (parameters: AvailabeParams): Decorator => (
     }
 
     if (until && this.version && gt(this.version, until)) {
-      throw new MastodonNotFoundError(
+      throw new MastoNotFoundError(
         `${name} is not available with the current ` +
           `Mastodon version ${this.version}. ` +
           `It was removed on version ${until}.`,

@@ -1,5 +1,5 @@
 export const connectMock = jest.fn();
 
-export const StreamingHandler = jest.fn(() => ({
+export const MastoEvents = jest.fn(() => ({
   connect: connectMock,
 }));
