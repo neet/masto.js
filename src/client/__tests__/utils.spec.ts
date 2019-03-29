@@ -12,3 +12,8 @@ test('return true if `response` is contained in the object', () => {
 
   expect(isAxiosError(obj)).toBe(true);
 });
+
+test('return false if `response` is not contained in the object', () => {
+  const obj = {};
+  expect(isAxiosError(obj)).toBe(false);
+});

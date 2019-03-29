@@ -19,11 +19,11 @@ export interface AvailabeParams {
  * (placeholder for the future implementation)
  */
 export const requiresUser: Decorator = (_target, _name, descriptor) => {
-  const original = descriptor.value;
-
-  if (typeof original !== 'function') {
-    return;
+  if (!descriptor || typeof descriptor.value !== 'function') {
+    throw new Error('requiresUser only can be used to a method of a class');
   }
+
+  const original = descriptor.value;
 
   descriptor.value = function(this: Masto, ...args: any[]) {
     return original.apply(this, args);
@@ -38,11 +38,13 @@ export const requiresAuthentication: Decorator = (
   name,
   descriptor,
 ) => {
-  const original = descriptor.value;
-
-  if (typeof original !== 'function') {
-    return;
+  if (!descriptor || typeof descriptor.value !== 'function') {
+    throw new Error(
+      'requireAuthentication only can be used to a method of a class',
+    );
   }
+
+  const original = descriptor.value;
 
   descriptor.value = function(this: Masto, ...args: any[]) {
     if (!this.accessToken) {
@@ -66,12 +68,11 @@ export const available = (parameters: AvailabeParams): Decorator => (
   name,
   descriptor,
 ) => {
-  const original = descriptor.value;
-
-  if (typeof original !== 'function') {
-    return;
+  if (!descriptor || typeof descriptor.value !== 'function') {
+    throw new Error('available only can be used to a method of a class');
   }
 
+  const original = descriptor.value;
   const { since, until } = parameters;
 
   descriptor.value = function(this: Masto, ...args: any[]) {
