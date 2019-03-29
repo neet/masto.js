@@ -12,12 +12,12 @@ import Mastodon from '../src';
   // Connect to the streaming api
   const stream = await client.streamPublicTimeline();
 
-  // When new toot was posted...
+  // Subscribe updates
   stream.on('update', (status) => {
     console.log(`${status.data.account.username}: ${status.data.content}`);
   });
 
-  // When new notification coming...
+  // Subscribe notifications
   stream.on('notification', (notification) => {
     console.log(`${notification.data.account.username}: ${notification.data.type}`);
   })
