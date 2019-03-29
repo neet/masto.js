@@ -2,7 +2,7 @@
   "name": "masto",
   "description": "Mastodon API client for browser and Node.js",
   "private": false,
-  "version": "2.0.0-rc1",
+  "version": "2.0.0-rc2",
   "author": "neetshin",
   "license": "AGPL-3.0",
   "main": "dist/index.js",
