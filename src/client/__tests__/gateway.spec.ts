@@ -105,6 +105,19 @@ describe('Gateway', () => {
     expect(result.data).toBeInstanceOf(FormData);
   });
 
+  test('will not transform JS object when unknown MIME speicifed', () => {
+    const obj = { a: 'a', b: 'b' };
+
+    // @ts-ignore
+    const result = gateway.decorateRequestConfig(obj, {
+      headers: {
+        'Content-Type': 'image/png',
+      },
+    });
+
+    expect(result.data).toBeUndefined();
+  });
+
   test('call axios.request with given options', async () => {
     const options = {
       method: 'POST',
@@ -275,6 +288,15 @@ describe('Gateway', () => {
     const params = { a: 'a', b: 'b' };
     await gateway.stream('wss://example.com', params);
     expect(connectMock).toBeCalledWith('wss://example.com?a=a&b=b');
+  });
+
+  test('initialize MastoEvents and call connect with access token', async () => {
+    gateway.accessToken = 'tokentoken';
+    await gateway.stream('wss://example.com');
+
+    expect(connectMock).toBeCalledWith(
+      'wss://example.com?access_token=tokentoken',
+    );
   });
 
   test('call next to paginate, finish if nothing in link header', async () => {

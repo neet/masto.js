@@ -270,6 +270,34 @@ exports[`Masto createList 1`] = `
 }
 `;
 
+exports[`Masto createStatus with Idempotency-Key 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"status\\":\\"Too!\\"}",
+        "headers": Object {
+          "Authorization": "Bearer token",
+          "Content-Type": "application/json",
+          "Idempotency-Key": "59fe7e30-1a74-4050-8af7-5a8c7a224794",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/statuses",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
 exports[`Masto createStatus with content 1`] = `
 [MockFunction] {
   "calls": Array [
@@ -999,7 +1027,7 @@ exports[`Masto fetchInstance 1`] = `
 }
 `;
 
-exports[`Masto fetchInstance 2`] = `
+exports[`Masto fetchInstanceActivity 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
@@ -1015,6 +1043,34 @@ exports[`Masto fetchInstance 2`] = `
           [Function],
         ],
         "url": "https://example.com/api/v1/instance/activity",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchInstancesPeers 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Authorization": "Bearer token",
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {},
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/instance/peers",
       },
     ],
   ],
@@ -2251,7 +2307,7 @@ exports[`Masto unfavouriteStatus 1`] = `
         "transformResponse": Array [
           [Function],
         ],
-        "url": "https://example.com/api/v1/statuses/123123/favourite",
+        "url": "https://example.com/api/v1/statuses/123123/unfavourite",
       },
     ],
   ],

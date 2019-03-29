@@ -263,7 +263,7 @@ describe('Masto', () => {
   });
 
   test('unfavouriteStatus', async () => {
-    await masto.favouriteStatus('123123');
+    await masto.unfavouriteStatus('123123');
     expect(axios.request).toMatchSnapshot();
   });
 
@@ -341,7 +341,12 @@ describe('Masto', () => {
     expect(axios.request).toMatchSnapshot();
   });
 
-  test('fetchInstance', async () => {
+  test('fetchInstancesPeers', async () => {
+    await masto.fetchInstancesPeers();
+    expect(axios.request).toMatchSnapshot();
+  });
+
+  test('fetchInstanceActivity', async () => {
     await masto.fetchInstanceActivity();
     expect(axios.request).toMatchSnapshot();
   });
@@ -641,6 +646,16 @@ describe('Masto', () => {
     await masto.createStatus({
       media_ids: ['123', '456'],
     });
+    expect(axios.request).toMatchSnapshot();
+  });
+
+  test('createStatus with Idempotency-Key', async () => {
+    await masto.createStatus(
+      {
+        status: 'Too!',
+      },
+      '59fe7e30-1a74-4050-8af7-5a8c7a224794',
+    );
     expect(axios.request).toMatchSnapshot();
   });
 
