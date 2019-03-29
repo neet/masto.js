@@ -22,7 +22,7 @@
 
 **● notifications**: *`boolean`*
 
-*Defined in [client/params.ts:176](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L176)*
+*Defined in [client/params.ts:192](https://github.com/neet/masto.js/blob/390e749/src/client/params.ts#L192)*
 
 Whether the mute will mute notifications or not
 

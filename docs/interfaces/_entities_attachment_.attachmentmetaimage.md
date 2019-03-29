@@ -25,7 +25,7 @@
 
 **● aspect**: *`number`*
 
-*Defined in [entities/attachment.ts:32](https://github.com/lagunehq/core/blob/84abcd4/src/entities/attachment.ts#L32)*
+*Defined in [entities/attachment.ts:32](https://github.com/neet/masto.js/blob/390e749/src/entities/attachment.ts#L32)*
 
 ___
 <a id="height"></a>
@@ -34,7 +34,7 @@ ___
 
 **● height**: *`number`*
 
-*Defined in [entities/attachment.ts:30](https://github.com/lagunehq/core/blob/84abcd4/src/entities/attachment.ts#L30)*
+*Defined in [entities/attachment.ts:30](https://github.com/neet/masto.js/blob/390e749/src/entities/attachment.ts#L30)*
 
 ___
 <a id="size"></a>
@@ -43,7 +43,7 @@ ___
 
 **● size**: *`string`*
 
-*Defined in [entities/attachment.ts:31](https://github.com/lagunehq/core/blob/84abcd4/src/entities/attachment.ts#L31)*
+*Defined in [entities/attachment.ts:31](https://github.com/neet/masto.js/blob/390e749/src/entities/attachment.ts#L31)*
 
 ___
 <a id="width"></a>
@@ -52,7 +52,7 @@ ___
 
 **● width**: *`number`*
 
-*Defined in [entities/attachment.ts:29](https://github.com/lagunehq/core/blob/84abcd4/src/entities/attachment.ts#L29)*
+*Defined in [entities/attachment.ts:29](https://github.com/neet/masto.js/blob/390e749/src/entities/attachment.ts#L29)*
 
 ___
 

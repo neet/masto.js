@@ -28,7 +28,7 @@
 
 **Ƭ Decorator**: *`function`*
 
-*Defined in [client/decorators.ts:6](https://github.com/lagunehq/core/blob/84abcd4/src/client/decorators.ts#L6)*
+*Defined in [client/decorators.ts:6](https://github.com/neet/masto.js/blob/390e749/src/client/decorators.ts#L6)*
 
 #### Type declaration
 ▸(masto: *[Masto](../classes/_client_masto_.masto.md)*, name: *`string`*, descriptor: *`TypedPropertyDescriptor`<`function`>*): `void`
@@ -53,7 +53,7 @@ ___
 
 ▸ **available**(parameters: *[AvailabeParams](../interfaces/_client_decorators_.availabeparams.md)*): [Decorator](_client_decorators_.md#decorator)
 
-*Defined in [client/decorators.ts:64](https://github.com/lagunehq/core/blob/84abcd4/src/client/decorators.ts#L64)*
+*Defined in [client/decorators.ts:66](https://github.com/neet/masto.js/blob/390e749/src/client/decorators.ts#L66)*
 
 Decorator that verifies the version of the Mastodon instance
 
@@ -72,7 +72,7 @@ ___
 
 ▸ **requiresAuthentication**(_target: *[Masto](../classes/_client_masto_.masto.md)*, name: *`string`*, descriptor: *`TypedPropertyDescriptor`<`function`>*): `void`
 
-*Defined in [client/decorators.ts:36](https://github.com/lagunehq/core/blob/84abcd4/src/client/decorators.ts#L36)*
+*Defined in [client/decorators.ts:36](https://github.com/neet/masto.js/blob/390e749/src/client/decorators.ts#L36)*
 
 Decorator that indicates the function requires authentication
 
@@ -93,7 +93,7 @@ ___
 
 ▸ **requiresUser**(_target: *[Masto](../classes/_client_masto_.masto.md)*, _name: *`string`*, descriptor: *`TypedPropertyDescriptor`<`function`>*): `void`
 
-*Defined in [client/decorators.ts:21](https://github.com/lagunehq/core/blob/84abcd4/src/client/decorators.ts#L21)*
+*Defined in [client/decorators.ts:21](https://github.com/neet/masto.js/blob/390e749/src/client/decorators.ts#L21)*
 
 Decorator that indicates the function requires user (placeholder for the future implementation)
 

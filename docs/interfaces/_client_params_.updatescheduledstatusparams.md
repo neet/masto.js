@@ -22,7 +22,7 @@
 
 **● scheduled_at**: *`string`*
 
-*Defined in [client/params.ts:258](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L258)*
+*Defined in [client/params.ts:280](https://github.com/neet/masto.js/blob/390e749/src/client/params.ts#L280)*
 
 Timestamp string to schedule posting of status (ISO 8601)
 

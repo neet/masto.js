@@ -26,7 +26,7 @@
 
 **● context**: *[FilterContext](../modules/_entities_filter_.md#filtercontext)[] \| `null`*
 
-*Defined in [client/params.ts:123](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L123)*
+*Defined in [client/params.ts:139](https://github.com/neet/masto.js/blob/390e749/src/client/params.ts#L139)*
 
 Array of strings that means filtering context. each string is one of `home`, `notifications`, `public`, `thread`. At least one context must be specified
 
@@ -37,9 +37,9 @@ ___
 
 **● expires_in**: *`number` \| `null`*
 
-*Defined in [client/params.ts:129](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L129)*
+*Defined in [client/params.ts:145](https://github.com/neet/masto.js/blob/390e749/src/client/params.ts#L145)*
 
-The simestamp for expire time
+Number that indicates seconds. Filter will be expire in seconds after API processed. Leave blank for no expiration
 
 ___
 <a id="irreversible"></a>
@@ -48,9 +48,9 @@ ___
 
 **● irreversible**: *`boolean` \| `null`*
 
-*Defined in [client/params.ts:125](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L125)*
+*Defined in [client/params.ts:141](https://github.com/neet/masto.js/blob/390e749/src/client/params.ts#L141)*
 
-Filtered toots will disappear irreversibly, even if filter is later removed
+Irreversible filtering will only work in home and notifications contexts by fully dropping the records. Otherwise, filtering is up to the client.
 
 ___
 <a id="phrase"></a>
@@ -59,9 +59,9 @@ ___
 
 **● phrase**: *`string` \| `null`*
 
-*Defined in [client/params.ts:121](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L121)*
+*Defined in [client/params.ts:137](https://github.com/neet/masto.js/blob/390e749/src/client/params.ts#L137)*
 
-String that contains keyword or phrase
+Keyword or phrase to filter
 
 ___
 <a id="whole_word"></a>
@@ -70,9 +70,9 @@ ___
 
 **● whole_word**: *`boolean` \| `null`*
 
-*Defined in [client/params.ts:127](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L127)*
+*Defined in [client/params.ts:143](https://github.com/neet/masto.js/blob/390e749/src/client/params.ts#L143)*
 
-Boolean that indicates word match.
+Whether to consider word boundaries when matching
 
 ___
 

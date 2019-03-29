@@ -27,7 +27,7 @@
 
 **● following**: *`boolean` \| `null`*
 
-*Defined in [client/params.ts:190](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L190)*
+*Defined in [client/params.ts:206](https://github.com/neet/masto.js/blob/390e749/src/client/params.ts#L206)*
 
 Only who the user is following
 
@@ -38,7 +38,7 @@ ___
 
 **● limit**: *`number` \| `null`*
 
-*Defined in [client/params.ts:188](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L188)*
+*Defined in [client/params.ts:204](https://github.com/neet/masto.js/blob/390e749/src/client/params.ts#L204)*
 
 Maximum number of matching accounts to return (default: `40`)
 
@@ -51,7 +51,7 @@ ___
 
 *Inherited from [SearchParams](_client_params_.searchparams.md).[q](_client_params_.searchparams.md#q)*
 
-*Defined in [client/params.ts:181](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L181)*
+*Defined in [client/params.ts:197](https://github.com/neet/masto.js/blob/390e749/src/client/params.ts#L197)*
 
 The search query
 
@@ -64,7 +64,7 @@ ___
 
 *Inherited from [SearchParams](_client_params_.searchparams.md).[resolve](_client_params_.searchparams.md#resolve)*
 
-*Defined in [client/params.ts:183](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L183)*
+*Defined in [client/params.ts:199](https://github.com/neet/masto.js/blob/390e749/src/client/params.ts#L199)*
 
 Attempt WebFinger look-up
 

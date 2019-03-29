@@ -15,7 +15,7 @@
     "test:prettier": "prettier -c 'src/**/*.{ts,tsx}'",
     "build": "rollup -c rollup.config.js",
     "prepublishOnly": "yarn run test && yarn run build",
-    "docs:build": "typedoc ./src"
+    "docs:build": "typedoc ./src && touch ./docs/.nojekyll"
   },
   "dependencies": {
     "@types/ws": "^6.0.1",

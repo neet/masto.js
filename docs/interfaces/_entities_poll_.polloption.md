@@ -23,7 +23,7 @@
 
 **● title**: *`string`*
 
-*Defined in [entities/poll.ts:3](https://github.com/lagunehq/core/blob/84abcd4/src/entities/poll.ts#L3)*
+*Defined in [entities/poll.ts:3](https://github.com/neet/masto.js/blob/390e749/src/entities/poll.ts#L3)*
 
 Title of the option
 
@@ -34,7 +34,7 @@ ___
 
 **● votes_count**: *`undefined` \| `number`*
 
-*Defined in [entities/poll.ts:5](https://github.com/lagunehq/core/blob/84abcd4/src/entities/poll.ts#L5)*
+*Defined in [entities/poll.ts:5](https://github.com/neet/masto.js/blob/390e749/src/entities/poll.ts#L5)*
 
 Cont of votes for this option
 

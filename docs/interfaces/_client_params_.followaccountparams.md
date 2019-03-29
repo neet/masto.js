@@ -22,7 +22,7 @@
 
 **● reblogs**: *`boolean` \| `null`*
 
-*Defined in [client/params.ts:171](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L171)*
+*Defined in [client/params.ts:187](https://github.com/neet/masto.js/blob/390e749/src/client/params.ts#L187)*
 
 Whether the followed account’s reblogs will show up in the home timeline
 

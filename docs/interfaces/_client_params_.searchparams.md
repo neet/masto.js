@@ -25,7 +25,7 @@
 
 **● q**: *`string`*
 
-*Defined in [client/params.ts:181](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L181)*
+*Defined in [client/params.ts:197](https://github.com/neet/masto.js/blob/390e749/src/client/params.ts#L197)*
 
 The search query
 
@@ -36,7 +36,7 @@ ___
 
 **● resolve**: *`boolean` \| `null`*
 
-*Defined in [client/params.ts:183](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L183)*
+*Defined in [client/params.ts:199](https://github.com/neet/masto.js/blob/390e749/src/client/params.ts#L199)*
 
 Attempt WebFinger look-up
 

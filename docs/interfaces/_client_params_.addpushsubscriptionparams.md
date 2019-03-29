@@ -23,7 +23,7 @@
 
 **● data**: *`object` \| `null`*
 
-*Defined in [client/params.ts:159](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L159)*
+*Defined in [client/params.ts:175](https://github.com/neet/masto.js/blob/390e749/src/client/params.ts#L175)*
 
 ___
 <a id="subscription"></a>
@@ -32,7 +32,7 @@ ___
 
 **● subscription**: *`object`*
 
-*Defined in [client/params.ts:148](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L148)*
+*Defined in [client/params.ts:164](https://github.com/neet/masto.js/blob/390e749/src/client/params.ts#L164)*
 
 #### Type declaration
 

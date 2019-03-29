@@ -20,9 +20,9 @@
 
 ###  NotificationType
 
-**Ƭ NotificationType**: *"mention" \| "reblog" \| "favourite" \| "follow"*
+**Ƭ NotificationType**: *"mention" \| "reblog" \| "favourite" \| "follow" \| "poll"*
 
-*Defined in [entities/notification.ts:4](https://github.com/lagunehq/core/blob/84abcd4/src/entities/notification.ts#L4)*
+*Defined in [entities/notification.ts:4](https://github.com/neet/masto.js/blob/390e749/src/entities/notification.ts#L4)*
 
 ___
 

@@ -25,7 +25,7 @@
 
 **● accessToken**: *`undefined` \| `string`*
 
-*Defined in [client/gateway.ts:30](https://github.com/lagunehq/core/blob/84abcd4/src/client/gateway.ts#L30)*
+*Defined in [client/gateway.ts:29](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L29)*
 
 Access token of the user
 
@@ -36,7 +36,7 @@ ___
 
 **● streamingApiUrl**: *`undefined` \| `string`*
 
-*Defined in [client/gateway.ts:26](https://github.com/lagunehq/core/blob/84abcd4/src/client/gateway.ts#L26)*
+*Defined in [client/gateway.ts:25](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L25)*
 
 Streaming API URL
 
@@ -47,7 +47,7 @@ ___
 
 **● uri**: *`string`*
 
-*Defined in [client/gateway.ts:24](https://github.com/lagunehq/core/blob/84abcd4/src/client/gateway.ts#L24)*
+*Defined in [client/gateway.ts:23](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L23)*
 
 URI of the instance
 
@@ -58,7 +58,7 @@ ___
 
 **● version**: *`undefined` \| `string`*
 
-*Defined in [client/gateway.ts:28](https://github.com/lagunehq/core/blob/84abcd4/src/client/gateway.ts#L28)*
+*Defined in [client/gateway.ts:27](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L27)*
 
 Version of the instance
 

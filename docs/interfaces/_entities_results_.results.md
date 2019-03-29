@@ -2,8 +2,6 @@
 
 # Interface: Results
 
-## Type parameters
-#### V :  "v1" \| "v2"
 ## Hierarchy
 
 **Results**
@@ -26,7 +24,7 @@
 
 **● accounts**: *[Account](_entities_account_.account.md)[]*
 
-*Defined in [entities/results.ts:7](https://github.com/lagunehq/core/blob/84abcd4/src/entities/results.ts#L7)*
+*Defined in [entities/results.ts:16](https://github.com/neet/masto.js/blob/390e749/src/entities/results.ts#L16)*
 
 An array of matched Accounts
 
@@ -35,9 +33,9 @@ ___
 
 ###  hashtags
 
-**● hashtags**: *`V extends "v1" ? string[] : V extends "v2" ? Tag[] : never`*
+**● hashtags**: *[Tag](_entities_tag_.tag.md)[]*
 
-*Defined in [entities/results.ts:11](https://github.com/lagunehq/core/blob/84abcd4/src/entities/results.ts#L11)*
+*Defined in [entities/results.ts:20](https://github.com/neet/masto.js/blob/390e749/src/entities/results.ts#L20)*
 
 An array of matched hashtags, as strings
 
@@ -48,7 +46,7 @@ ___
 
 **● statuses**: *[Status](_entities_status_.status.md)[]*
 
-*Defined in [entities/results.ts:9](https://github.com/lagunehq/core/blob/84abcd4/src/entities/results.ts#L9)*
+*Defined in [entities/results.ts:18](https://github.com/neet/masto.js/blob/390e749/src/entities/results.ts#L18)*
 
 An array of matched Statuses
 

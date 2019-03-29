@@ -1,6 +1,6 @@
-[masto](../README.md) > ["client/streaming-handler"](../modules/_client_streaming_handler_.md) > [StreamingHandler](../classes/_client_streaming_handler_.streaminghandler.md)
+[masto](../README.md) > ["client/masto-events"](../modules/_client_masto_events_.md) > [MastoEvents](../classes/_client_masto_events_.mastoevents.md)
 
-# Class: StreamingHandler
+# Class: MastoEvents
 
 Mastodon streaming api wrapper
 
@@ -10,34 +10,35 @@ Mastodon streaming api wrapper
 
  `EventEmitter`
 
-**↳ StreamingHandler**
+**↳ MastoEvents**
 
 ## Index
 
 ### Interfaces
 
-* [EventEmitterStatic](../interfaces/_client_streaming_handler_.streaminghandler.eventemitterstatic.md)
-* [ListenerFn](../interfaces/_client_streaming_handler_.streaminghandler.listenerfn.md)
+* [EventEmitterStatic](../interfaces/_client_masto_events_.mastoevents.eventemitterstatic.md)
+* [ListenerFn](../interfaces/_client_masto_events_.mastoevents.listenerfn.md)
 
 ### Properties
 
-* [EventEmitter](_client_streaming_handler_.streaminghandler.md#eventemitter)
-* [prefixed](_client_streaming_handler_.streaminghandler.md#prefixed)
+* [EventEmitter](_client_masto_events_.mastoevents.md#eventemitter)
+* [prefixed](_client_masto_events_.mastoevents.md#prefixed)
 
 ### Methods
 
-* [addListener](_client_streaming_handler_.streaminghandler.md#addlistener)
-* [connect](_client_streaming_handler_.streaminghandler.md#connect)
-* [disconnect](_client_streaming_handler_.streaminghandler.md#disconnect)
-* [emit](_client_streaming_handler_.streaminghandler.md#emit)
-* [eventNames](_client_streaming_handler_.streaminghandler.md#eventnames)
-* [listenerCount](_client_streaming_handler_.streaminghandler.md#listenercount)
-* [listeners](_client_streaming_handler_.streaminghandler.md#listeners)
-* [off](_client_streaming_handler_.streaminghandler.md#off)
-* [on](_client_streaming_handler_.streaminghandler.md#on)
-* [once](_client_streaming_handler_.streaminghandler.md#once)
-* [removeAllListeners](_client_streaming_handler_.streaminghandler.md#removealllisteners)
-* [removeListener](_client_streaming_handler_.streaminghandler.md#removelistener)
+* [addListener](_client_masto_events_.mastoevents.md#addlistener)
+* [connect](_client_masto_events_.mastoevents.md#connect)
+* [disconnect](_client_masto_events_.mastoevents.md#disconnect)
+* [emit](_client_masto_events_.mastoevents.md#emit)
+* [eventNames](_client_masto_events_.mastoevents.md#eventnames)
+* [handleMessage](_client_masto_events_.mastoevents.md#handlemessage)
+* [listenerCount](_client_masto_events_.mastoevents.md#listenercount)
+* [listeners](_client_masto_events_.mastoevents.md#listeners)
+* [off](_client_masto_events_.mastoevents.md#off)
+* [on](_client_masto_events_.mastoevents.md#on)
+* [once](_client_masto_events_.mastoevents.md#once)
+* [removeAllListeners](_client_masto_events_.mastoevents.md#removealllisteners)
+* [removeListener](_client_masto_events_.mastoevents.md#removelistener)
 
 ---
 
@@ -49,7 +50,7 @@ Mastodon streaming api wrapper
 
 **● EventEmitter**: *`EventEmitterStatic`*
 
-*Defined in /Users/nucx/Developments/core/node_modules/eventemitter3/index.d.ts:61*
+*Defined in /Users/nucx/Developments/masto.js/node_modules/eventemitter3/index.d.ts:61*
 
 ___
 <a id="prefixed"></a>
@@ -60,7 +61,7 @@ ___
 
 *Inherited from EventEmitter.prefixed*
 
-*Defined in /Users/nucx/Developments/core/node_modules/eventemitter3/index.d.ts:6*
+*Defined in /Users/nucx/Developments/masto.js/node_modules/eventemitter3/index.d.ts:6*
 
 ___
 
@@ -74,7 +75,7 @@ ___
 
 *Inherited from EventEmitter.addListener*
 
-*Defined in /Users/nucx/Developments/core/node_modules/eventemitter3/index.d.ts:33*
+*Defined in /Users/nucx/Developments/masto.js/node_modules/eventemitter3/index.d.ts:33*
 
 **Parameters:**
 
@@ -91,9 +92,9 @@ ___
 
 ###  connect
 
-▸ **connect**(url: *`string`*): `Promise`<[StreamingHandler](_client_streaming_handler_.streaminghandler.md)>
+▸ **connect**(url: *`string`*): `Promise`<[MastoEvents](_client_masto_events_.mastoevents.md)>
 
-*Defined in [client/streaming-handler.ts:47](https://github.com/lagunehq/core/blob/84abcd4/src/client/streaming-handler.ts#L47)*
+*Defined in [client/masto-events.ts:48](https://github.com/neet/masto.js/blob/390e749/src/client/masto-events.ts#L48)*
 
 Connect to the websocket endpoint
 
@@ -103,7 +104,7 @@ Connect to the websocket endpoint
 | ------ | ------ | ------ |
 | url | `string` |  URL of the websocket endpoint |
 
-**Returns:** `Promise`<[StreamingHandler](_client_streaming_handler_.streaminghandler.md)>
+**Returns:** `Promise`<[MastoEvents](_client_masto_events_.mastoevents.md)>
 
 ___
 <a id="disconnect"></a>
@@ -112,7 +113,7 @@ ___
 
 ▸ **disconnect**(): `void`
 
-*Defined in [client/streaming-handler.ts:60](https://github.com/lagunehq/core/blob/84abcd4/src/client/streaming-handler.ts#L60)*
+*Defined in [client/masto-events.ts:63](https://github.com/neet/masto.js/blob/390e749/src/client/masto-events.ts#L63)*
 
 Disconnect from the websocket endpoint
 
@@ -127,7 +128,7 @@ ___
 
 *Inherited from EventEmitter.emit*
 
-*Defined in /Users/nucx/Developments/core/node_modules/eventemitter3/index.d.ts:27*
+*Defined in /Users/nucx/Developments/masto.js/node_modules/eventemitter3/index.d.ts:27*
 
 Calls each of the listeners registered for a given event.
 
@@ -149,11 +150,30 @@ ___
 
 *Inherited from EventEmitter.eventNames*
 
-*Defined in /Users/nucx/Developments/core/node_modules/eventemitter3/index.d.ts:12*
+*Defined in /Users/nucx/Developments/masto.js/node_modules/eventemitter3/index.d.ts:12*
 
 Return an array listing the events for which the emitter has registered listeners.
 
 **Returns:** `Array`<`EventTypes`>
+
+___
+<a id="handlemessage"></a>
+
+###  handleMessage
+
+▸ **handleMessage**(message: *[Message](../interfaces/_client_masto_events_.message.md)*): `void`
+
+*Defined in [client/masto-events.ts:72](https://github.com/neet/masto.js/blob/390e749/src/client/masto-events.ts#L72)*
+
+Parse JSON data and emit it as an event
+
+**Parameters:**
+
+| Name | Type | Description |
+| ------ | ------ | ------ |
+| message | [Message](../interfaces/_client_masto_events_.message.md) |  Websocket message |
+
+**Returns:** `void`
 
 ___
 <a id="listenercount"></a>
@@ -164,7 +184,7 @@ ___
 
 *Inherited from EventEmitter.listenerCount*
 
-*Defined in /Users/nucx/Developments/core/node_modules/eventemitter3/index.d.ts:22*
+*Defined in /Users/nucx/Developments/masto.js/node_modules/eventemitter3/index.d.ts:22*
 
 Return the number of listeners listening to a given event.
 
@@ -185,7 +205,7 @@ ___
 
 *Inherited from EventEmitter.listeners*
 
-*Defined in /Users/nucx/Developments/core/node_modules/eventemitter3/index.d.ts:17*
+*Defined in /Users/nucx/Developments/masto.js/node_modules/eventemitter3/index.d.ts:17*
 
 Return the listeners registered for a given event.
 
@@ -206,7 +226,7 @@ ___
 
 *Inherited from EventEmitter.off*
 
-*Defined in /Users/nucx/Developments/core/node_modules/eventemitter3/index.d.ts:44*
+*Defined in /Users/nucx/Developments/masto.js/node_modules/eventemitter3/index.d.ts:44*
 
 **Parameters:**
 
@@ -228,7 +248,7 @@ ___
 
 *Overrides EventEmitter.on*
 
-*Defined in [client/streaming-handler.ts:91](https://github.com/lagunehq/core/blob/84abcd4/src/client/streaming-handler.ts#L91)*
+*Defined in [client/masto-events.ts:99](https://github.com/neet/masto.js/blob/390e749/src/client/masto-events.ts#L99)*
 
 Add listener for the event
 
@@ -253,7 +273,7 @@ ___
 
 *Inherited from EventEmitter.once*
 
-*Defined in /Users/nucx/Developments/core/node_modules/eventemitter3/index.d.ts:38*
+*Defined in /Users/nucx/Developments/masto.js/node_modules/eventemitter3/index.d.ts:38*
 
 Add a one-time listener for a given event.
 
@@ -276,7 +296,7 @@ ___
 
 *Inherited from EventEmitter.removeAllListeners*
 
-*Defined in /Users/nucx/Developments/core/node_modules/eventemitter3/index.d.ts:49*
+*Defined in /Users/nucx/Developments/masto.js/node_modules/eventemitter3/index.d.ts:49*
 
 Remove all listeners, or those of the specified event.
 
@@ -297,7 +317,7 @@ ___
 
 *Inherited from EventEmitter.removeListener*
 
-*Defined in /Users/nucx/Developments/core/node_modules/eventemitter3/index.d.ts:43*
+*Defined in /Users/nucx/Developments/masto.js/node_modules/eventemitter3/index.d.ts:43*
 
 Remove the listeners of a given event.
 

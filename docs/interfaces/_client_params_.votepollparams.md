@@ -22,7 +22,7 @@
 
 **● choices**: *`string`[]*
 
-*Defined in [client/params.ts:253](https://github.com/lagunehq/core/blob/84abcd4/src/client/params.ts#L253)*
+*Defined in [client/params.ts:275](https://github.com/neet/masto.js/blob/390e749/src/client/params.ts#L275)*
 
 Array of choice indices
 

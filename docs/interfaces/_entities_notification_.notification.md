@@ -26,7 +26,7 @@
 
 **● account**: *[Account](_entities_account_.account.md)*
 
-*Defined in [entities/notification.ts:14](https://github.com/lagunehq/core/blob/84abcd4/src/entities/notification.ts#L14)*
+*Defined in [entities/notification.ts:19](https://github.com/neet/masto.js/blob/390e749/src/entities/notification.ts#L19)*
 
 The Account sending the notification to the user
 
@@ -37,7 +37,7 @@ ___
 
 **● created_at**: *`string`*
 
-*Defined in [entities/notification.ts:12](https://github.com/lagunehq/core/blob/84abcd4/src/entities/notification.ts#L12)*
+*Defined in [entities/notification.ts:17](https://github.com/neet/masto.js/blob/390e749/src/entities/notification.ts#L17)*
 
 The time the notification was created
 
@@ -48,7 +48,7 @@ ___
 
 **● id**: *`string`*
 
-*Defined in [entities/notification.ts:8](https://github.com/lagunehq/core/blob/84abcd4/src/entities/notification.ts#L8)*
+*Defined in [entities/notification.ts:13](https://github.com/neet/masto.js/blob/390e749/src/entities/notification.ts#L13)*
 
 The notification ID
 
@@ -59,7 +59,7 @@ ___
 
 **● status**: *[Status](_entities_status_.status.md) \| `null`*
 
-*Defined in [entities/notification.ts:16](https://github.com/lagunehq/core/blob/84abcd4/src/entities/notification.ts#L16)*
+*Defined in [entities/notification.ts:21](https://github.com/neet/masto.js/blob/390e749/src/entities/notification.ts#L21)*
 
 The Status associated with the notification, if applicable
 
@@ -70,7 +70,7 @@ ___
 
 **● type**: *[NotificationType](../modules/_entities_notification_.md#notificationtype)*
 
-*Defined in [entities/notification.ts:10](https://github.com/lagunehq/core/blob/84abcd4/src/entities/notification.ts#L10)*
+*Defined in [entities/notification.ts:15](https://github.com/neet/masto.js/blob/390e749/src/entities/notification.ts#L15)*
 
 One of: "mention", "reblog", "favourite", "follow"
 
