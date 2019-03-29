@@ -1,6 +1,6 @@
-<h1 align="center">
+<p align="center">
   <img src="https://i.imgur.com/z47VXyd.png" width="260px">
-</h1>
+</p>
 
 <p align="center">Mastodon API client for JavaScript, TypeScript, Node.js, browsers</p>
 
