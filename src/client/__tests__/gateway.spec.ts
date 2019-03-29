@@ -15,7 +15,6 @@ describe('Gateway', () => {
   let gateway!: Gateway;
 
   beforeEach(() => {
-    // @ts-ignore
     gateway = new Gateway({
       uri: 'https://example.com',
     });
@@ -23,32 +22,58 @@ describe('Gateway', () => {
     ((axios.request as any) as jest.Mock).mockReset();
   });
 
+  test('streamingApiUrl has been set if construct with streamingApiUrl', () => {
+    gateway = new Gateway({
+      uri: 'https://example.com',
+      streamingApiUrl: 'wss://example.com',
+    });
+    expect(gateway.streamingApiUrl).toBe('wss://example.com');
+  });
+
+  test('streamingApiUrl has been set if construct with streamingApiUrl', () => {
+    gateway = new Gateway({
+      uri: 'https://example.com',
+      version: '99.9.9',
+    });
+    expect(gateway.version).toBe('99.9.9');
+  });
+
   test('uri accessor works correctly', () => {
     const uri = 'https://example.com';
-    //@ts-ignore
     gateway.uri = uri;
     expect(gateway.uri).toEqual(uri);
   });
 
   test('version accessor works correctly', () => {
     const version = '0.0.0';
-    //@ts-ignore
     gateway.version = version;
     expect(gateway.version).toEqual(version);
   });
 
   test('streamingApiUrl accessor works correctly', () => {
     const url = 'wss://example.com';
-    //@ts-ignore
     gateway.streamingApiUrl = url;
     expect(gateway.streamingApiUrl).toEqual(url);
   });
 
   test('accessToken accessor works correctly', () => {
     const token = '123123123';
-    //@ts-ignore
     gateway.accessToken = token;
     expect(gateway.accessToken).toEqual(token);
+  });
+
+  test('transform JSON to JS object', () => {
+    const obj = { a: { b: { c: 'd' } } };
+    const json = JSON.stringify(obj);
+    // @ts-ignore
+    const result = gateway.transformResponse(json);
+    expect(result).toEqual(obj);
+  });
+
+  test('return raw data when response cannot parse as a JSON', () => {
+    // @ts-ignore
+    const result = gateway.transformResponse('aaa');
+    expect(result).toEqual('aaa');
   });
 
   test('transform JS object to JSON string when application/json or nothing specified', () => {
@@ -151,6 +176,42 @@ describe('Gateway', () => {
     expect(gateway.request(options)).rejects.toThrow(
       new MastoRateLimitError('RateLimit'),
     );
+  });
+
+  test('AxiosError: throw given error directly if non of prepared statuses matched', () => {
+    const options = {
+      method: 'POST',
+      url: 'https://example.com',
+    };
+
+    class MyAxiosError extends Error {
+      constructor() {
+        super();
+        // @ts-ignore
+        this.response = {
+          status: 418,
+        };
+      }
+    }
+
+    const error = new MyAxiosError();
+    (axios.request as jest.Mock).mockRejectedValue(error);
+
+    // @ts-ignore
+    expect(gateway.request(options)).rejects.toThrow(error);
+  });
+
+  test('Error: throw given error directly if non of prepared statuses matched', () => {
+    const options = {
+      method: 'POST',
+      url: 'https://example.com',
+    };
+
+    const rejectedValue = new Error('qwerty');
+    (axios.request as jest.Mock).mockRejectedValue(rejectedValue);
+
+    // @ts-ignore
+    expect(gateway.request(options)).rejects.toThrow(rejectedValue);
   });
 
   test('call axiso.request with GET param', async () => {
@@ -271,10 +332,29 @@ describe('Gateway', () => {
     expect(result.value).toBe(secondResponse);
   });
 
-  test('has asnycIterator', async () => {
+  test('reset iterable when option.reset passed', async () => {
+    const initialUrl = 'https://example.com';
+    const initialParmas = { a: { b: 'c' } };
+
     // @ts-ignore
-    const iterable = gateway.paginate();
-    expect(iterable[Symbol.asyncIterator]).toBeDefined();
+    const iterable = gateway.paginate(initialUrl, initialParmas);
+    const response = {
+      headers: {
+        link: '<https://example.com/next>; rel="next"',
+      },
+      response: {},
+    };
+
+    (axios.request as jest.Mock).mockResolvedValue(response);
+    iterable.next();
+    iterable.next({ reset: true });
+
+    expect(axios.request).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        url: initialUrl,
+        params: initialParmas,
+      }),
+    );
   });
 
   test('finish pagination when url is not defined', async () => {
@@ -299,5 +379,16 @@ describe('Gateway', () => {
     const iterable = gateway.paginate('https://example.com');
     const error = new Error('hehehe');
     expect(iterable.throw!(error)).rejects.toThrow(error);
+  });
+
+  test('Symbol.asyncIterator is defined correctly', () => {
+    const iterable = gateway.paginate('https://example.com');
+    expect(iterable[Symbol.asyncIterator]()).toEqual(
+      expect.objectContaining({
+        next: expect.any(Function),
+        return: expect.any(Function),
+        throw: expect.any(Function),
+      }),
+    );
   });
 });

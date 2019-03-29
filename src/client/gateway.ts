@@ -100,6 +100,19 @@ export class Gateway {
   }
 
   /**
+   * Transform JSON to JS object
+   * @param response Response object
+   * @return Parsed entitiy
+   */
+  private transformResponse(response: any) {
+    try {
+      return JSON.parse(response);
+    } catch {
+      return response;
+    }
+  }
+
+  /**
    * Encode data in request options and add authorization / content-type header
    * @param data Any data
    * @param options Axios options
@@ -108,15 +121,7 @@ export class Gateway {
     data: any,
     options: AxiosRequestConfig = {},
   ): AxiosRequestConfig {
-    options.transformResponse = [
-      (res: any) => {
-        try {
-          return JSON.parse(res);
-        } catch {
-          return res;
-        }
-      },
-    ];
+    options.transformResponse = [this.transformResponse];
 
     if (!options.headers) {
       options.headers = {};
