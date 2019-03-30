@@ -13,7 +13,7 @@ import Masto from '../src';
   // Upload the image
   const attachment = await masto.uploadMediaAttachment({
     file: fs.createReadStream('../some_image.png'),
-    descriptions: 'Some image',
+    description: 'Some image',
   });
 
   // Toot!
