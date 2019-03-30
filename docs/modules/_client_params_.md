@@ -54,7 +54,7 @@
 
 **Ƭ CreateStatusParams**: *[CreateStatusParamsWithStatus](../interfaces/_client_params_.createstatusparamswithstatus.md) \| [CreateStatusParamsWithMediaIds](../interfaces/_client_params_.createstatusparamswithmediaids.md)*
 
-*Defined in [client/params.ts:255](https://github.com/neet/masto.js/blob/84b2118/src/client/params.ts#L255)*
+*Defined in [client/params.ts:255](https://github.com/neet/masto.js/blob/886ec98/src/client/params.ts#L255)*
 
 ___
 <a id="fetchaccesstokenparams"></a>
@@ -63,7 +63,7 @@ ___
 
 **Ƭ FetchAccessTokenParams**: *[FetchAccessTokenParamsWithAuthorizationCode](../interfaces/_client_params_.fetchaccesstokenparamswithauthorizationcode.md) \| [FetchAccessTokenParamsWithPassowrd](../interfaces/_client_params_.fetchaccesstokenparamswithpassowrd.md)*
 
-*Defined in [client/params.ts:110](https://github.com/neet/masto.js/blob/84b2118/src/client/params.ts#L110)*
+*Defined in [client/params.ts:110](https://github.com/neet/masto.js/blob/886ec98/src/client/params.ts#L110)*
 
 ___
 <a id="granttype"></a>
@@ -72,7 +72,7 @@ ___
 
 **Ƭ GrantType**: *"authorization_code" \| "password"*
 
-*Defined in [client/params.ts:83](https://github.com/neet/masto.js/blob/84b2118/src/client/params.ts#L83)*
+*Defined in [client/params.ts:83](https://github.com/neet/masto.js/blob/886ec98/src/client/params.ts#L83)*
 
 ___
 <a id="loginparams"></a>
@@ -81,7 +81,7 @@ ___
 
 **Ƭ LoginParams**: *`Pick`<[GatewayConstructor](../interfaces/_client_gateway_.gatewayconstructor.md), "uri" \| "accessToken">*
 
-*Defined in [client/params.ts:9](https://github.com/neet/masto.js/blob/84b2118/src/client/params.ts#L9)*
+*Defined in [client/params.ts:9](https://github.com/neet/masto.js/blob/886ec98/src/client/params.ts#L9)*
 
 ___
 <a id="updatemediaattachmentparams"></a>
@@ -90,7 +90,7 @@ ___
 
 **Ƭ UpdateMediaAttachmentParams**: *`Omit`<[UploadMediaAttachmentParams](../interfaces/_client_params_.uploadmediaattachmentparams.md), "file">*
 
-*Defined in [client/params.ts:130](https://github.com/neet/masto.js/blob/84b2118/src/client/params.ts#L130)*
+*Defined in [client/params.ts:130](https://github.com/neet/masto.js/blob/886ec98/src/client/params.ts#L130)*
 
 ___
 <a id="updatepushsubscriptionparams"></a>
@@ -99,7 +99,7 @@ ___
 
 **Ƭ UpdatePushSubscriptionParams**: *`Pick`<[AddPushSubscriptionParams](../interfaces/_client_params_.addpushsubscriptionparams.md), "data">*
 
-*Defined in [client/params.ts:180](https://github.com/neet/masto.js/blob/84b2118/src/client/params.ts#L180)*
+*Defined in [client/params.ts:180](https://github.com/neet/masto.js/blob/886ec98/src/client/params.ts#L180)*
 
 ___
 

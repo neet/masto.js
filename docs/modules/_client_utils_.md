@@ -18,7 +18,7 @@
 
 ▸ **isAxiosError**(error: *`any`*): `boolean`
 
-*Defined in [client/utils.ts:4](https://github.com/neet/masto.js/blob/84b2118/src/client/utils.ts#L4)*
+*Defined in [client/utils.ts:4](https://github.com/neet/masto.js/blob/886ec98/src/client/utils.ts#L4)*
 
 **Parameters:**
 

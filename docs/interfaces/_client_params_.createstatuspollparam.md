@@ -25,7 +25,7 @@
 
 **● expires_in**: *`number`*
 
-*Defined in [client/params.ts:215](https://github.com/neet/masto.js/blob/84b2118/src/client/params.ts#L215)*
+*Defined in [client/params.ts:215](https://github.com/neet/masto.js/blob/886ec98/src/client/params.ts#L215)*
 
 Duration the poll should be open for in seconds
 
@@ -36,7 +36,7 @@ ___
 
 **● hide_totals**: *`boolean` \| `null`*
 
-*Defined in [client/params.ts:219](https://github.com/neet/masto.js/blob/84b2118/src/client/params.ts#L219)*
+*Defined in [client/params.ts:219](https://github.com/neet/masto.js/blob/886ec98/src/client/params.ts#L219)*
 
 Whether to hide totals until the poll ends
 
@@ -47,7 +47,7 @@ ___
 
 **● multiple**: *`boolean` \| `null`*
 
-*Defined in [client/params.ts:217](https://github.com/neet/masto.js/blob/84b2118/src/client/params.ts#L217)*
+*Defined in [client/params.ts:217](https://github.com/neet/masto.js/blob/886ec98/src/client/params.ts#L217)*
 
 Whether multiple choices should be allowed
 
@@ -58,7 +58,7 @@ ___
 
 **● options**: *`string`[]*
 
-*Defined in [client/params.ts:213](https://github.com/neet/masto.js/blob/84b2118/src/client/params.ts#L213)*
+*Defined in [client/params.ts:213](https://github.com/neet/masto.js/blob/886ec98/src/client/params.ts#L213)*
 
 Array of poll answer strings
 
