@@ -47,7 +47,7 @@
 
 **● account**: *[Account](_entities_account_.account.md)*
 
-*Defined in [entities/status.ts:19](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/status.ts#L19)*
+*Defined in [entities/status.ts:19](https://github.com/neet/masto.js/blob/84b2118/src/entities/status.ts#L19)*
 
 The Account which posted the status
 
@@ -58,7 +58,7 @@ ___
 
 **● application**: *[Application](_entities_application_.application.md) \| `null`*
 
-*Defined in [entities/status.ts:59](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/status.ts#L59)*
+*Defined in [entities/status.ts:59](https://github.com/neet/masto.js/blob/84b2118/src/entities/status.ts#L59)*
 
 Application from which the status was posted
 
@@ -69,7 +69,7 @@ ___
 
 **● card**: *[Card](_entities_card_.card.md)*
 
-*Defined in [entities/status.ts:27](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/status.ts#L27)*
+*Defined in [entities/status.ts:27](https://github.com/neet/masto.js/blob/84b2118/src/entities/status.ts#L27)*
 
 Embeded card
 
@@ -80,7 +80,7 @@ ___
 
 **● content**: *`string`*
 
-*Defined in [entities/status.ts:29](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/status.ts#L29)*
+*Defined in [entities/status.ts:29](https://github.com/neet/masto.js/blob/84b2118/src/entities/status.ts#L29)*
 
 Body of the status; this will contain HTML (remote HTML already sanitized)
 
@@ -91,7 +91,7 @@ ___
 
 **● created_at**: *`string`*
 
-*Defined in [entities/status.ts:31](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/status.ts#L31)*
+*Defined in [entities/status.ts:31](https://github.com/neet/masto.js/blob/84b2118/src/entities/status.ts#L31)*
 
 The time the status was created
 
@@ -102,7 +102,7 @@ ___
 
 **● emojis**: *[Emoji](_entities_emoji_.emoji.md)[]*
 
-*Defined in [entities/status.ts:33](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/status.ts#L33)*
+*Defined in [entities/status.ts:33](https://github.com/neet/masto.js/blob/84b2118/src/entities/status.ts#L33)*
 
 An array of Emoji
 
@@ -113,7 +113,7 @@ ___
 
 **● favourited**: *`boolean` \| `null`*
 
-*Defined in [entities/status.ts:43](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/status.ts#L43)*
+*Defined in [entities/status.ts:43](https://github.com/neet/masto.js/blob/84b2118/src/entities/status.ts#L43)*
 
 Whether the authenticated user has favourited the status
 
@@ -124,7 +124,7 @@ ___
 
 **● favourites_count**: *`number`*
 
-*Defined in [entities/status.ts:39](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/status.ts#L39)*
+*Defined in [entities/status.ts:39](https://github.com/neet/masto.js/blob/84b2118/src/entities/status.ts#L39)*
 
 The number of favourites for the status
 
@@ -135,7 +135,7 @@ ___
 
 **● id**: *`string`*
 
-*Defined in [entities/status.ts:13](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/status.ts#L13)*
+*Defined in [entities/status.ts:13](https://github.com/neet/masto.js/blob/84b2118/src/entities/status.ts#L13)*
 
 The ID of the status
 
@@ -146,7 +146,7 @@ ___
 
 **● in_reply_to_account_id**: *`string` \| `null`*
 
-*Defined in [entities/status.ts:23](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/status.ts#L23)*
+*Defined in [entities/status.ts:23](https://github.com/neet/masto.js/blob/84b2118/src/entities/status.ts#L23)*
 
 `null` or the ID of the account it replies to
 
@@ -157,7 +157,7 @@ ___
 
 **● in_reply_to_id**: *`string` \| `null`*
 
-*Defined in [entities/status.ts:21](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/status.ts#L21)*
+*Defined in [entities/status.ts:21](https://github.com/neet/masto.js/blob/84b2118/src/entities/status.ts#L21)*
 
 `null` or the ID of the status it replies to
 
@@ -168,7 +168,7 @@ ___
 
 **● language**: *`string` \| `null`*
 
-*Defined in [entities/status.ts:61](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/status.ts#L61)*
+*Defined in [entities/status.ts:61](https://github.com/neet/masto.js/blob/84b2118/src/entities/status.ts#L61)*
 
 The detected language for the status, if detected
 
@@ -179,7 +179,7 @@ ___
 
 **● media_attachments**: *[Attachment](_entities_attachment_.attachment.md)[]*
 
-*Defined in [entities/status.ts:53](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/status.ts#L53)*
+*Defined in [entities/status.ts:53](https://github.com/neet/masto.js/blob/84b2118/src/entities/status.ts#L53)*
 
 An array of Attachments
 
@@ -190,7 +190,7 @@ ___
 
 **● mentions**: *[Mention](_entities_mention_.mention.md)[]*
 
-*Defined in [entities/status.ts:55](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/status.ts#L55)*
+*Defined in [entities/status.ts:55](https://github.com/neet/masto.js/blob/84b2118/src/entities/status.ts#L55)*
 
 An array of Mentions
 
@@ -201,7 +201,7 @@ ___
 
 **● muted**: *`boolean` \| `null`*
 
-*Defined in [entities/status.ts:45](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/status.ts#L45)*
+*Defined in [entities/status.ts:45](https://github.com/neet/masto.js/blob/84b2118/src/entities/status.ts#L45)*
 
 Whether the authenticated user has muted the conversation this status from
 
@@ -212,7 +212,7 @@ ___
 
 **● pinned**: *`boolean` \| `null`*
 
-*Defined in [entities/status.ts:63](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/status.ts#L63)*
+*Defined in [entities/status.ts:63](https://github.com/neet/masto.js/blob/84b2118/src/entities/status.ts#L63)*
 
 Whether this is the pinned status for the account that posted it
 
@@ -223,7 +223,7 @@ ___
 
 **● reblog**: *[Status](_entities_status_.status.md) \| `null`*
 
-*Defined in [entities/status.ts:25](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/status.ts#L25)*
+*Defined in [entities/status.ts:25](https://github.com/neet/masto.js/blob/84b2118/src/entities/status.ts#L25)*
 
 `null` or the reblogged Status
 
@@ -234,7 +234,7 @@ ___
 
 **● reblogged**: *`boolean` \| `null`*
 
-*Defined in [entities/status.ts:41](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/status.ts#L41)*
+*Defined in [entities/status.ts:41](https://github.com/neet/masto.js/blob/84b2118/src/entities/status.ts#L41)*
 
 Whether the authenticated user has reblogged the status
 
@@ -245,7 +245,7 @@ ___
 
 **● reblogs_count**: *`number`*
 
-*Defined in [entities/status.ts:37](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/status.ts#L37)*
+*Defined in [entities/status.ts:37](https://github.com/neet/masto.js/blob/84b2118/src/entities/status.ts#L37)*
 
 The number of reblogs for the status
 
@@ -256,7 +256,7 @@ ___
 
 **● replies_count**: *`number`*
 
-*Defined in [entities/status.ts:35](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/status.ts#L35)*
+*Defined in [entities/status.ts:35](https://github.com/neet/masto.js/blob/84b2118/src/entities/status.ts#L35)*
 
 The number of replies for the status
 
@@ -267,7 +267,7 @@ ___
 
 **● sensitive**: *`boolean`*
 
-*Defined in [entities/status.ts:47](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/status.ts#L47)*
+*Defined in [entities/status.ts:47](https://github.com/neet/masto.js/blob/84b2118/src/entities/status.ts#L47)*
 
 Whether media attachments should be hidden by default
 
@@ -278,7 +278,7 @@ ___
 
 **● spoiler_text**: *`string`*
 
-*Defined in [entities/status.ts:49](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/status.ts#L49)*
+*Defined in [entities/status.ts:49](https://github.com/neet/masto.js/blob/84b2118/src/entities/status.ts#L49)*
 
 If not empty, warning text that should be displayed before the actual content
 
@@ -289,7 +289,7 @@ ___
 
 **● tags**: *[Tag](_entities_tag_.tag.md)[]*
 
-*Defined in [entities/status.ts:57](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/status.ts#L57)*
+*Defined in [entities/status.ts:57](https://github.com/neet/masto.js/blob/84b2118/src/entities/status.ts#L57)*
 
 An array of Tags
 
@@ -300,7 +300,7 @@ ___
 
 **● uri**: *`string`*
 
-*Defined in [entities/status.ts:15](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/status.ts#L15)*
+*Defined in [entities/status.ts:15](https://github.com/neet/masto.js/blob/84b2118/src/entities/status.ts#L15)*
 
 A Fediverse-unique resource ID
 
@@ -311,7 +311,7 @@ ___
 
 **● url**: *`string` \| `null`*
 
-*Defined in [entities/status.ts:17](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/status.ts#L17)*
+*Defined in [entities/status.ts:17](https://github.com/neet/masto.js/blob/84b2118/src/entities/status.ts#L17)*
 
 URL to the status page (can be remote)
 
@@ -322,7 +322,7 @@ ___
 
 **● visibility**: *[StatusVisibility](../modules/_entities_status_.md#statusvisibility)*
 
-*Defined in [entities/status.ts:51](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/status.ts#L51)*
+*Defined in [entities/status.ts:51](https://github.com/neet/masto.js/blob/84b2118/src/entities/status.ts#L51)*
 
 One of: `public`, `unlisted`, `private`, `direct`
 

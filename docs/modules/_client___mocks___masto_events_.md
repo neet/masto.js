@@ -21,7 +21,7 @@
   connect: connectMock,
 }))
 
-*Defined in [client/__mocks__/masto-events.ts:3](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/__mocks__/masto-events.ts#L3)*
+*Defined in [client/__mocks__/masto-events.ts:3](https://github.com/neet/masto.js/blob/84b2118/src/client/__mocks__/masto-events.ts#L3)*
 
 ___
 <a id="connectmock"></a>
@@ -30,7 +30,7 @@ ___
 
 **● connectMock**: *`Mock`<`any`, `any`>* =  jest.fn()
 
-*Defined in [client/__mocks__/masto-events.ts:1](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/__mocks__/masto-events.ts#L1)*
+*Defined in [client/__mocks__/masto-events.ts:1](https://github.com/neet/masto.js/blob/84b2118/src/client/__mocks__/masto-events.ts#L1)*
 
 ___
 

@@ -22,7 +22,7 @@
 
 **Ƭ StatusVisibility**: *"public" \| "unlisted" \| "private" \| "direct"*
 
-*Defined in [entities/status.ts:9](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/status.ts#L9)*
+*Defined in [entities/status.ts:9](https://github.com/neet/masto.js/blob/84b2118/src/entities/status.ts#L9)*
 
 ___
 

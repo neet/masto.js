@@ -10,7 +10,6 @@
 
 ### Interfaces
 
-* [Event](../interfaces/_client_masto_events_.event.md)
 * [EventTypesMap](../interfaces/_client_masto_events_.eventtypesmap.md)
 * [Message](../interfaces/_client_masto_events_.message.md)
 
@@ -28,7 +27,7 @@
 
 **Ƭ EventTypes**: *`keyof EventTypesMap`*
 
-*Defined in [client/masto-events.ts:28](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto-events.ts#L28)*
+*Defined in [client/masto-events.ts:28](https://github.com/neet/masto.js/blob/84b2118/src/client/masto-events.ts#L28)*
 
 ___
 

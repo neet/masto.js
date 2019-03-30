@@ -94,7 +94,7 @@ ___
 
 ▸ **connect**(url: *`string`*): `Promise`<[MastoEvents](_client_masto_events_.mastoevents.md)>
 
-*Defined in [client/masto-events.ts:48](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto-events.ts#L48)*
+*Defined in [client/masto-events.ts:41](https://github.com/neet/masto.js/blob/84b2118/src/client/masto-events.ts#L41)*
 
 Connect to the websocket endpoint
 
@@ -113,7 +113,7 @@ ___
 
 ▸ **disconnect**(): `void`
 
-*Defined in [client/masto-events.ts:63](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto-events.ts#L63)*
+*Defined in [client/masto-events.ts:56](https://github.com/neet/masto.js/blob/84b2118/src/client/masto-events.ts#L56)*
 
 Disconnect from the websocket endpoint
 
@@ -163,7 +163,7 @@ ___
 
 ▸ **handleMessage**(message: *[Message](../interfaces/_client_masto_events_.message.md)*): `void`
 
-*Defined in [client/masto-events.ts:72](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto-events.ts#L72)*
+*Defined in [client/masto-events.ts:65](https://github.com/neet/masto.js/blob/84b2118/src/client/masto-events.ts#L65)*
 
 Parse JSON data and emit it as an event
 
@@ -248,7 +248,7 @@ ___
 
 *Overrides EventEmitter.on*
 
-*Defined in [client/masto-events.ts:99](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto-events.ts#L99)*
+*Defined in [client/masto-events.ts:86](https://github.com/neet/masto.js/blob/84b2118/src/client/masto-events.ts#L86)*
 
 Add listener for the event
 
