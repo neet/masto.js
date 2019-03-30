@@ -17,6 +17,7 @@ describe('Gateway', () => {
   beforeEach(() => {
     gateway = new Gateway({
       uri: 'https://example.com',
+      streamingApiUrl: 'wss://example.com',
     });
 
     ((axios.request as any) as jest.Mock).mockReset();
@@ -30,7 +31,7 @@ describe('Gateway', () => {
     expect(gateway.streamingApiUrl).toBe('wss://example.com');
   });
 
-  test('streamingApiUrl has been set if construct with streamingApiUrl', () => {
+  test('version has been set if construct with version ', () => {
     gateway = new Gateway({
       uri: 'https://example.com',
       version: '99.9.9',
@@ -38,28 +39,20 @@ describe('Gateway', () => {
     expect(gateway.version).toBe('99.9.9');
   });
 
-  test('uri accessor works correctly', () => {
-    const uri = 'https://example.com';
-    gateway.uri = uri;
-    expect(gateway.uri).toEqual(uri);
+  test('this._uri accessor works', () => {
+    gateway = new Gateway({
+      uri: 'https://example.com/aaa',
+    });
+    gateway.uri = 'https://example.com/bbb';
+    expect(gateway.uri).toEqual('https://example.com/bbb');
   });
 
-  test('version accessor works correctly', () => {
-    const version = '0.0.0';
-    gateway.version = version;
-    expect(gateway.version).toEqual(version);
-  });
-
-  test('streamingApiUrl accessor works correctly', () => {
-    const url = 'wss://example.com';
-    gateway.streamingApiUrl = url;
-    expect(gateway.streamingApiUrl).toEqual(url);
-  });
-
-  test('accessToken accessor works correctly', () => {
-    const token = '123123123';
-    gateway.accessToken = token;
-    expect(gateway.accessToken).toEqual(token);
+  test('this._streamingApiUrl accessor works', () => {
+    gateway = new Gateway({
+      uri: 'wss://example.com/aaa',
+    });
+    gateway.uri = 'wss://example.com/bbb';
+    expect(gateway.uri).toEqual('wss://example.com/bbb');
   });
 
   test('transform JSON to JS object', () => {
@@ -77,45 +70,47 @@ describe('Gateway', () => {
   });
 
   test('transform JS object to JSON string when application/json or nothing specified', () => {
-    const obj = { a: { b: { c: 'd' } } };
+    const data = { a: { b: { c: 'd' } } };
 
     // @ts-ignore
-    const result = gateway.decorateRequestConfig(obj);
+    const result = gateway.decorateRequestConfig({ data });
 
     expect(result).toEqual(
       expect.objectContaining({
         headers: {
           'Content-Type': 'application/json',
         },
-        data: JSON.stringify(obj),
+        data: JSON.stringify(data),
       }),
     );
   });
 
   test('transform JS object to FormData when multipart/form-data speicifed', () => {
-    const obj = { a: 'a', b: 'b' };
+    const data = { a: 'a', b: 'b' };
 
     // @ts-ignore
-    const result = gateway.decorateRequestConfig(obj, {
+    const result = gateway.decorateRequestConfig({
       headers: {
         'Content-Type': 'multipart/form-data',
       },
+      data,
     });
 
     expect(result.data).toBeInstanceOf(FormData);
   });
 
   test('will not transform JS object when unknown MIME speicifed', () => {
-    const obj = { a: 'a', b: 'b' };
+    const data = { a: 'a', b: 'b' };
 
     // @ts-ignore
-    const result = gateway.decorateRequestConfig(obj, {
+    const result = gateway.decorateRequestConfig({
       headers: {
         'Content-Type': 'image/png',
       },
+      data,
     });
 
-    expect(result.data).toBeUndefined();
+    expect(result.data).toEqual(data);
   });
 
   test('call axios.request with given options', async () => {
@@ -229,78 +224,78 @@ describe('Gateway', () => {
 
   test('call axiso.request with GET param', async () => {
     const params = { a: 'a', b: 'b' };
-    await gateway.get('https://exmaple.com', params);
+    await gateway.get('/', params);
 
     expect(axios.request as jest.Mock).toBeCalledWith(
       expect.objectContaining({
         method: 'GET',
-        url: 'https://exmaple.com',
+        url: 'https://example.com',
         params,
       }),
     );
   });
 
   test('call axiso.request with POST param', async () => {
-    await gateway.post('https://exmaple.com');
+    await gateway.post('/');
 
     expect(axios.request as jest.Mock).toBeCalledWith(
       expect.objectContaining({
         method: 'POST',
-        url: 'https://exmaple.com',
+        url: 'https://example.com',
       }),
     );
   });
 
   test('call axiso.request with PUT param', async () => {
-    await gateway.put('https://exmaple.com');
+    await gateway.put('/');
 
     expect(axios.request as jest.Mock).toBeCalledWith(
       expect.objectContaining({
         method: 'PUT',
-        url: 'https://exmaple.com',
+        url: 'https://example.com',
       }),
     );
   });
 
   test('call axiso.request with DELETE param', async () => {
-    await gateway.delete('https://exmaple.com');
+    await gateway.delete('/');
 
     expect(axios.request as jest.Mock).toBeCalledWith(
       expect.objectContaining({
         method: 'DELETE',
-        url: 'https://exmaple.com',
+        url: 'https://example.com',
       }),
     );
   });
 
   test('call axiso.request with PATCH param', async () => {
-    await gateway.patch('https://exmaple.com');
+    await gateway.patch('/');
 
     expect(axios.request as jest.Mock).toBeCalledWith(
       expect.objectContaining({
         method: 'PATCH',
-        url: 'https://exmaple.com',
+        url: 'https://example.com',
       }),
     );
   });
 
   test('initialize MastoEvents and call connect with given params', async () => {
     const params = { a: 'a', b: 'b' };
-    await gateway.stream('wss://example.com', params);
-    expect(connectMock).toBeCalledWith('wss://example.com?a=a&b=b');
+    await gateway.stream('/', params);
+    expect(connectMock).toBeCalledWith('wss://example.com/?a=a&b=b');
   });
 
   test('initialize MastoEvents and call connect with access token', async () => {
     gateway.accessToken = 'tokentoken';
-    await gateway.stream('wss://example.com');
+    await gateway.stream('/');
 
     expect(connectMock).toBeCalledWith(
-      'wss://example.com?access_token=tokentoken',
+      'wss://example.com/?access_token=tokentoken',
     );
   });
 
   test('call next to paginate, finish if nothing in link header', async () => {
-    const iterable = gateway.paginate('https://example.com', {
+    const iterable = gateway.paginate('/', {
       since_id: '123',
     });
 
@@ -355,11 +350,11 @@ describe('Gateway', () => {
   });
 
   test('reset iterable when option.reset passed', async () => {
-    const initialUrl = 'https://example.com';
+    const initialPath = '/foo';
     const initialParmas = { a: { b: 'c' } };
 
     // @ts-ignore
-    const iterable = gateway.paginate(initialUrl, initialParmas);
+    const iterable = gateway.paginate(initialPath, initialParmas);
     const response = {
       headers: {
         link: '<https://example.com/next>; rel="next"',
@@ -373,23 +368,14 @@ describe('Gateway', () => {
 
     expect(axios.request).toHaveBeenLastCalledWith(
       expect.objectContaining({
-        url: initialUrl,
+        url: gateway.uri + initialPath,
         params: initialParmas,
       }),
     );
   });
 
-  test('finish pagination when url is not defined', async () => {
-    // @ts-ignore
-    const iterable = gateway.paginate();
-    const result = await iterable.next();
-
-    expect(result.done).toBe(true);
-    expect(result.value).toBeUndefined();
-  });
-
   test('finish pagination with given value', async () => {
-    const iterable = gateway.paginate('https://example.com');
+    const iterable = gateway.paginate('/');
     const value = Symbol('hehehe');
     const result = await iterable.return!(value);
 
@@ -398,13 +384,13 @@ describe('Gateway', () => {
   });
 
   test('throw given error in the pagination', () => {
-    const iterable = gateway.paginate('https://example.com');
+    const iterable = gateway.paginate('/');
     const error = new Error('hehehe');
     expect(iterable.throw!(error)).rejects.toThrow(error);
   });
 
   test('Symbol.asyncIterator is defined correctly', () => {
-    const iterable = gateway.paginate('https://example.com');
+    const iterable = gateway.paginate('/');
     expect(iterable[Symbol.asyncIterator]()).toEqual(
       expect.objectContaining({
         next: expect.any(Function),

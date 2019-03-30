@@ -408,6 +408,13 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-11.12.1.tgz#d90123f6c61fdf2f7cddd286ddae891586dd3488"
   integrity sha512-sKDlqv6COJrR7ar0+GqqhrXQDzQlMcqMnF2iEU6m9hLo8kxozoAGUazwPyELHlRVmjsbvlnGXjnzyptSXVmceA==
 
+"@types/normalize-url@^4.2.0":
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/@types/normalize-url/-/normalize-url-4.2.0.tgz#b72486d1d87e70b2b94bd34d9300fe41c736f788"
+  integrity sha512-lMD7+DEzeaAWiJzVzlFJHWCRi/SConK0T/dMxIUYw+r0Et0xNo5yN9b0wa8NUgqECJfAbPYneecqDxQNyhTHnA==
+  dependencies:
+    normalize-url "*"
+
 "@types/semver@^5.5.0":
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/@types/semver/-/semver-5.5.0.tgz#146c2a29ee7d3bae4bf2fcb274636e264c813c45"
@@ -3454,6 +3461,11 @@ normalize-path@^2.1.1:
   integrity sha1-GrKLVW4Zg2Oowab35vogE3/mrtk=
   dependencies:
     remove-trailing-separator "^1.0.1"
+
+normalize-url@*, normalize-url@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-4.2.0.tgz#e747f16b58e6d7f391495fd86415fa04ec7c9897"
+  integrity sha512-n69+KXI+kZApR+sPwSkoAXpGlNkaiYyoHHqKOFPjJWvwZpew/EjKvuPE4+tStNgb42z5yLtdakgZCQI+LalSPg==
 
 npm-path@^2.0.2:
   version "2.0.4"

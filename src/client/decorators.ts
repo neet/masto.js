@@ -20,7 +20,7 @@ export interface AvailabeParams {
  */
 export const requiresUser: Decorator = (_target, _name, descriptor) => {
   if (!descriptor || typeof descriptor.value !== 'function') {
-    throw new Error('requiresUser only can be used to a method of a class');
+    throw new Error('requiresUser can only apply to a method of a class');
   }
 
   const original = descriptor.value;
@@ -40,14 +40,14 @@ export const requiresAuthentication: Decorator = (
 ) => {
   if (!descriptor || typeof descriptor.value !== 'function') {
     throw new Error(
-      'requireAuthentication only can be used to a method of a class',
+      'requireAuthentication can only apply to a method of a class',
     );
   }
 
   const original = descriptor.value;
 
   descriptor.value = function(this: Masto, ...args: any[]) {
-    if (!this.accessToken) {
+    if (!this.gateway.accessToken) {
       throw new MastoUnauthorizedError(
         `Endpoint ${name} requires authentication. ` +
           'Check Setting > Development of your Mastodon instance ' +
@@ -69,25 +69,25 @@ export const available = (parameters: AvailabeParams): Decorator => (
   descriptor,
 ) => {
   if (!descriptor || typeof descriptor.value !== 'function') {
-    throw new Error('available only can be used to a method of a class');
+    throw new Error('available can only apply to a method of a class');
   }
 
   const original = descriptor.value;
   const { since, until } = parameters;
 
   descriptor.value = function(this: Masto, ...args: any[]) {
-    if (since && this.version && lt(this.version, since)) {
+    if (since && this.gateway.version && lt(this.gateway.version, since)) {
       throw new MastoNotFoundError(
         `${name} is not available with the current ` +
-          `Mastodon version ${this.version}. ` +
+          `Mastodon version ${this.gateway.version}. ` +
           `It requires greater than or equal to version ${since}.`,
       );
     }
 
-    if (until && this.version && gt(this.version, until)) {
+    if (until && this.gateway.version && gt(this.gateway.version, until)) {
       throw new MastoNotFoundError(
         `${name} is not available with the current ` +
-          `Mastodon version ${this.version}. ` +
+          `Mastodon version ${this.gateway.version}. ` +
           `It was removed on version ${until}.`,
       );
     }

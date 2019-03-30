@@ -1,22 +1,14 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 // tslint:disable-next-line no-import-side-effect
 import 'isomorphic-form-data';
+import normalizeUrl from 'normalize-url';
 import * as querystring from 'querystring';
 import { oc } from 'ts-optchain';
 import { MastoNotFoundError } from '../errors/masto-not-found-error';
 import { MastoRateLimitError } from '../errors/masto-rate-limit-error';
 import { MastoUnauthorizedError } from '../errors/masto-unauthorized-error';
 import { MastoEvents } from './masto-events';
-import { isAxiosError, normalizeUrl } from './utils';
-
-export type PaginateNextOptions<Params> = {
-  /** Reset pagination */
-  reset?: boolean;
-  /** URL */
-  url?: string;
-  /** Query parameters */
-  params?: Params;
-};
+import { isAxiosError } from './utils';
 
 export interface GatewayConstructor {
   /** URI of the instance */
@@ -29,6 +21,15 @@ export interface GatewayConstructor {
   accessToken?: string;
 }
 
+export type PaginateNextOptions<Params> = {
+  /** Reset pagination */
+  reset?: boolean;
+  /** URL */
+  url?: string;
+  /** Query parameters */
+  params?: Params;
+};
+
 /**
  * Mastodon network request wrapper
  * @param params Optional params
@@ -39,12 +40,15 @@ export class Gateway {
   /** Streaming API URL of the instance */
   private _streamingApiUrl = '';
   /** Version of the current instance */
-  private _version = '';
+  public version = '';
   /** API token of the user */
-  private _accessToken = '';
+  public accessToken = '';
 
+  /**
+   * @param params Parameters
+   */
   public constructor(params: GatewayConstructor) {
-    this.uri = normalizeUrl(params.uri);
+    this.uri = params.uri;
 
     if (params.streamingApiUrl) {
       this.streamingApiUrl = params.streamingApiUrl;
@@ -59,44 +63,20 @@ export class Gateway {
     }
   }
 
-  /** Getter for this._uri */
-  public get uri() {
+  get uri() {
     return this._uri;
   }
 
-  /** Setter for this._uri */
-  public set uri(newUri: string) {
-    this._uri = normalizeUrl(newUri);
+  set uri(uri: string) {
+    this._uri = normalizeUrl(uri);
   }
 
-  /** Getter for this._version  */
-  public get version() {
-    return this._version;
-  }
-
-  /** Setter for this._version */
-  public set version(newVersion: string) {
-    this._version = newVersion;
-  }
-
-  /** Getter for this._streamingApiUrl */
-  public get streamingApiUrl() {
+  get streamingApiUrl() {
     return this._streamingApiUrl;
   }
 
-  /** Setter for this._streamingApiUrl */
-  public set streamingApiUrl(newStreamingApiUrl: string) {
-    this._streamingApiUrl = normalizeUrl(newStreamingApiUrl);
-  }
-
-  /** Getter for this._accessToken */
-  public get accessToken() {
-    return this._accessToken;
-  }
-
-  /** Setter for this._accessToken */
-  public set accessToken(newAccessToken: string) {
-    this._accessToken = newAccessToken;
+  set streamingApiUrl(streamingApiUrl: string) {
+    this._streamingApiUrl = normalizeUrl(streamingApiUrl);
   }
 
   /**
@@ -118,9 +98,9 @@ export class Gateway {
    * @param options Axios options
    */
   private decorateRequestConfig(
-    data: any,
-    options: AxiosRequestConfig = {},
+    options: AxiosRequestConfig,
   ): AxiosRequestConfig {
+    options.url = options.url && normalizeUrl(options.url);
     options.transformResponse = [this.transformResponse];
 
     if (!options.headers) {
@@ -139,14 +119,16 @@ export class Gateway {
 
     switch (options.headers['Content-Type']) {
       case 'application/json':
-        options.data = JSON.stringify(data);
+        options.data = JSON.stringify(options.data);
 
         return options;
 
       case 'multipart/form-data':
         const formData = new FormData();
 
-        for (const [key, value] of Object.entries<string | Blob>(data)) {
+        for (const [key, value] of Object.entries<string | Blob>(
+          options.data,
+        )) {
           formData.append(key, value);
         }
 
@@ -212,18 +194,15 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  public get<T>(
-    url: string,
-    params: { [key: string]: any } = {},
-    options?: AxiosRequestConfig,
-  ) {
-    return this.request<T>({
-      method: 'GET',
-      url,
-      params,
-      ...options,
-      ...this.decorateRequestConfig({}, options),
-    });
+  public get<T>(path: string, params: any = {}, options?: AxiosRequestConfig) {
+    return this.request<T>(
+      this.decorateRequestConfig({
+        method: 'GET',
+        url: this.uri + path,
+        params,
+        ...options,
+      }),
+    );
   }
 
   /**
@@ -233,75 +212,85 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  public post<T>(url: string, data: any = {}, options?: AxiosRequestConfig) {
-    return this.request<T>({
-      method: 'POST',
-      url,
-      ...options,
-      ...this.decorateRequestConfig(data, options),
-    });
+  public post<T>(path: string, data: any = {}, options?: AxiosRequestConfig) {
+    return this.request<T>(
+      this.decorateRequestConfig({
+        method: 'POST',
+        url: this.uri + path,
+        data,
+        ...options,
+      }),
+    );
   }
 
   /**
    * HTTP PUT
-   * @param url URL to request
+   * @param path Path to request
    * @param data Payload
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  public put<T>(url: string, data: any = {}, options?: AxiosRequestConfig) {
-    return this.request<T>({
-      method: 'PUT',
-      url,
-      ...options,
-      ...this.decorateRequestConfig(data, options),
-    });
+  public put<T>(path: string, data: any = {}, options?: AxiosRequestConfig) {
+    return this.request<T>(
+      this.decorateRequestConfig({
+        method: 'PUT',
+        url: this.uri + path,
+        data,
+        ...options,
+      }),
+    );
   }
 
   /**
    * HTTP DELETE
-   * @param url URL to request
+   * @param path Path to request
    * @param data jPayload
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  public delete<T>(url: string, data: any = {}, options?: AxiosRequestConfig) {
-    return this.request<T>({
-      method: 'DELETE',
-      url,
-      ...options,
-      ...this.decorateRequestConfig(data, options),
-    });
+  public delete<T>(path: string, data: any = {}, options?: AxiosRequestConfig) {
+    return this.request<T>(
+      this.decorateRequestConfig({
+        method: 'DELETE',
+        url: this.uri + path,
+        data,
+        ...options,
+      }),
+    );
   }
 
   /**
    * HTTP PATCH
-   * @param url URL to request
+   * @param path Path to request
    * @param data Payload
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  public patch<T>(url: string, data: any = {}, options?: AxiosRequestConfig) {
-    return this.request<T>({
-      method: 'PATCH',
-      url,
-      ...options,
-      ...this.decorateRequestConfig(data, options),
-    });
+  public patch<T>(path: string, data: any = {}, options?: AxiosRequestConfig) {
+    return this.request<T>(
+      this.decorateRequestConfig({
+        method: 'PATCH',
+        url: this.uri + path,
+        data,
+        ...options,
+      }),
+    );
   }
 
   /**
    * Connect to a streaming
-   * @param id ID of the channel, e.g. `public`, `user`, `public:local`
+   * @param path Path to stream
+   * @param params Query parameters
    * @return Instance of EventEmitter
    */
-  public stream(url: string, params: { [key: string]: any } = {}) {
+  public stream(path: string, params: { [key: string]: any } = {}) {
     if (this.accessToken) {
       params.access_token = this.accessToken;
     }
 
     return new MastoEvents().connect(
-      url +
+      this.streamingApiUrl +
+        path +
         (Object.keys(params).length ? `?${querystring.stringify(params)}` : ''),
     );
   }
@@ -310,46 +299,46 @@ export class Gateway {
    * Generate an iterable of the pagination.
    * The default generator implementation of JS cannot change the value of `done` depend on the result of yield,
    * Therefore we define custom generator to reproduce Mastodon's link header behaviour faithfully.
-   * @param initialUrl URL for the endpoint
+   * @param path Path for the endpoint
    * @param initialParams Query parameter
    * @return Async iterable iterator of the pages.
    * See also [MDN article about generator/iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators)
    */
   public paginate<Data, Params = any>(
-    initialUrl: string,
+    path: string,
     initialParams?: Params,
   ): AsyncIterableIterator<AxiosResponse<Data> | undefined> {
     // tslint:disable-next-line no-this-assignment
-    const _this = this;
+    const gateway = this;
+    const initialUrl = this.uri + path;
 
-    let url: string = initialUrl;
-    let params: Params | undefined = initialParams;
+    let currentUrl: string = initialUrl;
+    let currentParams: Params | undefined = initialParams;
 
     return {
       async next(options: PaginateNextOptions<Params> = {}) {
         if (options.reset) {
-          url = initialUrl;
-          params = initialParams;
+          currentUrl = initialUrl;
+          currentParams = initialParams;
         }
 
-        if (!url) {
-          return { done: true, value: undefined };
-        }
-
-        const response = await _this.get<Data>(
-          options.url || url,
-          options.params || params,
+        const response = await gateway.request<Data>(
+          gateway.decorateRequestConfig({
+            method: 'GET',
+            url: options.url || currentUrl,
+            params: options.params || currentParams,
+          }),
         );
 
         // Set next url from the link header
         const link = oc(response.headers.link)('');
         const match = link.match(/<(.+?)>; rel="next"/) as string[];
 
-        url = (match && match.length && match[1]) || '';
-        params = undefined;
+        currentUrl = (match && match.length && match[1]) || '';
+        currentParams = undefined;
 
         // Return `done: true` immediately if no next url returned
-        return { done: !url, value: response };
+        return { done: !currentUrl, value: response };
       },
 
       async return(value: AxiosResponse<Data>) {

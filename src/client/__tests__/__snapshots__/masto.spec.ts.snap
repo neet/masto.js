@@ -465,7 +465,7 @@ exports[`Masto fetchAccount 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -493,7 +493,7 @@ exports[`Masto fetchAccountFollowers 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -526,7 +526,7 @@ exports[`Masto fetchAccountFollowing 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -559,7 +559,7 @@ exports[`Masto fetchAccountLists 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -587,7 +587,7 @@ exports[`Masto fetchAccountRelationships 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -620,7 +620,7 @@ exports[`Masto fetchAccountStatuses 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -653,7 +653,7 @@ exports[`Masto fetchBlocks 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -686,7 +686,7 @@ exports[`Masto fetchCommunityTimeline 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -720,7 +720,7 @@ exports[`Masto fetchConversations 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -753,7 +753,7 @@ exports[`Masto fetchCustomEmojis 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -781,7 +781,7 @@ exports[`Masto fetchDirectTimeline 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -816,7 +816,7 @@ exports[`Masto fetchEndorsements 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -849,7 +849,7 @@ exports[`Masto fetchFavourites 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -882,7 +882,7 @@ exports[`Masto fetchFilter 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -910,7 +910,7 @@ exports[`Masto fetchFilters 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -938,7 +938,7 @@ exports[`Masto fetchFollowRequests 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -971,7 +971,7 @@ exports[`Masto fetchHomeTimeline 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -1004,7 +1004,7 @@ exports[`Masto fetchInstance 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -1032,7 +1032,7 @@ exports[`Masto fetchInstanceActivity 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -1060,7 +1060,7 @@ exports[`Masto fetchInstancesPeers 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -1088,7 +1088,7 @@ exports[`Masto fetchList 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -1116,7 +1116,7 @@ exports[`Masto fetchListAccounts 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -1149,7 +1149,7 @@ exports[`Masto fetchListTimeline 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -1182,7 +1182,7 @@ exports[`Masto fetchLists 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -1210,7 +1210,7 @@ exports[`Masto fetchMutes 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -1243,7 +1243,7 @@ exports[`Masto fetchNotification 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -1271,7 +1271,7 @@ exports[`Masto fetchNotifications 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -1307,7 +1307,7 @@ exports[`Masto fetchPoll 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -1335,7 +1335,7 @@ exports[`Masto fetchPublicTimeline 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -1368,7 +1368,7 @@ exports[`Masto fetchPushSubscription 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -1396,7 +1396,7 @@ exports[`Masto fetchScheduledStatus 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -1424,7 +1424,7 @@ exports[`Masto fetchScheduledStatuses 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -1452,7 +1452,7 @@ exports[`Masto fetchStatus 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -1480,7 +1480,7 @@ exports[`Masto fetchStatusCard 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -1508,7 +1508,7 @@ exports[`Masto fetchStatusContext 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -1536,7 +1536,7 @@ exports[`Masto fetchStatusFavouritedBy 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -1569,7 +1569,7 @@ exports[`Masto fetchStatusRebloggedBy 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -1602,7 +1602,7 @@ exports[`Masto fetchSuggestions 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -1630,7 +1630,7 @@ exports[`Masto fetchTagTimeline 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -1645,7 +1645,7 @@ exports[`Masto fetchTagTimeline 1`] = `
         "transformResponse": Array [
           [Function],
         ],
-        "url": "https://example.com/api/v1/timelines/tag/#DeleteTwitter",
+        "url": "https://example.com/api/v1/timelines/tag/DeleteTwitter",
       },
     ],
   ],
@@ -2149,7 +2149,7 @@ exports[`Masto search (v1) 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -2180,7 +2180,7 @@ exports[`Masto search 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -2211,7 +2211,7 @@ exports[`Masto searchAccounts 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -2595,7 +2595,7 @@ exports[`Masto verifyAppCredentials 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",
@@ -2623,7 +2623,7 @@ exports[`Masto verifyCredentials 1`] = `
   "calls": Array [
     Array [
       Object {
-        "data": "{}",
+        "data": undefined,
         "headers": Object {
           "Authorization": "Bearer token",
           "Content-Type": "application/json",

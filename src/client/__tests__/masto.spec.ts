@@ -26,7 +26,7 @@ describe('Masto', () => {
   });
 
   beforeEach(() => {
-    masto.version = '99.99.9';
+    masto.gateway.version = '99.99.9';
     (axios.request as jest.Mock).mockReset();
     (axios.request as jest.Mock).mockResolvedValue({
       headers: {
@@ -722,7 +722,7 @@ describe('Masto', () => {
 
   test('fetchTagTimeline', async () => {
     await masto
-      .fetchTagTimeline('#DeleteTwitter', {
+      .fetchTagTimeline('DeleteTwitter', {
         max_id: '5',
         since_id: '3',
         min_id: '2',
@@ -745,7 +745,7 @@ describe('Masto', () => {
   });
 
   test('fetchDirectTimeline', async () => {
-    masto.version = '2.5.0';
+    masto.gateway.version = '2.5.0';
     await masto
       .fetchDirectTimeline({
         max_id: '5',
