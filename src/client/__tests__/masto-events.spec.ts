@@ -91,7 +91,7 @@ describe('MastoEvents', () => {
 
     const originalData = {
       event: 'update',
-      payload: JSON.stringify(originalPayload),
+      payload: originalPayload,
     };
 
     const emitData = {
