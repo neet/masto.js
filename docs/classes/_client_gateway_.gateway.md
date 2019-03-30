@@ -10,20 +10,21 @@ Mastodon network request wrapper
 
 **Gateway**
 
-↳  [Masto](_client_masto_.masto.md)
-
 ## Index
 
 ### Constructors
 
 * [constructor](_client_gateway_.gateway.md#constructor)
 
-### Accessors
+### Properties
 
 * [accessToken](_client_gateway_.gateway.md#accesstoken)
+* [version](_client_gateway_.gateway.md#version)
+
+### Accessors
+
 * [streamingApiUrl](_client_gateway_.gateway.md#streamingapiurl)
 * [uri](_client_gateway_.gateway.md#uri)
-* [version](_client_gateway_.gateway.md#version)
 
 ### Methods
 
@@ -45,70 +46,64 @@ Mastodon network request wrapper
 
 ⊕ **new Gateway**(params: *[GatewayConstructor](../interfaces/_client_gateway_.gatewayconstructor.md)*): [Gateway](_client_gateway_.gateway.md)
 
-*Defined in [client/gateway.ts:44](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L44)*
+*Defined in [client/gateway.ts:45](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/gateway.ts#L45)*
 
 **Parameters:**
 
-| Name | Type |
-| ------ | ------ |
-| params | [GatewayConstructor](../interfaces/_client_gateway_.gatewayconstructor.md) |
+| Name | Type | Description |
+| ------ | ------ | ------ |
+| params | [GatewayConstructor](../interfaces/_client_gateway_.gatewayconstructor.md) |  Parameters |
 
 **Returns:** [Gateway](_client_gateway_.gateway.md)
 
 ___
 
-## Accessors
+## Properties
 
 <a id="accesstoken"></a>
 
 ###  accessToken
 
-**get accessToken**(): `string`
+**● accessToken**: *`string`* = ""
 
-**set accessToken**(newAccessToken: *`string`*): `void`
+*Defined in [client/gateway.ts:45](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/gateway.ts#L45)*
 
-*Defined in [client/gateway.ts:93](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L93)*
-
-Getter for this.\_accessToken
-
-**Returns:** `string`
-
-*Defined in [client/gateway.ts:98](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L98)*
-
-Setter for this.\_accessToken
-
-**Parameters:**
-
-| Name | Type |
-| ------ | ------ |
-| newAccessToken | `string` |
-
-**Returns:** `void`
+API token of the user
 
 ___
+<a id="version"></a>
+
+###  version
+
+**● version**: *`string`* = ""
+
+*Defined in [client/gateway.ts:43](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/gateway.ts#L43)*
+
+Version of the current instance
+
+___
+
+## Accessors
+
 <a id="streamingapiurl"></a>
 
 ###  streamingApiUrl
 
 **get streamingApiUrl**(): `string`
 
-**set streamingApiUrl**(newStreamingApiUrl: *`string`*): `void`
+**set streamingApiUrl**(streamingApiUrl: *`string`*): `void`
 
-*Defined in [client/gateway.ts:83](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L83)*
-
-Getter for this.\_streamingApiUrl
+*Defined in [client/gateway.ts:74](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/gateway.ts#L74)*
 
 **Returns:** `string`
 
-*Defined in [client/gateway.ts:88](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L88)*
-
-Setter for this.\_streamingApiUrl
+*Defined in [client/gateway.ts:78](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/gateway.ts#L78)*
 
 **Parameters:**
 
 | Name | Type |
 | ------ | ------ |
-| newStreamingApiUrl | `string` |
+| streamingApiUrl | `string` |
 
 **Returns:** `void`
 
@@ -119,50 +114,19 @@ ___
 
 **get uri**(): `string`
 
-**set uri**(newUri: *`string`*): `void`
+**set uri**(uri: *`string`*): `void`
 
-*Defined in [client/gateway.ts:63](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L63)*
-
-Getter for this.\_uri
+*Defined in [client/gateway.ts:66](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/gateway.ts#L66)*
 
 **Returns:** `string`
 
-*Defined in [client/gateway.ts:68](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L68)*
-
-Setter for this.\_uri
+*Defined in [client/gateway.ts:70](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/gateway.ts#L70)*
 
 **Parameters:**
 
 | Name | Type |
 | ------ | ------ |
-| newUri | `string` |
-
-**Returns:** `void`
-
-___
-<a id="version"></a>
-
-###  version
-
-**get version**(): `string`
-
-**set version**(newVersion: *`string`*): `void`
-
-*Defined in [client/gateway.ts:73](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L73)*
-
-Getter for this.\_version
-
-**Returns:** `string`
-
-*Defined in [client/gateway.ts:78](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L78)*
-
-Setter for this.\_version
-
-**Parameters:**
-
-| Name | Type |
-| ------ | ------ |
-| newVersion | `string` |
+| uri | `string` |
 
 **Returns:** `void`
 
@@ -174,9 +138,9 @@ ___
 
 ###  delete
 
-▸ **delete**<`T`>(url: *`string`*, data?: *`any`*, options?: *`AxiosRequestConfig`*): `Promise`<`AxiosResponse`<`T`>>
+▸ **delete**<`T`>(path: *`string`*, data?: *`any`*, options?: *`AxiosRequestConfig`*): `Promise`<`AxiosResponse`<`T`>>
 
-*Defined in [client/gateway.ts:268](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L268)*
+*Defined in [client/gateway.ts:251](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/gateway.ts#L251)*
 
 HTTP DELETE
 
@@ -187,7 +151,7 @@ HTTP DELETE
 
 | Name | Type | Default value | Description |
 | ------ | ------ | ------ | ------ |
-| url | `string` | - |  URL to request |
+| path | `string` | - |  Path to request |
 | `Default value` data | `any` |  {} |  jPayload |
 | `Optional` options | `AxiosRequestConfig` | - |  Fetch API options |
 
@@ -198,9 +162,9 @@ ___
 
 ###  get
 
-▸ **get**<`T`>(url: *`string`*, params?: *`object`*, options?: *`AxiosRequestConfig`*): `Promise`<`AxiosResponse`<`T`>>
+▸ **get**<`T`>(path: *`string`*, params?: *`any`*, options?: *`AxiosRequestConfig`*): `Promise`<`AxiosResponse`<`T`>>
 
-*Defined in [client/gateway.ts:215](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L215)*
+*Defined in [client/gateway.ts:197](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/gateway.ts#L197)*
 
 HTTP GET
 
@@ -211,8 +175,8 @@ HTTP GET
 
 | Name | Type | Default value | Description |
 | ------ | ------ | ------ | ------ |
-| url | `string` | - |  URL to request |
-| `Default value` params | `object` |  {} |  Query strings |
+| path | `string` | - |
+| `Default value` params | `any` |  {} |  Query strings |
 | `Optional` options | `AxiosRequestConfig` | - |  Fetch API options |
 
 **Returns:** `Promise`<`AxiosResponse`<`T`>>
@@ -222,9 +186,9 @@ ___
 
 ###  paginate
 
-▸ **paginate**<`Data`,`Params`>(initialUrl: *`string`*, initialParams?: *[Params]()*): `AsyncIterableIterator`<`AxiosResponse`<`Data`> \| `undefined`>
+▸ **paginate**<`Data`,`Params`>(path: *`string`*, initialParams?: *[Params]()*): `AsyncIterableIterator`<`AxiosResponse`<`Data`> \| `undefined`>
 
-*Defined in [client/gateway.ts:318](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L318)*
+*Defined in [client/gateway.ts:307](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/gateway.ts#L307)*
 
 Generate an iterable of the pagination. The default generator implementation of JS cannot change the value of `done` depend on the result of yield, Therefore we define custom generator to reproduce Mastodon's link header behaviour faithfully.
 
@@ -236,7 +200,7 @@ Generate an iterable of the pagination. The default generator implementation of 
 
 | Name | Type | Description |
 | ------ | ------ | ------ |
-| initialUrl | `string` |  URL for the endpoint |
+| path | `string` |  Path for the endpoint |
 | `Optional` initialParams | [Params]() |  Query parameter |
 
 **Returns:** `AsyncIterableIterator`<`AxiosResponse`<`Data`> \| `undefined`>
@@ -248,9 +212,9 @@ ___
 
 ###  patch
 
-▸ **patch**<`T`>(url: *`string`*, data?: *`any`*, options?: *`AxiosRequestConfig`*): `Promise`<`AxiosResponse`<`T`>>
+▸ **patch**<`T`>(path: *`string`*, data?: *`any`*, options?: *`AxiosRequestConfig`*): `Promise`<`AxiosResponse`<`T`>>
 
-*Defined in [client/gateway.ts:284](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L284)*
+*Defined in [client/gateway.ts:269](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/gateway.ts#L269)*
 
 HTTP PATCH
 
@@ -261,7 +225,7 @@ HTTP PATCH
 
 | Name | Type | Default value | Description |
 | ------ | ------ | ------ | ------ |
-| url | `string` | - |  URL to request |
+| path | `string` | - |  Path to request |
 | `Default value` data | `any` |  {} |  Payload |
 | `Optional` options | `AxiosRequestConfig` | - |  Fetch API options |
 
@@ -272,9 +236,9 @@ ___
 
 ###  post
 
-▸ **post**<`T`>(url: *`string`*, data?: *`any`*, options?: *`AxiosRequestConfig`*): `Promise`<`AxiosResponse`<`T`>>
+▸ **post**<`T`>(path: *`string`*, data?: *`any`*, options?: *`AxiosRequestConfig`*): `Promise`<`AxiosResponse`<`T`>>
 
-*Defined in [client/gateway.ts:236](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L236)*
+*Defined in [client/gateway.ts:215](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/gateway.ts#L215)*
 
 HTTP POST
 
@@ -285,7 +249,7 @@ HTTP POST
 
 | Name | Type | Default value | Description |
 | ------ | ------ | ------ | ------ |
-| url | `string` | - |  URL to request |
+| path | `string` | - |
 | `Default value` data | `any` |  {} |  Payload |
 | `Optional` options | `AxiosRequestConfig` | - |  Fetch API options |
 
@@ -296,9 +260,9 @@ ___
 
 ###  put
 
-▸ **put**<`T`>(url: *`string`*, data?: *`any`*, options?: *`AxiosRequestConfig`*): `Promise`<`AxiosResponse`<`T`>>
+▸ **put**<`T`>(path: *`string`*, data?: *`any`*, options?: *`AxiosRequestConfig`*): `Promise`<`AxiosResponse`<`T`>>
 
-*Defined in [client/gateway.ts:252](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L252)*
+*Defined in [client/gateway.ts:233](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/gateway.ts#L233)*
 
 HTTP PUT
 
@@ -309,7 +273,7 @@ HTTP PUT
 
 | Name | Type | Default value | Description |
 | ------ | ------ | ------ | ------ |
-| url | `string` | - |  URL to request |
+| path | `string` | - |  Path to request |
 | `Default value` data | `any` |  {} |  Payload |
 | `Optional` options | `AxiosRequestConfig` | - |  Fetch API options |
 
@@ -320,18 +284,18 @@ ___
 
 ###  stream
 
-▸ **stream**(url: *`string`*, params?: *`object`*): `Promise`<[MastoEvents](_client_masto_events_.mastoevents.md)>
+▸ **stream**(path: *`string`*, params?: *`object`*): `Promise`<[MastoEvents](_client_masto_events_.mastoevents.md)>
 
-*Defined in [client/gateway.ts:298](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L298)*
+*Defined in [client/gateway.ts:286](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/gateway.ts#L286)*
 
 Connect to a streaming
 
 **Parameters:**
 
-| Name | Type | Default value |
-| ------ | ------ | ------ |
-| url | `string` | - |
-| `Default value` params | `object` |  {} |
+| Name | Type | Default value | Description |
+| ------ | ------ | ------ | ------ |
+| path | `string` | - |  Path to stream |
+| `Default value` params | `object` |  {} |  Query parameters |
 
 **Returns:** `Promise`<[MastoEvents](_client_masto_events_.mastoevents.md)>
 Instance of EventEmitter

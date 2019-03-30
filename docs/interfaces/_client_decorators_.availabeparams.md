@@ -23,7 +23,7 @@
 
 **● since**: *`undefined` \| `string`*
 
-*Defined in [client/decorators.ts:13](https://github.com/neet/masto.js/blob/390e749/src/client/decorators.ts#L13)*
+*Defined in [client/decorators.ts:13](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/decorators.ts#L13)*
 
 ___
 <a id="until"></a>
@@ -32,7 +32,7 @@ ___
 
 **● until**: *`undefined` \| `string`*
 
-*Defined in [client/decorators.ts:14](https://github.com/neet/masto.js/blob/390e749/src/client/decorators.ts#L14)*
+*Defined in [client/decorators.ts:14](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/decorators.ts#L14)*
 
 ___
 

@@ -19,7 +19,7 @@
 
 ▸ **isAxiosError**(error: *`any`*): `boolean`
 
-*Defined in [client/utils.ts:4](https://github.com/neet/masto.js/blob/390e749/src/client/utils.ts#L4)*
+*Defined in [client/utils.ts:4](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/utils.ts#L4)*
 
 **Parameters:**
 
@@ -36,7 +36,7 @@ ___
 
 ▸ **normalizeUrl**(url: *`string`*): `string`
 
-*Defined in [client/utils.ts:13](https://github.com/neet/masto.js/blob/390e749/src/client/utils.ts#L13)*
+*Defined in [client/utils.ts:13](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/utils.ts#L13)*
 
 **Parameters:**
 

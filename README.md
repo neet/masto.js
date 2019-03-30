@@ -52,5 +52,14 @@ All of available methods / interfaces are described in the [documentation](https
 ### Q. I got an error `Symbol.asyncIterator is not defined`
 A. Masto.js using [AsyncIterator](https://github.com/tc39/proposal-async-iteration) which is very new JS feature and it may not be supported in particular environments. So in browsers, you need to use a polyfill like [Babel's](https://babeljs.io/docs/en/babel-plugin-proposal-async-generator-functions). In Node.js, it is supported on [v10](https://medium.com/@nairihar/async-iteration-in-nodejs-v10-3c17dc00ed9f) so you can update and use it.
 
+If you're using Masto.js with TypeScript, you need to add the following config to `tsconfig.json` for static typing.
+```diff
+{
+  "compilerOptions": {
+    "lib": [
++      "esnext.asynciterable"
+      ...
+```
+
 ## License
 <a href="https://www.gnu.org/licenses/agpl-3.0"><img src="https://img.shields.io/badge/License-AGPL%20v3-blue.svg" alt="License: AGPL v3" /></a>

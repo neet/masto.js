@@ -6,22 +6,13 @@ Mastodon API client
 
 ## Hierarchy
 
- [Gateway](_client_gateway_.gateway.md)
-
-**↳ Masto**
+**Masto**
 
 ## Index
 
-### Constructors
+### Properties
 
-* [constructor](_client_masto_.masto.md#constructor)
-
-### Accessors
-
-* [accessToken](_client_masto_.masto.md#accesstoken)
-* [streamingApiUrl](_client_masto_.masto.md#streamingapiurl)
-* [uri](_client_masto_.masto.md#uri)
-* [version](_client_masto_.masto.md#version)
+* [gateway](_client_masto_.masto.md#gateway)
 
 ### Methods
 
@@ -36,7 +27,6 @@ Mastodon API client
 * [createFiler](_client_masto_.masto.md#createfiler)
 * [createList](_client_masto_.masto.md#createlist)
 * [createStatus](_client_masto_.masto.md#createstatus)
-* [delete](_client_masto_.masto.md#delete)
 * [dissmissNotification](_client_masto_.masto.md#dissmissnotification)
 * [favouriteStatus](_client_masto_.masto.md#favouritestatus)
 * [fetchAccessToken](_client_masto_.masto.md#fetchaccesstoken)
@@ -69,6 +59,7 @@ Mastodon API client
 * [fetchNotification](_client_masto_.masto.md#fetchnotification)
 * [fetchNotifications](_client_masto_.masto.md#fetchnotifications)
 * [fetchPoll](_client_masto_.masto.md#fetchpoll)
+* [fetchPreferences](_client_masto_.masto.md#fetchpreferences)
 * [fetchPublicTimeline](_client_masto_.masto.md#fetchpublictimeline)
 * [fetchPushSubscription](_client_masto_.masto.md#fetchpushsubscription)
 * [fetchScheduledStatus](_client_masto_.masto.md#fetchscheduledstatus)
@@ -82,15 +73,10 @@ Mastodon API client
 * [fetchTagTimeline](_client_masto_.masto.md#fetchtagtimeline)
 * [followAccount](_client_masto_.masto.md#followaccount)
 * [followAccountByUsername](_client_masto_.masto.md#followaccountbyusername)
-* [get](_client_masto_.masto.md#get)
 * [muteAccount](_client_masto_.masto.md#muteaccount)
 * [muteStatus](_client_masto_.masto.md#mutestatus)
-* [paginate](_client_masto_.masto.md#paginate)
-* [patch](_client_masto_.masto.md#patch)
 * [pinAccount](_client_masto_.masto.md#pinaccount)
 * [pinStatus](_client_masto_.masto.md#pinstatus)
-* [post](_client_masto_.masto.md#post)
-* [put](_client_masto_.masto.md#put)
 * [reblogStatus](_client_masto_.masto.md#reblogstatus)
 * [rejectFollowRequest](_client_masto_.masto.md#rejectfollowrequest)
 * [removeAccountFromList](_client_masto_.masto.md#removeaccountfromlist)
@@ -104,7 +90,6 @@ Mastodon API client
 * [revokeAccessToken](_client_masto_.masto.md#revokeaccesstoken)
 * [search](_client_masto_.masto.md#search)
 * [searchAccounts](_client_masto_.masto.md#searchaccounts)
-* [stream](_client_masto_.masto.md#stream)
 * [streamCommunityTimeline](_client_masto_.masto.md#streamcommunitytimeline)
 * [streamDirectTimeline](_client_masto_.masto.md#streamdirecttimeline)
 * [streamListTimeline](_client_masto_.masto.md#streamlisttimeline)
@@ -135,152 +120,17 @@ Mastodon API client
 
 ---
 
-## Constructors
+## Properties
 
-<a id="constructor"></a>
+<a id="gateway"></a>
 
-###  constructor
+###  gateway
 
-⊕ **new Masto**(params: *[GatewayConstructor](../interfaces/_client_gateway_.gatewayconstructor.md)*): [Masto](_client_masto_.masto.md)
+**● gateway**: *[Gateway](_client_gateway_.gateway.md)*
 
-*Inherited from [Gateway](_client_gateway_.gateway.md).[constructor](_client_gateway_.gateway.md#constructor)*
+*Defined in [client/masto.ts:56](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L56)*
 
-*Defined in [client/gateway.ts:44](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L44)*
-
-**Parameters:**
-
-| Name | Type |
-| ------ | ------ |
-| params | [GatewayConstructor](../interfaces/_client_gateway_.gatewayconstructor.md) |
-
-**Returns:** [Masto](_client_masto_.masto.md)
-
-___
-
-## Accessors
-
-<a id="accesstoken"></a>
-
-###  accessToken
-
-**get accessToken**(): `string`
-
-**set accessToken**(newAccessToken: *`string`*): `void`
-
-*Inherited from [Gateway](_client_gateway_.gateway.md).[accessToken](_client_gateway_.gateway.md#accesstoken)*
-
-*Defined in [client/gateway.ts:93](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L93)*
-
-Getter for this.\_accessToken
-
-**Returns:** `string`
-
-*Inherited from [Gateway](_client_gateway_.gateway.md).[accessToken](_client_gateway_.gateway.md#accesstoken)*
-
-*Defined in [client/gateway.ts:98](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L98)*
-
-Setter for this.\_accessToken
-
-**Parameters:**
-
-| Name | Type |
-| ------ | ------ |
-| newAccessToken | `string` |
-
-**Returns:** `void`
-
-___
-<a id="streamingapiurl"></a>
-
-###  streamingApiUrl
-
-**get streamingApiUrl**(): `string`
-
-**set streamingApiUrl**(newStreamingApiUrl: *`string`*): `void`
-
-*Inherited from [Gateway](_client_gateway_.gateway.md).[streamingApiUrl](_client_gateway_.gateway.md#streamingapiurl)*
-
-*Defined in [client/gateway.ts:83](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L83)*
-
-Getter for this.\_streamingApiUrl
-
-**Returns:** `string`
-
-*Inherited from [Gateway](_client_gateway_.gateway.md).[streamingApiUrl](_client_gateway_.gateway.md#streamingapiurl)*
-
-*Defined in [client/gateway.ts:88](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L88)*
-
-Setter for this.\_streamingApiUrl
-
-**Parameters:**
-
-| Name | Type |
-| ------ | ------ |
-| newStreamingApiUrl | `string` |
-
-**Returns:** `void`
-
-___
-<a id="uri"></a>
-
-###  uri
-
-**get uri**(): `string`
-
-**set uri**(newUri: *`string`*): `void`
-
-*Inherited from [Gateway](_client_gateway_.gateway.md).[uri](_client_gateway_.gateway.md#uri)*
-
-*Defined in [client/gateway.ts:63](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L63)*
-
-Getter for this.\_uri
-
-**Returns:** `string`
-
-*Inherited from [Gateway](_client_gateway_.gateway.md).[uri](_client_gateway_.gateway.md#uri)*
-
-*Defined in [client/gateway.ts:68](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L68)*
-
-Setter for this.\_uri
-
-**Parameters:**
-
-| Name | Type |
-| ------ | ------ |
-| newUri | `string` |
-
-**Returns:** `void`
-
-___
-<a id="version"></a>
-
-###  version
-
-**get version**(): `string`
-
-**set version**(newVersion: *`string`*): `void`
-
-*Inherited from [Gateway](_client_gateway_.gateway.md).[version](_client_gateway_.gateway.md#version)*
-
-*Defined in [client/gateway.ts:73](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L73)*
-
-Getter for this.\_version
-
-**Returns:** `string`
-
-*Inherited from [Gateway](_client_gateway_.gateway.md).[version](_client_gateway_.gateway.md#version)*
-
-*Defined in [client/gateway.ts:78](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L78)*
-
-Setter for this.\_version
-
-**Parameters:**
-
-| Name | Type |
-| ------ | ------ |
-| newVersion | `string` |
-
-**Returns:** `void`
+Instance of Gateway
 
 ___
 
@@ -292,7 +142,7 @@ ___
 
 ▸ **addAccountToList**(id: *`string`*, params: *[ModifyListAccountsParams](../interfaces/_client_params_.modifylistaccountsparams.md)*): `Promise`<`AxiosResponse`<`void`>>
 
-*Defined in [client/masto.ts:802](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L802)*
+*Defined in [client/masto.ts:808](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L808)*
 
 Add accounts to a list.
 
@@ -315,7 +165,7 @@ ___
 
 ▸ **addPushSubscription**(params: *[AddPushSubscriptionParams](../interfaces/_client_params_.addpushsubscriptionparams.md)*): `Promise`<`AxiosResponse`<[PushSubscription](../interfaces/_entities_push_subscription_.pushsubscription.md)>>
 
-*Defined in [client/masto.ts:983](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L983)*
+*Defined in [client/masto.ts:989](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L989)*
 
 Add a Web Push API subscription to receive notifications. See also: Web Push API
 
@@ -337,7 +187,7 @@ ___
 
 ▸ **authorizeFollowRequest**(id: *`string`*): `Promise`<`AxiosResponse`<`void`>>
 
-*Defined in [client/masto.ts:623](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L623)*
+*Defined in [client/masto.ts:631](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L631)*
 
 Allow the account to follow the user.
 
@@ -359,7 +209,7 @@ ___
 
 ▸ **blockAccount**(id: *`string`*): `Promise`<`AxiosResponse`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>>
 
-*Defined in [client/masto.ts:387](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L387)*
+*Defined in [client/masto.ts:398](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L398)*
 
 Block an account with id
 
@@ -381,7 +231,7 @@ ___
 
 ▸ **blockDomain**(domain: *`string`*): `Promise`<`AxiosResponse`<`void`>>
 
-*Defined in [client/masto.ts:436](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L436)*
+*Defined in [client/masto.ts:447](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L447)*
 
 Block a domain to hide all public posts from it, all notifications from it, and remove all followers from it.
 
@@ -403,7 +253,7 @@ ___
 
 ▸ **clearNotifications**(): `Promise`<`AxiosResponse`<`void`>>
 
-*Defined in [client/masto.ts:955](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L955)*
+*Defined in [client/masto.ts:961](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L961)*
 
 Delete all notifications from the server.
 
@@ -419,7 +269,7 @@ ___
 
 ▸ **createAccount**(params: *[CreateAccountParams](../interfaces/_client_params_.createaccountparams.md)*): `Promise`<`AxiosResponse`<[OAuthToken](../interfaces/_entities_oauth_.oauthtoken.md)>>
 
-*Defined in [client/masto.ts:199](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L199)*
+*Defined in [client/masto.ts:213](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L213)*
 
 Create an account with given profile
 
@@ -439,7 +289,7 @@ ___
 
 ▸ **createApp**(params: *[CreateAppParams](../interfaces/_client_params_.createappparams.md)*): `Promise`<`AxiosResponse`<[OAuthClient](../interfaces/_entities_oauth_.oauthclient.md)>>
 
-*Defined in [client/masto.ts:350](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L350)*
+*Defined in [client/masto.ts:361](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L361)*
 
 Create a new application to obtain OAuth2 credentials.
 
@@ -461,7 +311,7 @@ ___
 
 ▸ **createFiler**(params?: *[ModifyFilterParams](../interfaces/_client_params_.modifyfilterparams.md)*): `Promise`<`AxiosResponse`<[Filter](../interfaces/_entities_filter_.filter.md)>>
 
-*Defined in [client/masto.ts:567](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L567)*
+*Defined in [client/masto.ts:578](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L578)*
 
 Create a new filter.
 
@@ -483,7 +333,7 @@ ___
 
 ▸ **createList**(params: *[ModifyListParams](../interfaces/_client_params_.modifylistparams.md)*): `Promise`<`AxiosResponse`<[List](../interfaces/_entities_list_.list.md)>>
 
-*Defined in [client/masto.ts:761](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L761)*
+*Defined in [client/masto.ts:767](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L767)*
 
 Create a new list.
 
@@ -505,7 +355,7 @@ ___
 
 ▸ **createStatus**(params?: *[CreateStatusParams](../modules/_client_params_.md#createstatusparams)*, idempotencyKey?: *`undefined` \| `string`*): `Promise`<`AxiosResponse`<`Object`>>
 
-*Defined in [client/masto.ts:1220](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1220)*
+*Defined in [client/masto.ts:1226](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1226)*
 
 Publish a new status.
 
@@ -522,39 +372,13 @@ Publish a new status.
 Returns Status
 
 ___
-<a id="delete"></a>
-
-###  delete
-
-▸ **delete**<`T`>(url: *`string`*, data?: *`any`*, options?: *`AxiosRequestConfig`*): `Promise`<`AxiosResponse`<`T`>>
-
-*Inherited from [Gateway](_client_gateway_.gateway.md).[delete](_client_gateway_.gateway.md#delete)*
-
-*Defined in [client/gateway.ts:268](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L268)*
-
-HTTP DELETE
-
-**Type parameters:**
-
-#### T 
-**Parameters:**
-
-| Name | Type | Default value | Description |
-| ------ | ------ | ------ | ------ |
-| url | `string` | - |  URL to request |
-| `Default value` data | `any` |  {} |  jPayload |
-| `Optional` options | `AxiosRequestConfig` | - |  Fetch API options |
-
-**Returns:** `Promise`<`AxiosResponse`<`T`>>
-
-___
 <a id="dissmissnotification"></a>
 
 ###  dissmissNotification
 
 ▸ **dissmissNotification**(id: *`string`*): `Promise`<`AxiosResponse`<`void`>>
 
-*Defined in [client/masto.ts:968](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L968)*
+*Defined in [client/masto.ts:974](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L974)*
 
 Delete a single notification from the server.
 
@@ -576,7 +400,7 @@ ___
 
 ▸ **favouriteStatus**(id: *`string`*): `Promise`<`AxiosResponse`<[Status](../interfaces/_entities_status_.status.md)>>
 
-*Defined in [client/masto.ts:516](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L516)*
+*Defined in [client/masto.ts:527](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L527)*
 
 Favourite a status with id
 
@@ -598,7 +422,7 @@ ___
 
 ▸ **fetchAccessToken**(params: *[FetchAccessTokenParams](../modules/_client_params_.md#fetchaccesstokenparams)*): `Promise`<`AxiosResponse`<[OAuthToken](../interfaces/_entities_oauth_.oauthtoken.md)>>
 
-*Defined in [client/masto.ts:168](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L168)*
+*Defined in [client/masto.ts:182](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L182)*
 
 Fetch access token from authorization code
 
@@ -620,7 +444,7 @@ ___
 
 ▸ **fetchAccount**(id: *`string`*): `Promise`<`AxiosResponse`<[Account](../interfaces/_entities_account_.account.md)>>
 
-*Defined in [client/masto.ts:188](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L188)*
+*Defined in [client/masto.ts:202](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L202)*
 
 Fetching an account
 
@@ -642,7 +466,7 @@ ___
 
 ▸ **fetchAccountFollowers**(id: *`string`*, params?: *[PaginationParams](../interfaces/_client_params_.paginationparams.md)*): `AsyncIterableIterator`<`undefined` \| `AxiosResponse`<[Account](../interfaces/_entities_account_.account.md)[]>>
 
-*Defined in [client/masto.ts:243](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L243)*
+*Defined in [client/masto.ts:257](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L257)*
 
 Accounts which follow the given account.
 
@@ -665,7 +489,7 @@ ___
 
 ▸ **fetchAccountFollowing**(id: *`string`*, params?: *[PaginationParams](../interfaces/_client_params_.paginationparams.md)*): `AsyncIterableIterator`<`undefined` \| `AxiosResponse`<[Account](../interfaces/_entities_account_.account.md)[]>>
 
-*Defined in [client/masto.ts:259](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L259)*
+*Defined in [client/masto.ts:273](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L273)*
 
 Accounts which the given account is following.
 
@@ -688,7 +512,7 @@ ___
 
 ▸ **fetchAccountLists**(id: *`string`*): `Promise`<`AxiosResponse`<[List](../interfaces/_entities_list_.list.md)[]>>
 
-*Defined in [client/masto.ts:718](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L718)*
+*Defined in [client/masto.ts:724](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L724)*
 
 User’s lists that a given account is part of.
 
@@ -710,7 +534,7 @@ ___
 
 ▸ **fetchAccountRelationships**(id: *`string`[]*): `Promise`<`AxiosResponse`<[Relationship](../interfaces/_entities_relationship_.relationship.md)[]>>
 
-*Defined in [client/masto.ts:323](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L323)*
+*Defined in [client/masto.ts:335](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L335)*
 
 Relationship of the user to the given accounts in regards to following, blocking, muting, etc.
 
@@ -732,7 +556,7 @@ ___
 
 ▸ **fetchAccountStatuses**(id: *`string`*, params?: *[FetchAccountStatusesParams](../interfaces/_client_params_.fetchaccountstatusesparams.md)*): `AsyncIterableIterator`<`undefined` \| `AxiosResponse`<[Status](../interfaces/_entities_status_.status.md)[]>>
 
-*Defined in [client/masto.ts:275](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L275)*
+*Defined in [client/masto.ts:289](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L289)*
 
 An account’s statuses.
 
@@ -755,7 +579,7 @@ ___
 
 ▸ **fetchBlocks**(params?: *[PaginationParams](../interfaces/_client_params_.paginationparams.md)*): `AsyncIterableIterator`<`undefined` \| `AxiosResponse`<[Account](../interfaces/_entities_account_.account.md)[]>>
 
-*Defined in [client/masto.ts:374](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L374)*
+*Defined in [client/masto.ts:385](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L385)*
 
 Accounts the user has blocked.
 
@@ -777,7 +601,7 @@ ___
 
 ▸ **fetchCommunityTimeline**(params?: *[FetchTimelineParams](../interfaces/_client_params_.fetchtimelineparams.md)*): `AsyncIterableIterator`<`undefined` \| `AxiosResponse`<[Status](../interfaces/_entities_status_.status.md)[]>>
 
-*Defined in [client/masto.ts:1315](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1315)*
+*Defined in [client/masto.ts:1321](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1321)*
 
 Retrieving the community timeline (aka "Local timeline" in the UI)
 
@@ -799,7 +623,7 @@ ___
 
 ▸ **fetchConversations**(params?: *[PaginationParams](../interfaces/_client_params_.paginationparams.md)*): `AsyncIterableIterator`<`undefined` \| `AxiosResponse`<[Conversation](../interfaces/_entities_conversation_.conversation.md)[]>>
 
-*Defined in [client/masto.ts:1389](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1389)*
+*Defined in [client/masto.ts:1389](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1389)*
 
 Retrieving a conversation timeline
 
@@ -819,7 +643,7 @@ ___
 
 ▸ **fetchCustomEmojis**(): `Promise`<`AxiosResponse`<[Emoji](../interfaces/_entities_emoji_.emoji.md)[]>>
 
-*Defined in [client/masto.ts:410](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L410)*
+*Defined in [client/masto.ts:421](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L421)*
 
 Custom emojis that are available on the server.
 
@@ -835,7 +659,7 @@ ___
 
 ▸ **fetchDirectTimeline**(params?: *[FetchTimelineParams](../interfaces/_client_params_.fetchtimelineparams.md)*): `AsyncIterableIterator`<`undefined` \| `AxiosResponse`<[Status](../interfaces/_entities_status_.status.md)[]>>
 
-*Defined in [client/masto.ts:1375](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1375)*
+*Defined in [client/masto.ts:1378](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1378)*
 
 Retrieving a direct timeline
 
@@ -855,7 +679,7 @@ ___
 
 ▸ **fetchDomainBlocks**(params?: *[PaginationParams](../interfaces/_client_params_.paginationparams.md)*): `AsyncIterableIterator`<`undefined` \| `AxiosResponse`<`string`[]>>
 
-*Defined in [client/masto.ts:423](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L423)*
+*Defined in [client/masto.ts:434](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L434)*
 
 Domains the user has blocked.
 
@@ -877,7 +701,7 @@ ___
 
 ▸ **fetchEndorsements**(params?: *[PaginationParams](../interfaces/_client_params_.paginationparams.md)*): `AsyncIterableIterator`<`undefined` \| `AxiosResponse`<[Account](../interfaces/_entities_account_.account.md)[]>>
 
-*Defined in [client/masto.ts:465](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L465)*
+*Defined in [client/masto.ts:476](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L476)*
 
 Accounts the user chose to endorse.
 
@@ -899,7 +723,7 @@ ___
 
 ▸ **fetchFavourites**(params?: *[PaginationParams](../interfaces/_client_params_.paginationparams.md)*): `AsyncIterableIterator`<`undefined` \| `AxiosResponse`<[Status](../interfaces/_entities_status_.status.md)[]>>
 
-*Defined in [client/masto.ts:504](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L504)*
+*Defined in [client/masto.ts:515](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L515)*
 
 Statuses the user has favourited.
 
@@ -921,7 +745,7 @@ ___
 
 ▸ **fetchFilter**(id: *`string`*): `Promise`<`AxiosResponse`<[Filter](../interfaces/_entities_filter_.filter.md)>>
 
-*Defined in [client/masto.ts:554](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L554)*
+*Defined in [client/masto.ts:565](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L565)*
 
 A text filter.
 
@@ -943,7 +767,7 @@ ___
 
 ▸ **fetchFilters**(): `Promise`<`AxiosResponse`<[Filter](../interfaces/_entities_filter_.filter.md)[]>>
 
-*Defined in [client/masto.ts:541](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L541)*
+*Defined in [client/masto.ts:552](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L552)*
 
 Text filters the user has configured that potentially must be applied client-side.
 
@@ -959,7 +783,7 @@ ___
 
 ▸ **fetchFollowRequests**(params?: *[PaginationParams](../interfaces/_client_params_.paginationparams.md)*): `AsyncIterableIterator`<`undefined` \| `AxiosResponse`<[Account](../interfaces/_entities_account_.account.md)[]>>
 
-*Defined in [client/masto.ts:607](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L607)*
+*Defined in [client/masto.ts:618](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L618)*
 
 Accounts that have requested to follow the user.
 
@@ -981,7 +805,7 @@ ___
 
 ▸ **fetchHomeTimeline**(params?: *[FetchTimelineParams](../interfaces/_client_params_.fetchtimelineparams.md)*): `AsyncIterableIterator`<`undefined` \| `AxiosResponse`<[Status](../interfaces/_entities_status_.status.md)[]>>
 
-*Defined in [client/masto.ts:1304](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1304)*
+*Defined in [client/masto.ts:1310](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1310)*
 
 Retrieving the home timeline
 
@@ -1003,7 +827,7 @@ ___
 
 ▸ **fetchInstance**(): `Promise`<`AxiosResponse`<[Instance](../interfaces/_entities_instance_.instance.md)>>
 
-*Defined in [client/masto.ts:673](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L673)*
+*Defined in [client/masto.ts:679](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L679)*
 
 Information about the server.
 
@@ -1019,7 +843,7 @@ ___
 
 ▸ **fetchInstanceActivity**(): `Promise`<`AxiosResponse`<[InstanceActivity](../interfaces/_entities_instance_.instanceactivity.md)[]>>
 
-*Defined in [client/masto.ts:693](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L693)*
+*Defined in [client/masto.ts:699](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L699)*
 
 Fetching activities of current instance
 
@@ -1035,7 +859,7 @@ ___
 
 ▸ **fetchInstancesPeers**(): `Promise`<`AxiosResponse`<`string`[]>>
 
-*Defined in [client/masto.ts:683](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L683)*
+*Defined in [client/masto.ts:689](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L689)*
 
 Fetching instance's peers
 
@@ -1051,7 +875,7 @@ ___
 
 ▸ **fetchList**(id: *`string`*): `Promise`<`AxiosResponse`<[List](../interfaces/_entities_list_.list.md)>>
 
-*Defined in [client/masto.ts:748](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L748)*
+*Defined in [client/masto.ts:754](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L754)*
 
 Fetch a list with id
 
@@ -1073,7 +897,7 @@ ___
 
 ▸ **fetchListAccounts**(id: *`string`*, params?: *[PaginationParams](../interfaces/_client_params_.paginationparams.md)*): `AsyncIterableIterator`<`undefined` \| `AxiosResponse`<[Account](../interfaces/_entities_account_.account.md)[]>>
 
-*Defined in [client/masto.ts:732](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L732)*
+*Defined in [client/masto.ts:738](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L738)*
 
 Accounts that are in a given list.
 
@@ -1096,7 +920,7 @@ ___
 
 ▸ **fetchListTimeline**(id: *`string`*, params?: *[FetchTimelineParams](../interfaces/_client_params_.fetchtimelineparams.md)*): `AsyncIterableIterator`<`undefined` \| `AxiosResponse`<[Status](../interfaces/_entities_status_.status.md)[]>>
 
-*Defined in [client/masto.ts:1361](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1361)*
+*Defined in [client/masto.ts:1364](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1364)*
 
 Retrieving a list timeline
 
@@ -1119,7 +943,7 @@ ___
 
 ▸ **fetchLists**(): `Promise`<`AxiosResponse`<[List](../interfaces/_entities_list_.list.md)[]>>
 
-*Defined in [client/masto.ts:705](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L705)*
+*Defined in [client/masto.ts:711](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L711)*
 
 User’s lists.
 
@@ -1135,7 +959,7 @@ ___
 
 ▸ **fetchMutes**(params?: *[PaginationParams](../interfaces/_client_params_.paginationparams.md)*): `AsyncIterableIterator`<`undefined` \| `AxiosResponse`<[Account](../interfaces/_entities_account_.account.md)[]>>
 
-*Defined in [client/masto.ts:861](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L861)*
+*Defined in [client/masto.ts:867](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L867)*
 
 Accounts the user has muted.
 
@@ -1157,7 +981,7 @@ ___
 
 ▸ **fetchNotification**(id: *`string`*): `Promise`<`AxiosResponse`<[Notification](../interfaces/_entities_notification_.notification.md)>>
 
-*Defined in [client/masto.ts:943](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L943)*
+*Defined in [client/masto.ts:949](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L949)*
 
 Getting a single notification
 
@@ -1179,7 +1003,7 @@ ___
 
 ▸ **fetchNotifications**(params?: *[FetchNotificationsParams](../interfaces/_client_params_.fetchnotificationsparams.md)*): `Promise`<`AxiosResponse`<[Notification](../interfaces/_entities_notification_.notification.md)[]>>
 
-*Defined in [client/masto.ts:930](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L930)*
+*Defined in [client/masto.ts:936](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L936)*
 
 Notifications concerning the user.
 
@@ -1201,7 +1025,7 @@ ___
 
 ▸ **fetchPoll**(id: *`string`*): `Promise`<`AxiosResponse`<[Poll](../interfaces/_entities_poll_.poll.md)>>
 
-*Defined in [client/masto.ts:1037](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1037)*
+*Defined in [client/masto.ts:1043](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1043)*
 
 Fetch poll by its ID
 
@@ -1217,13 +1041,29 @@ Fetch poll by its ID
 Poll
 
 ___
+<a id="fetchpreferences"></a>
+
+###  fetchPreferences
+
+▸ **fetchPreferences**(): `Promise`<`AxiosResponse`<[Preference](../interfaces/_entities_preference_.preference.md)>>
+
+*Defined in [client/masto.ts:1415](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1415)*
+
+Fetch preferences
+
+*__see__*: [https://github.com/tootsuite/mastodon/pull/10109](https://github.com/tootsuite/mastodon/pull/10109)
+
+**Returns:** `Promise`<`AxiosResponse`<[Preference](../interfaces/_entities_preference_.preference.md)>>
+User preferences
+
+___
 <a id="fetchpublictimeline"></a>
 
 ###  fetchPublicTimeline
 
 ▸ **fetchPublicTimeline**(params?: *[FetchTimelineParams](../interfaces/_client_params_.fetchtimelineparams.md)*): `AsyncIterableIterator`<`undefined` \| `AxiosResponse`<[Status](../interfaces/_entities_status_.status.md)[]>>
 
-*Defined in [client/masto.ts:1329](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1329)*
+*Defined in [client/masto.ts:1335](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1335)*
 
 Retrieving the public timeline (aka "Federated timeline" in the UI)
 
@@ -1245,7 +1085,7 @@ ___
 
 ▸ **fetchPushSubscription**(): `Promise`<`AxiosResponse`<[PushSubscription](../interfaces/_entities_push_subscription_.pushsubscription.md)>>
 
-*Defined in [client/masto.ts:998](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L998)*
+*Defined in [client/masto.ts:1004](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1004)*
 
 Fetch Push Subscription for notifications
 
@@ -1261,7 +1101,7 @@ ___
 
 ▸ **fetchScheduledStatus**(id: *`string`*): `Promise`<`AxiosResponse`<[ScheduledStatus](../interfaces/_entities_scheduled_status_.scheduledstatus.md)>>
 
-*Defined in [client/masto.ts:1089](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1089)*
+*Defined in [client/masto.ts:1095](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1095)*
 
 Get scheduled status
 
@@ -1283,7 +1123,7 @@ ___
 
 ▸ **fetchScheduledStatuses**(): `Promise`<`AxiosResponse`<[ScheduledStatus](../interfaces/_entities_scheduled_status_.scheduledstatus.md)[]>>
 
-*Defined in [client/masto.ts:1076](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1076)*
+*Defined in [client/masto.ts:1082](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1082)*
 
 Get scheduled statuses
 
@@ -1299,7 +1139,7 @@ ___
 
 ▸ **fetchStatus**(id: *`string`*): `Promise`<`AxiosResponse`<[Status](../interfaces/_entities_status_.status.md)>>
 
-*Defined in [client/masto.ts:1155](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1155)*
+*Defined in [client/masto.ts:1161](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1161)*
 
 Fetch a status with id
 
@@ -1321,7 +1161,7 @@ ___
 
 ▸ **fetchStatusCard**(id: *`string`*): `Promise`<`AxiosResponse`<[Card](../interfaces/_entities_card_.card.md)>>
 
-*Defined in [client/masto.ts:1176](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1176)*
+*Defined in [client/masto.ts:1182](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1182)*
 
 Link preview card for a status, if available.
 
@@ -1343,7 +1183,7 @@ ___
 
 ▸ **fetchStatusContext**(id: *`string`*): `Promise`<`AxiosResponse`<[Context](../interfaces/_entities_context_.context.md)>>
 
-*Defined in [client/masto.ts:1166](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1166)*
+*Defined in [client/masto.ts:1172](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1172)*
 
 What the status replies to, and replies to it.
 
@@ -1365,7 +1205,7 @@ ___
 
 ▸ **fetchStatusFavouritedBy**(id: *`string`*, params?: *[PaginationParams](../interfaces/_client_params_.paginationparams.md)*): `AsyncIterableIterator`<`undefined` \| `AxiosResponse`<[Account](../interfaces/_entities_account_.account.md)[]>>
 
-*Defined in [client/masto.ts:1203](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1203)*
+*Defined in [client/masto.ts:1209](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1209)*
 
 Accounts that favourited the status.
 
@@ -1388,7 +1228,7 @@ ___
 
 ▸ **fetchStatusRebloggedBy**(id: *`string`*, params?: *[PaginationParams](../interfaces/_client_params_.paginationparams.md)*): `AsyncIterableIterator`<`undefined` \| `AxiosResponse`<[Account](../interfaces/_entities_account_.account.md)[]>>
 
-*Defined in [client/masto.ts:1188](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1188)*
+*Defined in [client/masto.ts:1194](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1194)*
 
 Accounts that reblogged the status.
 
@@ -1411,7 +1251,7 @@ ___
 
 ▸ **fetchSuggestions**(): `Promise`<`AxiosResponse`<[Account](../interfaces/_entities_account_.account.md)[]>>
 
-*Defined in [client/masto.ts:650](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L650)*
+*Defined in [client/masto.ts:656](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L656)*
 
 Accounts the user had past positive interactions with, but is not following yet.
 
@@ -1427,7 +1267,7 @@ ___
 
 ▸ **fetchTagTimeline**(id: *`string`*, params?: *[FetchTimelineParams](../interfaces/_client_params_.fetchtimelineparams.md)*): `AsyncIterableIterator`<`undefined` \| `AxiosResponse`<[Status](../interfaces/_entities_status_.status.md)[]>>
 
-*Defined in [client/masto.ts:1344](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1344)*
+*Defined in [client/masto.ts:1347](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1347)*
 
 Retrieving a tag timeline
 
@@ -1450,7 +1290,7 @@ ___
 
 ▸ **followAccount**(id: *`string`*, params?: *[FollowAccountParams](../interfaces/_client_params_.followaccountparams.md)*): `Promise`<`AxiosResponse`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>>
 
-*Defined in [client/masto.ts:292](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L292)*
+*Defined in [client/masto.ts:306](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L306)*
 
 Follow an account by id
 
@@ -1473,7 +1313,7 @@ ___
 
 ▸ **followAccountByUsername**(uri: *`string`*): `Promise`<`AxiosResponse`<[Account](../interfaces/_entities_account_.account.md)>>
 
-*Defined in [client/masto.ts:1404](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1404)*
+*Defined in [client/masto.ts:1404](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1404)*
 
 Following a remote user
 
@@ -1489,39 +1329,13 @@ Following a remote user
 The local representation of the followed account, as an Account.
 
 ___
-<a id="get"></a>
-
-###  get
-
-▸ **get**<`T`>(url: *`string`*, params?: *`object`*, options?: *`AxiosRequestConfig`*): `Promise`<`AxiosResponse`<`T`>>
-
-*Inherited from [Gateway](_client_gateway_.gateway.md).[get](_client_gateway_.gateway.md#get)*
-
-*Defined in [client/gateway.ts:215](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L215)*
-
-HTTP GET
-
-**Type parameters:**
-
-#### T 
-**Parameters:**
-
-| Name | Type | Default value | Description |
-| ------ | ------ | ------ | ------ |
-| url | `string` | - |  URL to request |
-| `Default value` params | `object` |  {} |  Query strings |
-| `Optional` options | `AxiosRequestConfig` | - |  Fetch API options |
-
-**Returns:** `Promise`<`AxiosResponse`<`T`>>
-
-___
 <a id="muteaccount"></a>
 
 ###  muteAccount
 
 ▸ **muteAccount**(id: *`string`*, params: *[MuteAccountParams](../interfaces/_client_params_.muteaccountparams.md)*): `Promise`<`AxiosResponse`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>>
 
-*Defined in [client/masto.ts:875](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L875)*
+*Defined in [client/masto.ts:881](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L881)*
 
 Mute an account with id
 
@@ -1544,7 +1358,7 @@ ___
 
 ▸ **muteStatus**(id: *`string`*): `Promise`<`AxiosResponse`<[Status](../interfaces/_entities_status_.status.md)>>
 
-*Defined in [client/masto.ts:904](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L904)*
+*Defined in [client/masto.ts:910](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L910)*
 
 Mute the conversation the status is part of, to no longer be notified about it.
 
@@ -1560,67 +1374,13 @@ Mute the conversation the status is part of, to no longer be notified about it.
 Returns Status
 
 ___
-<a id="paginate"></a>
-
-###  paginate
-
-▸ **paginate**<`Data`,`Params`>(initialUrl: *`string`*, initialParams?: *[Params]()*): `AsyncIterableIterator`<`AxiosResponse`<`Data`> \| `undefined`>
-
-*Inherited from [Gateway](_client_gateway_.gateway.md).[paginate](_client_gateway_.gateway.md#paginate)*
-
-*Defined in [client/gateway.ts:318](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L318)*
-
-Generate an iterable of the pagination. The default generator implementation of JS cannot change the value of `done` depend on the result of yield, Therefore we define custom generator to reproduce Mastodon's link header behaviour faithfully.
-
-**Type parameters:**
-
-#### Data 
-#### Params 
-**Parameters:**
-
-| Name | Type | Description |
-| ------ | ------ | ------ |
-| initialUrl | `string` |  URL for the endpoint |
-| `Optional` initialParams | [Params]() |  Query parameter |
-
-**Returns:** `AsyncIterableIterator`<`AxiosResponse`<`Data`> \| `undefined`>
-Async iterable iterator of the pages.
-See also [MDN article about generator/iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators)
-
-___
-<a id="patch"></a>
-
-###  patch
-
-▸ **patch**<`T`>(url: *`string`*, data?: *`any`*, options?: *`AxiosRequestConfig`*): `Promise`<`AxiosResponse`<`T`>>
-
-*Inherited from [Gateway](_client_gateway_.gateway.md).[patch](_client_gateway_.gateway.md#patch)*
-
-*Defined in [client/gateway.ts:284](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L284)*
-
-HTTP PATCH
-
-**Type parameters:**
-
-#### T 
-**Parameters:**
-
-| Name | Type | Default value | Description |
-| ------ | ------ | ------ | ------ |
-| url | `string` | - |  URL to request |
-| `Default value` data | `any` |  {} |  Payload |
-| `Optional` options | `AxiosRequestConfig` | - |  Fetch API options |
-
-**Returns:** `Promise`<`AxiosResponse`<`T`>>
-
-___
 <a id="pinaccount"></a>
 
 ###  pinAccount
 
 ▸ **pinAccount**(id: *`string`*): `Promise`<`AxiosResponse`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>>
 
-*Defined in [client/masto.ts:478](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L478)*
+*Defined in [client/masto.ts:489](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L489)*
 
 Endorse an account, i.e. choose to feature the account on the user’s public profile.
 
@@ -1642,7 +1402,7 @@ ___
 
 ▸ **pinStatus**(id: *`string`*): `Promise`<`AxiosResponse`<[Status](../interfaces/_entities_status_.status.md)>>
 
-*Defined in [client/masto.ts:1278](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1278)*
+*Defined in [client/masto.ts:1284](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1284)*
 
 Pin user’s own status to user’s profile.
 
@@ -1658,65 +1418,13 @@ Pin user’s own status to user’s profile.
 Returns Status
 
 ___
-<a id="post"></a>
-
-###  post
-
-▸ **post**<`T`>(url: *`string`*, data?: *`any`*, options?: *`AxiosRequestConfig`*): `Promise`<`AxiosResponse`<`T`>>
-
-*Inherited from [Gateway](_client_gateway_.gateway.md).[post](_client_gateway_.gateway.md#post)*
-
-*Defined in [client/gateway.ts:236](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L236)*
-
-HTTP POST
-
-**Type parameters:**
-
-#### T 
-**Parameters:**
-
-| Name | Type | Default value | Description |
-| ------ | ------ | ------ | ------ |
-| url | `string` | - |  URL to request |
-| `Default value` data | `any` |  {} |  Payload |
-| `Optional` options | `AxiosRequestConfig` | - |  Fetch API options |
-
-**Returns:** `Promise`<`AxiosResponse`<`T`>>
-
-___
-<a id="put"></a>
-
-###  put
-
-▸ **put**<`T`>(url: *`string`*, data?: *`any`*, options?: *`AxiosRequestConfig`*): `Promise`<`AxiosResponse`<`T`>>
-
-*Inherited from [Gateway](_client_gateway_.gateway.md).[put](_client_gateway_.gateway.md#put)*
-
-*Defined in [client/gateway.ts:252](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L252)*
-
-HTTP PUT
-
-**Type parameters:**
-
-#### T 
-**Parameters:**
-
-| Name | Type | Default value | Description |
-| ------ | ------ | ------ | ------ |
-| url | `string` | - |  URL to request |
-| `Default value` data | `any` |  {} |  Payload |
-| `Optional` options | `AxiosRequestConfig` | - |  Fetch API options |
-
-**Returns:** `Promise`<`AxiosResponse`<`T`>>
-
-___
 <a id="reblogstatus"></a>
 
 ###  reblogStatus
 
-▸ **reblogStatus**(id: *`string`*): `Promise`<`AxiosResponse`<[Status](../interfaces/_entities_status_.status.md)>>
+▸ **reblogStatus**(id: *`string`*, params?: *[ReblogStatusParams](../interfaces/_client_params_.reblogstatusparams.md)*): `Promise`<`AxiosResponse`<[Status](../interfaces/_entities_status_.status.md)>>
 
-*Defined in [client/masto.ts:1252](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1252)*
+*Defined in [client/masto.ts:1258](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1258)*
 
 Reblog a status with id.
 
@@ -1727,6 +1435,7 @@ Reblog a status with id.
 | Name | Type | Description |
 | ------ | ------ | ------ |
 | id | `string` |  ID of the target status |
+| `Optional` params | [ReblogStatusParams](../interfaces/_client_params_.reblogstatusparams.md) |
 
 **Returns:** `Promise`<`AxiosResponse`<[Status](../interfaces/_entities_status_.status.md)>>
 Returns Status
@@ -1738,7 +1447,7 @@ ___
 
 ▸ **rejectFollowRequest**(id: *`string`*): `Promise`<`AxiosResponse`<`void`>>
 
-*Defined in [client/masto.ts:638](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L638)*
+*Defined in [client/masto.ts:644](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L644)*
 
 Do not allow the account to follow the user.
 
@@ -1760,7 +1469,7 @@ ___
 
 ▸ **removeAccountFromList**(id: *`string`*, params: *[ModifyListAccountsParams](../interfaces/_client_params_.modifylistaccountsparams.md)*): `Promise`<`AxiosResponse`<`void`>>
 
-*Defined in [client/masto.ts:816](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L816)*
+*Defined in [client/masto.ts:822](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L822)*
 
 Remove accounts from a list.
 
@@ -1783,7 +1492,7 @@ ___
 
 ▸ **removeFilter**(id: *`string`*): `Promise`<`AxiosResponse`<`void`>>
 
-*Defined in [client/masto.ts:594](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L594)*
+*Defined in [client/masto.ts:605](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L605)*
 
 Delete a text filter.
 
@@ -1805,7 +1514,7 @@ ___
 
 ▸ **removeList**(id: *`string`*): `Promise`<`AxiosResponse`<`void`>>
 
-*Defined in [client/masto.ts:788](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L788)*
+*Defined in [client/masto.ts:794](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L794)*
 
 Remove a list with id
 
@@ -1827,7 +1536,7 @@ ___
 
 ▸ **removePushSubscription**(): `Promise`<`AxiosResponse`<`void`>>
 
-*Defined in [client/masto.ts:1026](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1026)*
+*Defined in [client/masto.ts:1032](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1032)*
 
 Remove the current Web Push API subscription.
 
@@ -1843,7 +1552,7 @@ ___
 
 ▸ **removeScheduledStatus**(id: *`string`*): `Promise`<`AxiosResponse`<`void`>>
 
-*Defined in [client/masto.ts:1124](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1124)*
+*Defined in [client/masto.ts:1130](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1130)*
 
 Remove scheduled status
 
@@ -1865,7 +1574,7 @@ ___
 
 ▸ **removeStatus**(id: *`string`*): `Promise`<`AxiosResponse`<`void`>>
 
-*Defined in [client/masto.ts:1239](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1239)*
+*Defined in [client/masto.ts:1245](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1245)*
 
 Remove a status. The status may still be available a short while after the call.
 
@@ -1887,7 +1596,7 @@ ___
 
 ▸ **removeSuggestion**(id: *`string`*): `Promise`<`AxiosResponse`<`void`>>
 
-*Defined in [client/masto.ts:663](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L663)*
+*Defined in [client/masto.ts:669](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L669)*
 
 Remove account from suggestions.
 
@@ -1909,7 +1618,7 @@ ___
 
 ▸ **reportAccount**(params: *[ReportAccountParams](../interfaces/_client_params_.reportaccountparams.md)*): `Promise`<`AxiosResponse`<`void`>>
 
-*Defined in [client/masto.ts:1064](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1064)*
+*Defined in [client/masto.ts:1070](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1070)*
 
 Report an account to moderators/administrators
 
@@ -1931,7 +1640,7 @@ ___
 
 ▸ **revokeAccessToken**(params: *[RevokeAccessTokenParams](../interfaces/_client_params_.revokeaccesstokenparams.md)*): `Promise`<`AxiosResponse`<`void`>>
 
-*Defined in [client/masto.ts:177](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L177)*
+*Defined in [client/masto.ts:191](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L191)*
 
 Revoke access token parmanently
 
@@ -1950,9 +1659,9 @@ ___
 
 ###  search
 
-▸ **search**<`V`>(params: *[SearchParams](../interfaces/_client_params_.searchparams.md)*, version?: *`V`*): `Promise`<`AxiosResponse`<`V extends "v2" ? Results : ResultsV1`>>
+▸ **search**<`V`>(params: *[SearchParams](../interfaces/_client_params_.searchparams.md)*, version?: *`V`*): `AsyncIterableIterator`<`undefined` \| `AxiosResponse`<`V extends "v2" ? Results : ResultsV1`>>
 
-*Defined in [client/masto.ts:1138](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1138)*
+*Defined in [client/masto.ts:1144](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1144)*
 
 Search for content in accounts, statuses and hashtags.
 
@@ -1968,7 +1677,7 @@ Search for content in accounts, statuses and hashtags.
 | params | [SearchParams](../interfaces/_client_params_.searchparams.md) | - |  Parameters |
 | `Default value` version | `V` |  &#x27;v2&#x27; as V |  Version of Mastodon API (default: \`'v2'\`) |
 
-**Returns:** `Promise`<`AxiosResponse`<`V extends "v2" ? Results : ResultsV1`>>
+**Returns:** `AsyncIterableIterator`<`undefined` \| `AxiosResponse`<`V extends "v2" ? Results : ResultsV1`>>
 Returns Results
 
 ___
@@ -1978,7 +1687,7 @@ ___
 
 ▸ **searchAccounts**(params?: *[SearchAccountsParams](../interfaces/_client_params_.searchaccountsparams.md)*): `Promise`<`AxiosResponse`<[Account](../interfaces/_entities_account_.account.md)[]>>
 
-*Defined in [client/masto.ts:339](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L339)*
+*Defined in [client/masto.ts:350](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L350)*
 
 Search for matching accounts by username, domain and display name.
 
@@ -1994,36 +1703,13 @@ Search for matching accounts by username, domain and display name.
 Returns array of Account
 
 ___
-<a id="stream"></a>
-
-###  stream
-
-▸ **stream**(url: *`string`*, params?: *`object`*): `Promise`<[MastoEvents](_client_masto_events_.mastoevents.md)>
-
-*Inherited from [Gateway](_client_gateway_.gateway.md).[stream](_client_gateway_.gateway.md#stream)*
-
-*Defined in [client/gateway.ts:298](https://github.com/neet/masto.js/blob/390e749/src/client/gateway.ts#L298)*
-
-Connect to a streaming
-
-**Parameters:**
-
-| Name | Type | Default value |
-| ------ | ------ | ------ |
-| url | `string` | - |
-| `Default value` params | `object` |  {} |
-
-**Returns:** `Promise`<[MastoEvents](_client_masto_events_.mastoevents.md)>
-Instance of EventEmitter
-
-___
 <a id="streamcommunitytimeline"></a>
 
 ###  streamCommunityTimeline
 
 ▸ **streamCommunityTimeline**(): `Promise`<[MastoEvents](_client_masto_events_.mastoevents.md)>
 
-*Defined in [client/masto.ts:100](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L100)*
+*Defined in [client/masto.ts:114](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L114)*
 
 Starting local timeline streaming
 
@@ -2039,7 +1725,7 @@ ___
 
 ▸ **streamDirectTimeline**(): `Promise`<[MastoEvents](_client_masto_events_.mastoevents.md)>
 
-*Defined in [client/masto.ts:156](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L156)*
+*Defined in [client/masto.ts:170](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L170)*
 
 Starting direct timeline streaming
 
@@ -2055,7 +1741,7 @@ ___
 
 ▸ **streamListTimeline**(id: *`string`*): `Promise`<[MastoEvents](_client_masto_events_.mastoevents.md)>
 
-*Defined in [client/masto.ts:141](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L141)*
+*Defined in [client/masto.ts:155](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L155)*
 
 Starting list timeline streaming
 
@@ -2077,7 +1763,7 @@ ___
 
 ▸ **streamLocalTagTimeline**(id: *`string`*): `Promise`<[MastoEvents](_client_masto_events_.mastoevents.md)>
 
-*Defined in [client/masto.ts:127](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L127)*
+*Defined in [client/masto.ts:141](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L141)*
 
 Starting local tag timeline streaming
 
@@ -2099,7 +1785,7 @@ ___
 
 ▸ **streamPublicTimeline**(): `Promise`<[MastoEvents](_client_masto_events_.mastoevents.md)>
 
-*Defined in [client/masto.ts:88](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L88)*
+*Defined in [client/masto.ts:102](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L102)*
 
 Starting federated timeline streaming
 
@@ -2115,7 +1801,7 @@ ___
 
 ▸ **streamTagTimeline**(id: *`string`*): `Promise`<[MastoEvents](_client_masto_events_.mastoevents.md)>
 
-*Defined in [client/masto.ts:113](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L113)*
+*Defined in [client/masto.ts:127](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L127)*
 
 Starting tag timeline streaming
 
@@ -2137,7 +1823,7 @@ ___
 
 ▸ **streamUser**(): `Promise`<[MastoEvents](_client_masto_events_.mastoevents.md)>
 
-*Defined in [client/masto.ts:76](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L76)*
+*Defined in [client/masto.ts:90](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L90)*
 
 Starting home timeline and notification streaming
 
@@ -2153,7 +1839,7 @@ ___
 
 ▸ **unblockAccount**(id: *`string`*): `Promise`<`AxiosResponse`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>>
 
-*Defined in [client/masto.ts:400](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L400)*
+*Defined in [client/masto.ts:411](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L411)*
 
 Unblock an account with id
 
@@ -2175,7 +1861,7 @@ ___
 
 ▸ **unblockDomain**(domain: *`string`*): `Promise`<`AxiosResponse`<`void`>>
 
-*Defined in [client/masto.ts:451](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L451)*
+*Defined in [client/masto.ts:462](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L462)*
 
 Remove a domain block.
 
@@ -2197,7 +1883,7 @@ ___
 
 ▸ **unfavouriteStatus**(id: *`string`*): `Promise`<`AxiosResponse`<[Status](../interfaces/_entities_status_.status.md)>>
 
-*Defined in [client/masto.ts:529](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L529)*
+*Defined in [client/masto.ts:540](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L540)*
 
 Undo the favourite of a status.
 
@@ -2219,7 +1905,7 @@ ___
 
 ▸ **unfollowAccount**(id: *`string`*): `Promise`<`AxiosResponse`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>>
 
-*Defined in [client/masto.ts:308](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L308)*
+*Defined in [client/masto.ts:322](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L322)*
 
 Unfollow an account by id
 
@@ -2241,7 +1927,7 @@ ___
 
 ▸ **unmuteAccount**(id: *`string`*): `Promise`<`AxiosResponse`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>>
 
-*Defined in [client/masto.ts:891](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L891)*
+*Defined in [client/masto.ts:897](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L897)*
 
 Unmute an account with id
 
@@ -2263,7 +1949,7 @@ ___
 
 ▸ **unmuteStatus**(id: *`string`*): `Promise`<`AxiosResponse`<[Status](../interfaces/_entities_status_.status.md)>>
 
-*Defined in [client/masto.ts:917](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L917)*
+*Defined in [client/masto.ts:923](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L923)*
 
 Unmute the conversation the status is part of.
 
@@ -2285,7 +1971,7 @@ ___
 
 ▸ **unpinAccount**(id: *`string`*): `Promise`<`AxiosResponse`<[Relationship](../interfaces/_entities_relationship_.relationship.md)>>
 
-*Defined in [client/masto.ts:491](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L491)*
+*Defined in [client/masto.ts:502](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L502)*
 
 Unpin an account with id
 
@@ -2307,7 +1993,7 @@ ___
 
 ▸ **unpinStatus**(id: *`string`*): `Promise`<`AxiosResponse`<[Status](../interfaces/_entities_status_.status.md)>>
 
-*Defined in [client/masto.ts:1291](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1291)*
+*Defined in [client/masto.ts:1297](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1297)*
 
 Remove pinned status from user’s profile.
 
@@ -2329,7 +2015,7 @@ ___
 
 ▸ **unreblogStatus**(id: *`string`*): `Promise`<`AxiosResponse`<[Status](../interfaces/_entities_status_.status.md)>>
 
-*Defined in [client/masto.ts:1265](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1265)*
+*Defined in [client/masto.ts:1271](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1271)*
 
 Undo the reblog of a status.
 
@@ -2351,7 +2037,7 @@ ___
 
 ▸ **updateCredentials**(params?: *[UpdateCredentialsParams](../interfaces/_client_params_.updatecredentialsparams.md)*): `Promise`<`AxiosResponse`<[AccountCredentials](../interfaces/_entities_account_.accountcredentials.md)>>
 
-*Defined in [client/masto.ts:226](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L226)*
+*Defined in [client/masto.ts:240](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L240)*
 
 Update user’s own account.
 
@@ -2373,7 +2059,7 @@ ___
 
 ▸ **updateFilter**(id: *`string`*, params?: *[ModifyFilterParams](../interfaces/_client_params_.modifyfilterparams.md)*): `Promise`<`AxiosResponse`<[Filter](../interfaces/_entities_filter_.filter.md)>>
 
-*Defined in [client/masto.ts:581](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L581)*
+*Defined in [client/masto.ts:592](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L592)*
 
 Update a text filter.
 
@@ -2396,7 +2082,7 @@ ___
 
 ▸ **updateList**(id: *`string`*, params: *[ModifyListParams](../interfaces/_client_params_.modifylistparams.md)*): `Promise`<`AxiosResponse`<[List](../interfaces/_entities_list_.list.md)>>
 
-*Defined in [client/masto.ts:775](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L775)*
+*Defined in [client/masto.ts:781](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L781)*
 
 Update a list with title and id
 
@@ -2419,7 +2105,7 @@ ___
 
 ▸ **updateMediaAttachment**(id: *`string`*, params: *[UpdateMediaAttachmentParams](../modules/_client_params_.md#updatemediaattachmentparams)*): `Promise`<`AxiosResponse`<[Attachment](../interfaces/_entities_attachment_.attachment.md)>>
 
-*Defined in [client/masto.ts:845](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L845)*
+*Defined in [client/masto.ts:851](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L851)*
 
 Update a media attachment. Can only be done before the media is attached to a status.
 
@@ -2442,7 +2128,7 @@ ___
 
 ▸ **updatePushSubscription**(params: *[UpdatePushSubscriptionParams](../modules/_client_params_.md#updatepushsubscriptionparams)*): `Promise`<`AxiosResponse`<[PushSubscription](../interfaces/_entities_push_subscription_.pushsubscription.md)>>
 
-*Defined in [client/masto.ts:1011](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1011)*
+*Defined in [client/masto.ts:1017](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1017)*
 
 Update current Web Push API subscription. Only the `data` part can be updated, e.g. which types of notifications are desired. To change fundamentals, a new subscription must be created instead.
 
@@ -2464,7 +2150,7 @@ ___
 
 ▸ **updateScheduledStatus**(id: *`string`*, params: *[UpdateScheduledStatusParams](../interfaces/_client_params_.updatescheduledstatusparams.md)*): `Promise`<`AxiosResponse`<[ScheduledStatus](../interfaces/_entities_scheduled_status_.scheduledstatus.md)>>
 
-*Defined in [client/masto.ts:1105](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1105)*
+*Defined in [client/masto.ts:1111](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1111)*
 
 Update Scheduled status. Only `scheduled_at` can be changed. To change the content, delete it and post a new status.
 
@@ -2487,7 +2173,7 @@ ___
 
 ▸ **uploadMediaAttachment**(params: *[UploadMediaAttachmentParams](../interfaces/_client_params_.uploadmediaattachmentparams.md)*): `Promise`<`AxiosResponse`<[Attachment](../interfaces/_entities_attachment_.attachment.md)>>
 
-*Defined in [client/masto.ts:829](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L829)*
+*Defined in [client/masto.ts:835](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L835)*
 
 Upload a media attachment that can be used with a new status.
 
@@ -2509,7 +2195,7 @@ ___
 
 ▸ **verifyAppCredentials**(): `Promise`<`AxiosResponse`<[Application](../interfaces/_entities_application_.application.md)>>
 
-*Defined in [client/masto.ts:361](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L361)*
+*Defined in [client/masto.ts:372](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L372)*
 
 Confirm that the app’s OAuth2 credentials work.
 
@@ -2525,7 +2211,7 @@ ___
 
 ▸ **verifyCredentials**(): `Promise`<`AxiosResponse`<[AccountCredentials](../interfaces/_entities_account_.accountcredentials.md)>>
 
-*Defined in [client/masto.ts:211](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L211)*
+*Defined in [client/masto.ts:225](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L225)*
 
 User’s own account.
 
@@ -2541,7 +2227,7 @@ ___
 
 ▸ **votePoll**(id: *`string`*, params: *[VotePollParams](../interfaces/_client_params_.votepollparams.md)*): `Promise`<`AxiosResponse`<[Poll](../interfaces/_entities_poll_.poll.md)>>
 
-*Defined in [client/masto.ts:1051](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L1051)*
+*Defined in [client/masto.ts:1057](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L1057)*
 
 Vote on a poll
 
@@ -2564,7 +2250,7 @@ ___
 
 ▸ **login**(params: *[LoginParams](../modules/_client_params_.md#loginparams)*): `Promise`<[Masto](_client_masto_.masto.md)>
 
-*Defined in [client/masto.ts:58](https://github.com/neet/masto.js/blob/390e749/src/client/masto.ts#L58)*
+*Defined in [client/masto.ts:71](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto.ts#L71)*
 
 Login to Mastodon
 

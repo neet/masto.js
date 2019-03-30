@@ -25,7 +25,7 @@
 
 **● data**: *`EventTypesMap[T]`*
 
-*Defined in [client/masto-events.ts:34](https://github.com/neet/masto.js/blob/390e749/src/client/masto-events.ts#L34)*
+*Defined in [client/masto-events.ts:34](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto-events.ts#L34)*
 
 Parsed payload data
 
@@ -36,7 +36,7 @@ ___
 
 **● event**: *`T`*
 
-*Defined in [client/masto-events.ts:32](https://github.com/neet/masto.js/blob/390e749/src/client/masto-events.ts#L32)*
+*Defined in [client/masto-events.ts:32](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/masto-events.ts#L32)*
 
 Event type
 

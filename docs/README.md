@@ -1,6 +1,5 @@
 
 ![](https://i.imgur.com/z47VXyd.png)
-====================================
 
 Mastodon API client for JavaScript, TypeScript, Node.js, browsers
 
@@ -55,6 +54,16 @@ FAQ
 
 A. Masto.js using [AsyncIterator](https://github.com/tc39/proposal-async-iteration) which is very new JS feature and it may not be supported in particular environments. So in browsers, you need to use a polyfill like [Babel's](https://babeljs.io/docs/en/babel-plugin-proposal-async-generator-functions). In Node.js, it is supported on [v10](https://medium.com/@nairihar/async-iteration-in-nodejs-v10-3c17dc00ed9f) so you can update and use it.
 
+If you're using Masto.js with TypeScript, you need to add the following config to `tsconfig.json` for static typing.
+
+```diff
+{
+  "compilerOptions": {
+    "lib": [
++      "esnext.asynciterable"
+      ...
+```
+
 License
 -------
 
@@ -64,6 +73,7 @@ License
 
 ### External modules
 
+* ["client/__mocks__/gateway"](modules/_client___mocks___gateway_.md)
 * ["client/__mocks__/masto-events"](modules/_client___mocks___masto_events_.md)
 * ["client/__tests__/decorators.spec"](modules/_client___tests___decorators_spec_.md)
 * ["client/__tests__/gateway.spec"](modules/_client___tests___gateway_spec_.md)
@@ -90,6 +100,7 @@ License
 * ["entities/notification"](modules/_entities_notification_.md)
 * ["entities/oauth"](modules/_entities_oauth_.md)
 * ["entities/poll"](modules/_entities_poll_.md)
+* ["entities/preference"](modules/_entities_preference_.md)
 * ["entities/push-subscription"](modules/_entities_push_subscription_.md)
 * ["entities/relationship"](modules/_entities_relationship_.md)
 * ["entities/results"](modules/_entities_results_.md)

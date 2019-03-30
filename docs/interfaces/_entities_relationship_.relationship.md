@@ -10,6 +10,7 @@
 
 ### Properties
 
+* [blocked_by](_entities_relationship_.relationship.md#blocked_by)
 * [blocking](_entities_relationship_.relationship.md#blocking)
 * [domain_blocking](_entities_relationship_.relationship.md#domain_blocking)
 * [endorsed](_entities_relationship_.relationship.md#endorsed)
@@ -25,13 +26,24 @@
 
 ## Properties
 
+<a id="blocked_by"></a>
+
+###  blocked_by
+
+**● blocked_by**: *`boolean`*
+
+*Defined in [entities/relationship.ts:11](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/relationship.ts#L11)*
+
+Whether the user is currently being blocked by the account
+
+___
 <a id="blocking"></a>
 
 ###  blocking
 
 **● blocking**: *`boolean`*
 
-*Defined in [entities/relationship.ts:11](https://github.com/neet/masto.js/blob/390e749/src/entities/relationship.ts#L11)*
+*Defined in [entities/relationship.ts:13](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/relationship.ts#L13)*
 
 Whether the user is currently blocking the account
 
@@ -42,7 +54,7 @@ ___
 
 **● domain_blocking**: *`boolean`*
 
-*Defined in [entities/relationship.ts:19](https://github.com/neet/masto.js/blob/390e749/src/entities/relationship.ts#L19)*
+*Defined in [entities/relationship.ts:21](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/relationship.ts#L21)*
 
 Whether the user is currently blocking the accounts's domain
 
@@ -53,7 +65,7 @@ ___
 
 **● endorsed**: *`boolean`*
 
-*Defined in [entities/relationship.ts:21](https://github.com/neet/masto.js/blob/390e749/src/entities/relationship.ts#L21)*
+*Defined in [entities/relationship.ts:23](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/relationship.ts#L23)*
 
 Whether this user is endorsed by authenticated user
 
@@ -64,7 +76,7 @@ ___
 
 **● followed_by**: *`boolean`*
 
-*Defined in [entities/relationship.ts:9](https://github.com/neet/masto.js/blob/390e749/src/entities/relationship.ts#L9)*
+*Defined in [entities/relationship.ts:9](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/relationship.ts#L9)*
 
 Whether the user is currently being followed by the account
 
@@ -75,7 +87,7 @@ ___
 
 **● following**: *`boolean`*
 
-*Defined in [entities/relationship.ts:5](https://github.com/neet/masto.js/blob/390e749/src/entities/relationship.ts#L5)*
+*Defined in [entities/relationship.ts:5](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/relationship.ts#L5)*
 
 Whether the user is currently following the account
 
@@ -86,7 +98,7 @@ ___
 
 **● id**: *`string`*
 
-*Defined in [entities/relationship.ts:3](https://github.com/neet/masto.js/blob/390e749/src/entities/relationship.ts#L3)*
+*Defined in [entities/relationship.ts:3](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/relationship.ts#L3)*
 
 Target account id
 
@@ -97,7 +109,7 @@ ___
 
 **● muting**: *`boolean`*
 
-*Defined in [entities/relationship.ts:13](https://github.com/neet/masto.js/blob/390e749/src/entities/relationship.ts#L13)*
+*Defined in [entities/relationship.ts:15](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/relationship.ts#L15)*
 
 Whether the user is currently muting the account
 
@@ -108,7 +120,7 @@ ___
 
 **● muting_notifications**: *`boolean`*
 
-*Defined in [entities/relationship.ts:15](https://github.com/neet/masto.js/blob/390e749/src/entities/relationship.ts#L15)*
+*Defined in [entities/relationship.ts:17](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/relationship.ts#L17)*
 
 Whether the user is also muting notifications
 
@@ -119,7 +131,7 @@ ___
 
 **● requested**: *`boolean`*
 
-*Defined in [entities/relationship.ts:17](https://github.com/neet/masto.js/blob/390e749/src/entities/relationship.ts#L17)*
+*Defined in [entities/relationship.ts:19](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/relationship.ts#L19)*
 
 Whether the user has requested to follow the account
 
@@ -130,7 +142,7 @@ ___
 
 **● showing_reblogs**: *`boolean`*
 
-*Defined in [entities/relationship.ts:7](https://github.com/neet/masto.js/blob/390e749/src/entities/relationship.ts#L7)*
+*Defined in [entities/relationship.ts:7](https://github.com/neet/masto.js/blob/b4e0b0f/src/entities/relationship.ts#L7)*
 
 Whether reblog will be shown in your timeline
 

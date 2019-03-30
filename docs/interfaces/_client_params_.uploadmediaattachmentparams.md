@@ -10,7 +10,7 @@
 
 ### Properties
 
-* [descriptions](_client_params_.uploadmediaattachmentparams.md#descriptions)
+* [description](_client_params_.uploadmediaattachmentparams.md#description)
 * [file](_client_params_.uploadmediaattachmentparams.md#file)
 * [focus](_client_params_.uploadmediaattachmentparams.md#focus)
 
@@ -18,13 +18,13 @@
 
 ## Properties
 
-<a id="descriptions"></a>
+<a id="description"></a>
 
-### `<Optional>` descriptions
+### `<Optional>` description
 
-**● descriptions**: *`string` \| `null`*
+**● description**: *`string` \| `null`*
 
-*Defined in [client/params.ts:125](https://github.com/neet/masto.js/blob/390e749/src/client/params.ts#L125)*
+*Defined in [client/params.ts:125](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/params.ts#L125)*
 
 A plain-text description of the media, for accessibility (max 420 chars)
 
@@ -35,7 +35,7 @@ ___
 
 **● file**: *`any`*
 
-*Defined in [client/params.ts:123](https://github.com/neet/masto.js/blob/390e749/src/client/params.ts#L123)*
+*Defined in [client/params.ts:123](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/params.ts#L123)*
 
 Media to be uploaded (encoded using `multipart/form-data`)
 
@@ -46,7 +46,7 @@ ___
 
 **● focus**: *`string` \| `null`*
 
-*Defined in [client/params.ts:127](https://github.com/neet/masto.js/blob/390e749/src/client/params.ts#L127)*
+*Defined in [client/params.ts:127](https://github.com/neet/masto.js/blob/b4e0b0f/src/client/params.ts#L127)*
 
 Focal point: Two floating points, comma-delimited
 
