@@ -107,16 +107,6 @@ describe('MastoEvents', () => {
     expect(emitMock).toBeCalledWith('update', emitData);
   });
 
-  test('return void if message is not utf8-encoded', () => {
-    const result = mastoEvents.handleMessage({
-      type: 'base64',
-      data: '',
-      target: {} as any,
-    });
-
-    expect(result).toBeUndefined();
-  });
-
   test('subscribe events via event emitter', async () => {
     const cb = jest.fn();
     const stream = await mastoEvents.on('update', cb);

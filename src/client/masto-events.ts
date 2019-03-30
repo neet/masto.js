@@ -70,10 +70,6 @@ export class MastoEvents extends EventEmitter {
    * @param message Websocket message
    */
   public handleMessage = (message: Message) => {
-    if (message.type !== 'utf8') {
-      return;
-    }
-
     const parsedMessage = JSON.parse(message.data);
 
     try {
