@@ -1,5 +1,4 @@
 // tslint:disable
-import 'eventemitter3';
 import * as WebSocket from 'isomorphic-ws';
 import { MastoEvents } from '../masto-events';
 
@@ -120,7 +119,8 @@ describe('MastoEvents', () => {
 
   test('subscribe events via event emitter', async () => {
     const cb = jest.fn();
-    await mastoEvents.on('update', cb);
+    const stream = await mastoEvents.on('update', cb);
     expect(onMock).toBeCalledWith('update', cb);
+    expect(stream).toBeUndefined(); // mock
   });
 });

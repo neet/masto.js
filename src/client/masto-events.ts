@@ -99,7 +99,7 @@ export class MastoEvents extends EventEmitter {
   public on<T extends EventTypes>(
     event: T,
     callback: (payload: Event<T>) => void,
-  ): this {
+  ) {
     return super.on(event, callback);
   }
 }
