@@ -71,7 +71,7 @@ export class Masto {
   public static async login(params: LoginParams) {
     const gateway = new Gateway(params);
     const masto = new Masto(gateway);
-    const instance = await masto.fetchInstance().then(res => res.data);
+    const instance = await masto.fetchInstance();
 
     gateway.version = instance.version;
     gateway.streamingApiUrl = instance.urls.streaming_api;

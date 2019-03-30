@@ -17,6 +17,6 @@ import Masto from '../src';
   }
 
   masto.updateCredentials(profile).then((newProfile) => {
-    console.log(newProfile.data);
+    console.log(newProfile);
   })
 })()

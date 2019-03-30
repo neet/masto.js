@@ -14,6 +14,6 @@ import Masto from '../src';
     scopes: 'read write',
     website: 'example.com'
   }).then((oauthInfo) => {
-    console.log(oauthInfo.data);
+    console.log(oauthInfo);
   });
 })()

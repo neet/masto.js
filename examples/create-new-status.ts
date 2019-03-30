@@ -13,6 +13,6 @@ import Masto from '../src';
     status: 'Toot from TypeScript',
     visibility: 'direct',
   }).then((newStatus) => {
-    console.log(newStatus.data);
+    console.log(newStatus);
   });
 })()

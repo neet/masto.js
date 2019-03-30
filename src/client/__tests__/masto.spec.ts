@@ -24,11 +24,9 @@ describe('Masto', () => {
 
   test('login', async () => {
     (getMock as jest.Mock).mockResolvedValueOnce({
-      data: {
-        version: '2.8.0',
-        urls: {
-          streaming_api: 'wss://example.com/stream',
-        },
+      version: '2.8.0',
+      urls: {
+        streaming_api: 'wss://example.com/stream',
       },
     });
 

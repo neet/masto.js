@@ -14,12 +14,12 @@ import Mastodon from '../src';
 
   // Subscribe updates
   stream.on('update', (status) => {
-    console.log(`${status.data.account.username}: ${status.data.content}`);
+    console.log(`${status.account.username}: ${status.content}`);
   });
 
   // Subscribe notifications
   stream.on('notification', (notification) => {
-    console.log(`${notification.data.account.username}: ${notification.data.type}`);
+    console.log(`${notification.account.username}: ${notification.type}`);
   })
 })()
 

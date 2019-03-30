@@ -26,7 +26,7 @@ import Masto from '../src';
 
   // You can also use `for-await-of` syntax to page down the timeline
   for await (const statuses of timeline) {
-    statuses.data.forEach((status) => {
+    statuses.forEach((status) => {
       masto.favouriteStatus(status.id);
     });
   }

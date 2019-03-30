@@ -71,18 +71,13 @@ describe('MastoEvents', () => {
       payload: JSON.stringify(originalPayload),
     };
 
-    const emitData = {
-      event: 'update',
-      data: originalPayload,
-    };
-
     mastoEvents.handleMessage({
       type: 'utf8',
       data: JSON.stringify(originalData),
       target: {} as any,
     });
 
-    expect(emitMock).toBeCalledWith('update', emitData);
+    expect(emitMock).toBeCalledWith('update', originalPayload);
   });
 
   test('emit event with given props, with raw payload', () => {
@@ -93,18 +88,13 @@ describe('MastoEvents', () => {
       payload: originalPayload,
     };
 
-    const emitData = {
-      event: 'update',
-      data: originalPayload,
-    };
-
     mastoEvents.handleMessage({
       type: 'utf8',
       data: JSON.stringify(originalData),
       target: {} as any,
     });
 
-    expect(emitMock).toBeCalledWith('update', emitData);
+    expect(emitMock).toBeCalledWith('update', originalPayload);
   });
 
   test('subscribe events via event emitter', async () => {

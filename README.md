@@ -30,12 +30,12 @@ import Masto from 'masto';
     accessToken: 'YOUR TOKEN',  // Your access token (optional)
   });
 
-  masto.createStatus({
+  const data = await masto.createStatus({
     status: 'Hello Mastodon!',
     visibility: 'direct',
-  }).then((newStatus) => {
-    console.log(newStatus.data);
   });
+
+  console.log(data);
 })()
 ```
 

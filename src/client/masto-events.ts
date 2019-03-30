@@ -27,13 +27,6 @@ export interface EventTypesMap {
 
 export type EventTypes = keyof EventTypesMap;
 
-export interface Event<T extends EventTypes = EventTypes> {
-  /** Event type */
-  event: T;
-  /** Parsed payload data */
-  data: EventTypesMap[T];
-}
-
 /**
  * Mastodon streaming api wrapper
  */
@@ -71,20 +64,18 @@ export class MastoEvents extends EventEmitter {
    */
   public handleMessage = (message: Message) => {
     const parsedMessage = JSON.parse(message.data);
+    let data: any;
 
     try {
-      parsedMessage.data = JSON.parse(parsedMessage.payload);
+      data = JSON.parse(parsedMessage.payload);
     } catch {
       // If parsing failed, returns raw data
       // Basically this is handling for `filters_changed` event
       // Which doesn't contain payload in the data
-      parsedMessage.data = parsedMessage.payload;
+      data = parsedMessage.payload;
     }
 
-    // Remove original payload
-    delete parsedMessage.payload;
-
-    this.emit(parsedMessage.event, parsedMessage);
+    this.emit(parsedMessage.event, data);
   };
 
   /**
@@ -94,7 +85,7 @@ export class MastoEvents extends EventEmitter {
    */
   public on<T extends EventTypes>(
     event: T,
-    callback: (payload: Event<T>) => void,
+    callback: (payload: EventTypesMap[T]) => void,
   ) {
     return super.on(event, callback);
   }

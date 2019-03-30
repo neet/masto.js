@@ -20,8 +20,8 @@ import Masto from '../src';
   masto.createStatus({
     status: 'Toot from TypeScript',
     visibility: 'direct',
-    media_ids: [attachment.data.id],
+    media_ids: [attachment.id],
   }).then((newStatus) => {
-    console.log(newStatus.data);
+    console.log(newStatus);
   });
 })()

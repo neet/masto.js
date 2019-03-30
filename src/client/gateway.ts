@@ -194,8 +194,12 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  public get<T>(path: string, params: any = {}, options?: AxiosRequestConfig) {
-    return this.request<T>(
+  public async get<T>(
+    path: string,
+    params: any = {},
+    options?: AxiosRequestConfig,
+  ) {
+    const response = await this.request<T>(
       this.decorateRequestConfig({
         method: 'GET',
         url: this.uri + path,
@@ -203,6 +207,8 @@ export class Gateway {
         ...options,
       }),
     );
+
+    return response.data;
   }
 
   /**
@@ -212,8 +218,12 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  public post<T>(path: string, data: any = {}, options?: AxiosRequestConfig) {
-    return this.request<T>(
+  public async post<T>(
+    path: string,
+    data: any = {},
+    options?: AxiosRequestConfig,
+  ) {
+    const response = await this.request<T>(
       this.decorateRequestConfig({
         method: 'POST',
         url: this.uri + path,
@@ -221,6 +231,8 @@ export class Gateway {
         ...options,
       }),
     );
+
+    return response.data;
   }
 
   /**
@@ -230,8 +242,12 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  public put<T>(path: string, data: any = {}, options?: AxiosRequestConfig) {
-    return this.request<T>(
+  public async put<T>(
+    path: string,
+    data: any = {},
+    options?: AxiosRequestConfig,
+  ) {
+    const response = await this.request<T>(
       this.decorateRequestConfig({
         method: 'PUT',
         url: this.uri + path,
@@ -239,6 +255,8 @@ export class Gateway {
         ...options,
       }),
     );
+
+    return response.data;
   }
 
   /**
@@ -248,8 +266,12 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  public delete<T>(path: string, data: any = {}, options?: AxiosRequestConfig) {
-    return this.request<T>(
+  public async delete<T>(
+    path: string,
+    data: any = {},
+    options?: AxiosRequestConfig,
+  ) {
+    const response = await this.request<T>(
       this.decorateRequestConfig({
         method: 'DELETE',
         url: this.uri + path,
@@ -257,6 +279,8 @@ export class Gateway {
         ...options,
       }),
     );
+
+    return response.data;
   }
 
   /**
@@ -266,8 +290,12 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  public patch<T>(path: string, data: any = {}, options?: AxiosRequestConfig) {
-    return this.request<T>(
+  public async patch<T>(
+    path: string,
+    data: any = {},
+    options?: AxiosRequestConfig,
+  ) {
+    const response = await this.request<T>(
       this.decorateRequestConfig({
         method: 'PATCH',
         url: this.uri + path,
@@ -275,6 +303,8 @@ export class Gateway {
         ...options,
       }),
     );
+
+    return response.data;
   }
 
   /**
@@ -307,7 +337,7 @@ export class Gateway {
   public paginate<Data, Params = any>(
     path: string,
     initialParams?: Params,
-  ): AsyncIterableIterator<AxiosResponse<Data> | undefined> {
+  ): AsyncIterableIterator<Data | undefined> {
     // tslint:disable-next-line no-this-assignment
     const gateway = this;
     const initialUrl = this.uri + path;
@@ -338,10 +368,10 @@ export class Gateway {
         currentParams = undefined;
 
         // Return `done: true` immediately if no next url returned
-        return { done: !currentUrl, value: response };
+        return { done: !currentUrl, value: response.data };
       },
 
-      async return(value: AxiosResponse<Data>) {
+      async return(value: Data) {
         return { value, done: true };
       },
 

@@ -21,6 +21,9 @@ describe('Gateway', () => {
     });
 
     ((axios.request as any) as jest.Mock).mockReset();
+    ((axios.request as any) as jest.Mock).mockResolvedValue({
+      data: undefined,
+    });
   });
 
   test('streamingApiUrl has been set if construct with streamingApiUrl', () => {
@@ -319,7 +322,7 @@ describe('Gateway', () => {
         // Pretend `/next` the next url
         link: '<https://example.com/next>; rel="next"',
       },
-      response: {
+      data: {
         a: 'a',
       },
     };
@@ -338,14 +341,14 @@ describe('Gateway', () => {
       }),
     );
     expect(firstResult.done).toBe(false);
-    expect(firstResult.value).toBe(firstResponse);
+    expect(firstResult.value).toBe(firstResponse.data);
 
     const secondResponse = {
       headers: {
         // Next url is null so `done` should be true
         link: '',
       },
-      response: {
+      data: {
         b: 'b',
       },
     };
@@ -361,7 +364,7 @@ describe('Gateway', () => {
       }),
     );
     expect(result.done).toBe(true);
-    expect(result.value).toBe(secondResponse);
+    expect(result.value).toBe(secondResponse.data);
   });
 
   test('reset iterable when option.reset passed', async () => {
