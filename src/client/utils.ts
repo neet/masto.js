@@ -8,8 +8,3 @@ export const isAxiosError = (error: any): error is AxiosError => {
 
   return false;
 };
-
-// Remove trailing slash
-export const normalizeUrl = (url: string) => {
-  return url.replace(/\/$/, '');
-};

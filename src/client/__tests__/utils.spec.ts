@@ -1,9 +1,4 @@
-import { isAxiosError, normalizeUrl } from '../utils';
-
-test('normalize url', () => {
-  const result = normalizeUrl('https://example.com/');
-  expect(result).toBe('https://example.com');
-});
+import { isAxiosError } from '../utils';
 
 test('return true if `response` is contained in the object', () => {
   const obj = {
