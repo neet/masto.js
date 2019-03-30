@@ -1,6 +1,5 @@
 import * as semver from 'semver';
 import { MastoNotFoundError } from '../errors/masto-not-found-error';
-import { MastoUnauthorizedError } from '../errors/masto-unauthorized-error';
 import { Masto } from './masto';
 
 export type Decorator = (
@@ -13,51 +12,6 @@ export interface AvailabeParams {
   since?: string;
   until?: string;
 }
-
-/**
- * Decorator that indicates the function requires user
- * (placeholder for the future implementation)
- */
-export const requiresUser: Decorator = (_target, _name, descriptor) => {
-  if (!descriptor || typeof descriptor.value !== 'function') {
-    throw new Error('requiresUser can only apply to a method of a class');
-  }
-
-  const original = descriptor.value;
-
-  descriptor.value = function(this: Masto, ...args: any[]) {
-    return original.apply(this, args);
-  };
-};
-
-/**
- * Decorator that indicates the function requires authentication
- */
-export const requiresAuthentication: Decorator = (
-  _target,
-  name,
-  descriptor,
-) => {
-  if (!descriptor || typeof descriptor.value !== 'function') {
-    throw new Error(
-      'requireAuthentication can only apply to a method of a class',
-    );
-  }
-
-  const original = descriptor.value;
-
-  descriptor.value = function(this: Masto, ...args: any[]) {
-    if (!this.gateway.accessToken) {
-      throw new MastoUnauthorizedError(
-        `Endpoint ${name} requires authentication. ` +
-          'Check Setting > Development of your Mastodon instance ' +
-          'to register application.',
-      );
-    }
-
-    return original.apply(this, args);
-  };
-};
 
 /**
  * Decorator that verifies the version of the Mastodon instance

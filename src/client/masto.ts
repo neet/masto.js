@@ -17,7 +17,7 @@ import { Relationship } from '../entities/relationship';
 import { Results, ResultsV1 } from '../entities/results';
 import { ScheduledStatus } from '../entities/scheduled-status';
 import { Status } from '../entities/status';
-import { available, requiresAuthentication, requiresUser } from './decorators';
+import { available } from './decorators';
 import { Gateway } from './gateway';
 import {
   AddPushSubscriptionParams,
@@ -84,8 +84,6 @@ export class Masto {
    * @return Instance of EventEmitter
    * @see https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-user
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public streamUser() {
     return this.gateway.stream('/api/v1/streaming', {
@@ -164,8 +162,6 @@ export class Masto {
    * @return Instance of EventEmitter
    * @see https://docs.joinmastodon.org/api/streaming/#get-api-v1-streaming-direct
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public streamDirectTimeline() {
     return this.gateway.stream('/api/v1/streaming', {
@@ -208,7 +204,6 @@ export class Masto {
    * @param params Data of the user to create
    * @return Access token
    */
-  @requiresAuthentication
   @available({ since: '2.7.0' })
   public createAccount(params: CreateAccountParams) {
     return this.gateway.post<OAuthToken>('/api/v1/accounts', params);
@@ -219,8 +214,6 @@ export class Masto {
    * @return Returns Account with an extra source attribute.
    * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-verify-credentials
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public verifyCredentials() {
     return this.gateway.get<AccountCredentials>(
@@ -234,8 +227,6 @@ export class Masto {
    * @return Returns Account
    * @see https://docs.joinmastodon.org/api/rest/accounts/#patch-api-v1-accounts-update-credentials
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public updateCredentials(params?: UpdateCredentialsParams) {
     return this.gateway.patch<AccountCredentials>(
@@ -252,7 +243,6 @@ export class Masto {
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-followers
    */
-  @requiresAuthentication
   @available({ since: '0.0.0' })
   public fetchAccountFollowers(id: string, params?: PaginationParams) {
     return this.gateway.paginate<Account[]>(
@@ -268,7 +258,6 @@ export class Masto {
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-following
    */
-  @requiresAuthentication
   @available({ since: '0.0.0' })
   public fetchAccountFollowing(id: string, params?: PaginationParams) {
     return this.gateway.paginate<Account[]>(
@@ -284,7 +273,6 @@ export class Masto {
    * @return Returns array of Status
    * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-statuses
    */
-  @requiresAuthentication
   @available({ since: '0.0.0' })
   public fetchAccountStatuses(id: string, params?: FetchAccountStatusesParams) {
     return this.gateway.paginate<Status[]>(
@@ -300,8 +288,6 @@ export class Masto {
    * @return Returns Relationship
    * @see https://docs.joinmastodon.org/api/rest/accounts/#post-api-v1-accounts-id-follow
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public followAccount(id: string, params?: FollowAccountParams) {
     return this.gateway.post<Relationship>(
@@ -316,8 +302,6 @@ export class Masto {
    * @return Returns Relationship
    * @see https://docs.joinmastodon.org/api/rest/accounts/#post-api-v1-accounts-id-unfollow
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public unfollowAccount(id: string) {
     return this.gateway.post<Relationship>(`/api/v1/accounts/${id}/unfollow`);
@@ -329,8 +313,6 @@ export class Masto {
    * @return Returns array of Relationship
    * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-relationships
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public fetchAccountRelationships(id: string[]) {
     return this.gateway.get<Relationship[]>(`/api/v1/accounts/relationship`, {
@@ -344,8 +326,6 @@ export class Masto {
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-search
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public searchAccounts(params?: SearchAccountsParams) {
     return this.gateway.get<Account[]>(`/api/v1/accounts/search`, params);
@@ -367,7 +347,6 @@ export class Masto {
    * @return Returns App
    * @see https://docs.joinmastodon.org/api/rest/apps/#get-api-v1-apps-verify-credentials
    */
-  @requiresAuthentication
   @available({ since: '2.0.0' })
   public verifyAppCredentials() {
     return this.gateway.get<Application>(`/api/v1/apps/verify_credentials`);
@@ -379,8 +358,6 @@ export class Masto {
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/blocks/#get-api-v1-blocks
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public fetchBlocks(params?: PaginationParams) {
     return this.gateway.paginate<Account[]>(`/api/v1/blocks`, params);
@@ -392,8 +369,6 @@ export class Masto {
    * @return Returns Relationship
    * @see https://docs.joinmastodon.org/api/rest/blocks/#post-api-v1-accounts-id-block
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public blockAccount(id: string) {
     return this.gateway.post<Relationship>(`/api/v1/accounts/${id}/block`);
@@ -405,8 +380,6 @@ export class Masto {
    * @return Returns Relationship
    * @see https://docs.joinmastodon.org/api/rest/blocks/#post-api-v1-accounts-id-unblock
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public unblockAccount(id: string) {
     return this.gateway.post<Relationship>(`/api/v1/accounts/${id}/unblock`);
@@ -428,8 +401,6 @@ export class Masto {
    * @return Returns array of string.
    * @see https://docs.joinmastodon.org/api/rest/domain-blocks/#get-api-v1-domain-blocks
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '1.4.0' })
   public fetchDomainBlocks(params?: PaginationParams) {
     return this.gateway.paginate<string[]>(`/api/v1/domain_blocks`, params);
@@ -441,8 +412,6 @@ export class Masto {
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/domain-blocks/#post-api-v1-domain-blocks
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '1.4.0' })
   public blockDomain(domain: string) {
     return this.gateway.post<void>(`/api/v1/domain_blocks`, {
@@ -456,8 +425,6 @@ export class Masto {
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/domain-blocks/#delete-api-v1-domain-blocks
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '1.4.0' })
   public unblockDomain(domain: string) {
     return this.gateway.delete<void>(`/api/v1/domain_blocks`, {
@@ -470,8 +437,6 @@ export class Masto {
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/endorsements/#get-api-v1-endorsements
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.5.0' })
   public fetchEndorsements(params?: PaginationParams) {
     return this.gateway.paginate<Account[]>(`/api/v1/endorsements`, params);
@@ -483,8 +448,6 @@ export class Masto {
    * @return Returns Relationship
    * @see https://docs.joinmastodon.org/api/rest/endorsements/#post-api-v1-accounts-id-pin
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.5.0' })
   public pinAccount(id: string) {
     return this.gateway.post<Relationship>(`/api/v1/accounts/${id}/pin`);
@@ -496,8 +459,6 @@ export class Masto {
    * @return Returns Relationship
    * @see https://docs.joinmastodon.org/api/rest/endorsements/#post-api-v1-accounts-id-unpin
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.5.0' })
   public unpinAccount(id: string) {
     return this.gateway.post<Relationship>(`/api/v1/accounts/${id}/unpin`);
@@ -509,8 +470,6 @@ export class Masto {
    * @return Returns array of Status
    * @see https://docs.joinmastodon.org/api/rest/favourites/#get-api-v1-favourites
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public fetchFavourites(params?: PaginationParams) {
     return this.gateway.paginate<Status[]>(`/api/v1/favourites`, params);
@@ -522,7 +481,6 @@ export class Masto {
    * @return Returns Status
    * @see https://docs.joinmastodon.org/api/rest/favourites/#post-api-v1-statuses-id-favourite
    */
-  @requiresAuthentication
   @available({ since: '0.0.0' })
   public favouriteStatus(id: string) {
     return this.gateway.post<Status>(`/api/v1/statuses/${id}/favourite`);
@@ -534,8 +492,6 @@ export class Masto {
    * @return Returns Status
    * @see https://docs.joinmastodon.org/api/rest/favourites/#post-api-v1-statuses-id-unfavourite
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public unfavouriteStatus(id: string) {
     return this.gateway.post<Status>(`/api/v1/statuses/${id}/unfavourite`);
@@ -546,8 +502,6 @@ export class Masto {
    * @return An array of Filters
    * @see https://docs.joinmastodon.org/api/rest/filters/#get-api-v1-filters
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.4.3' })
   public fetchFilters() {
     return this.gateway.get<Filter[]>(`/api/v1/filters`);
@@ -559,8 +513,6 @@ export class Masto {
    * @return Returns Filter
    * @see https://docs.joinmastodon.org/api/rest/filters/#get-api-v1-filters-id
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.4.3' })
   public fetchFilter(id: string) {
     return this.gateway.get<Filter>(`/api/v1/filters/${id}`);
@@ -572,8 +524,6 @@ export class Masto {
    * @return Returns Filter
    * @see https://docs.joinmastodon.org/api/rest/filters/#post-api-v1-filters
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.4.3' })
   public createFiler(params?: ModifyFilterParams) {
     return this.gateway.post<Filter>(`/api/v1/filters`, params);
@@ -586,8 +536,6 @@ export class Masto {
    * @return Returns Filter
    * @see https://docs.joinmastodon.org/api/rest/filters/#put-api-v1-filters-id
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.4.3' })
   public updateFilter(id: string, params?: ModifyFilterParams) {
     return this.gateway.put<Filter>(`/api/v1/filters/${id}`, params);
@@ -599,8 +547,6 @@ export class Masto {
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/filters/#delete-api-v1-filters-id
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.4.3' })
   public removeFilter(id: string) {
     return this.gateway.delete<void>(`/api/v1/filters/${id}`);
@@ -612,8 +558,6 @@ export class Masto {
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/follow-requests/#get-api-v1-follow-requests
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public fetchFollowRequests(params?: PaginationParams) {
     return this.gateway.paginate<Account[]>(`/api/v1/follow_requests`, params);
@@ -625,8 +569,6 @@ export class Masto {
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/follow-requests/#post-api-v1-follow-requests-id-authorize
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public authorizeFollowRequest(id: string) {
     return this.gateway.post<void>(`/api/v1/follow_requests/${id}/authorize`);
@@ -638,8 +580,6 @@ export class Masto {
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/follow-requests/#post-api-v1-follow-requests-id-reject
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public rejectFollowRequest(id: string) {
     return this.gateway.post<void>(`/api/v1/follow_requests/${id}/reject`);
@@ -650,8 +590,6 @@ export class Masto {
    * @return An array of Accounts
    * @see https://docs.joinmastodon.org/api/rest/follow-suggestions/#get-api-v1-suggestions
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.4.3' })
   public fetchSuggestions() {
     return this.gateway.get<Account[]>('/api/v1/suggestions');
@@ -663,8 +601,6 @@ export class Masto {
    * @return An array of Accounts
    * @see https://docs.joinmastodon.org/api/rest/follow-suggestions/#delete-api-v1-suggestions-account-id
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.4.3' })
   public removeSuggestion(id: string) {
     return this.gateway.delete<void>(`/api/v1/suggestions/${id}`);
@@ -705,8 +641,6 @@ export class Masto {
    * @return Returns array of List
    * @see https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.1.0' })
   public fetchLists() {
     return this.gateway.get<List[]>('/api/v1/lists');
@@ -718,8 +652,6 @@ export class Masto {
    * @return Returns array of List
    * @see https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-accounts-id-lists
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.1.0' })
   public fetchAccountLists(id: string) {
     return this.gateway.get<List[]>(`/api/v1/accounts/${id}/lists`);
@@ -732,8 +664,6 @@ export class Masto {
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists-id-accounts
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.1.0' })
   public fetchListAccounts(id: string, params?: PaginationParams) {
     return this.gateway.paginate<Account[]>(
@@ -748,8 +678,6 @@ export class Masto {
    * @return Returns List
    * @see https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists-id
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.1.0' })
   public fetchList(id: string) {
     return this.gateway.get<List>(`/api/v1/lists/${id}`);
@@ -761,8 +689,6 @@ export class Masto {
    * @return Returns List
    * @see https://docs.joinmastodon.org/api/rest/lists/#post-api-v1-lists
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.1.0' })
   public createList(params: ModifyListParams) {
     return this.gateway.post<List>('/api/v1/lists', params);
@@ -775,8 +701,6 @@ export class Masto {
    * @return Returns List
    * @see https://docs.joinmastodon.org/api/rest/lists/#put-api-v1-lists-id
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.1.0' })
   public updateList(id: string, params: ModifyListParams) {
     return this.gateway.put<List>(`/api/v1/lists/${id}`, params);
@@ -788,8 +712,6 @@ export class Masto {
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/lists/#delete-api-v1-lists-id
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.1.0' })
   public removeList(id: string) {
     return this.gateway.delete<void>(`/api/v1/lists/${id}`);
@@ -802,8 +724,6 @@ export class Masto {
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/lists/#post-api-v1-lists-id-accounts
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.1.0' })
   public addAccountToList(id: string, params: ModifyListAccountsParams) {
     return this.gateway.post<void>(`/api/v1/lists/${id}/accounts`, params);
@@ -816,8 +736,6 @@ export class Masto {
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/lists/#delete-api-v1-lists-id-accounts
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.1.0' })
   public removeAccountFromList(id: string, params: ModifyListAccountsParams) {
     return this.gateway.delete<void>(`/api/v1/lists/${id}/accounts`, params);
@@ -829,8 +747,6 @@ export class Masto {
    * @return Returns Attachment
    * @see https://docs.joinmastodon.org/api/rest/media/#post-api-v1-media
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public uploadMediaAttachment(params: UploadMediaAttachmentParams) {
     return this.gateway.post<Attachment>('/api/v1/media', params, {
@@ -845,8 +761,6 @@ export class Masto {
    * @return Returns Returns Attachment
    * @see https://docs.joinmastodon.org/api/rest/media/#put-api-v1-media-id
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public updateMediaAttachment(
     id: string,
@@ -861,8 +775,6 @@ export class Masto {
    * @return Returns array of Account
    * @see https://docs.joinmastodon.org/api/rest/mutes/#get-api-v1-mutes
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public fetchMutes(params?: PaginationParams) {
     return this.gateway.paginate<Account[]>('/api/v1/mutes', params);
@@ -875,8 +787,6 @@ export class Masto {
    * @return Returns Relationship
    * @see https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-accounts-id-mute
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public muteAccount(id: string, params: MuteAccountParams) {
     return this.gateway.post<Relationship>(
@@ -891,8 +801,6 @@ export class Masto {
    * @return Returns Relationship
    * @see https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-accounts-id-unmute
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public unmuteAccount(id: string) {
     return this.gateway.post<Relationship>(`/api/v1/accounts/${id}/unmute`);
@@ -904,8 +812,6 @@ export class Masto {
    * @return Returns Status
    * @see https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-status-id-mute
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '1.4.2' })
   public muteStatus(id: string) {
     return this.gateway.post<Status>(`/api/v1/statuses/${id}/mute`);
@@ -917,8 +823,6 @@ export class Masto {
    * @return Returns Status
    * @see https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-status-id-unmute
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '1.4.2' })
   public unmuteStatus(id: string) {
     return this.gateway.post<Status>(`/api/v1/statuses/${id}/unmute`);
@@ -930,8 +834,6 @@ export class Masto {
    * @return Returns array of Notification
    * @see https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-notifications
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public fetchNotifications(params?: FetchNotificationsParams) {
     return this.gateway.get<Notification[]>('/api/v1/notifications', params);
@@ -943,8 +845,6 @@ export class Masto {
    * @return Returns Notification
    * @see https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-notifications-id
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public fetchNotification(id: string) {
     return this.gateway.get<Notification>(`/api/v1/notifications/${id}`);
@@ -955,8 +855,6 @@ export class Masto {
    * @return Returns an empty object.
    * @see https://docs.joinmastodon.org/api/rest/notifications/#post-api-v1-notifications-clear
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public clearNotifications() {
     return this.gateway.post<void>('/api/v1/notifications/clear');
@@ -968,8 +866,6 @@ export class Masto {
    * @return Returns an empty object.
    * @see https://docs.joinmastodon.org/api/rest/notifications/#post-api-v1-notifications-dismiss
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public dissmissNotification(id: string) {
     return this.gateway.post<void>('/api/v1/notifications/dismiss', {
@@ -983,8 +879,6 @@ export class Masto {
    * @return Returns Push Subscription
    * @see https://docs.joinmastodon.org/api/rest/notifications/#put-api-v1-push-subscription
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.4.0' })
   public addPushSubscription(params: AddPushSubscriptionParams) {
     return this.gateway.post<PushSubscription>(
@@ -998,8 +892,6 @@ export class Masto {
    * @return Returns Push Subscription
    * @see https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-push-subscription
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.4.0' })
   public fetchPushSubscription() {
     return this.gateway.get<PushSubscription>('/api/v1/push/subscription');
@@ -1011,8 +903,6 @@ export class Masto {
    * @return Returns Push Subscription
    * @see https://docs.joinmastodon.org/api/rest/notifications/#put-api-v1-push-subscription
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.4.0' })
   public updatePushSubscription(params: UpdatePushSubscriptionParams) {
     return this.gateway.put<PushSubscription>(
@@ -1026,8 +916,6 @@ export class Masto {
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/notifications/#delete-api-v1-push-subscription
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.4.0' })
   public removePushSubscription() {
     return this.gateway.delete<void>('/api/v1/push/subscription');
@@ -1051,8 +939,6 @@ export class Masto {
    * @return Poll
    * @see https://docs.joinmastodon.org/api/rest/polls/#post-api-v1-polls-id-votes
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.8.0' })
   public votePoll(id: string, params: VotePollParams) {
     return this.gateway.post<Poll>(`/api/v1/polls/${id}/votes`, params);
@@ -1064,8 +950,6 @@ export class Masto {
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/reports/#post-api-v1-reports
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '1.1.0' })
   public reportAccount(params: ReportAccountParams) {
     return this.gateway.post<void>('/api/v1/reports', params);
@@ -1076,8 +960,6 @@ export class Masto {
    * @return An array of ScheduledStatus
    * @see https://docs.joinmastodon.org/api/rest/scheduled-statuses/#get-api-v1-scheduled-statuses
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.7.0' })
   public fetchScheduledStatuses() {
     return this.gateway.get<ScheduledStatus[]>('/api/v1/scheduled_statuses');
@@ -1089,8 +971,6 @@ export class Masto {
    * @return ScheduledStatus
    * @see https://docs.joinmastodon.org/api/rest/scheduled-statuses/#get-api-v1-scheduled-statuses-id
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.7.0' })
   public fetchScheduledStatus(id: string) {
     return this.gateway.get<ScheduledStatus>(
@@ -1105,8 +985,6 @@ export class Masto {
    * @return ScheduledStatus
    * @see https://docs.joinmastodon.org/api/rest/scheduled-statuses/#put-api-v1-scheduled-statuses-id
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.7.0' })
   public updateScheduledStatus(
     id: string,
@@ -1124,8 +1002,6 @@ export class Masto {
    * @return Nothing
    * @see https://docs.joinmastodon.org/api/rest/scheduled-statuses/#delete-api-v1-scheduled-statuses-id
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.7.0' })
   public removeScheduledStatus(id: string) {
     return this.gateway.delete<void>(`/api/v1/scheduled_statuses/${id}`);
@@ -1138,8 +1014,6 @@ export class Masto {
    * @return Returns Results
    * @see https://docs.joinmastodon.org/api/rest/search/#get-api-v2-search
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.4.1' })
   public search<V extends 'v1' | 'v2'>(
     params: SearchParams,
@@ -1220,8 +1094,6 @@ export class Masto {
    * @return Returns Status
    * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public createStatus(params?: CreateStatusParams, idempotencyKey?: string) {
     if (idempotencyKey) {
@@ -1239,8 +1111,6 @@ export class Masto {
    * @return An empty object
    * @see https://docs.joinmastodon.org/api/rest/statuses/#delete-api-v1-statuses-id
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public removeStatus(id: string) {
     return this.gateway.delete<void>(`/api/v1/statuses/${id}`);
@@ -1252,8 +1122,6 @@ export class Masto {
    * @return Returns Status
    * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-reblog
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public reblogStatus(id: string, params?: ReblogStatusParams) {
     return this.gateway.post<Status>(`/api/v1/statuses/${id}/reblog`, params);
@@ -1265,8 +1133,6 @@ export class Masto {
    * @return Returns Status
    * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-unreblog
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public unreblogStatus(id: string) {
     return this.gateway.post<Status>(`/api/v1/statuses/${id}/unreblog`);
@@ -1278,8 +1144,6 @@ export class Masto {
    * @return Returns Status
    * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-pin
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '1.6.0' })
   public pinStatus(id: string) {
     return this.gateway.post<Status>(`/api/v1/statuses/${id}/pin`);
@@ -1291,8 +1155,6 @@ export class Masto {
    * @return Returns Status
    * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-unpin
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '1.6.0' })
   public unpinStatus(id: string) {
     return this.gateway.post<Status>(`/api/v1/statuses/${id}/unpin`);
@@ -1304,8 +1166,6 @@ export class Masto {
    * @return An array of Statuses, most recent ones first.
    * @see https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-home
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0' })
   public fetchHomeTimeline(params?: FetchTimelineParams) {
     return this.gateway.paginate<Status[]>('/api/v1/timelines/home', params);
@@ -1358,8 +1218,6 @@ export class Masto {
    * @return An iterable of Statuses, most recent ones first.
    * @see https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-list-list-id
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.1.0' })
   public fetchListTimeline(id: string, params?: FetchTimelineParams) {
     return this.gateway.paginate<Status[]>(
@@ -1372,8 +1230,6 @@ export class Masto {
    * Retrieving a direct timeline
    * @return An iterable of Statuses, most recent ones first.
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '0.0.0', until: '2.5.2' })
   public fetchDirectTimeline(params?: FetchTimelineParams) {
     return this.gateway.paginate<Status[]>('/api/v1/timelines/direct', params);
@@ -1383,8 +1239,6 @@ export class Masto {
    * Retrieving a conversation timeline
    * @return An array of Conversation
    */
-  @requiresAuthentication
-  @requiresUser
   @available({ since: '2.6.0' })
   public fetchConversations(params?: PaginationParams) {
     return this.gateway.paginate<Conversation[]>(
@@ -1399,7 +1253,6 @@ export class Masto {
    * @return The local representation of the followed account, as an Account.
    * @see https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#following-a-remote-user
    */
-  @requiresAuthentication
   @available({ since: '0.0.0' })
   public followAccountByUsername(uri: string) {
     return this.gateway.post<Account>('/api/v1/follows', { uri });
@@ -1410,7 +1263,6 @@ export class Masto {
    * @return User preferences
    * @see https://github.com/tootsuite/mastodon/pull/10109
    */
-  @requiresAuthentication
   @available({ since: '2.8.0' })
   public fetchPreferences() {
     return this.gateway.get<Preference>('/api/v1/preferences');
