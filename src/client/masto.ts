@@ -1,4 +1,3 @@
-import { ScheduledStatus } from 'src/entities/scheduled-status';
 import { Account, AccountCredentials } from '../entities/account';
 import { Application } from '../entities/application';
 import { Attachment } from '../entities/attachment';
@@ -12,9 +11,11 @@ import { List } from '../entities/list';
 import { Notification } from '../entities/notification';
 import { OAuthClient, OAuthToken } from '../entities/oauth';
 import { Poll } from '../entities/poll';
+import { Preference } from '../entities/preference';
 import { PushSubscription } from '../entities/push-subscription';
 import { Relationship } from '../entities/relationship';
 import { Results, ResultsV1 } from '../entities/results';
+import { ScheduledStatus } from '../entities/scheduled-status';
 import { Status } from '../entities/status';
 import { available, requiresAuthentication, requiresUser } from './decorators';
 import { Gateway } from './gateway';
@@ -34,6 +35,7 @@ import {
   ModifyListParams,
   MuteAccountParams,
   PaginationParams,
+  ReblogStatusParams,
   ReportAccountParams,
   RevokeAccessTokenParams,
   SearchAccountsParams,
@@ -1143,7 +1145,7 @@ export class Masto {
     params: SearchParams,
     version = 'v2' as V,
   ) {
-    return this.gateway.get<V extends 'v2' ? Results : ResultsV1>(
+    return this.gateway.paginate<V extends 'v2' ? Results : ResultsV1>(
       `/api/${version}/search`,
       params,
     );
@@ -1253,8 +1255,8 @@ export class Masto {
   @requiresAuthentication
   @requiresUser
   @available({ since: '0.0.0' })
-  public reblogStatus(id: string) {
-    return this.gateway.post<Status>(`/api/v1/statuses/${id}/reblog`);
+  public reblogStatus(id: string, params?: ReblogStatusParams) {
+    return this.gateway.post<Status>(`/api/v1/statuses/${id}/reblog`, params);
   }
 
   /**
@@ -1401,5 +1403,16 @@ export class Masto {
   @available({ since: '0.0.0' })
   public followAccountByUsername(uri: string) {
     return this.gateway.post<Account>('/api/v1/follows', { uri });
+  }
+
+  /**
+   * Fetch preferences
+   * @return User preferences
+   * @see https://github.com/tootsuite/mastodon/pull/10109
+   */
+  @requiresAuthentication
+  @available({ since: '2.8.0' })
+  public fetchPreferences() {
+    return this.gateway.get<Preference>('/api/v1/preferences');
   }
 }

@@ -1,7 +1,7 @@
 // tslint:disable
 // @ts-ignore
 // prettier-ignore
-import { getMock, postMock, deleteMock, patchMock, putMock, streamMock, pagianteMock, Gateway } from '../gateway';
+import { getMock, postMock, deleteMock, patchMock, putMock, streamMock, paginateMock, Gateway } from '../gateway';
 import { Masto } from '../masto';
 
 jest.mock('../gateway');
@@ -19,7 +19,7 @@ describe('Masto', () => {
     (patchMock as jest.Mock).mockClear();
     (putMock as jest.Mock).mockClear();
     (streamMock as jest.Mock).mockClear();
-    (pagianteMock as jest.Mock).mockClear();
+    (paginateMock as jest.Mock).mockClear();
   });
 
   test('login', async () => {
@@ -170,8 +170,8 @@ describe('Masto', () => {
       min_id: '2',
       limit: 10,
     });
-    expect(pagianteMock).toBeCalledTimes(1);
-    expect(pagianteMock).toMatchSnapshot();
+    expect(paginateMock).toBeCalledTimes(1);
+    expect(paginateMock).toMatchSnapshot();
   });
 
   test('fetchAccountFollowing', async () => {
@@ -181,8 +181,8 @@ describe('Masto', () => {
       min_id: '2',
       limit: 10,
     });
-    expect(pagianteMock).toBeCalledTimes(1);
-    expect(pagianteMock).toMatchSnapshot();
+    expect(paginateMock).toBeCalledTimes(1);
+    expect(paginateMock).toMatchSnapshot();
   });
 
   test('fetchAccountStatuses', async () => {
@@ -192,8 +192,8 @@ describe('Masto', () => {
       min_id: '2',
       limit: 10,
     });
-    expect(pagianteMock).toBeCalledTimes(1);
-    expect(pagianteMock).toMatchSnapshot();
+    expect(paginateMock).toBeCalledTimes(1);
+    expect(paginateMock).toMatchSnapshot();
   });
 
   test('followAccount', async () => {
@@ -251,8 +251,8 @@ describe('Masto', () => {
       min_id: '2',
       limit: 10,
     });
-    expect(pagianteMock).toBeCalledTimes(1);
-    expect(pagianteMock).toMatchSnapshot();
+    expect(paginateMock).toBeCalledTimes(1);
+    expect(paginateMock).toMatchSnapshot();
   });
 
   test('blockAccount', async () => {
@@ -275,8 +275,8 @@ describe('Masto', () => {
 
   test('fetchDomainBlocks', async () => {
     await masto.fetchDomainBlocks();
-    expect(pagianteMock).toBeCalledTimes(1);
-    expect(pagianteMock).toMatchSnapshot();
+    expect(paginateMock).toBeCalledTimes(1);
+    expect(paginateMock).toMatchSnapshot();
   });
 
   test('blockDomain', async () => {
@@ -298,8 +298,8 @@ describe('Masto', () => {
       min_id: '2',
       limit: 10,
     });
-    expect(pagianteMock).toBeCalledTimes(1);
-    expect(pagianteMock).toMatchSnapshot();
+    expect(paginateMock).toBeCalledTimes(1);
+    expect(paginateMock).toMatchSnapshot();
   });
 
   test('pinAccount', async () => {
@@ -321,8 +321,8 @@ describe('Masto', () => {
       min_id: '2',
       limit: 10,
     });
-    expect(pagianteMock).toBeCalledTimes(1);
-    expect(pagianteMock).toMatchSnapshot();
+    expect(paginateMock).toBeCalledTimes(1);
+    expect(paginateMock).toMatchSnapshot();
   });
 
   test('favouriteStatus', async () => {
@@ -386,8 +386,8 @@ describe('Masto', () => {
       min_id: '2',
       limit: 10,
     });
-    expect(pagianteMock).toBeCalledTimes(1);
-    expect(pagianteMock).toMatchSnapshot();
+    expect(paginateMock).toBeCalledTimes(1);
+    expect(paginateMock).toMatchSnapshot();
   });
 
   test('authorizeFollowRequest', async () => {
@@ -451,8 +451,8 @@ describe('Masto', () => {
       min_id: '2',
       limit: 10,
     });
-    expect(pagianteMock).toBeCalledTimes(1);
-    expect(pagianteMock).toMatchSnapshot();
+    expect(paginateMock).toBeCalledTimes(1);
+    expect(paginateMock).toMatchSnapshot();
   });
 
   test('fetchList', async () => {
@@ -524,8 +524,8 @@ describe('Masto', () => {
       min_id: '2',
       limit: 10,
     });
-    expect(pagianteMock).toBeCalledTimes(1);
-    expect(pagianteMock).toMatchSnapshot();
+    expect(paginateMock).toBeCalledTimes(1);
+    expect(paginateMock).toMatchSnapshot();
   });
 
   test('muteAccount', async () => {
@@ -685,17 +685,22 @@ describe('Masto', () => {
       },
       'v1',
     );
-    expect(getMock).toBeCalledTimes(1);
-    expect(getMock).toMatchSnapshot();
+    expect(paginateMock).toBeCalledTimes(1);
+    expect(paginateMock).toMatchSnapshot();
   });
 
   test('search', async () => {
     await masto.search({
       q: 'query',
       resolve: true,
+      max_id: '5',
+      since_id: '3',
+      min_id: '2',
+      limit: 10,
+      account_id: '123',
     });
-    expect(getMock).toBeCalledTimes(1);
-    expect(getMock).toMatchSnapshot();
+    expect(paginateMock).toBeCalledTimes(1);
+    expect(paginateMock).toMatchSnapshot();
   });
 
   test('fetchStatus', async () => {
@@ -723,8 +728,8 @@ describe('Masto', () => {
       min_id: '2',
       limit: 10,
     });
-    expect(pagianteMock).toBeCalledTimes(1);
-    expect(pagianteMock).toMatchSnapshot();
+    expect(paginateMock).toBeCalledTimes(1);
+    expect(paginateMock).toMatchSnapshot();
   });
 
   test('fetchStatusFavouritedBy', async () => {
@@ -734,8 +739,8 @@ describe('Masto', () => {
       min_id: '2',
       limit: 10,
     });
-    expect(pagianteMock).toBeCalledTimes(1);
-    expect(pagianteMock).toMatchSnapshot();
+    expect(paginateMock).toBeCalledTimes(1);
+    expect(paginateMock).toMatchSnapshot();
   });
 
   test('createStatus with content', async () => {
@@ -784,7 +789,7 @@ describe('Masto', () => {
   });
 
   test('reblogStatus', async () => {
-    await masto.reblogStatus('123123');
+    await masto.reblogStatus('123123', { visibility: 'direct' });
     expect(postMock).toBeCalledTimes(1);
     expect(postMock).toMatchSnapshot();
   });
@@ -814,8 +819,8 @@ describe('Masto', () => {
       min_id: '2',
       limit: 10,
     });
-    expect(pagianteMock).toBeCalledTimes(1);
-    expect(pagianteMock).toMatchSnapshot();
+    expect(paginateMock).toBeCalledTimes(1);
+    expect(paginateMock).toMatchSnapshot();
   });
 
   test('fetchCommunityTimeline', async () => {
@@ -825,8 +830,8 @@ describe('Masto', () => {
       min_id: '2',
       limit: 10,
     });
-    expect(pagianteMock).toBeCalledTimes(1);
-    expect(pagianteMock).toMatchSnapshot();
+    expect(paginateMock).toBeCalledTimes(1);
+    expect(paginateMock).toMatchSnapshot();
   });
 
   test('fetchPublicTimeline', async () => {
@@ -836,8 +841,8 @@ describe('Masto', () => {
       min_id: '2',
       limit: 10,
     });
-    expect(pagianteMock).toBeCalledTimes(1);
-    expect(pagianteMock).toMatchSnapshot();
+    expect(paginateMock).toBeCalledTimes(1);
+    expect(paginateMock).toMatchSnapshot();
   });
 
   test('fetchTagTimeline', async () => {
@@ -847,8 +852,8 @@ describe('Masto', () => {
       min_id: '2',
       limit: 10,
     });
-    expect(pagianteMock).toBeCalledTimes(1);
-    expect(pagianteMock).toMatchSnapshot();
+    expect(paginateMock).toBeCalledTimes(1);
+    expect(paginateMock).toMatchSnapshot();
   });
 
   test('fetchListTimeline', async () => {
@@ -858,8 +863,8 @@ describe('Masto', () => {
       min_id: '2',
       limit: 10,
     });
-    expect(pagianteMock).toBeCalledTimes(1);
-    expect(pagianteMock).toMatchSnapshot();
+    expect(paginateMock).toBeCalledTimes(1);
+    expect(paginateMock).toMatchSnapshot();
   });
 
   test('fetchDirectTimeline', async () => {
@@ -870,8 +875,8 @@ describe('Masto', () => {
       min_id: '2',
       limit: 10,
     });
-    expect(pagianteMock).toBeCalledTimes(1);
-    expect(pagianteMock).toMatchSnapshot();
+    expect(paginateMock).toBeCalledTimes(1);
+    expect(paginateMock).toMatchSnapshot();
   });
 
   test('fetchConversations', async () => {
@@ -881,13 +886,19 @@ describe('Masto', () => {
       min_id: '2',
       limit: 10,
     });
-    expect(pagianteMock).toBeCalledTimes(1);
-    expect(pagianteMock).toMatchSnapshot();
+    expect(paginateMock).toBeCalledTimes(1);
+    expect(paginateMock).toMatchSnapshot();
   });
 
   test('followAccountByUsername', async () => {
     await masto.followAccountByUsername('user@example.com');
     expect(postMock).toBeCalledTimes(1);
     expect(postMock).toMatchSnapshot();
+  });
+
+  test('fetchPreferences', async () => {
+    await masto.fetchPreferences();
+    expect(getMock).toBeCalledTimes(1);
+    expect(getMock).toMatchSnapshot();
   });
 });

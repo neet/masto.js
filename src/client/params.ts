@@ -192,11 +192,13 @@ export interface MuteAccountParams {
   notifications: boolean;
 }
 
-export interface SearchParams {
+export interface SearchParams extends PaginationParams {
   /** The search query */
   q: string;
   /** Attempt WebFinger look-up */
   resolve?: boolean | null;
+  /** Account id to search */
+  account_id?: string;
 }
 
 export interface SearchAccountsParams extends SearchParams {
@@ -253,6 +255,11 @@ export interface CreateStatusParamsWithMediaIds extends CreateStatusParamsBase {
 export type CreateStatusParams =
   | CreateStatusParamsWithStatus
   | CreateStatusParamsWithMediaIds;
+
+export interface ReblogStatusParams {
+  /** Reblog visibility */
+  visibility: StatusVisibility;
+}
 
 export interface FetchTimelineParams extends PaginationParams {
   /** Only return statuses originating from this instance (public and tag timelines only) */

@@ -4,7 +4,7 @@ export const deleteMock = jest.fn().mockResolvedValue({});
 export const patchMock = jest.fn().mockResolvedValue({});
 export const putMock = jest.fn().mockResolvedValue({});
 export const streamMock = jest.fn().mockResolvedValue({});
-export const pagianteMock = jest.fn();
+export const paginateMock = jest.fn();
 
 export const Gateway = jest.fn(() => ({
   uri: 'https://example.com',
@@ -17,5 +17,5 @@ export const Gateway = jest.fn(() => ({
   patch: patchMock,
   put: putMock,
   stream: streamMock,
-  paginate: pagianteMock,
+  paginate: paginateMock,
 }));

@@ -1,4 +1,4 @@
-import { gt, lt } from 'semver';
+import * as semver from 'semver';
 import { MastoNotFoundError } from '../errors/masto-not-found-error';
 import { MastoUnauthorizedError } from '../errors/masto-unauthorized-error';
 import { Masto } from './masto';
@@ -76,18 +76,20 @@ export const available = (parameters: AvailabeParams): Decorator => (
   const { since, until } = parameters;
 
   descriptor.value = function(this: Masto, ...args: any[]) {
-    if (since && this.gateway.version && lt(this.gateway.version, since)) {
+    const version = semver.coerce(this.gateway.version);
+
+    if (since && version && semver.lt(version, since)) {
       throw new MastoNotFoundError(
         `${name} is not available with the current ` +
-          `Mastodon version ${this.gateway.version}. ` +
+          `Mastodon version ${version}. ` +
           `It requires greater than or equal to version ${since}.`,
       );
     }
 
-    if (until && this.gateway.version && gt(this.gateway.version, until)) {
+    if (until && version && semver.gt(version, until)) {
       throw new MastoNotFoundError(
         `${name} is not available with the current ` +
-          `Mastodon version ${this.gateway.version}. ` +
+          `Mastodon version ${version}. ` +
           `It was removed on version ${until}.`,
       );
     }

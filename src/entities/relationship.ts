@@ -7,6 +7,8 @@ export interface Relationship {
   showing_reblogs: boolean;
   /** Whether the user is currently being followed by the account */
   followed_by: boolean;
+  /** Whether the user is currently being blocked by the account */
+  blocked_by: boolean;
   /** Whether the user is currently blocking the account */
   blocking: boolean;
   /** Whether the user is currently muting the account */

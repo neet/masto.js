@@ -939,6 +939,22 @@ exports[`Masto fetchPoll 1`] = `
 }
 `;
 
+exports[`Masto fetchPreferences 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/preferences",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
 exports[`Masto fetchPublicTimeline 1`] = `
 [MockFunction] {
   "calls": Array [
@@ -1249,6 +1265,9 @@ exports[`Masto reblogStatus 1`] = `
   "calls": Array [
     Array [
       "/api/v1/statuses/123123/reblog",
+      Object {
+        "visibility": "direct",
+      },
     ],
   ],
   "results": Array [
@@ -1453,7 +1472,7 @@ exports[`Masto search (v1) 1`] = `
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1465,15 +1484,20 @@ exports[`Masto search 1`] = `
     Array [
       "/api/v2/search",
       Object {
+        "account_id": "123",
+        "limit": 10,
+        "max_id": "5",
+        "min_id": "2",
         "q": "query",
         "resolve": true,
+        "since_id": "3",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
