@@ -39,6 +39,14 @@ describe('Gateway', () => {
     expect(gateway.version).toBe('99.9.9');
   });
 
+  test('version has been set if construct with accessToken', () => {
+    gateway = new Gateway({
+      uri: 'https://example.com',
+      accessToken: 'token token',
+    });
+    expect(gateway.accessToken).toBe('token token');
+  });
+
   test('this._uri accessor works', () => {
     gateway = new Gateway({
       uri: 'https://example.com/aaa',
@@ -111,6 +119,13 @@ describe('Gateway', () => {
     });
 
     expect(result.data).toEqual(data);
+  });
+
+  test('add Authorization header if gateway has accessToken', () => {
+    gateway.accessToken = 'tokentoken';
+    // @ts-ignore
+    const result = gateway.decorateRequestConfig();
+    expect(result.headers.Authorization).toBeDefined();
   });
 
   test('call axios.request with given options', async () => {

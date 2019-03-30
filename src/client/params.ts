@@ -122,7 +122,7 @@ export interface UploadMediaAttachmentParams {
   /** Media to be uploaded (encoded using `multipart/form-data`) */
   file: any;
   /** A plain-text description of the media, for accessibility (max 420 chars) */
-  descriptions?: string | null;
+  description?: string | null;
   /** Focal point: Two floating points, comma-delimited */
   focus?: string | null;
 }

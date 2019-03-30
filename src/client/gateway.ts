@@ -98,7 +98,7 @@ export class Gateway {
    * @param options Axios options
    */
   private decorateRequestConfig(
-    options: AxiosRequestConfig,
+    options: AxiosRequestConfig = {},
   ): AxiosRequestConfig {
     options.url = options.url && normalizeUrl(options.url);
     options.transformResponse = [this.transformResponse];
