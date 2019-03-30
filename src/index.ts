@@ -19,6 +19,7 @@ export * from './entities/notification';
 export * from './entities/oauth';
 export * from './entities/poll';
 export * from './entities/push-subscription';
+export * from './entities/preference';
 export * from './entities/relationship';
 export * from './entities/results';
 export * from './entities/status';
