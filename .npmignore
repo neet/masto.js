@@ -23,17 +23,20 @@ tslint.yml
 yarn.lock
 
 # Documentaitons
-docs
+docs/
 *.md
 
 # Examples
-examples
-sandbox
+examples/
+sandbox/
 
 # TS files and maps
 src/
 *.map
 
 # Rollup
-.rp2_cache
+.rp2_cache/
 rollup.conifg.js
+
+# Codecov
+coverage/
