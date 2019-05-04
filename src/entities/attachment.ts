@@ -15,6 +15,8 @@ export interface Attachment {
   meta?: AttachmentMeta | null;
   /** A description of the image for the visually impaired (maximum 420 characters), or null if none provided */
   description?: string | null;
+  /** Hash value to decode blurred media */
+  blurhash?: string | null;
 }
 
 export type AttachmentType = 'image' | 'video' | 'gifv' | 'unknown';
