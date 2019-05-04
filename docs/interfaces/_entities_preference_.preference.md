@@ -26,7 +26,7 @@
 
 **● posting:default:language**: *`string` \| `null`*
 
-*Defined in [entities/preference.ts:8](https://github.com/neet/masto.js/blob/886ec98/src/entities/preference.ts#L8)*
+*Defined in [entities/preference.ts:8](https://github.com/neet/masto.js/blob/c1501e9/src/entities/preference.ts#L8)*
 
 ___
 <a id="posting_default_sensitive"></a>
@@ -35,7 +35,7 @@ ___
 
 **● posting:default:sensitive**: *`boolean` \| `null`*
 
-*Defined in [entities/preference.ts:7](https://github.com/neet/masto.js/blob/886ec98/src/entities/preference.ts#L7)*
+*Defined in [entities/preference.ts:7](https://github.com/neet/masto.js/blob/c1501e9/src/entities/preference.ts#L7)*
 
 ___
 <a id="posting_default_visibility"></a>
@@ -44,7 +44,7 @@ ___
 
 **● posting:default:visibility**: *[StatusVisibility](../modules/_entities_status_.md#statusvisibility) \| `null`*
 
-*Defined in [entities/preference.ts:6](https://github.com/neet/masto.js/blob/886ec98/src/entities/preference.ts#L6)*
+*Defined in [entities/preference.ts:6](https://github.com/neet/masto.js/blob/c1501e9/src/entities/preference.ts#L6)*
 
 ___
 <a id="reading_expand_media"></a>
@@ -53,7 +53,7 @@ ___
 
 **● reading:expand:media**: *[PreferenceReadingExpandMedia](../modules/_entities_preference_.md#preferencereadingexpandmedia) \| `null`*
 
-*Defined in [entities/preference.ts:9](https://github.com/neet/masto.js/blob/886ec98/src/entities/preference.ts#L9)*
+*Defined in [entities/preference.ts:9](https://github.com/neet/masto.js/blob/c1501e9/src/entities/preference.ts#L9)*
 
 ___
 <a id="reading_expand_spoilers"></a>
@@ -62,7 +62,7 @@ ___
 
 **● reading:expand:spoilers**: *`boolean` \| `null`*
 
-*Defined in [entities/preference.ts:10](https://github.com/neet/masto.js/blob/886ec98/src/entities/preference.ts#L10)*
+*Defined in [entities/preference.ts:10](https://github.com/neet/masto.js/blob/c1501e9/src/entities/preference.ts#L10)*
 
 ___
 

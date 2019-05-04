@@ -50,7 +50,7 @@ Mastodon streaming api wrapper
 
 **● EventEmitter**: *`EventEmitterStatic`*
 
-*Defined in /Users/nucx/Developments/masto.js/node_modules/eventemitter3/index.d.ts:61*
+*Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:61*
 
 ___
 <a id="prefixed"></a>
@@ -61,7 +61,7 @@ ___
 
 *Inherited from EventEmitter.prefixed*
 
-*Defined in /Users/nucx/Developments/masto.js/node_modules/eventemitter3/index.d.ts:6*
+*Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:6*
 
 ___
 
@@ -75,7 +75,7 @@ ___
 
 *Inherited from EventEmitter.addListener*
 
-*Defined in /Users/nucx/Developments/masto.js/node_modules/eventemitter3/index.d.ts:33*
+*Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:33*
 
 **Parameters:**
 
@@ -94,7 +94,7 @@ ___
 
 ▸ **connect**(url: *`string`*): `Promise`<[MastoEvents](_client_masto_events_.mastoevents.md)>
 
-*Defined in [client/masto-events.ts:41](https://github.com/neet/masto.js/blob/886ec98/src/client/masto-events.ts#L41)*
+*Defined in [client/masto-events.ts:41](https://github.com/neet/masto.js/blob/c1501e9/src/client/masto-events.ts#L41)*
 
 Connect to the websocket endpoint
 
@@ -113,7 +113,7 @@ ___
 
 ▸ **disconnect**(): `void`
 
-*Defined in [client/masto-events.ts:56](https://github.com/neet/masto.js/blob/886ec98/src/client/masto-events.ts#L56)*
+*Defined in [client/masto-events.ts:56](https://github.com/neet/masto.js/blob/c1501e9/src/client/masto-events.ts#L56)*
 
 Disconnect from the websocket endpoint
 
@@ -128,7 +128,7 @@ ___
 
 *Inherited from EventEmitter.emit*
 
-*Defined in /Users/nucx/Developments/masto.js/node_modules/eventemitter3/index.d.ts:27*
+*Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:27*
 
 Calls each of the listeners registered for a given event.
 
@@ -150,7 +150,7 @@ ___
 
 *Inherited from EventEmitter.eventNames*
 
-*Defined in /Users/nucx/Developments/masto.js/node_modules/eventemitter3/index.d.ts:12*
+*Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:12*
 
 Return an array listing the events for which the emitter has registered listeners.
 
@@ -163,7 +163,7 @@ ___
 
 ▸ **handleMessage**(message: *[Message](../interfaces/_client_masto_events_.message.md)*): `void`
 
-*Defined in [client/masto-events.ts:65](https://github.com/neet/masto.js/blob/886ec98/src/client/masto-events.ts#L65)*
+*Defined in [client/masto-events.ts:65](https://github.com/neet/masto.js/blob/c1501e9/src/client/masto-events.ts#L65)*
 
 Parse JSON data and emit it as an event
 
@@ -184,7 +184,7 @@ ___
 
 *Inherited from EventEmitter.listenerCount*
 
-*Defined in /Users/nucx/Developments/masto.js/node_modules/eventemitter3/index.d.ts:22*
+*Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:22*
 
 Return the number of listeners listening to a given event.
 
@@ -205,7 +205,7 @@ ___
 
 *Inherited from EventEmitter.listeners*
 
-*Defined in /Users/nucx/Developments/masto.js/node_modules/eventemitter3/index.d.ts:17*
+*Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:17*
 
 Return the listeners registered for a given event.
 
@@ -226,7 +226,7 @@ ___
 
 *Inherited from EventEmitter.off*
 
-*Defined in /Users/nucx/Developments/masto.js/node_modules/eventemitter3/index.d.ts:44*
+*Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:44*
 
 **Parameters:**
 
@@ -248,7 +248,7 @@ ___
 
 *Overrides EventEmitter.on*
 
-*Defined in [client/masto-events.ts:86](https://github.com/neet/masto.js/blob/886ec98/src/client/masto-events.ts#L86)*
+*Defined in [client/masto-events.ts:86](https://github.com/neet/masto.js/blob/c1501e9/src/client/masto-events.ts#L86)*
 
 Add listener for the event
 
@@ -273,7 +273,7 @@ ___
 
 *Inherited from EventEmitter.once*
 
-*Defined in /Users/nucx/Developments/masto.js/node_modules/eventemitter3/index.d.ts:38*
+*Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:38*
 
 Add a one-time listener for a given event.
 
@@ -296,7 +296,7 @@ ___
 
 *Inherited from EventEmitter.removeAllListeners*
 
-*Defined in /Users/nucx/Developments/masto.js/node_modules/eventemitter3/index.d.ts:49*
+*Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:49*
 
 Remove all listeners, or those of the specified event.
 
@@ -317,7 +317,7 @@ ___
 
 *Inherited from EventEmitter.removeListener*
 
-*Defined in /Users/nucx/Developments/masto.js/node_modules/eventemitter3/index.d.ts:43*
+*Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:43*
 
 Remove the listeners of a given event.
 

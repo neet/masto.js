@@ -42,7 +42,7 @@ All of available methods / interfaces are described in the [documentation](https
 FAQ
 ---
 
-### Q. What is the deference between Masto.js and the others?
+### Q. What is the deference between Masto.js and the others
 
 *    **Browsers** and **Node.js** are both supported
 *    **TypeScript** powers static typing.

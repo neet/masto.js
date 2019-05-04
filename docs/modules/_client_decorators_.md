@@ -26,7 +26,7 @@
 
 **Ƭ Decorator**: *`function`*
 
-*Defined in [client/decorators.ts:5](https://github.com/neet/masto.js/blob/886ec98/src/client/decorators.ts#L5)*
+*Defined in [client/decorators.ts:5](https://github.com/neet/masto.js/blob/c1501e9/src/client/decorators.ts#L5)*
 
 #### Type declaration
 ▸(masto: *[Masto](../classes/_client_masto_.masto.md)*, name: *`string`*, descriptor: *`TypedPropertyDescriptor`<`function`>*): `void`
@@ -51,7 +51,7 @@ ___
 
 ▸ **available**(parameters: *[AvailabeParams](../interfaces/_client_decorators_.availabeparams.md)*): [Decorator](_client_decorators_.md#decorator)
 
-*Defined in [client/decorators.ts:20](https://github.com/neet/masto.js/blob/886ec98/src/client/decorators.ts#L20)*
+*Defined in [client/decorators.ts:20](https://github.com/neet/masto.js/blob/c1501e9/src/client/decorators.ts#L20)*
 
 Decorator that verifies the version of the Mastodon instance
 

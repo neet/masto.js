@@ -35,7 +35,7 @@ Mastodon not found error class
 
 ⊕ **new MastoNotFoundError**(...args: *`any`[]*): [MastoNotFoundError](_errors_masto_not_found_error_.mastonotfounderror.md)
 
-*Defined in [errors/masto-not-found-error.ts:5](https://github.com/neet/masto.js/blob/886ec98/src/errors/masto-not-found-error.ts#L5)*
+*Defined in [errors/masto-not-found-error.ts:5](https://github.com/neet/masto.js/blob/c1501e9/src/errors/masto-not-found-error.ts#L5)*
 
 **Parameters:**
 
@@ -57,7 +57,7 @@ ___
 
 *Inherited from Error.message*
 
-*Defined in /Users/nucx/Developments/masto.js/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:964*
+*Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:964*
 
 ___
 <a id="name"></a>
@@ -68,7 +68,7 @@ ___
 
 *Inherited from Error.name*
 
-*Defined in /Users/nucx/Developments/masto.js/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:963*
+*Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:963*
 
 ___
 <a id="stack"></a>
@@ -81,7 +81,7 @@ ___
 
 *Overrides Error.stack*
 
-*Defined in /Users/nucx/Developments/masto.js/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:965*
+*Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:965*
 
 ___
 <a id="error"></a>
@@ -90,7 +90,7 @@ ___
 
 **● Error**: *`ErrorConstructor`*
 
-*Defined in /Users/nucx/Developments/masto.js/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:974*
+*Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:974*
 
 ___
 

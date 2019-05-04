@@ -9,7 +9,7 @@
 ## Callable
 ▸ **__call**(...args: *`Array`<`any`>*): `void`
 
-*Defined in /Users/nucx/Developments/masto.js/node_modules/eventemitter3/index.d.ts:53*
+*Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:53*
 
 **Parameters:**
 
