@@ -5,10 +5,10 @@
 <p align="center">Mastodon API client for JavaScript, TypeScript, Node.js, browsers</p>
 
 <p align="center">
+  <a href="https://mastodon.social/@neet"><img alt="Mastodon" src="https://bit.ly/2LoeY3O" /></a>
   <a href="https://www.npmjs.com/package/masto"><img src="https://img.shields.io/npm/v/masto.svg" alt="npm"/></a>
   <a href="https://circleci.com/gh/neet/masto.js"><img src="https://img.shields.io/circleci/project/github/neet/masto.js/master.svg" /></a>
   <a href="https://codecov.io/gh/neet/masto.js"><img src="https://codecov.io/gh/neet/masto.js/branch/master/graph/badge.svg" /></a>
-  <a href="https://codeclimate.com/github/neet/masto.js/maintainability"><img src="https://api.codeclimate.com/v1/badges/f56a1d2e6728a89d0a94/maintainability" /></a>
 </p>
 
 ## Installation
@@ -39,7 +39,7 @@ import Masto from 'masto';
 })()
 ```
 
-All of available methods / interfaces are described in the [documentation](https://github.com/neet/masto.js/blob/master/docs/classes/_client_masto_.masto.md). You can also refer the some [examples](https://github.com/neet/masto.js/tree/master/examples) on this repository.
+All of available methods / interfaces are described in the [documentation](https://github.com/neet/masto.js/blob/master/docs/classes/_client_masto_.masto.md). You can also refer the [examples](https://github.com/neet/masto.js/tree/master/examples) on this repository.
 
 ## FAQ
 ### Q. What is the deference between Masto.js and the others?
