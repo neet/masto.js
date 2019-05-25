@@ -1,6 +1,6 @@
 // tslint:disable no-unnecessary-override
-import * as EventEmitter from 'eventemitter3';
-import * as WebSocket from 'isomorphic-ws';
+import EventEmitter from 'eventemitter3';
+import WebSocket from 'isomorphic-ws';
 import { Conversation } from '../entities/conversation';
 import { Notification } from '../entities/notification';
 import { Status } from '../entities/status';

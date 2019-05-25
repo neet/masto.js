@@ -1,4 +1,4 @@
-import * as semver from 'semver';
+import semver from 'semver';
 import { MastoNotFoundError } from '../errors/masto-not-found-error';
 import { Masto } from './masto';
 
