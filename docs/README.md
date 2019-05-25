@@ -3,7 +3,8 @@
 
 Mastodon API client for JavaScript, TypeScript, Node.js, browsers
 
-[![npm](https://img.shields.io/npm/v/masto.svg)](https://www.npmjs.com/package/masto) [![](https://img.shields.io/circleci/project/github/neet/masto.js/master.svg)](https://circleci.com/gh/neet/masto.js) [![](https://codecov.io/gh/neet/masto.js/branch/master/graph/badge.svg)](https://codecov.io/gh/neet/masto.js) [![](https://api.codeclimate.com/v1/badges/f56a1d2e6728a89d0a94/maintainability)](https://codeclimate.com/github/neet/masto.js/maintainability)
+[![npm](https://img.shields.io/npm/v/masto.svg)](https://www.npmjs.com/package/masto) [![](https://img.shields.io/circleci/project/github/neet/masto.js/master.svg)](https://circleci.com/gh/neet/masto.js) [![](https://codecov.io/gh/neet/masto.js/branch/master/graph/badge.svg)](https://codecov.io/gh/neet/masto.js) [![](https://api.codeclimate.com/v1/badges/f56a1d2e6728a89d0a94/maintainability)](https://codeclimate.com/github/neet/masto.js/maintainability)  
+[![Mastodon](https://bit.ly/2LoeY3O)](https://mastodon.social/@neet)
 
 Installation
 ------------
@@ -37,7 +38,7 @@ import Masto from 'masto';
 })()
 ```
 
-All of available methods / interfaces are described in the [documentation](https://github.com/neet/masto.js/blob/master/docs/classes/_client_masto_.masto.md). You can also refer the some [examples](https://github.com/neet/masto.js/tree/master/examples) on this repository.
+All of available methods / interfaces are described in the [documentation](https://github.com/neet/masto.js/blob/master/docs/classes/_client_masto_.masto.md). You can also refer the [examples](https://github.com/neet/masto.js/tree/master/examples) on this repository.
 
 FAQ
 ---

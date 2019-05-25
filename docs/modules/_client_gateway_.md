@@ -26,7 +26,7 @@
 
 **Ƭ PaginateNextOptions**: *`object`*
 
-*Defined in [client/gateway.ts:24](https://github.com/neet/masto.js/blob/c1501e9/src/client/gateway.ts#L24)*
+*Defined in [client/gateway.ts:26](https://github.com/neet/masto.js/blob/cdad6ed/src/client/gateway.ts#L26)*
 
 #### Type declaration
 

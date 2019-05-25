@@ -25,7 +25,7 @@
 
 **● logins**: *`string`*
 
-*Defined in [entities/instance.ts:44](https://github.com/neet/masto.js/blob/c1501e9/src/entities/instance.ts#L44)*
+*Defined in [entities/instance.ts:44](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/instance.ts#L44)*
 
 Active users while the week
 
@@ -36,7 +36,7 @@ ___
 
 **● registrations**: *`string`*
 
-*Defined in [entities/instance.ts:46](https://github.com/neet/masto.js/blob/c1501e9/src/entities/instance.ts#L46)*
+*Defined in [entities/instance.ts:46](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/instance.ts#L46)*
 
 New registrations while the week
 
@@ -47,7 +47,7 @@ ___
 
 **● statuses**: *`string`*
 
-*Defined in [entities/instance.ts:42](https://github.com/neet/masto.js/blob/c1501e9/src/entities/instance.ts#L42)*
+*Defined in [entities/instance.ts:42](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/instance.ts#L42)*
 
 Number of statuses created while the week
 
@@ -58,7 +58,7 @@ ___
 
 **● week**: *`string`*
 
-*Defined in [entities/instance.ts:40](https://github.com/neet/masto.js/blob/c1501e9/src/entities/instance.ts#L40)*
+*Defined in [entities/instance.ts:40](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/instance.ts#L40)*
 
 Timestamp of 0 o'clock on Monday of the week
 

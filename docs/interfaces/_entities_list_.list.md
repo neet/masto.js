@@ -23,7 +23,7 @@
 
 **● id**: *`string`*
 
-*Defined in [entities/list.ts:3](https://github.com/neet/masto.js/blob/c1501e9/src/entities/list.ts#L3)*
+*Defined in [entities/list.ts:3](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/list.ts#L3)*
 
 ID of the list
 
@@ -34,7 +34,7 @@ ___
 
 **● title**: *`string`*
 
-*Defined in [entities/list.ts:5](https://github.com/neet/masto.js/blob/c1501e9/src/entities/list.ts#L5)*
+*Defined in [entities/list.ts:5](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/list.ts#L5)*
 
 Title of the list
 

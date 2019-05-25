@@ -24,7 +24,7 @@
 
 **● accounts**: *`number`*
 
-*Defined in [entities/tag.ts:16](https://github.com/neet/masto.js/blob/c1501e9/src/entities/tag.ts#L16)*
+*Defined in [entities/tag.ts:16](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/tag.ts#L16)*
 
 How many unique users are there
 
@@ -35,7 +35,7 @@ ___
 
 **● day**: *`string`*
 
-*Defined in [entities/tag.ts:12](https://github.com/neet/masto.js/blob/c1501e9/src/entities/tag.ts#L12)*
+*Defined in [entities/tag.ts:12](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/tag.ts#L12)*
 
 String of UNIX timestamp
 
@@ -46,7 +46,7 @@ ___
 
 **● uses**: *`number`*
 
-*Defined in [entities/tag.ts:14](https://github.com/neet/masto.js/blob/c1501e9/src/entities/tag.ts#L14)*
+*Defined in [entities/tag.ts:14](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/tag.ts#L14)*
 
 How many times was used
 

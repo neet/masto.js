@@ -35,7 +35,7 @@ Mastodon not found error class
 
 ⊕ **new MastoNotFoundError**(...args: *`any`[]*): [MastoNotFoundError](_errors_masto_not_found_error_.mastonotfounderror.md)
 
-*Defined in [errors/masto-not-found-error.ts:5](https://github.com/neet/masto.js/blob/c1501e9/src/errors/masto-not-found-error.ts#L5)*
+*Defined in [errors/masto-not-found-error.ts:5](https://github.com/neet/masto.js/blob/cdad6ed/src/errors/masto-not-found-error.ts#L5)*
 
 **Parameters:**
 

@@ -25,7 +25,7 @@
 
 **● agreement**: *`boolean`*
 
-*Defined in [client/params.ts:58](https://github.com/neet/masto.js/blob/c1501e9/src/client/params.ts#L58)*
+*Defined in [client/params.ts:61](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L61)*
 
 Whether the user has been agreed to the agreement of the Mastodon instance
 
@@ -36,7 +36,7 @@ ___
 
 **● email**: *`string`*
 
-*Defined in [client/params.ts:56](https://github.com/neet/masto.js/blob/c1501e9/src/client/params.ts#L56)*
+*Defined in [client/params.ts:59](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L59)*
 
 Email of the user
 
@@ -47,7 +47,7 @@ ___
 
 **● password**: *`string`*
 
-*Defined in [client/params.ts:54](https://github.com/neet/masto.js/blob/c1501e9/src/client/params.ts#L54)*
+*Defined in [client/params.ts:57](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L57)*
 
 Password of the user
 
@@ -58,7 +58,7 @@ ___
 
 **● username**: *`string`*
 
-*Defined in [client/params.ts:52](https://github.com/neet/masto.js/blob/c1501e9/src/client/params.ts#L52)*
+*Defined in [client/params.ts:55](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L55)*
 
 Username to create
 

@@ -23,7 +23,7 @@
 
 **● x**: *`number`*
 
-*Defined in [entities/attachment.ts:47](https://github.com/neet/masto.js/blob/c1501e9/src/entities/attachment.ts#L47)*
+*Defined in [entities/attachment.ts:47](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/attachment.ts#L47)*
 
 ___
 <a id="y"></a>
@@ -32,7 +32,7 @@ ___
 
 **● y**: *`number`*
 
-*Defined in [entities/attachment.ts:48](https://github.com/neet/masto.js/blob/c1501e9/src/entities/attachment.ts#L48)*
+*Defined in [entities/attachment.ts:48](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/attachment.ts#L48)*
 
 ___
 

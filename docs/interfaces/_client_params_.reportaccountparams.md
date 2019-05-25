@@ -25,7 +25,7 @@
 
 **● account_id**: *`string`*
 
-*Defined in [client/params.ts:63](https://github.com/neet/masto.js/blob/c1501e9/src/client/params.ts#L63)*
+*Defined in [client/params.ts:66](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L66)*
 
 The ID of the account to report
 
@@ -36,7 +36,7 @@ ___
 
 **● comment**: *`string` \| `null`*
 
-*Defined in [client/params.ts:67](https://github.com/neet/masto.js/blob/c1501e9/src/client/params.ts#L67)*
+*Defined in [client/params.ts:70](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L70)*
 
 Reason for the report (up to 1,000 characters)
 
@@ -47,7 +47,7 @@ ___
 
 **● forward**: *`boolean` \| `null`*
 
-*Defined in [client/params.ts:69](https://github.com/neet/masto.js/blob/c1501e9/src/client/params.ts#L69)*
+*Defined in [client/params.ts:72](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L72)*
 
 Whether to forward to the remote admin (in case of a remote account)
 
@@ -58,7 +58,7 @@ ___
 
 **● status_ids**: *`string`[] \| `null`*
 
-*Defined in [client/params.ts:65](https://github.com/neet/masto.js/blob/c1501e9/src/client/params.ts#L65)*
+*Defined in [client/params.ts:68](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L68)*
 
 The IDs of statuses to report as array
 

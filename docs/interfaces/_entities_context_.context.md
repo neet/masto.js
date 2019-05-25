@@ -23,7 +23,7 @@
 
 **● ancestors**: *[Status](_entities_status_.status.md)[]*
 
-*Defined in [entities/context.ts:5](https://github.com/neet/masto.js/blob/c1501e9/src/entities/context.ts#L5)*
+*Defined in [entities/context.ts:5](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/context.ts#L5)*
 
 The ancestors of the status in the conversation, as a list of Statuses
 
@@ -34,7 +34,7 @@ ___
 
 **● descendants**: *[Status](_entities_status_.status.md)[]*
 
-*Defined in [entities/context.ts:7](https://github.com/neet/masto.js/blob/c1501e9/src/entities/context.ts#L7)*
+*Defined in [entities/context.ts:7](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/context.ts#L7)*
 
 The descendants of the status in the conversation, as a list of Statuses
 

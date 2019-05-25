@@ -22,7 +22,7 @@
 
 **● visibility**: *[StatusVisibility](../modules/_entities_status_.md#statusvisibility)*
 
-*Defined in [client/params.ts:261](https://github.com/neet/masto.js/blob/c1501e9/src/client/params.ts#L261)*
+*Defined in [client/params.ts:264](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L264)*
 
 Reblog visibility
 

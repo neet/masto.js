@@ -26,7 +26,7 @@
 
 **Ƭ AttachmentType**: *"image" \| "video" \| "gifv" \| "unknown"*
 
-*Defined in [entities/attachment.ts:22](https://github.com/neet/masto.js/blob/c1501e9/src/entities/attachment.ts#L22)*
+*Defined in [entities/attachment.ts:22](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/attachment.ts#L22)*
 
 ___
 

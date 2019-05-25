@@ -26,7 +26,7 @@
 
 **● context**: *[FilterContext](../modules/_entities_filter_.md#filtercontext)[] \| `null`*
 
-*Defined in [client/params.ts:139](https://github.com/neet/masto.js/blob/c1501e9/src/client/params.ts#L139)*
+*Defined in [client/params.ts:142](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L142)*
 
 Array of strings that means filtering context. each string is one of `home`, `notifications`, `public`, `thread`. At least one context must be specified
 
@@ -37,7 +37,7 @@ ___
 
 **● expires_in**: *`number` \| `null`*
 
-*Defined in [client/params.ts:145](https://github.com/neet/masto.js/blob/c1501e9/src/client/params.ts#L145)*
+*Defined in [client/params.ts:148](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L148)*
 
 Number that indicates seconds. Filter will be expire in seconds after API processed. Leave blank for no expiration
 
@@ -48,7 +48,7 @@ ___
 
 **● irreversible**: *`boolean` \| `null`*
 
-*Defined in [client/params.ts:141](https://github.com/neet/masto.js/blob/c1501e9/src/client/params.ts#L141)*
+*Defined in [client/params.ts:144](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L144)*
 
 Irreversible filtering will only work in home and notifications contexts by fully dropping the records. Otherwise, filtering is up to the client.
 
@@ -59,7 +59,7 @@ ___
 
 **● phrase**: *`string` \| `null`*
 
-*Defined in [client/params.ts:137](https://github.com/neet/masto.js/blob/c1501e9/src/client/params.ts#L137)*
+*Defined in [client/params.ts:140](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L140)*
 
 Keyword or phrase to filter
 
@@ -70,7 +70,7 @@ ___
 
 **● whole_word**: *`boolean` \| `null`*
 
-*Defined in [client/params.ts:143](https://github.com/neet/masto.js/blob/c1501e9/src/client/params.ts#L143)*
+*Defined in [client/params.ts:146](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L146)*
 
 Whether to consider word boundaries when matching
 
