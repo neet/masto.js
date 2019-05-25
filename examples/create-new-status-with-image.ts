@@ -1,5 +1,5 @@
 // tslint:disable no-console
-import * as fs from 'fs';
+import fs from 'fs';
 import Masto from '../src';
 
 // For more inromation:

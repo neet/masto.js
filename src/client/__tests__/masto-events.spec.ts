@@ -1,5 +1,5 @@
 // tslint:disable
-import * as WebSocket from 'isomorphic-ws';
+import WebSocket from 'isomorphic-ws';
 import { MastoEvents } from '../masto-events';
 
 const onMock = jest.fn();

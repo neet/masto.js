@@ -1,15 +1,16 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-// tslint:disable-next-line no-import-side-effect
-import 'isomorphic-form-data';
 import normalizeUrl from 'normalize-url';
-import * as querystring from 'querystring';
-import * as semver from 'semver';
+import querystring from 'querystring';
+import semver from 'semver';
 import { oc } from 'ts-optchain';
 import { MastoNotFoundError } from '../errors/masto-not-found-error';
 import { MastoRateLimitError } from '../errors/masto-rate-limit-error';
 import { MastoUnauthorizedError } from '../errors/masto-unauthorized-error';
 import { MastoEvents } from './masto-events';
 import { isAxiosError } from './utils';
+
+// tslint:disable-next-line no-import-side-effect
+import 'isomorphic-form-data';
 
 export interface GatewayConstructor {
   /** URI of the instance */
