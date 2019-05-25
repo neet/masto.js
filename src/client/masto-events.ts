@@ -36,11 +36,12 @@ export class MastoEvents extends EventEmitter {
   /**
    * Connect to the websocket endpoint
    * @param url URL of the websocket endpoint
+   * @param protocols Subprotocol(s) for `Sec-Websocket-Protocol`
    * @param params URL parameters
    */
-  public connect(url: string) {
+  public connect(url: string, protocols?: string | string[]) {
     return new Promise<MastoEvents>((resolve, reject) => {
-      this.ws = new WebSocket(url);
+      this.ws = new WebSocket(url, protocols);
 
       this.ws.addEventListener('message', this.handleMessage);
       this.ws.addEventListener('error', reject);

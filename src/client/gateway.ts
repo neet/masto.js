@@ -3,6 +3,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import 'isomorphic-form-data';
 import normalizeUrl from 'normalize-url';
 import * as querystring from 'querystring';
+import * as semver from 'semver';
 import { oc } from 'ts-optchain';
 import { MastoNotFoundError } from '../errors/masto-not-found-error';
 import { MastoRateLimitError } from '../errors/masto-rate-limit-error';
@@ -314,15 +315,24 @@ export class Gateway {
    * @return Instance of EventEmitter
    */
   public stream(path: string, params: { [key: string]: any } = {}) {
-    if (this.accessToken) {
+    const version = semver.coerce(this.version);
+    const protocols = [];
+
+    // Since v2.8.4, Using `Sec-Websocket-Protocl` to
+    // Pass token string is supported
+    // https://github.com/tootsuite/mastodon/pull/10818
+    if (version && semver.gte(version, '2.8.4')) {
+      protocols.push(this.accessToken);
+    } else {
       params.access_token = this.accessToken;
     }
 
-    return new MastoEvents().connect(
+    const url =
       this.streamingApiUrl +
-        path +
-        (Object.keys(params).length ? `?${querystring.stringify(params)}` : ''),
-    );
+      path +
+      (Object.keys(params).length ? `?${querystring.stringify(params)}` : '');
+
+    return new MastoEvents().connect(url, protocols);
   }
 
   /**
