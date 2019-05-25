@@ -1,3 +1,4 @@
+import { ReadStream } from 'fs';
 import { Omit } from 'simplytyped';
 import { AccountField, AccountSource } from '../entities/account';
 import { FilterContext } from '../entities/filter';
@@ -7,7 +8,7 @@ import { StatusVisibility } from '../entities/status';
 import { GatewayConstructor } from './gateway';
 
 /** Union of acceptable values of form-data for browser and node */
-export type IsomorphicFormDataValue = string | Blob | Buffer | ReadableStream;
+export type IsomorphicFormDataValue = string | Blob | Buffer | ReadStream;
 
 export type LoginParams = Pick<GatewayConstructor, 'uri' | 'accessToken'>;
 
