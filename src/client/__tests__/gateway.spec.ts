@@ -17,6 +17,7 @@ describe('Gateway', () => {
   beforeEach(() => {
     gateway = new Gateway({
       uri: 'https://example.com',
+      version: '99.9.9',
       streamingApiUrl: 'wss://example.com',
     });
 
@@ -37,12 +38,12 @@ describe('Gateway', () => {
   test('version has been set if construct with version ', () => {
     gateway = new Gateway({
       uri: 'https://example.com',
-      version: '99.9.9',
+      version: '1.2.3',
     });
-    expect(gateway.version).toBe('99.9.9');
+    expect(gateway.version).toBe('1.2.3');
   });
 
-  test('version has been set if construct with accessToken', () => {
+  test('accessToken has been set if construct with accessToken', () => {
     gateway = new Gateway({
       uri: 'https://example.com',
       accessToken: 'token token',
@@ -300,15 +301,23 @@ describe('Gateway', () => {
   test('initialize MastoEvents and call connect with given params', async () => {
     const params = { a: 'a', b: 'b' };
     await gateway.stream('/', params);
-    expect(connectMock).toBeCalledWith('wss://example.com/?a=a&b=b');
+    expect(connectMock).toBeCalledWith('wss://example.com/?a=a&b=b', []);
   });
 
   test('initialize MastoEvents and call connect with access token', async () => {
     gateway.accessToken = 'tokentoken';
     await gateway.stream('/');
+    expect(connectMock).toBeCalledWith('wss://example.com/', ['tokentoken']);
+  });
+
+  test('initialize MastoEvents and call connect with access token as a param for Mastodon < v2.8.4', async () => {
+    gateway.version = '2.8.3';
+    gateway.accessToken = 'tokentoken';
+    await gateway.stream('/');
 
     expect(connectMock).toBeCalledWith(
       'wss://example.com/?access_token=tokentoken',
+      [],
     );
   });
 
