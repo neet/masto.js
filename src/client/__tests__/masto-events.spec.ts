@@ -36,9 +36,12 @@ describe('MastoEvents', () => {
       }
     });
 
-    await mastoEvents.connect('wss://example.com');
+    await mastoEvents.connect('wss://example.com', []);
 
-    expect((WebSocket as any) as jest.Mock).toBeCalledWith('wss://example.com');
+    expect((WebSocket as any) as jest.Mock).toBeCalledWith(
+      'wss://example.com',
+      [],
+    );
 
     expect(addEventListenerMock).toHaveBeenCalledWith(
       'message',

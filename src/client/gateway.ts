@@ -43,7 +43,7 @@ export class Gateway {
   /** Version of the current instance */
   public version = '';
   /** API token of the user */
-  public accessToken = '';
+  public accessToken?: string;
 
   /**
    * @param params Parameters
@@ -321,9 +321,9 @@ export class Gateway {
     // Since v2.8.4, Using `Sec-Websocket-Protocl` to
     // Pass token string is supported
     // https://github.com/tootsuite/mastodon/pull/10818
-    if (version && semver.gte(version, '2.8.4')) {
+    if (this.accessToken && version && semver.gte(version, '2.8.4')) {
       protocols.push(this.accessToken);
-    } else {
+    } else if (this.accessToken) {
       params.access_token = this.accessToken;
     }
 
