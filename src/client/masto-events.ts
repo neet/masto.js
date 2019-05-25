@@ -7,7 +7,7 @@ import { Status } from '../entities/status';
 
 /** Callback argument of `ws` */
 export interface Message {
-  data: any;
+  data: string;
   type: string;
   target: WebSocket;
 }
@@ -65,7 +65,7 @@ export class MastoEvents extends EventEmitter {
    */
   public handleMessage = (message: Message) => {
     const parsedMessage = JSON.parse(message.data);
-    let data: any;
+    let data: string | { [key: string]: any };
 
     try {
       data = JSON.parse(parsedMessage.payload);

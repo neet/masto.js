@@ -6,6 +6,9 @@ import { PushSubscriptionAlerts } from '../entities/push-subscription';
 import { StatusVisibility } from '../entities/status';
 import { GatewayConstructor } from './gateway';
 
+/** Union of acceptable values of form-data for browser and node */
+export type IsomorphicFormDataValue = string | Blob | Buffer | ReadableStream;
+
 export type LoginParams = Pick<GatewayConstructor, 'uri' | 'accessToken'>;
 
 export interface PaginationParams {
@@ -25,9 +28,9 @@ export interface UpdateCredentialsParams {
   /** Biography */
   note?: string | null;
   /** Avatar encoded using `multipart/form-data` */
-  avatar?: any | null;
+  avatar?: IsomorphicFormDataValue | null;
   /** Header image encoded using `multipart/form-data` */
-  header?: any | null;
+  header?: IsomorphicFormDataValue | null;
   /** Enable follow requests */
   locked?: boolean | null;
   /**
@@ -120,7 +123,7 @@ export interface RevokeAccessTokenParams {
 
 export interface UploadMediaAttachmentParams {
   /** Media to be uploaded (encoded using `multipart/form-data`) */
-  file: any;
+  file: IsomorphicFormDataValue;
   /** A plain-text description of the media, for accessibility (max 420 chars) */
   description?: string | null;
   /** Focal point: Two floating points, comma-delimited */

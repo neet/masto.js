@@ -20,7 +20,7 @@ export interface ScheduledStatus {
   /** Scheduled date */
   scheduled_at: string;
   /** Parameters of the status */
-  params: any;
+  params: StatusParams;
   /** Media attachments */
   media_attachments: Attachment;
 }
