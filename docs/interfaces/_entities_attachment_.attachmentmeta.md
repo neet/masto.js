@@ -24,7 +24,7 @@
 
 **● focus**: *[AttachmentMetaFocus](_entities_attachment_.attachmentmetafocus.md) \| `null`*
 
-*Defined in [entities/attachment.ts:27](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/attachment.ts#L27)*
+*Defined in [entities/attachment.ts:27](https://github.com/neet/masto.js/blob/a11943e/src/entities/attachment.ts#L27)*
 
 ___
 <a id="original"></a>
@@ -33,7 +33,7 @@ ___
 
 **● original**: *[AttachmentMetaImage](_entities_attachment_.attachmentmetaimage.md) \| [AttachmentMetaVideo](_entities_attachment_.attachmentmetavideo.md) \| `null`*
 
-*Defined in [entities/attachment.ts:26](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/attachment.ts#L26)*
+*Defined in [entities/attachment.ts:26](https://github.com/neet/masto.js/blob/a11943e/src/entities/attachment.ts#L26)*
 
 ___
 <a id="small"></a>
@@ -42,7 +42,7 @@ ___
 
 **● small**: *[AttachmentMetaImage](_entities_attachment_.attachmentmetaimage.md) \| [AttachmentMetaVideo](_entities_attachment_.attachmentmetavideo.md) \| `null`*
 
-*Defined in [entities/attachment.ts:25](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/attachment.ts#L25)*
+*Defined in [entities/attachment.ts:25](https://github.com/neet/masto.js/blob/a11943e/src/entities/attachment.ts#L25)*
 
 ___
 

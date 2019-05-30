@@ -34,7 +34,7 @@
 
 *Inherited from [CreateStatusParamsBase](_client_params_.createstatusparamsbase.md).[in_reply_to_id](_client_params_.createstatusparamsbase.md#in_reply_to_id)*
 
-*Defined in [client/params.ts:227](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L227)*
+*Defined in [client/params.ts:228](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L228)*
 
 local ID of the status you want to reply to
 
@@ -47,7 +47,7 @@ ___
 
 *Inherited from [CreateStatusParamsBase](_client_params_.createstatusparamsbase.md).[language](_client_params_.createstatusparamsbase.md#language)*
 
-*Defined in [client/params.ts:237](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L237)*
+*Defined in [client/params.ts:238](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L238)*
 
 ISO 639-2 language code of the toot, to skip automatic detection
 
@@ -58,7 +58,7 @@ ___
 
 **● media_ids**: *`string`[] \| `null`*
 
-*Defined in [client/params.ts:253](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L253)*
+*Defined in [client/params.ts:254](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L254)*
 
 Array of media IDs to attach to the status (maximum 4)
 
@@ -69,7 +69,7 @@ ___
 
 **● poll**: *`undefined`*
 
-*Defined in [client/params.ts:255](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L255)*
+*Defined in [client/params.ts:256](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L256)*
 
 Poll cannot be combined with media ids
 
@@ -82,7 +82,7 @@ ___
 
 *Inherited from [CreateStatusParamsBase](_client_params_.createstatusparamsbase.md).[scheduled_at](_client_params_.createstatusparamsbase.md#scheduled_at)*
 
-*Defined in [client/params.ts:235](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L235)*
+*Defined in [client/params.ts:236](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L236)*
 
 Timestamp string to schedule posting of status (ISO 8601)
 
@@ -95,7 +95,7 @@ ___
 
 *Inherited from [CreateStatusParamsBase](_client_params_.createstatusparamsbase.md).[sensitive](_client_params_.createstatusparamsbase.md#sensitive)*
 
-*Defined in [client/params.ts:229](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L229)*
+*Defined in [client/params.ts:230](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L230)*
 
 Set this to mark the media of the status as NSFW
 
@@ -108,7 +108,7 @@ ___
 
 *Inherited from [CreateStatusParamsBase](_client_params_.createstatusparamsbase.md).[spoiler_text](_client_params_.createstatusparamsbase.md#spoiler_text)*
 
-*Defined in [client/params.ts:231](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L231)*
+*Defined in [client/params.ts:232](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L232)*
 
 Text to be shown as a warning before the actual content
 
@@ -119,7 +119,7 @@ ___
 
 **● status**: *`string` \| `null`*
 
-*Defined in [client/params.ts:251](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L251)*
+*Defined in [client/params.ts:252](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L252)*
 
 Text of the status
 
@@ -132,7 +132,7 @@ ___
 
 *Inherited from [CreateStatusParamsBase](_client_params_.createstatusparamsbase.md).[visibility](_client_params_.createstatusparamsbase.md#visibility)*
 
-*Defined in [client/params.ts:233](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L233)*
+*Defined in [client/params.ts:234](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L234)*
 
 Either "direct", "private", "unlisted" or "public"
 

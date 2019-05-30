@@ -25,7 +25,7 @@
 
 **● accessToken**: *`undefined` \| `string`*
 
-*Defined in [client/gateway.ts:23](https://github.com/neet/masto.js/blob/cdad6ed/src/client/gateway.ts#L23)*
+*Defined in [client/gateway.ts:23](https://github.com/neet/masto.js/blob/a11943e/src/client/gateway.ts#L23)*
 
 Access token of the user
 
@@ -36,7 +36,7 @@ ___
 
 **● streamingApiUrl**: *`undefined` \| `string`*
 
-*Defined in [client/gateway.ts:19](https://github.com/neet/masto.js/blob/cdad6ed/src/client/gateway.ts#L19)*
+*Defined in [client/gateway.ts:19](https://github.com/neet/masto.js/blob/a11943e/src/client/gateway.ts#L19)*
 
 Streaming API URL
 
@@ -47,7 +47,7 @@ ___
 
 **● uri**: *`string`*
 
-*Defined in [client/gateway.ts:17](https://github.com/neet/masto.js/blob/cdad6ed/src/client/gateway.ts#L17)*
+*Defined in [client/gateway.ts:17](https://github.com/neet/masto.js/blob/a11943e/src/client/gateway.ts#L17)*
 
 URI of the instance
 
@@ -58,7 +58,7 @@ ___
 
 **● version**: *`undefined` \| `string`*
 
-*Defined in [client/gateway.ts:21](https://github.com/neet/masto.js/blob/cdad6ed/src/client/gateway.ts#L21)*
+*Defined in [client/gateway.ts:21](https://github.com/neet/masto.js/blob/a11943e/src/client/gateway.ts#L21)*
 
 Version of the instance
 

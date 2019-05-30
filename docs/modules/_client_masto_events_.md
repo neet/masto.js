@@ -27,7 +27,7 @@
 
 **Ƭ EventTypes**: *`keyof EventTypesMap`*
 
-*Defined in [client/masto-events.ts:28](https://github.com/neet/masto.js/blob/cdad6ed/src/client/masto-events.ts#L28)*
+*Defined in [client/masto-events.ts:28](https://github.com/neet/masto.js/blob/a11943e/src/client/masto-events.ts#L28)*
 
 ___
 

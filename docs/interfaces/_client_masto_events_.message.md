@@ -26,7 +26,7 @@ Callback argument of `ws`
 
 **● data**: *`string`*
 
-*Defined in [client/masto-events.ts:10](https://github.com/neet/masto.js/blob/cdad6ed/src/client/masto-events.ts#L10)*
+*Defined in [client/masto-events.ts:10](https://github.com/neet/masto.js/blob/a11943e/src/client/masto-events.ts#L10)*
 
 ___
 <a id="target"></a>
@@ -35,7 +35,7 @@ ___
 
 **● target**: *`WebSocket`*
 
-*Defined in [client/masto-events.ts:12](https://github.com/neet/masto.js/blob/cdad6ed/src/client/masto-events.ts#L12)*
+*Defined in [client/masto-events.ts:12](https://github.com/neet/masto.js/blob/a11943e/src/client/masto-events.ts#L12)*
 
 ___
 <a id="type"></a>
@@ -44,7 +44,7 @@ ___
 
 **● type**: *`string`*
 
-*Defined in [client/masto-events.ts:11](https://github.com/neet/masto.js/blob/cdad6ed/src/client/masto-events.ts#L11)*
+*Defined in [client/masto-events.ts:11](https://github.com/neet/masto.js/blob/a11943e/src/client/masto-events.ts#L11)*
 
 ___
 

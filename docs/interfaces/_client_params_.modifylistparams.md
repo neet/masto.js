@@ -22,7 +22,7 @@
 
 **● title**: *`string`*
 
-*Defined in [client/params.ts:153](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L153)*
+*Defined in [client/params.ts:154](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L154)*
 
 Title of the list
 

@@ -28,7 +28,7 @@
 
 *Inherited from [FetchAccessTokenParamsBase](_client_params_.fetchaccesstokenparamsbase.md).[grant_type](_client_params_.fetchaccesstokenparamsbase.md#grant_type)*
 
-*Defined in [client/params.ts:90](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L90)*
+*Defined in [client/params.ts:91](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L91)*
 
 Grant type
 
@@ -39,7 +39,7 @@ ___
 
 **● password**: *`string`*
 
-*Defined in [client/params.ts:108](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L108)*
+*Defined in [client/params.ts:109](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L109)*
 
 Password
 
@@ -50,7 +50,7 @@ ___
 
 **● username**: *`string`*
 
-*Defined in [client/params.ts:110](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L110)*
+*Defined in [client/params.ts:111](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L111)*
 
 Username
 

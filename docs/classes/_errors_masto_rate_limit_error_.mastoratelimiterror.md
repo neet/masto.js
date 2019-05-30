@@ -35,7 +35,7 @@ Mastodon rate limit error class
 
 ⊕ **new MastoRateLimitError**(...args: *`any`[]*): [MastoRateLimitError](_errors_masto_rate_limit_error_.mastoratelimiterror.md)
 
-*Defined in [errors/masto-rate-limit-error.ts:5](https://github.com/neet/masto.js/blob/cdad6ed/src/errors/masto-rate-limit-error.ts#L5)*
+*Defined in [errors/masto-rate-limit-error.ts:5](https://github.com/neet/masto.js/blob/a11943e/src/errors/masto-rate-limit-error.ts#L5)*
 
 **Parameters:**
 

@@ -31,7 +31,7 @@
 
 **● in_reply_to_id**: *`string` \| `null`*
 
-*Defined in [client/params.ts:227](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L227)*
+*Defined in [client/params.ts:228](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L228)*
 
 local ID of the status you want to reply to
 
@@ -42,7 +42,7 @@ ___
 
 **● language**: *`string` \| `null`*
 
-*Defined in [client/params.ts:237](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L237)*
+*Defined in [client/params.ts:238](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L238)*
 
 ISO 639-2 language code of the toot, to skip automatic detection
 
@@ -53,7 +53,7 @@ ___
 
 **● scheduled_at**: *`string` \| `null`*
 
-*Defined in [client/params.ts:235](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L235)*
+*Defined in [client/params.ts:236](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L236)*
 
 Timestamp string to schedule posting of status (ISO 8601)
 
@@ -64,7 +64,7 @@ ___
 
 **● sensitive**: *`boolean` \| `null`*
 
-*Defined in [client/params.ts:229](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L229)*
+*Defined in [client/params.ts:230](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L230)*
 
 Set this to mark the media of the status as NSFW
 
@@ -75,7 +75,7 @@ ___
 
 **● spoiler_text**: *`string` \| `null`*
 
-*Defined in [client/params.ts:231](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L231)*
+*Defined in [client/params.ts:232](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L232)*
 
 Text to be shown as a warning before the actual content
 
@@ -86,7 +86,7 @@ ___
 
 **● visibility**: *[StatusVisibility](../modules/_entities_status_.md#statusvisibility) \| `null`*
 
-*Defined in [client/params.ts:233](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L233)*
+*Defined in [client/params.ts:234](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L234)*
 
 Either "direct", "private", "unlisted" or "public"
 

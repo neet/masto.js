@@ -28,7 +28,7 @@
 
 **● client_id**: *`string`*
 
-*Defined in [entities/oauth.ts:4](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/oauth.ts#L4)*
+*Defined in [entities/oauth.ts:4](https://github.com/neet/masto.js/blob/a11943e/src/entities/oauth.ts#L4)*
 
 ___
 <a id="client_secret"></a>
@@ -37,7 +37,7 @@ ___
 
 **● client_secret**: *`string`*
 
-*Defined in [entities/oauth.ts:5](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/oauth.ts#L5)*
+*Defined in [entities/oauth.ts:5](https://github.com/neet/masto.js/blob/a11943e/src/entities/oauth.ts#L5)*
 
 ___
 <a id="name"></a>
@@ -48,7 +48,7 @@ ___
 
 *Inherited from [Application](_entities_application_.application.md).[name](_entities_application_.application.md#name)*
 
-*Defined in [entities/application.ts:3](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/application.ts#L3)*
+*Defined in [entities/application.ts:3](https://github.com/neet/masto.js/blob/a11943e/src/entities/application.ts#L3)*
 
 Name of the app
 
@@ -61,7 +61,7 @@ ___
 
 *Inherited from [Application](_entities_application_.application.md).[vapid_key](_entities_application_.application.md#vapid_key)*
 
-*Defined in [entities/application.ts:7](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/application.ts#L7)*
+*Defined in [entities/application.ts:7](https://github.com/neet/masto.js/blob/a11943e/src/entities/application.ts#L7)*
 
 VAPID key
 
@@ -74,7 +74,7 @@ ___
 
 *Inherited from [Application](_entities_application_.application.md).[website](_entities_application_.application.md#website)*
 
-*Defined in [entities/application.ts:5](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/application.ts#L5)*
+*Defined in [entities/application.ts:5](https://github.com/neet/masto.js/blob/a11943e/src/entities/application.ts#L5)*
 
 Homepage URL of the app
 

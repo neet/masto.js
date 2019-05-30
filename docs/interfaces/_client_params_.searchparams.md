@@ -32,7 +32,7 @@
 
 **● account_id**: *`undefined` \| `string`*
 
-*Defined in [client/params.ts:204](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L204)*
+*Defined in [client/params.ts:205](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L205)*
 
 Account id to search
 
@@ -45,7 +45,7 @@ ___
 
 *Inherited from [PaginationParams](_client_params_.paginationparams.md).[limit](_client_params_.paginationparams.md#limit)*
 
-*Defined in [client/params.ts:22](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L22)*
+*Defined in [client/params.ts:23](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L23)*
 
 Maximum number of items to get
 
@@ -58,7 +58,7 @@ ___
 
 *Inherited from [PaginationParams](_client_params_.paginationparams.md).[max_id](_client_params_.paginationparams.md#max_id)*
 
-*Defined in [client/params.ts:16](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L16)*
+*Defined in [client/params.ts:17](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L17)*
 
 Get a list of items with ID less than this value
 
@@ -71,7 +71,7 @@ ___
 
 *Inherited from [PaginationParams](_client_params_.paginationparams.md).[min_id](_client_params_.paginationparams.md#min_id)*
 
-*Defined in [client/params.ts:20](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L20)*
+*Defined in [client/params.ts:21](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L21)*
 
 Get a list of items with ID greater than this value exluding this ID
 
@@ -82,7 +82,7 @@ ___
 
 **● q**: *`string`*
 
-*Defined in [client/params.ts:200](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L200)*
+*Defined in [client/params.ts:201](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L201)*
 
 The search query
 
@@ -93,7 +93,7 @@ ___
 
 **● resolve**: *`boolean` \| `null`*
 
-*Defined in [client/params.ts:202](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L202)*
+*Defined in [client/params.ts:203](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L203)*
 
 Attempt WebFinger look-up
 
@@ -106,7 +106,7 @@ ___
 
 *Inherited from [PaginationParams](_client_params_.paginationparams.md).[since_id](_client_params_.paginationparams.md#since_id)*
 
-*Defined in [client/params.ts:18](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L18)*
+*Defined in [client/params.ts:19](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L19)*
 
 Get a list of items with ID greater than this value including this ID
 

@@ -26,7 +26,7 @@
 
 **● application_id**: *`string`*
 
-*Defined in [entities/scheduled-status.ts:14](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/scheduled-status.ts#L14)*
+*Defined in [entities/scheduled-status.ts:14](https://github.com/neet/masto.js/blob/a11943e/src/entities/scheduled-status.ts#L14)*
 
 ID of the application
 
@@ -37,7 +37,7 @@ ___
 
 **● media_ids**: *`string`[] \| `null`*
 
-*Defined in [entities/scheduled-status.ts:12](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/scheduled-status.ts#L12)*
+*Defined in [entities/scheduled-status.ts:12](https://github.com/neet/masto.js/blob/a11943e/src/entities/scheduled-status.ts#L12)*
 
 IDs of media attachments
 
@@ -48,7 +48,7 @@ ___
 
 **● text**: *`string`*
 
-*Defined in [entities/scheduled-status.ts:10](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/scheduled-status.ts#L10)*
+*Defined in [entities/scheduled-status.ts:10](https://github.com/neet/masto.js/blob/a11943e/src/entities/scheduled-status.ts#L10)*
 
 Content of the status
 

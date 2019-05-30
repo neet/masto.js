@@ -28,7 +28,7 @@
 
 **● grant_type**: *`T`*
 
-*Defined in [client/params.ts:90](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L90)*
+*Defined in [client/params.ts:91](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L91)*
 
 Grant type
 

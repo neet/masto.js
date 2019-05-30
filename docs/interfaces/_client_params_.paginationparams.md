@@ -33,7 +33,7 @@
 
 **● limit**: *`number` \| `null`*
 
-*Defined in [client/params.ts:22](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L22)*
+*Defined in [client/params.ts:23](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L23)*
 
 Maximum number of items to get
 
@@ -44,7 +44,7 @@ ___
 
 **● max_id**: *`string` \| `null`*
 
-*Defined in [client/params.ts:16](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L16)*
+*Defined in [client/params.ts:17](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L17)*
 
 Get a list of items with ID less than this value
 
@@ -55,7 +55,7 @@ ___
 
 **● min_id**: *`string` \| `null`*
 
-*Defined in [client/params.ts:20](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L20)*
+*Defined in [client/params.ts:21](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L21)*
 
 Get a list of items with ID greater than this value exluding this ID
 
@@ -66,7 +66,7 @@ ___
 
 **● since_id**: *`string` \| `null`*
 
-*Defined in [client/params.ts:18](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L18)*
+*Defined in [client/params.ts:19](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L19)*
 
 Get a list of items with ID greater than this value including this ID
 

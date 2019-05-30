@@ -23,7 +23,7 @@
 
 **● client_id**: *`string`*
 
-*Defined in [client/params.ts:119](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L119)*
+*Defined in [client/params.ts:120](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L120)*
 
 ID of the client
 
@@ -34,7 +34,7 @@ ___
 
 **● client_secret**: *`string`*
 
-*Defined in [client/params.ts:121](https://github.com/neet/masto.js/blob/cdad6ed/src/client/params.ts#L121)*
+*Defined in [client/params.ts:122](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L122)*
 
 Secret of the client
 

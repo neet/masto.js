@@ -22,7 +22,7 @@
 
 **● streaming_api**: *`string`*
 
-*Defined in [entities/instance.ts:29](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/instance.ts#L29)*
+*Defined in [entities/instance.ts:29](https://github.com/neet/masto.js/blob/a11943e/src/entities/instance.ts#L29)*
 
 ___
 

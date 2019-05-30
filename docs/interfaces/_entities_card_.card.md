@@ -33,7 +33,7 @@
 
 **● author_name**: *`string` \| `null`*
 
-*Defined in [entities/card.ts:15](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/card.ts#L15)*
+*Defined in [entities/card.ts:15](https://github.com/neet/masto.js/blob/a11943e/src/entities/card.ts#L15)*
 
 OEmbed data
 
@@ -44,7 +44,7 @@ ___
 
 **● author_url**: *`string` \| `null`*
 
-*Defined in [entities/card.ts:17](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/card.ts#L17)*
+*Defined in [entities/card.ts:17](https://github.com/neet/masto.js/blob/a11943e/src/entities/card.ts#L17)*
 
 OEmbed data
 
@@ -55,7 +55,7 @@ ___
 
 **● description**: *`string`*
 
-*Defined in [entities/card.ts:9](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/card.ts#L9)*
+*Defined in [entities/card.ts:9](https://github.com/neet/masto.js/blob/a11943e/src/entities/card.ts#L9)*
 
 The card description
 
@@ -66,7 +66,7 @@ ___
 
 **● height**: *`string` \| `null`*
 
-*Defined in [entities/card.ts:27](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/card.ts#L27)*
+*Defined in [entities/card.ts:27](https://github.com/neet/masto.js/blob/a11943e/src/entities/card.ts#L27)*
 
 OEmbed data
 
@@ -77,7 +77,7 @@ ___
 
 **● html**: *`string` \| `null`*
 
-*Defined in [entities/card.ts:23](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/card.ts#L23)*
+*Defined in [entities/card.ts:23](https://github.com/neet/masto.js/blob/a11943e/src/entities/card.ts#L23)*
 
 OEmbed data
 
@@ -88,7 +88,7 @@ ___
 
 **● image**: *`string` \| `null`*
 
-*Defined in [entities/card.ts:11](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/card.ts#L11)*
+*Defined in [entities/card.ts:11](https://github.com/neet/masto.js/blob/a11943e/src/entities/card.ts#L11)*
 
 The image associated with the card, if any
 
@@ -99,7 +99,7 @@ ___
 
 **● provider_name**: *`string` \| `null`*
 
-*Defined in [entities/card.ts:19](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/card.ts#L19)*
+*Defined in [entities/card.ts:19](https://github.com/neet/masto.js/blob/a11943e/src/entities/card.ts#L19)*
 
 OEmbed data
 
@@ -110,7 +110,7 @@ ___
 
 **● provider_url**: *`string` \| `null`*
 
-*Defined in [entities/card.ts:21](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/card.ts#L21)*
+*Defined in [entities/card.ts:21](https://github.com/neet/masto.js/blob/a11943e/src/entities/card.ts#L21)*
 
 OEmbed data
 
@@ -121,7 +121,7 @@ ___
 
 **● title**: *`string`*
 
-*Defined in [entities/card.ts:7](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/card.ts#L7)*
+*Defined in [entities/card.ts:7](https://github.com/neet/masto.js/blob/a11943e/src/entities/card.ts#L7)*
 
 The title of the card
 
@@ -132,7 +132,7 @@ ___
 
 **● type**: *[CardType](../modules/_entities_card_.md#cardtype)*
 
-*Defined in [entities/card.ts:13](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/card.ts#L13)*
+*Defined in [entities/card.ts:13](https://github.com/neet/masto.js/blob/a11943e/src/entities/card.ts#L13)*
 
 "link", "photo", "video", or "rich"
 
@@ -143,7 +143,7 @@ ___
 
 **● url**: *`string`*
 
-*Defined in [entities/card.ts:5](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/card.ts#L5)*
+*Defined in [entities/card.ts:5](https://github.com/neet/masto.js/blob/a11943e/src/entities/card.ts#L5)*
 
 The url associated with the card
 
@@ -154,7 +154,7 @@ ___
 
 **● width**: *`string` \| `null`*
 
-*Defined in [entities/card.ts:25](https://github.com/neet/masto.js/blob/cdad6ed/src/entities/card.ts#L25)*
+*Defined in [entities/card.ts:25](https://github.com/neet/masto.js/blob/a11943e/src/entities/card.ts#L25)*
 
 OEmbed data
 
