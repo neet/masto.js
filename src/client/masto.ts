@@ -1097,12 +1097,12 @@ export class Masto {
   @available({ since: '0.0.0' })
   public createStatus(params?: CreateStatusParams, idempotencyKey?: string) {
     if (idempotencyKey) {
-      return this.gateway.post('/api/v1/statuses', params, {
+      return this.gateway.post<Status>('/api/v1/statuses', params, {
         headers: { 'Idempotency-Key': idempotencyKey },
       });
     }
 
-    return this.gateway.post('/api/v1/statuses', params);
+    return this.gateway.post<Status>('/api/v1/statuses', params);
   }
 
   /**
