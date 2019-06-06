@@ -434,6 +434,22 @@ exports[`Masto fetchAccountFollowing 1`] = `
 }
 `;
 
+exports[`Masto fetchAccountIdentityProofs 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/accounts/123123123/identity_proofs",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
 exports[`Masto fetchAccountLists 1`] = `
 [MockFunction] {
   "calls": Array [

@@ -121,6 +121,12 @@ describe('Masto', () => {
     expect(getMock).toMatchSnapshot();
   });
 
+  test('fetchAccountIdentityProofs', async () => {
+    await masto.fetchAccountIdentityProofs('123123123');
+    expect(getMock).toBeCalledTimes(1);
+    expect(getMock).toMatchSnapshot();
+  });
+
   test('createAccount', async () => {
     await masto.createAccount({
       username: 'username',
