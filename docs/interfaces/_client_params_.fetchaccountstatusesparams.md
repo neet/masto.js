@@ -30,7 +30,7 @@
 
 **● exclude_replies**: *`boolean` \| `null`*
 
-*Defined in [client/params.ts:281](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L281)*
+*Defined in [client/params.ts:281](https://github.com/neet/masto.js/blob/3b7330b/src/client/params.ts#L281)*
 
 Skip statuses that reply to other statuses
 
@@ -43,7 +43,7 @@ ___
 
 *Inherited from [PaginationParams](_client_params_.paginationparams.md).[limit](_client_params_.paginationparams.md#limit)*
 
-*Defined in [client/params.ts:23](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L23)*
+*Defined in [client/params.ts:23](https://github.com/neet/masto.js/blob/3b7330b/src/client/params.ts#L23)*
 
 Maximum number of items to get
 
@@ -56,7 +56,7 @@ ___
 
 *Inherited from [PaginationParams](_client_params_.paginationparams.md).[max_id](_client_params_.paginationparams.md#max_id)*
 
-*Defined in [client/params.ts:17](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L17)*
+*Defined in [client/params.ts:17](https://github.com/neet/masto.js/blob/3b7330b/src/client/params.ts#L17)*
 
 Get a list of items with ID less than this value
 
@@ -69,7 +69,7 @@ ___
 
 *Inherited from [PaginationParams](_client_params_.paginationparams.md).[min_id](_client_params_.paginationparams.md#min_id)*
 
-*Defined in [client/params.ts:21](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L21)*
+*Defined in [client/params.ts:21](https://github.com/neet/masto.js/blob/3b7330b/src/client/params.ts#L21)*
 
 Get a list of items with ID greater than this value exluding this ID
 
@@ -80,7 +80,7 @@ ___
 
 **● only_media**: *`boolean` \| `null`*
 
-*Defined in [client/params.ts:277](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L277)*
+*Defined in [client/params.ts:277](https://github.com/neet/masto.js/blob/3b7330b/src/client/params.ts#L277)*
 
 Only return statuses that have media attachments
 
@@ -91,7 +91,7 @@ ___
 
 **● pinned**: *`boolean` \| `null`*
 
-*Defined in [client/params.ts:279](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L279)*
+*Defined in [client/params.ts:279](https://github.com/neet/masto.js/blob/3b7330b/src/client/params.ts#L279)*
 
 Only return statuses that have been pinned
 
@@ -104,7 +104,7 @@ ___
 
 *Inherited from [PaginationParams](_client_params_.paginationparams.md).[since_id](_client_params_.paginationparams.md#since_id)*
 
-*Defined in [client/params.ts:19](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L19)*
+*Defined in [client/params.ts:19](https://github.com/neet/masto.js/blob/3b7330b/src/client/params.ts#L19)*
 
 Get a list of items with ID greater than this value including this ID
 

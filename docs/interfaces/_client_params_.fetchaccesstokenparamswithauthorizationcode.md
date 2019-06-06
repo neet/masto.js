@@ -28,7 +28,7 @@
 
 **● client_id**: *`string`*
 
-*Defined in [client/params.ts:101](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L101)*
+*Defined in [client/params.ts:101](https://github.com/neet/masto.js/blob/3b7330b/src/client/params.ts#L101)*
 
 ID of the client
 
@@ -39,7 +39,7 @@ ___
 
 **● client_secret**: *`string`*
 
-*Defined in [client/params.ts:103](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L103)*
+*Defined in [client/params.ts:103](https://github.com/neet/masto.js/blob/3b7330b/src/client/params.ts#L103)*
 
 Secret of the client
 
@@ -50,7 +50,7 @@ ___
 
 **● code**: *`string`*
 
-*Defined in [client/params.ts:97](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L97)*
+*Defined in [client/params.ts:97](https://github.com/neet/masto.js/blob/3b7330b/src/client/params.ts#L97)*
 
 Authorization code
 
@@ -63,7 +63,7 @@ ___
 
 *Inherited from [FetchAccessTokenParamsBase](_client_params_.fetchaccesstokenparamsbase.md).[grant_type](_client_params_.fetchaccesstokenparamsbase.md#grant_type)*
 
-*Defined in [client/params.ts:91](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L91)*
+*Defined in [client/params.ts:91](https://github.com/neet/masto.js/blob/3b7330b/src/client/params.ts#L91)*
 
 Grant type
 
@@ -74,7 +74,7 @@ ___
 
 **● redirect_uri**: *`string`*
 
-*Defined in [client/params.ts:99](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L99)*
+*Defined in [client/params.ts:99](https://github.com/neet/masto.js/blob/3b7330b/src/client/params.ts#L99)*
 
 Redirect URI which used for the authorization
 

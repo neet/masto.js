@@ -22,7 +22,7 @@
 
 **Ƭ NotificationType**: *"mention" \| "reblog" \| "favourite" \| "follow" \| "poll"*
 
-*Defined in [entities/notification.ts:4](https://github.com/neet/masto.js/blob/a11943e/src/entities/notification.ts#L4)*
+*Defined in [entities/notification.ts:4](https://github.com/neet/masto.js/blob/3b7330b/src/entities/notification.ts#L4)*
 
 ___
 

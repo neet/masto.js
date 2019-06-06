@@ -10,7 +10,7 @@
 
 ↳  [FetchAccessTokenParamsWithAuthorizationCode](_client_params_.fetchaccesstokenparamswithauthorizationcode.md)
 
-↳  [FetchAccessTokenParamsWithPassowrd](_client_params_.fetchaccesstokenparamswithpassowrd.md)
+↳  [FetchAccessTokenParamsWithPassword](_client_params_.fetchaccesstokenparamswithpassword.md)
 
 ## Index
 
@@ -28,7 +28,7 @@
 
 **● grant_type**: *`T`*
 
-*Defined in [client/params.ts:91](https://github.com/neet/masto.js/blob/a11943e/src/client/params.ts#L91)*
+*Defined in [client/params.ts:91](https://github.com/neet/masto.js/blob/3b7330b/src/client/params.ts#L91)*
 
 Grant type
 
