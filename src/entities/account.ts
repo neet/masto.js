@@ -49,7 +49,7 @@ export interface AccountField {
   value?: string | null;
 }
 
-export interface IdentityProof {
+export interface AccountIdentityProof {
   /** Name of provider (such as "Keybase") */
   provider: string;
   /** Username in the provider */

@@ -113,7 +113,7 @@ export interface FetchAccessTokenParamsWithPassword
 
 export type FetchAccessTokenParams =
   | FetchAccessTokenParamsWithAuthorizationCode
-  | FetchAccessTokenParamsWithPassowrd;
+  | FetchAccessTokenParamsWithPassword;
 
 export interface RevokeAccessTokenParams {
   /** ID of the client */

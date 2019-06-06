@@ -1,7 +1,7 @@
 import {
   Account,
   AccountCredentials,
-  IdentityProof,
+  AccountIdentityProof,
 } from '../entities/account';
 import { Application } from '../entities/application';
 import { Attachment } from '../entities/attachment';
@@ -206,12 +206,12 @@ export class Masto {
   /**
    * Fetch identity proofs of the account
    * @param id ID of the account
-   * @return Returns identity proofs
+   * @return Returns AccountIdentityProofs
    * @see https://github.com/tootsuite/mastodon/pull/10297
    */
   @available({ since: '2.8.0' })
   public fetchAccountIdentityProofs(id: string) {
-    return this.gateway.get<IdentityProof[]>(
+    return this.gateway.get<AccountIdentityProof[]>(
       `/api/v1/accounts/${id}/identity_proofs`,
     );
   }
