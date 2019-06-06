@@ -103,7 +103,7 @@ export interface FetchAccessTokenParamsWithAuthorizationCode
   client_secret: string;
 }
 
-export interface FetchAccessTokenParamsWithPassowrd
+export interface FetchAccessTokenParamsWithPassword
   extends FetchAccessTokenParamsBase<'password'> {
   /** Password */
   password: string;
