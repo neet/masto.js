@@ -22,6 +22,10 @@ tslint.json
 tslint.yml
 yarn.lock
 
+# Tests
+__mocks__
+__tests__
+
 # Documentaitons
 docs/
 *.md
