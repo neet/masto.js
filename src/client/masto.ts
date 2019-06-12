@@ -1130,7 +1130,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public removeStatus(id: string) {
-    return this.gateway.delete<void>(`/api/v1/statuses/${id}`);
+    return this.gateway.delete<Status>(`/api/v1/statuses/${id}`);
   }
 
   /**
