@@ -160,6 +160,8 @@ export interface ModifyListAccountsParams {
 }
 
 export interface FetchNotificationsParams extends PaginationParams {
+  /** ID of the account */
+  account_id?: string | null;
   /** Array of notifications to exclude (Allowed values: "follow", "favourite", "reblog", "mention") */
   exclude_types?: NotificationType[] | null;
 }
