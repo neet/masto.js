@@ -12,6 +12,7 @@
 
 ### Properties
 
+* [account_id](_client_params_.fetchnotificationsparams.md#account_id)
 * [exclude_types](_client_params_.fetchnotificationsparams.md#exclude_types)
 * [limit](_client_params_.fetchnotificationsparams.md#limit)
 * [max_id](_client_params_.fetchnotificationsparams.md#max_id)
@@ -22,13 +23,24 @@
 
 ## Properties
 
+<a id="account_id"></a>
+
+### `<Optional>` account_id
+
+**● account_id**: *`string` \| `null`*
+
+*Defined in [client/params.ts:164](https://github.com/neet/masto.js/blob/368b200/src/client/params.ts#L164)*
+
+ID of the account
+
+___
 <a id="exclude_types"></a>
 
 ### `<Optional>` exclude_types
 
 **● exclude_types**: *[NotificationType](../modules/_entities_notification_.md#notificationtype)[] \| `null`*
 
-*Defined in [client/params.ts:164](https://github.com/neet/masto.js/blob/3b7330b/src/client/params.ts#L164)*
+*Defined in [client/params.ts:166](https://github.com/neet/masto.js/blob/368b200/src/client/params.ts#L166)*
 
 Array of notifications to exclude (Allowed values: "follow", "favourite", "reblog", "mention")
 
@@ -41,7 +53,7 @@ ___
 
 *Inherited from [PaginationParams](_client_params_.paginationparams.md).[limit](_client_params_.paginationparams.md#limit)*
 
-*Defined in [client/params.ts:23](https://github.com/neet/masto.js/blob/3b7330b/src/client/params.ts#L23)*
+*Defined in [client/params.ts:23](https://github.com/neet/masto.js/blob/368b200/src/client/params.ts#L23)*
 
 Maximum number of items to get
 
@@ -54,7 +66,7 @@ ___
 
 *Inherited from [PaginationParams](_client_params_.paginationparams.md).[max_id](_client_params_.paginationparams.md#max_id)*
 
-*Defined in [client/params.ts:17](https://github.com/neet/masto.js/blob/3b7330b/src/client/params.ts#L17)*
+*Defined in [client/params.ts:17](https://github.com/neet/masto.js/blob/368b200/src/client/params.ts#L17)*
 
 Get a list of items with ID less than this value
 
@@ -67,7 +79,7 @@ ___
 
 *Inherited from [PaginationParams](_client_params_.paginationparams.md).[min_id](_client_params_.paginationparams.md#min_id)*
 
-*Defined in [client/params.ts:21](https://github.com/neet/masto.js/blob/3b7330b/src/client/params.ts#L21)*
+*Defined in [client/params.ts:21](https://github.com/neet/masto.js/blob/368b200/src/client/params.ts#L21)*
 
 Get a list of items with ID greater than this value exluding this ID
 
@@ -80,7 +92,7 @@ ___
 
 *Inherited from [PaginationParams](_client_params_.paginationparams.md).[since_id](_client_params_.paginationparams.md#since_id)*
 
-*Defined in [client/params.ts:19](https://github.com/neet/masto.js/blob/3b7330b/src/client/params.ts#L19)*
+*Defined in [client/params.ts:19](https://github.com/neet/masto.js/blob/368b200/src/client/params.ts#L19)*
 
 Get a list of items with ID greater than this value including this ID
 

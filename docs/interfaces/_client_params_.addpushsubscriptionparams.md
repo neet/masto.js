@@ -23,7 +23,7 @@
 
 **● data**: *`object` \| `null`*
 
-*Defined in [client/params.ts:179](https://github.com/neet/masto.js/blob/3b7330b/src/client/params.ts#L179)*
+*Defined in [client/params.ts:181](https://github.com/neet/masto.js/blob/368b200/src/client/params.ts#L181)*
 
 ___
 <a id="subscription"></a>
@@ -32,7 +32,7 @@ ___
 
 **● subscription**: *`object`*
 
-*Defined in [client/params.ts:168](https://github.com/neet/masto.js/blob/3b7330b/src/client/params.ts#L168)*
+*Defined in [client/params.ts:170](https://github.com/neet/masto.js/blob/368b200/src/client/params.ts#L170)*
 
 #### Type declaration
 

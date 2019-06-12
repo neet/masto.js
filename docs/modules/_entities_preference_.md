@@ -22,7 +22,7 @@
 
 **Ƭ PreferenceReadingExpandMedia**: *"show_all" \| "hide_all" \| "default"*
 
-*Defined in [entities/preference.ts:3](https://github.com/neet/masto.js/blob/3b7330b/src/entities/preference.ts#L3)*
+*Defined in [entities/preference.ts:3](https://github.com/neet/masto.js/blob/368b200/src/entities/preference.ts#L3)*
 
 ___
 

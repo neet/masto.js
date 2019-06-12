@@ -26,7 +26,7 @@
 
 **● conversation**: *[Conversation](_entities_conversation_.conversation.md)*
 
-*Defined in [client/masto-events.ts:25](https://github.com/neet/masto.js/blob/3b7330b/src/client/masto-events.ts#L25)*
+*Defined in [client/masto-events.ts:25](https://github.com/neet/masto.js/blob/368b200/src/client/masto-events.ts#L25)*
 
 Status added to a conversation
 
@@ -37,7 +37,7 @@ ___
 
 **● delete**: *`string`*
 
-*Defined in [client/masto-events.ts:19](https://github.com/neet/masto.js/blob/3b7330b/src/client/masto-events.ts#L19)*
+*Defined in [client/masto-events.ts:19](https://github.com/neet/masto.js/blob/368b200/src/client/masto-events.ts#L19)*
 
 Status deleted
 
@@ -48,7 +48,7 @@ ___
 
 **● filters_changed**: *`undefined`*
 
-*Defined in [client/masto-events.ts:23](https://github.com/neet/masto.js/blob/3b7330b/src/client/masto-events.ts#L23)*
+*Defined in [client/masto-events.ts:23](https://github.com/neet/masto.js/blob/368b200/src/client/masto-events.ts#L23)*
 
 User's filter changed
 
@@ -59,7 +59,7 @@ ___
 
 **● notification**: *[Notification](_entities_notification_.notification.md)*
 
-*Defined in [client/masto-events.ts:21](https://github.com/neet/masto.js/blob/3b7330b/src/client/masto-events.ts#L21)*
+*Defined in [client/masto-events.ts:21](https://github.com/neet/masto.js/blob/368b200/src/client/masto-events.ts#L21)*
 
 User's notification
 
@@ -70,7 +70,7 @@ ___
 
 **● update**: *[Status](_entities_status_.status.md)*
 
-*Defined in [client/masto-events.ts:17](https://github.com/neet/masto.js/blob/3b7330b/src/client/masto-events.ts#L17)*
+*Defined in [client/masto-events.ts:17](https://github.com/neet/masto.js/blob/368b200/src/client/masto-events.ts#L17)*
 
 Status posted
 

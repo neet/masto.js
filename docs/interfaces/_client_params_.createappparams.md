@@ -25,7 +25,7 @@
 
 **● client_name**: *`string`*
 
-*Defined in [client/params.ts:78](https://github.com/neet/masto.js/blob/3b7330b/src/client/params.ts#L78)*
+*Defined in [client/params.ts:78](https://github.com/neet/masto.js/blob/368b200/src/client/params.ts#L78)*
 
 Name of your application
 
@@ -36,7 +36,7 @@ ___
 
 **● redirect_uris**: *`string`*
 
-*Defined in [client/params.ts:80](https://github.com/neet/masto.js/blob/3b7330b/src/client/params.ts#L80)*
+*Defined in [client/params.ts:80](https://github.com/neet/masto.js/blob/368b200/src/client/params.ts#L80)*
 
 Where the user should be redirected after authorization
 
@@ -47,7 +47,7 @@ ___
 
 **● scopes**: *`string`*
 
-*Defined in [client/params.ts:82](https://github.com/neet/masto.js/blob/3b7330b/src/client/params.ts#L82)*
+*Defined in [client/params.ts:82](https://github.com/neet/masto.js/blob/368b200/src/client/params.ts#L82)*
 
 Space separated list of scopes
 
@@ -58,7 +58,7 @@ ___
 
 **● website**: *`string` \| `null`*
 
-*Defined in [client/params.ts:84](https://github.com/neet/masto.js/blob/3b7330b/src/client/params.ts#L84)*
+*Defined in [client/params.ts:84](https://github.com/neet/masto.js/blob/368b200/src/client/params.ts#L84)*
 
 URL to the homepage of your app
 

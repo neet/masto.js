@@ -37,7 +37,7 @@
   paginate: paginateMock,
 }))
 
-*Defined in [client/__mocks__/gateway.ts:9](https://github.com/neet/masto.js/blob/3b7330b/src/client/__mocks__/gateway.ts#L9)*
+*Defined in [client/__mocks__/gateway.ts:9](https://github.com/neet/masto.js/blob/368b200/src/client/__mocks__/gateway.ts#L9)*
 
 ___
 <a id="deletemock"></a>
@@ -46,7 +46,7 @@ ___
 
 **● deleteMock**: *`Mock`<`any`, `any`>* =  jest.fn().mockResolvedValue({})
 
-*Defined in [client/__mocks__/gateway.ts:3](https://github.com/neet/masto.js/blob/3b7330b/src/client/__mocks__/gateway.ts#L3)*
+*Defined in [client/__mocks__/gateway.ts:3](https://github.com/neet/masto.js/blob/368b200/src/client/__mocks__/gateway.ts#L3)*
 
 ___
 <a id="getmock"></a>
@@ -55,7 +55,7 @@ ___
 
 **● getMock**: *`Mock`<`any`, `any`>* =  jest.fn().mockResolvedValue({})
 
-*Defined in [client/__mocks__/gateway.ts:1](https://github.com/neet/masto.js/blob/3b7330b/src/client/__mocks__/gateway.ts#L1)*
+*Defined in [client/__mocks__/gateway.ts:1](https://github.com/neet/masto.js/blob/368b200/src/client/__mocks__/gateway.ts#L1)*
 
 ___
 <a id="paginatemock"></a>
@@ -64,7 +64,7 @@ ___
 
 **● paginateMock**: *`Mock`<`any`, `any`>* =  jest.fn()
 
-*Defined in [client/__mocks__/gateway.ts:7](https://github.com/neet/masto.js/blob/3b7330b/src/client/__mocks__/gateway.ts#L7)*
+*Defined in [client/__mocks__/gateway.ts:7](https://github.com/neet/masto.js/blob/368b200/src/client/__mocks__/gateway.ts#L7)*
 
 ___
 <a id="patchmock"></a>
@@ -73,7 +73,7 @@ ___
 
 **● patchMock**: *`Mock`<`any`, `any`>* =  jest.fn().mockResolvedValue({})
 
-*Defined in [client/__mocks__/gateway.ts:4](https://github.com/neet/masto.js/blob/3b7330b/src/client/__mocks__/gateway.ts#L4)*
+*Defined in [client/__mocks__/gateway.ts:4](https://github.com/neet/masto.js/blob/368b200/src/client/__mocks__/gateway.ts#L4)*
 
 ___
 <a id="postmock"></a>
@@ -82,7 +82,7 @@ ___
 
 **● postMock**: *`Mock`<`any`, `any`>* =  jest.fn().mockResolvedValue({})
 
-*Defined in [client/__mocks__/gateway.ts:2](https://github.com/neet/masto.js/blob/3b7330b/src/client/__mocks__/gateway.ts#L2)*
+*Defined in [client/__mocks__/gateway.ts:2](https://github.com/neet/masto.js/blob/368b200/src/client/__mocks__/gateway.ts#L2)*
 
 ___
 <a id="putmock"></a>
@@ -91,7 +91,7 @@ ___
 
 **● putMock**: *`Mock`<`any`, `any`>* =  jest.fn().mockResolvedValue({})
 
-*Defined in [client/__mocks__/gateway.ts:5](https://github.com/neet/masto.js/blob/3b7330b/src/client/__mocks__/gateway.ts#L5)*
+*Defined in [client/__mocks__/gateway.ts:5](https://github.com/neet/masto.js/blob/368b200/src/client/__mocks__/gateway.ts#L5)*
 
 ___
 <a id="streammock"></a>
@@ -100,7 +100,7 @@ ___
 
 **● streamMock**: *`Mock`<`any`, `any`>* =  jest.fn().mockResolvedValue({})
 
-*Defined in [client/__mocks__/gateway.ts:6](https://github.com/neet/masto.js/blob/3b7330b/src/client/__mocks__/gateway.ts#L6)*
+*Defined in [client/__mocks__/gateway.ts:6](https://github.com/neet/masto.js/blob/368b200/src/client/__mocks__/gateway.ts#L6)*
 
 ___
 

@@ -26,7 +26,7 @@
 
 **● profile_url**: *`string`*
 
-*Defined in [entities/account.ts:62](https://github.com/neet/masto.js/blob/3b7330b/src/entities/account.ts#L62)*
+*Defined in [entities/account.ts:62](https://github.com/neet/masto.js/blob/368b200/src/entities/account.ts#L62)*
 
 URL of profile on the provider
 
@@ -37,7 +37,7 @@ ___
 
 **● proof_url**: *`string`*
 
-*Defined in [entities/account.ts:60](https://github.com/neet/masto.js/blob/3b7330b/src/entities/account.ts#L60)*
+*Defined in [entities/account.ts:60](https://github.com/neet/masto.js/blob/368b200/src/entities/account.ts#L60)*
 
 URL of proof
 
@@ -48,7 +48,7 @@ ___
 
 **● provider**: *`string`*
 
-*Defined in [entities/account.ts:54](https://github.com/neet/masto.js/blob/3b7330b/src/entities/account.ts#L54)*
+*Defined in [entities/account.ts:54](https://github.com/neet/masto.js/blob/368b200/src/entities/account.ts#L54)*
 
 Name of provider (such as "Keybase")
 
@@ -59,7 +59,7 @@ ___
 
 **● provider_username**: *`string`*
 
-*Defined in [entities/account.ts:56](https://github.com/neet/masto.js/blob/3b7330b/src/entities/account.ts#L56)*
+*Defined in [entities/account.ts:56](https://github.com/neet/masto.js/blob/368b200/src/entities/account.ts#L56)*
 
 Username in the provider
 
@@ -70,7 +70,7 @@ ___
 
 **● updated_at**: *`string`*
 
-*Defined in [entities/account.ts:58](https://github.com/neet/masto.js/blob/3b7330b/src/entities/account.ts#L58)*
+*Defined in [entities/account.ts:58](https://github.com/neet/masto.js/blob/368b200/src/entities/account.ts#L58)*
 
 The time the proof was updated
 

@@ -24,7 +24,7 @@
 
 **● description**: *`string` \| `null`*
 
-*Defined in [client/params.ts:129](https://github.com/neet/masto.js/blob/3b7330b/src/client/params.ts#L129)*
+*Defined in [client/params.ts:129](https://github.com/neet/masto.js/blob/368b200/src/client/params.ts#L129)*
 
 A plain-text description of the media, for accessibility (max 420 chars)
 
@@ -35,7 +35,7 @@ ___
 
 **● file**: *[IsomorphicFormDataValue](../modules/_client_params_.md#isomorphicformdatavalue)*
 
-*Defined in [client/params.ts:127](https://github.com/neet/masto.js/blob/3b7330b/src/client/params.ts#L127)*
+*Defined in [client/params.ts:127](https://github.com/neet/masto.js/blob/368b200/src/client/params.ts#L127)*
 
 Media to be uploaded (encoded using `multipart/form-data`)
 
@@ -46,7 +46,7 @@ ___
 
 **● focus**: *`string` \| `null`*
 
-*Defined in [client/params.ts:131](https://github.com/neet/masto.js/blob/3b7330b/src/client/params.ts#L131)*
+*Defined in [client/params.ts:131](https://github.com/neet/masto.js/blob/368b200/src/client/params.ts#L131)*
 
 Focal point: Two floating points, comma-delimited
 

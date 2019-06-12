@@ -35,7 +35,7 @@ Mastodon unauthorized error class
 
 ⊕ **new MastoUnauthorizedError**(...args: *`any`[]*): [MastoUnauthorizedError](_errors_masto_unauthorized_error_.mastounauthorizederror.md)
 
-*Defined in [errors/masto-unauthorized-error.ts:5](https://github.com/neet/masto.js/blob/3b7330b/src/errors/masto-unauthorized-error.ts#L5)*
+*Defined in [errors/masto-unauthorized-error.ts:5](https://github.com/neet/masto.js/blob/368b200/src/errors/masto-unauthorized-error.ts#L5)*
 
 **Parameters:**
 
