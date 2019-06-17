@@ -3,7 +3,7 @@ export type FilterContext = 'home' | 'notifications' | 'public' | 'thread';
 
 export interface Filter {
   /** ID of the filter */
-  id: number;
+  id: string;
   /** Keyword or phrase */
   phrase: string;
   /** Array of strings that indicate filter context. each string is ont of `home`, `notifications`, `public`, `thread` */
