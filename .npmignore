@@ -14,11 +14,17 @@ pids
 .DS_Store
 
 # Config files
+.circleci/
+.github/
+.rpt2_cache/
+coverage/
+.codeclimate.yml
 .editorconfig
 .prettierignore
 .prettierrc.yml
+jest.config.js
+rollup.config.js
 tsconfig.json
-tslint.json
 tslint.yml
 yarn.lock
 
@@ -37,10 +43,3 @@ sandbox/
 # TS files and maps
 src/
 *.map
-
-# Rollup
-.rp2_cache/
-rollup.conifg.js
-
-# Codecov
-coverage/
