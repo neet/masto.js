@@ -15,10 +15,8 @@
 
 ## Installation
 ```
-npm i masto --save
+npm i masto
 ```
-<a href='https://www.patreon.com/neetshin'><img src='https://c5.patreon.com/external/logo/become_a_patron_button.png' alt='Become a patron' width='140px' /></a>
-
 
 ## Basic Usage
 This is a simple example which creates a new status:
