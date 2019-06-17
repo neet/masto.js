@@ -29,7 +29,7 @@
     "semver": "^6.1.1",
     "ts-optchain": "^0.1.7",
     "utf-8-validate": "^5.0.2",
-    "ws": "^7.0.1"
+    "ws": "^6.0.1"
   },
   "devDependencies": {
     "@types/form-data": "^2.2.1",
