@@ -12,13 +12,13 @@ import Mastodon from '../src';
   // Connect to the streaming api
   const stream = await client.streamPublicTimeline();
 
-  // Subscribe updates
-  stream.on('update', (status) => {
+  // Subscribe to updates
+  stream.on('update', status => {
     console.log(`${status.account.username}: ${status.content}`);
   });
 
-  // Subscribe notifications
-  stream.on('notification', (notification) => {
+  // Subscribe to notifications
+  stream.on('notification', notification => {
     console.log(`${notification.account.username}: ${notification.type}`);
   })
 })()
