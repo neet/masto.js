@@ -1,8 +1,8 @@
 export * from './client/decorators';
-export * from './client/gateway';
+export * from './gateway/gateway';
 export * from './client/params';
-export * from './client/masto-events';
-export * from './client/utils';
+export * from './gateway/ws-events';
+export * from './gateway/utils';
 
 export * from './entities/account';
 export * from './entities/application';

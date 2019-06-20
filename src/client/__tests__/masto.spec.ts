@@ -1,10 +1,10 @@
 // tslint:disable
 // @ts-ignore
 // prettier-ignore
-import { getMock, postMock, deleteMock, patchMock, putMock, streamMock, paginateMock, Gateway } from '../gateway';
+import { getMock, postMock, deleteMock, patchMock, putMock, streamMock, paginateMock, Gateway } from '../../gateway/gateway';
 import { Masto } from '../masto';
 
-jest.mock('../gateway');
+jest.mock('../../gateway/gateway');
 
 describe('Masto', () => {
   let masto!: Masto;

@@ -1,6 +1,6 @@
 // tslint:disable
 import WebSocket from 'isomorphic-ws';
-import { MastoEvents } from '../masto-events';
+import { WebSocketEvents } from '../ws-events';
 
 const onMock = jest.fn();
 const emitMock = jest.fn();
@@ -21,11 +21,11 @@ jest.mock('isomorphic-ws', () => {
   }));
 });
 
-describe('MastoEvents', () => {
-  let mastoEvents!: MastoEvents;
+describe('WebSocketEvents', () => {
+  let mastoEvents!: WebSocketEvents;
 
   beforeAll(() => {
-    mastoEvents = new MastoEvents();
+    mastoEvents = new WebSocketEvents();
   });
 
   test('connect to ws server', async () => {

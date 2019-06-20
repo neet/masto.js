@@ -30,7 +30,7 @@ export type EventTypes = keyof EventTypesMap;
 /**
  * Mastodon streaming api wrapper
  */
-export class MastoEvents extends EventEmitter {
+export class WebSocketEvents extends EventEmitter {
   private ws?: WebSocket;
 
   /**
@@ -40,7 +40,7 @@ export class MastoEvents extends EventEmitter {
    * @param params URL parameters
    */
   public connect(url: string, protocols?: string | string[]) {
-    return new Promise<MastoEvents>((resolve, reject) => {
+    return new Promise<WebSocketEvents>((resolve, reject) => {
       this.ws = new WebSocket(url, protocols);
 
       this.ws.addEventListener('message', this.handleMessage);

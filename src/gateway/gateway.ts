@@ -6,8 +6,8 @@ import { oc } from 'ts-optchain';
 import { MastoNotFoundError } from '../errors/masto-not-found-error';
 import { MastoRateLimitError } from '../errors/masto-rate-limit-error';
 import { MastoUnauthorizedError } from '../errors/masto-unauthorized-error';
-import { MastoEvents } from './masto-events';
 import { isAxiosError } from './utils';
+import { WebSocketEvents } from './ws-events';
 
 // tslint:disable-next-line no-import-side-effect
 import 'isomorphic-form-data';
@@ -333,7 +333,7 @@ export class Gateway {
       path +
       (Object.keys(params).length ? `?${querystring.stringify(params)}` : '');
 
-    return new MastoEvents().connect(url, protocols);
+    return new WebSocketEvents().connect(url, protocols);
   }
 
   /**

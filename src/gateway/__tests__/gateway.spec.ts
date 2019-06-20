@@ -3,13 +3,13 @@ import axios from 'axios';
 import FormData from 'form-data';
 import { Gateway } from '../gateway';
 // @ts-ignore
-import { MastoEvents, connectMock } from '../masto-events';
+import { WebSocketEvents, connectMock } from '../ws-events';
 import { MastoUnauthorizedError } from '../../errors/masto-unauthorized-error';
 import { MastoNotFoundError } from '../../errors/masto-not-found-error';
 import { MastoRateLimitError } from '../../errors/masto-rate-limit-error';
 
 jest.mock('axios');
-jest.mock('../masto-events');
+jest.mock('../ws-events');
 
 describe('Gateway', () => {
   let gateway!: Gateway;
@@ -298,19 +298,19 @@ describe('Gateway', () => {
     );
   });
 
-  test('initialize MastoEvents and call connect with given params', async () => {
+  test('initialize WebSocketEvents and call connect with given params', async () => {
     const params = { a: 'a', b: 'b' };
     await gateway.stream('/', params);
     expect(connectMock).toBeCalledWith('wss://example.com/?a=a&b=b', []);
   });
 
-  test('initialize MastoEvents and call connect with access token', async () => {
+  test('initialize WebSocketEvents and call connect with access token', async () => {
     gateway.accessToken = 'tokentoken';
     await gateway.stream('/');
     expect(connectMock).toBeCalledWith('wss://example.com/', ['tokentoken']);
   });
 
-  test('initialize MastoEvents and call connect with access token as a param for Mastodon < v2.8.4', async () => {
+  test('initialize WebSocketEvents and call connect with access token as a param for Mastodon < v2.8.4', async () => {
     gateway.version = '2.8.3';
     gateway.accessToken = 'tokentoken';
     await gateway.stream('/');

@@ -4,7 +4,7 @@ import { FilterContext } from '../entities/filter';
 import { NotificationType } from '../entities/notification';
 import { PushSubscriptionAlerts } from '../entities/push-subscription';
 import { StatusVisibility } from '../entities/status';
-import { GatewayConstructor } from './gateway';
+import { GatewayConstructor } from '../gateway/gateway';
 
 /** Union of acceptable values of form-data for browser and node */
 export type IsomorphicFormDataValue = string | Blob | Buffer | ReadStream;
