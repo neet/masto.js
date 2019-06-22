@@ -372,7 +372,7 @@ export abstract class Gateway {
         );
 
         // Set next url from the link header
-        const link = oc(response.headers.link)('');
+        const link = oc(response.headers).link('');
         const match = link.match(/<(.+?)>; rel="next"/) as string[];
 
         currentUrl = (match && match.length && match[1]) || '';
