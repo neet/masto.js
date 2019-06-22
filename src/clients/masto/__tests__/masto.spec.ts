@@ -419,7 +419,7 @@ describe('Masto', () => {
   });
 
   test('fetchInstance', async () => {
-    await masto.fetchSuggestions();
+    await masto.fetchInstance();
     expect(axios.request as jest.Mock).toBeCalledTimes(1);
     expect(axios.request as jest.Mock).toMatchSnapshot();
   });
