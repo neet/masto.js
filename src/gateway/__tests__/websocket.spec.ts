@@ -3,9 +3,9 @@ import WebSocket from 'isomorphic-ws';
 import { WebSocketEvents } from '../websocket';
 
 const onMock = jest.fn();
+const onMockWs = jest.fn();
 const emitMock = jest.fn();
 const closeMock = jest.fn();
-const addEventListenerMock = jest.fn();
 
 jest.mock('eventemitter3', () => {
   return class {
@@ -17,7 +17,7 @@ jest.mock('eventemitter3', () => {
 jest.mock('isomorphic-ws', () => {
   return jest.fn(() => ({
     close: closeMock,
-    addEventListener: addEventListenerMock,
+    on: onMockWs,
   }));
 });
 
@@ -28,9 +28,16 @@ describe('WebSocketEvents', () => {
     mastoEvents = new WebSocketEvents();
   });
 
+  beforeEach(() => {
+    onMock.mockClear();
+    onMockWs.mockClear();
+    emitMock.mockClear();
+    closeMock.mockClear();
+  });
+
   test('connect to ws server', async () => {
     // Resolve open
-    addEventListenerMock.mockImplementation((e, fn) => {
+    onMockWs.mockImplementation((e, fn) => {
       if (e === 'open') {
         fn();
       }
@@ -43,20 +50,9 @@ describe('WebSocketEvents', () => {
       [],
     );
 
-    expect(addEventListenerMock).toHaveBeenCalledWith(
-      'message',
-      expect.any(Function),
-    );
-
-    expect(addEventListenerMock).toHaveBeenCalledWith(
-      'error',
-      expect.any(Function),
-    );
-
-    expect(addEventListenerMock).toHaveBeenCalledWith(
-      'open',
-      expect.any(Function),
-    );
+    expect(onMockWs).toBeCalledWith('message', expect.any(Function));
+    expect(onMockWs).toBeCalledWith('error', expect.any(Function));
+    expect(onMockWs).toBeCalledWith('open', expect.any(Function));
   });
 
   test('disconnect from the server', async () => {
@@ -68,35 +64,23 @@ describe('WebSocketEvents', () => {
     const originalPayload = {
       aaaa: 'foobar',
     };
-
     const originalData = {
       event: 'update',
       payload: JSON.stringify(originalPayload),
     };
 
-    mastoEvents.handleMessage({
-      type: 'utf8',
-      data: JSON.stringify(originalData),
-      target: {} as any,
-    });
-
+    mastoEvents.handleMessage(JSON.stringify(originalData));
     expect(emitMock).toBeCalledWith('update', originalPayload);
   });
 
   test('emit event with given props, with raw payload', () => {
     const originalPayload = 'foobar';
-
     const originalData = {
       event: 'update',
       payload: originalPayload,
     };
 
-    mastoEvents.handleMessage({
-      type: 'utf8',
-      data: JSON.stringify(originalData),
-      target: {} as any,
-    });
-
+    mastoEvents.handleMessage(JSON.stringify(originalData));
     expect(emitMock).toBeCalledWith('update', originalPayload);
   });
 

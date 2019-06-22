@@ -5,14 +5,13 @@ import { Conversation } from '../entities/conversation';
 import { Notification } from '../entities/notification';
 import { Status } from '../entities/status';
 
-/** Callback argument of `ws` */
-export interface Message {
-  data: string;
-  type: string;
-  target: WebSocket;
+/** Mastodon event */
+export interface Event {
+  event: EventType;
+  payload: string;
 }
 
-export interface EventTypesMap {
+export interface EventTypeMap {
   /** Status posted */
   update: Status;
   /** Status deleted */
@@ -25,7 +24,10 @@ export interface EventTypesMap {
   conversation: Conversation;
 }
 
-export type EventTypes = keyof EventTypesMap;
+export type EventType = keyof EventTypeMap;
+export type EventListener<T extends EventType> = (
+  payload: EventTypeMap[T],
+) => void;
 
 /**
  * Mastodon streaming api wrapper
@@ -43,9 +45,9 @@ export class WebSocketEvents extends EventEmitter {
     return new Promise<WebSocketEvents>((resolve, reject) => {
       this.ws = new WebSocket(url, protocols);
 
-      this.ws.addEventListener('message', this.handleMessage);
-      this.ws.addEventListener('error', reject);
-      this.ws.addEventListener('open', () => {
+      this.ws.on('message', this.handleMessage);
+      this.ws.on('error', reject);
+      this.ws.on('open', () => {
         resolve(this);
       });
     });
@@ -63,31 +65,83 @@ export class WebSocketEvents extends EventEmitter {
    * Parse JSON data and emit it as an event
    * @param message Websocket message
    */
-  public handleMessage = (message: Message) => {
-    const parsedMessage = JSON.parse(message.data);
-    let data: string | { [key: string]: any };
+  public handleMessage = (message: string) => {
+    const event = JSON.parse(message) as Event;
+    let data: EventTypeMap[keyof EventTypeMap];
 
     try {
-      data = JSON.parse(parsedMessage.payload);
+      data = JSON.parse(event.payload);
     } catch {
       // If parsing failed, returns raw data
       // Basically this is handling for `filters_changed` event
       // Which doesn't contain payload in the data
-      data = parsedMessage.payload;
+      data = event.payload;
     }
 
-    this.emit(parsedMessage.event, data);
+    this.emit(event.event, data);
   };
 
-  /**
-   * Add listener for the event
-   * @param event Type of the event. One of `update`, `delete`, `notification`, `filters_changed`, `conversation`
-   * @param callback Callback function
-   */
-  public on<T extends EventTypes>(
+  /*-------------------------------
+   *
+   * ↓ Overwriting signatures
+   *
+   *------------------------------*/
+
+  public listeners<T extends EventType>(event: T) {
+    return super.listeners(event);
+  }
+
+  public listenerCount<T extends EventType>(event: T) {
+    return super.listenerCount(event);
+  }
+
+  public emit<T extends EventType>(event: T, ...args: any[]) {
+    return super.emit(event, ...args);
+  }
+
+  public addListener<T extends EventType>(
     event: T,
-    callback: (payload: EventTypesMap[T]) => void,
+    fn: EventListener<T>,
+    context?: any,
   ) {
-    return super.on(event, callback);
+    return super.addListener(event, fn, context);
+  }
+
+  public on<T extends EventType>(
+    event: T,
+    fn: EventListener<T>,
+    context?: any,
+  ) {
+    return super.on(event, fn, context);
+  }
+
+  public once<T extends EventType>(
+    event: T,
+    fn: EventListener<T>,
+    context?: any,
+  ) {
+    return super.once(event, fn, context);
+  }
+
+  public removeListener<T extends EventType>(
+    event: T,
+    fn?: EventListener<T>,
+    context?: any,
+    once?: boolean,
+  ) {
+    return super.removeListener(event, fn, context, once);
+  }
+
+  public off<T extends EventType>(
+    event: T,
+    fn?: EventListener<T>,
+    context?: any,
+    once?: boolean,
+  ) {
+    return super.off(event, fn, context, once);
+  }
+
+  public removeAllListeners<T extends EventType>(event?: T) {
+    return super.removeAllListeners(event);
   }
 }

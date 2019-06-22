@@ -1031,7 +1031,7 @@ exports[`Masto fetchInstance 1`] = `
         "transformResponse": Array [
           [Function],
         ],
-        "url": "https://example.com/api/v1/suggestions",
+        "url": "https://example.com/api/v1/instance",
       },
     ],
   ],
