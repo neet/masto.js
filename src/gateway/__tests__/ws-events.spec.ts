@@ -1,6 +1,6 @@
 // tslint:disable
 import WebSocket from 'isomorphic-ws';
-import { WebSocketEvents } from '../ws-events';
+import { WebSocketEvents } from '../websocket';
 
 const onMock = jest.fn();
 const emitMock = jest.fn();

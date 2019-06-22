@@ -4,10 +4,10 @@
 import axios from 'axios';
 import { Masto } from '../masto';
 // @ts-ignore
-import { WebSocketEvents, connectMock } from '../../../gateway/ws-events';
+import { WebSocketEvents, connectMock } from '../../../gateway/websocket';
 
 jest.mock('axios');
-jest.mock('../../../gateway/ws-events');
+jest.mock('../../../gateway/websocket');
 
 describe('Masto', () => {
   const masto = new Masto({

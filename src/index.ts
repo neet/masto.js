@@ -1,5 +1,5 @@
 export * from './gateway/gateway';
-export * from './gateway/ws-events';
+export * from './gateway/websocket';
 export * from './gateway/utils';
 
 export * from './clients/decorators';

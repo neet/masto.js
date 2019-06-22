@@ -3,13 +3,13 @@ import axios from 'axios';
 // @ts-ignore
 import { Gateway, getMock } from '../gateway';
 // @ts-ignore
-import { WebSocketEvents, connectMock } from '../ws-events';
+import { WebSocketEvents, connectMock } from '../websocket';
 import { MastoUnauthorizedError } from '../../errors/masto-unauthorized-error';
 import { MastoNotFoundError } from '../../errors/masto-not-found-error';
 import { MastoRateLimitError } from '../../errors/masto-rate-limit-error';
 
 jest.mock('axios');
-jest.mock('../ws-events');
+jest.mock('../websocket');
 
 describe('Gateway', () => {
   class InheritedGateway extends Gateway {}

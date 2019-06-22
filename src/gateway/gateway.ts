@@ -8,7 +8,7 @@ import { MastoNotFoundError } from '../errors/masto-not-found-error';
 import { MastoRateLimitError } from '../errors/masto-rate-limit-error';
 import { MastoUnauthorizedError } from '../errors/masto-unauthorized-error';
 import { isAxiosError } from './utils';
-import { WebSocketEvents } from './ws-events';
+import { WebSocketEvents } from './websocket';
 
 // tslint:disable-next-line no-import-side-effect
 import 'isomorphic-form-data';
