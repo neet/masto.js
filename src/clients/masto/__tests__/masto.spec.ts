@@ -31,26 +31,6 @@ describe('Masto', () => {
     });
   });
 
-  test('login', async () => {
-    (axios.request as jest.Mock).mockResolvedValueOnce({
-      data: {
-        version: '2.8.0',
-        urls: {
-          streaming_api: 'wss://example.com/stream',
-        },
-      },
-    });
-
-    const params = {
-      uri: 'https://example.com',
-      accessToken: 'tokentoken',
-    };
-    const masto = await Masto.login(params);
-
-    expect(masto.version).toBe('2.8.0');
-    expect(masto.streamingApiUrl).toBe('wss://example.com/stream');
-  });
-
   test('streamUser', async () => {
     await masto.streamUser();
     expect(connectMock).toBeCalledTimes(1);

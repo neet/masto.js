@@ -21,8 +21,7 @@ import { Relationship } from '../../entities/relationship';
 import { Results, ResultsV1 } from '../../entities/results';
 import { ScheduledStatus } from '../../entities/scheduled-status';
 import { Status } from '../../entities/status';
-import { Gateway, GatewayConstructor } from '../../gateway/gateway';
-import { LoginParams } from '../client';
+import { Gateway, GatewayConstructorParams } from '../../gateway/gateway';
 import { available } from '../decorators';
 import {
   AddPushSubscriptionParams,
@@ -56,23 +55,8 @@ import {
  * Mastodon API client
  */
 export class Masto extends Gateway {
-  private constructor(params: GatewayConstructor) {
+  private constructor(params: GatewayConstructorParams) {
     super(params);
-  }
-
-  /**
-   * Login to Mastodon
-   * @param params Paramters
-   * @return Instance of Mastodon class
-   */
-  public static async login(params: LoginParams) {
-    const masto = new Masto(params);
-    const instance = await masto.fetchInstance();
-
-    masto.version = instance.version;
-    masto.streamingApiUrl = instance.urls.streaming_api;
-
-    return masto;
   }
 
   /**

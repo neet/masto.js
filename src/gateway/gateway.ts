@@ -3,6 +3,7 @@ import normalizeUrl from 'normalize-url';
 import querystring from 'querystring';
 import semver from 'semver';
 import { oc } from 'ts-optchain';
+import { Instance } from '../entities/instance';
 import { MastoNotFoundError } from '../errors/masto-not-found-error';
 import { MastoRateLimitError } from '../errors/masto-rate-limit-error';
 import { MastoUnauthorizedError } from '../errors/masto-unauthorized-error';
@@ -12,7 +13,7 @@ import { WebSocketEvents } from './ws-events';
 // tslint:disable-next-line no-import-side-effect
 import 'isomorphic-form-data';
 
-export interface GatewayConstructor {
+export interface GatewayConstructorParams {
   /** URI of the instance */
   uri: string;
   /** Streaming API URL */
@@ -22,6 +23,8 @@ export interface GatewayConstructor {
   /** Access token of the user */
   accessToken?: string;
 }
+
+export type LoginParams = Pick<GatewayConstructorParams, 'uri' | 'accessToken'>;
 
 export type PaginateNextOptions<Params> = {
   /** Reset pagination */
@@ -49,7 +52,7 @@ export abstract class Gateway {
   /**
    * @param params Parameters
    */
-  public constructor(params: GatewayConstructor) {
+  constructor(params: GatewayConstructorParams) {
     this.uri = params.uri;
 
     if (params.streamingApiUrl) {
@@ -79,6 +82,24 @@ export abstract class Gateway {
 
   set streamingApiUrl(streamingApiUrl: string) {
     this._streamingApiUrl = normalizeUrl(streamingApiUrl);
+  }
+
+  /**
+   * Login to Mastodon
+   * @param params Paramters
+   * @return Instance of Mastodon class
+   */
+  public static async login(
+    this: new (params: GatewayConstructorParams) => Gateway,
+    params: GatewayConstructorParams,
+  ) {
+    const masto = new this(params);
+    const instance = await masto.get<Instance>('/api/v1/instance');
+
+    masto.version = instance.version;
+    masto.streamingApiUrl = instance.urls.streaming_api;
+
+    return masto;
   }
 
   /**

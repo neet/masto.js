@@ -1,6 +1,5 @@
 // tslint:disable
 import axios from 'axios';
-import FormData from 'form-data';
 // @ts-ignore
 import { Gateway, getMock } from '../gateway';
 // @ts-ignore
@@ -28,6 +27,26 @@ describe('Gateway', () => {
     ((axios.request as any) as jest.Mock).mockResolvedValue({
       data: undefined,
     });
+  });
+
+  test('login', async () => {
+    (axios.request as jest.Mock).mockResolvedValueOnce({
+      data: {
+        version: '2.8.0',
+        urls: {
+          streaming_api: 'wss://example.com/stream',
+        },
+      },
+    });
+
+    const params = {
+      uri: 'https://example.com',
+      accessToken: 'tokentoken',
+    };
+    const gateway = await InheritedGateway.login(params);
+
+    expect(gateway.version).toBe('2.8.0');
+    expect(gateway.streamingApiUrl).toBe('wss://example.com/stream');
   });
 
   test('streamingApiUrl has been set if construct with streamingApiUrl', () => {
