@@ -7,6 +7,8 @@ export interface Instance {
   title: string;
   /** A description for the instance */
   description: string;
+  /** Short description */
+  short_description?: string;
   /** An email address which can be used to contact the instance administrator */
   email: string;
   /** The Mastodon version used by instance. */
@@ -23,6 +25,8 @@ export interface Instance {
   contact_account?: Account | null;
   /** Whether registration is open or not */
   registrations: boolean;
+  /** Whether approval required */
+  approval_required?: boolean | null;
 }
 
 export interface InstanceURLs {
