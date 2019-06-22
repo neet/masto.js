@@ -4,9 +4,7 @@ import { available } from '../decorators';
 describe('available', () => {
   test('throw an error when this.version and param.since is incompatible', () => {
     class Context {
-      gateway = {
-        version: '2.0.0',
-      };
+      public version = '2.0.0';
 
       // @ts-ignore
       @available({ since: '2.1.0' })
@@ -22,9 +20,7 @@ describe('available', () => {
 
   test('throw an error when this.version and param.until is incompatible', () => {
     class Context {
-      gateway = {
-        version: '2.0.0',
-      };
+      public version = '2.0.0';
 
       // @ts-ignore
       @available({ until: '1.9.0' })
@@ -40,9 +36,7 @@ describe('available', () => {
 
   test('not throw an error when this.version and params are compatible', () => {
     class Context {
-      gateway = {
-        version: '2.0.0',
-      };
+      public version = '2.0.0';
 
       // @ts-ignore
       @available({ sicne: '1.9.0', until: '2.1.0' })

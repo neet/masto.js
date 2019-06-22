@@ -36,7 +36,7 @@ export type PaginateNextOptions<Params> = {
  * Mastodon network request wrapper
  * @param params Optional params
  */
-export class Gateway {
+export abstract class Gateway {
   /** URI of the instance */
   private _uri = '';
   /** Streaming API URL of the instance */

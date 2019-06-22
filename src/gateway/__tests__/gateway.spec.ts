@@ -1,7 +1,8 @@
 // tslint:disable
 import axios from 'axios';
 import FormData from 'form-data';
-import { Gateway } from '../gateway';
+// @ts-ignore
+import { Gateway, getMock } from '../gateway';
 // @ts-ignore
 import { WebSocketEvents, connectMock } from '../ws-events';
 import { MastoUnauthorizedError } from '../../errors/masto-unauthorized-error';
@@ -12,10 +13,12 @@ jest.mock('axios');
 jest.mock('../ws-events');
 
 describe('Gateway', () => {
-  let gateway!: Gateway;
+  class InheritedGateway extends Gateway {}
+
+  let gateway!: InheritedGateway;
 
   beforeEach(() => {
-    gateway = new Gateway({
+    gateway = new InheritedGateway({
       uri: 'https://example.com',
       version: '99.9.9',
       streamingApiUrl: 'wss://example.com',
@@ -28,7 +31,7 @@ describe('Gateway', () => {
   });
 
   test('streamingApiUrl has been set if construct with streamingApiUrl', () => {
-    gateway = new Gateway({
+    gateway = new InheritedGateway({
       uri: 'https://example.com',
       streamingApiUrl: 'wss://example.com',
     });
@@ -36,7 +39,7 @@ describe('Gateway', () => {
   });
 
   test('version has been set if construct with version ', () => {
-    gateway = new Gateway({
+    gateway = new InheritedGateway({
       uri: 'https://example.com',
       version: '1.2.3',
     });
@@ -44,7 +47,7 @@ describe('Gateway', () => {
   });
 
   test('accessToken has been set if construct with accessToken', () => {
-    gateway = new Gateway({
+    gateway = new InheritedGateway({
       uri: 'https://example.com',
       accessToken: 'token token',
     });
@@ -52,7 +55,7 @@ describe('Gateway', () => {
   });
 
   test('this._uri accessor works', () => {
-    gateway = new Gateway({
+    gateway = new InheritedGateway({
       uri: 'https://example.com/aaa',
     });
     gateway.uri = 'https://example.com/bbb';
@@ -60,7 +63,7 @@ describe('Gateway', () => {
   });
 
   test('this._streamingApiUrl accessor works', () => {
-    gateway = new Gateway({
+    gateway = new InheritedGateway({
       uri: 'wss://example.com/aaa',
     });
     gateway.uri = 'wss://example.com/bbb';

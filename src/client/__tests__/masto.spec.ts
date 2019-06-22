@@ -7,12 +7,10 @@ import { Masto } from '../masto';
 jest.mock('../../gateway/gateway');
 
 describe('Masto', () => {
-  let masto!: Masto;
+  // @ts-ignore
+  const masto = new Masto({ uri: 'https://example.com' });
 
   beforeEach(() => {
-    // @ts-ignore
-    masto = new Masto(new Gateway());
-
     (getMock as jest.Mock).mockClear();
     (postMock as jest.Mock).mockClear();
     (deleteMock as jest.Mock).mockClear();
@@ -36,10 +34,9 @@ describe('Masto', () => {
     };
     const masto = await Masto.login(params);
 
-    expect((Gateway as any) as jest.Mock).toBeCalledWith(params);
     expect(getMock).toBeCalledWith(expect.stringContaining('/api/v1/instance'));
-    expect(masto.gateway.version).toBe('2.8.0');
-    expect(masto.gateway.streamingApiUrl).toBe('wss://example.com/stream');
+    expect(masto.version).toBe('2.8.0');
+    expect(masto.streamingApiUrl).toBe('wss://example.com/stream');
   });
 
   test('streamUser', async () => {
@@ -349,7 +346,6 @@ describe('Masto', () => {
 
   test('fetchFilter', async () => {
     await masto.fetchFilter('123123');
-    expect(getMock).toBeCalledTimes(1);
     expect(getMock).toMatchSnapshot();
   });
 
@@ -872,7 +868,7 @@ describe('Masto', () => {
   });
 
   test('fetchDirectTimeline', async () => {
-    masto.gateway.version = '2.5.0';
+    masto.version = '2.5.0';
     await masto.fetchDirectTimeline({
       max_id: '5',
       since_id: '3',

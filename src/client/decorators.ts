@@ -30,7 +30,7 @@ export const available = (parameters: AvailabeParams): Decorator => (
   const { since, until } = parameters;
 
   descriptor.value = function(this: Masto, ...args: any[]) {
-    const version = semver.coerce(this.gateway.version);
+    const version = semver.coerce(this.version);
 
     if (since && version && semver.lt(version, since)) {
       throw new MastoNotFoundError(
