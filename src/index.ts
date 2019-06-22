@@ -11,6 +11,8 @@ export * from './clients/masto-admin/masto-admin';
 export * from './clients/masto-admin/params';
 
 export * from './entities/account';
+export * from './entities/admin-account';
+export * from './entities/admin-report';
 export * from './entities/application';
 export * from './entities/attachment';
 export * from './entities/card';
