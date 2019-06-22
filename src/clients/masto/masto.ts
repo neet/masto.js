@@ -21,7 +21,7 @@ import { Relationship } from '../../entities/relationship';
 import { Results, ResultsV1 } from '../../entities/results';
 import { ScheduledStatus } from '../../entities/scheduled-status';
 import { Status } from '../../entities/status';
-import { Gateway, GatewayConstructorParams } from '../../gateway/gateway';
+import { Gateway } from '../../gateway/gateway';
 import { available } from '../decorators';
 import {
   AddPushSubscriptionParams,
@@ -55,10 +55,6 @@ import {
  * Mastodon API client
  */
 export class Masto extends Gateway {
-  private constructor(params: GatewayConstructorParams) {
-    super(params);
-  }
-
   /**
    * Starting home timeline and notification streaming
    * @return Instance of EventEmitter

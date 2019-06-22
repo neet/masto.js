@@ -18,7 +18,7 @@ export class MastoAdmin extends Gateway {
    * @retunr Accounts
    */
   @available({ since: '2.9.1' })
-  public fetchAccounts(params: AdminFetchAccountParams) {
+  public fetchAccounts(params?: AdminFetchAccountParams) {
     return this.get<AdminAccount[]>('/api/v1/admin/accounts', params);
   }
 
@@ -88,7 +88,7 @@ export class MastoAdmin extends Gateway {
    * @return Reports
    */
   @available({ since: '2.9.1' })
-  public fetchReports(params: AdminFetchReportsParams) {
+  public fetchReports(params?: AdminFetchReportsParams) {
     return this.get<AdminReport[]>('/api/v1/admin/reports', params);
   }
 

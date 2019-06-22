@@ -3,7 +3,6 @@
 // prettier-ignore
 import axios from 'axios';
 import { Masto } from '../masto';
-import FormData from 'form-data';
 // @ts-ignore
 import { WebSocketEvents, connectMock } from '../../../gateway/ws-events';
 
@@ -11,24 +10,25 @@ jest.mock('axios');
 jest.mock('../../../gateway/ws-events');
 
 describe('Masto', () => {
-  // @ts-ignore
   const masto = new Masto({
     uri: 'https://example.com',
     version: '99.99.9',
     streamingApiUrl: 'wss://example.com/stream',
   });
 
-  beforeEach(() => {
-    masto.version = '99.99.9'; // avoid version error
-
-    (connectMock as jest.Mock).mockReset();
-    (axios.request as jest.Mock).mockReset();
+  beforeAll(async () => {
     (axios.request as jest.Mock).mockResolvedValue({
       headers: {
         link: '<https://example.com/next>; rel="next"',
       },
       data: {},
     });
+  });
+
+  beforeEach(async () => {
+    masto.version = '99.99.9'; // avoid version error
+    (connectMock as jest.Mock).mockClear();
+    (axios.request as jest.Mock).mockClear();
   });
 
   test('streamUser', async () => {

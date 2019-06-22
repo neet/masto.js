@@ -39,7 +39,7 @@ export type PaginateNextOptions<Params> = {
  * Mastodon network request wrapper
  * @param params Optional params
  */
-export abstract class Gateway {
+export class Gateway {
   /** URI of the instance */
   private _uri = '';
   /** Streaming API URL of the instance */
@@ -89,17 +89,16 @@ export abstract class Gateway {
    * @param params Paramters
    * @return Instance of Mastodon class
    */
-  public static async login(
-    this: new (params: GatewayConstructorParams) => Gateway,
-    params: GatewayConstructorParams,
+  public static async login<T extends typeof Gateway>(
+    this: T,
+    params: LoginParams,
   ) {
-    const masto = new this(params);
-    const instance = await masto.get<Instance>('/api/v1/instance');
+    const gateway = new this(params) as InstanceType<T>;
+    const instance = await gateway.get<Instance>('/api/v1/instance');
+    gateway.version = instance.version;
+    gateway.streamingApiUrl = instance.urls.streaming_api;
 
-    masto.version = instance.version;
-    masto.streamingApiUrl = instance.urls.streaming_api;
-
-    return masto;
+    return gateway;
   }
 
   /**
