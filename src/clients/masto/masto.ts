@@ -2,27 +2,27 @@ import {
   Account,
   AccountCredentials,
   AccountIdentityProof,
-} from '../entities/account';
-import { Application } from '../entities/application';
-import { Attachment } from '../entities/attachment';
-import { Card } from '../entities/card';
-import { Context } from '../entities/context';
-import { Conversation } from '../entities/conversation';
-import { Emoji } from '../entities/emoji';
-import { Filter } from '../entities/filter';
-import { Instance, InstanceActivity } from '../entities/instance';
-import { List } from '../entities/list';
-import { Notification } from '../entities/notification';
-import { OAuthClient, OAuthToken } from '../entities/oauth';
-import { Poll } from '../entities/poll';
-import { Preference } from '../entities/preference';
-import { PushSubscription } from '../entities/push-subscription';
-import { Relationship } from '../entities/relationship';
-import { Results, ResultsV1 } from '../entities/results';
-import { ScheduledStatus } from '../entities/scheduled-status';
-import { Status } from '../entities/status';
-import { available } from './decorators';
-import { Gateway } from './gateway';
+} from '../../entities/account';
+import { Application } from '../../entities/application';
+import { Attachment } from '../../entities/attachment';
+import { Card } from '../../entities/card';
+import { Context } from '../../entities/context';
+import { Conversation } from '../../entities/conversation';
+import { Emoji } from '../../entities/emoji';
+import { Filter } from '../../entities/filter';
+import { Instance, InstanceActivity } from '../../entities/instance';
+import { List } from '../../entities/list';
+import { Notification } from '../../entities/notification';
+import { OAuthClient, OAuthToken } from '../../entities/oauth';
+import { Poll } from '../../entities/poll';
+import { Preference } from '../../entities/preference';
+import { PushSubscription } from '../../entities/push-subscription';
+import { Relationship } from '../../entities/relationship';
+import { Results, ResultsV1 } from '../../entities/results';
+import { ScheduledStatus } from '../../entities/scheduled-status';
+import { Status } from '../../entities/status';
+import { Gateway } from '../../gateway/gateway';
+import { available } from '../decorators';
 import {
   AddPushSubscriptionParams,
   CreateAccountParams,
@@ -33,7 +33,6 @@ import {
   FetchNotificationsParams,
   FetchTimelineParams,
   FollowAccountParams,
-  LoginParams,
   ModifyFilterParams,
   ModifyListAccountsParams,
   ModifyListParams,
@@ -55,34 +54,7 @@ import {
 /**
  * Mastodon API client
  */
-export class Masto {
-  /** Instance of Gateway */
-  public gateway: Gateway;
-
-  /**
-   * Private constructor
-   * @param gateway Instance of Gateway
-   */
-  private constructor(gateway: Gateway) {
-    this.gateway = gateway;
-  }
-
-  /**
-   * Login to Mastodon
-   * @param params Paramters
-   * @return Instance of Mastodon class
-   */
-  public static async login(params: LoginParams) {
-    const gateway = new Gateway(params);
-    const masto = new Masto(gateway);
-    const instance = await masto.fetchInstance();
-
-    gateway.version = instance.version;
-    gateway.streamingApiUrl = instance.urls.streaming_api;
-
-    return masto;
-  }
-
+export class Masto extends Gateway {
   /**
    * Starting home timeline and notification streaming
    * @return Instance of EventEmitter
@@ -90,7 +62,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public streamUser() {
-    return this.gateway.stream('/api/v1/streaming', {
+    return this.stream('/api/v1/streaming', {
       stream: 'user',
     });
   }
@@ -102,7 +74,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public streamPublicTimeline() {
-    return this.gateway.stream('/api/v1/streaming', {
+    return this.stream('/api/v1/streaming', {
       stream: 'public',
     });
   }
@@ -114,7 +86,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public streamCommunityTimeline() {
-    return this.gateway.stream('/api/v1/streaming', {
+    return this.stream('/api/v1/streaming', {
       stream: 'public:local',
     });
   }
@@ -127,7 +99,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public streamTagTimeline(id: string) {
-    return this.gateway.stream('/api/v1/streaming', {
+    return this.stream('/api/v1/streaming', {
       stream: 'hashtag',
       tag: id,
     });
@@ -141,7 +113,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public streamLocalTagTimeline(id: string) {
-    return this.gateway.stream('/api/v1/streaming', {
+    return this.stream('/api/v1/streaming', {
       stream: 'hashtag:local',
       tag: id,
     });
@@ -155,7 +127,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public streamListTimeline(id: string) {
-    return this.gateway.stream('/api/v1/streaming', {
+    return this.stream('/api/v1/streaming', {
       stream: 'list',
       list: id,
     });
@@ -168,7 +140,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public streamDirectTimeline() {
-    return this.gateway.stream('/api/v1/streaming', {
+    return this.stream('/api/v1/streaming', {
       stream: 'direct',
     });
   }
@@ -180,7 +152,7 @@ export class Masto {
    * @see https://docs.joinmastodon.org/api/authentication/#post-oauth-token
    */
   public fetchAccessToken(params: FetchAccessTokenParams) {
-    return this.gateway.post<OAuthToken>('/oauth/token', params);
+    return this.post<OAuthToken>('/oauth/token', params);
   }
 
   /**
@@ -189,7 +161,7 @@ export class Masto {
    * @see https://docs.joinmastodon.org/api/authentication/#post-oauth-revoke
    */
   public revokeAccessToken(params: RevokeAccessTokenParams) {
-    return this.gateway.post<void>('/oauth/revoke', params);
+    return this.post<void>('/oauth/revoke', params);
   }
 
   /**
@@ -200,7 +172,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public fetchAccount(id: string) {
-    return this.gateway.get<Account>(`/api/v1/accounts/${id}`);
+    return this.get<Account>(`/api/v1/accounts/${id}`);
   }
 
   /**
@@ -211,7 +183,7 @@ export class Masto {
    */
   @available({ since: '2.8.0' })
   public fetchAccountIdentityProofs(id: string) {
-    return this.gateway.get<AccountIdentityProof[]>(
+    return this.get<AccountIdentityProof[]>(
       `/api/v1/accounts/${id}/identity_proofs`,
     );
   }
@@ -223,7 +195,7 @@ export class Masto {
    */
   @available({ since: '2.7.0' })
   public createAccount(params: CreateAccountParams) {
-    return this.gateway.post<OAuthToken>('/api/v1/accounts', params);
+    return this.post<OAuthToken>('/api/v1/accounts', params);
   }
 
   /**
@@ -233,9 +205,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public verifyCredentials() {
-    return this.gateway.get<AccountCredentials>(
-      '/api/v1/accounts/verify_credentials',
-    );
+    return this.get<AccountCredentials>('/api/v1/accounts/verify_credentials');
   }
 
   /**
@@ -246,7 +216,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public updateCredentials(params?: UpdateCredentialsParams) {
-    return this.gateway.patch<AccountCredentials>(
+    return this.patch<AccountCredentials>(
       '/api/v1/accounts/update_credentials',
       params,
       { headers: { 'Content-Type': 'multipart/form-data' } },
@@ -262,10 +232,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public fetchAccountFollowers(id: string, params?: PaginationParams) {
-    return this.gateway.paginate<Account[]>(
-      `/api/v1/accounts/${id}/followers`,
-      params,
-    );
+    return this.paginate<Account[]>(`/api/v1/accounts/${id}/followers`, params);
   }
 
   /**
@@ -277,10 +244,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public fetchAccountFollowing(id: string, params?: PaginationParams) {
-    return this.gateway.paginate<Account[]>(
-      `/api/v1/accounts/${id}/following`,
-      params,
-    );
+    return this.paginate<Account[]>(`/api/v1/accounts/${id}/following`, params);
   }
 
   /**
@@ -292,10 +256,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public fetchAccountStatuses(id: string, params?: FetchAccountStatusesParams) {
-    return this.gateway.paginate<Status[]>(
-      `/api/v1/accounts/${id}/statuses`,
-      params,
-    );
+    return this.paginate<Status[]>(`/api/v1/accounts/${id}/statuses`, params);
   }
 
   /**
@@ -307,10 +268,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public followAccount(id: string, params?: FollowAccountParams) {
-    return this.gateway.post<Relationship>(
-      `/api/v1/accounts/${id}/follow`,
-      params,
-    );
+    return this.post<Relationship>(`/api/v1/accounts/${id}/follow`, params);
   }
 
   /**
@@ -321,7 +279,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public unfollowAccount(id: string) {
-    return this.gateway.post<Relationship>(`/api/v1/accounts/${id}/unfollow`);
+    return this.post<Relationship>(`/api/v1/accounts/${id}/unfollow`);
   }
 
   /**
@@ -332,7 +290,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public fetchAccountRelationships(id: string[]) {
-    return this.gateway.get<Relationship[]>(`/api/v1/accounts/relationship`, {
+    return this.get<Relationship[]>(`/api/v1/accounts/relationship`, {
       id,
     });
   }
@@ -345,7 +303,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public searchAccounts(params?: SearchAccountsParams) {
-    return this.gateway.get<Account[]>(`/api/v1/accounts/search`, params);
+    return this.get<Account[]>(`/api/v1/accounts/search`, params);
   }
 
   /**
@@ -356,7 +314,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public createApp(params: CreateAppParams) {
-    return this.gateway.post<OAuthClient>(`/api/v1/apps`, params);
+    return this.post<OAuthClient>(`/api/v1/apps`, params);
   }
 
   /**
@@ -366,7 +324,7 @@ export class Masto {
    */
   @available({ since: '2.0.0' })
   public verifyAppCredentials() {
-    return this.gateway.get<Application>(`/api/v1/apps/verify_credentials`);
+    return this.get<Application>(`/api/v1/apps/verify_credentials`);
   }
 
   /**
@@ -377,7 +335,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public fetchBlocks(params?: PaginationParams) {
-    return this.gateway.paginate<Account[]>(`/api/v1/blocks`, params);
+    return this.paginate<Account[]>(`/api/v1/blocks`, params);
   }
 
   /**
@@ -388,7 +346,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public blockAccount(id: string) {
-    return this.gateway.post<Relationship>(`/api/v1/accounts/${id}/block`);
+    return this.post<Relationship>(`/api/v1/accounts/${id}/block`);
   }
 
   /**
@@ -399,7 +357,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public unblockAccount(id: string) {
-    return this.gateway.post<Relationship>(`/api/v1/accounts/${id}/unblock`);
+    return this.post<Relationship>(`/api/v1/accounts/${id}/unblock`);
   }
 
   /**
@@ -409,7 +367,7 @@ export class Masto {
    */
   @available({ since: '2.0.0' })
   public fetchCustomEmojis() {
-    return this.gateway.get<Emoji[]>(`/api/v1/custom_emojis`);
+    return this.get<Emoji[]>(`/api/v1/custom_emojis`);
   }
 
   /**
@@ -420,7 +378,7 @@ export class Masto {
    */
   @available({ since: '1.4.0' })
   public fetchDomainBlocks(params?: PaginationParams) {
-    return this.gateway.paginate<string[]>(`/api/v1/domain_blocks`, params);
+    return this.paginate<string[]>(`/api/v1/domain_blocks`, params);
   }
 
   /**
@@ -431,7 +389,7 @@ export class Masto {
    */
   @available({ since: '1.4.0' })
   public blockDomain(domain: string) {
-    return this.gateway.post<void>(`/api/v1/domain_blocks`, {
+    return this.post<void>(`/api/v1/domain_blocks`, {
       domain,
     });
   }
@@ -444,7 +402,7 @@ export class Masto {
    */
   @available({ since: '1.4.0' })
   public unblockDomain(domain: string) {
-    return this.gateway.delete<void>(`/api/v1/domain_blocks`, {
+    return this.delete<void>(`/api/v1/domain_blocks`, {
       domain,
     });
   }
@@ -456,7 +414,7 @@ export class Masto {
    */
   @available({ since: '2.5.0' })
   public fetchEndorsements(params?: PaginationParams) {
-    return this.gateway.paginate<Account[]>(`/api/v1/endorsements`, params);
+    return this.paginate<Account[]>(`/api/v1/endorsements`, params);
   }
 
   /**
@@ -467,7 +425,7 @@ export class Masto {
    */
   @available({ since: '2.5.0' })
   public pinAccount(id: string) {
-    return this.gateway.post<Relationship>(`/api/v1/accounts/${id}/pin`);
+    return this.post<Relationship>(`/api/v1/accounts/${id}/pin`);
   }
 
   /**
@@ -478,7 +436,7 @@ export class Masto {
    */
   @available({ since: '2.5.0' })
   public unpinAccount(id: string) {
-    return this.gateway.post<Relationship>(`/api/v1/accounts/${id}/unpin`);
+    return this.post<Relationship>(`/api/v1/accounts/${id}/unpin`);
   }
 
   /**
@@ -489,7 +447,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public fetchFavourites(params?: PaginationParams) {
-    return this.gateway.paginate<Status[]>(`/api/v1/favourites`, params);
+    return this.paginate<Status[]>(`/api/v1/favourites`, params);
   }
 
   /**
@@ -500,7 +458,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public favouriteStatus(id: string) {
-    return this.gateway.post<Status>(`/api/v1/statuses/${id}/favourite`);
+    return this.post<Status>(`/api/v1/statuses/${id}/favourite`);
   }
 
   /**
@@ -511,7 +469,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public unfavouriteStatus(id: string) {
-    return this.gateway.post<Status>(`/api/v1/statuses/${id}/unfavourite`);
+    return this.post<Status>(`/api/v1/statuses/${id}/unfavourite`);
   }
 
   /**
@@ -521,7 +479,7 @@ export class Masto {
    */
   @available({ since: '2.4.3' })
   public fetchFilters() {
-    return this.gateway.get<Filter[]>(`/api/v1/filters`);
+    return this.get<Filter[]>(`/api/v1/filters`);
   }
 
   /**
@@ -532,7 +490,7 @@ export class Masto {
    */
   @available({ since: '2.4.3' })
   public fetchFilter(id: string) {
-    return this.gateway.get<Filter>(`/api/v1/filters/${id}`);
+    return this.get<Filter>(`/api/v1/filters/${id}`);
   }
 
   /**
@@ -543,7 +501,7 @@ export class Masto {
    */
   @available({ since: '2.4.3' })
   public createFiler(params?: ModifyFilterParams) {
-    return this.gateway.post<Filter>(`/api/v1/filters`, params);
+    return this.post<Filter>(`/api/v1/filters`, params);
   }
 
   /**
@@ -555,7 +513,7 @@ export class Masto {
    */
   @available({ since: '2.4.3' })
   public updateFilter(id: string, params?: ModifyFilterParams) {
-    return this.gateway.put<Filter>(`/api/v1/filters/${id}`, params);
+    return this.put<Filter>(`/api/v1/filters/${id}`, params);
   }
 
   /**
@@ -566,7 +524,7 @@ export class Masto {
    */
   @available({ since: '2.4.3' })
   public removeFilter(id: string) {
-    return this.gateway.delete<void>(`/api/v1/filters/${id}`);
+    return this.delete<void>(`/api/v1/filters/${id}`);
   }
 
   /**
@@ -577,7 +535,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public fetchFollowRequests(params?: PaginationParams) {
-    return this.gateway.paginate<Account[]>(`/api/v1/follow_requests`, params);
+    return this.paginate<Account[]>(`/api/v1/follow_requests`, params);
   }
 
   /**
@@ -588,7 +546,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public authorizeFollowRequest(id: string) {
-    return this.gateway.post<void>(`/api/v1/follow_requests/${id}/authorize`);
+    return this.post<void>(`/api/v1/follow_requests/${id}/authorize`);
   }
 
   /**
@@ -599,7 +557,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public rejectFollowRequest(id: string) {
-    return this.gateway.post<void>(`/api/v1/follow_requests/${id}/reject`);
+    return this.post<void>(`/api/v1/follow_requests/${id}/reject`);
   }
 
   /**
@@ -609,7 +567,7 @@ export class Masto {
    */
   @available({ since: '2.4.3' })
   public fetchSuggestions() {
-    return this.gateway.get<Account[]>('/api/v1/suggestions');
+    return this.get<Account[]>('/api/v1/suggestions');
   }
 
   /**
@@ -620,7 +578,7 @@ export class Masto {
    */
   @available({ since: '2.4.3' })
   public removeSuggestion(id: string) {
-    return this.gateway.delete<void>(`/api/v1/suggestions/${id}`);
+    return this.delete<void>(`/api/v1/suggestions/${id}`);
   }
 
   /**
@@ -630,7 +588,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public fetchInstance() {
-    return this.gateway.get<Instance>('/api/v1/instance');
+    return this.get<Instance>('/api/v1/instance');
   }
 
   /**
@@ -640,7 +598,7 @@ export class Masto {
    */
   @available({ since: '2.1.2' })
   public fetchInstancesPeers() {
-    return this.gateway.get<string[]>('/api/v1/instance/peers');
+    return this.get<string[]>('/api/v1/instance/peers');
   }
 
   /**
@@ -650,7 +608,7 @@ export class Masto {
    */
   @available({ since: '2.1.2' })
   public fetchInstanceActivity() {
-    return this.gateway.get<InstanceActivity[]>('/api/v1/instance/activity');
+    return this.get<InstanceActivity[]>('/api/v1/instance/activity');
   }
 
   /**
@@ -660,7 +618,7 @@ export class Masto {
    */
   @available({ since: '2.1.0' })
   public fetchLists() {
-    return this.gateway.get<List[]>('/api/v1/lists');
+    return this.get<List[]>('/api/v1/lists');
   }
 
   /**
@@ -671,7 +629,7 @@ export class Masto {
    */
   @available({ since: '2.1.0' })
   public fetchAccountLists(id: string) {
-    return this.gateway.get<List[]>(`/api/v1/accounts/${id}/lists`);
+    return this.get<List[]>(`/api/v1/accounts/${id}/lists`);
   }
 
   /**
@@ -683,10 +641,7 @@ export class Masto {
    */
   @available({ since: '2.1.0' })
   public fetchListAccounts(id: string, params?: PaginationParams) {
-    return this.gateway.paginate<Account[]>(
-      `/api/v1/list/${id}/accounts`,
-      params,
-    );
+    return this.paginate<Account[]>(`/api/v1/list/${id}/accounts`, params);
   }
 
   /**
@@ -697,7 +652,7 @@ export class Masto {
    */
   @available({ since: '2.1.0' })
   public fetchList(id: string) {
-    return this.gateway.get<List>(`/api/v1/lists/${id}`);
+    return this.get<List>(`/api/v1/lists/${id}`);
   }
 
   /**
@@ -708,7 +663,7 @@ export class Masto {
    */
   @available({ since: '2.1.0' })
   public createList(params: ModifyListParams) {
-    return this.gateway.post<List>('/api/v1/lists', params);
+    return this.post<List>('/api/v1/lists', params);
   }
 
   /**
@@ -720,7 +675,7 @@ export class Masto {
    */
   @available({ since: '2.1.0' })
   public updateList(id: string, params: ModifyListParams) {
-    return this.gateway.put<List>(`/api/v1/lists/${id}`, params);
+    return this.put<List>(`/api/v1/lists/${id}`, params);
   }
 
   /**
@@ -731,7 +686,7 @@ export class Masto {
    */
   @available({ since: '2.1.0' })
   public removeList(id: string) {
-    return this.gateway.delete<void>(`/api/v1/lists/${id}`);
+    return this.delete<void>(`/api/v1/lists/${id}`);
   }
 
   /**
@@ -743,7 +698,7 @@ export class Masto {
    */
   @available({ since: '2.1.0' })
   public addAccountToList(id: string, params: ModifyListAccountsParams) {
-    return this.gateway.post<void>(`/api/v1/lists/${id}/accounts`, params);
+    return this.post<void>(`/api/v1/lists/${id}/accounts`, params);
   }
 
   /**
@@ -755,7 +710,7 @@ export class Masto {
    */
   @available({ since: '2.1.0' })
   public removeAccountFromList(id: string, params: ModifyListAccountsParams) {
-    return this.gateway.delete<void>(`/api/v1/lists/${id}/accounts`, params);
+    return this.delete<void>(`/api/v1/lists/${id}/accounts`, params);
   }
 
   /**
@@ -766,7 +721,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public uploadMediaAttachment(params: UploadMediaAttachmentParams) {
-    return this.gateway.post<Attachment>('/api/v1/media', params, {
+    return this.post<Attachment>('/api/v1/media', params, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
   }
@@ -783,7 +738,7 @@ export class Masto {
     id: string,
     params: UpdateMediaAttachmentParams,
   ) {
-    return this.gateway.put<Attachment>(`/api/v1/media/${id}`, params);
+    return this.put<Attachment>(`/api/v1/media/${id}`, params);
   }
 
   /**
@@ -794,7 +749,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public fetchMutes(params?: PaginationParams) {
-    return this.gateway.paginate<Account[]>('/api/v1/mutes', params);
+    return this.paginate<Account[]>('/api/v1/mutes', params);
   }
 
   /**
@@ -806,10 +761,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public muteAccount(id: string, params: MuteAccountParams) {
-    return this.gateway.post<Relationship>(
-      `/api/v1/accounts/${id}/mute`,
-      params,
-    );
+    return this.post<Relationship>(`/api/v1/accounts/${id}/mute`, params);
   }
 
   /**
@@ -820,7 +772,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public unmuteAccount(id: string) {
-    return this.gateway.post<Relationship>(`/api/v1/accounts/${id}/unmute`);
+    return this.post<Relationship>(`/api/v1/accounts/${id}/unmute`);
   }
 
   /**
@@ -831,7 +783,7 @@ export class Masto {
    */
   @available({ since: '1.4.2' })
   public muteStatus(id: string) {
-    return this.gateway.post<Status>(`/api/v1/statuses/${id}/mute`);
+    return this.post<Status>(`/api/v1/statuses/${id}/mute`);
   }
 
   /**
@@ -842,7 +794,7 @@ export class Masto {
    */
   @available({ since: '1.4.2' })
   public unmuteStatus(id: string) {
-    return this.gateway.post<Status>(`/api/v1/statuses/${id}/unmute`);
+    return this.post<Status>(`/api/v1/statuses/${id}/unmute`);
   }
 
   /**
@@ -853,7 +805,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public fetchNotifications(params?: FetchNotificationsParams) {
-    return this.gateway.get<Notification[]>('/api/v1/notifications', params);
+    return this.get<Notification[]>('/api/v1/notifications', params);
   }
 
   /**
@@ -864,7 +816,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public fetchNotification(id: string) {
-    return this.gateway.get<Notification>(`/api/v1/notifications/${id}`);
+    return this.get<Notification>(`/api/v1/notifications/${id}`);
   }
 
   /**
@@ -874,7 +826,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public clearNotifications() {
-    return this.gateway.post<void>('/api/v1/notifications/clear');
+    return this.post<void>('/api/v1/notifications/clear');
   }
 
   /**
@@ -885,7 +837,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public dissmissNotification(id: string) {
-    return this.gateway.post<void>('/api/v1/notifications/dismiss', {
+    return this.post<void>('/api/v1/notifications/dismiss', {
       id,
     });
   }
@@ -898,10 +850,7 @@ export class Masto {
    */
   @available({ since: '2.4.0' })
   public addPushSubscription(params: AddPushSubscriptionParams) {
-    return this.gateway.post<PushSubscription>(
-      '/api/v1/push/subscription',
-      params,
-    );
+    return this.post<PushSubscription>('/api/v1/push/subscription', params);
   }
 
   /**
@@ -911,7 +860,7 @@ export class Masto {
    */
   @available({ since: '2.4.0' })
   public fetchPushSubscription() {
-    return this.gateway.get<PushSubscription>('/api/v1/push/subscription');
+    return this.get<PushSubscription>('/api/v1/push/subscription');
   }
 
   /**
@@ -922,10 +871,7 @@ export class Masto {
    */
   @available({ since: '2.4.0' })
   public updatePushSubscription(params: UpdatePushSubscriptionParams) {
-    return this.gateway.put<PushSubscription>(
-      '/api/v1/push/subscription',
-      params,
-    );
+    return this.put<PushSubscription>('/api/v1/push/subscription', params);
   }
 
   /**
@@ -935,7 +881,7 @@ export class Masto {
    */
   @available({ since: '2.4.0' })
   public removePushSubscription() {
-    return this.gateway.delete<void>('/api/v1/push/subscription');
+    return this.delete<void>('/api/v1/push/subscription');
   }
 
   /**
@@ -946,7 +892,7 @@ export class Masto {
    */
   @available({ since: '2.8.0' })
   public fetchPoll(id: string) {
-    return this.gateway.get<Poll>(`/api/v1/polls/${id}`);
+    return this.get<Poll>(`/api/v1/polls/${id}`);
   }
 
   /**
@@ -958,7 +904,7 @@ export class Masto {
    */
   @available({ since: '2.8.0' })
   public votePoll(id: string, params: VotePollParams) {
-    return this.gateway.post<Poll>(`/api/v1/polls/${id}/votes`, params);
+    return this.post<Poll>(`/api/v1/polls/${id}/votes`, params);
   }
 
   /**
@@ -969,7 +915,7 @@ export class Masto {
    */
   @available({ since: '1.1.0' })
   public reportAccount(params: ReportAccountParams) {
-    return this.gateway.post<void>('/api/v1/reports', params);
+    return this.post<void>('/api/v1/reports', params);
   }
 
   /**
@@ -979,7 +925,7 @@ export class Masto {
    */
   @available({ since: '2.7.0' })
   public fetchScheduledStatuses() {
-    return this.gateway.get<ScheduledStatus[]>('/api/v1/scheduled_statuses');
+    return this.get<ScheduledStatus[]>('/api/v1/scheduled_statuses');
   }
 
   /**
@@ -990,9 +936,7 @@ export class Masto {
    */
   @available({ since: '2.7.0' })
   public fetchScheduledStatus(id: string) {
-    return this.gateway.get<ScheduledStatus>(
-      `/api/v1/scheduled_statuses/${id}`,
-    );
+    return this.get<ScheduledStatus>(`/api/v1/scheduled_statuses/${id}`);
   }
 
   /**
@@ -1007,7 +951,7 @@ export class Masto {
     id: string,
     params: UpdateScheduledStatusParams,
   ) {
-    return this.gateway.put<ScheduledStatus>(
+    return this.put<ScheduledStatus>(
       `/api/v1/scheduled_statuses/${id}`,
       params,
     );
@@ -1021,7 +965,7 @@ export class Masto {
    */
   @available({ since: '2.7.0' })
   public removeScheduledStatus(id: string) {
-    return this.gateway.delete<void>(`/api/v1/scheduled_statuses/${id}`);
+    return this.delete<void>(`/api/v1/scheduled_statuses/${id}`);
   }
 
   /**
@@ -1036,7 +980,7 @@ export class Masto {
     params: SearchParams,
     version = 'v2' as V,
   ) {
-    return this.gateway.paginate<V extends 'v2' ? Results : ResultsV1>(
+    return this.paginate<V extends 'v2' ? Results : ResultsV1>(
       `/api/${version}/search`,
       params,
     );
@@ -1050,7 +994,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public fetchStatus(id: string) {
-    return this.gateway.get<Status>(`/api/v1/statuses/${id}`);
+    return this.get<Status>(`/api/v1/statuses/${id}`);
   }
 
   /**
@@ -1061,7 +1005,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public fetchStatusContext(id: string) {
-    return this.gateway.get<Context>(`/api/v1/statuses/${id}/context`);
+    return this.get<Context>(`/api/v1/statuses/${id}/context`);
   }
 
   /**
@@ -1071,7 +1015,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public fetchStatusCard(id: string) {
-    return this.gateway.get<Card>(`/api/v1/statuses/${id}/card`);
+    return this.get<Card>(`/api/v1/statuses/${id}/card`);
   }
 
   /**
@@ -1083,7 +1027,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public fetchStatusRebloggedBy(id: string, params?: PaginationParams) {
-    return this.gateway.paginate<Account[]>(
+    return this.paginate<Account[]>(
       `/api/v1/statuses/${id}/reblogged_by`,
       params,
     );
@@ -1098,7 +1042,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public fetchStatusFavouritedBy(id: string, params?: PaginationParams) {
-    return this.gateway.paginate<Account[]>(
+    return this.paginate<Account[]>(
       `/api/v1/statuses/${id}/favourited_by`,
       params,
     );
@@ -1114,12 +1058,12 @@ export class Masto {
   @available({ since: '0.0.0' })
   public createStatus(params?: CreateStatusParams, idempotencyKey?: string) {
     if (idempotencyKey) {
-      return this.gateway.post<Status>('/api/v1/statuses', params, {
+      return this.post<Status>('/api/v1/statuses', params, {
         headers: { 'Idempotency-Key': idempotencyKey },
       });
     }
 
-    return this.gateway.post<Status>('/api/v1/statuses', params);
+    return this.post<Status>('/api/v1/statuses', params);
   }
 
   /**
@@ -1130,7 +1074,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public removeStatus(id: string) {
-    return this.gateway.delete<Status>(`/api/v1/statuses/${id}`);
+    return this.delete<Status>(`/api/v1/statuses/${id}`);
   }
 
   /**
@@ -1141,7 +1085,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public reblogStatus(id: string, params?: ReblogStatusParams) {
-    return this.gateway.post<Status>(`/api/v1/statuses/${id}/reblog`, params);
+    return this.post<Status>(`/api/v1/statuses/${id}/reblog`, params);
   }
 
   /**
@@ -1152,7 +1096,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public unreblogStatus(id: string) {
-    return this.gateway.post<Status>(`/api/v1/statuses/${id}/unreblog`);
+    return this.post<Status>(`/api/v1/statuses/${id}/unreblog`);
   }
 
   /**
@@ -1163,7 +1107,7 @@ export class Masto {
    */
   @available({ since: '1.6.0' })
   public pinStatus(id: string) {
-    return this.gateway.post<Status>(`/api/v1/statuses/${id}/pin`);
+    return this.post<Status>(`/api/v1/statuses/${id}/pin`);
   }
 
   /**
@@ -1174,7 +1118,7 @@ export class Masto {
    */
   @available({ since: '1.6.0' })
   public unpinStatus(id: string) {
-    return this.gateway.post<Status>(`/api/v1/statuses/${id}/unpin`);
+    return this.post<Status>(`/api/v1/statuses/${id}/unpin`);
   }
 
   /**
@@ -1185,7 +1129,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public fetchHomeTimeline(params?: FetchTimelineParams) {
-    return this.gateway.paginate<Status[]>('/api/v1/timelines/home', params);
+    return this.paginate<Status[]>('/api/v1/timelines/home', params);
   }
 
   /**
@@ -1196,7 +1140,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public fetchCommunityTimeline(params?: FetchTimelineParams) {
-    return this.gateway.paginate<Status[]>('/api/v1/timelines/public', {
+    return this.paginate<Status[]>('/api/v1/timelines/public', {
       local: true,
       ...params,
     });
@@ -1210,7 +1154,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public fetchPublicTimeline(params?: FetchTimelineParams) {
-    return this.gateway.paginate<Status[]>('/api/v1/timelines/public', params);
+    return this.paginate<Status[]>('/api/v1/timelines/public', params);
   }
 
   /**
@@ -1222,10 +1166,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public fetchTagTimeline(id: string, params?: FetchTimelineParams) {
-    return this.gateway.paginate<Status[]>(
-      `/api/v1/timelines/tag/${id}`,
-      params,
-    );
+    return this.paginate<Status[]>(`/api/v1/timelines/tag/${id}`, params);
   }
 
   /**
@@ -1237,10 +1178,7 @@ export class Masto {
    */
   @available({ since: '2.1.0' })
   public fetchListTimeline(id: string, params?: FetchTimelineParams) {
-    return this.gateway.paginate<Status[]>(
-      `/api/v1/timelines/list/${id}`,
-      params,
-    );
+    return this.paginate<Status[]>(`/api/v1/timelines/list/${id}`, params);
   }
 
   /**
@@ -1249,7 +1187,7 @@ export class Masto {
    */
   @available({ since: '0.0.0', until: '2.5.2' })
   public fetchDirectTimeline(params?: FetchTimelineParams) {
-    return this.gateway.paginate<Status[]>('/api/v1/timelines/direct', params);
+    return this.paginate<Status[]>('/api/v1/timelines/direct', params);
   }
 
   /**
@@ -1258,10 +1196,7 @@ export class Masto {
    */
   @available({ since: '2.6.0' })
   public fetchConversations(params?: PaginationParams) {
-    return this.gateway.paginate<Conversation[]>(
-      '/api/v1/conversations',
-      params,
-    );
+    return this.paginate<Conversation[]>('/api/v1/conversations', params);
   }
 
   /**
@@ -1272,7 +1207,7 @@ export class Masto {
    */
   @available({ since: '0.0.0' })
   public followAccountByUsername(uri: string) {
-    return this.gateway.post<Account>('/api/v1/follows', { uri });
+    return this.post<Account>('/api/v1/follows', { uri });
   }
 
   /**
@@ -1282,6 +1217,6 @@ export class Masto {
    */
   @available({ since: '2.8.0' })
   public fetchPreferences() {
-    return this.gateway.get<Preference>('/api/v1/preferences');
+    return this.get<Preference>('/api/v1/preferences');
   }
 }

@@ -1,21 +1,23 @@
 // tslint:disable
 import axios from 'axios';
-import FormData from 'form-data';
-import { Gateway } from '../gateway';
 // @ts-ignore
-import { MastoEvents, connectMock } from '../masto-events';
+import { Gateway, getMock } from '../gateway';
+// @ts-ignore
+import { WebSocketEvents, connectMock } from '../websocket';
 import { MastoUnauthorizedError } from '../../errors/masto-unauthorized-error';
 import { MastoNotFoundError } from '../../errors/masto-not-found-error';
 import { MastoRateLimitError } from '../../errors/masto-rate-limit-error';
 
 jest.mock('axios');
-jest.mock('../masto-events');
+jest.mock('../websocket');
 
 describe('Gateway', () => {
-  let gateway!: Gateway;
+  class InheritedGateway extends Gateway {}
+
+  let gateway!: InheritedGateway;
 
   beforeEach(() => {
-    gateway = new Gateway({
+    gateway = new InheritedGateway({
       uri: 'https://example.com',
       version: '99.9.9',
       streamingApiUrl: 'wss://example.com',
@@ -27,8 +29,28 @@ describe('Gateway', () => {
     });
   });
 
+  test('login', async () => {
+    (axios.request as jest.Mock).mockResolvedValueOnce({
+      data: {
+        version: '2.8.0',
+        urls: {
+          streaming_api: 'wss://example.com/stream',
+        },
+      },
+    });
+
+    const params = {
+      uri: 'https://example.com',
+      accessToken: 'tokentoken',
+    };
+    const gateway = await InheritedGateway.login(params);
+
+    expect(gateway.version).toBe('2.8.0');
+    expect(gateway.streamingApiUrl).toBe('wss://example.com/stream');
+  });
+
   test('streamingApiUrl has been set if construct with streamingApiUrl', () => {
-    gateway = new Gateway({
+    gateway = new InheritedGateway({
       uri: 'https://example.com',
       streamingApiUrl: 'wss://example.com',
     });
@@ -36,7 +58,7 @@ describe('Gateway', () => {
   });
 
   test('version has been set if construct with version ', () => {
-    gateway = new Gateway({
+    gateway = new InheritedGateway({
       uri: 'https://example.com',
       version: '1.2.3',
     });
@@ -44,7 +66,7 @@ describe('Gateway', () => {
   });
 
   test('accessToken has been set if construct with accessToken', () => {
-    gateway = new Gateway({
+    gateway = new InheritedGateway({
       uri: 'https://example.com',
       accessToken: 'token token',
     });
@@ -52,7 +74,7 @@ describe('Gateway', () => {
   });
 
   test('this._uri accessor works', () => {
-    gateway = new Gateway({
+    gateway = new InheritedGateway({
       uri: 'https://example.com/aaa',
     });
     gateway.uri = 'https://example.com/bbb';
@@ -60,7 +82,7 @@ describe('Gateway', () => {
   });
 
   test('this._streamingApiUrl accessor works', () => {
-    gateway = new Gateway({
+    gateway = new InheritedGateway({
       uri: 'wss://example.com/aaa',
     });
     gateway.uri = 'wss://example.com/bbb';
@@ -298,19 +320,19 @@ describe('Gateway', () => {
     );
   });
 
-  test('initialize MastoEvents and call connect with given params', async () => {
+  test('initialize WebSocketEvents and call connect with given params', async () => {
     const params = { a: 'a', b: 'b' };
     await gateway.stream('/', params);
     expect(connectMock).toBeCalledWith('wss://example.com/?a=a&b=b', []);
   });
 
-  test('initialize MastoEvents and call connect with access token', async () => {
+  test('initialize WebSocketEvents and call connect with access token', async () => {
     gateway.accessToken = 'tokentoken';
     await gateway.stream('/');
     expect(connectMock).toBeCalledWith('wss://example.com/', ['tokentoken']);
   });
 
-  test('initialize MastoEvents and call connect with access token as a param for Mastodon < v2.8.4', async () => {
+  test('initialize WebSocketEvents and call connect with access token as a param for Mastodon < v2.8.4', async () => {
     gateway.version = '2.8.3';
     gateway.accessToken = 'tokentoken';
     await gateway.stream('/');

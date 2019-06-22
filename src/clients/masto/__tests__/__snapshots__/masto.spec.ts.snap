@@ -1,0 +1,2784 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Masto addAccountToList 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"account_ids\\":[\\"123\\",\\"456\\",\\"678\\"]}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/lists/123123/accounts",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto addPushSubscription 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"subscription\\":{\\"endpoint\\":\\"https://example.com\\",\\"keys\\":{\\"p256dh\\":\\"xxxx\\",\\"auth\\":\\"yyyy\\"}},\\"data\\":{\\"alerts\\":{\\"follow\\":true,\\"favourite\\":true,\\"reblog\\":true,\\"mention\\":true}}}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/push/subscription",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto authorizeFollowRequest 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/follow_requests/123123/authorize",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto blockAccount 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/accounts/123123/block",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto blockDomain 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"domain\\":\\"example.com\\"}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/domain_blocks",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto clearNotifications 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/notifications/clear",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto createAccount 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"username\\":\\"username\\",\\"password\\":\\"password\\",\\"email\\":\\"example@example.com\\",\\"agreement\\":true}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/accounts",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto createApp 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"client_name\\":\\"My Client\\",\\"redirect_uris\\":\\"https://example.com\\",\\"scopes\\":\\"write read\\",\\"website\\":\\"https://example.com\\"}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/apps",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto createFiler 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"phrase\\":\\"Twitter\\",\\"context\\":[\\"home\\",\\"notifications\\",\\"public\\",\\"thread\\"],\\"irreversible\\":true,\\"whole_word\\":true,\\"expires_in\\":3600000}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/filters",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto createList 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"title\\":\\"My list\\"}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/lists",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto createStatus with Idempotency-Key 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"status\\":\\"Too!\\"}",
+        "headers": Object {
+          "Content-Type": "application/json",
+          "Idempotency-Key": "59fe7e30-1a74-4050-8af7-5a8c7a224794",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/statuses",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto createStatus with content 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"status\\":\\"Toot!\\",\\"in_reply_to_id\\":\\"123123\\",\\"poll\\":{\\"options\\":[\\"xxx\\",\\"yyy\\",\\"zzz\\"],\\"expires_in\\":60000,\\"multiple\\":false,\\"hide_totals\\":true},\\"sensitive\\":false,\\"spoiler_text\\":\\"spoiler\\",\\"visibility\\":\\"direct\\",\\"scheduled_at\\":\\"2019-03-28T04:39:31.121Z\\",\\"language\\":\\"en\\"}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/statuses",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto createStatus with media ids 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"media_ids\\":[\\"123\\",\\"456\\"]}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/statuses",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto dissmissNotification 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"id\\":\\"123123\\"}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/notifications/dismiss",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto favouriteStatus 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/statuses/123123/favourite",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchAccessToken with authorization code 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"grant_type\\":\\"authorization_code\\",\\"code\\":\\"789789789\\",\\"redirect_uri\\":\\"https://example.com\\",\\"client_id\\":\\"123123123\\",\\"client_secret\\":\\"456456456\\"}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/oauth/token",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchAccessToken with password 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"grant_type\\":\\"password\\",\\"username\\":\\"username\\",\\"password\\":\\"password\\"}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/oauth/token",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchAccount 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {},
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/accounts/123123123",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchAccountFollowers 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {
+          "limit": 10,
+          "max_id": "5",
+          "min_id": "2",
+          "since_id": "3",
+        },
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/accounts/123123123/followers",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchAccountFollowing 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {
+          "limit": 10,
+          "max_id": "5",
+          "min_id": "2",
+          "since_id": "3",
+        },
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/accounts/123123123/following",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchAccountIdentityProofs 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {},
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/accounts/123123123/identity_proofs",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchAccountLists 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {},
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/accounts/123123/lists",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchAccountRelationships 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {
+          "id": Array [
+            "123123",
+            "456456",
+          ],
+        },
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/accounts/relationship",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchAccountStatuses 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {
+          "limit": 10,
+          "max_id": "5",
+          "min_id": "2",
+          "since_id": "3",
+        },
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/accounts/123123123/statuses",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchBlocks 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {
+          "limit": 10,
+          "max_id": "5",
+          "min_id": "2",
+          "since_id": "3",
+        },
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/blocks",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchCommunityTimeline 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {
+          "limit": 10,
+          "local": true,
+          "max_id": "5",
+          "min_id": "2",
+          "since_id": "3",
+        },
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/timelines/public",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchConversations 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {
+          "limit": 10,
+          "max_id": "5",
+          "min_id": "2",
+          "since_id": "3",
+        },
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/conversations",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchCustomEmojis 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {},
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/custom_emojis",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchDirectTimeline 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {
+          "limit": 10,
+          "max_id": "5",
+          "min_id": "2",
+          "since_id": "3",
+        },
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/timelines/direct",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchDomainBlocks 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": undefined,
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/domain_blocks",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchEndorsements 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {
+          "limit": 10,
+          "max_id": "5",
+          "min_id": "2",
+          "since_id": "3",
+        },
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/endorsements",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchFavourites 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {
+          "limit": 10,
+          "max_id": "5",
+          "min_id": "2",
+          "since_id": "3",
+        },
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/favourites",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchFilter 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {},
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/filters/123123",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchFilters 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {},
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/filters",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchFollowRequests 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {
+          "limit": 10,
+          "max_id": "5",
+          "min_id": "2",
+          "since_id": "3",
+        },
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/follow_requests",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchHomeTimeline 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {
+          "limit": 10,
+          "max_id": "5",
+          "min_id": "2",
+          "since_id": "3",
+        },
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/timelines/home",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchInstance 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {},
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/instance",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchInstanceActivity 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {},
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/instance/activity",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchInstancesPeers 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {},
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/instance/peers",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchList 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {},
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/lists/123123",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchListAccounts 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {
+          "limit": 10,
+          "max_id": "5",
+          "min_id": "2",
+          "since_id": "3",
+        },
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/list/123123/accounts",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchListTimeline 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {
+          "limit": 10,
+          "max_id": "5",
+          "min_id": "2",
+          "since_id": "3",
+        },
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/timelines/list/123123",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchLists 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {},
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/lists",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchMutes 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {
+          "limit": 10,
+          "max_id": "5",
+          "min_id": "2",
+          "since_id": "3",
+        },
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/mutes",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchNotification 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {},
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/notifications/123123",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchNotifications 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {
+          "exclude_types": Array [
+            "favourite",
+            "follow",
+            "mention",
+            "poll",
+            "reblog",
+          ],
+        },
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/notifications",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchPoll 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {},
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/polls/123123",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchPreferences 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {},
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/preferences",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchPublicTimeline 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {
+          "limit": 10,
+          "max_id": "5",
+          "min_id": "2",
+          "since_id": "3",
+        },
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/timelines/public",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchPushSubscription 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {},
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/push/subscription",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchScheduledStatus 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {},
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/scheduled_statuses/123123",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchScheduledStatuses 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {},
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/scheduled_statuses",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchStatus 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {},
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/statuses/123123",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchStatusCard 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {},
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/statuses/123123/card",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchStatusContext 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {},
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/statuses/123123/context",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchStatusFavouritedBy 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {
+          "limit": 10,
+          "max_id": "5",
+          "min_id": "2",
+          "since_id": "3",
+        },
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/statuses/123123/favourited_by",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchStatusRebloggedBy 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {
+          "limit": 10,
+          "max_id": "5",
+          "min_id": "2",
+          "since_id": "3",
+        },
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/statuses/123123/reblogged_by",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchSuggestions 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {},
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/suggestions",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchTagTimeline 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {
+          "limit": 10,
+          "max_id": "5",
+          "min_id": "2",
+          "since_id": "3",
+        },
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/timelines/tag/DeleteTwitter",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto followAccount 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"reblogs\\":false}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/accounts/123123/follow",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto followAccountByUsername 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"uri\\":\\"user@example.com\\"}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/follows",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto muteAccount 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"notifications\\":false}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/accounts/123123/mute",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto muteStatus 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/statuses/123123/mute",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto pinAccount 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/accounts/123123/pin",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto pinStatus 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/statuses/123123/pin",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto reblogStatus 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"visibility\\":\\"direct\\"}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/statuses/123123/reblog",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto rejectFollowRequest 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/follow_requests/123123/reject",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto removeAccountFromList 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"account_ids\\":[\\"123\\",\\"456\\",\\"678\\"]}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "DELETE",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/lists/123123/accounts",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto removeFilter 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "DELETE",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/filters/123123",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto removeList 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "DELETE",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/lists/123123",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto removePushSubscription 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "DELETE",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/push/subscription",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto removeScheduledStatus 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "DELETE",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/scheduled_statuses/123123",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto removeStatus 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "DELETE",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/statuses/123123",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto removeSuggestion 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "DELETE",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/suggestions/123123",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto reportAccount 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"account_id\\":\\"123123\\",\\"status_ids\\":[\\"456456\\"],\\"comment\\":\\"this is a report\\",\\"forward\\":true}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/reports",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto revokeAccessToken 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"client_id\\":\\"123123123\\",\\"client_secret\\":\\"456456456\\"}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/oauth/revoke",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto search (v1) 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {
+          "q": "query",
+          "resolve": true,
+        },
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/search",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto search 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {
+          "account_id": "123",
+          "limit": 10,
+          "max_id": "5",
+          "min_id": "2",
+          "q": "query",
+          "resolve": true,
+          "since_id": "3",
+        },
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v2/search",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto searchAccounts 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {
+          "following": false,
+          "limit": 123,
+          "q": "query",
+          "resolve": true,
+        },
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/accounts/search",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto streamCommunityTimeline 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "wss://example.com/stream/api/v1/streaming?stream=public%3Alocal",
+      Array [],
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto streamDirectTimeline 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "wss://example.com/stream/api/v1/streaming?stream=direct",
+      Array [],
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto streamListTimeline 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "wss://example.com/stream/api/v1/streaming?stream=list&list=123123",
+      Array [],
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto streamLocalTagTimeline 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "wss://example.com/stream/api/v1/streaming?stream=hashtag%3Alocal&tag=deletetwitter",
+      Array [],
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto streamPublicTimeline 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "wss://example.com/stream/api/v1/streaming?stream=public",
+      Array [],
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto streamTagTimeline 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "wss://example.com/stream/api/v1/streaming?stream=hashtag&tag=deletetwitter",
+      Array [],
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto streamUser 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "wss://example.com/stream/api/v1/streaming?stream=user",
+      Array [],
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto unblockAccount 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/accounts/123123/unblock",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto unblockDomain 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"domain\\":\\"example.com\\"}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "DELETE",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/domain_blocks",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto unfavouriteStatus 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/statuses/123123/unfavourite",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto unfollowAccount 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/accounts/123123/unfollow",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto unmuteAccount 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/accounts/123123/unmute",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto unmuteStatus 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/statuses/123123/unmute",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto unpinAccount 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/accounts/123123/unpin",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto unpinStatus 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/statuses/123123/unpin",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto unreblogStatus 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/statuses/123123/unreblog",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto updateFilter 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"phrase\\":\\"Twitter\\",\\"context\\":[\\"home\\",\\"notifications\\",\\"public\\",\\"thread\\"],\\"irreversible\\":true,\\"whole_word\\":true,\\"expires_in\\":3600000}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "PUT",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/filters/123123",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto updateList 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"title\\":\\"My list\\"}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "PUT",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/lists/123123",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto updateMediaAttachment 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"description\\":\\"Nice image\\",\\"focus\\":\\"0, 0\\"}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "PUT",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/media/123123",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto updatePushSubscription 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"data\\":{\\"alerts\\":{\\"follow\\":true,\\"favourite\\":true,\\"reblog\\":true,\\"mention\\":true}}}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "PUT",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/push/subscription",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto updateScheduledStatus 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"scheduled_at\\":\\"2019-03-28T04:39:31.121Z\\"}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "PUT",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/scheduled_statuses/123123",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto verifyAppCredentials 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {},
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/apps/verify_credentials",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto verifyCredentials 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": undefined,
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "GET",
+        "params": Object {},
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/accounts/verify_credentials",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
+
+exports[`Masto votePoll 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": "{\\"choices\\":[\\"xxx\\",\\"yyy\\",\\"zzz\\"]}",
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+        "transformResponse": Array [
+          [Function],
+        ],
+        "url": "https://example.com/api/v1/polls/123123/votes",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;

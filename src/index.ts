@@ -1,8 +1,14 @@
-export * from './client/decorators';
-export * from './client/gateway';
-export * from './client/params';
-export * from './client/masto-events';
-export * from './client/utils';
+export * from './gateway/gateway';
+export * from './gateway/websocket';
+export * from './gateway/utils';
+
+export * from './clients/decorators';
+
+export * from './clients/masto/masto';
+export * from './clients/masto/params';
+
+export * from './clients/masto-admin/masto-admin';
+export * from './clients/masto-admin/params';
 
 export * from './entities/account';
 export * from './entities/application';
@@ -30,5 +36,4 @@ export * from './errors/masto-not-found-error';
 export * from './errors/masto-rate-limit-error';
 export * from './errors/masto-unauthorized-error';
 
-export * from './client/masto';
-export { Masto as default } from './client/masto';
+export { Masto as default } from './clients/masto/masto';

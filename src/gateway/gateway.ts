@@ -3,16 +3,17 @@ import normalizeUrl from 'normalize-url';
 import querystring from 'querystring';
 import semver from 'semver';
 import { oc } from 'ts-optchain';
+import { Instance } from '../entities/instance';
 import { MastoNotFoundError } from '../errors/masto-not-found-error';
 import { MastoRateLimitError } from '../errors/masto-rate-limit-error';
 import { MastoUnauthorizedError } from '../errors/masto-unauthorized-error';
-import { MastoEvents } from './masto-events';
 import { isAxiosError } from './utils';
+import { WebSocketEvents } from './websocket';
 
 // tslint:disable-next-line no-import-side-effect
 import 'isomorphic-form-data';
 
-export interface GatewayConstructor {
+export interface GatewayConstructorParams {
   /** URI of the instance */
   uri: string;
   /** Streaming API URL */
@@ -22,6 +23,8 @@ export interface GatewayConstructor {
   /** Access token of the user */
   accessToken?: string;
 }
+
+export type LoginParams = Pick<GatewayConstructorParams, 'uri' | 'accessToken'>;
 
 export type PaginateNextOptions<Params> = {
   /** Reset pagination */
@@ -49,7 +52,7 @@ export class Gateway {
   /**
    * @param params Parameters
    */
-  public constructor(params: GatewayConstructor) {
+  constructor(params: GatewayConstructorParams) {
     this.uri = params.uri;
 
     if (params.streamingApiUrl) {
@@ -79,6 +82,23 @@ export class Gateway {
 
   set streamingApiUrl(streamingApiUrl: string) {
     this._streamingApiUrl = normalizeUrl(streamingApiUrl);
+  }
+
+  /**
+   * Login to Mastodon
+   * @param params Paramters
+   * @return Instance of Mastodon class
+   */
+  public static async login<T extends typeof Gateway>(
+    this: T,
+    params: LoginParams,
+  ) {
+    const gateway = new this(params) as InstanceType<T>;
+    const instance = await gateway.get<Instance>('/api/v1/instance');
+    gateway.version = instance.version;
+    gateway.streamingApiUrl = instance.urls.streaming_api;
+
+    return gateway;
   }
 
   /**
@@ -333,7 +353,7 @@ export class Gateway {
       path +
       (Object.keys(params).length ? `?${querystring.stringify(params)}` : '');
 
-    return new MastoEvents().connect(url, protocols);
+    return new WebSocketEvents().connect(url, protocols);
   }
 
   /**
@@ -372,7 +392,7 @@ export class Gateway {
         );
 
         // Set next url from the link header
-        const link = oc(response.headers.link)('');
+        const link = oc(response.headers).link('');
         const match = link.match(/<(.+?)>; rel="next"/) as string[];
 
         currentUrl = (match && match.length && match[1]) || '';
