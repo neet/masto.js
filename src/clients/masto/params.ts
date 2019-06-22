@@ -1,9 +1,9 @@
 import { ReadStream } from 'fs';
-import { AccountField, AccountSource } from '../entities/account';
-import { FilterContext } from '../entities/filter';
-import { NotificationType } from '../entities/notification';
-import { PushSubscriptionAlerts } from '../entities/push-subscription';
-import { StatusVisibility } from '../entities/status';
+import { AccountField, AccountSource } from '../../entities/account';
+import { FilterContext } from '../../entities/filter';
+import { NotificationType } from '../../entities/notification';
+import { PushSubscriptionAlerts } from '../../entities/push-subscription';
+import { StatusVisibility } from '../../entities/status';
 
 /** Union of acceptable values of form-data for browser and node */
 export type IsomorphicFormDataValue = string | Blob | Buffer | ReadStream;

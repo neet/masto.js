@@ -3,11 +3,12 @@
 // prettier-ignore
 import axios from 'axios';
 import { Masto } from '../masto';
+import FormData from 'form-data';
 // @ts-ignore
-import { WebSocketEvents, connectMock } from '../../gateway/ws-events';
+import { WebSocketEvents, connectMock } from '../../../gateway/ws-events';
 
 jest.mock('axios');
-jest.mock('../../gateway/ws-events');
+jest.mock('../../../gateway/ws-events');
 
 describe('Masto', () => {
   // @ts-ignore
@@ -172,7 +173,11 @@ describe('Masto', () => {
       // ],
     });
     expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(axios.request as jest.Mock).toBeCalledWith(
+      expect.objectContaining({
+        data: expect.any(FormData),
+      }),
+    );
   });
 
   test('fetchAccountFollowers', async () => {
@@ -525,7 +530,11 @@ describe('Masto', () => {
       description: 'Nice image',
     });
     expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(axios.request as jest.Mock).toBeCalledWith(
+      expect.objectContaining({
+        data: expect.any(FormData),
+      }),
+    );
   });
 
   test('updateMediaAttachment', async () => {

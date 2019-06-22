@@ -1,9 +1,9 @@
 import semver from 'semver';
 import { MastoNotFoundError } from '../errors/masto-not-found-error';
-import { Masto } from './masto';
+import { Gateway } from '../gateway/gateway';
 
 export type Decorator = (
-  masto: Masto,
+  gateway: Gateway,
   name: string,
   descriptor: TypedPropertyDescriptor<(...args: any[]) => any>,
 ) => void;
@@ -29,7 +29,7 @@ export const available = (parameters: AvailabeParams): Decorator => (
   const original = descriptor.value;
   const { since, until } = parameters;
 
-  descriptor.value = function(this: Masto, ...args: any[]) {
+  descriptor.value = function(this: Gateway, ...args: any[]) {
     const version = semver.coerce(this.version);
 
     if (since && version && semver.lt(version, since)) {

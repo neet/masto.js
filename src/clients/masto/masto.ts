@@ -2,27 +2,28 @@ import {
   Account,
   AccountCredentials,
   AccountIdentityProof,
-} from '../entities/account';
-import { Application } from '../entities/application';
-import { Attachment } from '../entities/attachment';
-import { Card } from '../entities/card';
-import { Context } from '../entities/context';
-import { Conversation } from '../entities/conversation';
-import { Emoji } from '../entities/emoji';
-import { Filter } from '../entities/filter';
-import { Instance, InstanceActivity } from '../entities/instance';
-import { List } from '../entities/list';
-import { Notification } from '../entities/notification';
-import { OAuthClient, OAuthToken } from '../entities/oauth';
-import { Poll } from '../entities/poll';
-import { Preference } from '../entities/preference';
-import { PushSubscription } from '../entities/push-subscription';
-import { Relationship } from '../entities/relationship';
-import { Results, ResultsV1 } from '../entities/results';
-import { ScheduledStatus } from '../entities/scheduled-status';
-import { Status } from '../entities/status';
-import { Gateway, GatewayConstructor } from '../gateway/gateway';
-import { available } from './decorators';
+} from '../../entities/account';
+import { Application } from '../../entities/application';
+import { Attachment } from '../../entities/attachment';
+import { Card } from '../../entities/card';
+import { Context } from '../../entities/context';
+import { Conversation } from '../../entities/conversation';
+import { Emoji } from '../../entities/emoji';
+import { Filter } from '../../entities/filter';
+import { Instance, InstanceActivity } from '../../entities/instance';
+import { List } from '../../entities/list';
+import { Notification } from '../../entities/notification';
+import { OAuthClient, OAuthToken } from '../../entities/oauth';
+import { Poll } from '../../entities/poll';
+import { Preference } from '../../entities/preference';
+import { PushSubscription } from '../../entities/push-subscription';
+import { Relationship } from '../../entities/relationship';
+import { Results, ResultsV1 } from '../../entities/results';
+import { ScheduledStatus } from '../../entities/scheduled-status';
+import { Status } from '../../entities/status';
+import { Gateway, GatewayConstructor } from '../../gateway/gateway';
+import { LoginParams } from '../client';
+import { available } from '../decorators';
 import {
   AddPushSubscriptionParams,
   CreateAccountParams,
@@ -50,8 +51,6 @@ import {
   UploadMediaAttachmentParams,
   VotePollParams,
 } from './params';
-
-export type LoginParams = Pick<GatewayConstructor, 'uri' | 'accessToken'>;
 
 /**
  * Mastodon API client

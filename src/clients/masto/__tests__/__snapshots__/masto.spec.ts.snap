@@ -2573,77 +2573,6 @@ exports[`Masto unreblogStatus 1`] = `
 }
 `;
 
-exports[`Masto updateCredentials 1`] = `
-[MockFunction] {
-  "calls": Array [
-    Array [
-      Object {
-        "data": FormData {
-          "_boundary": "--------------------------730168249685394248423831",
-          "_currentStream": null,
-          "_overheadLength": 529,
-          "_released": false,
-          "_streams": Array [
-            "----------------------------730168249685394248423831
-Content-Disposition: form-data; name=\\"display_name\\"
-
-",
-            "Neetshin",
-            [Function],
-            "----------------------------730168249685394248423831
-Content-Disposition: form-data; name=\\"avatar\\"
-
-",
-            "...",
-            [Function],
-            "----------------------------730168249685394248423831
-Content-Disposition: form-data; name=\\"header\\"
-
-",
-            "...",
-            [Function],
-            "----------------------------730168249685394248423831
-Content-Disposition: form-data; name=\\"note\\"
-
-",
-            "web frontend engineer",
-            [Function],
-            "----------------------------730168249685394248423831
-Content-Disposition: form-data; name=\\"locked\\"
-
-",
-            false,
-            [Function],
-          ],
-          "_valueLength": 35,
-          "_valuesToMeasure": Array [],
-          "dataSize": 0,
-          "maxDataSize": 2097152,
-          "pauseStreams": true,
-          "readable": true,
-          "writable": false,
-        },
-        "headers": Object {
-          "Content-Type": "multipart/form-data",
-          "content-type": "multipart/form-data; boundary=--------------------------730168249685394248423831",
-        },
-        "method": "PATCH",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/accounts/update_credentials",
-      },
-    ],
-  ],
-  "results": Array [
-    Object {
-      "type": "return",
-      "value": Promise {},
-    },
-  ],
-}
-`;
-
 exports[`Masto updateFilter 1`] = `
 [MockFunction] {
   "calls": Array [
@@ -2762,59 +2691,6 @@ exports[`Masto updateScheduledStatus 1`] = `
           [Function],
         ],
         "url": "https://example.com/api/v1/scheduled_statuses/123123",
-      },
-    ],
-  ],
-  "results": Array [
-    Object {
-      "type": "return",
-      "value": Promise {},
-    },
-  ],
-}
-`;
-
-exports[`Masto uploadMediaAttachment 1`] = `
-[MockFunction] {
-  "calls": Array [
-    Array [
-      Object {
-        "data": FormData {
-          "_boundary": "--------------------------607299666482247710728071",
-          "_currentStream": null,
-          "_overheadLength": 213,
-          "_released": false,
-          "_streams": Array [
-            "----------------------------607299666482247710728071
-Content-Disposition: form-data; name=\\"file\\"
-
-",
-            "...",
-            [Function],
-            "----------------------------607299666482247710728071
-Content-Disposition: form-data; name=\\"description\\"
-
-",
-            "Nice image",
-            [Function],
-          ],
-          "_valueLength": 13,
-          "_valuesToMeasure": Array [],
-          "dataSize": 0,
-          "maxDataSize": 2097152,
-          "pauseStreams": true,
-          "readable": true,
-          "writable": false,
-        },
-        "headers": Object {
-          "Content-Type": "multipart/form-data",
-          "content-type": "multipart/form-data; boundary=--------------------------607299666482247710728071",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/media",
       },
     ],
   ],
