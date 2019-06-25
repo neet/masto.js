@@ -16,6 +16,9 @@
 npm i masto
 ```
 
+#### Requirement
+For TypeScript users, `typescript >= 3.5.0` is required
+
 ## Basic Usage
 This is a simple example which creates a new status:
 
