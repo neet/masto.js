@@ -16,7 +16,7 @@
 npm i masto
 ```
 
-#### Requirement
+### Requirement
 For TypeScript users, `typescript >= 3.5.0` is required
 
 ## Basic Usage
