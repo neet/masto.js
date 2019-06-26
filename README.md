@@ -22,7 +22,10 @@ For TypeScript users, `typescript >= 3.5.0` is required
 ## Basic Usage
 First, fetch your access token with following command and save it.
 ```bash
-npx masto-cli token --uri=https://example.com --email=EMAIL --password=PASSWORD
+npx masto-cli token \
+  --uri=https://example.com \
+  --email=EMAIL \
+  --password=PASSWORD
 ```
 
 Then here's a simple example that creates status. Replace `TOKEN` to your token you saved by the command above.
