@@ -7,33 +7,30 @@ import builtins from 'rollup-plugin-node-builtins';
 import autoExternal from 'rollup-plugin-auto-external';
 import packageJSON from './package.json';
 
-const filenameMap = {
-  cjs: packageJSON.main,    // Node.js
-  umd: packageJSON.browser, // Browsers
-  esm: packageJSON.module,  // Universal (but not well-supported)
+const formatMap = {
+  main: 'cjs',
+  browser: 'umd',
+  module: 'esm',
 };
 
-export default ['cjs', 'umd', 'esm'].map(format => ({
+export default ['main', 'browser', 'module'].map(dist => ({
   input: './src/index.ts',
   output: {
     name: packageJSON.name,
-    file: filenameMap[format],
-    format,
+    file: packageJSON[dist],
+    format: formatMap[dist],
     exports: 'named',
   },
   plugins: [
     resolve({
       preferBuiltins: true,
-      browser: format === 'umd',
+      browser: dist === 'browser',
     }),
-    format === 'umd' ? builtins() : null,
+    dist === 'browser' && builtins(),
     commonjs(),
     json(),
     typescript(),
     terser(),
-    autoExternal({
-      builtins: format !== 'umd',
-      dependencies: format !== 'umd',
-    }),
+    dist !== 'browser' && autoExternal(),
   ],
 }));
