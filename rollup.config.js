@@ -5,58 +5,35 @@ import resolve from 'rollup-plugin-node-resolve';
 import typescript from 'rollup-plugin-typescript2';
 import builtins from 'rollup-plugin-node-builtins';
 import autoExternal from 'rollup-plugin-auto-external';
+import packageJSON from './package.json';
 
-const tsconfigOverride = {
-  compilerOptions: {
-    module: 'es6',
-  },
+const filenameMap = {
+  cjs: packageJSON.main,    // Node.js
+  umd: packageJSON.browser, // Browsers
+  esm: packageJSON.esm,     // Universal (but not well-supported)
 };
 
-export default [
-  // Node.js
-  {
-    input: './src/index.ts',
-    output: {
-      name: 'masto',
-      file: './dist/index.js',
-      format: 'cjs',
-      exports: 'named',
-    },
-    plugins: [
-      resolve({
-        preferBuiltins: true,
-      }),
-      commonjs(),
-      json(),
-      typescript({
-        tsconfigOverride,
-      }),
-      terser(),
-      autoExternal(),
-    ],
+export default ['cjs', 'umd', 'esm'].map(format => ({
+  input: './src/index.ts',
+  output: {
+    name: packageJSON.name,
+    file: filenameMap[format],
+    format,
+    exports: 'named',
   },
-
-  // Browser
-  {
-    input: './src/index.ts',
-    output: {
-      name: 'masto',
-      file: './dist/browser.js',
-      format: 'umd',
-      exports: 'named',
-    },
-    plugins: [
-      resolve({
-        browser: true,
-        preferBuiltins: true,
-      }),
-      builtins(),
-      commonjs(),
-      json(),
-      typescript({
-        tsconfigOverride,
-      }),
-      terser(),
-    ],
-  },
-];
+  plugins: [
+    resolve({
+      preferBuiltins: true,
+      browser: format === 'umd',
+    }),
+    format === 'umd' ? builtins() : null,
+    commonjs(),
+    json(),
+    typescript(),
+    terser(),
+    autoExternal({
+      builtins: format !== 'umd',
+      dependencies: format !== 'umd',
+    }),
+  ],
+}));

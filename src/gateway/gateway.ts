@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import normalizeUrl from 'normalize-url';
 import querystring from 'querystring';
 import semver from 'semver';
-import { oc } from 'ts-optchain';
+import oc from 'ts-optchain';
 import { Instance } from '../entities/instance';
 import { MastoNotFoundError } from '../errors/masto-not-found-error';
 import { MastoRateLimitError } from '../errors/masto-rate-limit-error';
@@ -185,11 +185,11 @@ export class Gateway {
       return await axios.request<T>(options);
     } catch (error) {
       if (isAxiosError(error)) {
-        const status = oc(error).response.status();
+        const status = oc.oc(error).response.status();
 
         // Error response from REST API might contain error key
         // https://docs.joinmastodon.org/api/entities/#error
-        const { error: errorMessage } = oc(error).response.data({
+        const { error: errorMessage } = oc.oc(error).response.data({
           error: 'Unexpected error',
         });
 
@@ -392,7 +392,7 @@ export class Gateway {
         );
 
         // Set next url from the link header
-        const link = oc(response.headers).link('');
+        const link = oc.oc(response.headers).link('');
         const match = link.match(/<(.+?)>; rel="next"/) as string[];
 
         currentUrl = (match && match.length && match[1]) || '';

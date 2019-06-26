@@ -3,7 +3,7 @@ import WebSocket from 'isomorphic-ws';
 import { WebSocketEvents } from '../websocket';
 
 const onMock = jest.fn();
-const onMockWs = jest.fn();
+const addEventListenerMock = jest.fn();
 const emitMock = jest.fn();
 const closeMock = jest.fn();
 
@@ -17,7 +17,7 @@ jest.mock('eventemitter3', () => {
 jest.mock('isomorphic-ws', () => {
   return jest.fn(() => ({
     close: closeMock,
-    on: onMockWs,
+    addEventListener: addEventListenerMock,
   }));
 });
 
@@ -30,14 +30,14 @@ describe('WebSocketEvents', () => {
 
   beforeEach(() => {
     onMock.mockClear();
-    onMockWs.mockClear();
+    addEventListenerMock.mockClear();
     emitMock.mockClear();
     closeMock.mockClear();
   });
 
   test('connect to ws server', async () => {
     // Resolve open
-    onMockWs.mockImplementation((e, fn) => {
+    addEventListenerMock.mockImplementation((e, fn) => {
       if (e === 'open') {
         fn();
       }
@@ -50,9 +50,12 @@ describe('WebSocketEvents', () => {
       [],
     );
 
-    expect(onMockWs).toBeCalledWith('message', expect.any(Function));
-    expect(onMockWs).toBeCalledWith('error', expect.any(Function));
-    expect(onMockWs).toBeCalledWith('open', expect.any(Function));
+    expect(addEventListenerMock).toBeCalledWith(
+      'message',
+      expect.any(Function),
+    );
+    expect(addEventListenerMock).toBeCalledWith('error', expect.any(Function));
+    expect(addEventListenerMock).toBeCalledWith('open', expect.any(Function));
   });
 
   test('disconnect from the server', async () => {
