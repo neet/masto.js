@@ -32,7 +32,10 @@ npx masto-cli token \
 Then here's a simple example that creates status. Replace `TOKEN` to your token you saved by the command above.
 
 ```ts
-import Masto from 'masto';
+// For Node.js
+const { Masto } = require('masto');
+// For Babel, TypeScript, Webpack, Parcel
+import { Masto } from 'masto';
 
 (async () => {
   const masto = await Masto.login({
