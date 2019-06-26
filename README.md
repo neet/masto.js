@@ -17,7 +17,8 @@ npm i masto
 ```
 
 ### Requirement
-For TypeScript users, `typescript >= 3.5.0` is required
+- **Node.js**: `>= 10.x`
+- **TypeScript** (optional): `>= 3.5.x`
 
 ## Basic Usage
 First, fetch your access token with following command and save it.
