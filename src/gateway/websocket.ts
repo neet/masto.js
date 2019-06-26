@@ -45,11 +45,15 @@ export class WebSocketEvents extends EventEmitter {
     return new Promise<WebSocketEvents>((resolve, reject) => {
       this.ws = new WebSocket(url, protocols);
 
-      this.ws.on('message', this.handleMessage);
-      this.ws.on('error', reject);
-      this.ws.on('open', () => {
+      this.ws.addEventListener('open', () => {
         resolve(this);
       });
+
+      this.ws.addEventListener('message', message =>
+        this.handleMessage(message.data),
+      );
+
+      this.ws.addEventListener('error', reject);
     });
   }
 

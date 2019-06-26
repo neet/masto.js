@@ -6,6 +6,7 @@
   "author": "Ryo Igarashi <n33t5hin@gmail.com>",
   "license": "AGPL-3.0",
   "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "browser": "dist/browser.js",
   "typings": "dist/index.d.ts",
   "scripts": {
@@ -20,23 +21,17 @@
   "dependencies": {
     "@types/ws": "^6.0.1",
     "axios": "^0.19.0",
-    "bufferutil": "^4.0.1",
     "eventemitter3": "^3.1.2",
-    "form-data": "^2.3.3",
     "isomorphic-form-data": "^2.0.0",
     "isomorphic-ws": "^4.0.1",
     "normalize-url": "^4.3.0",
     "semver": "^6.1.1",
     "ts-optchain": "^0.1.7",
-    "utf-8-validate": "^5.0.2",
     "ws": "^6.0.1"
   },
   "devDependencies": {
-    "@types/form-data": "^2.2.1",
-    "@types/http-link-header": "^1.0.0",
     "@types/jest": "^24.0.15",
     "@types/node": "^12.0.8",
-    "@types/normalize-url": "^4.2.0",
     "@types/semver": "^6.0.0",
     "codecov": "^3.5.0",
     "husky": "^2.4.1",

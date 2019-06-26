@@ -2,62 +2,62 @@
 import WebSocket from 'isomorphic-ws';
 import { WebSocketEvents } from '../websocket';
 
-const onMock = jest.fn();
-const onMockWs = jest.fn();
-const emitMock = jest.fn();
-const closeMock = jest.fn();
+const mockOn = jest.fn();
+const mockAddEventListener = jest.fn();
+const mockEmit = jest.fn();
+const mockClose = jest.fn();
 
 jest.mock('eventemitter3', () => {
   return class {
-    on = onMock;
-    emit = emitMock;
+    // this class will be extended by websocket.ts
+    on = mockOn;
+    emit = mockEmit;
   };
 });
 
 jest.mock('isomorphic-ws', () => {
   return jest.fn(() => ({
-    close: closeMock,
-    on: onMockWs,
+    close: mockClose,
+    addEventListener: mockAddEventListener,
   }));
 });
 
 describe('WebSocketEvents', () => {
-  let mastoEvents!: WebSocketEvents;
-
-  beforeAll(() => {
-    mastoEvents = new WebSocketEvents();
-  });
+  const wsEvents = new WebSocketEvents();
 
   beforeEach(() => {
-    onMock.mockClear();
-    onMockWs.mockClear();
-    emitMock.mockClear();
-    closeMock.mockClear();
+    mockOn.mockClear();
+    mockAddEventListener.mockClear();
+    mockEmit.mockClear();
+    mockClose.mockClear();
   });
 
   test('connect to ws server', async () => {
     // Resolve open
-    onMockWs.mockImplementation((e, fn) => {
+    mockAddEventListener.mockImplementation((e, fn) => {
       if (e === 'open') {
         fn();
       }
     });
 
-    await mastoEvents.connect('wss://example.com', []);
+    await wsEvents.connect('wss://example.com', []);
 
     expect((WebSocket as any) as jest.Mock).toBeCalledWith(
       'wss://example.com',
       [],
     );
 
-    expect(onMockWs).toBeCalledWith('message', expect.any(Function));
-    expect(onMockWs).toBeCalledWith('error', expect.any(Function));
-    expect(onMockWs).toBeCalledWith('open', expect.any(Function));
+    expect(mockAddEventListener).toBeCalledWith(
+      'message',
+      expect.any(Function),
+    );
+    expect(mockAddEventListener).toBeCalledWith('error', expect.any(Function));
+    expect(mockAddEventListener).toBeCalledWith('open', expect.any(Function));
   });
 
-  test('disconnect from the server', async () => {
-    await mastoEvents.disconnect();
-    expect(closeMock).toBeCalled();
+  test('disconnect from the server', () => {
+    wsEvents.disconnect();
+    expect(mockClose).toBeCalled();
   });
 
   test('emit event with given props', () => {
@@ -69,8 +69,8 @@ describe('WebSocketEvents', () => {
       payload: JSON.stringify(originalPayload),
     };
 
-    mastoEvents.handleMessage(JSON.stringify(originalData));
-    expect(emitMock).toBeCalledWith('update', originalPayload);
+    wsEvents.handleMessage(JSON.stringify(originalData));
+    expect(mockEmit).toBeCalledWith('update', originalPayload);
   });
 
   test('emit event with given props, with raw payload', () => {
@@ -80,14 +80,14 @@ describe('WebSocketEvents', () => {
       payload: originalPayload,
     };
 
-    mastoEvents.handleMessage(JSON.stringify(originalData));
-    expect(emitMock).toBeCalledWith('update', originalPayload);
+    wsEvents.handleMessage(JSON.stringify(originalData));
+    expect(mockEmit).toBeCalledWith('update', originalPayload);
   });
 
   test('subscribe events via event emitter', async () => {
     const cb = jest.fn();
-    const stream = await mastoEvents.on('update', cb);
-    expect(onMock).toBeCalledWith('update', cb);
+    const stream = await wsEvents.on('update', cb);
+    expect(mockOn).toBeCalledWith('update', cb);
     expect(stream).toBeUndefined(); // mock
   });
 });
