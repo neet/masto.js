@@ -25,7 +25,7 @@ First, fetch your access token with following command and save it.
 npx masto-cli token --uri=https://example.com --email=EMAIL --password=PASSWORD
 ```
 
-Then you can use Masto.js! Here's a simple example that creates status. Replace `TOKEN` to your token you saved by the command above.
+Then here's a simple example that creates status. Replace `TOKEN` to your token you saved by the command above.
 
 ```ts
 import Masto from 'masto';
