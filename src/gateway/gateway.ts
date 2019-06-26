@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import normalizeUrl from 'normalize-url';
 import querystring from 'querystring';
 import semver from 'semver';
-import oc from 'ts-optchain';
+import * as oc from 'ts-optchain';
 import { Instance } from '../entities/instance';
 import { MastoNotFoundError } from '../errors/masto-not-found-error';
 import { MastoRateLimitError } from '../errors/masto-rate-limit-error';

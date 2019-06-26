@@ -10,7 +10,7 @@ import packageJSON from './package.json';
 const filenameMap = {
   cjs: packageJSON.main,    // Node.js
   umd: packageJSON.browser, // Browsers
-  esm: packageJSON.esm,     // Universal (but not well-supported)
+  esm: packageJSON.module,  // Universal (but not well-supported)
 };
 
 export default ['cjs', 'umd', 'esm'].map(format => ({

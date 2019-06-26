@@ -15,7 +15,6 @@
         "configFile": "./tslint.yml",
       }
     ],
-    "allowSyntheticDefaultImports": true,
     "declaration": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
