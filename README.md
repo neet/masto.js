@@ -20,7 +20,12 @@ npm i masto
 For TypeScript users, `typescript >= 3.5.0` is required
 
 ## Basic Usage
-This is a simple example which creates a new status:
+First, fetch your access token with following command and save it.
+```bash
+npx masto-cli token --uri=https://example.com --email=EMAIL --password=PASSWORD
+```
+
+Then you can use Masto.js! Here's a simple example that creates status. Replace `TOKEN` to your token you saved by the command above.
 
 ```ts
 import Masto from 'masto';
@@ -28,7 +33,7 @@ import Masto from 'masto';
 (async () => {
   const masto = await Masto.login({
     uri: 'https://example.com', // URL of your instance
-    accessToken: 'YOUR TOKEN',  // Your access token (optional)
+    accessToken: 'TOKEN',       // Your access token (optional)
   });
 
   const data = await masto.createStatus({
@@ -40,7 +45,7 @@ import Masto from 'masto';
 })()
 ```
 
-All of available methods / interfaces are described in the [documentation](https://github.com/neet/masto.js/blob/master/docs/classes/_client_masto_.masto.md). You can also refer [examples](https://github.com/neet/masto.js/tree/master/examples) on this repository.
+All of available methods are described in the [documentation](https://github.com/neet/masto.js/blob/master/docs/classes/_client_masto_.masto.md). You can also refer [examples](https://github.com/neet/masto.js/tree/master/examples) on this repository.
 
 ## FAQ
 ### Q. What is the deference between Masto.js and the others?
