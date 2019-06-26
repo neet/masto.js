@@ -1,3 +1,5 @@
+import { Account } from './account';
+
 export type AdminAccountRole = 'moderator' | 'admin' | 'user';
 
 /**
