@@ -16,7 +16,7 @@
 npm i masto
 ```
 
-### Requirement
+### Requirements
 - **Node.js**: `>= 10.x`
 - **TypeScript** (optional): `>= 3.5.x`
 
