@@ -23,7 +23,7 @@ npm i masto
 ## Basic Usage
 First, fetch your access token with following command and save it.
 ```bash
-npx masto-cli token \
+$ npx masto-cli token \
   --uri=https://example.com \
   --email=EMAIL \
   --password=PASSWORD
