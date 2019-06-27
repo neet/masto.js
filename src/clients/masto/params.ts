@@ -105,6 +105,8 @@ export interface FetchAccessTokenParamsWithPassword
   password: string;
   /** Username */
   username: string;
+  /** Scope */
+  scope?: string;
 }
 
 export type FetchAccessTokenParams =
