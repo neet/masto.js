@@ -134,17 +134,17 @@ describe('Masto', () => {
       header: '...',
       note: 'web frontend engineer',
       locked: false,
-      // source: {
-      //   privacy: 'direct',
-      //   sensitive: false,
-      //   language: 'ja',
-      // },
-      // fields_attributes: [
-      //   {
-      //     name: 'GitHub',
-      //     value: 'https://github.com/neet',
-      //   },
-      // ],
+      source: {
+        privacy: 'direct',
+        sensitive: false,
+        language: 'ja',
+      },
+      fields_attributes: [
+        {
+          name: 'GitHub',
+          value: 'https://github.com/neet',
+        },
+      ],
     });
     expect(mockPatch).toBeCalledTimes(1);
     expect(mockPatch).toBeCalledWith(
