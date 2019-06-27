@@ -1,12 +1,8 @@
-import { ReadStream } from 'fs';
 import { AccountField, AccountSource } from '../../entities/account';
 import { FilterContext } from '../../entities/filter';
 import { NotificationType } from '../../entities/notification';
 import { PushSubscriptionAlerts } from '../../entities/push-subscription';
 import { StatusVisibility } from '../../entities/status';
-
-/** Union of acceptable values of form-data for browser and node */
-export type IsomorphicFormDataValue = string | Blob | Buffer | ReadStream;
 
 export interface PaginationParams {
   /** Get a list of items with ID less than this value */
@@ -25,9 +21,9 @@ export interface UpdateCredentialsParams {
   /** Biography */
   note?: string | null;
   /** Avatar encoded using `multipart/form-data` */
-  avatar?: IsomorphicFormDataValue | null;
+  avatar?: any | null;
   /** Header image encoded using `multipart/form-data` */
-  header?: IsomorphicFormDataValue | null;
+  header?: any | null;
   /** Enable follow requests */
   locked?: boolean | null;
   /**
@@ -39,12 +35,7 @@ export interface UpdateCredentialsParams {
     Pick<AccountSource, 'privacy' | 'sensitive' | 'language'>
   > | null;
   /** Profile metadata (max. 4) */
-  fields_attributes?:
-    | [AccountField]
-    | [AccountField, AccountField]
-    | [AccountField, AccountField, AccountField]
-    | [AccountField, AccountField, AccountField, AccountField]
-    | null;
+  fields_attributes?: AccountField[] | null;
 }
 
 export interface CreateAccountParams {
@@ -122,7 +113,7 @@ export interface RevokeAccessTokenParams {
 
 export interface UploadMediaAttachmentParams {
   /** Media to be uploaded (encoded using `multipart/form-data`) */
-  file: IsomorphicFormDataValue;
+  file: any;
   /** A plain-text description of the media, for accessibility (max 420 chars) */
   description?: string | null;
   /** Focal point: Two floating points, comma-delimited */
