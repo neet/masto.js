@@ -58,6 +58,12 @@
     "typescript": "^3.5.2",
     "typescript-tslint-plugin": "^0.5.0"
   },
+  "files": [
+    "README.md",
+    "dist",
+    "!**/__tests__",
+    "!**/__mocks__"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/neet/masto.js.git"
@@ -69,9 +75,6 @@
     "url": "https://github.com/neet/masto.js/issues"
   },
   "homepage": "https://github.com/neet/masto.js#readme",
-  "publishConfig": {
-    "access": "public"
-  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
