@@ -1,56 +1,51 @@
-[masto](../README.md) > ["entities/application"](../modules/_entities_application_.md) > [Application](../interfaces/_entities_application_.application.md)
+> ## [masto](../README.md)
+
+[Globals](../globals.md) / ["entities/application"](../modules/_entities_application_.md) / [Application](_entities_application_.application.md) /
 
 # Interface: Application
 
 ## Hierarchy
 
-**Application**
+* **Application**
 
-↳  [OAuthClient](_entities_oauth_.oauthclient.md)
+  * [OAuthClient](_entities_oauth_.oauthclient.md)
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
 * [name](_entities_application_.application.md#name)
-* [vapid_key](_entities_application_.application.md#vapid_key)
-* [website](_entities_application_.application.md#website)
-
----
+* [vapid_key](_entities_application_.application.md#optional-vapid_key)
+* [website](_entities_application_.application.md#optional-website)
 
 ## Properties
 
-<a id="name"></a>
-
 ###  name
 
-**● name**: *`string`*
+● **name**: *string*
 
-*Defined in [entities/application.ts:3](https://github.com/neet/masto.js/blob/368b200/src/entities/application.ts#L3)*
+*Defined in [entities/application.ts:3](https://github.com/neet/masto.js/blob/3506035/src/entities/application.ts#L3)*
 
 Name of the app
 
 ___
-<a id="vapid_key"></a>
 
-### `<Optional>` vapid_key
+### `Optional` vapid_key
 
-**● vapid_key**: *`string` \| `null`*
+● **vapid_key**? : *string | null*
 
-*Defined in [entities/application.ts:7](https://github.com/neet/masto.js/blob/368b200/src/entities/application.ts#L7)*
+*Defined in [entities/application.ts:7](https://github.com/neet/masto.js/blob/3506035/src/entities/application.ts#L7)*
 
 VAPID key
 
 ___
-<a id="website"></a>
 
-### `<Optional>` website
+### `Optional` website
 
-**● website**: *`string` \| `null`*
+● **website**? : *string | null*
 
-*Defined in [entities/application.ts:5](https://github.com/neet/masto.js/blob/368b200/src/entities/application.ts#L5)*
+*Defined in [entities/application.ts:5](https://github.com/neet/masto.js/blob/3506035/src/entities/application.ts#L5)*
 
 Homepage URL of the app
 
 ___
-

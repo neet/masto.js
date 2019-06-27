@@ -1,42 +1,49 @@
-[masto](../README.md) > ["entities/account"](../modules/_entities_account_.md) > [AccountField](../interfaces/_entities_account_.accountfield.md)
+> ## [masto](../README.md)
+
+[Globals](../globals.md) / ["entities/account"](../modules/_entities_account_.md) / [AccountField](_entities_account_.accountfield.md) /
 
 # Interface: AccountField
 
 ## Hierarchy
 
-**AccountField**
+* **AccountField**
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
-* [name](_entities_account_.accountfield.md#name)
-* [value](_entities_account_.accountfield.md#value)
-
----
+* [name](_entities_account_.accountfield.md#optional-name)
+* [value](_entities_account_.accountfield.md#optional-value)
+* [verified_at](_entities_account_.accountfield.md#optional-verified_at)
 
 ## Properties
 
-<a id="name"></a>
+### `Optional` name
 
-### `<Optional>` name
+● **name**? : *string | null*
 
-**● name**: *`string` \| `null`*
-
-*Defined in [entities/account.ts:47](https://github.com/neet/masto.js/blob/368b200/src/entities/account.ts#L47)*
+*Defined in [entities/account.ts:47](https://github.com/neet/masto.js/blob/3506035/src/entities/account.ts#L47)*
 
 (2.4 or later) Label of profile metadata field.
 
 ___
-<a id="value"></a>
 
-### `<Optional>` value
+### `Optional` value
 
-**● value**: *`string` \| `null`*
+● **value**? : *string | null*
 
-*Defined in [entities/account.ts:49](https://github.com/neet/masto.js/blob/368b200/src/entities/account.ts#L49)*
+*Defined in [entities/account.ts:49](https://github.com/neet/masto.js/blob/3506035/src/entities/account.ts#L49)*
 
 (2.4 or later) Value of profile metadata field.
 
 ___
 
+### `Optional` verified_at
+
+● **verified_at**? : *string | null*
+
+*Defined in [entities/account.ts:51](https://github.com/neet/masto.js/blob/3506035/src/entities/account.ts#L51)*
+
+Datetime
+
+___

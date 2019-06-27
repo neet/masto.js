@@ -1,54 +1,49 @@
-[masto](../README.md) > ["entities/tag"](../modules/_entities_tag_.md) > [Tag](../interfaces/_entities_tag_.tag.md)
+> ## [masto](../README.md)
+
+[Globals](../globals.md) / ["entities/tag"](../modules/_entities_tag_.md) / [Tag](_entities_tag_.tag.md) /
 
 # Interface: Tag
 
 ## Hierarchy
 
-**Tag**
+* **Tag**
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
 * [history](_entities_tag_.tag.md#history)
 * [name](_entities_tag_.tag.md#name)
 * [url](_entities_tag_.tag.md#url)
 
----
-
 ## Properties
-
-<a id="history"></a>
 
 ###  history
 
-**● history**: *[TagHistory](_entities_tag_.taghistory.md)[]*
+● **history**: *[TagHistory](_entities_tag_.taghistory.md)[]*
 
-*Defined in [entities/tag.ts:7](https://github.com/neet/masto.js/blob/368b200/src/entities/tag.ts#L7)*
+*Defined in [entities/tag.ts:7](https://github.com/neet/masto.js/blob/3506035/src/entities/tag.ts#L7)*
 
 Array of History
 
 ___
-<a id="name"></a>
 
 ###  name
 
-**● name**: *`string`*
+● **name**: *string*
 
-*Defined in [entities/tag.ts:3](https://github.com/neet/masto.js/blob/368b200/src/entities/tag.ts#L3)*
+*Defined in [entities/tag.ts:3](https://github.com/neet/masto.js/blob/3506035/src/entities/tag.ts#L3)*
 
 The hashtag, not including the preceding `#`
 
 ___
-<a id="url"></a>
 
 ###  url
 
-**● url**: *`string`*
+● **url**: *string*
 
-*Defined in [entities/tag.ts:5](https://github.com/neet/masto.js/blob/368b200/src/entities/tag.ts#L5)*
+*Defined in [entities/tag.ts:5](https://github.com/neet/masto.js/blob/3506035/src/entities/tag.ts#L5)*
 
 The URL of the hashtag
 
 ___
-

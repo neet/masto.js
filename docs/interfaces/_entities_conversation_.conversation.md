@@ -1,66 +1,60 @@
-[masto](../README.md) > ["entities/conversation"](../modules/_entities_conversation_.md) > [Conversation](../interfaces/_entities_conversation_.conversation.md)
+> ## [masto](../README.md)
+
+[Globals](../globals.md) / ["entities/conversation"](../modules/_entities_conversation_.md) / [Conversation](_entities_conversation_.conversation.md) /
 
 # Interface: Conversation
 
 ## Hierarchy
 
-**Conversation**
+* **Conversation**
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
 * [accounts](_entities_conversation_.conversation.md#accounts)
 * [id](_entities_conversation_.conversation.md#id)
 * [last_status](_entities_conversation_.conversation.md#last_status)
 * [unread](_entities_conversation_.conversation.md#unread)
 
----
-
 ## Properties
-
-<a id="accounts"></a>
 
 ###  accounts
 
-**● accounts**: *[Account](_entities_account_.account.md)[]*
+● **accounts**: *[Account](_entities_account_.account.md)[]*
 
-*Defined in [entities/conversation.ts:10](https://github.com/neet/masto.js/blob/368b200/src/entities/conversation.ts#L10)*
+*Defined in [entities/conversation.ts:10](https://github.com/neet/masto.js/blob/3506035/src/entities/conversation.ts#L10)*
 
 An array of accounts that mentioned this conversation
 
 ___
-<a id="id"></a>
 
 ###  id
 
-**● id**: *`string`*
+● **id**: *string*
 
-*Defined in [entities/conversation.ts:6](https://github.com/neet/masto.js/blob/368b200/src/entities/conversation.ts#L6)*
+*Defined in [entities/conversation.ts:6](https://github.com/neet/masto.js/blob/3506035/src/entities/conversation.ts#L6)*
 
 The ID of the conversation
 
 ___
-<a id="last_status"></a>
 
 ###  last_status
 
-**● last_status**: *[Status](_entities_status_.status.md)*
+● **last_status**: *[Status](_entities_status_.status.md)*
 
-*Defined in [entities/conversation.ts:12](https://github.com/neet/masto.js/blob/368b200/src/entities/conversation.ts#L12)*
+*Defined in [entities/conversation.ts:12](https://github.com/neet/masto.js/blob/3506035/src/entities/conversation.ts#L12)*
 
 The latest status of this conversation
 
 ___
-<a id="unread"></a>
 
 ###  unread
 
-**● unread**: *`boolean`*
+● **unread**: *boolean*
 
-*Defined in [entities/conversation.ts:8](https://github.com/neet/masto.js/blob/368b200/src/entities/conversation.ts#L8)*
+*Defined in [entities/conversation.ts:8](https://github.com/neet/masto.js/blob/3506035/src/entities/conversation.ts#L8)*
 
 Wether authorized user has read latest status
 
 ___
-

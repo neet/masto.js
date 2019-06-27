@@ -1,10 +1,12 @@
-[masto](../README.md) > ["entities/attachment"](../modules/_entities_attachment_.md)
+> ## [masto](../README.md)
+
+[Globals](../globals.md) / ["entities/attachment"](_entities_attachment_.md) /
 
 # External module: "entities/attachment"
 
-## Index
+### Index
 
-### Interfaces
+#### Interfaces
 
 * [Attachment](../interfaces/_entities_attachment_.attachment.md)
 * [AttachmentMeta](../interfaces/_entities_attachment_.attachmentmeta.md)
@@ -12,21 +14,16 @@
 * [AttachmentMetaImage](../interfaces/_entities_attachment_.attachmentmetaimage.md)
 * [AttachmentMetaVideo](../interfaces/_entities_attachment_.attachmentmetavideo.md)
 
-### Type aliases
+#### Type aliases
 
 * [AttachmentType](_entities_attachment_.md#attachmenttype)
 
----
-
 ## Type aliases
-
-<a id="attachmenttype"></a>
 
 ###  AttachmentType
 
-**Ƭ AttachmentType**: *"image" \| "video" \| "gifv" \| "unknown"*
+Ƭ **AttachmentType**: *"image" | "video" | "gifv" | "audio" | "unknown"*
 
-*Defined in [entities/attachment.ts:22](https://github.com/neet/masto.js/blob/368b200/src/entities/attachment.ts#L22)*
+*Defined in [entities/attachment.ts:22](https://github.com/neet/masto.js/blob/3506035/src/entities/attachment.ts#L22)*
 
 ___
-

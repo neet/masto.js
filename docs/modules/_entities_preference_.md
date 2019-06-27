@@ -1,28 +1,25 @@
-[masto](../README.md) > ["entities/preference"](../modules/_entities_preference_.md)
+> ## [masto](../README.md)
+
+[Globals](../globals.md) / ["entities/preference"](_entities_preference_.md) /
 
 # External module: "entities/preference"
 
-## Index
+### Index
 
-### Interfaces
+#### Interfaces
 
 * [Preference](../interfaces/_entities_preference_.preference.md)
 
-### Type aliases
+#### Type aliases
 
 * [PreferenceReadingExpandMedia](_entities_preference_.md#preferencereadingexpandmedia)
 
----
-
 ## Type aliases
-
-<a id="preferencereadingexpandmedia"></a>
 
 ###  PreferenceReadingExpandMedia
 
-**Ƭ PreferenceReadingExpandMedia**: *"show_all" \| "hide_all" \| "default"*
+Ƭ **PreferenceReadingExpandMedia**: *"show_all" | "hide_all" | "default"*
 
-*Defined in [entities/preference.ts:3](https://github.com/neet/masto.js/blob/368b200/src/entities/preference.ts#L3)*
+*Defined in [entities/preference.ts:3](https://github.com/neet/masto.js/blob/3506035/src/entities/preference.ts#L3)*
 
 ___
-

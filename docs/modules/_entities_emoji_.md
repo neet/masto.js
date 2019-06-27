@@ -1,12 +1,11 @@
-[masto](../README.md) > ["entities/emoji"](../modules/_entities_emoji_.md)
+> ## [masto](../README.md)
+
+[Globals](../globals.md) / ["entities/emoji"](_entities_emoji_.md) /
 
 # External module: "entities/emoji"
 
-## Index
+### Index
 
-### Interfaces
+#### Interfaces
 
 * [Emoji](../interfaces/_entities_emoji_.emoji.md)
-
----
-

@@ -1,28 +1,25 @@
-[masto](../README.md) > ["entities/status"](../modules/_entities_status_.md)
+> ## [masto](../README.md)
+
+[Globals](../globals.md) / ["entities/status"](_entities_status_.md) /
 
 # External module: "entities/status"
 
-## Index
+### Index
 
-### Interfaces
+#### Interfaces
 
 * [Status](../interfaces/_entities_status_.status.md)
 
-### Type aliases
+#### Type aliases
 
 * [StatusVisibility](_entities_status_.md#statusvisibility)
 
----
-
 ## Type aliases
-
-<a id="statusvisibility"></a>
 
 ###  StatusVisibility
 
-**Ƭ StatusVisibility**: *"public" \| "unlisted" \| "private" \| "direct"*
+Ƭ **StatusVisibility**: *"public" | "unlisted" | "private" | "direct"*
 
-*Defined in [entities/status.ts:9](https://github.com/neet/masto.js/blob/368b200/src/entities/status.ts#L9)*
+*Defined in [entities/status.ts:9](https://github.com/neet/masto.js/blob/3506035/src/entities/status.ts#L9)*
 
 ___
-

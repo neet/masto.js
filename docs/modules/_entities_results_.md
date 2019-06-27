@@ -1,13 +1,12 @@
-[masto](../README.md) > ["entities/results"](../modules/_entities_results_.md)
+> ## [masto](../README.md)
+
+[Globals](../globals.md) / ["entities/results"](_entities_results_.md) /
 
 # External module: "entities/results"
 
-## Index
+### Index
 
-### Interfaces
+#### Interfaces
 
 * [Results](../interfaces/_entities_results_.results.md)
 * [ResultsV1](../interfaces/_entities_results_.resultsv1.md)
-
----
-

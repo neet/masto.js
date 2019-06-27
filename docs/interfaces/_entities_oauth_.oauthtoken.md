@@ -1,66 +1,60 @@
-[masto](../README.md) > ["entities/oauth"](../modules/_entities_oauth_.md) > [OAuthToken](../interfaces/_entities_oauth_.oauthtoken.md)
+> ## [masto](../README.md)
+
+[Globals](../globals.md) / ["entities/oauth"](../modules/_entities_oauth_.md) / [OAuthToken](_entities_oauth_.oauthtoken.md) /
 
 # Interface: OAuthToken
 
 ## Hierarchy
 
-**OAuthToken**
+* **OAuthToken**
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
 * [access_token](_entities_oauth_.oauthtoken.md#access_token)
 * [created_at](_entities_oauth_.oauthtoken.md#created_at)
 * [scope](_entities_oauth_.oauthtoken.md#scope)
 * [token_type](_entities_oauth_.oauthtoken.md#token_type)
 
----
-
 ## Properties
-
-<a id="access_token"></a>
 
 ###  access_token
 
-**● access_token**: *`string`*
+● **access_token**: *string*
 
-*Defined in [entities/oauth.ts:10](https://github.com/neet/masto.js/blob/368b200/src/entities/oauth.ts#L10)*
+*Defined in [entities/oauth.ts:10](https://github.com/neet/masto.js/blob/3506035/src/entities/oauth.ts#L10)*
 
 Access token of the account
 
 ___
-<a id="created_at"></a>
 
 ###  created_at
 
-**● created_at**: *`string`*
+● **created_at**: *string*
 
-*Defined in [entities/oauth.ts:16](https://github.com/neet/masto.js/blob/368b200/src/entities/oauth.ts#L16)*
+*Defined in [entities/oauth.ts:16](https://github.com/neet/masto.js/blob/3506035/src/entities/oauth.ts#L16)*
 
 Created date of the token
 
 ___
-<a id="scope"></a>
 
 ###  scope
 
-**● scope**: *`string`*
+● **scope**: *string*
 
-*Defined in [entities/oauth.ts:14](https://github.com/neet/masto.js/blob/368b200/src/entities/oauth.ts#L14)*
+*Defined in [entities/oauth.ts:14](https://github.com/neet/masto.js/blob/3506035/src/entities/oauth.ts#L14)*
 
 Scope of the token
 
 ___
-<a id="token_type"></a>
 
 ###  token_type
 
-**● token_type**: *`string`*
+● **token_type**: *string*
 
-*Defined in [entities/oauth.ts:12](https://github.com/neet/masto.js/blob/368b200/src/entities/oauth.ts#L12)*
+*Defined in [entities/oauth.ts:12](https://github.com/neet/masto.js/blob/3506035/src/entities/oauth.ts#L12)*
 
 Type of the token
 
 ___
-

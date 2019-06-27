@@ -1,28 +1,25 @@
-[masto](../README.md) > ["entities/notification"](../modules/_entities_notification_.md)
+> ## [masto](../README.md)
+
+[Globals](../globals.md) / ["entities/notification"](_entities_notification_.md) /
 
 # External module: "entities/notification"
 
-## Index
+### Index
 
-### Interfaces
+#### Interfaces
 
 * [Notification](../interfaces/_entities_notification_.notification.md)
 
-### Type aliases
+#### Type aliases
 
 * [NotificationType](_entities_notification_.md#notificationtype)
 
----
-
 ## Type aliases
-
-<a id="notificationtype"></a>
 
 ###  NotificationType
 
-**Ƭ NotificationType**: *"mention" \| "reblog" \| "favourite" \| "follow" \| "poll"*
+Ƭ **NotificationType**: *"mention" | "reblog" | "favourite" | "follow" | "poll"*
 
-*Defined in [entities/notification.ts:4](https://github.com/neet/masto.js/blob/368b200/src/entities/notification.ts#L4)*
+*Defined in [entities/notification.ts:4](https://github.com/neet/masto.js/blob/3506035/src/entities/notification.ts#L4)*
 
 ___
-

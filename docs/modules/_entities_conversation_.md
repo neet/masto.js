@@ -1,12 +1,11 @@
-[masto](../README.md) > ["entities/conversation"](../modules/_entities_conversation_.md)
+> ## [masto](../README.md)
+
+[Globals](../globals.md) / ["entities/conversation"](_entities_conversation_.md) /
 
 # External module: "entities/conversation"
 
-## Index
+### Index
 
-### Interfaces
+#### Interfaces
 
 * [Conversation](../interfaces/_entities_conversation_.conversation.md)
-
----
-

@@ -1,28 +1,25 @@
-[masto](../README.md) > ["entities/instance"](../modules/_entities_instance_.md) > [InstanceURLs](../interfaces/_entities_instance_.instanceurls.md)
+> ## [masto](../README.md)
+
+[Globals](../globals.md) / ["entities/instance"](../modules/_entities_instance_.md) / [InstanceURLs](_entities_instance_.instanceurls.md) /
 
 # Interface: InstanceURLs
 
 ## Hierarchy
 
-**InstanceURLs**
+* **InstanceURLs**
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
 * [streaming_api](_entities_instance_.instanceurls.md#streaming_api)
 
----
-
 ## Properties
-
-<a id="streaming_api"></a>
 
 ###  streaming_api
 
-**● streaming_api**: *`string`*
+● **streaming_api**: *string*
 
-*Defined in [entities/instance.ts:29](https://github.com/neet/masto.js/blob/368b200/src/entities/instance.ts#L29)*
+*Defined in [entities/instance.ts:33](https://github.com/neet/masto.js/blob/3506035/src/entities/instance.ts#L33)*
 
 ___
-

@@ -1,66 +1,60 @@
-[masto](../README.md) > ["entities/instance"](../modules/_entities_instance_.md) > [InstanceActivity](../interfaces/_entities_instance_.instanceactivity.md)
+> ## [masto](../README.md)
+
+[Globals](../globals.md) / ["entities/instance"](../modules/_entities_instance_.md) / [InstanceActivity](_entities_instance_.instanceactivity.md) /
 
 # Interface: InstanceActivity
 
 ## Hierarchy
 
-**InstanceActivity**
+* **InstanceActivity**
 
-## Index
+### Index
 
-### Properties
+#### Properties
 
 * [logins](_entities_instance_.instanceactivity.md#logins)
 * [registrations](_entities_instance_.instanceactivity.md#registrations)
 * [statuses](_entities_instance_.instanceactivity.md#statuses)
 * [week](_entities_instance_.instanceactivity.md#week)
 
----
-
 ## Properties
-
-<a id="logins"></a>
 
 ###  logins
 
-**● logins**: *`string`*
+● **logins**: *string*
 
-*Defined in [entities/instance.ts:44](https://github.com/neet/masto.js/blob/368b200/src/entities/instance.ts#L44)*
+*Defined in [entities/instance.ts:48](https://github.com/neet/masto.js/blob/3506035/src/entities/instance.ts#L48)*
 
 Active users while the week
 
 ___
-<a id="registrations"></a>
 
 ###  registrations
 
-**● registrations**: *`string`*
+● **registrations**: *string*
 
-*Defined in [entities/instance.ts:46](https://github.com/neet/masto.js/blob/368b200/src/entities/instance.ts#L46)*
+*Defined in [entities/instance.ts:50](https://github.com/neet/masto.js/blob/3506035/src/entities/instance.ts#L50)*
 
 New registrations while the week
 
 ___
-<a id="statuses"></a>
 
 ###  statuses
 
-**● statuses**: *`string`*
+● **statuses**: *string*
 
-*Defined in [entities/instance.ts:42](https://github.com/neet/masto.js/blob/368b200/src/entities/instance.ts#L42)*
+*Defined in [entities/instance.ts:46](https://github.com/neet/masto.js/blob/3506035/src/entities/instance.ts#L46)*
 
 Number of statuses created while the week
 
 ___
-<a id="week"></a>
 
 ###  week
 
-**● week**: *`string`*
+● **week**: *string*
 
-*Defined in [entities/instance.ts:40](https://github.com/neet/masto.js/blob/368b200/src/entities/instance.ts#L40)*
+*Defined in [entities/instance.ts:44](https://github.com/neet/masto.js/blob/3506035/src/entities/instance.ts#L44)*
 
 Timestamp of 0 o'clock on Monday of the week
 
 ___
-

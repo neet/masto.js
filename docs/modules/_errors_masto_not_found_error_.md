@@ -1,12 +1,11 @@
-[masto](../README.md) > ["errors/masto-not-found-error"](../modules/_errors_masto_not_found_error_.md)
+> ## [masto](../README.md)
+
+[Globals](../globals.md) / ["errors/masto-not-found-error"](_errors_masto_not_found_error_.md) /
 
 # External module: "errors/masto-not-found-error"
 
-## Index
+### Index
 
-### Classes
+#### Classes
 
 * [MastoNotFoundError](../classes/_errors_masto_not_found_error_.mastonotfounderror.md)
-
----
-

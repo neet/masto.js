@@ -1,96 +1,88 @@
-[masto](../README.md) > ["errors/masto-not-found-error"](../modules/_errors_masto_not_found_error_.md) > [MastoNotFoundError](../classes/_errors_masto_not_found_error_.mastonotfounderror.md)
+> ## [masto](../README.md)
+
+[Globals](../globals.md) / ["errors/masto-not-found-error"](../modules/_errors_masto_not_found_error_.md) / [MastoNotFoundError](_errors_masto_not_found_error_.mastonotfounderror.md) /
 
 # Class: MastoNotFoundError
 
 Mastodon not found error class
 
-*__param__*: Message for users
+**`param`** Message for users
 
 ## Hierarchy
 
- `Error`
+* `Error`
 
-**↳ MastoNotFoundError**
+  * **MastoNotFoundError**
 
-## Index
+### Index
 
-### Constructors
+#### Constructors
 
 * [constructor](_errors_masto_not_found_error_.mastonotfounderror.md#constructor)
 
-### Properties
+#### Properties
 
 * [message](_errors_masto_not_found_error_.mastonotfounderror.md#message)
 * [name](_errors_masto_not_found_error_.mastonotfounderror.md#name)
-* [stack](_errors_masto_not_found_error_.mastonotfounderror.md#stack)
-* [Error](_errors_masto_not_found_error_.mastonotfounderror.md#error)
-
----
+* [stack](_errors_masto_not_found_error_.mastonotfounderror.md#optional-stack)
+* [Error](_errors_masto_not_found_error_.mastonotfounderror.md#static-error)
 
 ## Constructors
 
-<a id="constructor"></a>
-
 ###  constructor
 
-⊕ **new MastoNotFoundError**(...args: *`any`[]*): [MastoNotFoundError](_errors_masto_not_found_error_.mastonotfounderror.md)
+\+ **new MastoNotFoundError**(...`args`: any[]): *[MastoNotFoundError](_errors_masto_not_found_error_.mastonotfounderror.md)*
 
-*Defined in [errors/masto-not-found-error.ts:5](https://github.com/neet/masto.js/blob/368b200/src/errors/masto-not-found-error.ts#L5)*
+*Defined in [errors/masto-not-found-error.ts:5](https://github.com/neet/masto.js/blob/3506035/src/errors/masto-not-found-error.ts#L5)*
 
 **Parameters:**
 
-| Name | Type |
-| ------ | ------ |
-| `Rest` args | `any`[] |
+Name | Type |
+------ | ------ |
+`...args` | any[] |
 
-**Returns:** [MastoNotFoundError](_errors_masto_not_found_error_.mastonotfounderror.md)
+**Returns:** *[MastoNotFoundError](_errors_masto_not_found_error_.mastonotfounderror.md)*
 
 ___
 
 ## Properties
 
-<a id="message"></a>
-
 ###  message
 
-**● message**: *`string`*
+● **message**: *string*
 
-*Inherited from Error.message*
+*Inherited from void*
 
-*Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:964*
+Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:964
 
 ___
-<a id="name"></a>
 
 ###  name
 
-**● name**: *`string`*
+● **name**: *string*
 
-*Inherited from Error.name*
+*Inherited from void*
 
-*Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:963*
-
-___
-<a id="stack"></a>
-
-### `<Optional>` stack
-
-**● stack**: *`undefined` \| `string`*
-
-*Inherited from Error.stack*
-
-*Overrides Error.stack*
-
-*Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:965*
-
-___
-<a id="error"></a>
-
-### `<Static>` Error
-
-**● Error**: *`ErrorConstructor`*
-
-*Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:974*
+Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:963
 
 ___
 
+### `Optional` stack
+
+● **stack**? : *undefined | string*
+
+*Inherited from void*
+
+*Overrides void*
+
+Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:965
+
+___
+
+### `Static` Error
+
+■ **Error**: *`ErrorConstructor`*
+
+Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:974
+
+___
