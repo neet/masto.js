@@ -107,30 +107,33 @@ describe('Gateway', () => {
   });
 
   test('transform Object to JSON when `application/json`', () => {
-    const data = { a: 'foo' };
+    const config = {
+      data: { a: 'foo' },
+      headers: { 'Content-Type': 'application/json' },
+    };
     // @ts-ignore
-    const result = gateway.transformRequest(data, {
-      'Content-Type': 'application/json',
-    });
-    expect(result).toEqual(JSON.stringify(data));
+    const result = gateway.transformConfig(config);
+    expect(result.data).toEqual(JSON.stringify(config.data));
   });
 
   test('transform Object to FormData when `multipart/form-data`', () => {
-    const data = { a: 'foo' };
+    const config = {
+      data: { a: 'foo' },
+      headers: { 'Content-Type': 'multipart/form-data' },
+    };
     // @ts-ignore
-    const result = gateway.transformRequest(data, {
-      'Content-Type': 'multipart/form-data',
-    });
-    expect(result).toBeInstanceOf(FormData);
+    const result = gateway.transformConfig(config);
+    expect(result.data).toBeInstanceOf(FormData);
   });
 
   test('not transform data when unknown MIME given', () => {
-    const data = { a: 'foo' };
+    const config = {
+      data: { a: 'foo' },
+      headers: { 'Content-Type': 'image/png' },
+    };
     // @ts-ignore
-    const result = gateway.transformRequest(data, {
-      'Content-Type': 'image/png',
-    });
-    expect(result).toEqual({ a: 'foo' });
+    const result = gateway.transformConfig(config);
+    expect(result.data).toEqual({ a: 'foo' });
   });
 
   test('call mockAxios.request with given options', async () => {

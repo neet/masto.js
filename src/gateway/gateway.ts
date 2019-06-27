@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import normalizeUrl from 'normalize-url';
 import querystring from 'querystring';
 import semver from 'semver';
@@ -75,11 +75,11 @@ export class Gateway {
 
     this.axios = axios.create({
       baseURL: this.uri,
-      transformRequest: this.transformRequest,
       transformResponse: this.transformResponse,
       ...(params.axiosConfig || {}),
     });
 
+    this.axios.interceptors.request.use(this.transformConfig);
     this.axios.defaults.headers.common['Content-Type'] = 'application/json';
     this.axios.defaults.headers.common.Authorization = `Bearer ${this.accessToken}`;
   }
@@ -133,19 +133,34 @@ export class Gateway {
 
   /**
    * Encode data in request options and add authorization / content-type header
-   * @param data Any data
-   * @param options Axios options
+   * @param config Axios config
+   * @return New config
    */
-  private transformRequest(data: any, headers: any) {
-    switch (headers['Content-Type']) {
+  private transformConfig(originalConfig: AxiosRequestConfig) {
+    const config = { ...originalConfig };
+
+    switch (config.headers['Content-Type']) {
       case 'application/json':
-        return JSON.stringify(data);
+        config.data = JSON.stringify(config.data);
+
+        return config;
 
       case 'multipart/form-data':
-        return createFormData(data);
+        config.data = createFormData(config.data);
+
+        // In Node.js, axios doesn't set boundary data to the header
+        // so set it manually by using getHeaders of form-data node.js package
+        if (typeof (config.data as any).getHeaders === 'function') {
+          config.headers = {
+            ...config.headers,
+            ...(config.data as any).getHeaders(),
+          };
+        }
+
+        return config;
 
       default:
-        return data;
+        return config;
     }
   }
 
@@ -155,9 +170,7 @@ export class Gateway {
    * @param parse Whether parse response before return
    * @return Parsed response object
    */
-  protected async request<T>(
-    options: AxiosRequestConfig,
-  ): Promise<AxiosResponse<T>> {
+  protected async request<T>(options: AxiosRequestConfig) {
     try {
       return await this.axios.request<T>(options);
     } catch (error) {

@@ -20,7 +20,8 @@ export const isObject = (x: any): x is { [key: string]: any } =>
  * });
  *
  * result.get('a') === 'apple';
- * result.getAll('b[]') === ['dog', 'elephant'];
+ * result.get('b[0]') === 'dog'
+ * result.get('b[1]') === 'elephant';
  * result.get('foo[foo1][foo11]') === 'bar';
  *
  * @param encodable Object to encode
@@ -34,8 +35,8 @@ export function createFormData(
   parentKey = '',
 ) {
   if (isArray(encodable)) {
-    encodable.forEach(value => {
-      createFormData(value, result, `${parentKey}[]`);
+    encodable.forEach((value, i) => {
+      createFormData(value, result, `${parentKey}[${i}]`);
     });
 
     return result;

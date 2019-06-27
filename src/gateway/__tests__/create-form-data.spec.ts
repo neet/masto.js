@@ -66,7 +66,9 @@ test('array', () => {
     animals: ['lion', 'giraffe', 'elephant'],
   });
 
-  expect(getAll(result, 'animals[]')).toEqual(['lion', 'giraffe', 'elephant']);
+  expect(get(result, 'animals[0]')).toEqual('lion');
+  expect(get(result, 'animals[1]')).toEqual('giraffe');
+  expect(get(result, 'animals[2]')).toEqual('elephant');
 });
 
 test('nested object', () => {
@@ -87,8 +89,12 @@ test('nested object', () => {
 
   expect(get(result, 'a')).toEqual('string');
   expect(get(result, 'b')).toEqual('123');
-  expect(getAll(result, 'c[]')).toEqual(['1', '2', '3']);
+  expect(get(result, 'c[0]')).toEqual('1');
+  expect(get(result, 'c[1]')).toEqual('2');
+  expect(get(result, 'c[2]')).toEqual('3');
   expect(get(result, 'e[e1]')).toEqual('string');
   expect(get(result, 'e[e2][e21][e211]')).toEqual('string');
-  expect(getAll(result, 'e[e2][e22][][value]')).toEqual(['1', '2', '3']);
+  expect(get(result, 'e[e2][e22][0][value]')).toEqual('1');
+  expect(get(result, 'e[e2][e22][1][value]')).toEqual('2');
+  expect(get(result, 'e[e2][e22][2][value]')).toEqual('3');
 });
