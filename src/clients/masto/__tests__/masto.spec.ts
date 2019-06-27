@@ -149,9 +149,7 @@ describe('Masto', () => {
     expect(mockPatch).toBeCalledTimes(1);
     expect(mockPatch).toBeCalledWith(
       expect.any(String),
-      expect.objectContaining({
-        data: expect.anything(),
-      }),
+      expect.anything(),
       expect.any(Object),
     );
   });
@@ -499,9 +497,7 @@ describe('Masto', () => {
     expect(mockPost).toBeCalledTimes(1);
     expect(mockPost).toBeCalledWith(
       expect.any(String),
-      expect.objectContaining({
-        data: expect.anything(),
-      }),
+      expect.anything(),
       expect.any(Object),
     );
   });
