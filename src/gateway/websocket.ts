@@ -86,20 +86,21 @@ export class WebSocketEvents extends EventEmitter {
   };
 
   /*-------------------------------
-   *
-   * ↓ Overwriting signatures
-   *
+   * Overwriting signatures
    *------------------------------*/
 
   public listeners<T extends EventType>(event: T) {
+    /* istanbul ignore next */
     return super.listeners(event);
   }
 
   public listenerCount<T extends EventType>(event: T) {
+    /* istanbul ignore next */
     return super.listenerCount(event);
   }
 
   public emit<T extends EventType>(event: T, ...args: any[]) {
+    /* istanbul ignore next */
     return super.emit(event, ...args);
   }
 
@@ -108,6 +109,7 @@ export class WebSocketEvents extends EventEmitter {
     fn: EventListener<T>,
     context?: any,
   ) {
+    /* istanbul ignore next */
     return super.addListener(event, fn, context);
   }
 
@@ -116,6 +118,7 @@ export class WebSocketEvents extends EventEmitter {
     fn: EventListener<T>,
     context?: any,
   ) {
+    /* istanbul ignore next */
     return super.on(event, fn, context);
   }
 
@@ -124,6 +127,7 @@ export class WebSocketEvents extends EventEmitter {
     fn: EventListener<T>,
     context?: any,
   ) {
+    /* istanbul ignore next */
     return super.once(event, fn, context);
   }
 
@@ -133,6 +137,7 @@ export class WebSocketEvents extends EventEmitter {
     context?: any,
     once?: boolean,
   ) {
+    /* istanbul ignore next */
     return super.removeListener(event, fn, context, once);
   }
 
@@ -142,10 +147,12 @@ export class WebSocketEvents extends EventEmitter {
     context?: any,
     once?: boolean,
   ) {
+    /* istanbul ignore next */
     return super.off(event, fn, context, once);
   }
 
   public removeAllListeners<T extends EventType>(event?: T) {
+    /* istanbul ignore next */
     return super.removeAllListeners(event);
   }
 }
