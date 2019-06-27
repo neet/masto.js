@@ -1,5 +1,30 @@
 import { createFormData, isArray, isObject } from '../create-form-data';
 
+/**
+ * Unfortunatly form-data node.js package doesn't have
+ * the same API of FormData of web... so functions below are
+ * a hack implementation for `get` and `getAll` to test them
+ */
+
+const chunk = <T>(array: T[], length: number) =>
+  array.reduce(
+    (acc, current, i) => {
+      const position = Math.floor(i / length);
+      if (!acc[position]) acc[position] = [];
+      acc[position].push(current);
+
+      return acc;
+    },
+    [] as T[][],
+  );
+
+const getAll = (formdata: FormData, name: string) =>
+  chunk((formdata as any)._streams as string[], 3)
+    .filter(([boundary]) => boundary.includes(`name="${name}"`))
+    .map(([, datum]) => datum);
+
+const get = (formdata: FormData, name: string) => getAll(formdata, name)[0];
+
 test('typed isArray', () => {
   const r1 = isArray([]);
   const r2 = isArray([1, 2]);
@@ -31,12 +56,9 @@ test('flat value', () => {
     grapes: 'budo',
   });
 
-  const manual = new FormData();
-  manual.append('apple', 'ringo');
-  manual.append('orange', 'mikan');
-  manual.append('grapes', 'budo');
-
-  expect(result).toEqual(manual);
+  expect(get(result, 'apple')).toEqual('ringo');
+  expect(get(result, 'orange')).toEqual('mikan');
+  expect(get(result, 'grapes')).toEqual('budo');
 });
 
 test('array', () => {
@@ -44,12 +66,7 @@ test('array', () => {
     animals: ['lion', 'giraffe', 'elephant'],
   });
 
-  const manual = new FormData();
-  manual.append('animals[]', 'lion');
-  manual.append('animals[]', 'giraffe');
-  manual.append('animals[]', 'elephant');
-
-  expect(result).toEqual(manual);
+  expect(getAll(result, 'animals[]')).toEqual(['lion', 'giraffe', 'elephant']);
 });
 
 test('nested object', () => {
@@ -68,18 +85,10 @@ test('nested object', () => {
     },
   });
 
-  const manual = new FormData();
-  manual.append('a', 'string');
-  manual.append('b', '123');
-  manual.append('c[]', '1');
-  manual.append('c[]', '2');
-  manual.append('c[]', '3');
-  manual.append('e[e1]', 'string');
-  manual.append('e[e2][e21][e211]', 'string');
-  manual.append('e[e2][e22][]', '1');
-  manual.append('e[e2][e22][]', '2');
-  manual.append('e[e2][e22][]', '3');
-
-  expect(result).toMatchSnapshot();
-  expect(result).toEqual(manual);
+  expect(get(result, 'a')).toEqual('string');
+  expect(get(result, 'b')).toEqual('123');
+  expect(getAll(result, 'c[]')).toEqual(['1', '2', '3']);
+  expect(get(result, 'e[e1]')).toEqual('string');
+  expect(get(result, 'e[e2][e21][e211]')).toEqual('string');
+  expect(getAll(result, 'e[e2][e22][]')).toEqual(['1', '2', '3']);
 });
