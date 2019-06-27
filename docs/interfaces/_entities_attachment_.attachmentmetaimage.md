@@ -23,7 +23,7 @@
 
 ● **aspect**: *number*
 
-*Defined in [entities/attachment.ts:34](https://github.com/neet/masto.js/blob/3506035/src/entities/attachment.ts#L34)*
+*Defined in [entities/attachment.ts:34](https://github.com/neet/masto.js/blob/635a2aa/src/entities/attachment.ts#L34)*
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 ● **height**: *number*
 
-*Defined in [entities/attachment.ts:32](https://github.com/neet/masto.js/blob/3506035/src/entities/attachment.ts#L32)*
+*Defined in [entities/attachment.ts:32](https://github.com/neet/masto.js/blob/635a2aa/src/entities/attachment.ts#L32)*
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 ● **size**: *string*
 
-*Defined in [entities/attachment.ts:33](https://github.com/neet/masto.js/blob/3506035/src/entities/attachment.ts#L33)*
+*Defined in [entities/attachment.ts:33](https://github.com/neet/masto.js/blob/635a2aa/src/entities/attachment.ts#L33)*
 
 ___
 
@@ -47,6 +47,6 @@ ___
 
 ● **width**: *number*
 
-*Defined in [entities/attachment.ts:31](https://github.com/neet/masto.js/blob/3506035/src/entities/attachment.ts#L31)*
+*Defined in [entities/attachment.ts:31](https://github.com/neet/masto.js/blob/635a2aa/src/entities/attachment.ts#L31)*
 
 ___

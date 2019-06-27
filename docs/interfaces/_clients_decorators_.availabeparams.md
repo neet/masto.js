@@ -21,7 +21,7 @@
 
 ● **since**? : *undefined | string*
 
-*Defined in [clients/decorators.ts:12](https://github.com/neet/masto.js/blob/3506035/src/clients/decorators.ts#L12)*
+*Defined in [clients/decorators.ts:12](https://github.com/neet/masto.js/blob/635a2aa/src/clients/decorators.ts#L12)*
 
 ___
 
@@ -29,6 +29,6 @@ ___
 
 ● **until**? : *undefined | string*
 
-*Defined in [clients/decorators.ts:13](https://github.com/neet/masto.js/blob/3506035/src/clients/decorators.ts#L13)*
+*Defined in [clients/decorators.ts:13](https://github.com/neet/masto.js/blob/635a2aa/src/clients/decorators.ts#L13)*
 
 ___

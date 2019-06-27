@@ -20,6 +20,6 @@
 
 Ƭ **CardType**: *"link" | "photo" | "video" | "rich"*
 
-*Defined in [entities/card.ts:1](https://github.com/neet/masto.js/blob/3506035/src/entities/card.ts#L1)*
+*Defined in [entities/card.ts:1](https://github.com/neet/masto.js/blob/635a2aa/src/entities/card.ts#L1)*
 
 ___

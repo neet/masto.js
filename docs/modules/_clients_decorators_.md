@@ -24,7 +24,7 @@
 
 Ƭ **Decorator**: *function*
 
-*Defined in [clients/decorators.ts:5](https://github.com/neet/masto.js/blob/3506035/src/clients/decorators.ts#L5)*
+*Defined in [clients/decorators.ts:5](https://github.com/neet/masto.js/blob/635a2aa/src/clients/decorators.ts#L5)*
 
 #### Type declaration:
 
@@ -46,7 +46,7 @@ ___
 
 ▸ **available**(`parameters`: [AvailabeParams](../interfaces/_clients_decorators_.availabeparams.md)): *[Decorator](_clients_decorators_.md#decorator)*
 
-*Defined in [clients/decorators.ts:20](https://github.com/neet/masto.js/blob/3506035/src/clients/decorators.ts#L20)*
+*Defined in [clients/decorators.ts:20](https://github.com/neet/masto.js/blob/635a2aa/src/clients/decorators.ts#L20)*
 
 Decorator that verifies the version of the Mastodon instance
 

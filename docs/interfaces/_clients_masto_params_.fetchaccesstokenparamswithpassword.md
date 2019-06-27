@@ -27,7 +27,7 @@
 
 *Inherited from [FetchAccessTokenParamsBase](_clients_masto_params_.fetchaccesstokenparamsbase.md).[grant_type](_clients_masto_params_.fetchaccesstokenparamsbase.md#grant_type)*
 
-*Defined in [clients/masto/params.ts:79](https://github.com/neet/masto.js/blob/3506035/src/clients/masto/params.ts#L79)*
+*Defined in [clients/masto/params.ts:79](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L79)*
 
 Grant type
 
@@ -37,7 +37,7 @@ ___
 
 ● **password**: *string*
 
-*Defined in [clients/masto/params.ts:97](https://github.com/neet/masto.js/blob/3506035/src/clients/masto/params.ts#L97)*
+*Defined in [clients/masto/params.ts:97](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L97)*
 
 Password
 
@@ -47,7 +47,7 @@ ___
 
 ● **scope**? : *undefined | string*
 
-*Defined in [clients/masto/params.ts:101](https://github.com/neet/masto.js/blob/3506035/src/clients/masto/params.ts#L101)*
+*Defined in [clients/masto/params.ts:101](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L101)*
 
 Scope
 
@@ -57,7 +57,7 @@ ___
 
 ● **username**: *string*
 
-*Defined in [clients/masto/params.ts:99](https://github.com/neet/masto.js/blob/3506035/src/clients/masto/params.ts#L99)*
+*Defined in [clients/masto/params.ts:99](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L99)*
 
 Username
 

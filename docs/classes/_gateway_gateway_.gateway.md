@@ -49,7 +49,7 @@ Mastodon network request wrapper
 
 \+ **new Gateway**(`params`: [GatewayConstructorParams](../interfaces/_gateway_gateway_.gatewayconstructorparams.md)): *[Gateway](_gateway_gateway_.gateway.md)*
 
-*Defined in [gateway/gateway.ts:57](https://github.com/neet/masto.js/blob/3506035/src/gateway/gateway.ts#L57)*
+*Defined in [gateway/gateway.ts:57](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L57)*
 
 **Parameters:**
 
@@ -67,7 +67,7 @@ ___
 
 ● **accessToken**? : *undefined | string*
 
-*Defined in [gateway/gateway.ts:53](https://github.com/neet/masto.js/blob/3506035/src/gateway/gateway.ts#L53)*
+*Defined in [gateway/gateway.ts:53](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L53)*
 
 API token of the user
 
@@ -77,7 +77,7 @@ ___
 
 ● **version**: *string* = ""
 
-*Defined in [gateway/gateway.ts:51](https://github.com/neet/masto.js/blob/3506035/src/gateway/gateway.ts#L51)*
+*Defined in [gateway/gateway.ts:51](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L51)*
 
 Version of the current instance
 
@@ -89,13 +89,13 @@ ___
 
 ● **get streamingApiUrl**(): *string*
 
-*Defined in [gateway/gateway.ts:96](https://github.com/neet/masto.js/blob/3506035/src/gateway/gateway.ts#L96)*
+*Defined in [gateway/gateway.ts:96](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L96)*
 
 **Returns:** *string*
 
 ● **set streamingApiUrl**(`streamingApiUrl`: string): *void*
 
-*Defined in [gateway/gateway.ts:100](https://github.com/neet/masto.js/blob/3506035/src/gateway/gateway.ts#L100)*
+*Defined in [gateway/gateway.ts:100](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L100)*
 
 **Parameters:**
 
@@ -111,13 +111,13 @@ ___
 
 ● **get uri**(): *string*
 
-*Defined in [gateway/gateway.ts:88](https://github.com/neet/masto.js/blob/3506035/src/gateway/gateway.ts#L88)*
+*Defined in [gateway/gateway.ts:88](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L88)*
 
 **Returns:** *string*
 
 ● **set uri**(`uri`: string): *void*
 
-*Defined in [gateway/gateway.ts:92](https://github.com/neet/masto.js/blob/3506035/src/gateway/gateway.ts#L92)*
+*Defined in [gateway/gateway.ts:92](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L92)*
 
 **Parameters:**
 
@@ -135,7 +135,7 @@ ___
 
 ▸ **delete**<**T**>(`path`: string, `data`: any, `options?`: `AxiosRequestConfig`): *`Promise<T>`*
 
-*Defined in [gateway/gateway.ts:276](https://github.com/neet/masto.js/blob/3506035/src/gateway/gateway.ts#L276)*
+*Defined in [gateway/gateway.ts:276](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L276)*
 
 HTTP DELETE
 
@@ -159,7 +159,7 @@ ___
 
 ▸ **get**<**T**>(`path`: string, `params`: any, `options?`: `AxiosRequestConfig`): *`Promise<T>`*
 
-*Defined in [gateway/gateway.ts:210](https://github.com/neet/masto.js/blob/3506035/src/gateway/gateway.ts#L210)*
+*Defined in [gateway/gateway.ts:210](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L210)*
 
 HTTP GET
 
@@ -183,7 +183,7 @@ ___
 
 ▸ **paginate**<**Data**, **Params**>(`path`: string, `initialParams?`: [Params]()): *`AsyncIterableIterator<Data | undefined>`*
 
-*Defined in [gateway/gateway.ts:349](https://github.com/neet/masto.js/blob/3506035/src/gateway/gateway.ts#L349)*
+*Defined in [gateway/gateway.ts:349](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L349)*
 
 Generate an iterable of the pagination.
 The default generator implementation of JS cannot change the value of `done` depend on the result of yield,
@@ -213,7 +213,7 @@ ___
 
 ▸ **patch**<**T**>(`path`: string, `data`: any, `options?`: `AxiosRequestConfig`): *`Promise<T>`*
 
-*Defined in [gateway/gateway.ts:298](https://github.com/neet/masto.js/blob/3506035/src/gateway/gateway.ts#L298)*
+*Defined in [gateway/gateway.ts:298](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L298)*
 
 HTTP PATCH
 
@@ -237,7 +237,7 @@ ___
 
 ▸ **post**<**T**>(`path`: string, `data`: any, `options?`: `AxiosRequestConfig`): *`Promise<T>`*
 
-*Defined in [gateway/gateway.ts:232](https://github.com/neet/masto.js/blob/3506035/src/gateway/gateway.ts#L232)*
+*Defined in [gateway/gateway.ts:232](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L232)*
 
 HTTP POST
 
@@ -261,7 +261,7 @@ ___
 
 ▸ **put**<**T**>(`path`: string, `data`: any, `options?`: `AxiosRequestConfig`): *`Promise<T>`*
 
-*Defined in [gateway/gateway.ts:254](https://github.com/neet/masto.js/blob/3506035/src/gateway/gateway.ts#L254)*
+*Defined in [gateway/gateway.ts:254](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L254)*
 
 HTTP PUT
 
@@ -285,7 +285,7 @@ ___
 
 ▸ **stream**(`path`: string, `params`: object): *`Promise<WebSocketEvents>`*
 
-*Defined in [gateway/gateway.ts:319](https://github.com/neet/masto.js/blob/3506035/src/gateway/gateway.ts#L319)*
+*Defined in [gateway/gateway.ts:319](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L319)*
 
 Connect to a streaming
 
@@ -306,7 +306,7 @@ ___
 
 ▸ **login**<**T**>(`this`: `T`, `params`: [LoginParams](../modules/_gateway_gateway_.md#loginparams)): *`Promise<InstanceType<T>>`*
 
-*Defined in [gateway/gateway.ts:109](https://github.com/neet/masto.js/blob/3506035/src/gateway/gateway.ts#L109)*
+*Defined in [gateway/gateway.ts:109](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L109)*
 
 Login to Mastodon
 

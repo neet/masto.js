@@ -22,7 +22,7 @@
 
 ● **account_id**? : *string | null*
 
-*Defined in [clients/masto-admin/params.ts:19](https://github.com/neet/masto.js/blob/3506035/src/clients/masto-admin/params.ts#L19)*
+*Defined in [clients/masto-admin/params.ts:19](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/params.ts#L19)*
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 ● **resolved**? : *boolean | null*
 
-*Defined in [clients/masto-admin/params.ts:18](https://github.com/neet/masto.js/blob/3506035/src/clients/masto-admin/params.ts#L18)*
+*Defined in [clients/masto-admin/params.ts:18](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/params.ts#L18)*
 
 ___
 
@@ -38,6 +38,6 @@ ___
 
 ● **target_account_id**? : *string | null*
 
-*Defined in [clients/masto-admin/params.ts:20](https://github.com/neet/masto.js/blob/3506035/src/clients/masto-admin/params.ts#L20)*
+*Defined in [clients/masto-admin/params.ts:20](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/params.ts#L20)*
 
 ___

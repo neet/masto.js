@@ -24,7 +24,7 @@
 
 ● **report_id**: *string*
 
-*Defined in [clients/masto-admin/params.ts:27](https://github.com/neet/masto.js/blob/3506035/src/clients/masto-admin/params.ts#L27)*
+*Defined in [clients/masto-admin/params.ts:27](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/params.ts#L27)*
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 ● **send_email_notification**? : *boolean | null*
 
-*Defined in [clients/masto-admin/params.ts:30](https://github.com/neet/masto.js/blob/3506035/src/clients/masto-admin/params.ts#L30)*
+*Defined in [clients/masto-admin/params.ts:30](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/params.ts#L30)*
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 ● **text**? : *string | null*
 
-*Defined in [clients/masto-admin/params.ts:29](https://github.com/neet/masto.js/blob/3506035/src/clients/masto-admin/params.ts#L29)*
+*Defined in [clients/masto-admin/params.ts:29](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/params.ts#L29)*
 
 ___
 
@@ -48,7 +48,7 @@ ___
 
 ● **type**: *[AccountActionType](../modules/_clients_masto_admin_params_.md#accountactiontype)*
 
-*Defined in [clients/masto-admin/params.ts:26](https://github.com/neet/masto.js/blob/3506035/src/clients/masto-admin/params.ts#L26)*
+*Defined in [clients/masto-admin/params.ts:26](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/params.ts#L26)*
 
 ___
 
@@ -56,6 +56,6 @@ ___
 
 ● **warning_preset_id**? : *string | null*
 
-*Defined in [clients/masto-admin/params.ts:28](https://github.com/neet/masto.js/blob/3506035/src/clients/masto-admin/params.ts#L28)*
+*Defined in [clients/masto-admin/params.ts:28](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/params.ts#L28)*
 
 ___

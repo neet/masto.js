@@ -25,7 +25,7 @@
 
 ● **aspect**: *number*
 
-*Defined in [entities/attachment.ts:43](https://github.com/neet/masto.js/blob/3506035/src/entities/attachment.ts#L43)*
+*Defined in [entities/attachment.ts:43](https://github.com/neet/masto.js/blob/635a2aa/src/entities/attachment.ts#L43)*
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 ● **bitrate**: *number*
 
-*Defined in [entities/attachment.ts:42](https://github.com/neet/masto.js/blob/3506035/src/entities/attachment.ts#L42)*
+*Defined in [entities/attachment.ts:42](https://github.com/neet/masto.js/blob/635a2aa/src/entities/attachment.ts#L42)*
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 ● **duration**: *number*
 
-*Defined in [entities/attachment.ts:41](https://github.com/neet/masto.js/blob/3506035/src/entities/attachment.ts#L41)*
+*Defined in [entities/attachment.ts:41](https://github.com/neet/masto.js/blob/635a2aa/src/entities/attachment.ts#L41)*
 
 ___
 
@@ -49,7 +49,7 @@ ___
 
 ● **frame_rate**: *string*
 
-*Defined in [entities/attachment.ts:40](https://github.com/neet/masto.js/blob/3506035/src/entities/attachment.ts#L40)*
+*Defined in [entities/attachment.ts:40](https://github.com/neet/masto.js/blob/635a2aa/src/entities/attachment.ts#L40)*
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 ● **height**: *number*
 
-*Defined in [entities/attachment.ts:39](https://github.com/neet/masto.js/blob/3506035/src/entities/attachment.ts#L39)*
+*Defined in [entities/attachment.ts:39](https://github.com/neet/masto.js/blob/635a2aa/src/entities/attachment.ts#L39)*
 
 ___
 
@@ -65,6 +65,6 @@ ___
 
 ● **width**: *number*
 
-*Defined in [entities/attachment.ts:38](https://github.com/neet/masto.js/blob/3506035/src/entities/attachment.ts#L38)*
+*Defined in [entities/attachment.ts:38](https://github.com/neet/masto.js/blob/635a2aa/src/entities/attachment.ts#L38)*
 
 ___

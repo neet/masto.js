@@ -21,7 +21,7 @@
 
 ● **data**? : *object | null*
 
-*Defined in [clients/masto/params.ts:171](https://github.com/neet/masto.js/blob/3506035/src/clients/masto/params.ts#L171)*
+*Defined in [clients/masto/params.ts:171](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L171)*
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 ● **subscription**: *object*
 
-*Defined in [clients/masto/params.ts:160](https://github.com/neet/masto.js/blob/3506035/src/clients/masto/params.ts#L160)*
+*Defined in [clients/masto/params.ts:160](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L160)*
 
 #### Type declaration:
 

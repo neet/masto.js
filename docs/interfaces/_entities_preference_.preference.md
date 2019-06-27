@@ -24,7 +24,7 @@
 
 ● **posting:default:language**? : *string | null*
 
-*Defined in [entities/preference.ts:8](https://github.com/neet/masto.js/blob/3506035/src/entities/preference.ts#L8)*
+*Defined in [entities/preference.ts:8](https://github.com/neet/masto.js/blob/635a2aa/src/entities/preference.ts#L8)*
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 ● **posting:default:sensitive**? : *boolean | null*
 
-*Defined in [entities/preference.ts:7](https://github.com/neet/masto.js/blob/3506035/src/entities/preference.ts#L7)*
+*Defined in [entities/preference.ts:7](https://github.com/neet/masto.js/blob/635a2aa/src/entities/preference.ts#L7)*
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 ● **posting:default:visibility**? : *[StatusVisibility](../modules/_entities_status_.md#statusvisibility) | null*
 
-*Defined in [entities/preference.ts:6](https://github.com/neet/masto.js/blob/3506035/src/entities/preference.ts#L6)*
+*Defined in [entities/preference.ts:6](https://github.com/neet/masto.js/blob/635a2aa/src/entities/preference.ts#L6)*
 
 ___
 
@@ -48,7 +48,7 @@ ___
 
 ● **reading:expand:media**? : *[PreferenceReadingExpandMedia](../modules/_entities_preference_.md#preferencereadingexpandmedia) | null*
 
-*Defined in [entities/preference.ts:9](https://github.com/neet/masto.js/blob/3506035/src/entities/preference.ts#L9)*
+*Defined in [entities/preference.ts:9](https://github.com/neet/masto.js/blob/635a2aa/src/entities/preference.ts#L9)*
 
 ___
 
@@ -56,6 +56,6 @@ ___
 
 ● **reading:expand:spoilers**? : *boolean | null*
 
-*Defined in [entities/preference.ts:10](https://github.com/neet/masto.js/blob/3506035/src/entities/preference.ts#L10)*
+*Defined in [entities/preference.ts:10](https://github.com/neet/masto.js/blob/635a2aa/src/entities/preference.ts#L10)*
 
 ___

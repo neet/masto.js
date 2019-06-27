@@ -20,6 +20,6 @@
 
 Ƭ **AdminAccountRole**: *"moderator" | "admin" | "user"*
 
-*Defined in [entities/admin-account.ts:3](https://github.com/neet/masto.js/blob/3506035/src/entities/admin-account.ts#L3)*
+*Defined in [entities/admin-account.ts:3](https://github.com/neet/masto.js/blob/635a2aa/src/entities/admin-account.ts#L3)*
 
 ___

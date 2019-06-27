@@ -22,6 +22,6 @@
 
 Ƭ **AccountActionType**: *"none" | "disable" | "silence" | "suspend"*
 
-*Defined in [clients/masto-admin/params.ts:23](https://github.com/neet/masto.js/blob/3506035/src/clients/masto-admin/params.ts#L23)*
+*Defined in [clients/masto-admin/params.ts:23](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/params.ts#L23)*
 
 ___

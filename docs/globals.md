@@ -8,12 +8,9 @@
 
 #### External modules
 
-* ["clients/__tests__/decorators.spec"](modules/_clients___tests___decorators_spec_.md)
 * ["clients/decorators"](modules/_clients_decorators_.md)
-* ["clients/masto-admin/__tests__/masto-admin.spec"](modules/_clients_masto_admin___tests___masto_admin_spec_.md)
 * ["clients/masto-admin/masto-admin"](modules/_clients_masto_admin_masto_admin_.md)
 * ["clients/masto-admin/params"](modules/_clients_masto_admin_params_.md)
-* ["clients/masto/__tests__/masto.spec"](modules/_clients_masto___tests___masto_spec_.md)
 * ["clients/masto/masto"](modules/_clients_masto_masto_.md)
 * ["clients/masto/params"](modules/_clients_masto_params_.md)
 * ["entities/account"](modules/_entities_account_.md)
@@ -42,12 +39,6 @@
 * ["errors/masto-not-found-error"](modules/_errors_masto_not_found_error_.md)
 * ["errors/masto-rate-limit-error"](modules/_errors_masto_rate_limit_error_.md)
 * ["errors/masto-unauthorized-error"](modules/_errors_masto_unauthorized_error_.md)
-* ["gateway/__mocks__/gateway"](modules/_gateway___mocks___gateway_.md)
-* ["gateway/__mocks__/websocket"](modules/_gateway___mocks___websocket_.md)
-* ["gateway/__tests__/create-form-data.spec"](modules/_gateway___tests___create_form_data_spec_.md)
-* ["gateway/__tests__/gateway.spec"](modules/_gateway___tests___gateway_spec_.md)
-* ["gateway/__tests__/is-axios-error.spec"](modules/_gateway___tests___is_axios_error_spec_.md)
-* ["gateway/__tests__/websocket.spec"](modules/_gateway___tests___websocket_spec_.md)
 * ["gateway/create-form-data"](modules/_gateway_create_form_data_.md)
 * ["gateway/gateway"](modules/_gateway_gateway_.md)
 * ["gateway/is-axios-error"](modules/_gateway_is_axios_error_.md)

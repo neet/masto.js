@@ -23,7 +23,7 @@
 
 ● **access_token**: *string*
 
-*Defined in [entities/oauth.ts:10](https://github.com/neet/masto.js/blob/3506035/src/entities/oauth.ts#L10)*
+*Defined in [entities/oauth.ts:10](https://github.com/neet/masto.js/blob/635a2aa/src/entities/oauth.ts#L10)*
 
 Access token of the account
 
@@ -33,7 +33,7 @@ ___
 
 ● **created_at**: *string*
 
-*Defined in [entities/oauth.ts:16](https://github.com/neet/masto.js/blob/3506035/src/entities/oauth.ts#L16)*
+*Defined in [entities/oauth.ts:16](https://github.com/neet/masto.js/blob/635a2aa/src/entities/oauth.ts#L16)*
 
 Created date of the token
 
@@ -43,7 +43,7 @@ ___
 
 ● **scope**: *string*
 
-*Defined in [entities/oauth.ts:14](https://github.com/neet/masto.js/blob/3506035/src/entities/oauth.ts#L14)*
+*Defined in [entities/oauth.ts:14](https://github.com/neet/masto.js/blob/635a2aa/src/entities/oauth.ts#L14)*
 
 Scope of the token
 
@@ -53,7 +53,7 @@ ___
 
 ● **token_type**: *string*
 
-*Defined in [entities/oauth.ts:12](https://github.com/neet/masto.js/blob/3506035/src/entities/oauth.ts#L12)*
+*Defined in [entities/oauth.ts:12](https://github.com/neet/masto.js/blob/635a2aa/src/entities/oauth.ts#L12)*
 
 Type of the token
 

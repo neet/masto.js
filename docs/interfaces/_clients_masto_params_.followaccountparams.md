@@ -20,7 +20,7 @@
 
 ● **reblogs**? : *boolean | null*
 
-*Defined in [clients/masto/params.ts:183](https://github.com/neet/masto.js/blob/3506035/src/clients/masto/params.ts#L183)*
+*Defined in [clients/masto/params.ts:183](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L183)*
 
 Whether the followed account’s reblogs will show up in the home timeline
 

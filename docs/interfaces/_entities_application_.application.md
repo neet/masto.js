@@ -24,7 +24,7 @@
 
 ● **name**: *string*
 
-*Defined in [entities/application.ts:3](https://github.com/neet/masto.js/blob/3506035/src/entities/application.ts#L3)*
+*Defined in [entities/application.ts:3](https://github.com/neet/masto.js/blob/635a2aa/src/entities/application.ts#L3)*
 
 Name of the app
 
@@ -34,7 +34,7 @@ ___
 
 ● **vapid_key**? : *string | null*
 
-*Defined in [entities/application.ts:7](https://github.com/neet/masto.js/blob/3506035/src/entities/application.ts#L7)*
+*Defined in [entities/application.ts:7](https://github.com/neet/masto.js/blob/635a2aa/src/entities/application.ts#L7)*
 
 VAPID key
 
@@ -44,7 +44,7 @@ ___
 
 ● **website**? : *string | null*
 
-*Defined in [entities/application.ts:5](https://github.com/neet/masto.js/blob/3506035/src/entities/application.ts#L5)*
+*Defined in [entities/application.ts:5](https://github.com/neet/masto.js/blob/635a2aa/src/entities/application.ts#L5)*
 
 Homepage URL of the app
 

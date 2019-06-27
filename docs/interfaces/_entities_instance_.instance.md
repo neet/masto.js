@@ -32,7 +32,7 @@
 
 ● **approval_required**? : *boolean | null*
 
-*Defined in [entities/instance.ts:29](https://github.com/neet/masto.js/blob/3506035/src/entities/instance.ts#L29)*
+*Defined in [entities/instance.ts:29](https://github.com/neet/masto.js/blob/635a2aa/src/entities/instance.ts#L29)*
 
 Whether approval required
 
@@ -42,7 +42,7 @@ ___
 
 ● **contact_account**? : *[Account](_entities_account_.account.md) | null*
 
-*Defined in [entities/instance.ts:25](https://github.com/neet/masto.js/blob/3506035/src/entities/instance.ts#L25)*
+*Defined in [entities/instance.ts:25](https://github.com/neet/masto.js/blob/635a2aa/src/entities/instance.ts#L25)*
 
 Account of the admin or another contact person
 
@@ -52,7 +52,7 @@ ___
 
 ● **description**: *string*
 
-*Defined in [entities/instance.ts:9](https://github.com/neet/masto.js/blob/3506035/src/entities/instance.ts#L9)*
+*Defined in [entities/instance.ts:9](https://github.com/neet/masto.js/blob/635a2aa/src/entities/instance.ts#L9)*
 
 A description for the instance
 
@@ -62,7 +62,7 @@ ___
 
 ● **email**: *string*
 
-*Defined in [entities/instance.ts:13](https://github.com/neet/masto.js/blob/3506035/src/entities/instance.ts#L13)*
+*Defined in [entities/instance.ts:13](https://github.com/neet/masto.js/blob/635a2aa/src/entities/instance.ts#L13)*
 
 An email address which can be used to contact the instance administrator
 
@@ -72,7 +72,7 @@ ___
 
 ● **languages**: *string[]*
 
-*Defined in [entities/instance.ts:23](https://github.com/neet/masto.js/blob/3506035/src/entities/instance.ts#L23)*
+*Defined in [entities/instance.ts:23](https://github.com/neet/masto.js/blob/635a2aa/src/entities/instance.ts#L23)*
 
 Array of ISO 6391 language codes the instance has chosen to advertise
 
@@ -82,7 +82,7 @@ ___
 
 ● **registrations**: *boolean*
 
-*Defined in [entities/instance.ts:27](https://github.com/neet/masto.js/blob/3506035/src/entities/instance.ts#L27)*
+*Defined in [entities/instance.ts:27](https://github.com/neet/masto.js/blob/635a2aa/src/entities/instance.ts#L27)*
 
 Whether registration is open or not
 
@@ -92,7 +92,7 @@ ___
 
 ● **short_description**? : *undefined | string*
 
-*Defined in [entities/instance.ts:11](https://github.com/neet/masto.js/blob/3506035/src/entities/instance.ts#L11)*
+*Defined in [entities/instance.ts:11](https://github.com/neet/masto.js/blob/635a2aa/src/entities/instance.ts#L11)*
 
 Short description
 
@@ -102,7 +102,7 @@ ___
 
 ● **stats**: *[InstanceStats](_entities_instance_.instancestats.md)*
 
-*Defined in [entities/instance.ts:21](https://github.com/neet/masto.js/blob/3506035/src/entities/instance.ts#L21)*
+*Defined in [entities/instance.ts:21](https://github.com/neet/masto.js/blob/635a2aa/src/entities/instance.ts#L21)*
 
 stats of the instance
 
@@ -112,7 +112,7 @@ ___
 
 ● **thumbnail**? : *string | null*
 
-*Defined in [entities/instance.ts:17](https://github.com/neet/masto.js/blob/3506035/src/entities/instance.ts#L17)*
+*Defined in [entities/instance.ts:17](https://github.com/neet/masto.js/blob/635a2aa/src/entities/instance.ts#L17)*
 
 thumbnail of the instance
 
@@ -122,7 +122,7 @@ ___
 
 ● **title**: *string*
 
-*Defined in [entities/instance.ts:7](https://github.com/neet/masto.js/blob/3506035/src/entities/instance.ts#L7)*
+*Defined in [entities/instance.ts:7](https://github.com/neet/masto.js/blob/635a2aa/src/entities/instance.ts#L7)*
 
 The instance's title
 
@@ -132,7 +132,7 @@ ___
 
 ● **uri**: *string*
 
-*Defined in [entities/instance.ts:5](https://github.com/neet/masto.js/blob/3506035/src/entities/instance.ts#L5)*
+*Defined in [entities/instance.ts:5](https://github.com/neet/masto.js/blob/635a2aa/src/entities/instance.ts#L5)*
 
 URI of the current instance
 
@@ -142,7 +142,7 @@ ___
 
 ● **urls**: *[InstanceURLs](_entities_instance_.instanceurls.md)*
 
-*Defined in [entities/instance.ts:19](https://github.com/neet/masto.js/blob/3506035/src/entities/instance.ts#L19)*
+*Defined in [entities/instance.ts:19](https://github.com/neet/masto.js/blob/635a2aa/src/entities/instance.ts#L19)*
 
 `streaming_api`
 
@@ -152,7 +152,7 @@ ___
 
 ● **version**: *string*
 
-*Defined in [entities/instance.ts:15](https://github.com/neet/masto.js/blob/3506035/src/entities/instance.ts#L15)*
+*Defined in [entities/instance.ts:15](https://github.com/neet/masto.js/blob/635a2aa/src/entities/instance.ts#L15)*
 
 The Mastodon version used by instance.
 

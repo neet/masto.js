@@ -26,7 +26,7 @@
 
 ● **avatar**? : *any | null*
 
-*Defined in [clients/masto/params.ts:25](https://github.com/neet/masto.js/blob/3506035/src/clients/masto/params.ts#L25)*
+*Defined in [clients/masto/params.ts:25](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L25)*
 
 Avatar encoded using `multipart/form-data`
 
@@ -36,7 +36,7 @@ ___
 
 ● **display_name**? : *string | null*
 
-*Defined in [clients/masto/params.ts:21](https://github.com/neet/masto.js/blob/3506035/src/clients/masto/params.ts#L21)*
+*Defined in [clients/masto/params.ts:21](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L21)*
 
 Display name
 
@@ -46,7 +46,7 @@ ___
 
 ● **fields_attributes**? : *[AccountField](_entities_account_.accountfield.md)[] | null*
 
-*Defined in [clients/masto/params.ts:39](https://github.com/neet/masto.js/blob/3506035/src/clients/masto/params.ts#L39)*
+*Defined in [clients/masto/params.ts:39](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L39)*
 
 Profile metadata (max. 4)
 
@@ -56,7 +56,7 @@ ___
 
 ● **header**? : *any | null*
 
-*Defined in [clients/masto/params.ts:27](https://github.com/neet/masto.js/blob/3506035/src/clients/masto/params.ts#L27)*
+*Defined in [clients/masto/params.ts:27](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L27)*
 
 Header image encoded using `multipart/form-data`
 
@@ -66,7 +66,7 @@ ___
 
 ● **locked**? : *boolean | null*
 
-*Defined in [clients/masto/params.ts:29](https://github.com/neet/masto.js/blob/3506035/src/clients/masto/params.ts#L29)*
+*Defined in [clients/masto/params.ts:29](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L29)*
 
 Enable follow requests
 
@@ -76,7 +76,7 @@ ___
 
 ● **note**? : *string | null*
 
-*Defined in [clients/masto/params.ts:23](https://github.com/neet/masto.js/blob/3506035/src/clients/masto/params.ts#L23)*
+*Defined in [clients/masto/params.ts:23](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L23)*
 
 Biography
 
@@ -86,7 +86,7 @@ ___
 
 ● **source**? : *`Partial<Pick<AccountSource, "privacy" | "sensitive" | "language">>` | null*
 
-*Defined in [clients/masto/params.ts:35](https://github.com/neet/masto.js/blob/3506035/src/clients/masto/params.ts#L35)*
+*Defined in [clients/masto/params.ts:35](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L35)*
 
 privacy: Default post privacy preference
 sensitive: Whether to mark statuses as sensitive by default
