@@ -997,24 +997,13 @@ exports[`Masto fetchPushSubscription 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {},
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/push/subscription",
-      },
+      "/api/v1/push/subscription",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1708,23 +1697,16 @@ exports[`Masto unblockDomain 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/domain_blocks",
       Object {
-        "data": "{\\"domain\\":\\"example.com\\"}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "DELETE",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/domain_blocks",
+        "domain": "example.com",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }

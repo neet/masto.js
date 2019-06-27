@@ -1,21 +1,9 @@
 // tslint:disable
-// @ts-ignore
-// prettier-ignore
-import axios from 'axios';
 import { Masto } from '../masto';
 // @ts-ignore
-import {
-  Gateway,
-  mockGet,
-  mockPost,
-  mockDelete,
-  mockPut,
-  mockPatch,
-  mockPaginate,
-  mockStream,
-} from '../../../gateway/gateway';
+// prettier-ignore
+import { Gateway, mockGet, mockPost, mockDelete, mockPut, mockPatch, mockPaginate, mockStream } from '../../../gateway/gateway';
 
-jest.mock('axios');
 jest.mock('../../../gateway/websocket');
 jest.mock('../../../gateway/gateway');
 
@@ -24,15 +12,6 @@ describe('Masto', () => {
     uri: 'https://example.com',
     version: '99.99.9',
     streamingApiUrl: 'wss://example.com/stream',
-  });
-
-  beforeAll(async () => {
-    (axios.request as jest.Mock).mockResolvedValue({
-      headers: {
-        link: '<https://example.com/next>; rel="next"',
-      },
-      data: {},
-    });
   });
 
   beforeEach(async () => {
@@ -167,11 +146,13 @@ describe('Masto', () => {
       //   },
       // ],
     });
-    expect(mockPost).toBeCalledTimes(1);
-    expect(mockPost).toBeCalledWith(
+    expect(mockPatch).toBeCalledTimes(1);
+    expect(mockPatch).toBeCalledWith(
+      expect.any(String),
       expect.objectContaining({
-        data: expect.any(FormData),
+        data: expect.anything(),
       }),
+      expect.any(Object),
     );
   });
 
@@ -299,8 +280,8 @@ describe('Masto', () => {
 
   test('unblockDomain', async () => {
     await masto.unblockDomain('example.com');
-    expect(mockPost).toBeCalledTimes(1);
-    expect(mockPost).toMatchSnapshot();
+    expect(mockDelete).toBeCalledTimes(1);
+    expect(mockDelete).toMatchSnapshot();
   });
 
   test('fetchEndorsements', async () => {
@@ -517,9 +498,11 @@ describe('Masto', () => {
     });
     expect(mockPost).toBeCalledTimes(1);
     expect(mockPost).toBeCalledWith(
+      expect.any(String),
       expect.objectContaining({
-        data: expect.any(FormData),
+        data: expect.anything(),
       }),
+      expect.any(Object),
     );
   });
 
@@ -616,8 +599,8 @@ describe('Masto', () => {
 
   test('fetchPushSubscription', async () => {
     await masto.fetchPushSubscription();
-    expect(mockPost).toBeCalledTimes(1);
-    expect(mockPost).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('updatePushSubscription', async () => {

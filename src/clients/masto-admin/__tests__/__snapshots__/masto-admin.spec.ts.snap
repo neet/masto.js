@@ -1,0 +1,234 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MastoAdmin actionAccount 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/admin/accounts/123/action",
+      Object {
+        "report_id": "123123",
+        "send_email_notification": false,
+        "text": "Your account have been disabled",
+        "type": "disable",
+        "warning_preset_id": "123123",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`MastoAdmin approveAccount 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/admin/accounts/123/approve",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`MastoAdmin assignReportToSelf 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/admin/reports/123/assign_to_self",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`MastoAdmin enableAccount 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/admin/accounts/123/enable",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`MastoAdmin fetchAccount 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/admin/accounts/123",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`MastoAdmin fetchAccounts 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/admin/accounts",
+      undefined,
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`MastoAdmin fetchReport 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/admin/reports/123",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`MastoAdmin fetchReports 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/admin/reports",
+      undefined,
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`MastoAdmin rejectAccount 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/admin/accounts/123/reject",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`MastoAdmin reopenReport 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/admin/reports/123/reopen",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`MastoAdmin resolveReport 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/admin/reports/123/resolve",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`MastoAdmin unassignReport 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/admin/reports/123/unassign",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`MastoAdmin unsilenceAccount 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/admin/accounts/123/unsilence",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`MastoAdmin unsuspendAccount 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/admin/accounts/123/unsuspend",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
