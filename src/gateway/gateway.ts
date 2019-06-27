@@ -7,11 +7,9 @@ import { Instance } from '../entities/instance';
 import { MastoNotFoundError } from '../errors/masto-not-found-error';
 import { MastoRateLimitError } from '../errors/masto-rate-limit-error';
 import { MastoUnauthorizedError } from '../errors/masto-unauthorized-error';
+import { createFormData } from './create-form-data';
 import { isAxiosError } from './is-axios-error';
 import { WebSocketEvents } from './websocket';
-
-// tslint:disable-next-line no-import-side-effect
-import 'isomorphic-form-data';
 
 export interface GatewayConstructorParams {
   /** URI of the instance */
@@ -144,13 +142,7 @@ export class Gateway {
         return JSON.stringify(data);
 
       case 'multipart/form-data':
-        const formData = new FormData();
-
-        for (const [key, value] of Object.entries<string | Blob>(data)) {
-          formData.append(key, value);
-        }
-
-        return formData;
+        return createFormData(data);
 
       default:
         return data;
