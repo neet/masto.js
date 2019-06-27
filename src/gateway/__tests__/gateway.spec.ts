@@ -6,6 +6,7 @@ import { WebSocketEvents, mockConnect } from '../websocket';
 import { MastoUnauthorizedError } from '../../errors/masto-unauthorized-error';
 import { MastoNotFoundError } from '../../errors/masto-not-found-error';
 import { MastoRateLimitError } from '../../errors/masto-rate-limit-error';
+import 'isomorphic-form-data';
 
 jest.mock('../websocket');
 
@@ -103,6 +104,24 @@ describe('Gateway', () => {
     // @ts-ignore
     const result = gateway.transformResponse('aaa');
     expect(result).toEqual('aaa');
+  });
+
+  test('transform Object to JSON when `application/json`', () => {
+    const data = { a: 'foo' };
+    // @ts-ignore
+    const result = gateway.transformRequest(data, {
+      'Content-Type': 'application/json',
+    });
+    expect(result).toEqual(JSON.stringify(data));
+  });
+
+  test('transform Object to FormData when `multipart/form-data`', () => {
+    const data = { a: 'foo' };
+    // @ts-ignore
+    const result = gateway.transformRequest(data, {
+      'Content-Type': 'multipart/form-data',
+    });
+    expect(result).toBeInstanceOf(FormData);
   });
 
   test('call mockAxios.request with given options', async () => {

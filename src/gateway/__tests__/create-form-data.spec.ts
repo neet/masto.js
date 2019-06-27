@@ -80,7 +80,7 @@ test('nested object', () => {
         e21: {
           e211: 'string',
         },
-        e22: [1, 2, 3],
+        e22: [{ value: 1 }, { value: 2 }, { value: 3 }],
       },
     },
   });
@@ -90,5 +90,5 @@ test('nested object', () => {
   expect(getAll(result, 'c[]')).toEqual(['1', '2', '3']);
   expect(get(result, 'e[e1]')).toEqual('string');
   expect(get(result, 'e[e2][e21][e211]')).toEqual('string');
-  expect(getAll(result, 'e[e2][e22][]')).toEqual(['1', '2', '3']);
+  expect(getAll(result, 'e[e2][e22][][value]')).toEqual(['1', '2', '3']);
 });
