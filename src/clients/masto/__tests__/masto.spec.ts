@@ -4,10 +4,20 @@
 import axios from 'axios';
 import { Masto } from '../masto';
 // @ts-ignore
-import { WebSocketEvents, connectMock } from '../../../gateway/websocket';
+import {
+  Gateway,
+  mockGet,
+  mockPost,
+  mockDelete,
+  mockPut,
+  mockPatch,
+  mockPaginate,
+  mockStream,
+} from '../../../gateway/gateway';
 
 jest.mock('axios');
 jest.mock('../../../gateway/websocket');
+jest.mock('../../../gateway/gateway');
 
 describe('Masto', () => {
   const masto = new Masto({
@@ -27,50 +37,55 @@ describe('Masto', () => {
 
   beforeEach(async () => {
     masto.version = '99.99.9'; // avoid version error
-    (connectMock as jest.Mock).mockClear();
-    (axios.request as jest.Mock).mockClear();
+    mockGet.mockClear();
+    mockPost.mockClear();
+    mockDelete.mockClear();
+    mockPut.mockClear();
+    mockPatch.mockClear();
+    mockPaginate.mockClear();
+    mockStream.mockClear();
   });
 
   test('streamUser', async () => {
     await masto.streamUser();
-    expect(connectMock).toBeCalledTimes(1);
-    expect(connectMock).toMatchSnapshot();
+    expect(mockStream).toBeCalledTimes(1);
+    expect(mockStream).toMatchSnapshot();
   });
 
   test('streamPublicTimeline', async () => {
     await masto.streamPublicTimeline();
-    expect(connectMock).toBeCalledTimes(1);
-    expect(connectMock).toMatchSnapshot();
+    expect(mockStream).toBeCalledTimes(1);
+    expect(mockStream).toMatchSnapshot();
   });
 
   test('streamCommunityTimeline', async () => {
     await masto.streamCommunityTimeline();
-    expect(connectMock).toBeCalledTimes(1);
-    expect(connectMock).toMatchSnapshot();
+    expect(mockStream).toBeCalledTimes(1);
+    expect(mockStream).toMatchSnapshot();
   });
 
   test('streamTagTimeline', async () => {
     await masto.streamTagTimeline('deletetwitter');
-    expect(connectMock).toBeCalledTimes(1);
-    expect(connectMock).toMatchSnapshot();
+    expect(mockStream).toBeCalledTimes(1);
+    expect(mockStream).toMatchSnapshot();
   });
 
   test('streamLocalTagTimeline', async () => {
     await masto.streamLocalTagTimeline('deletetwitter');
-    expect(connectMock).toBeCalledTimes(1);
-    expect(connectMock).toMatchSnapshot();
+    expect(mockStream).toBeCalledTimes(1);
+    expect(mockStream).toMatchSnapshot();
   });
 
   test('streamListTimeline', async () => {
     await masto.streamListTimeline('123123');
-    expect(connectMock).toBeCalledTimes(1);
-    expect(connectMock).toMatchSnapshot();
+    expect(mockStream).toBeCalledTimes(1);
+    expect(mockStream).toMatchSnapshot();
   });
 
   test('streamDirectTimeline', async () => {
     await masto.streamDirectTimeline();
-    expect(connectMock).toBeCalledTimes(1);
-    expect(connectMock).toMatchSnapshot();
+    expect(mockStream).toBeCalledTimes(1);
+    expect(mockStream).toMatchSnapshot();
   });
 
   test('fetchAccessToken with authorization code', async () => {
@@ -81,8 +96,8 @@ describe('Masto', () => {
       client_id: '123123123',
       client_secret: '456456456',
     });
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('fetchAccessToken with password', async () => {
@@ -91,8 +106,8 @@ describe('Masto', () => {
       username: 'username',
       password: 'password',
     });
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('revokeAccessToken', async () => {
@@ -100,20 +115,20 @@ describe('Masto', () => {
       client_id: '123123123',
       client_secret: '456456456',
     });
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('fetchAccount', async () => {
     await masto.fetchAccount('123123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('fetchAccountIdentityProofs', async () => {
     await masto.fetchAccountIdentityProofs('123123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('createAccount', async () => {
@@ -123,14 +138,14 @@ describe('Masto', () => {
       email: 'example@example.com',
       agreement: true,
     });
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('verifyCredentials', async () => {
     await masto.verifyCredentials();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('updateCredentials', async () => {
@@ -152,8 +167,8 @@ describe('Masto', () => {
       //   },
       // ],
     });
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toBeCalledWith(
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toBeCalledWith(
       expect.objectContaining({
         data: expect.any(FormData),
       }),
@@ -161,59 +176,56 @@ describe('Masto', () => {
   });
 
   test('fetchAccountFollowers', async () => {
-    const iterable = masto.fetchAccountFollowers('123123123', {
+    masto.fetchAccountFollowers('123123123', {
       max_id: '5',
       since_id: '3',
       min_id: '2',
       limit: 10,
     });
-    await iterable.next();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPaginate).toBeCalledTimes(1);
+    expect(mockPaginate).toMatchSnapshot();
   });
 
   test('fetchAccountFollowing', async () => {
-    const iterable = masto.fetchAccountFollowing('123123123', {
+    masto.fetchAccountFollowing('123123123', {
       max_id: '5',
       since_id: '3',
       min_id: '2',
       limit: 10,
     });
-    await iterable.next();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPaginate).toBeCalledTimes(1);
+    expect(mockPaginate).toMatchSnapshot();
   });
 
   test('fetchAccountStatuses', async () => {
-    const iterable = masto.fetchAccountStatuses('123123123', {
+    masto.fetchAccountStatuses('123123123', {
       max_id: '5',
       since_id: '3',
       min_id: '2',
       limit: 10,
     });
-    await iterable.next();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPaginate).toBeCalledTimes(1);
+    expect(mockPaginate).toMatchSnapshot();
   });
 
   test('followAccount', async () => {
     await masto.followAccount('123123', {
       reblogs: false,
     });
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('unfollowAccount', async () => {
     await masto.unfollowAccount('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('fetchAccountRelationships', async () => {
     await masto.fetchAccountRelationships(['123123', '456456']);
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('searchAccounts', async () => {
@@ -223,8 +235,8 @@ describe('Masto', () => {
       limit: 123,
       following: false,
     });
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('createApp', async () => {
@@ -234,122 +246,118 @@ describe('Masto', () => {
       scopes: 'write read',
       website: 'https://example.com',
     });
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('verifyAppCredentials', async () => {
     await masto.verifyAppCredentials();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('fetchBlocks', async () => {
-    const iterable = masto.fetchBlocks({
+    masto.fetchBlocks({
       max_id: '5',
       since_id: '3',
       min_id: '2',
       limit: 10,
     });
-    await iterable.next();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPaginate).toBeCalledTimes(1);
+    expect(mockPaginate).toMatchSnapshot();
   });
 
   test('blockAccount', async () => {
     await masto.blockAccount('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('unblockAccount', async () => {
     await masto.unblockAccount('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('fetchCustomEmojis', async () => {
     await masto.fetchCustomEmojis();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('fetchDomainBlocks', async () => {
-    const iterable = masto.fetchDomainBlocks();
-    await iterable.next();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    masto.fetchDomainBlocks();
+    expect(mockPaginate).toBeCalledTimes(1);
+    expect(mockPaginate).toMatchSnapshot();
   });
 
   test('blockDomain', async () => {
     await masto.blockDomain('example.com');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('unblockDomain', async () => {
     await masto.unblockDomain('example.com');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('fetchEndorsements', async () => {
-    const iterable = masto.fetchEndorsements({
+    masto.fetchEndorsements({
       max_id: '5',
       since_id: '3',
       min_id: '2',
       limit: 10,
     });
-    await iterable.next();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPaginate).toBeCalledTimes(1);
+    expect(mockPaginate).toMatchSnapshot();
   });
 
   test('pinAccount', async () => {
     await masto.pinAccount('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('unpinAccount', async () => {
     await masto.unpinAccount('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('fetchFavourites', async () => {
-    const iterable = masto.fetchFavourites({
+    masto.fetchFavourites({
       max_id: '5',
       since_id: '3',
       min_id: '2',
       limit: 10,
     });
-    await iterable.next();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPaginate).toBeCalledTimes(1);
+    expect(mockPaginate).toMatchSnapshot();
   });
 
   test('favouriteStatus', async () => {
     await masto.favouriteStatus('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('unfavouriteStatus', async () => {
     await masto.unfavouriteStatus('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('fetchFilters', async () => {
     await masto.fetchFilters();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('fetchFilter', async () => {
     await masto.fetchFilter('123123');
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('createFiler', async () => {
@@ -360,8 +368,8 @@ describe('Masto', () => {
       whole_word: true,
       expires_in: 1000 * 60 * 60,
     });
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('updateFilter', async () => {
@@ -372,136 +380,134 @@ describe('Masto', () => {
       whole_word: true,
       expires_in: 1000 * 60 * 60,
     });
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPut).toBeCalledTimes(1);
+    expect(mockPut).toMatchSnapshot();
   });
 
   test('removeFilter', async () => {
     await masto.removeFilter('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockDelete).toBeCalledTimes(1);
+    expect(mockDelete).toMatchSnapshot();
   });
 
   test('fetchFollowRequests', async () => {
-    const iterable = masto.fetchFollowRequests({
+    masto.fetchFollowRequests({
       max_id: '5',
       since_id: '3',
       min_id: '2',
       limit: 10,
     });
-    await iterable.next();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPaginate).toBeCalledTimes(1);
+    expect(mockPaginate).toMatchSnapshot();
   });
 
   test('authorizeFollowRequest', async () => {
     await masto.authorizeFollowRequest('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('rejectFollowRequest', async () => {
     await masto.rejectFollowRequest('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('fetchSuggestions', async () => {
     await masto.fetchSuggestions();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('removeSuggestion', async () => {
     await masto.removeSuggestion('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockDelete).toBeCalledTimes(1);
+    expect(mockDelete).toMatchSnapshot();
   });
 
   test('fetchInstance', async () => {
     await masto.fetchInstance();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('fetchInstancesPeers', async () => {
     await masto.fetchInstancesPeers();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('fetchInstanceActivity', async () => {
     await masto.fetchInstanceActivity();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('fetchLists', async () => {
     await masto.fetchLists();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('fetchAccountLists', async () => {
     await masto.fetchAccountLists('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('fetchListAccounts', async () => {
-    const iterable = masto.fetchListAccounts('123123', {
+    masto.fetchListAccounts('123123', {
       max_id: '5',
       since_id: '3',
       min_id: '2',
       limit: 10,
     });
-    await iterable.next();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPaginate).toBeCalledTimes(1);
+    expect(mockPaginate).toMatchSnapshot();
   });
 
   test('fetchList', async () => {
     await masto.fetchList('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('createList', async () => {
     await masto.createList({
       title: 'My list',
     });
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('updateList', async () => {
     await masto.updateList('123123', {
       title: 'My list',
     });
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPut).toBeCalledTimes(1);
+    expect(mockPut).toMatchSnapshot();
   });
 
   test('removeList', async () => {
     await masto.removeList('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockDelete).toBeCalledTimes(1);
+    expect(mockDelete).toMatchSnapshot();
   });
 
   test('addAccountToList', async () => {
     await masto.addAccountToList('123123', {
       account_ids: ['123', '456', '678'],
     });
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('removeAccountFromList', async () => {
     await masto.removeAccountFromList('123123', {
       account_ids: ['123', '456', '678'],
     });
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockDelete).toBeCalledTimes(1);
+    expect(mockDelete).toMatchSnapshot();
   });
 
   test('uploadMediaAttachment', async () => {
@@ -509,8 +515,8 @@ describe('Masto', () => {
       file: '...',
       description: 'Nice image',
     });
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toBeCalledWith(
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toBeCalledWith(
       expect.objectContaining({
         data: expect.any(FormData),
       }),
@@ -522,72 +528,71 @@ describe('Masto', () => {
       description: 'Nice image',
       focus: '0, 0',
     });
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPut).toBeCalledTimes(1);
+    expect(mockPut).toMatchSnapshot();
   });
 
   test('fetchMutes', async () => {
-    const iterable = masto.fetchMutes({
+    masto.fetchMutes({
       max_id: '5',
       since_id: '3',
       min_id: '2',
       limit: 10,
     });
-    await iterable.next();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPaginate).toBeCalledTimes(1);
+    expect(mockPaginate).toMatchSnapshot();
   });
 
   test('muteAccount', async () => {
     await masto.muteAccount('123123', {
       notifications: false,
     });
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('unmuteAccount', async () => {
     await masto.unmuteAccount('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('muteStatus', async () => {
     await masto.muteStatus('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('unmuteStatus', async () => {
     await masto.unmuteStatus('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('fetchNotifications', async () => {
     await masto.fetchNotifications({
       exclude_types: ['favourite', 'follow', 'mention', 'poll', 'reblog'],
     });
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('fetchNotification', async () => {
     await masto.fetchNotification('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('clearNotifications', async () => {
     await masto.clearNotifications();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('dissmissNotification', async () => {
     await masto.dissmissNotification('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('addPushSubscription', async () => {
@@ -605,14 +610,14 @@ describe('Masto', () => {
         },
       },
     });
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('fetchPushSubscription', async () => {
     await masto.fetchPushSubscription();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('updatePushSubscription', async () => {
@@ -626,28 +631,28 @@ describe('Masto', () => {
         },
       },
     });
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPut).toBeCalledTimes(1);
+    expect(mockPut).toMatchSnapshot();
   });
 
   test('removePushSubscription', async () => {
     await masto.removePushSubscription();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockDelete).toBeCalledTimes(1);
+    expect(mockDelete).toMatchSnapshot();
   });
 
   test('fetchPoll', async () => {
     await masto.fetchPoll('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('votePoll', async () => {
     await masto.votePoll('123123', {
       choices: ['xxx', 'yyy', 'zzz'],
     });
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('reportAccount', async () => {
@@ -657,51 +662,50 @@ describe('Masto', () => {
       comment: 'this is a report',
       forward: true,
     });
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('fetchScheduledStatuses', async () => {
     await masto.fetchScheduledStatuses();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('fetchScheduledStatus', async () => {
     await masto.fetchScheduledStatus('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('updateScheduledStatus', async () => {
     await masto.updateScheduledStatus('123123', {
       scheduled_at: '2019-03-28T04:39:31.121Z',
     });
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPut).toBeCalledTimes(1);
+    expect(mockPut).toMatchSnapshot();
   });
 
   test('removeScheduledStatus', async () => {
     await masto.removeScheduledStatus('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockDelete).toBeCalledTimes(1);
+    expect(mockDelete).toMatchSnapshot();
   });
 
   test('search (v1)', async () => {
-    const iterable = masto.search(
+    masto.search(
       {
         q: 'query',
         resolve: true,
       },
       'v1',
     );
-    iterable.next();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPaginate).toBeCalledTimes(1);
+    expect(mockPaginate).toMatchSnapshot();
   });
 
   test('search', async () => {
-    const iterable = masto.search({
+    masto.search({
       q: 'query',
       resolve: true,
       max_id: '5',
@@ -710,51 +714,48 @@ describe('Masto', () => {
       limit: 10,
       account_id: '123',
     });
-    await iterable.next();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPaginate).toBeCalledTimes(1);
+    expect(mockPaginate).toMatchSnapshot();
   });
 
   test('fetchStatus', async () => {
     await masto.fetchStatus('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('fetchStatusContext', async () => {
     await masto.fetchStatusContext('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('fetchStatusCard', async () => {
     await masto.fetchStatusCard('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('fetchStatusRebloggedBy', async () => {
-    const iterable = masto.fetchStatusRebloggedBy('123123', {
+    masto.fetchStatusRebloggedBy('123123', {
       max_id: '5',
       since_id: '3',
       min_id: '2',
       limit: 10,
     });
-    await iterable.next();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPaginate).toBeCalledTimes(1);
+    expect(mockPaginate).toMatchSnapshot();
   });
 
   test('fetchStatusFavouritedBy', async () => {
-    const iterable = masto.fetchStatusFavouritedBy('123123', {
+    masto.fetchStatusFavouritedBy('123123', {
       max_id: '5',
       since_id: '3',
       min_id: '2',
       limit: 10,
     });
-    iterable.next();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPaginate).toBeCalledTimes(1);
+    expect(mockPaginate).toMatchSnapshot();
   });
 
   test('createStatus with content', async () => {
@@ -773,16 +774,16 @@ describe('Masto', () => {
       scheduled_at: '2019-03-28T04:39:31.121Z',
       language: 'en',
     });
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('createStatus with media ids', async () => {
     await masto.createStatus({
       media_ids: ['123', '456'],
     });
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('createStatus with Idempotency-Key', async () => {
@@ -792,134 +793,127 @@ describe('Masto', () => {
       },
       '59fe7e30-1a74-4050-8af7-5a8c7a224794',
     );
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('removeStatus', async () => {
     await masto.removeStatus('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockDelete).toBeCalledTimes(1);
+    expect(mockDelete).toMatchSnapshot();
   });
 
   test('reblogStatus', async () => {
     await masto.reblogStatus('123123', { visibility: 'direct' });
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('unreblogStatus', async () => {
     await masto.unreblogStatus('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('pinStatus', async () => {
     await masto.pinStatus('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('unpinStatus', async () => {
     await masto.unpinStatus('123123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('fetchHomeTimeline', async () => {
-    const iterable = masto.fetchHomeTimeline({
+    masto.fetchHomeTimeline({
       max_id: '5',
       since_id: '3',
       min_id: '2',
       limit: 10,
     });
-    await iterable.next();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPaginate).toBeCalledTimes(1);
+    expect(mockPaginate).toMatchSnapshot();
   });
 
   test('fetchCommunityTimeline', async () => {
-    const iterable = await masto.fetchCommunityTimeline({
+    await masto.fetchCommunityTimeline({
       max_id: '5',
       since_id: '3',
       min_id: '2',
       limit: 10,
     });
-    await iterable.next();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPaginate).toBeCalledTimes(1);
+    expect(mockPaginate).toMatchSnapshot();
   });
 
   test('fetchPublicTimeline', async () => {
-    const iterable = await masto.fetchPublicTimeline({
+    await masto.fetchPublicTimeline({
       max_id: '5',
       since_id: '3',
       min_id: '2',
       limit: 10,
     });
-    await iterable.next();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPaginate).toBeCalledTimes(1);
+    expect(mockPaginate).toMatchSnapshot();
   });
 
   test('fetchTagTimeline', async () => {
-    const iterable = masto.fetchTagTimeline('DeleteTwitter', {
+    masto.fetchTagTimeline('DeleteTwitter', {
       max_id: '5',
       since_id: '3',
       min_id: '2',
       limit: 10,
     });
-    await iterable.next();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPaginate).toBeCalledTimes(1);
+    expect(mockPaginate).toMatchSnapshot();
   });
 
   test('fetchListTimeline', async () => {
-    const iterable = masto.fetchListTimeline('123123', {
+    masto.fetchListTimeline('123123', {
       max_id: '5',
       since_id: '3',
       min_id: '2',
       limit: 10,
     });
-    iterable.next();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPaginate).toBeCalledTimes(1);
+    expect(mockPaginate).toMatchSnapshot();
   });
 
   test('fetchDirectTimeline', async () => {
     masto.version = '2.5.0';
-    const iterable = masto.fetchDirectTimeline({
+    masto.fetchDirectTimeline({
       max_id: '5',
       since_id: '3',
       min_id: '2',
       limit: 10,
     });
-    iterable.next();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPaginate).toBeCalledTimes(1);
+    expect(mockPaginate).toMatchSnapshot();
   });
 
   test('fetchConversations', async () => {
-    const iterable = masto.fetchConversations({
+    masto.fetchConversations({
       max_id: '5',
       since_id: '3',
       min_id: '2',
       limit: 10,
     });
-    await iterable.next();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPaginate).toBeCalledTimes(1);
+    expect(mockPaginate).toMatchSnapshot();
   });
 
   test('followAccountByUsername', async () => {
     await masto.followAccountByUsername('user@example.com');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('fetchPreferences', async () => {
     await masto.fetchPreferences();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 });

@@ -76,16 +76,14 @@ export class Gateway {
     }
 
     this.axios = axios.create({
+      baseURL: this.uri,
       transformRequest: this.transformRequest,
       transformResponse: this.transformResponse,
-      ...params.axiosConfig,
+      ...(params.axiosConfig || {}),
     });
 
-    this.axios.defaults.baseURL = this.uri;
-    this.axios.defaults.headers.common = {
-      Authorization: `Bearer ${this.accessToken}`,
-      'Content-Type': 'application/json',
-    };
+    this.axios.defaults.headers.common['Content-Type'] = 'application/json';
+    this.axios.defaults.headers.common.Authorization = `Bearer ${this.accessToken}`;
   }
 
   get uri() {

@@ -3,12 +3,19 @@ import axios from 'axios';
 // @ts-ignore
 import { Gateway, getMock } from '../gateway';
 // @ts-ignore
-import { WebSocketEvents, connectMock } from '../websocket';
+import { WebSocketEvents, mockConnect } from '../websocket';
 import { MastoUnauthorizedError } from '../../errors/masto-unauthorized-error';
 import { MastoNotFoundError } from '../../errors/masto-not-found-error';
 import { MastoRateLimitError } from '../../errors/masto-rate-limit-error';
 
-jest.mock('axios');
+const mockRequest = jest.fn();
+
+jest.mock('axios', () => ({
+  create: jest.fn(() => ({
+    request: mockRequest,
+  })),
+}));
+
 jest.mock('../websocket');
 
 describe('Gateway', () => {
@@ -23,14 +30,14 @@ describe('Gateway', () => {
       streamingApiUrl: 'wss://example.com',
     });
 
-    ((axios.request as any) as jest.Mock).mockReset();
-    ((axios.request as any) as jest.Mock).mockResolvedValue({
+    mockRequest.mockReset();
+    mockRequest.mockResolvedValue({
       data: undefined,
     });
   });
 
   test('login', async () => {
-    (axios.request as jest.Mock).mockResolvedValueOnce({
+    mockRequest.mockResolvedValueOnce({
       data: {
         version: '2.8.0',
         urls: {
@@ -161,7 +168,7 @@ describe('Gateway', () => {
     };
     // @ts-ignore
     await gateway.request(options);
-    expect(axios.request as jest.Mock).toBeCalledWith(options);
+    expect(mockRequest).toBeCalledWith(options);
   });
 
   test('throw MastodonUnauthorizedError when 401 responsed', async () => {
@@ -170,7 +177,7 @@ describe('Gateway', () => {
       url: 'https://example.com',
     };
 
-    (axios.request as jest.Mock).mockRejectedValue({
+    mockRequest.mockRejectedValue({
       response: {
         status: 401,
         data: {
@@ -191,7 +198,7 @@ describe('Gateway', () => {
       url: 'https://example.com',
     };
 
-    (axios.request as jest.Mock).mockRejectedValue({
+    mockRequest.mockRejectedValue({
       response: {
         status: 404,
         data: {
@@ -212,7 +219,7 @@ describe('Gateway', () => {
       url: 'https://example.com',
     };
 
-    (axios.request as jest.Mock).mockRejectedValue({
+    mockRequest.mockRejectedValue({
       response: {
         status: 429,
         data: {
@@ -244,7 +251,7 @@ describe('Gateway', () => {
     }
 
     const error = new MyAxiosError();
-    (axios.request as jest.Mock).mockRejectedValue(error);
+    mockRequest.mockRejectedValue(error);
 
     // @ts-ignore
     expect(gateway.request(options)).rejects.toThrow(error);
@@ -257,7 +264,7 @@ describe('Gateway', () => {
     };
 
     const rejectedValue = new Error('qwerty');
-    (axios.request as jest.Mock).mockRejectedValue(rejectedValue);
+    mockRequest.mockRejectedValue(rejectedValue);
 
     // @ts-ignore
     expect(gateway.request(options)).rejects.toThrow(rejectedValue);
@@ -267,7 +274,7 @@ describe('Gateway', () => {
     const params = { a: 'a', b: 'b' };
     await gateway.get('/', params);
 
-    expect(axios.request as jest.Mock).toBeCalledWith(
+    expect(mockRequest).toBeCalledWith(
       expect.objectContaining({
         method: 'GET',
         url: 'https://example.com',
@@ -279,7 +286,7 @@ describe('Gateway', () => {
   test('call axiso.request with POST param', async () => {
     await gateway.post('/');
 
-    expect(axios.request as jest.Mock).toBeCalledWith(
+    expect(mockRequest).toBeCalledWith(
       expect.objectContaining({
         method: 'POST',
         url: 'https://example.com',
@@ -290,7 +297,7 @@ describe('Gateway', () => {
   test('call axiso.request with PUT param', async () => {
     await gateway.put('/');
 
-    expect(axios.request as jest.Mock).toBeCalledWith(
+    expect(mockRequest).toBeCalledWith(
       expect.objectContaining({
         method: 'PUT',
         url: 'https://example.com',
@@ -301,7 +308,7 @@ describe('Gateway', () => {
   test('call axiso.request with DELETE param', async () => {
     await gateway.delete('/');
 
-    expect(axios.request as jest.Mock).toBeCalledWith(
+    expect(mockRequest).toBeCalledWith(
       expect.objectContaining({
         method: 'DELETE',
         url: 'https://example.com',
@@ -312,7 +319,7 @@ describe('Gateway', () => {
   test('call axiso.request with PATCH param', async () => {
     await gateway.patch('/');
 
-    expect(axios.request as jest.Mock).toBeCalledWith(
+    expect(mockRequest).toBeCalledWith(
       expect.objectContaining({
         method: 'PATCH',
         url: 'https://example.com',
@@ -323,13 +330,13 @@ describe('Gateway', () => {
   test('initialize WebSocketEvents and call connect with given params', async () => {
     const params = { a: 'a', b: 'b' };
     await gateway.stream('/', params);
-    expect(connectMock).toBeCalledWith('wss://example.com/?a=a&b=b', []);
+    expect(mockConnect).toBeCalledWith('wss://example.com/?a=a&b=b', []);
   });
 
   test('initialize WebSocketEvents and call connect with access token', async () => {
     gateway.accessToken = 'tokentoken';
     await gateway.stream('/');
-    expect(connectMock).toBeCalledWith('wss://example.com/', ['tokentoken']);
+    expect(mockConnect).toBeCalledWith('wss://example.com/', ['tokentoken']);
   });
 
   test('initialize WebSocketEvents and call connect with access token as a param for Mastodon < v2.8.4', async () => {
@@ -337,7 +344,7 @@ describe('Gateway', () => {
     gateway.accessToken = 'tokentoken';
     await gateway.stream('/');
 
-    expect(connectMock).toBeCalledWith(
+    expect(mockConnect).toBeCalledWith(
       'wss://example.com/?access_token=tokentoken',
       [],
     );
@@ -358,11 +365,11 @@ describe('Gateway', () => {
       },
     };
 
-    (axios.request as jest.Mock).mockResolvedValue(firstResponse);
+    mockRequest.mockResolvedValue(firstResponse);
 
     const firstResult = await iterable.next();
 
-    expect(axios.request as jest.Mock).toBeCalledWith(
+    expect(mockRequest).toBeCalledWith(
       expect.objectContaining({
         method: 'GET',
         url: 'https://example.com',
@@ -384,11 +391,11 @@ describe('Gateway', () => {
       },
     };
 
-    (axios.request as jest.Mock).mockResolvedValue(secondResponse);
+    mockRequest.mockResolvedValue(secondResponse);
 
     const result = await iterable.next();
 
-    expect(axios.request as jest.Mock).toBeCalledWith(
+    expect(mockRequest).toBeCalledWith(
       expect.objectContaining({
         method: 'GET',
         url: 'https://example.com/next',
@@ -411,7 +418,7 @@ describe('Gateway', () => {
       response: {},
     };
 
-    (axios.request as jest.Mock).mockResolvedValue(response);
+    mockRequest.mockResolvedValue(response);
     iterable.next();
     iterable.next({ reset: true });
 
