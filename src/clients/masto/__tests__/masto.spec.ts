@@ -549,11 +549,11 @@ describe('Masto', () => {
   });
 
   test('fetchNotifications', async () => {
-    await masto.fetchNotifications({
+    masto.fetchNotifications({
       exclude_types: ['favourite', 'follow', 'mention', 'poll', 'reblog'],
     });
-    expect(mockGet).toBeCalledTimes(1);
-    expect(mockGet).toMatchSnapshot();
+    expect(mockPaginate).toBeCalledTimes(1);
+    expect(mockPaginate).toMatchSnapshot();
   });
 
   test('fetchNotification', async () => {

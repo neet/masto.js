@@ -805,7 +805,7 @@ export class Masto extends Gateway {
    */
   @available({ since: '0.0.0' })
   public fetchNotifications(params?: FetchNotificationsParams) {
-    return this.get<Notification[]>('/api/v1/notifications', params);
+    return this.paginate<Notification[]>('/api/v1/notifications', params);
   }
 
   /**
