@@ -1,4 +1,4 @@
-import { isAxiosError } from '../utils';
+import { isAxiosError } from '../is-axios-error';
 
 test('return true if `response` is contained in the object', () => {
   const obj = {

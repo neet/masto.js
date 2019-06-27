@@ -7,7 +7,7 @@ import { Instance } from '../entities/instance';
 import { MastoNotFoundError } from '../errors/masto-not-found-error';
 import { MastoRateLimitError } from '../errors/masto-rate-limit-error';
 import { MastoUnauthorizedError } from '../errors/masto-unauthorized-error';
-import { isAxiosError } from './utils';
+import { isAxiosError } from './is-axios-error';
 import { WebSocketEvents } from './websocket';
 
 // tslint:disable-next-line no-import-side-effect
