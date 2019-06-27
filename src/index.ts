@@ -1,6 +1,6 @@
 export * from './gateway/gateway';
 export * from './gateway/websocket';
-export * from './gateway/utils';
+export * from './gateway/is-axios-error';
 
 export * from './clients/decorators';
 

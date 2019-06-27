@@ -1,36 +1,39 @@
 // tslint:disable
 import axios from 'axios';
+import { Gateway } from '../gateway';
 // @ts-ignore
-import { Gateway, getMock } from '../gateway';
-// @ts-ignore
-import { WebSocketEvents, connectMock } from '../websocket';
+import { WebSocketEvents, mockConnect } from '../websocket';
 import { MastoUnauthorizedError } from '../../errors/masto-unauthorized-error';
 import { MastoNotFoundError } from '../../errors/masto-not-found-error';
 import { MastoRateLimitError } from '../../errors/masto-rate-limit-error';
+import 'isomorphic-form-data';
 
-jest.mock('axios');
 jest.mock('../websocket');
+
+// Mock `axios.create`. We don't use any functions from axios
+// but from `axios.create`
+jest.mock('axios');
+const mockAxios = jest.genMockFromModule<typeof axios>('axios');
+(axios.create as jest.Mock).mockImplementation(() => mockAxios);
 
 describe('Gateway', () => {
   class InheritedGateway extends Gateway {}
 
-  let gateway!: InheritedGateway;
+  const gateway = new InheritedGateway({
+    uri: 'https://example.com',
+    version: '99.9.9',
+    streamingApiUrl: 'wss://example.com',
+  });
 
   beforeEach(() => {
-    gateway = new InheritedGateway({
-      uri: 'https://example.com',
-      version: '99.9.9',
-      streamingApiUrl: 'wss://example.com',
-    });
-
-    ((axios.request as any) as jest.Mock).mockReset();
-    ((axios.request as any) as jest.Mock).mockResolvedValue({
+    ((axios as any) as jest.Mock).mockClear();
+    ((mockAxios.request as any) as jest.Mock).mockResolvedValue({
       data: undefined,
     });
   });
 
   test('login', async () => {
-    (axios.request as jest.Mock).mockResolvedValueOnce({
+    ((mockAxios.request as any) as jest.Mock).mockResolvedValueOnce({
       data: {
         version: '2.8.0',
         urls: {
@@ -50,43 +53,43 @@ describe('Gateway', () => {
   });
 
   test('streamingApiUrl has been set if construct with streamingApiUrl', () => {
-    gateway = new InheritedGateway({
+    const customGateway = new InheritedGateway({
       uri: 'https://example.com',
       streamingApiUrl: 'wss://example.com',
     });
-    expect(gateway.streamingApiUrl).toBe('wss://example.com');
+    expect(customGateway.streamingApiUrl).toBe('wss://example.com');
   });
 
   test('version has been set if construct with version ', () => {
-    gateway = new InheritedGateway({
+    const customGateway = new InheritedGateway({
       uri: 'https://example.com',
       version: '1.2.3',
     });
-    expect(gateway.version).toBe('1.2.3');
+    expect(customGateway.version).toBe('1.2.3');
   });
 
   test('accessToken has been set if construct with accessToken', () => {
-    gateway = new InheritedGateway({
+    const customGateway = new InheritedGateway({
       uri: 'https://example.com',
       accessToken: 'token token',
     });
-    expect(gateway.accessToken).toBe('token token');
+    expect(customGateway.accessToken).toBe('token token');
   });
 
   test('this._uri accessor works', () => {
-    gateway = new InheritedGateway({
+    const customGateway = new InheritedGateway({
       uri: 'https://example.com/aaa',
     });
-    gateway.uri = 'https://example.com/bbb';
-    expect(gateway.uri).toEqual('https://example.com/bbb');
+    customGateway.uri = 'https://example.com/bbb';
+    expect(customGateway.uri).toEqual('https://example.com/bbb');
   });
 
   test('this._streamingApiUrl accessor works', () => {
-    gateway = new InheritedGateway({
+    const customGateway = new InheritedGateway({
       uri: 'wss://example.com/aaa',
     });
-    gateway.uri = 'wss://example.com/bbb';
-    expect(gateway.uri).toEqual('wss://example.com/bbb');
+    customGateway.uri = 'wss://example.com/bbb';
+    expect(customGateway.uri).toEqual('wss://example.com/bbb');
   });
 
   test('transform JSON to JS object', () => {
@@ -103,74 +106,53 @@ describe('Gateway', () => {
     expect(result).toEqual('aaa');
   });
 
-  test('transform JS object to JSON string when application/json or nothing specified', () => {
-    const data = { a: { b: { c: 'd' } } };
-
+  test('transform Object to JSON when `application/json`', () => {
+    const config = {
+      data: { a: 'foo' },
+      headers: { 'Content-Type': 'application/json' },
+    };
     // @ts-ignore
-    const result = gateway.decorateRequestConfig({ data });
-
-    expect(result).toEqual(
-      expect.objectContaining({
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        data: JSON.stringify(data),
-      }),
-    );
+    const result = gateway.transformConfig(config);
+    expect(result.data).toEqual(JSON.stringify(config.data));
   });
 
-  test('transform JS object to FormData when multipart/form-data speicifed', () => {
-    const data = { a: 'a', b: 'b' };
-
+  test('transform Object to FormData when `multipart/form-data`', () => {
+    const config = {
+      data: { a: 'foo' },
+      headers: { 'Content-Type': 'multipart/form-data' },
+    };
     // @ts-ignore
-    const result = gateway.decorateRequestConfig({
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-      data,
-    });
-
+    const result = gateway.transformConfig(config);
     expect(result.data).toBeInstanceOf(FormData);
   });
 
-  test('will not transform JS object when unknown MIME speicifed', () => {
-    const data = { a: 'a', b: 'b' };
-
+  test('not transform data when unknown MIME given', () => {
+    const config = {
+      data: { a: 'foo' },
+      headers: { 'Content-Type': 'image/png' },
+    };
     // @ts-ignore
-    const result = gateway.decorateRequestConfig({
-      headers: {
-        'Content-Type': 'image/png',
-      },
-      data,
-    });
-
-    expect(result.data).toEqual(data);
+    const result = gateway.transformConfig(config);
+    expect(result.data).toEqual({ a: 'foo' });
   });
 
-  test('add Authorization header if gateway has accessToken', () => {
-    gateway.accessToken = 'tokentoken';
-    // @ts-ignore
-    const result = gateway.decorateRequestConfig();
-    expect(result.headers.Authorization).toBeDefined();
-  });
-
-  test('call axios.request with given options', async () => {
+  test('call mockAxios.request with given options', async () => {
     const options = {
       method: 'POST',
-      url: 'https://example.com',
+      url: '/',
     };
     // @ts-ignore
     await gateway.request(options);
-    expect(axios.request as jest.Mock).toBeCalledWith(options);
+    expect((mockAxios.request as any) as jest.Mock).toBeCalledWith(options);
   });
 
   test('throw MastodonUnauthorizedError when 401 responsed', async () => {
     const options = {
       method: 'POST',
-      url: 'https://example.com',
+      url: '/',
     };
 
-    (axios.request as jest.Mock).mockRejectedValue({
+    ((mockAxios.request as any) as jest.Mock).mockRejectedValue({
       response: {
         status: 401,
         data: {
@@ -188,10 +170,10 @@ describe('Gateway', () => {
   test('throw MastodonNotFoundError when 404 responsed', async () => {
     const options = {
       method: 'POST',
-      url: 'https://example.com',
+      url: '/',
     };
 
-    (axios.request as jest.Mock).mockRejectedValue({
+    ((mockAxios.request as any) as jest.Mock).mockRejectedValue({
       response: {
         status: 404,
         data: {
@@ -209,10 +191,10 @@ describe('Gateway', () => {
   test('throw MastodonRateLimitError when 429 responsed', async () => {
     const options = {
       method: 'POST',
-      url: 'https://example.com',
+      url: '/',
     };
 
-    (axios.request as jest.Mock).mockRejectedValue({
+    ((mockAxios.request as any) as jest.Mock).mockRejectedValue({
       response: {
         status: 429,
         data: {
@@ -230,7 +212,7 @@ describe('Gateway', () => {
   test('AxiosError: throw given error directly if non of prepared statuses matched', () => {
     const options = {
       method: 'POST',
-      url: 'https://example.com',
+      url: '/',
     };
 
     class MyAxiosError extends Error {
@@ -244,7 +226,7 @@ describe('Gateway', () => {
     }
 
     const error = new MyAxiosError();
-    (axios.request as jest.Mock).mockRejectedValue(error);
+    ((mockAxios.request as any) as jest.Mock).mockRejectedValue(error);
 
     // @ts-ignore
     expect(gateway.request(options)).rejects.toThrow(error);
@@ -253,69 +235,69 @@ describe('Gateway', () => {
   test('Error: throw given error directly if non of prepared statuses matched', () => {
     const options = {
       method: 'POST',
-      url: 'https://example.com',
+      url: '/',
     };
 
     const rejectedValue = new Error('qwerty');
-    (axios.request as jest.Mock).mockRejectedValue(rejectedValue);
+    ((mockAxios.request as any) as jest.Mock).mockRejectedValue(rejectedValue);
 
     // @ts-ignore
     expect(gateway.request(options)).rejects.toThrow(rejectedValue);
   });
 
-  test('call axiso.request with GET param', async () => {
+  test('call axios.request with GET param', async () => {
     const params = { a: 'a', b: 'b' };
     await gateway.get('/', params);
 
-    expect(axios.request as jest.Mock).toBeCalledWith(
+    expect((mockAxios.request as any) as jest.Mock).toBeCalledWith(
       expect.objectContaining({
         method: 'GET',
-        url: 'https://example.com',
+        url: '/',
         params,
       }),
     );
   });
 
-  test('call axiso.request with POST param', async () => {
+  test('call axios.request with POST param', async () => {
     await gateway.post('/');
 
-    expect(axios.request as jest.Mock).toBeCalledWith(
+    expect((mockAxios.request as any) as jest.Mock).toBeCalledWith(
       expect.objectContaining({
         method: 'POST',
-        url: 'https://example.com',
+        url: '/',
       }),
     );
   });
 
-  test('call axiso.request with PUT param', async () => {
+  test('call axios.request with PUT param', async () => {
     await gateway.put('/');
 
-    expect(axios.request as jest.Mock).toBeCalledWith(
+    expect((mockAxios.request as any) as jest.Mock).toBeCalledWith(
       expect.objectContaining({
         method: 'PUT',
-        url: 'https://example.com',
+        url: '/',
       }),
     );
   });
 
-  test('call axiso.request with DELETE param', async () => {
+  test('call axios.request with DELETE param', async () => {
     await gateway.delete('/');
 
-    expect(axios.request as jest.Mock).toBeCalledWith(
+    expect((mockAxios.request as any) as jest.Mock).toBeCalledWith(
       expect.objectContaining({
         method: 'DELETE',
-        url: 'https://example.com',
+        url: '/',
       }),
     );
   });
 
-  test('call axiso.request with PATCH param', async () => {
+  test('call axios.request with PATCH param', async () => {
     await gateway.patch('/');
 
-    expect(axios.request as jest.Mock).toBeCalledWith(
+    expect((mockAxios.request as any) as jest.Mock).toBeCalledWith(
       expect.objectContaining({
         method: 'PATCH',
-        url: 'https://example.com',
+        url: '/',
       }),
     );
   });
@@ -323,13 +305,13 @@ describe('Gateway', () => {
   test('initialize WebSocketEvents and call connect with given params', async () => {
     const params = { a: 'a', b: 'b' };
     await gateway.stream('/', params);
-    expect(connectMock).toBeCalledWith('wss://example.com/?a=a&b=b', []);
+    expect(mockConnect).toBeCalledWith('wss://example.com/?a=a&b=b', []);
   });
 
   test('initialize WebSocketEvents and call connect with access token', async () => {
     gateway.accessToken = 'tokentoken';
     await gateway.stream('/');
-    expect(connectMock).toBeCalledWith('wss://example.com/', ['tokentoken']);
+    expect(mockConnect).toBeCalledWith('wss://example.com/', ['tokentoken']);
   });
 
   test('initialize WebSocketEvents and call connect with access token as a param for Mastodon < v2.8.4', async () => {
@@ -337,7 +319,7 @@ describe('Gateway', () => {
     gateway.accessToken = 'tokentoken';
     await gateway.stream('/');
 
-    expect(connectMock).toBeCalledWith(
+    expect(mockConnect).toBeCalledWith(
       'wss://example.com/?access_token=tokentoken',
       [],
     );
@@ -358,14 +340,14 @@ describe('Gateway', () => {
       },
     };
 
-    (axios.request as jest.Mock).mockResolvedValue(firstResponse);
+    ((mockAxios.request as any) as jest.Mock).mockResolvedValue(firstResponse);
 
     const firstResult = await iterable.next();
 
-    expect(axios.request as jest.Mock).toBeCalledWith(
+    expect((mockAxios.request as any) as jest.Mock).toBeCalledWith(
       expect.objectContaining({
         method: 'GET',
-        url: 'https://example.com',
+        url: 'https://example.com/',
         params: {
           since_id: '123',
         },
@@ -384,11 +366,11 @@ describe('Gateway', () => {
       },
     };
 
-    (axios.request as jest.Mock).mockResolvedValue(secondResponse);
+    ((mockAxios.request as any) as jest.Mock).mockResolvedValue(secondResponse);
 
     const result = await iterable.next();
 
-    expect(axios.request as jest.Mock).toBeCalledWith(
+    expect((mockAxios.request as any) as jest.Mock).toBeCalledWith(
       expect.objectContaining({
         method: 'GET',
         url: 'https://example.com/next',
@@ -411,11 +393,11 @@ describe('Gateway', () => {
       response: {},
     };
 
-    (axios.request as jest.Mock).mockResolvedValue(response);
+    ((mockAxios.request as any) as jest.Mock).mockResolvedValue(response);
     iterable.next();
     iterable.next({ reset: true });
 
-    expect(axios.request).toHaveBeenLastCalledWith(
+    expect(mockAxios.request).toHaveBeenLastCalledWith(
       expect.objectContaining({
         url: gateway.uri + initialPath,
         params: initialParmas,

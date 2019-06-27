@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import normalizeUrl from 'normalize-url';
 import querystring from 'querystring';
 import semver from 'semver';
@@ -7,11 +7,9 @@ import { Instance } from '../entities/instance';
 import { MastoNotFoundError } from '../errors/masto-not-found-error';
 import { MastoRateLimitError } from '../errors/masto-rate-limit-error';
 import { MastoUnauthorizedError } from '../errors/masto-unauthorized-error';
-import { isAxiosError } from './utils';
+import { createFormData } from './create-form-data';
+import { isAxiosError } from './is-axios-error';
 import { WebSocketEvents } from './websocket';
-
-// tslint:disable-next-line no-import-side-effect
-import 'isomorphic-form-data';
 
 export interface GatewayConstructorParams {
   /** URI of the instance */
@@ -22,9 +20,15 @@ export interface GatewayConstructorParams {
   version?: string;
   /** Access token of the user */
   accessToken?: string;
+  /** Axios configureations. See [Axios'](https://github.com/axios/axios#request-config) docs */
+  axiosConfig?: AxiosRequestConfig;
 }
 
-export type LoginParams = Pick<GatewayConstructorParams, 'uri' | 'accessToken'>;
+/** Params for login. `version` and `streamingApiUrl` will be set automatically so not needed */
+export type LoginParams = Omit<
+  GatewayConstructorParams,
+  'version' | 'streamingApiUrl'
+>;
 
 export type PaginateNextOptions<Params> = {
   /** Reset pagination */
@@ -40,20 +44,26 @@ export type PaginateNextOptions<Params> = {
  * @param params Optional params
  */
 export class Gateway {
-  /** URI of the instance */
-  private _uri = '';
-  /** Streaming API URL of the instance */
-  private _streamingApiUrl = '';
+  /** Configured axios instance */
+  private axios: AxiosInstance;
   /** Version of the current instance */
   public version = '';
   /** API token of the user */
   public accessToken?: string;
+  /** URI of the instance */
+  private _uri = '';
+  /** Streaming API URL of the instance */
+  private _streamingApiUrl = '';
 
   /**
    * @param params Parameters
    */
   constructor(params: GatewayConstructorParams) {
     this.uri = params.uri;
+
+    if (params.accessToken) {
+      this.accessToken = params.accessToken;
+    }
 
     if (params.streamingApiUrl) {
       this.streamingApiUrl = params.streamingApiUrl;
@@ -63,9 +73,15 @@ export class Gateway {
       this.version = params.version;
     }
 
-    if (params.accessToken) {
-      this.accessToken = params.accessToken;
-    }
+    this.axios = axios.create({
+      baseURL: this.uri,
+      transformResponse: this.transformResponse,
+      ...(params.axiosConfig || {}),
+    });
+
+    this.axios.interceptors.request.use(this.transformConfig);
+    this.axios.defaults.headers.common['Content-Type'] = 'application/json';
+    this.axios.defaults.headers.common.Authorization = `Bearer ${this.accessToken}`;
   }
 
   get uri() {
@@ -95,6 +111,7 @@ export class Gateway {
   ) {
     const gateway = new this(params) as InstanceType<T>;
     const instance = await gateway.get<Instance>('/api/v1/instance');
+
     gateway.version = instance.version;
     gateway.streamingApiUrl = instance.urls.streaming_api;
 
@@ -106,69 +123,44 @@ export class Gateway {
    * @param response Response object
    * @return Parsed entitiy
    */
-  private transformResponse(response: any) {
+  private transformResponse(data: any, _headers: any) {
     try {
-      return JSON.parse(response);
+      return JSON.parse(data);
     } catch {
-      return response;
+      return data;
     }
   }
 
   /**
    * Encode data in request options and add authorization / content-type header
-   * @param data Any data
-   * @param options Axios options
+   * @param config Axios config
+   * @return New config
    */
-  private decorateRequestConfig(
-    options: AxiosRequestConfig = {},
-  ): AxiosRequestConfig {
-    options.url = options.url && normalizeUrl(options.url);
-    options.transformResponse = [this.transformResponse];
+  private transformConfig(originalConfig: AxiosRequestConfig) {
+    const config = { ...originalConfig };
 
-    if (!options.headers) {
-      options.headers = {};
-    }
-
-    // Set `application/json` as the default
-    if (!options.headers['Content-Type']) {
-      options.headers['Content-Type'] = 'application/json';
-    }
-
-    // Add oauth header
-    if (this.accessToken) {
-      options.headers.Authorization = `Bearer ${this.accessToken}`;
-    }
-
-    switch (options.headers['Content-Type']) {
+    switch (config.headers['Content-Type']) {
       case 'application/json':
-        options.data = JSON.stringify(options.data);
+        config.data = JSON.stringify(config.data);
 
-        return options;
+        return config;
 
       case 'multipart/form-data':
-        const formData = new FormData();
+        config.data = createFormData(config.data);
 
-        for (const [key, value] of Object.entries<string | Blob>(
-          options.data,
-        )) {
-          formData.append(key, value);
-        }
-
-        options.data = formData;
-
-        // In Node.js, axios doesn't set boundary data in the content-type header
-        // so set it manually by using getHeaders of `form-data` node.js package
-        if (typeof (formData as any).getHeaders === 'function') {
-          options.headers = {
-            ...options.headers,
-            ...(formData as any).getHeaders(),
+        // In Node.js, axios doesn't set boundary data to the header
+        // so set it manually by using getHeaders of form-data node.js package
+        if (typeof (config.data as any).getHeaders === 'function') {
+          config.headers = {
+            ...config.headers,
+            ...(config.data as any).getHeaders(),
           };
         }
 
-        return options;
+        return config;
 
       default:
-        return options;
+        return config;
     }
   }
 
@@ -178,34 +170,32 @@ export class Gateway {
    * @param parse Whether parse response before return
    * @return Parsed response object
    */
-  protected async request<T>(
-    options: AxiosRequestConfig,
-  ): Promise<AxiosResponse<T>> {
+  protected async request<T>(options: AxiosRequestConfig) {
     try {
-      return await axios.request<T>(options);
+      return await this.axios.request<T>(options);
     } catch (error) {
-      if (isAxiosError(error)) {
-        const status = oc.oc(error).response.status();
-
-        // Error response from REST API might contain error key
-        // https://docs.joinmastodon.org/api/entities/#error
-        const { error: errorMessage } = oc.oc(error).response.data({
-          error: 'Unexpected error',
-        });
-
-        switch (status) {
-          case 401:
-            throw new MastoUnauthorizedError(errorMessage);
-          case 404:
-            throw new MastoNotFoundError(errorMessage);
-          case 429:
-            throw new MastoRateLimitError(errorMessage);
-          default:
-            throw error;
-        }
+      if (!isAxiosError(error)) {
+        throw error;
       }
 
-      throw error;
+      const status = oc.oc(error).response.status();
+
+      // Error response from REST API might contain error key
+      // https://docs.joinmastodon.org/api/entities/#error
+      const { error: errorMessage } = oc.oc(error).response.data({
+        error: 'Unexpected error',
+      });
+
+      switch (status) {
+        case 401:
+          throw new MastoUnauthorizedError(errorMessage);
+        case 404:
+          throw new MastoNotFoundError(errorMessage);
+        case 429:
+          throw new MastoRateLimitError(errorMessage);
+        default:
+          throw error;
+      }
     }
   }
 
@@ -221,14 +211,12 @@ export class Gateway {
     params: any = {},
     options?: AxiosRequestConfig,
   ) {
-    const response = await this.request<T>(
-      this.decorateRequestConfig({
-        method: 'GET',
-        url: this.uri + path,
-        params,
-        ...options,
-      }),
-    );
+    const response = await this.request<T>({
+      method: 'GET',
+      url: path,
+      params,
+      ...options,
+    });
 
     return response.data;
   }
@@ -245,14 +233,12 @@ export class Gateway {
     data: any = {},
     options?: AxiosRequestConfig,
   ) {
-    const response = await this.request<T>(
-      this.decorateRequestConfig({
-        method: 'POST',
-        url: this.uri + path,
-        data,
-        ...options,
-      }),
-    );
+    const response = await this.request<T>({
+      method: 'POST',
+      url: path,
+      data,
+      ...options,
+    });
 
     return response.data;
   }
@@ -269,14 +255,12 @@ export class Gateway {
     data: any = {},
     options?: AxiosRequestConfig,
   ) {
-    const response = await this.request<T>(
-      this.decorateRequestConfig({
-        method: 'PUT',
-        url: this.uri + path,
-        data,
-        ...options,
-      }),
-    );
+    const response = await this.request<T>({
+      method: 'PUT',
+      url: path,
+      data,
+      ...options,
+    });
 
     return response.data;
   }
@@ -293,14 +277,12 @@ export class Gateway {
     data: any = {},
     options?: AxiosRequestConfig,
   ) {
-    const response = await this.request<T>(
-      this.decorateRequestConfig({
-        method: 'DELETE',
-        url: this.uri + path,
-        data,
-        ...options,
-      }),
-    );
+    const response = await this.request<T>({
+      method: 'DELETE',
+      url: path,
+      data,
+      ...options,
+    });
 
     return response.data;
   }
@@ -317,14 +299,12 @@ export class Gateway {
     data: any = {},
     options?: AxiosRequestConfig,
   ) {
-    const response = await this.request<T>(
-      this.decorateRequestConfig({
-        method: 'PATCH',
-        url: this.uri + path,
-        data,
-        ...options,
-      }),
-    );
+    const response = await this.request<T>({
+      method: 'PATCH',
+      url: path,
+      data,
+      ...options,
+    });
 
     return response.data;
   }
@@ -383,13 +363,11 @@ export class Gateway {
           currentParams = initialParams;
         }
 
-        const response = await gateway.request<Data>(
-          gateway.decorateRequestConfig({
-            method: 'GET',
-            url: options.url || currentUrl,
-            params: options.params || currentParams,
-          }),
-        );
+        const response = await gateway.request<Data>({
+          method: 'GET',
+          url: options.url || currentUrl,
+          params: options.params || currentParams,
+        });
 
         // Set next url from the link header
         const link = oc.oc(response.headers).link('');

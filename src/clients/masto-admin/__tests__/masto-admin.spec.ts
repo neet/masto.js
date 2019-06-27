@@ -1,8 +1,9 @@
 // @ts-ignore
-import axios from 'axios';
+// prettier-ignore
+import { Gateway, mockDelete, mockGet, mockPaginate, mockPatch, mockPost, mockPut, mockStream } from '../../../gateway/gateway';
 import { MastoAdmin } from '../masto-admin';
 
-jest.mock('axios');
+jest.mock('../../../gateway/gateway');
 
 describe('MastoAdmin', () => {
   const masto = new MastoAdmin({
@@ -11,96 +12,93 @@ describe('MastoAdmin', () => {
     streamingApiUrl: 'wss://example.com/stream',
   });
 
-  beforeAll(async () => {
-    (axios.request as jest.Mock).mockResolvedValue({
-      headers: {
-        link: '<https://example.com/next>; rel="next"',
-      },
-      data: {},
-    });
-  });
-
   beforeEach(async () => {
     masto.version = '99.99.9'; // avoid version error
-    (axios.request as jest.Mock).mockClear();
+    mockGet.mockClear();
+    mockPost.mockClear();
+    mockDelete.mockClear();
+    mockPut.mockClear();
+    mockPatch.mockClear();
+    mockPaginate.mockClear();
+    mockStream.mockClear();
   });
 
   test('fetchAccounts', async () => {
     await masto.fetchAccounts();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('fetchAccount', async () => {
     await masto.fetchAccount('123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('enableAccount', async () => {
     await masto.enableAccount('123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('approveAccount', async () => {
     await masto.approveAccount('123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('rejectAccount', async () => {
     await masto.rejectAccount('123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('unsilenceAccount', async () => {
     await masto.unsilenceAccount('123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('unsuspendAccount', async () => {
     await masto.unsuspendAccount('123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('fetchReports', async () => {
     await masto.fetchReports();
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('fetchReport', async () => {
     await masto.fetchReport('123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('assignReportToSelf', async () => {
     await masto.assignReportToSelf('123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('unassignReport', async () => {
     await masto.unassignReport('123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('reopenReport', async () => {
     await masto.reopenReport('123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('resolveReport', async () => {
     await masto.resolveReport('123');
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 
   test('actionAccount', async () => {
@@ -111,7 +109,7 @@ describe('MastoAdmin', () => {
       text: 'Your account have been disabled',
       send_email_notification: false,
     });
-    expect(axios.request as jest.Mock).toBeCalledTimes(1);
-    expect(axios.request as jest.Mock).toMatchSnapshot();
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 });

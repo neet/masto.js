@@ -49,9 +49,7 @@ export class WebSocketEvents extends EventEmitter {
         resolve(this);
       });
 
-      this.ws.addEventListener('message', message =>
-        this.handleMessage(message.data),
-      );
+      this.ws.addEventListener('message', this.handleMessage);
 
       this.ws.addEventListener('error', reject);
     });
@@ -69,37 +67,38 @@ export class WebSocketEvents extends EventEmitter {
    * Parse JSON data and emit it as an event
    * @param message Websocket message
    */
-  public handleMessage = (message: string) => {
-    const event = JSON.parse(message) as Event;
-    let data: EventTypeMap[keyof EventTypeMap];
+  public handleMessage = ({ data }: { data: string }) => {
+    const event = JSON.parse(data) as Event;
+    let parsedData: EventTypeMap[EventType];
 
     try {
-      data = JSON.parse(event.payload);
+      parsedData = JSON.parse(event.payload);
     } catch {
       // If parsing failed, returns raw data
       // Basically this is handling for `filters_changed` event
       // Which doesn't contain payload in the data
-      data = event.payload;
+      parsedData = event.payload;
     }
 
-    this.emit(event.event, data);
+    this.emit(event.event, parsedData);
   };
 
   /*-------------------------------
-   *
-   * ↓ Overwriting signatures
-   *
+   * Overwriting signatures
    *------------------------------*/
 
   public listeners<T extends EventType>(event: T) {
+    /* istanbul ignore next */
     return super.listeners(event);
   }
 
   public listenerCount<T extends EventType>(event: T) {
+    /* istanbul ignore next */
     return super.listenerCount(event);
   }
 
   public emit<T extends EventType>(event: T, ...args: any[]) {
+    /* istanbul ignore next */
     return super.emit(event, ...args);
   }
 
@@ -108,6 +107,7 @@ export class WebSocketEvents extends EventEmitter {
     fn: EventListener<T>,
     context?: any,
   ) {
+    /* istanbul ignore next */
     return super.addListener(event, fn, context);
   }
 
@@ -116,6 +116,7 @@ export class WebSocketEvents extends EventEmitter {
     fn: EventListener<T>,
     context?: any,
   ) {
+    /* istanbul ignore next */
     return super.on(event, fn, context);
   }
 
@@ -124,6 +125,7 @@ export class WebSocketEvents extends EventEmitter {
     fn: EventListener<T>,
     context?: any,
   ) {
+    /* istanbul ignore next */
     return super.once(event, fn, context);
   }
 
@@ -133,6 +135,7 @@ export class WebSocketEvents extends EventEmitter {
     context?: any,
     once?: boolean,
   ) {
+    /* istanbul ignore next */
     return super.removeListener(event, fn, context, once);
   }
 
@@ -142,10 +145,12 @@ export class WebSocketEvents extends EventEmitter {
     context?: any,
     once?: boolean,
   ) {
+    /* istanbul ignore next */
     return super.off(event, fn, context, once);
   }
 
   public removeAllListeners<T extends EventType>(event?: T) {
+    /* istanbul ignore next */
     return super.removeAllListeners(event);
   }
 }

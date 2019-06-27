@@ -3,9 +3,11 @@ import WebSocket from 'isomorphic-ws';
 import { WebSocketEvents } from '../websocket';
 
 const mockOn = jest.fn();
-const mockAddEventListener = jest.fn();
 const mockEmit = jest.fn();
-const mockClose = jest.fn();
+
+const mockEmitWs = jest.fn();
+const mockCloseWs = jest.fn();
+const mockAddEventListenerWs = jest.fn();
 
 jest.mock('eventemitter3', () => {
   return class {
@@ -17,24 +19,26 @@ jest.mock('eventemitter3', () => {
 
 jest.mock('isomorphic-ws', () => {
   return jest.fn(() => ({
-    close: mockClose,
-    addEventListener: mockAddEventListener,
+    emit: mockEmitWs,
+    close: mockCloseWs,
+    addEventListener: mockAddEventListenerWs,
   }));
 });
 
 describe('WebSocketEvents', () => {
-  const wsEvents = new WebSocketEvents();
+  let wsEvents!: WebSocketEvents;
 
   beforeEach(() => {
+    wsEvents = new WebSocketEvents();
     mockOn.mockClear();
-    mockAddEventListener.mockClear();
+    mockAddEventListenerWs.mockClear();
     mockEmit.mockClear();
-    mockClose.mockClear();
+    mockCloseWs.mockClear();
   });
 
   test('connect to ws server', async () => {
     // Resolve open
-    mockAddEventListener.mockImplementation((e, fn) => {
+    mockAddEventListenerWs.mockImplementation((e, fn) => {
       if (e === 'open') {
         fn();
       }
@@ -47,17 +51,29 @@ describe('WebSocketEvents', () => {
       [],
     );
 
-    expect(mockAddEventListener).toBeCalledWith(
+    expect(mockAddEventListenerWs).toBeCalledWith(
       'message',
       expect.any(Function),
     );
-    expect(mockAddEventListener).toBeCalledWith('error', expect.any(Function));
-    expect(mockAddEventListener).toBeCalledWith('open', expect.any(Function));
+    expect(mockAddEventListenerWs).toBeCalledWith(
+      'error',
+      expect.any(Function),
+    );
+    expect(mockAddEventListenerWs).toBeCalledWith('open', expect.any(Function));
+  });
+
+  test('noop when this.ws is undefined', () => {
+    // @ts-ignore
+    wsEvents.ws = undefined;
+    const result = wsEvents.disconnect();
+    expect(result).toBeUndefined();
   });
 
   test('disconnect from the server', () => {
+    // @ts-ignore
+    wsEvents.ws = new WebSocket();
     wsEvents.disconnect();
-    expect(mockClose).toBeCalled();
+    expect(mockCloseWs).toBeCalled();
   });
 
   test('emit event with given props', () => {
@@ -69,7 +85,7 @@ describe('WebSocketEvents', () => {
       payload: JSON.stringify(originalPayload),
     };
 
-    wsEvents.handleMessage(JSON.stringify(originalData));
+    wsEvents.handleMessage({ data: JSON.stringify(originalData) });
     expect(mockEmit).toBeCalledWith('update', originalPayload);
   });
 
@@ -80,7 +96,7 @@ describe('WebSocketEvents', () => {
       payload: originalPayload,
     };
 
-    wsEvents.handleMessage(JSON.stringify(originalData));
+    wsEvents.handleMessage({ data: JSON.stringify(originalData) });
     expect(mockEmit).toBeCalledWith('update', originalPayload);
   });
 

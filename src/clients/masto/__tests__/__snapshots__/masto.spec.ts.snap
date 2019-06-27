@@ -4,23 +4,20 @@ exports[`Masto addAccountToList 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/lists/123123/accounts",
       Object {
-        "data": "{\\"account_ids\\":[\\"123\\",\\"456\\",\\"678\\"]}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
+        "account_ids": Array [
+          "123",
+          "456",
+          "678",
         ],
-        "url": "https://example.com/api/v1/lists/123123/accounts",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -30,23 +27,30 @@ exports[`Masto addPushSubscription 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/push/subscription",
       Object {
-        "data": "{\\"subscription\\":{\\"endpoint\\":\\"https://example.com\\",\\"keys\\":{\\"p256dh\\":\\"xxxx\\",\\"auth\\":\\"yyyy\\"}},\\"data\\":{\\"alerts\\":{\\"follow\\":true,\\"favourite\\":true,\\"reblog\\":true,\\"mention\\":true}}}",
-        "headers": Object {
-          "Content-Type": "application/json",
+        "data": Object {
+          "alerts": Object {
+            "favourite": true,
+            "follow": true,
+            "mention": true,
+            "reblog": true,
+          },
         },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/push/subscription",
+        "subscription": Object {
+          "endpoint": "https://example.com",
+          "keys": Object {
+            "auth": "yyyy",
+            "p256dh": "xxxx",
+          },
+        },
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -56,23 +60,13 @@ exports[`Masto authorizeFollowRequest 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": "{}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/follow_requests/123123/authorize",
-      },
+      "/api/v1/follow_requests/123123/authorize",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -82,23 +76,13 @@ exports[`Masto blockAccount 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": "{}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/accounts/123123/block",
-      },
+      "/api/v1/accounts/123123/block",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -108,23 +92,16 @@ exports[`Masto blockDomain 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/domain_blocks",
       Object {
-        "data": "{\\"domain\\":\\"example.com\\"}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/domain_blocks",
+        "domain": "example.com",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -134,23 +111,13 @@ exports[`Masto clearNotifications 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": "{}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/notifications/clear",
-      },
+      "/api/v1/notifications/clear",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -160,23 +127,19 @@ exports[`Masto createAccount 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/accounts",
       Object {
-        "data": "{\\"username\\":\\"username\\",\\"password\\":\\"password\\",\\"email\\":\\"example@example.com\\",\\"agreement\\":true}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/accounts",
+        "agreement": true,
+        "email": "example@example.com",
+        "password": "password",
+        "username": "username",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -186,23 +149,19 @@ exports[`Masto createApp 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/apps",
       Object {
-        "data": "{\\"client_name\\":\\"My Client\\",\\"redirect_uris\\":\\"https://example.com\\",\\"scopes\\":\\"write read\\",\\"website\\":\\"https://example.com\\"}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/apps",
+        "client_name": "My Client",
+        "redirect_uris": "https://example.com",
+        "scopes": "write read",
+        "website": "https://example.com",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -212,23 +171,25 @@ exports[`Masto createFiler 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/filters",
       Object {
-        "data": "{\\"phrase\\":\\"Twitter\\",\\"context\\":[\\"home\\",\\"notifications\\",\\"public\\",\\"thread\\"],\\"irreversible\\":true,\\"whole_word\\":true,\\"expires_in\\":3600000}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
+        "context": Array [
+          "home",
+          "notifications",
+          "public",
+          "thread",
         ],
-        "url": "https://example.com/api/v1/filters",
+        "expires_in": 3600000,
+        "irreversible": true,
+        "phrase": "Twitter",
+        "whole_word": true,
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -238,23 +199,16 @@ exports[`Masto createList 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/lists",
       Object {
-        "data": "{\\"title\\":\\"My list\\"}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/lists",
+        "title": "My list",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -264,24 +218,21 @@ exports[`Masto createStatus with Idempotency-Key 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/statuses",
       Object {
-        "data": "{\\"status\\":\\"Too!\\"}",
+        "status": "Too!",
+      },
+      Object {
         "headers": Object {
-          "Content-Type": "application/json",
           "Idempotency-Key": "59fe7e30-1a74-4050-8af7-5a8c7a224794",
         },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/statuses",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -291,23 +242,32 @@ exports[`Masto createStatus with content 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/statuses",
       Object {
-        "data": "{\\"status\\":\\"Toot!\\",\\"in_reply_to_id\\":\\"123123\\",\\"poll\\":{\\"options\\":[\\"xxx\\",\\"yyy\\",\\"zzz\\"],\\"expires_in\\":60000,\\"multiple\\":false,\\"hide_totals\\":true},\\"sensitive\\":false,\\"spoiler_text\\":\\"spoiler\\",\\"visibility\\":\\"direct\\",\\"scheduled_at\\":\\"2019-03-28T04:39:31.121Z\\",\\"language\\":\\"en\\"}",
-        "headers": Object {
-          "Content-Type": "application/json",
+        "in_reply_to_id": "123123",
+        "language": "en",
+        "poll": Object {
+          "expires_in": 60000,
+          "hide_totals": true,
+          "multiple": false,
+          "options": Array [
+            "xxx",
+            "yyy",
+            "zzz",
+          ],
         },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/statuses",
+        "scheduled_at": "2019-03-28T04:39:31.121Z",
+        "sensitive": false,
+        "spoiler_text": "spoiler",
+        "status": "Toot!",
+        "visibility": "direct",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -317,23 +277,19 @@ exports[`Masto createStatus with media ids 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/statuses",
       Object {
-        "data": "{\\"media_ids\\":[\\"123\\",\\"456\\"]}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
+        "media_ids": Array [
+          "123",
+          "456",
         ],
-        "url": "https://example.com/api/v1/statuses",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -343,23 +299,16 @@ exports[`Masto dissmissNotification 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/notifications/dismiss",
       Object {
-        "data": "{\\"id\\":\\"123123\\"}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/notifications/dismiss",
+        "id": "123123",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -369,23 +318,13 @@ exports[`Masto favouriteStatus 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": "{}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/statuses/123123/favourite",
-      },
+      "/api/v1/statuses/123123/favourite",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -395,23 +334,20 @@ exports[`Masto fetchAccessToken with authorization code 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/oauth/token",
       Object {
-        "data": "{\\"grant_type\\":\\"authorization_code\\",\\"code\\":\\"789789789\\",\\"redirect_uri\\":\\"https://example.com\\",\\"client_id\\":\\"123123123\\",\\"client_secret\\":\\"456456456\\"}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/oauth/token",
+        "client_id": "123123123",
+        "client_secret": "456456456",
+        "code": "789789789",
+        "grant_type": "authorization_code",
+        "redirect_uri": "https://example.com",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -421,23 +357,18 @@ exports[`Masto fetchAccessToken with password 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/oauth/token",
       Object {
-        "data": "{\\"grant_type\\":\\"password\\",\\"username\\":\\"username\\",\\"password\\":\\"password\\"}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/oauth/token",
+        "grant_type": "password",
+        "password": "password",
+        "username": "username",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -447,24 +378,13 @@ exports[`Masto fetchAccount 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {},
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/accounts/123123123",
-      },
+      "/api/v1/accounts/123123123",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -474,29 +394,19 @@ exports[`Masto fetchAccountFollowers 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/accounts/123123123/followers",
       Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {
-          "limit": 10,
-          "max_id": "5",
-          "min_id": "2",
-          "since_id": "3",
-        },
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/accounts/123123123/followers",
+        "limit": 10,
+        "max_id": "5",
+        "min_id": "2",
+        "since_id": "3",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -506,29 +416,19 @@ exports[`Masto fetchAccountFollowing 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/accounts/123123123/following",
       Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {
-          "limit": 10,
-          "max_id": "5",
-          "min_id": "2",
-          "since_id": "3",
-        },
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/accounts/123123123/following",
+        "limit": 10,
+        "max_id": "5",
+        "min_id": "2",
+        "since_id": "3",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -538,24 +438,13 @@ exports[`Masto fetchAccountIdentityProofs 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {},
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/accounts/123123123/identity_proofs",
-      },
+      "/api/v1/accounts/123123123/identity_proofs",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -565,24 +454,13 @@ exports[`Masto fetchAccountLists 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {},
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/accounts/123123/lists",
-      },
+      "/api/v1/accounts/123123/lists",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -592,29 +470,19 @@ exports[`Masto fetchAccountRelationships 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/accounts/relationship",
       Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {
-          "id": Array [
-            "123123",
-            "456456",
-          ],
-        },
-        "transformResponse": Array [
-          [Function],
+        "id": Array [
+          "123123",
+          "456456",
         ],
-        "url": "https://example.com/api/v1/accounts/relationship",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -624,29 +492,19 @@ exports[`Masto fetchAccountStatuses 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/accounts/123123123/statuses",
       Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {
-          "limit": 10,
-          "max_id": "5",
-          "min_id": "2",
-          "since_id": "3",
-        },
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/accounts/123123123/statuses",
+        "limit": 10,
+        "max_id": "5",
+        "min_id": "2",
+        "since_id": "3",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -656,29 +514,19 @@ exports[`Masto fetchBlocks 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/blocks",
       Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {
-          "limit": 10,
-          "max_id": "5",
-          "min_id": "2",
-          "since_id": "3",
-        },
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/blocks",
+        "limit": 10,
+        "max_id": "5",
+        "min_id": "2",
+        "since_id": "3",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -688,30 +536,20 @@ exports[`Masto fetchCommunityTimeline 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/timelines/public",
       Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {
-          "limit": 10,
-          "local": true,
-          "max_id": "5",
-          "min_id": "2",
-          "since_id": "3",
-        },
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/timelines/public",
+        "limit": 10,
+        "local": true,
+        "max_id": "5",
+        "min_id": "2",
+        "since_id": "3",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -721,29 +559,19 @@ exports[`Masto fetchConversations 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/conversations",
       Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {
-          "limit": 10,
-          "max_id": "5",
-          "min_id": "2",
-          "since_id": "3",
-        },
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/conversations",
+        "limit": 10,
+        "max_id": "5",
+        "min_id": "2",
+        "since_id": "3",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -753,24 +581,13 @@ exports[`Masto fetchCustomEmojis 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {},
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/custom_emojis",
-      },
+      "/api/v1/custom_emojis",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -780,29 +597,19 @@ exports[`Masto fetchDirectTimeline 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/timelines/direct",
       Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {
-          "limit": 10,
-          "max_id": "5",
-          "min_id": "2",
-          "since_id": "3",
-        },
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/timelines/direct",
+        "limit": 10,
+        "max_id": "5",
+        "min_id": "2",
+        "since_id": "3",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -812,24 +619,14 @@ exports[`Masto fetchDomainBlocks 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": undefined,
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/domain_blocks",
-      },
+      "/api/v1/domain_blocks",
+      undefined,
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -839,29 +636,19 @@ exports[`Masto fetchEndorsements 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/endorsements",
       Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {
-          "limit": 10,
-          "max_id": "5",
-          "min_id": "2",
-          "since_id": "3",
-        },
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/endorsements",
+        "limit": 10,
+        "max_id": "5",
+        "min_id": "2",
+        "since_id": "3",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -871,29 +658,19 @@ exports[`Masto fetchFavourites 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/favourites",
       Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {
-          "limit": 10,
-          "max_id": "5",
-          "min_id": "2",
-          "since_id": "3",
-        },
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/favourites",
+        "limit": 10,
+        "max_id": "5",
+        "min_id": "2",
+        "since_id": "3",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -903,24 +680,13 @@ exports[`Masto fetchFilter 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {},
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/filters/123123",
-      },
+      "/api/v1/filters/123123",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -930,24 +696,13 @@ exports[`Masto fetchFilters 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {},
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/filters",
-      },
+      "/api/v1/filters",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -957,29 +712,19 @@ exports[`Masto fetchFollowRequests 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/follow_requests",
       Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {
-          "limit": 10,
-          "max_id": "5",
-          "min_id": "2",
-          "since_id": "3",
-        },
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/follow_requests",
+        "limit": 10,
+        "max_id": "5",
+        "min_id": "2",
+        "since_id": "3",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -989,29 +734,19 @@ exports[`Masto fetchHomeTimeline 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/timelines/home",
       Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {
-          "limit": 10,
-          "max_id": "5",
-          "min_id": "2",
-          "since_id": "3",
-        },
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/timelines/home",
+        "limit": 10,
+        "max_id": "5",
+        "min_id": "2",
+        "since_id": "3",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1021,24 +756,13 @@ exports[`Masto fetchInstance 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {},
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/instance",
-      },
+      "/api/v1/instance",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1048,24 +772,13 @@ exports[`Masto fetchInstanceActivity 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {},
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/instance/activity",
-      },
+      "/api/v1/instance/activity",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1075,24 +788,13 @@ exports[`Masto fetchInstancesPeers 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {},
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/instance/peers",
-      },
+      "/api/v1/instance/peers",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1102,24 +804,13 @@ exports[`Masto fetchList 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {},
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/lists/123123",
-      },
+      "/api/v1/lists/123123",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1129,29 +820,19 @@ exports[`Masto fetchListAccounts 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/list/123123/accounts",
       Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {
-          "limit": 10,
-          "max_id": "5",
-          "min_id": "2",
-          "since_id": "3",
-        },
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/list/123123/accounts",
+        "limit": 10,
+        "max_id": "5",
+        "min_id": "2",
+        "since_id": "3",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1161,29 +842,19 @@ exports[`Masto fetchListTimeline 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/timelines/list/123123",
       Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {
-          "limit": 10,
-          "max_id": "5",
-          "min_id": "2",
-          "since_id": "3",
-        },
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/timelines/list/123123",
+        "limit": 10,
+        "max_id": "5",
+        "min_id": "2",
+        "since_id": "3",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1193,24 +864,13 @@ exports[`Masto fetchLists 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {},
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/lists",
-      },
+      "/api/v1/lists",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1220,29 +880,19 @@ exports[`Masto fetchMutes 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/mutes",
       Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {
-          "limit": 10,
-          "max_id": "5",
-          "min_id": "2",
-          "since_id": "3",
-        },
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/mutes",
+        "limit": 10,
+        "max_id": "5",
+        "min_id": "2",
+        "since_id": "3",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1252,24 +902,13 @@ exports[`Masto fetchNotification 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {},
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/notifications/123123",
-      },
+      "/api/v1/notifications/123123",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1279,32 +918,22 @@ exports[`Masto fetchNotifications 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/notifications",
       Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {
-          "exclude_types": Array [
-            "favourite",
-            "follow",
-            "mention",
-            "poll",
-            "reblog",
-          ],
-        },
-        "transformResponse": Array [
-          [Function],
+        "exclude_types": Array [
+          "favourite",
+          "follow",
+          "mention",
+          "poll",
+          "reblog",
         ],
-        "url": "https://example.com/api/v1/notifications",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1314,24 +943,13 @@ exports[`Masto fetchPoll 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {},
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/polls/123123",
-      },
+      "/api/v1/polls/123123",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1341,24 +959,13 @@ exports[`Masto fetchPreferences 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {},
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/preferences",
-      },
+      "/api/v1/preferences",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1368,29 +975,19 @@ exports[`Masto fetchPublicTimeline 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/timelines/public",
       Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {
-          "limit": 10,
-          "max_id": "5",
-          "min_id": "2",
-          "since_id": "3",
-        },
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/timelines/public",
+        "limit": 10,
+        "max_id": "5",
+        "min_id": "2",
+        "since_id": "3",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1400,24 +997,13 @@ exports[`Masto fetchPushSubscription 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {},
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/push/subscription",
-      },
+      "/api/v1/push/subscription",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1427,24 +1013,13 @@ exports[`Masto fetchScheduledStatus 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {},
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/scheduled_statuses/123123",
-      },
+      "/api/v1/scheduled_statuses/123123",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1454,24 +1029,13 @@ exports[`Masto fetchScheduledStatuses 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {},
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/scheduled_statuses",
-      },
+      "/api/v1/scheduled_statuses",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1481,24 +1045,13 @@ exports[`Masto fetchStatus 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {},
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/statuses/123123",
-      },
+      "/api/v1/statuses/123123",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1508,24 +1061,13 @@ exports[`Masto fetchStatusCard 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {},
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/statuses/123123/card",
-      },
+      "/api/v1/statuses/123123/card",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1535,24 +1077,13 @@ exports[`Masto fetchStatusContext 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {},
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/statuses/123123/context",
-      },
+      "/api/v1/statuses/123123/context",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1562,29 +1093,19 @@ exports[`Masto fetchStatusFavouritedBy 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/statuses/123123/favourited_by",
       Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {
-          "limit": 10,
-          "max_id": "5",
-          "min_id": "2",
-          "since_id": "3",
-        },
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/statuses/123123/favourited_by",
+        "limit": 10,
+        "max_id": "5",
+        "min_id": "2",
+        "since_id": "3",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1594,29 +1115,19 @@ exports[`Masto fetchStatusRebloggedBy 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/statuses/123123/reblogged_by",
       Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {
-          "limit": 10,
-          "max_id": "5",
-          "min_id": "2",
-          "since_id": "3",
-        },
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/statuses/123123/reblogged_by",
+        "limit": 10,
+        "max_id": "5",
+        "min_id": "2",
+        "since_id": "3",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1626,24 +1137,13 @@ exports[`Masto fetchSuggestions 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {},
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/suggestions",
-      },
+      "/api/v1/suggestions",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1653,29 +1153,19 @@ exports[`Masto fetchTagTimeline 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/timelines/tag/DeleteTwitter",
       Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {
-          "limit": 10,
-          "max_id": "5",
-          "min_id": "2",
-          "since_id": "3",
-        },
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/timelines/tag/DeleteTwitter",
+        "limit": 10,
+        "max_id": "5",
+        "min_id": "2",
+        "since_id": "3",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1685,23 +1175,16 @@ exports[`Masto followAccount 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/accounts/123123/follow",
       Object {
-        "data": "{\\"reblogs\\":false}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/accounts/123123/follow",
+        "reblogs": false,
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1711,23 +1194,16 @@ exports[`Masto followAccountByUsername 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/follows",
       Object {
-        "data": "{\\"uri\\":\\"user@example.com\\"}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/follows",
+        "uri": "user@example.com",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1737,23 +1213,16 @@ exports[`Masto muteAccount 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/accounts/123123/mute",
       Object {
-        "data": "{\\"notifications\\":false}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/accounts/123123/mute",
+        "notifications": false,
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1763,23 +1232,13 @@ exports[`Masto muteStatus 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": "{}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/statuses/123123/mute",
-      },
+      "/api/v1/statuses/123123/mute",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1789,23 +1248,13 @@ exports[`Masto pinAccount 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": "{}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/accounts/123123/pin",
-      },
+      "/api/v1/accounts/123123/pin",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1815,23 +1264,13 @@ exports[`Masto pinStatus 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": "{}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/statuses/123123/pin",
-      },
+      "/api/v1/statuses/123123/pin",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1841,23 +1280,16 @@ exports[`Masto reblogStatus 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/statuses/123123/reblog",
       Object {
-        "data": "{\\"visibility\\":\\"direct\\"}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/statuses/123123/reblog",
+        "visibility": "direct",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1867,23 +1299,13 @@ exports[`Masto rejectFollowRequest 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": "{}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/follow_requests/123123/reject",
-      },
+      "/api/v1/follow_requests/123123/reject",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1893,23 +1315,20 @@ exports[`Masto removeAccountFromList 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/lists/123123/accounts",
       Object {
-        "data": "{\\"account_ids\\":[\\"123\\",\\"456\\",\\"678\\"]}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "DELETE",
-        "transformResponse": Array [
-          [Function],
+        "account_ids": Array [
+          "123",
+          "456",
+          "678",
         ],
-        "url": "https://example.com/api/v1/lists/123123/accounts",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1919,23 +1338,13 @@ exports[`Masto removeFilter 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": "{}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "DELETE",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/filters/123123",
-      },
+      "/api/v1/filters/123123",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1945,23 +1354,13 @@ exports[`Masto removeList 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": "{}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "DELETE",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/lists/123123",
-      },
+      "/api/v1/lists/123123",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1971,23 +1370,13 @@ exports[`Masto removePushSubscription 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": "{}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "DELETE",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/push/subscription",
-      },
+      "/api/v1/push/subscription",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -1997,23 +1386,13 @@ exports[`Masto removeScheduledStatus 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": "{}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "DELETE",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/scheduled_statuses/123123",
-      },
+      "/api/v1/scheduled_statuses/123123",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -2023,23 +1402,13 @@ exports[`Masto removeStatus 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": "{}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "DELETE",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/statuses/123123",
-      },
+      "/api/v1/statuses/123123",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -2049,23 +1418,13 @@ exports[`Masto removeSuggestion 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": "{}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "DELETE",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/suggestions/123123",
-      },
+      "/api/v1/suggestions/123123",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -2075,23 +1434,21 @@ exports[`Masto reportAccount 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/reports",
       Object {
-        "data": "{\\"account_id\\":\\"123123\\",\\"status_ids\\":[\\"456456\\"],\\"comment\\":\\"this is a report\\",\\"forward\\":true}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
+        "account_id": "123123",
+        "comment": "this is a report",
+        "forward": true,
+        "status_ids": Array [
+          "456456",
         ],
-        "url": "https://example.com/api/v1/reports",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -2101,23 +1458,17 @@ exports[`Masto revokeAccessToken 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/oauth/revoke",
       Object {
-        "data": "{\\"client_id\\":\\"123123123\\",\\"client_secret\\":\\"456456456\\"}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/oauth/revoke",
+        "client_id": "123123123",
+        "client_secret": "456456456",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -2127,27 +1478,17 @@ exports[`Masto search (v1) 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/search",
       Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {
-          "q": "query",
-          "resolve": true,
-        },
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/search",
+        "q": "query",
+        "resolve": true,
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -2157,32 +1498,22 @@ exports[`Masto search 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v2/search",
       Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {
-          "account_id": "123",
-          "limit": 10,
-          "max_id": "5",
-          "min_id": "2",
-          "q": "query",
-          "resolve": true,
-          "since_id": "3",
-        },
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v2/search",
+        "account_id": "123",
+        "limit": 10,
+        "max_id": "5",
+        "min_id": "2",
+        "q": "query",
+        "resolve": true,
+        "since_id": "3",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -2192,29 +1523,19 @@ exports[`Masto searchAccounts 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/accounts/search",
       Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {
-          "following": false,
-          "limit": 123,
-          "q": "query",
-          "resolve": true,
-        },
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/accounts/search",
+        "following": false,
+        "limit": 123,
+        "q": "query",
+        "resolve": true,
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -2224,8 +1545,10 @@ exports[`Masto streamCommunityTimeline 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      "wss://example.com/stream/api/v1/streaming?stream=public%3Alocal",
-      Array [],
+      "/api/v1/streaming",
+      Object {
+        "stream": "public:local",
+      },
     ],
   ],
   "results": Array [
@@ -2241,8 +1564,10 @@ exports[`Masto streamDirectTimeline 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      "wss://example.com/stream/api/v1/streaming?stream=direct",
-      Array [],
+      "/api/v1/streaming",
+      Object {
+        "stream": "direct",
+      },
     ],
   ],
   "results": Array [
@@ -2258,8 +1583,11 @@ exports[`Masto streamListTimeline 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      "wss://example.com/stream/api/v1/streaming?stream=list&list=123123",
-      Array [],
+      "/api/v1/streaming",
+      Object {
+        "list": "123123",
+        "stream": "list",
+      },
     ],
   ],
   "results": Array [
@@ -2275,8 +1603,11 @@ exports[`Masto streamLocalTagTimeline 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      "wss://example.com/stream/api/v1/streaming?stream=hashtag%3Alocal&tag=deletetwitter",
-      Array [],
+      "/api/v1/streaming",
+      Object {
+        "stream": "hashtag:local",
+        "tag": "deletetwitter",
+      },
     ],
   ],
   "results": Array [
@@ -2292,8 +1623,10 @@ exports[`Masto streamPublicTimeline 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      "wss://example.com/stream/api/v1/streaming?stream=public",
-      Array [],
+      "/api/v1/streaming",
+      Object {
+        "stream": "public",
+      },
     ],
   ],
   "results": Array [
@@ -2309,8 +1642,11 @@ exports[`Masto streamTagTimeline 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      "wss://example.com/stream/api/v1/streaming?stream=hashtag&tag=deletetwitter",
-      Array [],
+      "/api/v1/streaming",
+      Object {
+        "stream": "hashtag",
+        "tag": "deletetwitter",
+      },
     ],
   ],
   "results": Array [
@@ -2326,8 +1662,10 @@ exports[`Masto streamUser 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      "wss://example.com/stream/api/v1/streaming?stream=user",
-      Array [],
+      "/api/v1/streaming",
+      Object {
+        "stream": "user",
+      },
     ],
   ],
   "results": Array [
@@ -2343,23 +1681,13 @@ exports[`Masto unblockAccount 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": "{}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/accounts/123123/unblock",
-      },
+      "/api/v1/accounts/123123/unblock",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -2369,23 +1697,16 @@ exports[`Masto unblockDomain 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/domain_blocks",
       Object {
-        "data": "{\\"domain\\":\\"example.com\\"}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "DELETE",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/domain_blocks",
+        "domain": "example.com",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -2395,23 +1716,13 @@ exports[`Masto unfavouriteStatus 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": "{}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/statuses/123123/unfavourite",
-      },
+      "/api/v1/statuses/123123/unfavourite",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -2421,23 +1732,13 @@ exports[`Masto unfollowAccount 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": "{}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/accounts/123123/unfollow",
-      },
+      "/api/v1/accounts/123123/unfollow",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -2447,23 +1748,13 @@ exports[`Masto unmuteAccount 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": "{}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/accounts/123123/unmute",
-      },
+      "/api/v1/accounts/123123/unmute",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -2473,23 +1764,13 @@ exports[`Masto unmuteStatus 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": "{}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/statuses/123123/unmute",
-      },
+      "/api/v1/statuses/123123/unmute",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -2499,23 +1780,13 @@ exports[`Masto unpinAccount 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": "{}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/accounts/123123/unpin",
-      },
+      "/api/v1/accounts/123123/unpin",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -2525,23 +1796,13 @@ exports[`Masto unpinStatus 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": "{}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/statuses/123123/unpin",
-      },
+      "/api/v1/statuses/123123/unpin",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -2551,23 +1812,13 @@ exports[`Masto unreblogStatus 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": "{}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/statuses/123123/unreblog",
-      },
+      "/api/v1/statuses/123123/unreblog",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -2577,23 +1828,25 @@ exports[`Masto updateFilter 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/filters/123123",
       Object {
-        "data": "{\\"phrase\\":\\"Twitter\\",\\"context\\":[\\"home\\",\\"notifications\\",\\"public\\",\\"thread\\"],\\"irreversible\\":true,\\"whole_word\\":true,\\"expires_in\\":3600000}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "PUT",
-        "transformResponse": Array [
-          [Function],
+        "context": Array [
+          "home",
+          "notifications",
+          "public",
+          "thread",
         ],
-        "url": "https://example.com/api/v1/filters/123123",
+        "expires_in": 3600000,
+        "irreversible": true,
+        "phrase": "Twitter",
+        "whole_word": true,
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -2603,23 +1856,16 @@ exports[`Masto updateList 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/lists/123123",
       Object {
-        "data": "{\\"title\\":\\"My list\\"}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "PUT",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/lists/123123",
+        "title": "My list",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -2629,23 +1875,17 @@ exports[`Masto updateMediaAttachment 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/media/123123",
       Object {
-        "data": "{\\"description\\":\\"Nice image\\",\\"focus\\":\\"0, 0\\"}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "PUT",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/media/123123",
+        "description": "Nice image",
+        "focus": "0, 0",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -2655,23 +1895,23 @@ exports[`Masto updatePushSubscription 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/push/subscription",
       Object {
-        "data": "{\\"data\\":{\\"alerts\\":{\\"follow\\":true,\\"favourite\\":true,\\"reblog\\":true,\\"mention\\":true}}}",
-        "headers": Object {
-          "Content-Type": "application/json",
+        "data": Object {
+          "alerts": Object {
+            "favourite": true,
+            "follow": true,
+            "mention": true,
+            "reblog": true,
+          },
         },
-        "method": "PUT",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/push/subscription",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -2681,23 +1921,16 @@ exports[`Masto updateScheduledStatus 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/scheduled_statuses/123123",
       Object {
-        "data": "{\\"scheduled_at\\":\\"2019-03-28T04:39:31.121Z\\"}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "PUT",
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/scheduled_statuses/123123",
+        "scheduled_at": "2019-03-28T04:39:31.121Z",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -2707,24 +1940,13 @@ exports[`Masto verifyAppCredentials 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {},
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/apps/verify_credentials",
-      },
+      "/api/v1/apps/verify_credentials",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -2734,24 +1956,13 @@ exports[`Masto verifyCredentials 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      Object {
-        "data": undefined,
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "GET",
-        "params": Object {},
-        "transformResponse": Array [
-          [Function],
-        ],
-        "url": "https://example.com/api/v1/accounts/verify_credentials",
-      },
+      "/api/v1/accounts/verify_credentials",
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
@@ -2761,23 +1972,20 @@ exports[`Masto votePoll 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
+      "/api/v1/polls/123123/votes",
       Object {
-        "data": "{\\"choices\\":[\\"xxx\\",\\"yyy\\",\\"zzz\\"]}",
-        "headers": Object {
-          "Content-Type": "application/json",
-        },
-        "method": "POST",
-        "transformResponse": Array [
-          [Function],
+        "choices": Array [
+          "xxx",
+          "yyy",
+          "zzz",
         ],
-        "url": "https://example.com/api/v1/polls/123123/votes",
       },
     ],
   ],
   "results": Array [
     Object {
       "type": "return",
-      "value": Promise {},
+      "value": undefined,
     },
   ],
 }
