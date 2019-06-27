@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import normalizeUrl from 'normalize-url';
 import querystring from 'querystring';
 import semver from 'semver';
@@ -22,9 +22,15 @@ export interface GatewayConstructorParams {
   version?: string;
   /** Access token of the user */
   accessToken?: string;
+  /** Axios configureations. See [Axios'](https://github.com/axios/axios#request-config) docs */
+  axiosConfig?: AxiosRequestConfig;
 }
 
-export type LoginParams = Pick<GatewayConstructorParams, 'uri' | 'accessToken'>;
+/** Params for login. `version` and `streamingApiUrl` will be set automatically so not needed */
+export type LoginParams = Omit<
+  GatewayConstructorParams,
+  'version' | 'streamingApiUrl'
+>;
 
 export type PaginateNextOptions<Params> = {
   /** Reset pagination */
@@ -40,20 +46,26 @@ export type PaginateNextOptions<Params> = {
  * @param params Optional params
  */
 export class Gateway {
-  /** URI of the instance */
-  private _uri = '';
-  /** Streaming API URL of the instance */
-  private _streamingApiUrl = '';
+  /** Configured axios instance */
+  private axios: AxiosInstance;
   /** Version of the current instance */
   public version = '';
   /** API token of the user */
   public accessToken?: string;
+  /** URI of the instance */
+  private _uri = '';
+  /** Streaming API URL of the instance */
+  private _streamingApiUrl = '';
 
   /**
    * @param params Parameters
    */
   constructor(params: GatewayConstructorParams) {
     this.uri = params.uri;
+
+    if (params.accessToken) {
+      this.accessToken = params.accessToken;
+    }
 
     if (params.streamingApiUrl) {
       this.streamingApiUrl = params.streamingApiUrl;
@@ -63,9 +75,17 @@ export class Gateway {
       this.version = params.version;
     }
 
-    if (params.accessToken) {
-      this.accessToken = params.accessToken;
-    }
+    this.axios = axios.create({
+      transformRequest: this.transformRequest,
+      transformResponse: this.transformResponse,
+      ...params.axiosConfig,
+    });
+
+    this.axios.defaults.baseURL = this.uri;
+    this.axios.defaults.headers.common = {
+      Authorization: `Bearer ${this.accessToken}`,
+      'Content-Type': 'application/json',
+    };
   }
 
   get uri() {
@@ -95,6 +115,7 @@ export class Gateway {
   ) {
     const gateway = new this(params) as InstanceType<T>;
     const instance = await gateway.get<Instance>('/api/v1/instance');
+
     gateway.version = instance.version;
     gateway.streamingApiUrl = instance.urls.streaming_api;
 
@@ -106,11 +127,11 @@ export class Gateway {
    * @param response Response object
    * @return Parsed entitiy
    */
-  private transformResponse(response: any) {
+  private transformResponse(data: any, _headers: any) {
     try {
-      return JSON.parse(response);
+      return JSON.parse(data);
     } catch {
-      return response;
+      return data;
     }
   }
 
@@ -119,56 +140,22 @@ export class Gateway {
    * @param data Any data
    * @param options Axios options
    */
-  private decorateRequestConfig(
-    options: AxiosRequestConfig = {},
-  ): AxiosRequestConfig {
-    options.url = options.url && normalizeUrl(options.url);
-    options.transformResponse = [this.transformResponse];
-
-    if (!options.headers) {
-      options.headers = {};
-    }
-
-    // Set `application/json` as the default
-    if (!options.headers['Content-Type']) {
-      options.headers['Content-Type'] = 'application/json';
-    }
-
-    // Add oauth header
-    if (this.accessToken) {
-      options.headers.Authorization = `Bearer ${this.accessToken}`;
-    }
-
-    switch (options.headers['Content-Type']) {
+  private transformRequest(data: any, headers: any) {
+    switch (headers['Content-Type']) {
       case 'application/json':
-        options.data = JSON.stringify(options.data);
-
-        return options;
+        return JSON.stringify(data);
 
       case 'multipart/form-data':
         const formData = new FormData();
 
-        for (const [key, value] of Object.entries<string | Blob>(
-          options.data,
-        )) {
+        for (const [key, value] of Object.entries<string | Blob>(data)) {
           formData.append(key, value);
         }
 
-        options.data = formData;
-
-        // In Node.js, axios doesn't set boundary data in the content-type header
-        // so set it manually by using getHeaders of `form-data` node.js package
-        if (typeof (formData as any).getHeaders === 'function') {
-          options.headers = {
-            ...options.headers,
-            ...(formData as any).getHeaders(),
-          };
-        }
-
-        return options;
+        return formData;
 
       default:
-        return options;
+        return data;
     }
   }
 
@@ -182,30 +169,30 @@ export class Gateway {
     options: AxiosRequestConfig,
   ): Promise<AxiosResponse<T>> {
     try {
-      return await axios.request<T>(options);
+      return await this.axios.request<T>(options);
     } catch (error) {
-      if (isAxiosError(error)) {
-        const status = oc.oc(error).response.status();
-
-        // Error response from REST API might contain error key
-        // https://docs.joinmastodon.org/api/entities/#error
-        const { error: errorMessage } = oc.oc(error).response.data({
-          error: 'Unexpected error',
-        });
-
-        switch (status) {
-          case 401:
-            throw new MastoUnauthorizedError(errorMessage);
-          case 404:
-            throw new MastoNotFoundError(errorMessage);
-          case 429:
-            throw new MastoRateLimitError(errorMessage);
-          default:
-            throw error;
-        }
+      if (!isAxiosError(error)) {
+        throw error;
       }
 
-      throw error;
+      const status = oc.oc(error).response.status();
+
+      // Error response from REST API might contain error key
+      // https://docs.joinmastodon.org/api/entities/#error
+      const { error: errorMessage } = oc.oc(error).response.data({
+        error: 'Unexpected error',
+      });
+
+      switch (status) {
+        case 401:
+          throw new MastoUnauthorizedError(errorMessage);
+        case 404:
+          throw new MastoNotFoundError(errorMessage);
+        case 429:
+          throw new MastoRateLimitError(errorMessage);
+        default:
+          throw error;
+      }
     }
   }
 
@@ -221,14 +208,12 @@ export class Gateway {
     params: any = {},
     options?: AxiosRequestConfig,
   ) {
-    const response = await this.request<T>(
-      this.decorateRequestConfig({
-        method: 'GET',
-        url: this.uri + path,
-        params,
-        ...options,
-      }),
-    );
+    const response = await this.request<T>({
+      method: 'GET',
+      url: path,
+      params,
+      ...options,
+    });
 
     return response.data;
   }
@@ -245,14 +230,12 @@ export class Gateway {
     data: any = {},
     options?: AxiosRequestConfig,
   ) {
-    const response = await this.request<T>(
-      this.decorateRequestConfig({
-        method: 'POST',
-        url: this.uri + path,
-        data,
-        ...options,
-      }),
-    );
+    const response = await this.request<T>({
+      method: 'POST',
+      url: path,
+      data,
+      ...options,
+    });
 
     return response.data;
   }
@@ -269,14 +252,12 @@ export class Gateway {
     data: any = {},
     options?: AxiosRequestConfig,
   ) {
-    const response = await this.request<T>(
-      this.decorateRequestConfig({
-        method: 'PUT',
-        url: this.uri + path,
-        data,
-        ...options,
-      }),
-    );
+    const response = await this.request<T>({
+      method: 'PUT',
+      url: path,
+      data,
+      ...options,
+    });
 
     return response.data;
   }
@@ -293,14 +274,12 @@ export class Gateway {
     data: any = {},
     options?: AxiosRequestConfig,
   ) {
-    const response = await this.request<T>(
-      this.decorateRequestConfig({
-        method: 'DELETE',
-        url: this.uri + path,
-        data,
-        ...options,
-      }),
-    );
+    const response = await this.request<T>({
+      method: 'DELETE',
+      url: path,
+      data,
+      ...options,
+    });
 
     return response.data;
   }
@@ -317,14 +296,12 @@ export class Gateway {
     data: any = {},
     options?: AxiosRequestConfig,
   ) {
-    const response = await this.request<T>(
-      this.decorateRequestConfig({
-        method: 'PATCH',
-        url: this.uri + path,
-        data,
-        ...options,
-      }),
-    );
+    const response = await this.request<T>({
+      method: 'PATCH',
+      url: path,
+      data,
+      ...options,
+    });
 
     return response.data;
   }
@@ -383,13 +360,11 @@ export class Gateway {
           currentParams = initialParams;
         }
 
-        const response = await gateway.request<Data>(
-          gateway.decorateRequestConfig({
-            method: 'GET',
-            url: options.url || currentUrl,
-            params: options.params || currentParams,
-          }),
-        );
+        const response = await gateway.request<Data>({
+          method: 'GET',
+          url: options.url || currentUrl,
+          params: options.params || currentParams,
+        });
 
         // Set next url from the link header
         const link = oc.oc(response.headers).link('');
