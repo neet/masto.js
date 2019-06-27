@@ -25,7 +25,7 @@ First, fetch your access token with following command and save it.
 $ npx masto-cli token --uri=URI --email=EMAIL --password=PASSWORD
 ```
 
-Then here's a simple example that creates status. Replace `TOKEN` to your token you saved by the command above.
+Then here's a simple example that creates status. Replace `TOKEN` to your own token that you saved with the command above.
 
 ```ts
 // For Node.js
