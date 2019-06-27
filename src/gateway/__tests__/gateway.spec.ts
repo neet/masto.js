@@ -124,6 +124,15 @@ describe('Gateway', () => {
     expect(result).toBeInstanceOf(FormData);
   });
 
+  test('not transform data when unknown MIME given', () => {
+    const data = { a: 'foo' };
+    // @ts-ignore
+    const result = gateway.transformRequest(data, {
+      'Content-Type': 'image/png',
+    });
+    expect(result).toEqual({ a: 'foo' });
+  });
+
   test('call mockAxios.request with given options', async () => {
     const options = {
       method: 'POST',
