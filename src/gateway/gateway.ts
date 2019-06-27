@@ -2,6 +2,7 @@ import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import normalizeUrl from 'normalize-url';
 import querystring from 'querystring';
 import semver from 'semver';
+import { Omit } from 'simplytyped';
 import * as oc from 'ts-optchain';
 import { Instance } from '../entities/instance';
 import { MastoNotFoundError } from '../errors/masto-not-found-error';

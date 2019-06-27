@@ -1,3 +1,4 @@
+import { Omit } from 'simplytyped';
 import { AccountField, AccountSource } from '../../entities/account';
 import { FilterContext } from '../../entities/filter';
 import { NotificationType } from '../../entities/notification';
