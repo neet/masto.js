@@ -232,7 +232,10 @@ export class Masto extends Gateway {
    */
   @available({ since: '0.0.0' })
   public fetchAccountFollowers(id: string, params?: PaginationParams) {
-    return this.paginate<Account[]>(`/api/v1/accounts/${id}/followers`, params);
+    return this.paginate<Account[], typeof params>(
+      `/api/v1/accounts/${id}/followers`,
+      params,
+    );
   }
 
   /**
@@ -244,7 +247,10 @@ export class Masto extends Gateway {
    */
   @available({ since: '0.0.0' })
   public fetchAccountFollowing(id: string, params?: PaginationParams) {
-    return this.paginate<Account[]>(`/api/v1/accounts/${id}/following`, params);
+    return this.paginate<Account[], typeof params>(
+      `/api/v1/accounts/${id}/following`,
+      params,
+    );
   }
 
   /**
@@ -256,7 +262,10 @@ export class Masto extends Gateway {
    */
   @available({ since: '0.0.0' })
   public fetchAccountStatuses(id: string, params?: FetchAccountStatusesParams) {
-    return this.paginate<Status[]>(`/api/v1/accounts/${id}/statuses`, params);
+    return this.paginate<Status[], typeof params>(
+      `/api/v1/accounts/${id}/statuses`,
+      params,
+    );
   }
 
   /**
@@ -335,7 +344,7 @@ export class Masto extends Gateway {
    */
   @available({ since: '0.0.0' })
   public fetchBlocks(params?: PaginationParams) {
-    return this.paginate<Account[]>(`/api/v1/blocks`, params);
+    return this.paginate<Account[], typeof params>(`/api/v1/blocks`, params);
   }
 
   /**
@@ -378,7 +387,10 @@ export class Masto extends Gateway {
    */
   @available({ since: '1.4.0' })
   public fetchDomainBlocks(params?: PaginationParams) {
-    return this.paginate<string[]>(`/api/v1/domain_blocks`, params);
+    return this.paginate<string[], typeof params>(
+      `/api/v1/domain_blocks`,
+      params,
+    );
   }
 
   /**
@@ -414,7 +426,10 @@ export class Masto extends Gateway {
    */
   @available({ since: '2.5.0' })
   public fetchEndorsements(params?: PaginationParams) {
-    return this.paginate<Account[]>(`/api/v1/endorsements`, params);
+    return this.paginate<Account[], typeof params>(
+      `/api/v1/endorsements`,
+      params,
+    );
   }
 
   /**
@@ -447,7 +462,7 @@ export class Masto extends Gateway {
    */
   @available({ since: '0.0.0' })
   public fetchFavourites(params?: PaginationParams) {
-    return this.paginate<Status[]>(`/api/v1/favourites`, params);
+    return this.paginate<Status[], typeof params>(`/api/v1/favourites`, params);
   }
 
   /**
@@ -535,7 +550,10 @@ export class Masto extends Gateway {
    */
   @available({ since: '0.0.0' })
   public fetchFollowRequests(params?: PaginationParams) {
-    return this.paginate<Account[]>(`/api/v1/follow_requests`, params);
+    return this.paginate<Account[], typeof params>(
+      `/api/v1/follow_requests`,
+      params,
+    );
   }
 
   /**
@@ -641,7 +659,10 @@ export class Masto extends Gateway {
    */
   @available({ since: '2.1.0' })
   public fetchListAccounts(id: string, params?: PaginationParams) {
-    return this.paginate<Account[]>(`/api/v1/list/${id}/accounts`, params);
+    return this.paginate<Account[], typeof params>(
+      `/api/v1/list/${id}/accounts`,
+      params,
+    );
   }
 
   /**
@@ -749,7 +770,7 @@ export class Masto extends Gateway {
    */
   @available({ since: '0.0.0' })
   public fetchMutes(params?: PaginationParams) {
-    return this.paginate<Account[]>('/api/v1/mutes', params);
+    return this.paginate<Account[], typeof params>('/api/v1/mutes', params);
   }
 
   /**
@@ -805,7 +826,10 @@ export class Masto extends Gateway {
    */
   @available({ since: '0.0.0' })
   public fetchNotifications(params?: FetchNotificationsParams) {
-    return this.paginate<Notification[]>('/api/v1/notifications', params);
+    return this.paginate<Notification[], typeof params>(
+      '/api/v1/notifications',
+      params,
+    );
   }
 
   /**
@@ -980,7 +1004,7 @@ export class Masto extends Gateway {
     params: SearchParams,
     version = 'v2' as V,
   ) {
-    return this.paginate<V extends 'v2' ? Results : ResultsV1>(
+    return this.paginate<V extends 'v2' ? Results : ResultsV1, typeof params>(
       `/api/${version}/search`,
       params,
     );
@@ -1027,7 +1051,7 @@ export class Masto extends Gateway {
    */
   @available({ since: '0.0.0' })
   public fetchStatusRebloggedBy(id: string, params?: PaginationParams) {
-    return this.paginate<Account[]>(
+    return this.paginate<Account[], typeof params>(
       `/api/v1/statuses/${id}/reblogged_by`,
       params,
     );
@@ -1042,7 +1066,7 @@ export class Masto extends Gateway {
    */
   @available({ since: '0.0.0' })
   public fetchStatusFavouritedBy(id: string, params?: PaginationParams) {
-    return this.paginate<Account[]>(
+    return this.paginate<Account[], typeof params>(
       `/api/v1/statuses/${id}/favourited_by`,
       params,
     );
@@ -1129,7 +1153,10 @@ export class Masto extends Gateway {
    */
   @available({ since: '0.0.0' })
   public fetchHomeTimeline(params?: FetchTimelineParams) {
-    return this.paginate<Status[]>('/api/v1/timelines/home', params);
+    return this.paginate<Status[], typeof params>(
+      '/api/v1/timelines/home',
+      params,
+    );
   }
 
   /**
@@ -1140,7 +1167,7 @@ export class Masto extends Gateway {
    */
   @available({ since: '0.0.0' })
   public fetchCommunityTimeline(params?: FetchTimelineParams) {
-    return this.paginate<Status[]>('/api/v1/timelines/public', {
+    return this.paginate<Status[], typeof params>('/api/v1/timelines/public', {
       local: true,
       ...params,
     });
@@ -1154,7 +1181,10 @@ export class Masto extends Gateway {
    */
   @available({ since: '0.0.0' })
   public fetchPublicTimeline(params?: FetchTimelineParams) {
-    return this.paginate<Status[]>('/api/v1/timelines/public', params);
+    return this.paginate<Status[], typeof params>(
+      '/api/v1/timelines/public',
+      params,
+    );
   }
 
   /**
@@ -1166,7 +1196,10 @@ export class Masto extends Gateway {
    */
   @available({ since: '0.0.0' })
   public fetchTagTimeline(id: string, params?: FetchTimelineParams) {
-    return this.paginate<Status[]>(`/api/v1/timelines/tag/${id}`, params);
+    return this.paginate<Status[], typeof params>(
+      `/api/v1/timelines/tag/${id}`,
+      params,
+    );
   }
 
   /**
@@ -1178,7 +1211,10 @@ export class Masto extends Gateway {
    */
   @available({ since: '2.1.0' })
   public fetchListTimeline(id: string, params?: FetchTimelineParams) {
-    return this.paginate<Status[]>(`/api/v1/timelines/list/${id}`, params);
+    return this.paginate<Status[], typeof params>(
+      `/api/v1/timelines/list/${id}`,
+      params,
+    );
   }
 
   /**
@@ -1187,7 +1223,10 @@ export class Masto extends Gateway {
    */
   @available({ since: '0.0.0', until: '2.5.2' })
   public fetchDirectTimeline(params?: FetchTimelineParams) {
-    return this.paginate<Status[]>('/api/v1/timelines/direct', params);
+    return this.paginate<Status[], typeof params>(
+      '/api/v1/timelines/direct',
+      params,
+    );
   }
 
   /**
@@ -1196,7 +1235,10 @@ export class Masto extends Gateway {
    */
   @available({ since: '2.6.0' })
   public fetchConversations(params?: PaginationParams) {
-    return this.paginate<Conversation[]>('/api/v1/conversations', params);
+    return this.paginate<Conversation[], typeof params>(
+      '/api/v1/conversations',
+      params,
+    );
   }
 
   /**

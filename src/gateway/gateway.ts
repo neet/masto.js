@@ -349,12 +349,9 @@ export class Gateway {
    * @return Async iterable iterator of the pages.
    * See also [MDN article about generator/iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators)
    */
-  public async *paginate<Data, Params = any>(
-    initialUrl: string,
-    initialParams?: Params,
-  ) {
+  public async *paginate<Data, T>(initialUrl: string, initialParams?: T) {
     let nextUrl: string | undefined = initialUrl;
-    let nextParams: Params | undefined = initialParams;
+    let nextParams: T | undefined = initialParams;
 
     while (nextUrl) {
       const response: AxiosResponse<Data> = await this.request<Data>({
@@ -364,7 +361,7 @@ export class Gateway {
       });
 
       // Yield can be argument of next()
-      const options: PaginateNextOptions<Params> = yield response.data;
+      const options: PaginateNextOptions<T> = yield response.data;
 
       // Get next URL from "next" in the link header
       const link = oc(response.headers)
