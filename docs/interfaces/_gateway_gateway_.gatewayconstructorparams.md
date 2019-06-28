@@ -24,7 +24,7 @@
 
 ● **accessToken**? : *undefined | string*
 
-*Defined in [gateway/gateway.ts:23](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L23)*
+*Defined in [gateway/gateway.ts:25](https://github.com/neet/masto.js/blob/80b1796/src/gateway/gateway.ts#L25)*
 
 Access token of the user
 
@@ -34,7 +34,7 @@ ___
 
 ● **axiosConfig**? : *`AxiosRequestConfig`*
 
-*Defined in [gateway/gateway.ts:25](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L25)*
+*Defined in [gateway/gateway.ts:27](https://github.com/neet/masto.js/blob/80b1796/src/gateway/gateway.ts#L27)*
 
 Axios configureations. See [Axios'](https://github.com/axios/axios#request-config) docs
 
@@ -44,7 +44,7 @@ ___
 
 ● **streamingApiUrl**? : *undefined | string*
 
-*Defined in [gateway/gateway.ts:19](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L19)*
+*Defined in [gateway/gateway.ts:21](https://github.com/neet/masto.js/blob/80b1796/src/gateway/gateway.ts#L21)*
 
 Streaming API URL
 
@@ -54,7 +54,7 @@ ___
 
 ● **uri**: *string*
 
-*Defined in [gateway/gateway.ts:17](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L17)*
+*Defined in [gateway/gateway.ts:19](https://github.com/neet/masto.js/blob/80b1796/src/gateway/gateway.ts#L19)*
 
 URI of the instance
 
@@ -64,7 +64,7 @@ ___
 
 ● **version**? : *undefined | string*
 
-*Defined in [gateway/gateway.ts:21](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L21)*
+*Defined in [gateway/gateway.ts:23](https://github.com/neet/masto.js/blob/80b1796/src/gateway/gateway.ts#L23)*
 
 Version of the instance
 

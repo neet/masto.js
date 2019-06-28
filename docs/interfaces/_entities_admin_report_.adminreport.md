@@ -29,7 +29,7 @@
 
 ● **account_id**: *string*
 
-*Defined in [entities/admin-report.ts:9](https://github.com/neet/masto.js/blob/635a2aa/src/entities/admin-report.ts#L9)*
+*Defined in [entities/admin-report.ts:9](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-report.ts#L9)*
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 ● **action_taken**: *boolean*
 
-*Defined in [entities/admin-report.ts:5](https://github.com/neet/masto.js/blob/635a2aa/src/entities/admin-report.ts#L5)*
+*Defined in [entities/admin-report.ts:5](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-report.ts#L5)*
 
 ___
 
@@ -45,7 +45,7 @@ ___
 
 ● **action_taken_by_account_id**: *string*
 
-*Defined in [entities/admin-report.ts:12](https://github.com/neet/masto.js/blob/635a2aa/src/entities/admin-report.ts#L12)*
+*Defined in [entities/admin-report.ts:12](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-report.ts#L12)*
 
 ___
 
@@ -53,7 +53,7 @@ ___
 
 ● **assigned_account_id**: *string*
 
-*Defined in [entities/admin-report.ts:11](https://github.com/neet/masto.js/blob/635a2aa/src/entities/admin-report.ts#L11)*
+*Defined in [entities/admin-report.ts:11](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-report.ts#L11)*
 
 ___
 
@@ -61,7 +61,7 @@ ___
 
 ● **comment**: *string*
 
-*Defined in [entities/admin-report.ts:6](https://github.com/neet/masto.js/blob/635a2aa/src/entities/admin-report.ts#L6)*
+*Defined in [entities/admin-report.ts:6](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-report.ts#L6)*
 
 ___
 
@@ -69,7 +69,7 @@ ___
 
 ● **created_at**: *string*
 
-*Defined in [entities/admin-report.ts:7](https://github.com/neet/masto.js/blob/635a2aa/src/entities/admin-report.ts#L7)*
+*Defined in [entities/admin-report.ts:7](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-report.ts#L7)*
 
 ___
 
@@ -77,7 +77,7 @@ ___
 
 ● **id**: *string*
 
-*Defined in [entities/admin-report.ts:4](https://github.com/neet/masto.js/blob/635a2aa/src/entities/admin-report.ts#L4)*
+*Defined in [entities/admin-report.ts:4](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-report.ts#L4)*
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 ● **statuses**: *[Status](_entities_status_.status.md)[]*
 
-*Defined in [entities/admin-report.ts:13](https://github.com/neet/masto.js/blob/635a2aa/src/entities/admin-report.ts#L13)*
+*Defined in [entities/admin-report.ts:13](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-report.ts#L13)*
 
 ___
 
@@ -93,7 +93,7 @@ ___
 
 ● **target_account_id**: *string*
 
-*Defined in [entities/admin-report.ts:10](https://github.com/neet/masto.js/blob/635a2aa/src/entities/admin-report.ts#L10)*
+*Defined in [entities/admin-report.ts:10](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-report.ts#L10)*
 
 ___
 
@@ -101,6 +101,6 @@ ___
 
 ● **updated_at**: *string*
 
-*Defined in [entities/admin-report.ts:8](https://github.com/neet/masto.js/blob/635a2aa/src/entities/admin-report.ts#L8)*
+*Defined in [entities/admin-report.ts:8](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-report.ts#L8)*
 
 ___

@@ -32,7 +32,7 @@
 
 *Inherited from [CreateStatusParamsBase](_clients_masto_params_.createstatusparamsbase.md).[in_reply_to_id](_clients_masto_params_.createstatusparamsbase.md#optional-in_reply_to_id)*
 
-*Defined in [clients/masto/params.ts:220](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L220)*
+*Defined in [clients/masto/params.ts:220](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L220)*
 
 local ID of the status you want to reply to
 
@@ -44,7 +44,7 @@ ___
 
 *Inherited from [CreateStatusParamsBase](_clients_masto_params_.createstatusparamsbase.md).[language](_clients_masto_params_.createstatusparamsbase.md#optional-language)*
 
-*Defined in [clients/masto/params.ts:230](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L230)*
+*Defined in [clients/masto/params.ts:230](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L230)*
 
 ISO 639-2 language code of the toot, to skip automatic detection
 
@@ -54,7 +54,7 @@ ___
 
 ● **media_ids**? : *string[] | null*
 
-*Defined in [clients/masto/params.ts:237](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L237)*
+*Defined in [clients/masto/params.ts:237](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L237)*
 
 Array of media IDs to attach to the status (maximum 4)
 
@@ -64,7 +64,7 @@ ___
 
 ● **poll**? : *[CreateStatusPollParam](_clients_masto_params_.createstatuspollparam.md) | null*
 
-*Defined in [clients/masto/params.ts:239](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L239)*
+*Defined in [clients/masto/params.ts:239](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L239)*
 
 Nested parameters to attach a poll to the status
 
@@ -76,7 +76,7 @@ ___
 
 *Inherited from [CreateStatusParamsBase](_clients_masto_params_.createstatusparamsbase.md).[scheduled_at](_clients_masto_params_.createstatusparamsbase.md#optional-scheduled_at)*
 
-*Defined in [clients/masto/params.ts:228](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L228)*
+*Defined in [clients/masto/params.ts:228](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L228)*
 
 Timestamp string to schedule posting of status (ISO 8601)
 
@@ -88,7 +88,7 @@ ___
 
 *Inherited from [CreateStatusParamsBase](_clients_masto_params_.createstatusparamsbase.md).[sensitive](_clients_masto_params_.createstatusparamsbase.md#optional-sensitive)*
 
-*Defined in [clients/masto/params.ts:222](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L222)*
+*Defined in [clients/masto/params.ts:222](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L222)*
 
 Set this to mark the media of the status as NSFW
 
@@ -100,7 +100,7 @@ ___
 
 *Inherited from [CreateStatusParamsBase](_clients_masto_params_.createstatusparamsbase.md).[spoiler_text](_clients_masto_params_.createstatusparamsbase.md#optional-spoiler_text)*
 
-*Defined in [clients/masto/params.ts:224](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L224)*
+*Defined in [clients/masto/params.ts:224](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L224)*
 
 Text to be shown as a warning before the actual content
 
@@ -110,7 +110,7 @@ ___
 
 ● **status**: *string*
 
-*Defined in [clients/masto/params.ts:235](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L235)*
+*Defined in [clients/masto/params.ts:235](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L235)*
 
 Text of the status
 
@@ -122,7 +122,7 @@ ___
 
 *Inherited from [CreateStatusParamsBase](_clients_masto_params_.createstatusparamsbase.md).[visibility](_clients_masto_params_.createstatusparamsbase.md#optional-visibility)*
 
-*Defined in [clients/masto/params.ts:226](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L226)*
+*Defined in [clients/masto/params.ts:226](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L226)*
 
 Either "direct", "private", "unlisted" or "public"
 

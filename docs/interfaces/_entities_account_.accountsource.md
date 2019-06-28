@@ -24,7 +24,7 @@
 
 ● **fields**: *[AccountField](_entities_account_.accountfield.md)*
 
-*Defined in [entities/account.ts:81](https://github.com/neet/masto.js/blob/635a2aa/src/entities/account.ts#L81)*
+*Defined in [entities/account.ts:81](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L81)*
 
 Plain-text version of the account's field
 
@@ -34,7 +34,7 @@ ___
 
 ● **language**: *string | null*
 
-*Defined in [entities/account.ts:77](https://github.com/neet/masto.js/blob/635a2aa/src/entities/account.ts#L77)*
+*Defined in [entities/account.ts:77](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L77)*
 
 User's default language
 
@@ -44,7 +44,7 @@ ___
 
 ● **note**: *string*
 
-*Defined in [entities/account.ts:79](https://github.com/neet/masto.js/blob/635a2aa/src/entities/account.ts#L79)*
+*Defined in [entities/account.ts:79](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L79)*
 
 Plain-text version of the account's `note`
 
@@ -54,7 +54,7 @@ ___
 
 ● **privacy**? : *[StatusVisibility](../modules/_entities_status_.md#statusvisibility) | null*
 
-*Defined in [entities/account.ts:73](https://github.com/neet/masto.js/blob/635a2aa/src/entities/account.ts#L73)*
+*Defined in [entities/account.ts:73](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L73)*
 
 Selected preference: Default privacy of new toots
 
@@ -64,7 +64,7 @@ ___
 
 ● **sensitive**? : *boolean | null*
 
-*Defined in [entities/account.ts:75](https://github.com/neet/masto.js/blob/635a2aa/src/entities/account.ts#L75)*
+*Defined in [entities/account.ts:75](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L75)*
 
 Selected preference: Mark media as sensitive by default?
 

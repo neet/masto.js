@@ -22,7 +22,7 @@
 
 ● **domain_count**: *number*
 
-*Defined in [entities/instance.ts:39](https://github.com/neet/masto.js/blob/635a2aa/src/entities/instance.ts#L39)*
+*Defined in [entities/instance.ts:39](https://github.com/neet/masto.js/blob/80b1796/src/entities/instance.ts#L39)*
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 ● **status_count**: *number*
 
-*Defined in [entities/instance.ts:38](https://github.com/neet/masto.js/blob/635a2aa/src/entities/instance.ts#L38)*
+*Defined in [entities/instance.ts:38](https://github.com/neet/masto.js/blob/80b1796/src/entities/instance.ts#L38)*
 
 ___
 
@@ -38,6 +38,6 @@ ___
 
 ● **user_count**: *number*
 
-*Defined in [entities/instance.ts:37](https://github.com/neet/masto.js/blob/635a2aa/src/entities/instance.ts#L37)*
+*Defined in [entities/instance.ts:37](https://github.com/neet/masto.js/blob/80b1796/src/entities/instance.ts#L37)*
 
 ___

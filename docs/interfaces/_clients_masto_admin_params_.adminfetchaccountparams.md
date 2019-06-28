@@ -32,7 +32,7 @@
 
 ● **active**? : *boolean | null*
 
-*Defined in [clients/masto-admin/params.ts:5](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/params.ts#L5)*
+*Defined in [clients/masto-admin/params.ts:5](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/params.ts#L5)*
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 ● **by_domain**? : *string | null*
 
-*Defined in [clients/masto-admin/params.ts:4](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/params.ts#L4)*
+*Defined in [clients/masto-admin/params.ts:4](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/params.ts#L4)*
 
 ___
 
@@ -48,7 +48,7 @@ ___
 
 ● **disabled**? : *boolean | null*
 
-*Defined in [clients/masto-admin/params.ts:7](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/params.ts#L7)*
+*Defined in [clients/masto-admin/params.ts:7](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/params.ts#L7)*
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 ● **display_name**? : *string | null*
 
-*Defined in [clients/masto-admin/params.ts:11](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/params.ts#L11)*
+*Defined in [clients/masto-admin/params.ts:11](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/params.ts#L11)*
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 ● **email**? : *string | null*
 
-*Defined in [clients/masto-admin/params.ts:12](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/params.ts#L12)*
+*Defined in [clients/masto-admin/params.ts:12](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/params.ts#L12)*
 
 ___
 
@@ -72,7 +72,7 @@ ___
 
 ● **ip**? : *string | null*
 
-*Defined in [clients/masto-admin/params.ts:13](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/params.ts#L13)*
+*Defined in [clients/masto-admin/params.ts:13](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/params.ts#L13)*
 
 ___
 
@@ -80,7 +80,7 @@ ___
 
 ● **local**? : *boolean | null*
 
-*Defined in [clients/masto-admin/params.ts:2](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/params.ts#L2)*
+*Defined in [clients/masto-admin/params.ts:2](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/params.ts#L2)*
 
 ___
 
@@ -88,7 +88,7 @@ ___
 
 ● **pending**? : *boolean | null*
 
-*Defined in [clients/masto-admin/params.ts:6](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/params.ts#L6)*
+*Defined in [clients/masto-admin/params.ts:6](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/params.ts#L6)*
 
 ___
 
@@ -96,7 +96,7 @@ ___
 
 ● **remote**? : *boolean | null*
 
-*Defined in [clients/masto-admin/params.ts:3](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/params.ts#L3)*
+*Defined in [clients/masto-admin/params.ts:3](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/params.ts#L3)*
 
 ___
 
@@ -104,7 +104,7 @@ ___
 
 ● **silenced**? : *boolean | null*
 
-*Defined in [clients/masto-admin/params.ts:8](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/params.ts#L8)*
+*Defined in [clients/masto-admin/params.ts:8](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/params.ts#L8)*
 
 ___
 
@@ -112,7 +112,7 @@ ___
 
 ● **staff**? : *boolean | null*
 
-*Defined in [clients/masto-admin/params.ts:14](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/params.ts#L14)*
+*Defined in [clients/masto-admin/params.ts:14](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/params.ts#L14)*
 
 ___
 
@@ -120,7 +120,7 @@ ___
 
 ● **suspended**? : *boolean | null*
 
-*Defined in [clients/masto-admin/params.ts:9](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/params.ts#L9)*
+*Defined in [clients/masto-admin/params.ts:9](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/params.ts#L9)*
 
 ___
 
@@ -128,6 +128,6 @@ ___
 
 ● **usename**? : *string | null*
 
-*Defined in [clients/masto-admin/params.ts:10](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/params.ts#L10)*
+*Defined in [clients/masto-admin/params.ts:10](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/params.ts#L10)*
 
 ___

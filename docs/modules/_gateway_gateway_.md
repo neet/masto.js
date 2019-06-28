@@ -25,7 +25,7 @@
 
 Ƭ **LoginParams**: *`Omit<GatewayConstructorParams, "version" | "streamingApiUrl">`*
 
-*Defined in [gateway/gateway.ts:29](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L29)*
+*Defined in [gateway/gateway.ts:31](https://github.com/neet/masto.js/blob/80b1796/src/gateway/gateway.ts#L31)*
 
 Params for login. `version` and `streamingApiUrl` will be set automatically so not needed
 
@@ -33,10 +33,8 @@ ___
 
 ###  PaginateNextOptions
 
-Ƭ **PaginateNextOptions**: *object*
+Ƭ **PaginateNextOptions**: *object | object*
 
-*Defined in [gateway/gateway.ts:34](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L34)*
-
-#### Type declaration:
+*Defined in [gateway/gateway.ts:36](https://github.com/neet/masto.js/blob/80b1796/src/gateway/gateway.ts#L36)*
 
 ___

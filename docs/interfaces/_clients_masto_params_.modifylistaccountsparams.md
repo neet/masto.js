@@ -20,7 +20,7 @@
 
 ● **account_ids**: *string[]*
 
-*Defined in [clients/masto/params.ts:149](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L149)*
+*Defined in [clients/masto/params.ts:149](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L149)*
 
 Array of account IDs
 

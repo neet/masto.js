@@ -61,7 +61,7 @@ Mastodon Moderation API client
 
 *Inherited from [Gateway](_gateway_gateway_.gateway.md).[constructor](_gateway_gateway_.gateway.md#constructor)*
 
-*Defined in [gateway/gateway.ts:57](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L57)*
+*Defined in [gateway/gateway.ts:62](https://github.com/neet/masto.js/blob/80b1796/src/gateway/gateway.ts#L62)*
 
 **Parameters:**
 
@@ -81,7 +81,7 @@ ___
 
 *Inherited from [Gateway](_gateway_gateway_.gateway.md).[accessToken](_gateway_gateway_.gateway.md#optional-accesstoken)*
 
-*Defined in [gateway/gateway.ts:53](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L53)*
+*Defined in [gateway/gateway.ts:58](https://github.com/neet/masto.js/blob/80b1796/src/gateway/gateway.ts#L58)*
 
 API token of the user
 
@@ -93,7 +93,7 @@ ___
 
 *Inherited from [Gateway](_gateway_gateway_.gateway.md).[version](_gateway_gateway_.gateway.md#version)*
 
-*Defined in [gateway/gateway.ts:51](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L51)*
+*Defined in [gateway/gateway.ts:56](https://github.com/neet/masto.js/blob/80b1796/src/gateway/gateway.ts#L56)*
 
 Version of the current instance
 
@@ -107,7 +107,7 @@ ___
 
 *Inherited from [Gateway](_gateway_gateway_.gateway.md).[streamingApiUrl](_gateway_gateway_.gateway.md#streamingapiurl)*
 
-*Defined in [gateway/gateway.ts:96](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L96)*
+*Defined in [gateway/gateway.ts:101](https://github.com/neet/masto.js/blob/80b1796/src/gateway/gateway.ts#L101)*
 
 **Returns:** *string*
 
@@ -115,7 +115,7 @@ ___
 
 *Inherited from [Gateway](_gateway_gateway_.gateway.md).[streamingApiUrl](_gateway_gateway_.gateway.md#streamingapiurl)*
 
-*Defined in [gateway/gateway.ts:100](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L100)*
+*Defined in [gateway/gateway.ts:105](https://github.com/neet/masto.js/blob/80b1796/src/gateway/gateway.ts#L105)*
 
 **Parameters:**
 
@@ -133,7 +133,7 @@ ___
 
 *Inherited from [Gateway](_gateway_gateway_.gateway.md).[uri](_gateway_gateway_.gateway.md#uri)*
 
-*Defined in [gateway/gateway.ts:88](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L88)*
+*Defined in [gateway/gateway.ts:93](https://github.com/neet/masto.js/blob/80b1796/src/gateway/gateway.ts#L93)*
 
 **Returns:** *string*
 
@@ -141,7 +141,7 @@ ___
 
 *Inherited from [Gateway](_gateway_gateway_.gateway.md).[uri](_gateway_gateway_.gateway.md#uri)*
 
-*Defined in [gateway/gateway.ts:92](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L92)*
+*Defined in [gateway/gateway.ts:97](https://github.com/neet/masto.js/blob/80b1796/src/gateway/gateway.ts#L97)*
 
 **Parameters:**
 
@@ -159,7 +159,7 @@ ___
 
 ▸ **actionAccount**(`id`: string, `params`: [AdminActionAccountParams](../interfaces/_clients_masto_admin_params_.adminactionaccountparams.md)): *`Promise<AdminAccount>`*
 
-*Defined in [clients/masto-admin/masto-admin.ts:152](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/masto-admin.ts#L152)*
+*Defined in [clients/masto-admin/masto-admin.ts:152](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/masto-admin.ts#L152)*
 
 Perform a moderation action on an account
 
@@ -180,7 +180,7 @@ ___
 
 ▸ **approveAccount**(`id`: string): *`Promise<AdminAccount>`*
 
-*Defined in [clients/masto-admin/masto-admin.ts:51](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/masto-admin.ts#L51)*
+*Defined in [clients/masto-admin/masto-admin.ts:51](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/masto-admin.ts#L51)*
 
 Approve pending account
 
@@ -200,7 +200,7 @@ ___
 
 ▸ **assignReportToSelf**(`id`: string): *`Promise<AdminReport>`*
 
-*Defined in [clients/masto-admin/masto-admin.ts:111](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/masto-admin.ts#L111)*
+*Defined in [clients/masto-admin/masto-admin.ts:111](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/masto-admin.ts#L111)*
 
 Assign report to self
 
@@ -222,7 +222,7 @@ ___
 
 *Inherited from [Gateway](_gateway_gateway_.gateway.md).[delete](_gateway_gateway_.gateway.md#delete)*
 
-*Defined in [gateway/gateway.ts:276](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L276)*
+*Defined in [gateway/gateway.ts:281](https://github.com/neet/masto.js/blob/80b1796/src/gateway/gateway.ts#L281)*
 
 HTTP DELETE
 
@@ -246,7 +246,7 @@ ___
 
 ▸ **enableAccount**(`id`: string): *`Promise<AdminAccount>`*
 
-*Defined in [clients/masto-admin/masto-admin.ts:41](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/masto-admin.ts#L41)*
+*Defined in [clients/masto-admin/masto-admin.ts:41](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/masto-admin.ts#L41)*
 
 Re-enable account
 
@@ -266,7 +266,7 @@ ___
 
 ▸ **fetchAccount**(`id`: string): *`Promise<AdminAccount>`*
 
-*Defined in [clients/masto-admin/masto-admin.ts:31](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/masto-admin.ts#L31)*
+*Defined in [clients/masto-admin/masto-admin.ts:31](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/masto-admin.ts#L31)*
 
 Get a specific account
 
@@ -286,7 +286,7 @@ ___
 
 ▸ **fetchAccounts**(`params?`: [AdminFetchAccountParams](../interfaces/_clients_masto_admin_params_.adminfetchaccountparams.md)): *`Promise<AdminAccount[]>`*
 
-*Defined in [clients/masto-admin/masto-admin.ts:21](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/masto-admin.ts#L21)*
+*Defined in [clients/masto-admin/masto-admin.ts:21](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/masto-admin.ts#L21)*
 
 Get accounts
 
@@ -306,7 +306,7 @@ ___
 
 ▸ **fetchReport**(`id`: string): *`Promise<AdminReport>`*
 
-*Defined in [clients/masto-admin/masto-admin.ts:101](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/masto-admin.ts#L101)*
+*Defined in [clients/masto-admin/masto-admin.ts:101](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/masto-admin.ts#L101)*
 
 Get a specific report
 
@@ -326,7 +326,7 @@ ___
 
 ▸ **fetchReports**(`params?`: [AdminFetchReportsParams](../interfaces/_clients_masto_admin_params_.adminfetchreportsparams.md)): *`Promise<AdminReport[]>`*
 
-*Defined in [clients/masto-admin/masto-admin.ts:91](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/masto-admin.ts#L91)*
+*Defined in [clients/masto-admin/masto-admin.ts:91](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/masto-admin.ts#L91)*
 
 Get reports
 
@@ -348,7 +348,7 @@ ___
 
 *Inherited from [Gateway](_gateway_gateway_.gateway.md).[get](_gateway_gateway_.gateway.md#get)*
 
-*Defined in [gateway/gateway.ts:210](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L210)*
+*Defined in [gateway/gateway.ts:215](https://github.com/neet/masto.js/blob/80b1796/src/gateway/gateway.ts#L215)*
 
 HTTP GET
 
@@ -370,30 +370,26 @@ ___
 
 ###  paginate
 
-▸ **paginate**<**Data**, **Params**>(`path`: string, `initialParams?`: [Params]()): *`AsyncIterableIterator<Data | undefined>`*
+▸ **paginate**<**Data**>(`initialUrl`: string, `initialParams?`: any): *`AsyncIterableIterator<Data>`*
 
 *Inherited from [Gateway](_gateway_gateway_.gateway.md).[paginate](_gateway_gateway_.gateway.md#paginate)*
 
-*Defined in [gateway/gateway.ts:349](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L349)*
+*Defined in [gateway/gateway.ts:352](https://github.com/neet/masto.js/blob/80b1796/src/gateway/gateway.ts#L352)*
 
 Generate an iterable of the pagination.
-The default generator implementation of JS cannot change the value of `done` depend on the result of yield,
-Therefore we define custom generator to reproduce Mastodon's link header behaviour faithfully.
 
 **Type parameters:**
 
 ■` Data`
 
-■` Params`
-
 **Parameters:**
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`path` | string | Path for the endpoint |
-`initialParams?` | [Params]() | Query parameter |
+`initialUrl` | string | - |
+`initialParams?` | any | Query parameter |
 
-**Returns:** *`AsyncIterableIterator<Data | undefined>`*
+**Returns:** *`AsyncIterableIterator<Data>`*
 
 Async iterable iterator of the pages.
 See also [MDN article about generator/iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators)
@@ -406,7 +402,7 @@ ___
 
 *Inherited from [Gateway](_gateway_gateway_.gateway.md).[patch](_gateway_gateway_.gateway.md#patch)*
 
-*Defined in [gateway/gateway.ts:298](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L298)*
+*Defined in [gateway/gateway.ts:303](https://github.com/neet/masto.js/blob/80b1796/src/gateway/gateway.ts#L303)*
 
 HTTP PATCH
 
@@ -432,7 +428,7 @@ ___
 
 *Inherited from [Gateway](_gateway_gateway_.gateway.md).[post](_gateway_gateway_.gateway.md#post)*
 
-*Defined in [gateway/gateway.ts:232](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L232)*
+*Defined in [gateway/gateway.ts:237](https://github.com/neet/masto.js/blob/80b1796/src/gateway/gateway.ts#L237)*
 
 HTTP POST
 
@@ -458,7 +454,7 @@ ___
 
 *Inherited from [Gateway](_gateway_gateway_.gateway.md).[put](_gateway_gateway_.gateway.md#put)*
 
-*Defined in [gateway/gateway.ts:254](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L254)*
+*Defined in [gateway/gateway.ts:259](https://github.com/neet/masto.js/blob/80b1796/src/gateway/gateway.ts#L259)*
 
 HTTP PUT
 
@@ -482,7 +478,7 @@ ___
 
 ▸ **rejectAccount**(`id`: string): *`Promise<AdminAccount>`*
 
-*Defined in [clients/masto-admin/masto-admin.ts:61](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/masto-admin.ts#L61)*
+*Defined in [clients/masto-admin/masto-admin.ts:61](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/masto-admin.ts#L61)*
 
 Reject pending account
 
@@ -502,7 +498,7 @@ ___
 
 ▸ **reopenReport**(`id`: string): *`Promise<AdminReport>`*
 
-*Defined in [clients/masto-admin/masto-admin.ts:131](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/masto-admin.ts#L131)*
+*Defined in [clients/masto-admin/masto-admin.ts:131](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/masto-admin.ts#L131)*
 
 Re-open report
 
@@ -522,7 +518,7 @@ ___
 
 ▸ **resolveReport**(`id`: string): *`Promise<AdminReport>`*
 
-*Defined in [clients/masto-admin/masto-admin.ts:141](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/masto-admin.ts#L141)*
+*Defined in [clients/masto-admin/masto-admin.ts:141](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/masto-admin.ts#L141)*
 
 Close report
 
@@ -544,7 +540,7 @@ ___
 
 *Inherited from [Gateway](_gateway_gateway_.gateway.md).[stream](_gateway_gateway_.gateway.md#stream)*
 
-*Defined in [gateway/gateway.ts:319](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L319)*
+*Defined in [gateway/gateway.ts:324](https://github.com/neet/masto.js/blob/80b1796/src/gateway/gateway.ts#L324)*
 
 Connect to a streaming
 
@@ -565,7 +561,7 @@ ___
 
 ▸ **unassignReport**(`id`: string): *`Promise<AdminReport>`*
 
-*Defined in [clients/masto-admin/masto-admin.ts:121](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/masto-admin.ts#L121)*
+*Defined in [clients/masto-admin/masto-admin.ts:121](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/masto-admin.ts#L121)*
 
 Unassign report from self
 
@@ -585,7 +581,7 @@ ___
 
 ▸ **unsilenceAccount**(`id`: string): *`Promise<AdminAccount>`*
 
-*Defined in [clients/masto-admin/masto-admin.ts:71](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/masto-admin.ts#L71)*
+*Defined in [clients/masto-admin/masto-admin.ts:71](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/masto-admin.ts#L71)*
 
 Unsilence account
 
@@ -605,7 +601,7 @@ ___
 
 ▸ **unsuspendAccount**(`id`: string): *`Promise<AdminAccount>`*
 
-*Defined in [clients/masto-admin/masto-admin.ts:81](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto-admin/masto-admin.ts#L81)*
+*Defined in [clients/masto-admin/masto-admin.ts:81](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/masto-admin.ts#L81)*
 
 Unsuspend account
 
@@ -627,7 +623,7 @@ ___
 
 *Inherited from [Gateway](_gateway_gateway_.gateway.md).[login](_gateway_gateway_.gateway.md#static-login)*
 
-*Defined in [gateway/gateway.ts:109](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/gateway.ts#L109)*
+*Defined in [gateway/gateway.ts:114](https://github.com/neet/masto.js/blob/80b1796/src/gateway/gateway.ts#L114)*
 
 Login to Mastodon
 

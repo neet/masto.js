@@ -24,7 +24,7 @@
 
 ● **conversation**: *[Conversation](_entities_conversation_.conversation.md)*
 
-*Defined in [gateway/websocket.ts:24](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/websocket.ts#L24)*
+*Defined in [gateway/websocket.ts:24](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L24)*
 
 Status added to a conversation
 
@@ -34,7 +34,7 @@ ___
 
 ● **delete**: *string*
 
-*Defined in [gateway/websocket.ts:18](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/websocket.ts#L18)*
+*Defined in [gateway/websocket.ts:18](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L18)*
 
 Status deleted
 
@@ -44,7 +44,7 @@ ___
 
 ● **filters_changed**: *undefined*
 
-*Defined in [gateway/websocket.ts:22](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/websocket.ts#L22)*
+*Defined in [gateway/websocket.ts:22](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L22)*
 
 User's filter changed
 
@@ -54,7 +54,7 @@ ___
 
 ● **notification**: *[Notification](_entities_notification_.notification.md)*
 
-*Defined in [gateway/websocket.ts:20](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/websocket.ts#L20)*
+*Defined in [gateway/websocket.ts:20](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L20)*
 
 User's notification
 
@@ -64,7 +64,7 @@ ___
 
 ● **update**: *[Status](_entities_status_.status.md)*
 
-*Defined in [gateway/websocket.ts:16](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/websocket.ts#L16)*
+*Defined in [gateway/websocket.ts:16](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L16)*
 
 Status posted
 

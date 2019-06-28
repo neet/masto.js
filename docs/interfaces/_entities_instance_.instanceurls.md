@@ -20,6 +20,6 @@
 
 ● **streaming_api**: *string*
 
-*Defined in [entities/instance.ts:33](https://github.com/neet/masto.js/blob/635a2aa/src/entities/instance.ts#L33)*
+*Defined in [entities/instance.ts:33](https://github.com/neet/masto.js/blob/80b1796/src/entities/instance.ts#L33)*
 
 ___

@@ -26,7 +26,7 @@
 
 Ƭ **EventListener**: *function*
 
-*Defined in [gateway/websocket.ts:28](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/websocket.ts#L28)*
+*Defined in [gateway/websocket.ts:28](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L28)*
 
 #### Type declaration:
 
@@ -44,6 +44,6 @@ ___
 
 Ƭ **EventType**: *keyof EventTypeMap*
 
-*Defined in [gateway/websocket.ts:27](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/websocket.ts#L27)*
+*Defined in [gateway/websocket.ts:27](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L27)*
 
 ___

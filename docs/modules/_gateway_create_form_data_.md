@@ -18,7 +18,7 @@
 
 ▸ **createFormData**(`encodable`: any, `result`: `FormData`, `parentKey`: string): *`FormData`*
 
-*Defined in [gateway/create-form-data.ts:32](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/create-form-data.ts#L32)*
+*Defined in [gateway/create-form-data.ts:32](https://github.com/neet/masto.js/blob/80b1796/src/gateway/create-form-data.ts#L32)*
 
 Encode nested object to form-data compatible flat object
 
@@ -56,7 +56,7 @@ ___
 
 ▸ **isArray**(`x`: any): *boolean*
 
-*Defined in [gateway/create-form-data.ts:4](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/create-form-data.ts#L4)*
+*Defined in [gateway/create-form-data.ts:4](https://github.com/neet/masto.js/blob/80b1796/src/gateway/create-form-data.ts#L4)*
 
 **Parameters:**
 
@@ -72,7 +72,7 @@ ___
 
 ▸ **isObject**(`x`: any): *boolean*
 
-*Defined in [gateway/create-form-data.ts:6](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/create-form-data.ts#L6)*
+*Defined in [gateway/create-form-data.ts:6](https://github.com/neet/masto.js/blob/80b1796/src/gateway/create-form-data.ts#L6)*
 
 **Parameters:**
 

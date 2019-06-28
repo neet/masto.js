@@ -20,7 +20,7 @@
 
 ● **choices**: *string[]*
 
-*Defined in [clients/masto/params.ts:278](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L278)*
+*Defined in [clients/masto/params.ts:278](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L278)*
 
 Array of choice indices
 

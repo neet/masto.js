@@ -22,7 +22,6 @@ npm i masto
 
 ### Requirements
 - **Node.js**: `>= 10.x`
-- **TypeScript** (optional): `>= 3.5.x`
 
 ## Basic Usage
 First, fetch your access token with following command and save it.
@@ -30,7 +29,7 @@ First, fetch your access token with following command and save it.
 $ npx masto-cli token --uri=URI --email=EMAIL --password=PASSWORD
 ```
 
-Then here's a simple example that creates status. Replace `TOKEN` to your token you saved by the command above.
+Then here's a simple example that creates status. Replace `TOKEN` to your own token that you saved with the command above.
 
 ```ts
 // For Node.js
@@ -53,7 +52,7 @@ console.log(data);
 })()
 ```
 
-All of available methods are described in the [documentation](https://github.com/neet/masto.js/blob/master/docs/classes/_client_masto_.masto.md). You can also refer [examples](https://github.com/neet/masto.js/tree/master/examples) on this repository.
+All of available methods are described in the [documentation](https://github.com/neet/masto.js/blob/master/docs/classes/_clients_masto_masto_.masto.md). You can also refer [examples](https://github.com/neet/masto.js/tree/master/examples) on this repository.
 
 ## FAQ
 ### Q. What is the deference between Masto.js and the others?

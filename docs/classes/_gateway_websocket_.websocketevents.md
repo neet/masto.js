@@ -72,7 +72,7 @@ ___
 
 *Overrides void*
 
-*Defined in [gateway/websocket.ts:105](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/websocket.ts#L105)*
+*Defined in [gateway/websocket.ts:105](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L105)*
 
 **Type parameters:**
 
@@ -94,7 +94,7 @@ ___
 
 ▸ **connect**(`url`: string, `protocols?`: string | string[]): *`Promise<WebSocketEvents>`*
 
-*Defined in [gateway/websocket.ts:44](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/websocket.ts#L44)*
+*Defined in [gateway/websocket.ts:44](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L44)*
 
 Connect to the websocket endpoint
 
@@ -113,7 +113,7 @@ ___
 
 ▸ **disconnect**(): *void*
 
-*Defined in [gateway/websocket.ts:61](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/websocket.ts#L61)*
+*Defined in [gateway/websocket.ts:61](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L61)*
 
 Disconnect from the websocket endpoint
 
@@ -127,7 +127,7 @@ ___
 
 *Overrides void*
 
-*Defined in [gateway/websocket.ts:100](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/websocket.ts#L100)*
+*Defined in [gateway/websocket.ts:100](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L100)*
 
 **Type parameters:**
 
@@ -163,7 +163,7 @@ ___
 
 ▸ **handleMessage**(`__namedParameters`: object): *void*
 
-*Defined in [gateway/websocket.ts:70](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/websocket.ts#L70)*
+*Defined in [gateway/websocket.ts:70](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L70)*
 
 Parse JSON data and emit it as an event
 
@@ -183,7 +183,7 @@ ___
 
 *Overrides void*
 
-*Defined in [gateway/websocket.ts:95](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/websocket.ts#L95)*
+*Defined in [gateway/websocket.ts:95](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L95)*
 
 **Type parameters:**
 
@@ -205,7 +205,7 @@ ___
 
 *Overrides void*
 
-*Defined in [gateway/websocket.ts:90](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/websocket.ts#L90)*
+*Defined in [gateway/websocket.ts:90](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L90)*
 
 **Type parameters:**
 
@@ -227,7 +227,7 @@ ___
 
 *Overrides void*
 
-*Defined in [gateway/websocket.ts:142](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/websocket.ts#L142)*
+*Defined in [gateway/websocket.ts:142](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L142)*
 
 **Type parameters:**
 
@@ -252,7 +252,7 @@ ___
 
 *Overrides void*
 
-*Defined in [gateway/websocket.ts:114](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/websocket.ts#L114)*
+*Defined in [gateway/websocket.ts:114](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L114)*
 
 **Type parameters:**
 
@@ -276,7 +276,7 @@ ___
 
 *Overrides void*
 
-*Defined in [gateway/websocket.ts:123](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/websocket.ts#L123)*
+*Defined in [gateway/websocket.ts:123](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L123)*
 
 **Type parameters:**
 
@@ -300,7 +300,7 @@ ___
 
 *Overrides void*
 
-*Defined in [gateway/websocket.ts:152](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/websocket.ts#L152)*
+*Defined in [gateway/websocket.ts:152](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L152)*
 
 **Type parameters:**
 
@@ -322,7 +322,7 @@ ___
 
 *Overrides void*
 
-*Defined in [gateway/websocket.ts:132](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/websocket.ts#L132)*
+*Defined in [gateway/websocket.ts:132](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L132)*
 
 **Type parameters:**
 

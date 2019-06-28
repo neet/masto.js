@@ -16,7 +16,7 @@
 
 ▸ **isAxiosError**(`error`: any): *boolean*
 
-*Defined in [gateway/is-axios-error.ts:4](https://github.com/neet/masto.js/blob/635a2aa/src/gateway/is-axios-error.ts#L4)*
+*Defined in [gateway/is-axios-error.ts:4](https://github.com/neet/masto.js/blob/80b1796/src/gateway/is-axios-error.ts#L4)*
 
 **Parameters:**
 

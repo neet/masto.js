@@ -22,7 +22,7 @@
 
 ● **history**: *[TagHistory](_entities_tag_.taghistory.md)[]*
 
-*Defined in [entities/tag.ts:7](https://github.com/neet/masto.js/blob/635a2aa/src/entities/tag.ts#L7)*
+*Defined in [entities/tag.ts:7](https://github.com/neet/masto.js/blob/80b1796/src/entities/tag.ts#L7)*
 
 Array of History
 
@@ -32,7 +32,7 @@ ___
 
 ● **name**: *string*
 
-*Defined in [entities/tag.ts:3](https://github.com/neet/masto.js/blob/635a2aa/src/entities/tag.ts#L3)*
+*Defined in [entities/tag.ts:3](https://github.com/neet/masto.js/blob/80b1796/src/entities/tag.ts#L3)*
 
 The hashtag, not including the preceding `#`
 
@@ -42,7 +42,7 @@ ___
 
 ● **url**: *string*
 
-*Defined in [entities/tag.ts:5](https://github.com/neet/masto.js/blob/635a2aa/src/entities/tag.ts#L5)*
+*Defined in [entities/tag.ts:5](https://github.com/neet/masto.js/blob/80b1796/src/entities/tag.ts#L5)*
 
 The URL of the hashtag
 

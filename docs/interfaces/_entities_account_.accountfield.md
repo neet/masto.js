@@ -22,7 +22,7 @@
 
 ● **name**? : *string | null*
 
-*Defined in [entities/account.ts:47](https://github.com/neet/masto.js/blob/635a2aa/src/entities/account.ts#L47)*
+*Defined in [entities/account.ts:47](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L47)*
 
 (2.4 or later) Label of profile metadata field.
 
@@ -32,7 +32,7 @@ ___
 
 ● **value**? : *string | null*
 
-*Defined in [entities/account.ts:49](https://github.com/neet/masto.js/blob/635a2aa/src/entities/account.ts#L49)*
+*Defined in [entities/account.ts:49](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L49)*
 
 (2.4 or later) Value of profile metadata field.
 
@@ -42,7 +42,7 @@ ___
 
 ● **verified_at**? : *string | null*
 
-*Defined in [entities/account.ts:51](https://github.com/neet/masto.js/blob/635a2aa/src/entities/account.ts#L51)*
+*Defined in [entities/account.ts:51](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L51)*
 
 Datetime
 

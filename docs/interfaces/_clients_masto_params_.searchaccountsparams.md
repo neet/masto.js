@@ -31,7 +31,7 @@
 
 *Inherited from [SearchParams](_clients_masto_params_.searchparams.md).[account_id](_clients_masto_params_.searchparams.md#optional-account_id)*
 
-*Defined in [clients/masto/params.ts:197](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L197)*
+*Defined in [clients/masto/params.ts:197](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L197)*
 
 Account id to search
 
@@ -41,7 +41,7 @@ ___
 
 ● **following**? : *boolean | null*
 
-*Defined in [clients/masto/params.ts:204](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L204)*
+*Defined in [clients/masto/params.ts:204](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L204)*
 
 Only who the user is following
 
@@ -53,7 +53,7 @@ ___
 
 *Overrides [PaginationParams](_clients_masto_params_.paginationparams.md).[limit](_clients_masto_params_.paginationparams.md#optional-limit)*
 
-*Defined in [clients/masto/params.ts:202](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L202)*
+*Defined in [clients/masto/params.ts:202](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L202)*
 
 Maximum number of matching accounts to return (default: `40`)
 
@@ -65,7 +65,7 @@ ___
 
 *Inherited from [PaginationParams](_clients_masto_params_.paginationparams.md).[max_id](_clients_masto_params_.paginationparams.md#optional-max_id)*
 
-*Defined in [clients/masto/params.ts:10](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L10)*
+*Defined in [clients/masto/params.ts:10](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L10)*
 
 Get a list of items with ID less than this value
 
@@ -77,7 +77,7 @@ ___
 
 *Inherited from [PaginationParams](_clients_masto_params_.paginationparams.md).[min_id](_clients_masto_params_.paginationparams.md#optional-min_id)*
 
-*Defined in [clients/masto/params.ts:14](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L14)*
+*Defined in [clients/masto/params.ts:14](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L14)*
 
 Get a list of items with ID greater than this value exluding this ID
 
@@ -89,7 +89,7 @@ ___
 
 *Inherited from [SearchParams](_clients_masto_params_.searchparams.md).[q](_clients_masto_params_.searchparams.md#q)*
 
-*Defined in [clients/masto/params.ts:193](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L193)*
+*Defined in [clients/masto/params.ts:193](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L193)*
 
 The search query
 
@@ -101,7 +101,7 @@ ___
 
 *Inherited from [SearchParams](_clients_masto_params_.searchparams.md).[resolve](_clients_masto_params_.searchparams.md#optional-resolve)*
 
-*Defined in [clients/masto/params.ts:195](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L195)*
+*Defined in [clients/masto/params.ts:195](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L195)*
 
 Attempt WebFinger look-up
 
@@ -113,7 +113,7 @@ ___
 
 *Inherited from [PaginationParams](_clients_masto_params_.paginationparams.md).[since_id](_clients_masto_params_.paginationparams.md#optional-since_id)*
 
-*Defined in [clients/masto/params.ts:12](https://github.com/neet/masto.js/blob/635a2aa/src/clients/masto/params.ts#L12)*
+*Defined in [clients/masto/params.ts:12](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L12)*
 
 Get a list of items with ID greater than this value including this ID
 

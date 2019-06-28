@@ -22,7 +22,7 @@
 
 ● **accounts**: *[Account](_entities_account_.account.md)[]*
 
-*Defined in [entities/results.ts:16](https://github.com/neet/masto.js/blob/635a2aa/src/entities/results.ts#L16)*
+*Defined in [entities/results.ts:16](https://github.com/neet/masto.js/blob/80b1796/src/entities/results.ts#L16)*
 
 An array of matched Accounts
 
@@ -32,7 +32,7 @@ ___
 
 ● **hashtags**: *[Tag](_entities_tag_.tag.md)[]*
 
-*Defined in [entities/results.ts:20](https://github.com/neet/masto.js/blob/635a2aa/src/entities/results.ts#L20)*
+*Defined in [entities/results.ts:20](https://github.com/neet/masto.js/blob/80b1796/src/entities/results.ts#L20)*
 
 An array of matched hashtags, as strings
 
@@ -42,7 +42,7 @@ ___
 
 ● **statuses**: *[Status](_entities_status_.status.md)[]*
 
-*Defined in [entities/results.ts:18](https://github.com/neet/masto.js/blob/635a2aa/src/entities/results.ts#L18)*
+*Defined in [entities/results.ts:18](https://github.com/neet/masto.js/blob/80b1796/src/entities/results.ts#L18)*
 
 An array of matched Statuses
 

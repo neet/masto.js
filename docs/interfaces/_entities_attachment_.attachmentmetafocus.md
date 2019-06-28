@@ -21,7 +21,7 @@
 
 ● **x**: *number*
 
-*Defined in [entities/attachment.ts:47](https://github.com/neet/masto.js/blob/635a2aa/src/entities/attachment.ts#L47)*
+*Defined in [entities/attachment.ts:47](https://github.com/neet/masto.js/blob/80b1796/src/entities/attachment.ts#L47)*
 
 ___
 
@@ -29,6 +29,6 @@ ___
 
 ● **y**: *number*
 
-*Defined in [entities/attachment.ts:48](https://github.com/neet/masto.js/blob/635a2aa/src/entities/attachment.ts#L48)*
+*Defined in [entities/attachment.ts:48](https://github.com/neet/masto.js/blob/80b1796/src/entities/attachment.ts#L48)*
 
 ___
