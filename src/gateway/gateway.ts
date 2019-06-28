@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import normalizeUrl from 'normalize-url';
 import querystring from 'querystring';
 import semver from 'semver';
@@ -31,14 +31,20 @@ export type LoginParams = Omit<
   'version' | 'streamingApiUrl'
 >;
 
-export type PaginateNextOptions<Params> = {
-  /** Reset pagination */
-  reset?: boolean;
-  /** URL */
-  url?: string;
-  /** Query parameters */
-  params?: Params;
-};
+export type PaginateNextOptions<Params> =
+  | {
+      reset: boolean;
+      url?: undefined;
+      params?: undefined;
+    }
+  | {
+      reset?: undefined;
+      url: string;
+      params?: Params;
+    };
+
+const isAxiosResponse = (response: any): response is AxiosResponse =>
+  response && response.data !== 'undefined';
 
 /**
  * Mastodon network request wrapper
@@ -339,59 +345,53 @@ export class Gateway {
 
   /**
    * Generate an iterable of the pagination.
-   * The default generator implementation of JS cannot change the value of `done` depend on the result of yield,
-   * Therefore we define custom generator to reproduce Mastodon's link header behaviour faithfully.
-   * @param path Path for the endpoint
+   * @param initialURL Path for the endpoint
    * @param initialParams Query parameter
    * @return Async iterable iterator of the pages.
    * See also [MDN article about generator/iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators)
    */
-  public paginate<Data, Params = any>(
-    path: string,
+  public async *paginate<Data, Params>(
+    initialUrl: string,
     initialParams?: Params,
-  ): AsyncIterableIterator<Data | undefined> {
-    // tslint:disable-next-line no-this-assignment
-    const gateway = this;
-    const initialUrl = this.uri + path;
+  ) {
+    let nextUrl: string = initialUrl;
+    let nextParams: Params | undefined = initialParams;
 
-    let currentUrl: string = initialUrl;
-    let currentParams: Params | undefined = initialParams;
+    while (nextUrl) {
+      // Yield can be either result or argument of next()
+      const result:
+        | AxiosResponse<Data>
+        | PaginateNextOptions<Params> = yield this.request<Data>({
+        method: 'GET',
+        url: nextUrl,
+        params: nextParams,
+      });
 
-    return {
-      async next(options: PaginateNextOptions<Params> = {}) {
-        if (options.reset) {
-          currentUrl = initialUrl;
-          currentParams = initialParams;
-        }
-
-        const response = await gateway.request<Data>({
-          method: 'GET',
-          url: options.url || currentUrl,
-          params: options.params || currentParams,
-        });
-
-        // Set next url from the link header
-        const link = oc.oc(response.headers).link('');
+      // When no argument passed to next(), set url from response header
+      // params are included in the next URL so can be undefined
+      if (isAxiosResponse(result)) {
+        const link = oc.oc(result.headers).link('');
         const match = link.match(/<(.+?)>; rel="next"/) as string[];
 
-        currentUrl = (match && match.length && match[1]) || '';
-        currentParams = undefined;
+        nextUrl = (match && match.length && match[1]) || '';
+        nextParams = undefined;
 
-        // Return `done: true` immediately if no next url returned
-        return { done: !currentUrl, value: response.data };
-      },
+        continue;
+      }
 
-      async return(value: Data) {
-        return { value, done: true };
-      },
+      // When iterable.next({ reset: true }),
+      // use initial arguments as the next state
+      if (result.reset) {
+        nextUrl = initialUrl;
+        nextParams = initialParams;
+      }
 
-      async throw(error?: Error) {
-        throw error;
-      },
-
-      [Symbol.asyncIterator]() {
-        return this;
-      },
-    };
+      // When iterable.next({ url: "http://~" }),
+      // use them as the next state
+      if (result.url) {
+        nextUrl = result.url;
+        nextParams = result.params;
+      }
+    }
   }
 }
