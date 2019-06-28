@@ -350,7 +350,7 @@ export class Gateway {
    * @return Async iterable iterator of the pages.
    * See also [MDN article about generator/iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators)
    */
-  public async *paginate<Data, Params>(
+  public async *paginate<Data, Params = any>(
     initialUrl: string,
     initialParams?: Params,
   ) {
