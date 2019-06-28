@@ -3,7 +3,7 @@ import normalizeUrl from 'normalize-url';
 import querystring from 'querystring';
 import semver from 'semver';
 import { Omit } from 'simplytyped';
-import * as oc from 'ts-optchain';
+import * as optchain from 'ts-optchain';
 import { Instance } from '../entities/instance';
 import { MastoNotFoundError } from '../errors/masto-not-found-error';
 import { MastoRateLimitError } from '../errors/masto-rate-limit-error';
@@ -11,6 +11,8 @@ import { MastoUnauthorizedError } from '../errors/masto-unauthorized-error';
 import { createFormData } from './create-form-data';
 import { isAxiosError } from './is-axios-error';
 import { WebSocketEvents } from './websocket';
+
+const { oc } = optchain;
 
 export interface GatewayConstructorParams {
   /** URI of the instance */
@@ -42,9 +44,6 @@ export type PaginateNextOptions<Params> =
       url: string;
       params?: Params;
     };
-
-const isAxiosResponse = (response: any): response is AxiosResponse =>
-  response && response.data !== 'undefined';
 
 /**
  * Mastodon network request wrapper
@@ -185,11 +184,11 @@ export class Gateway {
         throw error;
       }
 
-      const status = oc.oc(error).response.status();
+      const status = oc(error).response.status();
 
       // Error response from REST API might contain error key
       // https://docs.joinmastodon.org/api/entities/#error
-      const { error: errorMessage } = oc.oc(error).response.data({
+      const { error: errorMessage } = oc(error).response.data({
         error: 'Unexpected error',
       });
 
@@ -354,43 +353,31 @@ export class Gateway {
     initialUrl: string,
     initialParams?: Params,
   ) {
-    let nextUrl: string = initialUrl;
+    let nextUrl: string | undefined = initialUrl;
     let nextParams: Params | undefined = initialParams;
 
     while (nextUrl) {
-      // Yield can be either result or argument of next()
-      const result:
-        | AxiosResponse<Data>
-        | PaginateNextOptions<Params> = yield this.request<Data>({
+      const response: AxiosResponse<Data> = await this.request<Data>({
         method: 'GET',
         url: nextUrl,
         params: nextParams,
       });
 
-      // When no argument passed to next(), set url from response header
-      // params are included in the next URL so can be undefined
-      if (isAxiosResponse(result)) {
-        const link = oc.oc(result.headers).link('');
-        const match = link.match(/<(.+?)>; rel="next"/) as string[];
+      // Yield can be argument of next()
+      const options: PaginateNextOptions<Params> = yield response.data;
 
-        nextUrl = (match && match.length && match[1]) || '';
-        nextParams = undefined;
+      // Get next URL from "next" in the link header
+      const link = oc(response.headers)
+        .link('')
+        .match(/<(.+?)>; rel="next"/) as string[];
+      const match = link && link.length ? link[1] : undefined;
 
-        continue;
-      }
+      nextUrl = oc(options).url() || match;
+      nextParams = oc(options).params();
 
-      // When iterable.next({ reset: true }),
-      // use initial arguments as the next state
-      if (result.reset) {
+      if (oc(options).reset()) {
         nextUrl = initialUrl;
         nextParams = initialParams;
-      }
-
-      // When iterable.next({ url: "http://~" }),
-      // use them as the next state
-      if (result.url) {
-        nextUrl = result.url;
-        nextParams = result.params;
       }
     }
   }

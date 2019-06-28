@@ -17,9 +17,7 @@ const mockAxios = jest.genMockFromModule<typeof axios>('axios');
 (axios.create as jest.Mock).mockImplementation(() => mockAxios);
 
 describe('Gateway', () => {
-  class InheritedGateway extends Gateway {}
-
-  const gateway = new InheritedGateway({
+  const gateway = new Gateway({
     uri: 'https://example.com',
     version: '99.9.9',
     streamingApiUrl: 'wss://example.com',
@@ -27,6 +25,8 @@ describe('Gateway', () => {
 
   beforeEach(() => {
     ((axios as any) as jest.Mock).mockClear();
+    ((mockAxios as any) as jest.Mock).mockClear();
+    ((mockAxios.request as any) as jest.Mock).mockClear();
     ((mockAxios.request as any) as jest.Mock).mockResolvedValue({
       data: undefined,
     });
@@ -46,14 +46,14 @@ describe('Gateway', () => {
       uri: 'https://example.com',
       accessToken: 'tokentoken',
     };
-    const gateway = await InheritedGateway.login(params);
+    const gateway = await Gateway.login(params);
 
     expect(gateway.version).toBe('2.8.0');
     expect(gateway.streamingApiUrl).toBe('wss://example.com/stream');
   });
 
   test('streamingApiUrl has been set if construct with streamingApiUrl', () => {
-    const customGateway = new InheritedGateway({
+    const customGateway = new Gateway({
       uri: 'https://example.com',
       streamingApiUrl: 'wss://example.com',
     });
@@ -61,7 +61,7 @@ describe('Gateway', () => {
   });
 
   test('version has been set if construct with version ', () => {
-    const customGateway = new InheritedGateway({
+    const customGateway = new Gateway({
       uri: 'https://example.com',
       version: '1.2.3',
     });
@@ -69,7 +69,7 @@ describe('Gateway', () => {
   });
 
   test('accessToken has been set if construct with accessToken', () => {
-    const customGateway = new InheritedGateway({
+    const customGateway = new Gateway({
       uri: 'https://example.com',
       accessToken: 'token token',
     });
@@ -77,7 +77,7 @@ describe('Gateway', () => {
   });
 
   test('this._uri accessor works', () => {
-    const customGateway = new InheritedGateway({
+    const customGateway = new Gateway({
       uri: 'https://example.com/aaa',
     });
     customGateway.uri = 'https://example.com/bbb';
@@ -85,7 +85,7 @@ describe('Gateway', () => {
   });
 
   test('this._streamingApiUrl accessor works', () => {
-    const customGateway = new InheritedGateway({
+    const customGateway = new Gateway({
       uri: 'wss://example.com/aaa',
     });
     customGateway.uri = 'wss://example.com/bbb';
@@ -332,22 +332,25 @@ describe('Gateway', () => {
 
     const firstResponse = {
       headers: {
-        // Pretend `/next` the next url
-        link: '<https://example.com/next>; rel="next"',
+        // Pretend `/page1` the next url
+        link: '<https://example.com/page1>; rel="next"',
       },
       data: {
         a: 'a',
       },
     };
 
-    ((mockAxios.request as any) as jest.Mock).mockResolvedValue(firstResponse);
+    ((mockAxios.request as any) as jest.Mock).mockResolvedValueOnce(
+      firstResponse,
+    );
 
     const firstResult = await iterable.next();
 
-    expect((mockAxios.request as any) as jest.Mock).toBeCalledWith(
+    expect(mockAxios.request).toBeCalledTimes(1);
+    expect((mockAxios.request as any) as jest.Mock).toHaveBeenLastCalledWith(
       expect.objectContaining({
         method: 'GET',
-        url: 'https://example.com/',
+        url: '/',
         params: {
           since_id: '123',
         },
@@ -358,7 +361,7 @@ describe('Gateway', () => {
 
     const secondResponse = {
       headers: {
-        // Next url is null so `done` should be true
+        // Next url is null
         link: '',
       },
       data: {
@@ -366,25 +369,36 @@ describe('Gateway', () => {
       },
     };
 
-    ((mockAxios.request as any) as jest.Mock).mockResolvedValue(secondResponse);
+    ((mockAxios.request as any) as jest.Mock).mockResolvedValueOnce(
+      secondResponse,
+    );
 
-    const result = await iterable.next();
+    const secondResult = await iterable.next();
 
-    expect((mockAxios.request as any) as jest.Mock).toBeCalledWith(
+    expect(mockAxios.request).toBeCalledTimes(2);
+    expect((mockAxios.request as any) as jest.Mock).toHaveBeenLastCalledWith(
       expect.objectContaining({
         method: 'GET',
-        url: 'https://example.com/next',
+        url: 'https://example.com/page1',
       }),
     );
-    expect(result.done).toBe(true);
-    expect(result.value).toBe(secondResponse.data);
+    expect(secondResult.done).toBe(false);
+    expect(secondResult.value).toBe(secondResponse.data);
+
+    ((mockAxios.request as any) as jest.Mock).mockResolvedValueOnce({
+      data: undefined,
+    });
+    const thirdReuslt = await iterable.next();
+
+    expect(mockAxios.request).toBeCalledTimes(2);
+    expect(thirdReuslt.done).toBe(true);
+    expect(thirdReuslt.value).toBe(undefined);
   });
 
   test('reset iterable when option.reset passed', async () => {
     const initialPath = '/foo';
     const initialParmas = { a: { b: 'c' } };
 
-    // @ts-ignore
     const iterable = gateway.paginate(initialPath, initialParmas);
     const response = {
       headers: {
@@ -394,39 +408,48 @@ describe('Gateway', () => {
     };
 
     ((mockAxios.request as any) as jest.Mock).mockResolvedValue(response);
-    iterable.next();
-    iterable.next({ reset: true });
+    await iterable.next();
+    await iterable.next({ reset: true });
 
+    expect(mockAxios.request).toBeCalledTimes(2);
     expect(mockAxios.request).toHaveBeenLastCalledWith(
       expect.objectContaining({
-        url: gateway.uri + initialPath,
+        url: initialPath,
         params: initialParmas,
       }),
     );
   });
 
-  test('finish pagination with given value', async () => {
-    const iterable = gateway.paginate('/');
-    const value = Symbol('hehehe');
-    const result = await iterable.return!(value);
+  test('set next url and next params by calling next with params', async () => {
+    const initialPath = '/foo';
+    const initialParmas = { page: '1' };
 
-    expect(result.done).toBe(true);
-    expect(result.value).toBe(value);
-  });
+    const iterable = gateway.paginate(initialPath, initialParmas);
+    const response = {
+      headers: {
+        link: '<https://example.com/foo2>; rel="next"',
+      },
+      data: {},
+    };
+    ((mockAxios.request as any) as jest.Mock).mockResolvedValue(response);
 
-  test('throw given error in the pagination', () => {
-    const iterable = gateway.paginate('/');
-    const error = new Error('hehehe');
-    expect(iterable.throw!(error)).rejects.toThrow(error);
-  });
-
-  test('Symbol.asyncIterator is defined correctly', () => {
-    const iterable = gateway.paginate('/');
-    expect(iterable[Symbol.asyncIterator]()).toEqual(
+    await iterable.next();
+    expect(mockAxios.request).toHaveBeenLastCalledWith(
       expect.objectContaining({
-        next: expect.any(Function),
-        return: expect.any(Function),
-        throw: expect.any(Function),
+        url: initialPath,
+        params: initialParmas,
+      }),
+    );
+
+    const customNextUrl = '/bar';
+    const customNextParmas = { page: '777' };
+
+    await iterable.next({ url: customNextUrl, params: customNextParmas });
+    expect(mockAxios.request).toBeCalledTimes(2);
+    expect(mockAxios.request).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        url: customNextUrl,
+        params: customNextParmas,
       }),
     );
   });
