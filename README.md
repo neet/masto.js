@@ -25,7 +25,7 @@ First, fetch your access token with following command and save it.
 $ npx masto-cli token --uri=URI --email=EMAIL --password=PASSWORD
 ```
 
-Then here's a simple example that creates status. Replace `TOKEN` to your own token that you saved with the command above.
+Then here's a simple example that creates a status. Replace `TOKEN` to your own token that you saved with the command above.
 
 ```ts
 // For Node.js
@@ -69,6 +69,9 @@ If you're using Masto.js with TypeScript, you need to add the following config t
 +      "esnext.asynciterable"
       ...
 ```
+
+## Contribution
+See CONTRIBUTING.md
 
 ## License
 <a href="https://www.gnu.org/licenses/agpl-3.0"><img src="https://img.shields.io/badge/License-AGPL%20v3-blue.svg" alt="License: AGPL v3" /></a>
