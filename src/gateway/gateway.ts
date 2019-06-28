@@ -1,9 +1,9 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import normalizeUrl from 'normalize-url';
 import querystring from 'querystring';
 import semver from 'semver';
 import { Omit } from 'simplytyped';
-import * as oc from 'ts-optchain';
+import * as optchain from 'ts-optchain';
 import { Instance } from '../entities/instance';
 import { MastoNotFoundError } from '../errors/masto-not-found-error';
 import { MastoRateLimitError } from '../errors/masto-rate-limit-error';
@@ -11,6 +11,8 @@ import { MastoUnauthorizedError } from '../errors/masto-unauthorized-error';
 import { createFormData } from './create-form-data';
 import { isAxiosError } from './is-axios-error';
 import { WebSocketEvents } from './websocket';
+
+const { oc } = optchain;
 
 export interface GatewayConstructorParams {
   /** URI of the instance */
@@ -31,14 +33,17 @@ export type LoginParams = Omit<
   'version' | 'streamingApiUrl'
 >;
 
-export type PaginateNextOptions<Params> = {
-  /** Reset pagination */
-  reset?: boolean;
-  /** URL */
-  url?: string;
-  /** Query parameters */
-  params?: Params;
-};
+export type PaginateNextOptions =
+  | {
+      reset: boolean;
+      url?: undefined;
+      params?: undefined;
+    }
+  | {
+      reset?: undefined;
+      url: string;
+      params?: any;
+    };
 
 /**
  * Mastodon network request wrapper
@@ -179,11 +184,11 @@ export class Gateway {
         throw error;
       }
 
-      const status = oc.oc(error).response.status();
+      const status = oc(error).response.status();
 
       // Error response from REST API might contain error key
       // https://docs.joinmastodon.org/api/entities/#error
-      const { error: errorMessage } = oc.oc(error).response.data({
+      const { error: errorMessage } = oc(error).response.data({
         error: 'Unexpected error',
       });
 
@@ -339,59 +344,38 @@ export class Gateway {
 
   /**
    * Generate an iterable of the pagination.
-   * The default generator implementation of JS cannot change the value of `done` depend on the result of yield,
-   * Therefore we define custom generator to reproduce Mastodon's link header behaviour faithfully.
-   * @param path Path for the endpoint
+   * @param initialURL Path for the endpoint
    * @param initialParams Query parameter
    * @return Async iterable iterator of the pages.
    * See also [MDN article about generator/iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators)
    */
-  public paginate<Data, Params = any>(
-    path: string,
-    initialParams?: Params,
-  ): AsyncIterableIterator<Data | undefined> {
-    // tslint:disable-next-line no-this-assignment
-    const gateway = this;
-    const initialUrl = this.uri + path;
+  public async *paginate<Data>(initialUrl: string, initialParams?: any) {
+    let nextUrl: string | undefined = initialUrl;
+    let nextParams = initialParams;
 
-    let currentUrl: string = initialUrl;
-    let currentParams: Params | undefined = initialParams;
+    while (nextUrl) {
+      const response: AxiosResponse<Data> = await this.request<Data>({
+        method: 'GET',
+        url: nextUrl,
+        params: nextParams,
+      });
 
-    return {
-      async next(options: PaginateNextOptions<Params> = {}) {
-        if (options.reset) {
-          currentUrl = initialUrl;
-          currentParams = initialParams;
-        }
+      // Yield can be argument of next()
+      const options: PaginateNextOptions = yield response.data;
 
-        const response = await gateway.request<Data>({
-          method: 'GET',
-          url: options.url || currentUrl,
-          params: options.params || currentParams,
-        });
+      // Get next URL from "next" in the link header
+      const link = oc(response.headers)
+        .link('')
+        .match(/<(.+?)>; rel="next"/) as string[];
+      const match = link && link.length ? link[1] : undefined;
 
-        // Set next url from the link header
-        const link = oc.oc(response.headers).link('');
-        const match = link.match(/<(.+?)>; rel="next"/) as string[];
+      nextUrl = oc(options).url() || match;
+      nextParams = oc(options).params();
 
-        currentUrl = (match && match.length && match[1]) || '';
-        currentParams = undefined;
-
-        // Return `done: true` immediately if no next url returned
-        return { done: !currentUrl, value: response.data };
-      },
-
-      async return(value: Data) {
-        return { value, done: true };
-      },
-
-      async throw(error?: Error) {
-        throw error;
-      },
-
-      [Symbol.asyncIterator]() {
-        return this;
-      },
-    };
+      if (oc(options).reset()) {
+        nextUrl = initialUrl;
+        nextParams = initialParams;
+      }
+    }
   }
 }
