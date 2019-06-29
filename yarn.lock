@@ -5118,9 +5118,9 @@ typedoc-default-themes@^0.5.0:
   integrity sha1-bcJDPnjti+qOiHo6zeLzF4W9Yic=
 
 typedoc-plugin-markdown@^2.0.1:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-markdown/-/typedoc-plugin-markdown-2.0.6.tgz#479a0a79da8493035befb54bb318790fcefd3254"
-  integrity sha512-rcRCzGbrbAmsryiRdGjqGOtb1lq5qCXJmMoZqMf4kmT2uzs/+AZ38iTnqmtj5mR87qEw11szDXQWy5HkJ560wg==
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-markdown/-/typedoc-plugin-markdown-2.0.7.tgz#65e60bfd6ff99de1435573ad6401dcd01bfc05f4"
+  integrity sha512-vu2x/0GnJ/EQaKQObg8/dMGqRenYgZch6+h970yGfzgUhWVsmUr+uYwOK8ps6M9OndeqycWNtAlqfc/XJcqT3Q==
 
 typedoc@^0.14.2:
   version "0.14.2"
