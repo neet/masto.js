@@ -21,7 +21,7 @@
   "dependencies": {
     "@types/ws": "^6.0.1",
     "axios": "^0.19.0",
-    "eventemitter3": "^3.1.2",
+    "eventemitter3": "^4.0.0",
     "isomorphic-form-data": "^2.0.0",
     "isomorphic-ws": "^4.0.1",
     "normalize-url": "^4.3.0",
