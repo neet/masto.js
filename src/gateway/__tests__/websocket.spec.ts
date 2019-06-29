@@ -89,7 +89,7 @@ describe('WebSocketEvents', () => {
     expect(mockEmit).toBeCalledWith('update', originalPayload);
   });
 
-  test('emit event with given props, with raw payload', () => {
+  test('emit event with undefined when parsing fail', () => {
     const originalPayload = 'foobar';
     const originalData = {
       event: 'update',
@@ -97,7 +97,7 @@ describe('WebSocketEvents', () => {
     };
 
     wsEvents.handleMessage({ data: JSON.stringify(originalData) });
-    expect(mockEmit).toBeCalledWith('update', originalPayload);
+    expect(mockEmit).toBeCalledWith('update', undefined);
   });
 
   test('subscribe events via event emitter', async () => {

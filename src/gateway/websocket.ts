@@ -5,34 +5,33 @@ import { Conversation } from '../entities/conversation';
 import { Notification } from '../entities/notification';
 import { Status } from '../entities/status';
 
+/** Map of event name and callback argument */
+export interface EventTypeMap {
+  /** Status posted */
+  update: [Status];
+  /** Status deleted */
+  delete: [Status['id']];
+  /** User's notification */
+  notification: [Notification];
+  /** User's filter changed */
+  filters_changed: [undefined];
+  /** Status added to a conversation */
+  conversation: [Conversation];
+}
+
+/** Supported event names */
+export type EventType = keyof EventTypeMap;
+
 /** Mastodon event */
 export interface Event {
   event: EventType;
   payload: string;
 }
 
-export interface EventTypeMap {
-  /** Status posted */
-  update: Status;
-  /** Status deleted */
-  delete: Status['id'];
-  /** User's notification */
-  notification: Notification;
-  /** User's filter changed */
-  filters_changed: undefined;
-  /** Status added to a conversation */
-  conversation: Conversation;
-}
-
-export type EventType = keyof EventTypeMap;
-export type EventListener<T extends EventType> = (
-  payload: EventTypeMap[T],
-) => void;
-
 /**
  * Mastodon streaming api wrapper
  */
-export class WebSocketEvents extends EventEmitter {
+export class WebSocketEvents extends EventEmitter<EventTypeMap> {
   private ws?: WebSocket;
 
   /**
@@ -69,88 +68,14 @@ export class WebSocketEvents extends EventEmitter {
    */
   public handleMessage = ({ data }: { data: string }) => {
     const event = JSON.parse(data) as Event;
-    let parsedData: EventTypeMap[EventType];
+    let args: EventTypeMap[EventType];
 
     try {
-      parsedData = JSON.parse(event.payload);
+      args = [JSON.parse(event.payload)];
     } catch {
-      // If parsing failed, returns raw data
-      // Basically this is handling for `filters_changed` event
-      // Which doesn't contain payload in the data
-      parsedData = event.payload;
+      args = [undefined];
     }
 
-    this.emit(event.event, parsedData);
+    this.emit(event.event, ...args);
   };
-
-  /*-------------------------------
-   * Overwriting signatures
-   *------------------------------*/
-
-  public listeners<T extends EventType>(event: T) {
-    /* istanbul ignore next */
-    return super.listeners(event);
-  }
-
-  public listenerCount<T extends EventType>(event: T) {
-    /* istanbul ignore next */
-    return super.listenerCount(event);
-  }
-
-  public emit<T extends EventType>(event: T, ...args: any[]) {
-    /* istanbul ignore next */
-    return super.emit(event, ...args);
-  }
-
-  public addListener<T extends EventType>(
-    event: T,
-    fn: EventListener<T>,
-    context?: any,
-  ) {
-    /* istanbul ignore next */
-    return super.addListener(event, fn, context);
-  }
-
-  public on<T extends EventType>(
-    event: T,
-    fn: EventListener<T>,
-    context?: any,
-  ) {
-    /* istanbul ignore next */
-    return super.on(event, fn, context);
-  }
-
-  public once<T extends EventType>(
-    event: T,
-    fn: EventListener<T>,
-    context?: any,
-  ) {
-    /* istanbul ignore next */
-    return super.once(event, fn, context);
-  }
-
-  public removeListener<T extends EventType>(
-    event: T,
-    fn?: EventListener<T>,
-    context?: any,
-    once?: boolean,
-  ) {
-    /* istanbul ignore next */
-    return super.removeListener(event, fn, context, once);
-  }
-
-  public off<T extends EventType>(
-    event: T,
-    fn?: EventListener<T>,
-    context?: any,
-    once?: boolean,
-  ) {
-    /* istanbul ignore next */
-    return super.off(event, fn, context, once);
-  }
-
-  public removeAllListeners<T extends EventType>(event?: T) {
-    /* istanbul ignore next */
-    return super.removeAllListeners(event);
-  }
 }
