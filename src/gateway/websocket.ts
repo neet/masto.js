@@ -1,4 +1,3 @@
-// tslint:disable no-unnecessary-override
 import EventEmitter from 'eventemitter3';
 import WebSocket from 'isomorphic-ws';
 import { Conversation } from '../entities/conversation';
@@ -14,7 +13,7 @@ export interface EventTypeMap {
   /** User's notification */
   notification: [Notification];
   /** User's filter changed */
-  filters_changed: [undefined];
+  filters_changed: [];
   /** Status added to a conversation */
   conversation: [Conversation];
 }
@@ -43,13 +42,8 @@ export class WebSocketEvents extends EventEmitter<EventTypeMap> {
   public connect(url: string, protocols?: string | string[]) {
     return new Promise<WebSocketEvents>((resolve, reject) => {
       this.ws = new WebSocket(url, protocols);
-
-      this.ws.addEventListener('open', () => {
-        resolve(this);
-      });
-
+      this.ws.addEventListener('open', () => resolve(this));
       this.ws.addEventListener('message', this.handleMessage);
-
       this.ws.addEventListener('error', reject);
     });
   }
@@ -73,7 +67,7 @@ export class WebSocketEvents extends EventEmitter<EventTypeMap> {
     try {
       args = [JSON.parse(event.payload)];
     } catch {
-      args = [undefined];
+      args = [];
     }
 
     this.emit(event.event, ...args);
