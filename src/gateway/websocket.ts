@@ -43,13 +43,8 @@ export class WebSocketEvents extends EventEmitter<EventTypeMap> {
   public connect(url: string, protocols?: string | string[]) {
     return new Promise<WebSocketEvents>((resolve, reject) => {
       this.ws = new WebSocket(url, protocols);
-
-      this.ws.addEventListener('open', () => {
-        resolve(this);
-      });
-
+      this.ws.addEventListener('open', () => resolve(this));
       this.ws.addEventListener('message', this.handleMessage);
-
       this.ws.addEventListener('error', reject);
     });
   }
