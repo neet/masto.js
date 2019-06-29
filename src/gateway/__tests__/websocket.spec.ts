@@ -89,7 +89,7 @@ describe('WebSocketEvents', () => {
     expect(mockEmit).toBeCalledWith('update', originalPayload);
   });
 
-  test('emit event with undefined when parsing fail', () => {
+  test('emit event without callback when parsing failed', () => {
     const originalPayload = 'foobar';
     const originalData = {
       event: 'update',
@@ -97,13 +97,6 @@ describe('WebSocketEvents', () => {
     };
 
     wsEvents.handleMessage({ data: JSON.stringify(originalData) });
-    expect(mockEmit).toBeCalledWith('update', undefined);
-  });
-
-  test('subscribe events via event emitter', async () => {
-    const cb = jest.fn();
-    const stream = await wsEvents.on('update', cb);
-    expect(mockOn).toBeCalledWith('update', cb);
-    expect(stream).toBeUndefined(); // mock
+    expect(mockEmit).toBeCalledWith('update');
   });
 });

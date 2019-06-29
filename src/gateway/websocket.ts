@@ -14,7 +14,7 @@ export interface EventTypeMap {
   /** User's notification */
   notification: [Notification];
   /** User's filter changed */
-  filters_changed: [undefined];
+  filters_changed: [];
   /** Status added to a conversation */
   conversation: [Conversation];
 }
@@ -73,7 +73,7 @@ export class WebSocketEvents extends EventEmitter<EventTypeMap> {
     try {
       args = [JSON.parse(event.payload)];
     } catch {
-      args = [undefined];
+      args = [];
     }
 
     this.emit(event.event, ...args);
