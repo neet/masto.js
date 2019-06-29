@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["entities/preference"](../modules/_entities_preference_.md) / [Preference](_entities_preference_.preference.md) /
 
@@ -22,40 +22,38 @@
 
 ### `Optional` posting:default:language
 
-● **posting:default:language**? : *string | null*
+• **posting:default:language**? : *string | null*
 
-*Defined in [entities/preference.ts:8](https://github.com/neet/masto.js/blob/80b1796/src/entities/preference.ts#L8)*
+*Defined in [entities/preference.ts:8](https://github.com/neet/masto.js/blob/aaa534e/src/entities/preference.ts#L8)*
 
 ___
 
 ### `Optional` posting:default:sensitive
 
-● **posting:default:sensitive**? : *boolean | null*
+• **posting:default:sensitive**? : *boolean | null*
 
-*Defined in [entities/preference.ts:7](https://github.com/neet/masto.js/blob/80b1796/src/entities/preference.ts#L7)*
+*Defined in [entities/preference.ts:7](https://github.com/neet/masto.js/blob/aaa534e/src/entities/preference.ts#L7)*
 
 ___
 
 ### `Optional` posting:default:visibility
 
-● **posting:default:visibility**? : *[StatusVisibility](../modules/_entities_status_.md#statusvisibility) | null*
+• **posting:default:visibility**? : *[StatusVisibility](../modules/_entities_status_.md#statusvisibility) | null*
 
-*Defined in [entities/preference.ts:6](https://github.com/neet/masto.js/blob/80b1796/src/entities/preference.ts#L6)*
+*Defined in [entities/preference.ts:6](https://github.com/neet/masto.js/blob/aaa534e/src/entities/preference.ts#L6)*
 
 ___
 
 ### `Optional` reading:expand:media
 
-● **reading:expand:media**? : *[PreferenceReadingExpandMedia](../modules/_entities_preference_.md#preferencereadingexpandmedia) | null*
+• **reading:expand:media**? : *[PreferenceReadingExpandMedia](../modules/_entities_preference_.md#preferencereadingexpandmedia) | null*
 
-*Defined in [entities/preference.ts:9](https://github.com/neet/masto.js/blob/80b1796/src/entities/preference.ts#L9)*
+*Defined in [entities/preference.ts:9](https://github.com/neet/masto.js/blob/aaa534e/src/entities/preference.ts#L9)*
 
 ___
 
 ### `Optional` reading:expand:spoilers
 
-● **reading:expand:spoilers**? : *boolean | null*
+• **reading:expand:spoilers**? : *boolean | null*
 
-*Defined in [entities/preference.ts:10](https://github.com/neet/masto.js/blob/80b1796/src/entities/preference.ts#L10)*
-
-___
+*Defined in [entities/preference.ts:10](https://github.com/neet/masto.js/blob/aaa534e/src/entities/preference.ts#L10)*

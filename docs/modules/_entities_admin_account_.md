@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["entities/admin-account"](_entities_admin_account_.md) /
 
@@ -20,6 +20,4 @@
 
 Ƭ **AdminAccountRole**: *"moderator" | "admin" | "user"*
 
-*Defined in [entities/admin-account.ts:3](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-account.ts#L3)*
-
-___
+*Defined in [entities/admin-account.ts:3](https://github.com/neet/masto.js/blob/aaa534e/src/entities/admin-account.ts#L3)*

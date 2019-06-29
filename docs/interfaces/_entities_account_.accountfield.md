@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["entities/account"](../modules/_entities_account_.md) / [AccountField](_entities_account_.accountfield.md) /
 
@@ -20,9 +20,9 @@
 
 ### `Optional` name
 
-● **name**? : *string | null*
+• **name**? : *string | null*
 
-*Defined in [entities/account.ts:47](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L47)*
+*Defined in [entities/account.ts:47](https://github.com/neet/masto.js/blob/aaa534e/src/entities/account.ts#L47)*
 
 (2.4 or later) Label of profile metadata field.
 
@@ -30,9 +30,9 @@ ___
 
 ### `Optional` value
 
-● **value**? : *string | null*
+• **value**? : *string | null*
 
-*Defined in [entities/account.ts:49](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L49)*
+*Defined in [entities/account.ts:49](https://github.com/neet/masto.js/blob/aaa534e/src/entities/account.ts#L49)*
 
 (2.4 or later) Value of profile metadata field.
 
@@ -40,10 +40,8 @@ ___
 
 ### `Optional` verified_at
 
-● **verified_at**? : *string | null*
+• **verified_at**? : *string | null*
 
-*Defined in [entities/account.ts:51](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L51)*
+*Defined in [entities/account.ts:51](https://github.com/neet/masto.js/blob/aaa534e/src/entities/account.ts#L51)*
 
 Datetime
-
-___

@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["errors/masto-unauthorized-error"](_errors_masto_unauthorized_error_.md) /
 

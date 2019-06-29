@@ -1,8 +1,12 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["gateway/websocket"](../modules/_gateway_websocket_.md) / [WebSocketEvents](../classes/_gateway_websocket_.websocketevents.md) / [ListenerFn](_gateway_websocket_.websocketevents.listenerfn.md) /
 
-# Interface: ListenerFn
+# Interface: ListenerFn <**Args**>
+
+## Type parameters
+
+▪ **Args**: *any[]*
 
 ## Hierarchy
 
@@ -10,14 +14,14 @@
 
 ## Callable
 
-▸ (...`args`: `Array<any>`): *void*
+▸ (...`args`: *`Args`*): *void*
 
-Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:53
+Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:56
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`...args` | `Array<any>` |
+`...args` | `Args` |
 
 **Returns:** *void*

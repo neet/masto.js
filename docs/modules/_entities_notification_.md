@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["entities/notification"](_entities_notification_.md) /
 
@@ -20,6 +20,4 @@
 
 Ƭ **NotificationType**: *"mention" | "reblog" | "favourite" | "follow" | "poll"*
 
-*Defined in [entities/notification.ts:4](https://github.com/neet/masto.js/blob/80b1796/src/entities/notification.ts#L4)*
-
-___
+*Defined in [entities/notification.ts:4](https://github.com/neet/masto.js/blob/aaa534e/src/entities/notification.ts#L4)*

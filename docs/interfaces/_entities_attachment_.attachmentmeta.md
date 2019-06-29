@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["entities/attachment"](../modules/_entities_attachment_.md) / [AttachmentMeta](_entities_attachment_.attachmentmeta.md) /
 
@@ -20,24 +20,22 @@
 
 ### `Optional` focus
 
-● **focus**? : *[AttachmentMetaFocus](_entities_attachment_.attachmentmetafocus.md) | null*
+• **focus**? : *[AttachmentMetaFocus](_entities_attachment_.attachmentmetafocus.md) | null*
 
-*Defined in [entities/attachment.ts:27](https://github.com/neet/masto.js/blob/80b1796/src/entities/attachment.ts#L27)*
+*Defined in [entities/attachment.ts:27](https://github.com/neet/masto.js/blob/aaa534e/src/entities/attachment.ts#L27)*
 
 ___
 
 ### `Optional` original
 
-● **original**? : *[AttachmentMetaImage](_entities_attachment_.attachmentmetaimage.md) | [AttachmentMetaVideo](_entities_attachment_.attachmentmetavideo.md) | null*
+• **original**? : *[AttachmentMetaImage](_entities_attachment_.attachmentmetaimage.md) | [AttachmentMetaVideo](_entities_attachment_.attachmentmetavideo.md) | null*
 
-*Defined in [entities/attachment.ts:26](https://github.com/neet/masto.js/blob/80b1796/src/entities/attachment.ts#L26)*
+*Defined in [entities/attachment.ts:26](https://github.com/neet/masto.js/blob/aaa534e/src/entities/attachment.ts#L26)*
 
 ___
 
 ### `Optional` small
 
-● **small**? : *[AttachmentMetaImage](_entities_attachment_.attachmentmetaimage.md) | [AttachmentMetaVideo](_entities_attachment_.attachmentmetavideo.md) | null*
+• **small**? : *[AttachmentMetaImage](_entities_attachment_.attachmentmetaimage.md) | [AttachmentMetaVideo](_entities_attachment_.attachmentmetavideo.md) | null*
 
-*Defined in [entities/attachment.ts:25](https://github.com/neet/masto.js/blob/80b1796/src/entities/attachment.ts#L25)*
-
-___
+*Defined in [entities/attachment.ts:25](https://github.com/neet/masto.js/blob/aaa534e/src/entities/attachment.ts#L25)*

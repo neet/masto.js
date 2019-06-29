@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["entities/poll"](../modules/_entities_poll_.md) / [PollOption](_entities_poll_.polloption.md) /
 
@@ -19,9 +19,9 @@
 
 ###  title
 
-● **title**: *string*
+• **title**: *string*
 
-*Defined in [entities/poll.ts:3](https://github.com/neet/masto.js/blob/80b1796/src/entities/poll.ts#L3)*
+*Defined in [entities/poll.ts:3](https://github.com/neet/masto.js/blob/aaa534e/src/entities/poll.ts#L3)*
 
 Title of the option
 
@@ -29,10 +29,8 @@ ___
 
 ### `Optional` votes_count
 
-● **votes_count**? : *undefined | number*
+• **votes_count**? : *undefined | number*
 
-*Defined in [entities/poll.ts:5](https://github.com/neet/masto.js/blob/80b1796/src/entities/poll.ts#L5)*
+*Defined in [entities/poll.ts:5](https://github.com/neet/masto.js/blob/aaa534e/src/entities/poll.ts#L5)*
 
 Cont of votes for this option
-
-___

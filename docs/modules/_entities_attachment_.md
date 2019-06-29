@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["entities/attachment"](_entities_attachment_.md) /
 
@@ -24,6 +24,4 @@
 
 Ƭ **AttachmentType**: *"image" | "video" | "gifv" | "audio" | "unknown"*
 
-*Defined in [entities/attachment.ts:22](https://github.com/neet/masto.js/blob/80b1796/src/entities/attachment.ts#L22)*
-
-___
+*Defined in [entities/attachment.ts:22](https://github.com/neet/masto.js/blob/aaa534e/src/entities/attachment.ts#L22)*

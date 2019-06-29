@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["clients/masto/params"](../modules/_clients_masto_params_.md) / [FetchAccessTokenParamsBase](_clients_masto_params_.fetchaccesstokenparamsbase.md) /
 
@@ -6,7 +6,7 @@
 
 ## Type parameters
 
-■` T`: *[GrantType](../modules/_clients_masto_params_.md#granttype)*
+▪ **T**: *[GrantType](../modules/_clients_masto_params_.md#granttype)*
 
 ## Hierarchy
 
@@ -26,10 +26,8 @@
 
 ###  grant_type
 
-● **grant_type**: *`T`*
+• **grant_type**: *`T`*
 
-*Defined in [clients/masto/params.ts:79](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L79)*
+*Defined in [clients/masto/params.ts:79](https://github.com/neet/masto.js/blob/aaa534e/src/clients/masto/params.ts#L79)*
 
 Grant type
-
-___

@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["clients/masto/params"](../modules/_clients_masto_params_.md) / [ModifyListParams](_clients_masto_params_.modifylistparams.md) /
 
@@ -18,10 +18,8 @@
 
 ###  title
 
-● **title**: *string*
+• **title**: *string*
 
-*Defined in [clients/masto/params.ts:144](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L144)*
+*Defined in [clients/masto/params.ts:144](https://github.com/neet/masto.js/blob/aaa534e/src/clients/masto/params.ts#L144)*
 
 Title of the list
-
-___

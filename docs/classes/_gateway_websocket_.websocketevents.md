@@ -1,18 +1,14 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["gateway/websocket"](../modules/_gateway_websocket_.md) / [WebSocketEvents](_gateway_websocket_.websocketevents.md) /
 
-# Class: WebSocketEvents <**EventTypes**>
+# Class: WebSocketEvents
 
 Mastodon streaming api wrapper
 
-## Type parameters
-
-■` EventTypes`: *string | symbol*
-
 ## Hierarchy
 
-* `EventEmitter`
+* `EventEmitter<EventTypeMap>`
 
   * **WebSocketEvents**
 
@@ -48,53 +44,51 @@ Mastodon streaming api wrapper
 
 ### `Static` EventEmitter
 
-■ **EventEmitter**: *`EventEmitterStatic`*
+▪ **EventEmitter**: *`EventEmitterStatic`*
 
-Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:61
+Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:64
 
 ___
 
 ### `Static` prefixed
 
-■ **prefixed**: *string | boolean*
+▪ **prefixed**: *string | boolean*
 
 *Inherited from void*
 
-Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:6
-
-___
+Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:9
 
 ## Methods
 
 ###  addListener
 
-▸ **addListener**<**T**>(`event`: `T`, `fn`: [EventListener](../modules/_gateway_websocket_.md#eventlistener)‹*`T`*›, `context?`: any): *`this`*
+▸ **addListener**<**T**>(`event`: *`T`*, `fn`: *`ListenerFn<EventArgs<EventTypeMap, T>>`*, `context?`: *any*): *this*
 
-*Overrides void*
+*Inherited from void*
 
-*Defined in [gateway/websocket.ts:105](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L105)*
+Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:36
 
 **Type parameters:**
 
-■` T`: *[EventType](../modules/_gateway_websocket_.md#eventtype)*
+▪ **T**: *`EventNames<EventTypeMap>`*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
 `event` | `T` |
-`fn` | [EventListener](../modules/_gateway_websocket_.md#eventlistener)‹*`T`*› |
+`fn` | `ListenerFn<EventArgs<EventTypeMap, T>>` |
 `context?` | any |
 
-**Returns:** *`this`*
+**Returns:** *this*
 
 ___
 
 ###  connect
 
-▸ **connect**(`url`: string, `protocols?`: string | string[]): *`Promise<WebSocketEvents>`*
+▸ **connect**(`url`: *string*, `protocols?`: *string | string[]*): *`Promise<WebSocketEvents>`*
 
-*Defined in [gateway/websocket.ts:44](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L44)*
+*Defined in [gateway/websocket.ts:42](https://github.com/neet/masto.js/blob/aaa534e/src/gateway/websocket.ts#L42)*
 
 Connect to the websocket endpoint
 
@@ -113,7 +107,7 @@ ___
 
 ▸ **disconnect**(): *void*
 
-*Defined in [gateway/websocket.ts:61](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L61)*
+*Defined in [gateway/websocket.ts:54](https://github.com/neet/masto.js/blob/aaa534e/src/gateway/websocket.ts#L54)*
 
 Disconnect from the websocket endpoint
 
@@ -123,22 +117,24 @@ ___
 
 ###  emit
 
-▸ **emit**<**T**>(`event`: `T`, ...`args`: any[]): *boolean*
+▸ **emit**<**T**>(`event`: *`T`*, ...`args`: *`EventArgs<EventTypeMap, T>`*): *boolean*
 
-*Overrides void*
+*Inherited from void*
 
-*Defined in [gateway/websocket.ts:100](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L100)*
+Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:30
+
+Calls each of the listeners registered for a given event.
 
 **Type parameters:**
 
-■` T`: *[EventType](../modules/_gateway_websocket_.md#eventtype)*
+▪ **T**: *`EventNames<EventTypeMap>`*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
 `event` | `T` |
-`...args` | any[] |
+`...args` | `EventArgs<EventTypeMap, T>` |
 
 **Returns:** *boolean*
 
@@ -146,24 +142,24 @@ ___
 
 ###  eventNames
 
-▸ **eventNames**(): *`Array<EventTypes>`*
+▸ **eventNames**(): *`Array<EventNames<EventTypeMap>>`*
 
 *Inherited from void*
 
-Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:12
+Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:15
 
 Return an array listing the events for which the emitter has registered
 listeners.
 
-**Returns:** *`Array<EventTypes>`*
+**Returns:** *`Array<EventNames<EventTypeMap>>`*
 
 ___
 
 ###  handleMessage
 
-▸ **handleMessage**(`__namedParameters`: object): *void*
+▸ **handleMessage**(`__namedParameters`: *object*): *void*
 
-*Defined in [gateway/websocket.ts:70](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L70)*
+*Defined in [gateway/websocket.ts:63](https://github.com/neet/masto.js/blob/aaa534e/src/gateway/websocket.ts#L63)*
 
 Parse JSON data and emit it as an event
 
@@ -179,21 +175,19 @@ ___
 
 ###  listenerCount
 
-▸ **listenerCount**<**T**>(`event`: `T`): *number*
+▸ **listenerCount**(`event`: *`EventNames<EventTypeMap>`*): *number*
 
-*Overrides void*
+*Inherited from void*
 
-*Defined in [gateway/websocket.ts:95](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L95)*
+Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:25
 
-**Type parameters:**
-
-■` T`: *[EventType](../modules/_gateway_websocket_.md#eventtype)*
+Return the number of listeners listening to a given event.
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`event` | `T` |
+`event` | `EventNames<EventTypeMap>` |
 
 **Returns:** *number*
 
@@ -201,15 +195,17 @@ ___
 
 ###  listeners
 
-▸ **listeners**<**T**>(`event`: `T`): *`ListenerFn`[]*
+▸ **listeners**<**T**>(`event`: *`T`*): *`Array<ListenerFn<EventArgs<EventTypeMap, T>>>`*
 
-*Overrides void*
+*Inherited from void*
 
-*Defined in [gateway/websocket.ts:90](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L90)*
+Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:20
+
+Return the listeners registered for a given event.
 
 **Type parameters:**
 
-■` T`: *[EventType](../modules/_gateway_websocket_.md#eventtype)*
+▪ **T**: *`EventNames<EventTypeMap>`*
 
 **Parameters:**
 
@@ -217,126 +213,128 @@ Name | Type |
 ------ | ------ |
 `event` | `T` |
 
-**Returns:** *`ListenerFn`[]*
+**Returns:** *`Array<ListenerFn<EventArgs<EventTypeMap, T>>>`*
 
 ___
 
 ###  off
 
-▸ **off**<**T**>(`event`: `T`, `fn?`: [EventListener](../modules/_gateway_websocket_.md#eventlistener)‹*`T`*›, `context?`: any, `once?`: undefined | false | true): *`this`*
+▸ **off**<**T**>(`event`: *`T`*, `fn?`: *`EventEmitter.ListenerFn<EventArgs<EventTypeMap, T>>`*, `context?`: *any*, `once?`: *undefined | false | true*): *this*
 
-*Overrides void*
+*Inherited from void*
 
-*Defined in [gateway/websocket.ts:142](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L142)*
+Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:47
 
 **Type parameters:**
 
-■` T`: *[EventType](../modules/_gateway_websocket_.md#eventtype)*
+▪ **T**: *`EventNames<EventTypeMap>`*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
 `event` | `T` |
-`fn?` | [EventListener](../modules/_gateway_websocket_.md#eventlistener)‹*`T`*› |
+`fn?` | `EventEmitter.ListenerFn<EventArgs<EventTypeMap, T>>` |
 `context?` | any |
 `once?` | undefined \| false \| true |
 
-**Returns:** *`this`*
+**Returns:** *this*
 
 ___
 
 ###  on
 
-▸ **on**<**T**>(`event`: `T`, `fn`: [EventListener](../modules/_gateway_websocket_.md#eventlistener)‹*`T`*›, `context?`: any): *`this`*
+▸ **on**<**T**>(`event`: *`T`*, `fn`: *`ListenerFn<EventArgs<EventTypeMap, T>>`*, `context?`: *any*): *this*
 
-*Overrides void*
+*Inherited from void*
 
-*Defined in [gateway/websocket.ts:114](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L114)*
+Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:35
+
+Add a listener for a given event.
 
 **Type parameters:**
 
-■` T`: *[EventType](../modules/_gateway_websocket_.md#eventtype)*
+▪ **T**: *`EventNames<EventTypeMap>`*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
 `event` | `T` |
-`fn` | [EventListener](../modules/_gateway_websocket_.md#eventlistener)‹*`T`*› |
+`fn` | `ListenerFn<EventArgs<EventTypeMap, T>>` |
 `context?` | any |
 
-**Returns:** *`this`*
+**Returns:** *this*
 
 ___
 
 ###  once
 
-▸ **once**<**T**>(`event`: `T`, `fn`: [EventListener](../modules/_gateway_websocket_.md#eventlistener)‹*`T`*›, `context?`: any): *`this`*
+▸ **once**<**T**>(`event`: *`T`*, `fn`: *`ListenerFn<EventArgs<EventTypeMap, T>>`*, `context?`: *any*): *this*
 
-*Overrides void*
+*Inherited from void*
 
-*Defined in [gateway/websocket.ts:123](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L123)*
+Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:41
+
+Add a one-time listener for a given event.
 
 **Type parameters:**
 
-■` T`: *[EventType](../modules/_gateway_websocket_.md#eventtype)*
+▪ **T**: *`EventNames<EventTypeMap>`*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
 `event` | `T` |
-`fn` | [EventListener](../modules/_gateway_websocket_.md#eventlistener)‹*`T`*› |
+`fn` | `ListenerFn<EventArgs<EventTypeMap, T>>` |
 `context?` | any |
 
-**Returns:** *`this`*
+**Returns:** *this*
 
 ___
 
 ###  removeAllListeners
 
-▸ **removeAllListeners**<**T**>(`event?`: [T]()): *`this`*
+▸ **removeAllListeners**(`event?`: *`EventNames<EventTypeMap>`*): *this*
 
-*Overrides void*
+*Inherited from void*
 
-*Defined in [gateway/websocket.ts:152](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L152)*
+Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:52
 
-**Type parameters:**
-
-■` T`: *[EventType](../modules/_gateway_websocket_.md#eventtype)*
+Remove all listeners, or those of the specified event.
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`event?` | [T]() |
+`event?` | `EventNames<EventTypeMap>` |
 
-**Returns:** *`this`*
+**Returns:** *this*
 
 ___
 
 ###  removeListener
 
-▸ **removeListener**<**T**>(`event`: `T`, `fn?`: [EventListener](../modules/_gateway_websocket_.md#eventlistener)‹*`T`*›, `context?`: any, `once?`: undefined | false | true): *`this`*
+▸ **removeListener**<**T**>(`event`: *`T`*, `fn?`: *`EventEmitter.ListenerFn<EventArgs<EventTypeMap, T>>`*, `context?`: *any*, `once?`: *undefined | false | true*): *this*
 
-*Overrides void*
+*Inherited from void*
 
-*Defined in [gateway/websocket.ts:132](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L132)*
+Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:46
+
+Remove the listeners of a given event.
 
 **Type parameters:**
 
-■` T`: *[EventType](../modules/_gateway_websocket_.md#eventtype)*
+▪ **T**: *`EventNames<EventTypeMap>`*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
 `event` | `T` |
-`fn?` | [EventListener](../modules/_gateway_websocket_.md#eventlistener)‹*`T`*› |
+`fn?` | `EventEmitter.ListenerFn<EventArgs<EventTypeMap, T>>` |
 `context?` | any |
 `once?` | undefined \| false \| true |
 
-**Returns:** *`this`*
-
-___
+**Returns:** *this*

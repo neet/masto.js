@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["entities/account"](../modules/_entities_account_.md) / [AccountSource](_entities_account_.accountsource.md) /
 
@@ -22,9 +22,9 @@
 
 ###  fields
 
-● **fields**: *[AccountField](_entities_account_.accountfield.md)*
+• **fields**: *[AccountField](_entities_account_.accountfield.md)*
 
-*Defined in [entities/account.ts:81](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L81)*
+*Defined in [entities/account.ts:81](https://github.com/neet/masto.js/blob/aaa534e/src/entities/account.ts#L81)*
 
 Plain-text version of the account's field
 
@@ -32,9 +32,9 @@ ___
 
 ###  language
 
-● **language**: *string | null*
+• **language**: *string | null*
 
-*Defined in [entities/account.ts:77](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L77)*
+*Defined in [entities/account.ts:77](https://github.com/neet/masto.js/blob/aaa534e/src/entities/account.ts#L77)*
 
 User's default language
 
@@ -42,9 +42,9 @@ ___
 
 ###  note
 
-● **note**: *string*
+• **note**: *string*
 
-*Defined in [entities/account.ts:79](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L79)*
+*Defined in [entities/account.ts:79](https://github.com/neet/masto.js/blob/aaa534e/src/entities/account.ts#L79)*
 
 Plain-text version of the account's `note`
 
@@ -52,9 +52,9 @@ ___
 
 ### `Optional` privacy
 
-● **privacy**? : *[StatusVisibility](../modules/_entities_status_.md#statusvisibility) | null*
+• **privacy**? : *[StatusVisibility](../modules/_entities_status_.md#statusvisibility) | null*
 
-*Defined in [entities/account.ts:73](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L73)*
+*Defined in [entities/account.ts:73](https://github.com/neet/masto.js/blob/aaa534e/src/entities/account.ts#L73)*
 
 Selected preference: Default privacy of new toots
 
@@ -62,10 +62,8 @@ ___
 
 ### `Optional` sensitive
 
-● **sensitive**? : *boolean | null*
+• **sensitive**? : *boolean | null*
 
-*Defined in [entities/account.ts:75](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L75)*
+*Defined in [entities/account.ts:75](https://github.com/neet/masto.js/blob/aaa534e/src/entities/account.ts#L75)*
 
 Selected preference: Mark media as sensitive by default?
-
-___

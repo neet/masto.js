@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["errors/masto-not-found-error"](_errors_masto_not_found_error_.md) /
 

@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["gateway/websocket"](../modules/_gateway_websocket_.md) / [Event](_gateway_websocket_.event.md) /
 
@@ -21,16 +21,14 @@ Mastodon event
 
 ###  event
 
-● **event**: *[EventType](../modules/_gateway_websocket_.md#eventtype)*
+• **event**: *[EventType](../modules/_gateway_websocket_.md#eventtype)*
 
-*Defined in [gateway/websocket.ts:10](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L10)*
+*Defined in [gateway/websocket.ts:26](https://github.com/neet/masto.js/blob/aaa534e/src/gateway/websocket.ts#L26)*
 
 ___
 
 ###  payload
 
-● **payload**: *string*
+• **payload**: *string*
 
-*Defined in [gateway/websocket.ts:11](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L11)*
-
-___
+*Defined in [gateway/websocket.ts:27](https://github.com/neet/masto.js/blob/aaa534e/src/gateway/websocket.ts#L27)*

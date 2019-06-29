@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["entities/status"](_entities_status_.md) /
 
@@ -20,6 +20,4 @@
 
 Ƭ **StatusVisibility**: *"public" | "unlisted" | "private" | "direct"*
 
-*Defined in [entities/status.ts:9](https://github.com/neet/masto.js/blob/80b1796/src/entities/status.ts#L9)*
-
-___
+*Defined in [entities/status.ts:9](https://github.com/neet/masto.js/blob/aaa534e/src/entities/status.ts#L9)*

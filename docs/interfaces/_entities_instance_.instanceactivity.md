@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["entities/instance"](../modules/_entities_instance_.md) / [InstanceActivity](_entities_instance_.instanceactivity.md) /
 
@@ -21,9 +21,9 @@
 
 ###  logins
 
-● **logins**: *string*
+• **logins**: *string*
 
-*Defined in [entities/instance.ts:48](https://github.com/neet/masto.js/blob/80b1796/src/entities/instance.ts#L48)*
+*Defined in [entities/instance.ts:48](https://github.com/neet/masto.js/blob/aaa534e/src/entities/instance.ts#L48)*
 
 Active users while the week
 
@@ -31,9 +31,9 @@ ___
 
 ###  registrations
 
-● **registrations**: *string*
+• **registrations**: *string*
 
-*Defined in [entities/instance.ts:50](https://github.com/neet/masto.js/blob/80b1796/src/entities/instance.ts#L50)*
+*Defined in [entities/instance.ts:50](https://github.com/neet/masto.js/blob/aaa534e/src/entities/instance.ts#L50)*
 
 New registrations while the week
 
@@ -41,9 +41,9 @@ ___
 
 ###  statuses
 
-● **statuses**: *string*
+• **statuses**: *string*
 
-*Defined in [entities/instance.ts:46](https://github.com/neet/masto.js/blob/80b1796/src/entities/instance.ts#L46)*
+*Defined in [entities/instance.ts:46](https://github.com/neet/masto.js/blob/aaa534e/src/entities/instance.ts#L46)*
 
 Number of statuses created while the week
 
@@ -51,10 +51,8 @@ ___
 
 ###  week
 
-● **week**: *string*
+• **week**: *string*
 
-*Defined in [entities/instance.ts:44](https://github.com/neet/masto.js/blob/80b1796/src/entities/instance.ts#L44)*
+*Defined in [entities/instance.ts:44](https://github.com/neet/masto.js/blob/aaa534e/src/entities/instance.ts#L44)*
 
 Timestamp of 0 o'clock on Monday of the week
-
-___

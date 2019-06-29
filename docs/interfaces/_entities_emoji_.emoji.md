@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["entities/emoji"](../modules/_entities_emoji_.md) / [Emoji](_entities_emoji_.emoji.md) /
 
@@ -21,9 +21,9 @@
 
 ###  shortcode
 
-● **shortcode**: *string*
+• **shortcode**: *string*
 
-*Defined in [entities/emoji.ts:3](https://github.com/neet/masto.js/blob/80b1796/src/entities/emoji.ts#L3)*
+*Defined in [entities/emoji.ts:3](https://github.com/neet/masto.js/blob/aaa534e/src/entities/emoji.ts#L3)*
 
 The shortcode of the emoji
 
@@ -31,9 +31,9 @@ ___
 
 ###  static_url
 
-● **static_url**: *string*
+• **static_url**: *string*
 
-*Defined in [entities/emoji.ts:5](https://github.com/neet/masto.js/blob/80b1796/src/entities/emoji.ts#L5)*
+*Defined in [entities/emoji.ts:5](https://github.com/neet/masto.js/blob/aaa534e/src/entities/emoji.ts#L5)*
 
 URL to the emoji static image
 
@@ -41,9 +41,9 @@ ___
 
 ###  url
 
-● **url**: *string*
+• **url**: *string*
 
-*Defined in [entities/emoji.ts:7](https://github.com/neet/masto.js/blob/80b1796/src/entities/emoji.ts#L7)*
+*Defined in [entities/emoji.ts:7](https://github.com/neet/masto.js/blob/aaa534e/src/entities/emoji.ts#L7)*
 
 URL to the emoji image
 
@@ -51,10 +51,8 @@ ___
 
 ###  visible_in_picker
 
-● **visible_in_picker**: *boolean*
+• **visible_in_picker**: *boolean*
 
-*Defined in [entities/emoji.ts:9](https://github.com/neet/masto.js/blob/80b1796/src/entities/emoji.ts#L9)*
+*Defined in [entities/emoji.ts:9](https://github.com/neet/masto.js/blob/aaa534e/src/entities/emoji.ts#L9)*
 
 Boolean that indicates if the emoji is visible in picker
-
-___

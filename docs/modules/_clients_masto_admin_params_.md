@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["clients/masto-admin/params"](_clients_masto_admin_params_.md) /
 
@@ -22,6 +22,4 @@
 
 Ƭ **AccountActionType**: *"none" | "disable" | "silence" | "suspend"*
 
-*Defined in [clients/masto-admin/params.ts:23](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto-admin/params.ts#L23)*
-
-___
+*Defined in [clients/masto-admin/params.ts:23](https://github.com/neet/masto.js/blob/aaa534e/src/clients/masto-admin/params.ts#L23)*
