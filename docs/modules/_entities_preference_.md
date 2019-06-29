@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["entities/preference"](_entities_preference_.md) /
 
@@ -20,6 +20,4 @@
 
 Ƭ **PreferenceReadingExpandMedia**: *"show_all" | "hide_all" | "default"*
 
-*Defined in [entities/preference.ts:3](https://github.com/neet/masto.js/blob/80b1796/src/entities/preference.ts#L3)*
-
-___
+*Defined in [entities/preference.ts:3](https://github.com/neet/masto.js/blob/aaa534e/src/entities/preference.ts#L3)*

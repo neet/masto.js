@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["entities/list"](../modules/_entities_list_.md) / [List](_entities_list_.list.md) /
 
@@ -19,9 +19,9 @@
 
 ###  id
 
-● **id**: *string*
+• **id**: *string*
 
-*Defined in [entities/list.ts:3](https://github.com/neet/masto.js/blob/80b1796/src/entities/list.ts#L3)*
+*Defined in [entities/list.ts:3](https://github.com/neet/masto.js/blob/aaa534e/src/entities/list.ts#L3)*
 
 ID of the list
 
@@ -29,10 +29,8 @@ ___
 
 ###  title
 
-● **title**: *string*
+• **title**: *string*
 
-*Defined in [entities/list.ts:5](https://github.com/neet/masto.js/blob/80b1796/src/entities/list.ts#L5)*
+*Defined in [entities/list.ts:5](https://github.com/neet/masto.js/blob/aaa534e/src/entities/list.ts#L5)*
 
 Title of the list
-
-___

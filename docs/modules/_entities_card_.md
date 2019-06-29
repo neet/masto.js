@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["entities/card"](_entities_card_.md) /
 
@@ -20,6 +20,4 @@
 
 Ƭ **CardType**: *"link" | "photo" | "video" | "rich"*
 
-*Defined in [entities/card.ts:1](https://github.com/neet/masto.js/blob/80b1796/src/entities/card.ts#L1)*
-
-___
+*Defined in [entities/card.ts:1](https://github.com/neet/masto.js/blob/aaa534e/src/entities/card.ts#L1)*

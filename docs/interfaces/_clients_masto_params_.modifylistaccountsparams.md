@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["clients/masto/params"](../modules/_clients_masto_params_.md) / [ModifyListAccountsParams](_clients_masto_params_.modifylistaccountsparams.md) /
 
@@ -18,10 +18,8 @@
 
 ###  account_ids
 
-● **account_ids**: *string[]*
+• **account_ids**: *string[]*
 
-*Defined in [clients/masto/params.ts:149](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L149)*
+*Defined in [clients/masto/params.ts:149](https://github.com/neet/masto.js/blob/aaa534e/src/clients/masto/params.ts#L149)*
 
 Array of account IDs
-
-___

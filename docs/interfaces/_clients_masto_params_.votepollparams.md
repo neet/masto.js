@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["clients/masto/params"](../modules/_clients_masto_params_.md) / [VotePollParams](_clients_masto_params_.votepollparams.md) /
 
@@ -18,10 +18,8 @@
 
 ###  choices
 
-● **choices**: *string[]*
+• **choices**: *string[]*
 
-*Defined in [clients/masto/params.ts:278](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L278)*
+*Defined in [clients/masto/params.ts:278](https://github.com/neet/masto.js/blob/aaa534e/src/clients/masto/params.ts#L278)*
 
 Array of choice indices
-
-___

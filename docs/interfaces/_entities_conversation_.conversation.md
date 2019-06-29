@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["entities/conversation"](../modules/_entities_conversation_.md) / [Conversation](_entities_conversation_.conversation.md) /
 
@@ -21,9 +21,9 @@
 
 ###  accounts
 
-● **accounts**: *[Account](_entities_account_.account.md)[]*
+• **accounts**: *[Account](_entities_account_.account.md)[]*
 
-*Defined in [entities/conversation.ts:10](https://github.com/neet/masto.js/blob/80b1796/src/entities/conversation.ts#L10)*
+*Defined in [entities/conversation.ts:10](https://github.com/neet/masto.js/blob/aaa534e/src/entities/conversation.ts#L10)*
 
 An array of accounts that mentioned this conversation
 
@@ -31,9 +31,9 @@ ___
 
 ###  id
 
-● **id**: *string*
+• **id**: *string*
 
-*Defined in [entities/conversation.ts:6](https://github.com/neet/masto.js/blob/80b1796/src/entities/conversation.ts#L6)*
+*Defined in [entities/conversation.ts:6](https://github.com/neet/masto.js/blob/aaa534e/src/entities/conversation.ts#L6)*
 
 The ID of the conversation
 
@@ -41,9 +41,9 @@ ___
 
 ###  last_status
 
-● **last_status**: *[Status](_entities_status_.status.md)*
+• **last_status**: *[Status](_entities_status_.status.md)*
 
-*Defined in [entities/conversation.ts:12](https://github.com/neet/masto.js/blob/80b1796/src/entities/conversation.ts#L12)*
+*Defined in [entities/conversation.ts:12](https://github.com/neet/masto.js/blob/aaa534e/src/entities/conversation.ts#L12)*
 
 The latest status of this conversation
 
@@ -51,10 +51,8 @@ ___
 
 ###  unread
 
-● **unread**: *boolean*
+• **unread**: *boolean*
 
-*Defined in [entities/conversation.ts:8](https://github.com/neet/masto.js/blob/80b1796/src/entities/conversation.ts#L8)*
+*Defined in [entities/conversation.ts:8](https://github.com/neet/masto.js/blob/aaa534e/src/entities/conversation.ts#L8)*
 
 Wether authorized user has read latest status
-
-___

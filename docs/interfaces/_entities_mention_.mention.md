@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["entities/mention"](../modules/_entities_mention_.md) / [Mention](_entities_mention_.mention.md) /
 
@@ -21,9 +21,9 @@
 
 ###  acct
 
-● **acct**: *string*
+• **acct**: *string*
 
-*Defined in [entities/mention.ts:7](https://github.com/neet/masto.js/blob/80b1796/src/entities/mention.ts#L7)*
+*Defined in [entities/mention.ts:7](https://github.com/neet/masto.js/blob/aaa534e/src/entities/mention.ts#L7)*
 
 Equals `username` for local users, includes `@domain` for remote ones
 
@@ -31,9 +31,9 @@ ___
 
 ###  id
 
-● **id**: *string*
+• **id**: *string*
 
-*Defined in [entities/mention.ts:9](https://github.com/neet/masto.js/blob/80b1796/src/entities/mention.ts#L9)*
+*Defined in [entities/mention.ts:9](https://github.com/neet/masto.js/blob/aaa534e/src/entities/mention.ts#L9)*
 
 Account ID
 
@@ -41,9 +41,9 @@ ___
 
 ###  url
 
-● **url**: *string*
+• **url**: *string*
 
-*Defined in [entities/mention.ts:3](https://github.com/neet/masto.js/blob/80b1796/src/entities/mention.ts#L3)*
+*Defined in [entities/mention.ts:3](https://github.com/neet/masto.js/blob/aaa534e/src/entities/mention.ts#L3)*
 
 URL of user's profile (can be remote)
 
@@ -51,10 +51,8 @@ ___
 
 ###  username
 
-● **username**: *string*
+• **username**: *string*
 
-*Defined in [entities/mention.ts:5](https://github.com/neet/masto.js/blob/80b1796/src/entities/mention.ts#L5)*
+*Defined in [entities/mention.ts:5](https://github.com/neet/masto.js/blob/aaa534e/src/entities/mention.ts#L5)*
 
 The username of the account
-
-___

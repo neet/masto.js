@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["entities/filter"](_entities_filter_.md) /
 
@@ -20,8 +20,6 @@
 
 Ƭ **FilterContext**: *"home" | "notifications" | "public" | "thread"*
 
-*Defined in [entities/filter.ts:2](https://github.com/neet/masto.js/blob/80b1796/src/entities/filter.ts#L2)*
+*Defined in [entities/filter.ts:2](https://github.com/neet/masto.js/blob/aaa534e/src/entities/filter.ts#L2)*
 
 Type of filter context
-
-___

@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["clients/masto/params"](../modules/_clients_masto_params_.md) / [CreateStatusParamsBase](_clients_masto_params_.createstatusparamsbase.md) /
 
@@ -27,9 +27,9 @@
 
 ### `Optional` in_reply_to_id
 
-● **in_reply_to_id**? : *string | null*
+• **in_reply_to_id**? : *string | null*
 
-*Defined in [clients/masto/params.ts:220](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L220)*
+*Defined in [clients/masto/params.ts:220](https://github.com/neet/masto.js/blob/aaa534e/src/clients/masto/params.ts#L220)*
 
 local ID of the status you want to reply to
 
@@ -37,9 +37,9 @@ ___
 
 ### `Optional` language
 
-● **language**? : *string | null*
+• **language**? : *string | null*
 
-*Defined in [clients/masto/params.ts:230](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L230)*
+*Defined in [clients/masto/params.ts:230](https://github.com/neet/masto.js/blob/aaa534e/src/clients/masto/params.ts#L230)*
 
 ISO 639-2 language code of the toot, to skip automatic detection
 
@@ -47,9 +47,9 @@ ___
 
 ### `Optional` scheduled_at
 
-● **scheduled_at**? : *string | null*
+• **scheduled_at**? : *string | null*
 
-*Defined in [clients/masto/params.ts:228](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L228)*
+*Defined in [clients/masto/params.ts:228](https://github.com/neet/masto.js/blob/aaa534e/src/clients/masto/params.ts#L228)*
 
 Timestamp string to schedule posting of status (ISO 8601)
 
@@ -57,9 +57,9 @@ ___
 
 ### `Optional` sensitive
 
-● **sensitive**? : *boolean | null*
+• **sensitive**? : *boolean | null*
 
-*Defined in [clients/masto/params.ts:222](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L222)*
+*Defined in [clients/masto/params.ts:222](https://github.com/neet/masto.js/blob/aaa534e/src/clients/masto/params.ts#L222)*
 
 Set this to mark the media of the status as NSFW
 
@@ -67,9 +67,9 @@ ___
 
 ### `Optional` spoiler_text
 
-● **spoiler_text**? : *string | null*
+• **spoiler_text**? : *string | null*
 
-*Defined in [clients/masto/params.ts:224](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L224)*
+*Defined in [clients/masto/params.ts:224](https://github.com/neet/masto.js/blob/aaa534e/src/clients/masto/params.ts#L224)*
 
 Text to be shown as a warning before the actual content
 
@@ -77,10 +77,8 @@ ___
 
 ### `Optional` visibility
 
-● **visibility**? : *[StatusVisibility](../modules/_entities_status_.md#statusvisibility) | null*
+• **visibility**? : *[StatusVisibility](../modules/_entities_status_.md#statusvisibility) | null*
 
-*Defined in [clients/masto/params.ts:226](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L226)*
+*Defined in [clients/masto/params.ts:226](https://github.com/neet/masto.js/blob/aaa534e/src/clients/masto/params.ts#L226)*
 
 Either "direct", "private", "unlisted" or "public"
-
-___

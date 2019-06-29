@@ -1,8 +1,10 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["gateway/websocket"](../modules/_gateway_websocket_.md) / [EventTypeMap](_gateway_websocket_.eventtypemap.md) /
 
 # Interface: EventTypeMap
+
+Map of event name and callback argument
 
 ## Hierarchy
 
@@ -22,9 +24,9 @@
 
 ###  conversation
 
-● **conversation**: *[Conversation](_entities_conversation_.conversation.md)*
+• **conversation**: *[[Conversation](_entities_conversation_.conversation.md)]*
 
-*Defined in [gateway/websocket.ts:24](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L24)*
+*Defined in [gateway/websocket.ts:18](https://github.com/neet/masto.js/blob/aaa534e/src/gateway/websocket.ts#L18)*
 
 Status added to a conversation
 
@@ -32,9 +34,9 @@ ___
 
 ###  delete
 
-● **delete**: *string*
+• **delete**: *[string]*
 
-*Defined in [gateway/websocket.ts:18](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L18)*
+*Defined in [gateway/websocket.ts:12](https://github.com/neet/masto.js/blob/aaa534e/src/gateway/websocket.ts#L12)*
 
 Status deleted
 
@@ -42,9 +44,9 @@ ___
 
 ###  filters_changed
 
-● **filters_changed**: *undefined*
+• **filters_changed**: *[]*
 
-*Defined in [gateway/websocket.ts:22](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L22)*
+*Defined in [gateway/websocket.ts:16](https://github.com/neet/masto.js/blob/aaa534e/src/gateway/websocket.ts#L16)*
 
 User's filter changed
 
@@ -52,9 +54,9 @@ ___
 
 ###  notification
 
-● **notification**: *[Notification](_entities_notification_.notification.md)*
+• **notification**: *[[Notification](_entities_notification_.notification.md)]*
 
-*Defined in [gateway/websocket.ts:20](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L20)*
+*Defined in [gateway/websocket.ts:14](https://github.com/neet/masto.js/blob/aaa534e/src/gateway/websocket.ts#L14)*
 
 User's notification
 
@@ -62,10 +64,8 @@ ___
 
 ###  update
 
-● **update**: *[Status](_entities_status_.status.md)*
+• **update**: *[[Status](_entities_status_.status.md)]*
 
-*Defined in [gateway/websocket.ts:16](https://github.com/neet/masto.js/blob/80b1796/src/gateway/websocket.ts#L16)*
+*Defined in [gateway/websocket.ts:10](https://github.com/neet/masto.js/blob/aaa534e/src/gateway/websocket.ts#L10)*
 
 Status posted
-
-___

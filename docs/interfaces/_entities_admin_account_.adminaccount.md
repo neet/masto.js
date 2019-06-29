@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["entities/admin-account"](../modules/_entities_admin_account_.md) / [AdminAccount](_entities_admin_account_.adminaccount.md) /
 
@@ -36,136 +36,134 @@ Account entity from moderation apis
 
 ###  account
 
-● **account**: *[Account](_entities_account_.account.md)*
+• **account**: *[Account](_entities_account_.account.md)*
 
-*Defined in [entities/admin-account.ts:21](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-account.ts#L21)*
+*Defined in [entities/admin-account.ts:21](https://github.com/neet/masto.js/blob/aaa534e/src/entities/admin-account.ts#L21)*
 
 ___
 
 ###  approved
 
-● **approved**: *boolean*
+• **approved**: *boolean*
 
-*Defined in [entities/admin-account.ts:20](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-account.ts#L20)*
+*Defined in [entities/admin-account.ts:20](https://github.com/neet/masto.js/blob/aaa534e/src/entities/admin-account.ts#L20)*
 
 ___
 
 ###  confirmed
 
-● **confirmed**: *boolean*
+• **confirmed**: *boolean*
 
-*Defined in [entities/admin-account.ts:16](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-account.ts#L16)*
+*Defined in [entities/admin-account.ts:16](https://github.com/neet/masto.js/blob/aaa534e/src/entities/admin-account.ts#L16)*
 
 ___
 
 ###  created_at
 
-● **created_at**: *string*
+• **created_at**: *string*
 
-*Defined in [entities/admin-account.ts:12](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-account.ts#L12)*
+*Defined in [entities/admin-account.ts:12](https://github.com/neet/masto.js/blob/aaa534e/src/entities/admin-account.ts#L12)*
 
 ___
 
 ### `Optional` created_by_application_id
 
-● **created_by_application_id**? : *string | null*
+• **created_by_application_id**? : *string | null*
 
-*Defined in [entities/admin-account.ts:24](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-account.ts#L24)*
+*Defined in [entities/admin-account.ts:24](https://github.com/neet/masto.js/blob/aaa534e/src/entities/admin-account.ts#L24)*
 
 ___
 
 ###  disabled
 
-● **disabled**: *boolean*
+• **disabled**: *boolean*
 
-*Defined in [entities/admin-account.ts:19](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-account.ts#L19)*
+*Defined in [entities/admin-account.ts:19](https://github.com/neet/masto.js/blob/aaa534e/src/entities/admin-account.ts#L19)*
 
 ___
 
 ###  domain
 
-● **domain**: *string*
+• **domain**: *string*
 
-*Defined in [entities/admin-account.ts:11](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-account.ts#L11)*
+*Defined in [entities/admin-account.ts:11](https://github.com/neet/masto.js/blob/aaa534e/src/entities/admin-account.ts#L11)*
 
 ___
 
 ###  email
 
-● **email**: *string*
+• **email**: *string*
 
-*Defined in [entities/admin-account.ts:13](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-account.ts#L13)*
+*Defined in [entities/admin-account.ts:13](https://github.com/neet/masto.js/blob/aaa534e/src/entities/admin-account.ts#L13)*
 
 ___
 
 ###  id
 
-● **id**: *string*
+• **id**: *string*
 
-*Defined in [entities/admin-account.ts:9](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-account.ts#L9)*
+*Defined in [entities/admin-account.ts:9](https://github.com/neet/masto.js/blob/aaa534e/src/entities/admin-account.ts#L9)*
 
 ___
 
 ### `Optional` invite_request
 
-● **invite_request**? : *string | null*
+• **invite_request**? : *string | null*
 
-*Defined in [entities/admin-account.ts:23](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-account.ts#L23)*
+*Defined in [entities/admin-account.ts:23](https://github.com/neet/masto.js/blob/aaa534e/src/entities/admin-account.ts#L23)*
 
 ___
 
 ### `Optional` invited_by_account_id
 
-● **invited_by_account_id**? : *string | null*
+• **invited_by_account_id**? : *string | null*
 
-*Defined in [entities/admin-account.ts:25](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-account.ts#L25)*
+*Defined in [entities/admin-account.ts:25](https://github.com/neet/masto.js/blob/aaa534e/src/entities/admin-account.ts#L25)*
 
 ___
 
 ###  ip
 
-● **ip**: *string*
+• **ip**: *string*
 
-*Defined in [entities/admin-account.ts:15](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-account.ts#L15)*
+*Defined in [entities/admin-account.ts:15](https://github.com/neet/masto.js/blob/aaa534e/src/entities/admin-account.ts#L15)*
 
 ___
 
 ### `Optional` locale
 
-● **locale**? : *string | null*
+• **locale**? : *string | null*
 
-*Defined in [entities/admin-account.ts:22](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-account.ts#L22)*
+*Defined in [entities/admin-account.ts:22](https://github.com/neet/masto.js/blob/aaa534e/src/entities/admin-account.ts#L22)*
 
 ___
 
 ###  role
 
-● **role**: *[AdminAccountRole](../modules/_entities_admin_account_.md#adminaccountrole)*
+• **role**: *[AdminAccountRole](../modules/_entities_admin_account_.md#adminaccountrole)*
 
-*Defined in [entities/admin-account.ts:14](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-account.ts#L14)*
+*Defined in [entities/admin-account.ts:14](https://github.com/neet/masto.js/blob/aaa534e/src/entities/admin-account.ts#L14)*
 
 ___
 
 ###  silenced
 
-● **silenced**: *boolean*
+• **silenced**: *boolean*
 
-*Defined in [entities/admin-account.ts:18](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-account.ts#L18)*
+*Defined in [entities/admin-account.ts:18](https://github.com/neet/masto.js/blob/aaa534e/src/entities/admin-account.ts#L18)*
 
 ___
 
 ###  suspended
 
-● **suspended**: *boolean*
+• **suspended**: *boolean*
 
-*Defined in [entities/admin-account.ts:17](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-account.ts#L17)*
+*Defined in [entities/admin-account.ts:17](https://github.com/neet/masto.js/blob/aaa534e/src/entities/admin-account.ts#L17)*
 
 ___
 
 ###  username
 
-● **username**: *string*
+• **username**: *string*
 
-*Defined in [entities/admin-account.ts:10](https://github.com/neet/masto.js/blob/80b1796/src/entities/admin-account.ts#L10)*
-
-___
+*Defined in [entities/admin-account.ts:10](https://github.com/neet/masto.js/blob/aaa534e/src/entities/admin-account.ts#L10)*

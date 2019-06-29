@@ -1,18 +1,18 @@
-> ## [masto](README.md)
+> **[masto](README.md)**
 
 [Globals](globals.md) /
 
 <p align="center">
-<img src="https://i.imgur.com/z47VXyd.png" width="260px">
+  <img src="https://i.imgur.com/z47VXyd.png" width="260px">
 </p>
 
 <p align="center">Mastodon API client for JavaScript, TypeScript, Node.js, browsers</p>
 
 <p align="center">
-<a href="https://www.npmjs.com/package/masto"><img src="https://img.shields.io/npm/v/masto.svg" alt="npm"/></a>
-<a href="https://circleci.com/gh/neet/masto.js"><img src="https://img.shields.io/circleci/project/github/neet/masto.js/master.svg" /></a>
-<a href="https://codecov.io/gh/neet/masto.js"><img src="https://codecov.io/gh/neet/masto.js/branch/master/graph/badge.svg" /></a>
-<a href="https://codeclimate.com/github/neet/masto.js/maintainability"><img src="https://api.codeclimate.com/v1/badges/f56a1d2e6728a89d0a94/maintainability" /></a>
+  <a href="https://www.npmjs.com/package/masto"><img src="https://img.shields.io/npm/v/masto.svg" alt="npm"/></a>
+  <a href="https://circleci.com/gh/neet/masto.js"><img src="https://img.shields.io/circleci/project/github/neet/masto.js/master.svg" /></a>
+  <a href="https://codecov.io/gh/neet/masto.js"><img src="https://codecov.io/gh/neet/masto.js/branch/master/graph/badge.svg" /></a>
+  <a href="https://codeclimate.com/github/neet/masto.js/maintainability"><img src="https://api.codeclimate.com/v1/badges/f56a1d2e6728a89d0a94/maintainability" /></a>
 </p>
 
 ## Installation
@@ -29,7 +29,7 @@ First, fetch your access token with following command and save it.
 $ npx masto-cli token --uri=URI --email=EMAIL --password=PASSWORD
 ```
 
-Then here's a simple example that creates status. Replace `TOKEN` to your own token that you saved with the command above.
+Then here's a simple example that creates a status. Replace `TOKEN` to your own token that you saved with the command above.
 
 ```ts
 // For Node.js
@@ -38,17 +38,17 @@ const { Masto } = require('masto');
 import { Masto } from 'masto';
 
 (async () => {
-const masto = await Masto.login({
-uri: 'https://example.com', // URL of your instance
-accessToken: 'TOKEN',       // Your access token (optional)
-});
+  const masto = await Masto.login({
+    uri: 'https://example.com', // URL of your instance
+    accessToken: 'TOKEN',       // Your access token (optional)
+  });
 
-const data = await masto.createStatus({
-status: 'Hello Mastodon!',
-visibility: 'direct',
-});
+  const data = await masto.createStatus({
+    status: 'Hello Mastodon!',
+    visibility: 'direct',
+  });
 
-console.log(data);
+  console.log(data);
 })()
 ```
 
@@ -68,11 +68,14 @@ A. Masto.js is using [AsyncIterator](https://github.com/tc39/proposal-async-iter
 If you're using Masto.js with TypeScript, you need to add the following config to `tsconfig.json` for static typing.
 ```diff
 {
-"compilerOptions": {
-"lib": [
+  "compilerOptions": {
+    "lib": [
 +      "esnext.asynciterable"
-...
+      ...
 ```
+
+## Contribution
+See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## License
 <a href="https://www.gnu.org/licenses/agpl-3.0"><img src="https://img.shields.io/badge/License-AGPL%20v3-blue.svg" alt="License: AGPL v3" /></a>

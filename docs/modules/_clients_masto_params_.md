@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["clients/masto/params"](_clients_masto_params_.md) /
 
@@ -51,7 +51,7 @@
 
 Ƭ **CreateStatusParams**: *[CreateStatusParamsWithStatus](../interfaces/_clients_masto_params_.createstatusparamswithstatus.md) | [CreateStatusParamsWithMediaIds](../interfaces/_clients_masto_params_.createstatusparamswithmediaids.md)*
 
-*Defined in [clients/masto/params.ts:251](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L251)*
+*Defined in [clients/masto/params.ts:251](https://github.com/neet/masto.js/blob/aaa534e/src/clients/masto/params.ts#L251)*
 
 ___
 
@@ -59,7 +59,7 @@ ___
 
 Ƭ **FetchAccessTokenParams**: *[FetchAccessTokenParamsWithAuthorizationCode](../interfaces/_clients_masto_params_.fetchaccesstokenparamswithauthorizationcode.md) | [FetchAccessTokenParamsWithPassword](../interfaces/_clients_masto_params_.fetchaccesstokenparamswithpassword.md)*
 
-*Defined in [clients/masto/params.ts:104](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L104)*
+*Defined in [clients/masto/params.ts:104](https://github.com/neet/masto.js/blob/aaa534e/src/clients/masto/params.ts#L104)*
 
 ___
 
@@ -67,7 +67,7 @@ ___
 
 Ƭ **GrantType**: *"authorization_code" | "password"*
 
-*Defined in [clients/masto/params.ts:75](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L75)*
+*Defined in [clients/masto/params.ts:75](https://github.com/neet/masto.js/blob/aaa534e/src/clients/masto/params.ts#L75)*
 
 ___
 
@@ -75,7 +75,7 @@ ___
 
 Ƭ **UpdateMediaAttachmentParams**: *`Omit<UploadMediaAttachmentParams, "file">`*
 
-*Defined in [clients/masto/params.ts:124](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L124)*
+*Defined in [clients/masto/params.ts:124](https://github.com/neet/masto.js/blob/aaa534e/src/clients/masto/params.ts#L124)*
 
 ___
 
@@ -83,6 +83,4 @@ ___
 
 Ƭ **UpdatePushSubscriptionParams**: *`Pick<AddPushSubscriptionParams, "data">`*
 
-*Defined in [clients/masto/params.ts:176](https://github.com/neet/masto.js/blob/80b1796/src/clients/masto/params.ts#L176)*
-
-___
+*Defined in [clients/masto/params.ts:176](https://github.com/neet/masto.js/blob/aaa534e/src/clients/masto/params.ts#L176)*

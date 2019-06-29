@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["gateway/create-form-data"](_gateway_create_form_data_.md) /
 
@@ -16,21 +16,21 @@
 
 ###  createFormData
 
-▸ **createFormData**(`encodable`: any, `result`: `FormData`, `parentKey`: string): *`FormData`*
+▸ **createFormData**(`encodable`: *any*, `result`: *`FormData`*, `parentKey`: *string*): *`FormData`*
 
-*Defined in [gateway/create-form-data.ts:32](https://github.com/neet/masto.js/blob/80b1796/src/gateway/create-form-data.ts#L32)*
+*Defined in [gateway/create-form-data.ts:32](https://github.com/neet/masto.js/blob/aaa534e/src/gateway/create-form-data.ts#L32)*
 
 Encode nested object to form-data compatible flat object
 
 **`example`** 
 const result = createFormData({
-fruit: 'apple',
-animals: ['dog', 'elephant'],
-foo: {
-foo1: {
-foo11: 'bar'
-}
-}
+  fruit: 'apple',
+  animals: ['dog', 'elephant'],
+  foo: {
+    foo1: {
+      foo11: 'bar'
+    }
+  }
 });
 
 result.get('a') === 'apple';
@@ -54,9 +54,9 @@ ___
 
 ### `Const` isArray
 
-▸ **isArray**(`x`: any): *boolean*
+▸ **isArray**(`x`: *any*): *boolean*
 
-*Defined in [gateway/create-form-data.ts:4](https://github.com/neet/masto.js/blob/80b1796/src/gateway/create-form-data.ts#L4)*
+*Defined in [gateway/create-form-data.ts:4](https://github.com/neet/masto.js/blob/aaa534e/src/gateway/create-form-data.ts#L4)*
 
 **Parameters:**
 
@@ -70,9 +70,9 @@ ___
 
 ### `Const` isObject
 
-▸ **isObject**(`x`: any): *boolean*
+▸ **isObject**(`x`: *any*): *boolean*
 
-*Defined in [gateway/create-form-data.ts:6](https://github.com/neet/masto.js/blob/80b1796/src/gateway/create-form-data.ts#L6)*
+*Defined in [gateway/create-form-data.ts:6](https://github.com/neet/masto.js/blob/aaa534e/src/gateway/create-form-data.ts#L6)*
 
 **Parameters:**
 
@@ -81,5 +81,3 @@ Name | Type |
 `x` | any |
 
 **Returns:** *boolean*
-
-___

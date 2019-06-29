@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["gateway/websocket"](../modules/_gateway_websocket_.md) / [WebSocketEvents](../classes/_gateway_websocket_.websocketevents.md) / [EventEmitterStatic](_gateway_websocket_.websocketevents.eventemitterstatic.md) /
 
@@ -20,12 +20,10 @@
 
 \+ **new EventEmitterStatic**<**EventTypes**>(): *`EventEmitter<EventTypes>`*
 
-Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:57
+Defined in /Users/nucx/.ghq/github.com/neet/masto.js/node_modules/eventemitter3/index.d.ts:60
 
 **Type parameters:**
 
-■` EventTypes`: *string | symbol*
+▪ **EventTypes**: *string | symbol | object*
 
 **Returns:** *`EventEmitter<EventTypes>`*
-
-___

@@ -1,4 +1,4 @@
-> ## [masto](../README.md)
+> **[masto](../README.md)**
 
 [Globals](../globals.md) / ["entities/account"](../modules/_entities_account_.md) / [Account](_entities_account_.account.md) /
 
@@ -38,9 +38,9 @@
 
 ###  acct
 
-● **acct**: *string*
+• **acct**: *string*
 
-*Defined in [entities/account.ts:10](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L10)*
+*Defined in [entities/account.ts:10](https://github.com/neet/masto.js/blob/aaa534e/src/entities/account.ts#L10)*
 
 Equals username for local users, includes `@domain` for remote ones
 
@@ -48,9 +48,9 @@ ___
 
 ###  avatar
 
-● **avatar**: *string*
+• **avatar**: *string*
 
-*Defined in [entities/account.ts:30](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L30)*
+*Defined in [entities/account.ts:30](https://github.com/neet/masto.js/blob/aaa534e/src/entities/account.ts#L30)*
 
 URL to the avatar image
 
@@ -58,9 +58,9 @@ ___
 
 ###  avatar_static
 
-● **avatar_static**: *string*
+• **avatar_static**: *string*
 
-*Defined in [entities/account.ts:32](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L32)*
+*Defined in [entities/account.ts:32](https://github.com/neet/masto.js/blob/aaa534e/src/entities/account.ts#L32)*
 
 URL to the avatar static image (gif)
 
@@ -68,9 +68,9 @@ ___
 
 ### `Optional` bot
 
-● **bot**? : *boolean | null*
+• **bot**? : *boolean | null*
 
-*Defined in [entities/account.ts:16](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L16)*
+*Defined in [entities/account.ts:16](https://github.com/neet/masto.js/blob/aaa534e/src/entities/account.ts#L16)*
 
 Boolean to indicate that the account performs automated actions
 
@@ -78,9 +78,9 @@ ___
 
 ###  created_at
 
-● **created_at**: *string*
+• **created_at**: *string*
 
-*Defined in [entities/account.ts:18](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L18)*
+*Defined in [entities/account.ts:18](https://github.com/neet/masto.js/blob/aaa534e/src/entities/account.ts#L18)*
 
 The time the account was created
 
@@ -88,9 +88,9 @@ ___
 
 ###  display_name
 
-● **display_name**: *string*
+• **display_name**: *string*
 
-*Defined in [entities/account.ts:12](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L12)*
+*Defined in [entities/account.ts:12](https://github.com/neet/masto.js/blob/aaa534e/src/entities/account.ts#L12)*
 
 The account's display name
 
@@ -98,9 +98,9 @@ ___
 
 ###  emojis
 
-● **emojis**: *[Emoji](_entities_emoji_.emoji.md)[]*
+• **emojis**: *[Emoji](_entities_emoji_.emoji.md)[]*
 
-*Defined in [entities/account.ts:38](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L38)*
+*Defined in [entities/account.ts:38](https://github.com/neet/masto.js/blob/aaa534e/src/entities/account.ts#L38)*
 
 Array of Emoji in account username and note
 
@@ -108,9 +108,9 @@ ___
 
 ### `Optional` fields
 
-● **fields**? : *[AccountField](_entities_account_.accountfield.md)[] | null*
+• **fields**? : *[AccountField](_entities_account_.accountfield.md)[] | null*
 
-*Defined in [entities/account.ts:42](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L42)*
+*Defined in [entities/account.ts:42](https://github.com/neet/masto.js/blob/aaa534e/src/entities/account.ts#L42)*
 
 Array of profile metadata field, each element has 'name' and 'value'
 
@@ -118,9 +118,9 @@ ___
 
 ###  followers_count
 
-● **followers_count**: *number*
+• **followers_count**: *number*
 
-*Defined in [entities/account.ts:20](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L20)*
+*Defined in [entities/account.ts:20](https://github.com/neet/masto.js/blob/aaa534e/src/entities/account.ts#L20)*
 
 The number of followers for the account
 
@@ -128,9 +128,9 @@ ___
 
 ###  following_count
 
-● **following_count**: *number*
+• **following_count**: *number*
 
-*Defined in [entities/account.ts:22](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L22)*
+*Defined in [entities/account.ts:22](https://github.com/neet/masto.js/blob/aaa534e/src/entities/account.ts#L22)*
 
 The number of accounts the given account is following
 
@@ -138,9 +138,9 @@ ___
 
 ###  header
 
-● **header**: *string*
+• **header**: *string*
 
-*Defined in [entities/account.ts:34](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L34)*
+*Defined in [entities/account.ts:34](https://github.com/neet/masto.js/blob/aaa534e/src/entities/account.ts#L34)*
 
 URL to the header image
 
@@ -148,9 +148,9 @@ ___
 
 ###  header_static
 
-● **header_static**: *string*
+• **header_static**: *string*
 
-*Defined in [entities/account.ts:36](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L36)*
+*Defined in [entities/account.ts:36](https://github.com/neet/masto.js/blob/aaa534e/src/entities/account.ts#L36)*
 
 URL to the header static image (gif)
 
@@ -158,9 +158,9 @@ ___
 
 ###  id
 
-● **id**: *string*
+• **id**: *string*
 
-*Defined in [entities/account.ts:6](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L6)*
+*Defined in [entities/account.ts:6](https://github.com/neet/masto.js/blob/aaa534e/src/entities/account.ts#L6)*
 
 The ID of the account
 
@@ -168,9 +168,9 @@ ___
 
 ###  locked
 
-● **locked**: *boolean*
+• **locked**: *boolean*
 
-*Defined in [entities/account.ts:14](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L14)*
+*Defined in [entities/account.ts:14](https://github.com/neet/masto.js/blob/aaa534e/src/entities/account.ts#L14)*
 
 Boolean for when the account cannot be followed without waiting for approval first
 
@@ -178,9 +178,9 @@ ___
 
 ### `Optional` moved
 
-● **moved**? : *boolean | null*
+• **moved**? : *boolean | null*
 
-*Defined in [entities/account.ts:40](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L40)*
+*Defined in [entities/account.ts:40](https://github.com/neet/masto.js/blob/aaa534e/src/entities/account.ts#L40)*
 
 If the owner decided to switch accounts, new account is in this attribute
 
@@ -188,9 +188,9 @@ ___
 
 ###  note
 
-● **note**: *string*
+• **note**: *string*
 
-*Defined in [entities/account.ts:26](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L26)*
+*Defined in [entities/account.ts:26](https://github.com/neet/masto.js/blob/aaa534e/src/entities/account.ts#L26)*
 
 Biography of user
 
@@ -198,9 +198,9 @@ ___
 
 ###  statuses_count
 
-● **statuses_count**: *number*
+• **statuses_count**: *number*
 
-*Defined in [entities/account.ts:24](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L24)*
+*Defined in [entities/account.ts:24](https://github.com/neet/masto.js/blob/aaa534e/src/entities/account.ts#L24)*
 
 The number of statuses the account has made
 
@@ -208,9 +208,9 @@ ___
 
 ###  url
 
-● **url**: *string*
+• **url**: *string*
 
-*Defined in [entities/account.ts:28](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L28)*
+*Defined in [entities/account.ts:28](https://github.com/neet/masto.js/blob/aaa534e/src/entities/account.ts#L28)*
 
 URL of the user's profile page (can be remote)
 
@@ -218,10 +218,8 @@ ___
 
 ###  username
 
-● **username**: *string*
+• **username**: *string*
 
-*Defined in [entities/account.ts:8](https://github.com/neet/masto.js/blob/80b1796/src/entities/account.ts#L8)*
+*Defined in [entities/account.ts:8](https://github.com/neet/masto.js/blob/aaa534e/src/entities/account.ts#L8)*
 
 The username of the account
-
-___
