@@ -42,11 +42,13 @@ test('typed isObject', () => {
   const r2 = isObject([1, 2]);
   const r3 = isObject({});
   const r4 = isObject({ a: 'a' });
+  const r5 = isObject(new Blob());
 
   expect(r1).toBe(false);
   expect(r2).toBe(false);
   expect(r3).toBe(true);
   expect(r4).toBe(true);
+  expect(r5).toBe(false);
 });
 
 test('flat value', () => {
