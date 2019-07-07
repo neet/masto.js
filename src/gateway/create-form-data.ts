@@ -1,10 +1,10 @@
 // tslint:disable-next-line no-import-side-effect
 import 'isomorphic-form-data';
 
-export const isArray = (x: any): x is any[] =>
-  Object.prototype.toString.call(x) === '[object Array]';
-export const isObject = (x: any): x is { [key: string]: any } =>
-  Object.prototype.toString.call(x) === '[object Object]';
+export const isArray = (x: unknown): x is any[] =>
+  typeof x === 'object' && x !== null && x.constructor === Array;
+export const isObject = (x: unknown): x is { [key: string]: any } =>
+  typeof x === 'object' && x !== null && x.constructor === Object;
 
 /**
  * Encode nested object to form-data compatible flat object
