@@ -2,9 +2,9 @@
 import 'isomorphic-form-data';
 
 export const isArray = (x: any): x is any[] =>
-  Object.prototype.toString.call(x) === '[object Array]';
+  typeof x === 'object' && x.constructor === Array;
 export const isObject = (x: any): x is { [key: string]: any } =>
-  Object.prototype.toString.call(x) === '[object Object]';
+  typeof x === 'object' && x.constructor === Object;
 
 /**
  * Encode nested object to form-data compatible flat object
