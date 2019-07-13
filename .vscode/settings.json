@@ -1,5 +1,4 @@
 {
   "tslint.packageManager": "yarn",
   "npm.packageManager": "yarn",
-  "tslint.configFile": "../tslint.yml",
 }
