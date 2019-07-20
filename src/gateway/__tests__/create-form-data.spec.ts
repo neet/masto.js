@@ -1,4 +1,4 @@
-// tslint:disable-next-line no-import-side-effect
+// eslint-disable-next-line import/no-unassigned-import
 import 'isomorphic-form-data';
 import { createFormData, isArray, isObject } from '../create-form-data';
 

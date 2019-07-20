@@ -7,7 +7,7 @@
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:import/typescript",
-    "prettier",
+    "plugin:prettier/recommended",
     "prettier/@typescript-eslint"
   ],
   "plugins": ["import"],
@@ -17,7 +17,10 @@
   },
   "rules": {
     "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/explicit-member-accessibility": "off",
+    "@typescript-eslint/explicit-member-accessibility": [
+      "error",
+      { "accessibility": "no-public" }
+    ],
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/no-unused-vars": [
@@ -26,6 +29,8 @@
         "argsIgnorePattern": "^_"
       }
     ],
-    "import/order": 2
+    "no-console": "error",
+    "import/order": 2,
+    "import/no-unassigned-import": "error"
   }
 }

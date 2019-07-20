@@ -1,4 +1,4 @@
-// tslint:disable-next-line no-import-side-effect
+// eslint-disable-next-line import/no-unassigned-import
 import 'isomorphic-form-data';
 
 export const isArray = (x: unknown): x is any[] =>
@@ -12,17 +12,17 @@ export const isObject = (x: unknown): x is { [key: string]: any } =>
  * const result = createFormData({
  *   fruit: 'apple',
  *   animals: ['dog', 'elephant'],
- *   foo: {
+ *   nested: {
  *     foo1: {
  *       foo11: 'bar'
  *     }
  *   }
  * });
  *
- * result.get('a') === 'apple';
- * result.get('b[0]') === 'dog'
- * result.get('b[1]') === 'elephant';
- * result.get('foo[foo1][foo11]') === 'bar';
+ * result.get('fruit') === 'apple';
+ * result.get('animals[0]') === 'dog'
+ * result.get('animals[1]') === 'elephant';
+ * result.get('nested[foo1][foo11]') === 'bar';
  *
  * @param encodable Object to encode
  * @param result Result value (for recursive function)

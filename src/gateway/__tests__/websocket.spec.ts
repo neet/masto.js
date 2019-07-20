@@ -1,4 +1,3 @@
-// tslint:disable
 import WebSocket from 'isomorphic-ws';
 import { WebSocketEvents } from '../websocket';
 

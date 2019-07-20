@@ -1,4 +1,4 @@
-// tslint:disable
+/* eslint-disable */
 import { Masto } from '../masto';
 // @ts-ignore
 // prettier-ignore

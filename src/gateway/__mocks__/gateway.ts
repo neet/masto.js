@@ -6,13 +6,12 @@ export const mockPut = jest.fn();
 export const mockStream = jest.fn();
 export const mockPaginate = jest.fn();
 
-// tslint:disable-next-line
 export class Gateway {
-  public get = mockGet;
-  public post = mockPost;
-  public delete = mockDelete;
-  public patch = mockPatch;
-  public put = mockPut;
-  public stream = mockStream;
-  public paginate = mockPaginate;
+  get = mockGet;
+  post = mockPost;
+  delete = mockDelete;
+  patch = mockPatch;
+  put = mockPut;
+  stream = mockStream;
+  paginate = mockPaginate;
 }
