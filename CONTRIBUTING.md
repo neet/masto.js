@@ -20,8 +20,7 @@ Thank you for considering contribution. Please check following guideline and ple
 ## Scripts
 There are few kinds of scripts in package.json. You can run them with `yarn run`
 - `test:jest` - Unit testing of Jest
-- `test:tslint` - Linting of TSLint
-- `test:prettier` - Formatting of Prettier
+- `test:eslint` - Lints code with ESLint (includes Prettier)
 - `test` - Run all tests
 - `build` - Build source codes with Rollup
 - `prepublishOnly` - Runs before for `npm publish`
@@ -32,4 +31,4 @@ You can also run above through VSCode task feature.
 ### Testing
 We write tests to check if the program works fine. Specifications live in `__tests__` directory. We enforce **100% codecov** on this library.
 
-Husky, hooker of git, always validates your code satisfies `test:tslint` and `test:prettier` so you don't need to run them.
+Husky, a hooker of git, always validates your code satisfies `test:eslint` so you don't need to run them.

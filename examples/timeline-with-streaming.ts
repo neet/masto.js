@@ -1,16 +1,16 @@
-// tslint:disable no-console
-import Mastodon from '../src';
+/* eslint-disable no-console */
+import { Masto } from '../src';
 
 // For more inromation:
 // https://github.com/neet/masto.js/blob/master/docs/classes/_client_masto_.masto.md#streampublictimeline
 (async () => {
-  const client = await Mastodon.login({
+  const masto = await Masto.login({
     uri: 'https://example.com',
     accessToken: 'YOUR TOKEN',
   });
 
   // Connect to the streaming api
-  const stream = await client.streamPublicTimeline();
+  const stream = await masto.streamPublicTimeline();
 
   // Subscribe to updates
   stream.on('update', status => {

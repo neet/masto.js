@@ -1,6 +1,6 @@
-// tslint:disable no-console
+/* eslint-disable no-console */
 import fs from 'fs';
-import Masto from '../src';
+import { Masto } from '../src';
 
 // For more information:
 // https://github.com/neet/masto.js/blob/master/docs/classes/_client_masto_.masto.md#updatecredentials

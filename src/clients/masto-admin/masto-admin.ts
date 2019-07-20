@@ -18,7 +18,7 @@ export class MastoAdmin extends Gateway {
    * @retunr Accounts
    */
   @available({ since: '2.9.1' })
-  public fetchAccounts(params?: AdminFetchAccountParams) {
+  fetchAccounts(params?: AdminFetchAccountParams) {
     return this.get<AdminAccount[]>('/api/v1/admin/accounts', params);
   }
 
@@ -28,7 +28,7 @@ export class MastoAdmin extends Gateway {
    * @return Account
    */
   @available({ since: '2.9.1' })
-  public fetchAccount(id: string) {
+  fetchAccount(id: string) {
     return this.get<AdminAccount>(`/api/v1/admin/accounts/${id}`);
   }
 
@@ -38,7 +38,7 @@ export class MastoAdmin extends Gateway {
    * @return Account
    */
   @available({ since: '2.9.1' })
-  public enableAccount(id: string) {
+  enableAccount(id: string) {
     return this.post<AdminAccount>(`/api/v1/admin/accounts/${id}/enable`);
   }
 
@@ -48,7 +48,7 @@ export class MastoAdmin extends Gateway {
    * @return Account
    */
   @available({ since: '2.9.1' })
-  public approveAccount(id: string) {
+  approveAccount(id: string) {
     return this.post<AdminAccount>(`/api/v1/admin/accounts/${id}/approve`);
   }
 
@@ -58,7 +58,7 @@ export class MastoAdmin extends Gateway {
    * @return Account
    */
   @available({ since: '2.9.1' })
-  public rejectAccount(id: string) {
+  rejectAccount(id: string) {
     return this.post<AdminAccount>(`/api/v1/admin/accounts/${id}/reject`);
   }
 
@@ -68,7 +68,7 @@ export class MastoAdmin extends Gateway {
    * @return Account
    */
   @available({ since: '2.9.1' })
-  public unsilenceAccount(id: string) {
+  unsilenceAccount(id: string) {
     return this.post<AdminAccount>(`/api/v1/admin/accounts/${id}/unsilence`);
   }
 
@@ -78,7 +78,7 @@ export class MastoAdmin extends Gateway {
    * @return Account
    */
   @available({ since: '2.9.1' })
-  public unsuspendAccount(id: string) {
+  unsuspendAccount(id: string) {
     return this.post<AdminAccount>(`/api/v1/admin/accounts/${id}/unsuspend`);
   }
 
@@ -88,7 +88,7 @@ export class MastoAdmin extends Gateway {
    * @return Reports
    */
   @available({ since: '2.9.1' })
-  public fetchReports(params?: AdminFetchReportsParams) {
+  fetchReports(params?: AdminFetchReportsParams) {
     return this.get<AdminReport[]>('/api/v1/admin/reports', params);
   }
 
@@ -98,7 +98,7 @@ export class MastoAdmin extends Gateway {
    * @return Report
    */
   @available({ since: '2.9.1' })
-  public fetchReport(id: string) {
+  fetchReport(id: string) {
     return this.get<AdminReport>(`/api/v1/admin/reports/${id}`);
   }
 
@@ -108,7 +108,7 @@ export class MastoAdmin extends Gateway {
    * @return Report
    */
   @available({ since: '2.9.1' })
-  public assignReportToSelf(id: string) {
+  assignReportToSelf(id: string) {
     return this.post<AdminReport>(`/api/v1/admin/reports/${id}/assign_to_self`);
   }
 
@@ -118,7 +118,7 @@ export class MastoAdmin extends Gateway {
    * @return Report
    */
   @available({ since: '2.9.1' })
-  public unassignReport(id: string) {
+  unassignReport(id: string) {
     return this.post<AdminReport>(`/api/v1/admin/reports/${id}/unassign`);
   }
 
@@ -128,7 +128,7 @@ export class MastoAdmin extends Gateway {
    * @return Report
    */
   @available({ since: '2.9.1' })
-  public reopenReport(id: string) {
+  reopenReport(id: string) {
     return this.post<AdminReport>(`/api/v1/admin/reports/${id}/reopen`);
   }
 
@@ -138,7 +138,7 @@ export class MastoAdmin extends Gateway {
    * @return Report
    */
   @available({ since: '2.9.1' })
-  public resolveReport(id: string) {
+  resolveReport(id: string) {
     return this.post<AdminReport>(`/api/v1/admin/reports/${id}/resolve`);
   }
 
@@ -149,7 +149,7 @@ export class MastoAdmin extends Gateway {
    * @return Acccount
    */
   @available({ since: '2.9.1' })
-  public actionAccount(id: string, params: AdminActionAccountParams) {
+  actionAccount(id: string, params: AdminActionAccountParams) {
     return this.post<AdminAccount>(
       `/api/v1/admin/accounts/${id}/action`,
       params,
