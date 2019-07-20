@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import Masto from '../src';
+import { Masto } from '../src';
 
 // For more inromation:
 // https://github.com/neet/masto.js/blob/master/docs/classes/_client_masto_.masto.md#createapp
