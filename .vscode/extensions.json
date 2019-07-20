@@ -1,6 +1,6 @@
 {
   "recommendations": [
     "esbenp.prettier-vscode",
-    "ms-vscode.vscode-typescript-tslint-plugin"
+    "dbaeumer.vscode-eslint"
   ]
 }
