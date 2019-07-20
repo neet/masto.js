@@ -9,12 +9,6 @@
       "dom",
       "esnext.asynciterable"
     ],
-    "plugins": [
-      {
-        "name": "typescript-tslint-plugin",
-        "configFile": "./tslint.yml",
-      }
-    ],
     "declaration": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
