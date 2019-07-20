@@ -1,6 +1,6 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import normalizeUrl from 'normalize-url';
 import querystring from 'querystring';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import normalizeUrl from 'normalize-url'; // eslint-disable-line import/default
 import semver from 'semver';
 import { Omit } from 'simplytyped';
 import * as optchain from 'ts-optchain';
@@ -52,14 +52,14 @@ export type PaginateNextOptions =
 export class Gateway {
   /** Configured axios instance */
   private axios: AxiosInstance;
-  /** Version of the current instance */
-  public version = '';
-  /** API token of the user */
-  public accessToken?: string;
   /** URI of the instance */
   private _uri = '';
   /** Streaming API URL of the instance */
   private _streamingApiUrl = '';
+  /** Version of the current instance */
+  version = '';
+  /** API token of the user */
+  accessToken?: string;
 
   /**
    * @param params Parameters
@@ -111,10 +111,7 @@ export class Gateway {
    * @param params Paramters
    * @return Instance of Mastodon class
    */
-  public static async login<T extends typeof Gateway>(
-    this: T,
-    params: LoginParams,
-  ) {
+  static async login<T extends typeof Gateway>(this: T, params: LoginParams) {
     const gateway = new this(params) as InstanceType<T>;
     const instance = await gateway.get<Instance>('/api/v1/instance');
 
@@ -212,11 +209,7 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  public async get<T>(
-    path: string,
-    params: any = {},
-    options?: AxiosRequestConfig,
-  ) {
+  async get<T>(path: string, params: any = {}, options?: AxiosRequestConfig) {
     const response = await this.request<T>({
       method: 'GET',
       url: path,
@@ -234,11 +227,7 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  public async post<T>(
-    path: string,
-    data: any = {},
-    options?: AxiosRequestConfig,
-  ) {
+  async post<T>(path: string, data: any = {}, options?: AxiosRequestConfig) {
     const response = await this.request<T>({
       method: 'POST',
       url: path,
@@ -256,11 +245,7 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  public async put<T>(
-    path: string,
-    data: any = {},
-    options?: AxiosRequestConfig,
-  ) {
+  async put<T>(path: string, data: any = {}, options?: AxiosRequestConfig) {
     const response = await this.request<T>({
       method: 'PUT',
       url: path,
@@ -278,11 +263,7 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  public async delete<T>(
-    path: string,
-    data: any = {},
-    options?: AxiosRequestConfig,
-  ) {
+  async delete<T>(path: string, data: any = {}, options?: AxiosRequestConfig) {
     const response = await this.request<T>({
       method: 'DELETE',
       url: path,
@@ -300,11 +281,7 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  public async patch<T>(
-    path: string,
-    data: any = {},
-    options?: AxiosRequestConfig,
-  ) {
+  async patch<T>(path: string, data: any = {}, options?: AxiosRequestConfig) {
     const response = await this.request<T>({
       method: 'PATCH',
       url: path,
@@ -321,7 +298,7 @@ export class Gateway {
    * @param params Query parameters
    * @return Instance of EventEmitter
    */
-  public stream(path: string, params: { [key: string]: any } = {}) {
+  stream(path: string, params: { [key: string]: any } = {}) {
     const version = semver.coerce(this.version);
     const protocols = [];
 
@@ -349,7 +326,7 @@ export class Gateway {
    * @return Async iterable iterator of the pages.
    * See also [MDN article about generator/iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators)
    */
-  public async *paginate<Data>(initialUrl: string, initialParams?: any) {
+  async *paginate<Data>(initialUrl: string, initialParams?: any) {
     let nextUrl: string | undefined = initialUrl;
     let nextParams = initialParams;
 

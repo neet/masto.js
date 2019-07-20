@@ -39,7 +39,7 @@ export class WebSocketEvents extends EventEmitter<EventTypeMap> {
    * @param protocols Subprotocol(s) for `Sec-Websocket-Protocol`
    * @param params URL parameters
    */
-  public connect(url: string, protocols?: string | string[]) {
+  connect(url: string, protocols?: string | string[]) {
     return new Promise<WebSocketEvents>((resolve, reject) => {
       this.ws = new WebSocket(url, protocols);
       this.ws.addEventListener('open', () => resolve(this));
@@ -51,7 +51,7 @@ export class WebSocketEvents extends EventEmitter<EventTypeMap> {
   /**
    * Disconnect from the websocket endpoint
    */
-  public disconnect() {
+  disconnect() {
     if (!this.ws) return;
     this.ws.close();
   }
@@ -60,7 +60,7 @@ export class WebSocketEvents extends EventEmitter<EventTypeMap> {
    * Parse JSON data and emit it as an event
    * @param message Websocket message
    */
-  public handleMessage = ({ data }: { data: string }) => {
+  handleMessage = ({ data }: { data: string }) => {
     const event = JSON.parse(data) as Event;
     let args: EventTypeMap[EventType];
 
