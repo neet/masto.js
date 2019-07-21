@@ -1,5 +1,4 @@
 import querystring from 'querystring';
-import { URL } from 'url';
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import semver from 'semver';
 import { Omit } from 'simplytyped';
