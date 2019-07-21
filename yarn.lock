@@ -5645,10 +5645,10 @@ typedoc@^0.15.0:
     typedoc-default-themes "^0.6.0"
     typescript "3.5.x"
 
-typescript@3.5.x, typescript@^3.5.3:
-  version "3.5.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.3.tgz#c830f657f93f1ea846819e929092f5fe5983e977"
-  integrity sha512-ACzBtm/PhXBDId6a6sDJfroT2pOWt/oOnk4/dElG5G33ZL776N3Y6/6bKZJBFpd+b05F3Ct9qDjMeJmRWtE2/g==
+typescript@3.6.0-beta:
+  version "3.6.0-beta"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.6.0-beta.tgz#c4e07e7c072cbd3c15d048364fe9c8badb72db3b"
+  integrity sha512-EQFSWWHyth+PS6xj4x5wdl8bEHl/Lm1kJ98KnmZXiyXZGmESa6/4s0ohCNhu7eEkAOHNFlZziu/lT6wzkKnTFw==
 
 uglify-js@^3.1.4:
   version "3.6.0"
