@@ -33,7 +33,11 @@ export type LoginParams = Omit<
   'version' | 'streamingApiUrl'
 >;
 
-export type PaginateNextOptions =
+/**
+ * Argument of `Gateway.paginate().next()`.
+ * When reset = true specified, other params won't be accepted
+ */
+export type PaginateNext<Params> =
   | {
       reset: boolean;
       url?: undefined;
@@ -41,8 +45,8 @@ export type PaginateNextOptions =
     }
   | {
       reset?: undefined;
-      url: string;
-      params?: any;
+      url?: string;
+      params?: Params;
     };
 
 /**
@@ -326,19 +330,22 @@ export class Gateway {
    * @return Async iterable iterator of the pages.
    * See also [MDN article about generator/iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators)
    */
-  async *paginate<Data>(initialUrl: string, initialParams?: any) {
+  async *paginate<T, U>(
+    initialUrl: string,
+    initialParams?: U,
+  ): AsyncGenerator<T, void, PaginateNext<U>> {
     let nextUrl: string | undefined = initialUrl;
     let nextParams = initialParams;
 
     while (nextUrl) {
-      const response: AxiosResponse<Data> = await this.request<Data>({
+      const response: AxiosResponse<T> = await this.request<T>({
         method: 'GET',
         url: nextUrl,
         params: nextParams,
       });
 
-      // Yield can be argument of next()
-      const options: PaginateNextOptions = yield response.data;
+      // Yield will be argument of next()
+      const options = yield response.data;
 
       // Get next URL from "next" in the link header
       const link = oc(response.headers)

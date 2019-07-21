@@ -57,7 +57,7 @@
     "ts-jest": "^24.0.2",
     "typedoc": "^0.14.2",
     "typedoc-plugin-markdown": "^2.0.8",
-    "typescript": "^3.5.2"
+    "typescript": "3.6.0-beta"
   },
   "files": [
     "README.md",
