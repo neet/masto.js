@@ -15,6 +15,7 @@ describe('Masto', () => {
   });
 
   beforeEach(async () => {
+    // @ts-ignore
     masto.version = '99.99.9'; // avoid version error
     mockGet.mockClear();
     mockPost.mockClear();
@@ -862,6 +863,7 @@ describe('Masto', () => {
   });
 
   test('fetchDirectTimeline', async () => {
+    // @ts-ignore
     masto.version = '2.5.0';
     masto.fetchDirectTimeline({
       max_id: '5',

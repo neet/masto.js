@@ -1,3 +1,4 @@
+/* eslint-disable */
 // @ts-ignore
 // prettier-ignore
 import { Gateway, mockDelete, mockGet, mockPaginate, mockPatch, mockPost, mockPut, mockStream } from '../../../gateway/gateway';
@@ -13,7 +14,6 @@ describe('MastoAdmin', () => {
   });
 
   beforeEach(async () => {
-    masto.version = '99.99.9'; // avoid version error
     mockGet.mockClear();
     mockPost.mockClear();
     mockDelete.mockClear();

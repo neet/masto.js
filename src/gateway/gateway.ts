@@ -1,6 +1,6 @@
 import querystring from 'querystring';
+import { URL } from 'url';
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import normalizeUrl from 'normalize-url'; // eslint-disable-line import/default
 import semver from 'semver';
 import { Omit } from 'simplytyped';
 import * as optchain from 'ts-optchain';
@@ -18,9 +18,9 @@ export interface GatewayConstructorParams {
   /** URI of the instance */
   uri: string;
   /** Streaming API URL */
-  streamingApiUrl?: string;
+  streamingApiUrl: string;
   /** Version of the instance */
-  version?: string;
+  version: string;
   /** Access token of the user */
   accessToken?: string;
   /** Axios configureations. See [Axios'](https://github.com/axios/axios#request-config) docs */
@@ -51,36 +51,30 @@ export type PaginateNextOptions =
  */
 export class Gateway {
   /** Configured axios instance */
-  private axios: AxiosInstance;
+  private readonly axios: AxiosInstance;
   /** URI of the instance */
-  private _uri = '';
+  readonly uri: URL;
   /** Streaming API URL of the instance */
-  private _streamingApiUrl = '';
+  readonly streamingApiUrl: URL;
   /** Version of the current instance */
-  version = '';
+  readonly version: string;
   /** API token of the user */
-  accessToken?: string;
+  readonly accessToken?: string;
 
   /**
    * @param params Parameters
    */
   constructor(params: GatewayConstructorParams) {
-    this.uri = params.uri;
+    this.uri = new URL(params.uri);
+    this.streamingApiUrl = new URL(params.streamingApiUrl);
+    this.version = params.version;
 
     if (params.accessToken) {
       this.accessToken = params.accessToken;
     }
 
-    if (params.streamingApiUrl) {
-      this.streamingApiUrl = params.streamingApiUrl;
-    }
-
-    if (params.version) {
-      this.version = params.version;
-    }
-
     this.axios = axios.create({
-      baseURL: this.uri,
+      baseURL: this.uri.href,
       transformResponse: this.transformResponse,
       ...(params.axiosConfig || {}),
     });
@@ -90,35 +84,21 @@ export class Gateway {
     this.axios.defaults.headers.common.Authorization = `Bearer ${this.accessToken}`;
   }
 
-  get uri() {
-    return this._uri;
-  }
-
-  set uri(uri: string) {
-    this._uri = normalizeUrl(uri);
-  }
-
-  get streamingApiUrl() {
-    return this._streamingApiUrl;
-  }
-
-  set streamingApiUrl(streamingApiUrl: string) {
-    this._streamingApiUrl = normalizeUrl(streamingApiUrl);
-  }
-
   /**
    * Login to Mastodon
    * @param params Paramters
    * @return Instance of Mastodon class
    */
   static async login<T extends typeof Gateway>(this: T, params: LoginParams) {
-    const gateway = new this(params) as InstanceType<T>;
-    const instance = await gateway.get<Instance>('/api/v1/instance');
+    const instance = await axios
+      .get<Instance>('/api/v1/instance')
+      .then(res => res.data);
 
-    gateway.version = instance.version;
-    gateway.streamingApiUrl = instance.urls.streaming_api;
-
-    return gateway;
+    return new this({
+      ...params,
+      version: instance.version,
+      streamingApiUrl: instance.urls.streaming_api,
+    }) as InstanceType<T>;
   }
 
   /**
@@ -299,24 +279,23 @@ export class Gateway {
    * @return Instance of EventEmitter
    */
   stream(path: string, params: { [key: string]: any } = {}) {
-    const version = semver.coerce(this.version);
+    const wsEvents = new WebSocketEvents();
     const protocols = [];
 
     // Since v2.8.4, Using `Sec-Websocket-Protocl` to
     // Pass token string is supported
     // https://github.com/tootsuite/mastodon/pull/10818
-    if (this.accessToken && version && semver.gte(version, '2.8.4')) {
+    if (this.accessToken && semver.gte(this.version, '2.8.4')) {
       protocols.push(this.accessToken);
     } else if (this.accessToken) {
       params.access_token = this.accessToken;
     }
 
-    const url =
-      this.streamingApiUrl +
-      path +
-      (Object.keys(params).length ? `?${querystring.stringify(params)}` : '');
+    const url = this.streamingApiUrl;
+    url.pathname = path;
+    url.search = querystring.stringify(params);
 
-    return new WebSocketEvents().connect(url, protocols);
+    return wsEvents.connect(url.href, protocols);
   }
 
   /**

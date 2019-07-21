@@ -9,10 +9,9 @@ import { MastoRateLimitError } from '../../errors/masto-rate-limit-error';
 import 'isomorphic-form-data';
 
 jest.mock('../websocket');
-
-// Mock `axios.create`. We don't use any functions from axios
-// but from `axios.create`
 jest.mock('axios');
+
+// Spy axios.create to return mock
 const mockAxios = jest.genMockFromModule<typeof axios>('axios');
 (axios.create as jest.Mock).mockImplementation(() => mockAxios);
 
@@ -33,7 +32,7 @@ describe('Gateway', () => {
   });
 
   test('login', async () => {
-    ((mockAxios.request as any) as jest.Mock).mockResolvedValueOnce({
+    ((axios.get as any) as jest.Mock).mockResolvedValueOnce({
       data: {
         version: '2.8.0',
         urls: {
@@ -49,47 +48,7 @@ describe('Gateway', () => {
     const gateway = await Gateway.login(params);
 
     expect(gateway.version).toBe('2.8.0');
-    expect(gateway.streamingApiUrl).toBe('wss://example.com/stream');
-  });
-
-  test('streamingApiUrl has been set if construct with streamingApiUrl', () => {
-    const customGateway = new Gateway({
-      uri: 'https://example.com',
-      streamingApiUrl: 'wss://example.com',
-    });
-    expect(customGateway.streamingApiUrl).toBe('wss://example.com');
-  });
-
-  test('version has been set if construct with version ', () => {
-    const customGateway = new Gateway({
-      uri: 'https://example.com',
-      version: '1.2.3',
-    });
-    expect(customGateway.version).toBe('1.2.3');
-  });
-
-  test('accessToken has been set if construct with accessToken', () => {
-    const customGateway = new Gateway({
-      uri: 'https://example.com',
-      accessToken: 'token token',
-    });
-    expect(customGateway.accessToken).toBe('token token');
-  });
-
-  test('this._uri accessor works', () => {
-    const customGateway = new Gateway({
-      uri: 'https://example.com/aaa',
-    });
-    customGateway.uri = 'https://example.com/bbb';
-    expect(customGateway.uri).toEqual('https://example.com/bbb');
-  });
-
-  test('this._streamingApiUrl accessor works', () => {
-    const customGateway = new Gateway({
-      uri: 'wss://example.com/aaa',
-    });
-    customGateway.uri = 'wss://example.com/bbb';
-    expect(customGateway.uri).toEqual('wss://example.com/bbb');
+    expect(gateway.streamingApiUrl.href).toBe('wss://example.com/stream');
   });
 
   test('transform JSON to JS object', () => {
@@ -309,18 +268,28 @@ describe('Gateway', () => {
   });
 
   test('initialize WebSocketEvents and call connect with access token', async () => {
-    gateway.accessToken = 'tokentoken';
-    await gateway.stream('/');
-    expect(mockConnect).toBeCalledWith('wss://example.com/', ['tokentoken']);
+    const customGateway = new Gateway({
+      uri: 'https://example.com',
+      version: '99.99.9',
+      streamingApiUrl: 'wss://example.com',
+      accessToken: 'token',
+    });
+
+    await customGateway.stream('/');
+    expect(mockConnect).toBeCalledWith('wss://example.com/', ['token']);
   });
 
   test('initialize WebSocketEvents and call connect with access token as a param for Mastodon < v2.8.4', async () => {
-    gateway.version = '2.8.3';
-    gateway.accessToken = 'tokentoken';
-    await gateway.stream('/');
+    const customGateway = new Gateway({
+      uri: 'https://example.com',
+      version: '2.8.3',
+      streamingApiUrl: 'wss://example.com',
+      accessToken: 'token',
+    });
 
+    await customGateway.stream('/');
     expect(mockConnect).toBeCalledWith(
-      'wss://example.com/?access_token=tokentoken',
+      'wss://example.com/?access_token=token',
       [],
     );
   });

@@ -15,9 +15,9 @@ export interface AvailabeParams {
 
 /**
  * Decorator that verifies the version of the Mastodon instance
- * @param parameters Optional params
+ * @param params Optional params
  */
-export const available = (parameters: AvailabeParams): Decorator => (
+export const available = (params: AvailabeParams): Decorator => (
   _target,
   name,
   descriptor,
@@ -27,23 +27,21 @@ export const available = (parameters: AvailabeParams): Decorator => (
   }
 
   const original = descriptor.value;
-  const { since, until } = parameters;
+  const { since, until } = params;
 
   descriptor.value = function(this: Gateway, ...args: any[]) {
-    const version = semver.coerce(this.version);
-
-    if (since && version && semver.lt(version, since)) {
+    if (since && semver.lt(this.version, since)) {
       throw new MastoNotFoundError(
         `${name} is not available with the current ` +
-          `Mastodon version ${version}. ` +
+          `Mastodon version ${this.version}. ` +
           `It requires greater than or equal to version ${since}.`,
       );
     }
 
-    if (until && version && semver.gt(version, until)) {
+    if (until && semver.gt(this.version, until)) {
       throw new MastoNotFoundError(
         `${name} is not available with the current ` +
-          `Mastodon version ${version}. ` +
+          `Mastodon version ${this.version}. ` +
           `It was removed on version ${until}.`,
       );
     }
