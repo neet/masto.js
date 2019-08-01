@@ -5548,10 +5548,10 @@ ts-jest@^24.0.2:
     semver "^5.5"
     yargs-parser "10.x"
 
-ts-optchain@^0.1.7:
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/ts-optchain/-/ts-optchain-0.1.7.tgz#525b8cde0909b06b4fe3258f7fc16eb6a9446895"
-  integrity sha512-akxVhbQjWFU9J4jbu+hWmJSou8yZmh6J0GynYlIOq2qNoVD02wQcMZlce6Gs3hShynMpUjKFy0ivqNH028oh3Q==
+ts-optchain@^0.1.8:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/ts-optchain/-/ts-optchain-0.1.8.tgz#4e97e3c07a98ac1d9c48715460d25a3df2addc59"
+  integrity sha512-crvloFKZlPIysdVcP7Ej1w4HijBx7NmLdeorqfxOvt87DcUIbhKV4ZaSgCL+IQ+zzTgDx5zDuNHRvUbTIr9aqw==
 
 tslib@1.9.3:
   version "1.9.3"
