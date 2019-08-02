@@ -1,9 +1,9 @@
 // eslint-disable-next-line import/no-unassigned-import
 import 'isomorphic-form-data';
 
-export const isArray = (x: unknown): x is any[] =>
+export const isArray = (x: unknown): x is unknown[] =>
   typeof x === 'object' && x !== null && x.constructor === Array;
-export const isObject = (x: unknown): x is { [key: string]: any } =>
+export const isObject = (x: unknown): x is { [key: string]: unknown } =>
   typeof x === 'object' && x !== null && x.constructor === Object;
 
 /**
@@ -30,7 +30,7 @@ export const isObject = (x: unknown): x is { [key: string]: any } =>
  * @return Encoded FormData
  */
 export function createFormData(
-  encodable: any,
+  encodable: unknown,
   result = new FormData(),
   parentKey = '',
 ) {
@@ -43,13 +43,14 @@ export function createFormData(
   }
 
   if (isObject(encodable)) {
-    Object.entries<any>(encodable).forEach(([key, value]) =>
+    Object.entries<unknown>(encodable).forEach(([key, value]) =>
       createFormData(value, result, parentKey ? `${parentKey}[${key}]` : key),
     );
 
     return result;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   result.append(parentKey, encodable as any);
 
   return result;

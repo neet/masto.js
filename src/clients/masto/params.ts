@@ -22,9 +22,9 @@ export interface UpdateCredentialsParams {
   /** Biography */
   note?: string | null;
   /** Avatar encoded using `multipart/form-data` */
-  avatar?: any | null;
+  avatar?: unknown;
   /** Header image encoded using `multipart/form-data` */
-  header?: any | null;
+  header?: unknown;
   /** Enable follow requests */
   locked?: boolean | null;
   /**
@@ -114,7 +114,7 @@ export interface RevokeAccessTokenParams {
 
 export interface UploadMediaAttachmentParams {
   /** Media to be uploaded (encoded using `multipart/form-data`) */
-  file: any;
+  file: unknown;
   /** A plain-text description of the media, for accessibility (max 420 chars) */
   description?: string | null;
   /** Focal point: Two floating points, comma-delimited */
