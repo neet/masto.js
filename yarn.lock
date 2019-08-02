@@ -5149,10 +5149,10 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
   integrity sha1-tf3AjxKH6hF4Yo5BXiUTK3NkbG0=
 
-simplytyped@^3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/simplytyped/-/simplytyped-3.2.2.tgz#fc71f3ea4cf48a6d499b0b2c895ca1131fa7b160"
-  integrity sha512-4OIUNslBznGmw5mbnY0spvWk38Uqrc6aBTu6tl97eexh/LGeV9kk6B43xSRfw+9FNaB+RrzltbknttDXwKKEJw==
+simplytyped@^3.2.3:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/simplytyped/-/simplytyped-3.2.3.tgz#312362f32c346380e1d21cc2712a983c45f09a9f"
+  integrity sha512-b8z+pIt2NZfpARGRzTa/pNj8jnWN3Zg4PiPEOyBZfLaKGpZO15pzvnzNndlOGZNCv0VN6Ku2x/AaQVNtks9f9g==
 
 sisteransi@^1.0.0:
   version "1.0.0"
