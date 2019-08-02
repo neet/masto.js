@@ -1,9 +1,6 @@
-/* eslint-disable no-console */
 import fs from 'fs';
 import { Masto } from '../src';
 
-// For more inromation:
-// https://github.com/neet/masto.js/blob/master/docs/classes/_client_masto_.masto.md#uploadmediaattachment
 (async () => {
   const masto = await Masto.login({
     uri: 'https://example.com',

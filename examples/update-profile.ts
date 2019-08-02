@@ -1,9 +1,6 @@
-/* eslint-disable no-console */
 import fs from 'fs';
 import { Masto } from '../src';
 
-// For more information:
-// https://github.com/neet/masto.js/blob/master/docs/classes/_client_masto_.masto.md#updatecredentials
 (async () => {
   const masto = await Masto.login({
     uri: 'https://example.com',
