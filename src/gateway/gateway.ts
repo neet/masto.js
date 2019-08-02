@@ -1,4 +1,4 @@
-import querystring from 'querystring';
+import querystring, { ParsedUrlQueryInput } from 'querystring';
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import normalizeUrl from 'normalize-url'; // eslint-disable-line import/default
 import semver from 'semver';
@@ -42,7 +42,7 @@ export type PaginateNextOptions =
   | {
       reset?: undefined;
       url: string;
-      params?: any;
+      params?: unknown;
     };
 
 /**
@@ -126,7 +126,7 @@ export class Gateway {
    * @param response Response object
    * @return Parsed entitiy
    */
-  private transformResponse(data: any, _headers: any) {
+  private transformResponse(data: string, _headers: unknown) {
     try {
       return JSON.parse(data);
     } catch {
@@ -153,9 +153,11 @@ export class Gateway {
 
         // In Node.js, axios doesn't set boundary data to the header
         // so set it manually by using getHeaders of form-data node.js package
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         if (typeof (config.data as any).getHeaders === 'function') {
           config.headers = {
             ...config.headers,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             ...(config.data as any).getHeaders(),
           };
         }
@@ -209,7 +211,11 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  async get<T>(path: string, params: any = {}, options?: AxiosRequestConfig) {
+  async get<T>(
+    path: string,
+    params: unknown = {},
+    options?: AxiosRequestConfig,
+  ) {
     const response = await this.request<T>({
       method: 'GET',
       url: path,
@@ -227,7 +233,11 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  async post<T>(path: string, data: any = {}, options?: AxiosRequestConfig) {
+  async post<T>(
+    path: string,
+    data: unknown = {},
+    options?: AxiosRequestConfig,
+  ) {
     const response = await this.request<T>({
       method: 'POST',
       url: path,
@@ -245,7 +255,7 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  async put<T>(path: string, data: any = {}, options?: AxiosRequestConfig) {
+  async put<T>(path: string, data: unknown = {}, options?: AxiosRequestConfig) {
     const response = await this.request<T>({
       method: 'PUT',
       url: path,
@@ -263,7 +273,11 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  async delete<T>(path: string, data: any = {}, options?: AxiosRequestConfig) {
+  async delete<T>(
+    path: string,
+    data: unknown = {},
+    options?: AxiosRequestConfig,
+  ) {
     const response = await this.request<T>({
       method: 'DELETE',
       url: path,
@@ -281,7 +295,11 @@ export class Gateway {
    * @param options Fetch API options
    * @param parse Whether parse response before return
    */
-  async patch<T>(path: string, data: any = {}, options?: AxiosRequestConfig) {
+  async patch<T>(
+    path: string,
+    data: unknown = {},
+    options?: AxiosRequestConfig,
+  ) {
     const response = await this.request<T>({
       method: 'PATCH',
       url: path,
@@ -298,12 +316,11 @@ export class Gateway {
    * @param params Query parameters
    * @return Instance of EventEmitter
    */
-  stream(path: string, params: { [key: string]: any } = {}) {
+  stream(path: string, params: ParsedUrlQueryInput = {}) {
     const version = semver.coerce(this.version);
     const protocols = [];
 
-    // Since v2.8.4, Using `Sec-Websocket-Protocl` to
-    // Pass token string is supported
+    // Since v2.8.4, it is supported to pass access token with`Sec-Websocket-Protocl`
     // https://github.com/tootsuite/mastodon/pull/10818
     if (this.accessToken && version && semver.gte(version, '2.8.4')) {
       protocols.push(this.accessToken);
@@ -326,7 +343,7 @@ export class Gateway {
    * @return Async iterable iterator of the pages.
    * See also [MDN article about generator/iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators)
    */
-  async *paginate<Data>(initialUrl: string, initialParams?: any) {
+  async *paginate<Data>(initialUrl: string, initialParams?: unknown) {
     let nextUrl: string | undefined = initialUrl;
     let nextParams = initialParams;
 

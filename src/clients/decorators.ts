@@ -5,7 +5,7 @@ import { Gateway } from '../gateway/gateway';
 export type Decorator = (
   gateway: Gateway,
   name: string,
-  descriptor: TypedPropertyDescriptor<(...args: any[]) => any>,
+  descriptor: TypedPropertyDescriptor<(...args: unknown[]) => unknown>,
 ) => void;
 
 export interface AvailabeParams {
@@ -29,7 +29,7 @@ export const available = (parameters: AvailabeParams): Decorator => (
   const original = descriptor.value;
   const { since, until } = parameters;
 
-  descriptor.value = function(this: Gateway, ...args: any[]) {
+  descriptor.value = function(this: Gateway, ...args: unknown[]) {
     const version = semver.coerce(this.version);
 
     if (since && version && semver.lt(version, since)) {
