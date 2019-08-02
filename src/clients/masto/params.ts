@@ -22,9 +22,9 @@ export interface UpdateCredentialsParams {
   /** Biography */
   note?: string | null;
   /** Avatar encoded using `multipart/form-data` */
-  avatar?: unknown | null;
+  avatar?: unknown;
   /** Header image encoded using `multipart/form-data` */
-  header?: unknown | null;
+  header?: unknown;
   /** Enable follow requests */
   locked?: boolean | null;
   /**
