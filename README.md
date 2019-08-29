@@ -20,7 +20,7 @@ npm i masto
 ### Requirements
 
 - **Node.js**: `>= 10.x`
-- **TypeScript** (optional peer dependency): `>= 3.5.x`
+- **TypeScript** (optional peer dependency): `>= 3.6.0`
 
 ## Basic Usage
 
