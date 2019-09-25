@@ -21,6 +21,7 @@ import { Relationship } from '../../entities/relationship';
 import { Results, ResultsV1 } from '../../entities/results';
 import { ScheduledStatus } from '../../entities/scheduled-status';
 import { Status } from '../../entities/status';
+import { Trend } from '../../entities/trend';
 import { Gateway } from '../../gateway/gateway';
 import { available } from '../decorators';
 import {
@@ -1251,5 +1252,15 @@ export class Masto extends Gateway {
   @available({ since: '2.8.0' })
   fetchPreferences() {
     return this.get<Preference>('/api/v1/preferences');
+  }
+
+  /**
+   * Fetch trends
+   * @return Trends
+   * @see https://github.com/tootsuite/mastodon/pull/11490
+   */
+  @available({ since: '3.0.0' })
+  fetchTrends() {
+    return this.get<Trend>('/api/v1/trends');
   }
 }
