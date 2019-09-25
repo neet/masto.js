@@ -566,23 +566,23 @@ export class Masto extends Gateway {
   /**
    * Allow the account to follow the user.
    * @param id ID of the target account
-   * @return An empty object
+   * @return Relationship
    * @see https://docs.joinmastodon.org/api/rest/follow-requests/#post-api-v1-follow-requests-id-authorize
    */
   @available({ since: '0.0.0' })
   authorizeFollowRequest(id: string) {
-    return this.post<void>(`/api/v1/follow_requests/${id}/authorize`);
+    return this.post<Relationship>(`/api/v1/follow_requests/${id}/authorize`);
   }
 
   /**
    * Do not allow the account to follow the user.
    * @param id ID of the target account
-   * @return An empty object
+   * @return Relationship
    * @see https://docs.joinmastodon.org/api/rest/follow-requests/#post-api-v1-follow-requests-id-reject
    */
   @available({ since: '0.0.0' })
   rejectFollowRequest(id: string) {
-    return this.post<void>(`/api/v1/follow_requests/${id}/reject`);
+    return this.post<Relationship>(`/api/v1/follow_requests/${id}/reject`);
   }
 
   /**
