@@ -895,4 +895,26 @@ describe('Masto', () => {
     expect(mockGet).toBeCalledTimes(1);
     expect(mockGet).toMatchSnapshot();
   });
+
+  test('fetchTrends', async () => {
+    await masto.fetchTrends();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
+  });
+
+  test('fetchMarkers', async () => {
+    await masto.fetchMarkers({ timeline: ['home', 'notifications'] });
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
+  });
+
+  test('createMarkers', async () => {
+    await masto.createMarkers({
+      home: { last_read_id: '123123' },
+      notifications: { last_read_id: '123123' },
+    });
+
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
+  });
 });

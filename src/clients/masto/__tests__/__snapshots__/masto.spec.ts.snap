@@ -214,6 +214,30 @@ exports[`Masto createList 1`] = `
 }
 `;
 
+exports[`Masto createMarkers 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/markers",
+      Object {
+        "home": Object {
+          "last_read_id": "123123",
+        },
+        "notifications": Object {
+          "last_read_id": "123123",
+        },
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
 exports[`Masto createStatus with Idempotency-Key 1`] = `
 [MockFunction] {
   "calls": Array [
@@ -876,6 +900,28 @@ exports[`Masto fetchLists 1`] = `
 }
 `;
 
+exports[`Masto fetchMarkers 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/markers",
+      Object {
+        "timeline": Array [
+          "home",
+          "notifications",
+        ],
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
 exports[`Masto fetchMutes 1`] = `
 [MockFunction] {
   "calls": Array [
@@ -1160,6 +1206,22 @@ exports[`Masto fetchTagTimeline 1`] = `
         "min_id": "2",
         "since_id": "3",
       },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchTrends 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/trends",
     ],
   ],
   "results": Array [
