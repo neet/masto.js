@@ -22,6 +22,7 @@ import { Results, ResultsV1 } from '../../entities/results';
 import { ScheduledStatus } from '../../entities/scheduled-status';
 import { Status } from '../../entities/status';
 import { Trend } from '../../entities/trend';
+import { MarkerMap } from '../../entities/marker';
 import { Gateway } from '../../gateway/gateway';
 import { available } from '../decorators';
 import {
@@ -50,6 +51,8 @@ import {
   UpdateScheduledStatusParams,
   UploadMediaAttachmentParams,
   VotePollParams,
+  FetchMarkersParams,
+  CreateMarkersParams,
 } from './params';
 
 /**
@@ -1262,5 +1265,25 @@ export class Masto extends Gateway {
   @available({ since: '3.0.0' })
   fetchTrends() {
     return this.get<Trend>('/api/v1/trends');
+  }
+
+  /**
+   * Fetch read markers
+   * @return Markers
+   * @see https://github.com/tootsuite/mastodon/pull/11762
+   */
+  @available({ since: '3.0.0' })
+  fetchMarkers(params: FetchMarkersParams) {
+    return this.get<MarkerMap>('/api/v1/markers', params);
+  }
+
+  /**
+   * Create new marker
+   * @return Markers
+   * @see https://github.com/tootsuite/mastodon/pull/11762
+   */
+  @available({ since: '3.0.0' })
+  createMarkers(params: CreateMarkersParams) {
+    return this.post<MarkerMap>('/api/v1/markers', params);
   }
 }
