@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/masto"><img src="https://img.shields.io/npm/v/masto.svg" alt="npm"/></a>
-  <a href="https://circleci.com/gh/neet/masto.js"><img src="https://img.shields.io/circleci/project/github/neet/masto.js/master.svg" /></a>
+  <a href="https://github.com/neet/masto.js/actions"><img src="https://github.com/neet/masto.js/workflows/CI/badge.svg" /></a>
   <a href="https://codecov.io/gh/neet/masto.js"><img src="https://codecov.io/gh/neet/masto.js/branch/master/graph/badge.svg" /></a>
   <a href="https://codeclimate.com/github/neet/masto.js/maintainability"><img src="https://api.codeclimate.com/v1/badges/f56a1d2e6728a89d0a94/maintainability" /></a>
 </p>
@@ -33,24 +33,17 @@ $ npx masto-cli token --uri=URI --email=EMAIL --password=PASSWORD
 Then, here's a simple example that creates a toot. Replace `TOKEN` to your own token.
 
 ```ts
-// For Node.js
-const { Masto } = require('masto');
-// For Babel, TypeScript, Webpack, Parcel
 import { Masto } from 'masto';
 
-(async () => {
-  const masto = await Masto.login({
-    uri: 'https://example.com', // URL of your instance
-    accessToken: 'TOKEN', // Your access token (optional)
-  });
+const masto = await Masto.login({
+  uri: 'https://example.com', // URI of your instance
+  accessToken: 'TOKEN',
+});
 
-  const data = await masto.createStatus({
-    status: 'Hello Mastodon!',
-    visibility: 'direct',
-  });
-
-  console.log(data);
-})();
+await masto.createStatus({
+  status: 'Hello Mastodon!',
+  visibility: 'direct',
+});
 ```
 
 All of available methods are described in the [documentation](https://neet.github.io/masto.js/). You can also refer [examples](https://github.com/neet/masto.js/tree/master/examples) on this repository.
