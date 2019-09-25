@@ -54,7 +54,8 @@ import {
   VotePollParams,
   FetchMarkersParams,
   CreateMarkersParams,
-  CreateFeaturedTag,
+  CreateFeaturedTagParams,
+  FetchDirectoryParams,
 } from './params';
 
 /**
@@ -1305,7 +1306,7 @@ export class Masto extends Gateway {
    * @see https://github.com/tootsuite/mastodon/pull/11778
    */
   @available({ since: '3.0.0' })
-  createFeaturedTag(params: CreateFeaturedTag) {
+  createFeaturedTag(params: CreateFeaturedTagParams) {
     return this.post<FeaturedTag>('/api/v1/featured_tags', params);
   }
 
@@ -1317,5 +1318,15 @@ export class Masto extends Gateway {
   @available({ since: '3.0.0' })
   removeFeaturedTag(id: string) {
     return this.delete<void>(`/api/v1/featured_tags/${id}`);
+  }
+
+  /**
+   * Fetch directory
+   * @return List of accounts
+   * @see https://github.com/tootsuite/mastodon/pull/11688
+   */
+  @available({ since: '3.0.0' })
+  fetchDirectory(params: FetchDirectoryParams) {
+    return this.get<Account[]>('/api/v1/directory', params);
   }
 }

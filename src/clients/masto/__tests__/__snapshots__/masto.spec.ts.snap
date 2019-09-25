@@ -658,6 +658,27 @@ exports[`Masto fetchDirectTimeline 1`] = `
 }
 `;
 
+exports[`Masto fetchDirectory 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/directory",
+      Object {
+        "limit": 20,
+        "local": false,
+        "order": "active",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
 exports[`Masto fetchDomainBlocks 1`] = `
 [MockFunction] {
   "calls": Array [

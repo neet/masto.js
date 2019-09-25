@@ -935,4 +935,10 @@ describe('Masto', () => {
     expect(mockDelete).toBeCalledTimes(1);
     expect(mockDelete).toMatchSnapshot();
   });
+
+  test('fetchDirectory', async () => {
+    await masto.fetchDirectory({ limit: 20, order: 'active', local: false });
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
+  });
 });

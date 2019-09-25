@@ -291,6 +291,14 @@ export type CreateMarkersParams = {
   [key in MarkerTimeline]: Pick<Marker, 'last_read_id'>;
 };
 
-export interface CreateFeaturedTag {
+export interface CreateFeaturedTagParams {
   name: string;
+}
+
+export type DirectoryOrderType = 'active' | 'new';
+
+export interface FetchDirectoryParams {
+  limit?: number | null;
+  order?: DirectoryOrderType | null;
+  local?: boolean | null;
 }
