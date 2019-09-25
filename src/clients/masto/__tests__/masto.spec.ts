@@ -917,4 +917,22 @@ describe('Masto', () => {
     expect(mockPost).toBeCalledTimes(1);
     expect(mockPost).toMatchSnapshot();
   });
+
+  test('fetchFeaturedTags', async () => {
+    await masto.fetchFeaturedTags();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
+  });
+
+  test('createFeaturedTag', async () => {
+    await masto.createFeaturedTag({ name: 'mastodon' });
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
+  });
+
+  test('removeFeaturedTag', async () => {
+    await masto.removeFeaturedTag('123');
+    expect(mockDelete).toBeCalledTimes(1);
+    expect(mockDelete).toMatchSnapshot();
+  });
 });

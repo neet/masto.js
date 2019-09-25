@@ -167,6 +167,25 @@ exports[`Masto createApp 1`] = `
 }
 `;
 
+exports[`Masto createFeaturedTag 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/featured_tags",
+      Object {
+        "name": "mastodon",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
 exports[`Masto createFiler 1`] = `
 [MockFunction] {
   "calls": Array [
@@ -689,6 +708,22 @@ exports[`Masto fetchFavourites 1`] = `
         "min_id": "2",
         "since_id": "3",
       },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchFeaturedTags 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/featured_tags",
     ],
   ],
   "results": Array [
@@ -1385,6 +1420,22 @@ exports[`Masto removeAccountFromList 1`] = `
           "678",
         ],
       },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto removeFeaturedTag 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/featured_tags/123",
     ],
   ],
   "results": Array [

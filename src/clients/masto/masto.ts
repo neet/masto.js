@@ -22,6 +22,7 @@ import { Results, ResultsV1 } from '../../entities/results';
 import { ScheduledStatus } from '../../entities/scheduled-status';
 import { Status } from '../../entities/status';
 import { Trend } from '../../entities/trend';
+import { FeaturedTag } from '../../entities/featured-tags';
 import { MarkerMap } from '../../entities/marker';
 import { Gateway } from '../../gateway/gateway';
 import { available } from '../decorators';
@@ -53,6 +54,7 @@ import {
   VotePollParams,
   FetchMarkersParams,
   CreateMarkersParams,
+  CreateFeaturedTag,
 } from './params';
 
 /**
@@ -1285,5 +1287,35 @@ export class Masto extends Gateway {
   @available({ since: '3.0.0' })
   createMarkers(params: CreateMarkersParams) {
     return this.post<MarkerMap>('/api/v1/markers', params);
+  }
+
+  /**
+   * Fetch featured tags
+   * @return Featured tags
+   * @see https://github.com/tootsuite/mastodon/pull/11778
+   */
+  @available({ since: '3.0.0' })
+  fetchFeaturedTags() {
+    return this.get<FeaturedTag[]>('/api/v1/featured_tags');
+  }
+
+  /**
+   * Fetch featured tag
+   * @return Featured tags
+   * @see https://github.com/tootsuite/mastodon/pull/11778
+   */
+  @available({ since: '3.0.0' })
+  createFeaturedTag(params: CreateFeaturedTag) {
+    return this.post<FeaturedTag>('/api/v1/featured_tags', params);
+  }
+
+  /**
+   * Remove featured tag
+   * @return void
+   * @see https://github.com/tootsuite/mastodon/pull/11778
+   */
+  @available({ since: '3.0.0' })
+  removeFeaturedTag(id: string) {
+    return this.delete<void>(`/api/v1/featured_tags/${id}`);
   }
 }

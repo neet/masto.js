@@ -290,3 +290,7 @@ export interface FetchMarkersParams {
 export type CreateMarkersParams = {
   [key in MarkerTimeline]: Pick<Marker, 'last_read_id'>;
 };
+
+export interface CreateFeaturedTag {
+  name: string;
+}
