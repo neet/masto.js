@@ -7,4 +7,6 @@ export interface Emoji {
   url: string;
   /** Boolean that indicates if the emoji is visible in picker */
   visible_in_picker: boolean;
+  /** Category of the emoji */
+  category?: string | null;
 }
