@@ -895,4 +895,50 @@ describe('Masto', () => {
     expect(mockGet).toBeCalledTimes(1);
     expect(mockGet).toMatchSnapshot();
   });
+
+  test('fetchTrends', async () => {
+    await masto.fetchTrends();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
+  });
+
+  test('fetchMarkers', async () => {
+    await masto.fetchMarkers({ timeline: ['home', 'notifications'] });
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
+  });
+
+  test('createMarkers', async () => {
+    await masto.createMarkers({
+      home: { last_read_id: '123123' },
+      notifications: { last_read_id: '123123' },
+    });
+
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
+  });
+
+  test('fetchFeaturedTags', async () => {
+    await masto.fetchFeaturedTags();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
+  });
+
+  test('createFeaturedTag', async () => {
+    await masto.createFeaturedTag({ name: 'mastodon' });
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
+  });
+
+  test('removeFeaturedTag', async () => {
+    await masto.removeFeaturedTag('123');
+    expect(mockDelete).toBeCalledTimes(1);
+    expect(mockDelete).toMatchSnapshot();
+  });
+
+  test('fetchDirectory', async () => {
+    await masto.fetchDirectory({ limit: 20, order: 'active', local: false });
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
+  });
 });

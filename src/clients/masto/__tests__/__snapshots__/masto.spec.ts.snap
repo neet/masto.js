@@ -167,6 +167,25 @@ exports[`Masto createApp 1`] = `
 }
 `;
 
+exports[`Masto createFeaturedTag 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/featured_tags",
+      Object {
+        "name": "mastodon",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
 exports[`Masto createFiler 1`] = `
 [MockFunction] {
   "calls": Array [
@@ -202,6 +221,30 @@ exports[`Masto createList 1`] = `
       "/api/v1/lists",
       Object {
         "title": "My list",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto createMarkers 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/markers",
+      Object {
+        "home": Object {
+          "last_read_id": "123123",
+        },
+        "notifications": Object {
+          "last_read_id": "123123",
+        },
       },
     ],
   ],
@@ -615,6 +658,27 @@ exports[`Masto fetchDirectTimeline 1`] = `
 }
 `;
 
+exports[`Masto fetchDirectory 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/directory",
+      Object {
+        "limit": 20,
+        "local": false,
+        "order": "active",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
 exports[`Masto fetchDomainBlocks 1`] = `
 [MockFunction] {
   "calls": Array [
@@ -665,6 +729,22 @@ exports[`Masto fetchFavourites 1`] = `
         "min_id": "2",
         "since_id": "3",
       },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchFeaturedTags 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/featured_tags",
     ],
   ],
   "results": Array [
@@ -865,6 +945,28 @@ exports[`Masto fetchLists 1`] = `
   "calls": Array [
     Array [
       "/api/v1/lists",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchMarkers 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/markers",
+      Object {
+        "timeline": Array [
+          "home",
+          "notifications",
+        ],
+      },
     ],
   ],
   "results": Array [
@@ -1171,6 +1273,22 @@ exports[`Masto fetchTagTimeline 1`] = `
 }
 `;
 
+exports[`Masto fetchTrends 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/trends",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
 exports[`Masto followAccount 1`] = `
 [MockFunction] {
   "calls": Array [
@@ -1323,6 +1441,22 @@ exports[`Masto removeAccountFromList 1`] = `
           "678",
         ],
       },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto removeFeaturedTag 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/featured_tags/123",
     ],
   ],
   "results": Array [

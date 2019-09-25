@@ -3,6 +3,7 @@ import { FilterContext } from '../../entities/filter';
 import { NotificationType } from '../../entities/notification';
 import { PushSubscriptionAlerts } from '../../entities/push-subscription';
 import { StatusVisibility } from '../../entities/status';
+import { MarkerTimeline, Marker } from '../../entities/marker';
 
 export interface PaginationParams {
   /** Get a list of items with ID less than this value */
@@ -280,4 +281,24 @@ export interface VotePollParams {
 export interface UpdateScheduledStatusParams {
   /** Timestamp string to schedule posting of status (ISO 8601) */
   scheduled_at: string;
+}
+
+export interface FetchMarkersParams {
+  timeline: MarkerTimeline[];
+}
+
+export type CreateMarkersParams = {
+  [key in MarkerTimeline]: Pick<Marker, 'last_read_id'>;
+};
+
+export interface CreateFeaturedTagParams {
+  name: string;
+}
+
+export type DirectoryOrderType = 'active' | 'new';
+
+export interface FetchDirectoryParams {
+  limit?: number | null;
+  order?: DirectoryOrderType | null;
+  local?: boolean | null;
 }

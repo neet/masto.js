@@ -21,6 +21,9 @@ import { Relationship } from '../../entities/relationship';
 import { Results, ResultsV1 } from '../../entities/results';
 import { ScheduledStatus } from '../../entities/scheduled-status';
 import { Status } from '../../entities/status';
+import { Trend } from '../../entities/trend';
+import { FeaturedTag } from '../../entities/featured-tags';
+import { MarkerMap } from '../../entities/marker';
 import { Gateway } from '../../gateway/gateway';
 import { available } from '../decorators';
 import {
@@ -49,6 +52,10 @@ import {
   UpdateScheduledStatusParams,
   UploadMediaAttachmentParams,
   VotePollParams,
+  FetchMarkersParams,
+  CreateMarkersParams,
+  CreateFeaturedTagParams,
+  FetchDirectoryParams,
 } from './params';
 
 /**
@@ -559,23 +566,23 @@ export class Masto extends Gateway {
   /**
    * Allow the account to follow the user.
    * @param id ID of the target account
-   * @return An empty object
+   * @return Relationship
    * @see https://docs.joinmastodon.org/api/rest/follow-requests/#post-api-v1-follow-requests-id-authorize
    */
   @available({ since: '0.0.0' })
   authorizeFollowRequest(id: string) {
-    return this.post<void>(`/api/v1/follow_requests/${id}/authorize`);
+    return this.post<Relationship>(`/api/v1/follow_requests/${id}/authorize`);
   }
 
   /**
    * Do not allow the account to follow the user.
    * @param id ID of the target account
-   * @return An empty object
+   * @return Relationship
    * @see https://docs.joinmastodon.org/api/rest/follow-requests/#post-api-v1-follow-requests-id-reject
    */
   @available({ since: '0.0.0' })
   rejectFollowRequest(id: string) {
-    return this.post<void>(`/api/v1/follow_requests/${id}/reject`);
+    return this.post<Relationship>(`/api/v1/follow_requests/${id}/reject`);
   }
 
   /**
@@ -1251,5 +1258,75 @@ export class Masto extends Gateway {
   @available({ since: '2.8.0' })
   fetchPreferences() {
     return this.get<Preference>('/api/v1/preferences');
+  }
+
+  /**
+   * Fetch trends
+   * @return Trends
+   * @see https://github.com/tootsuite/mastodon/pull/11490
+   */
+  @available({ since: '3.0.0' })
+  fetchTrends() {
+    return this.get<Trend>('/api/v1/trends');
+  }
+
+  /**
+   * Fetch read markers
+   * @return Markers
+   * @see https://github.com/tootsuite/mastodon/pull/11762
+   */
+  @available({ since: '3.0.0' })
+  fetchMarkers(params: FetchMarkersParams) {
+    return this.get<MarkerMap>('/api/v1/markers', params);
+  }
+
+  /**
+   * Create new marker
+   * @return Markers
+   * @see https://github.com/tootsuite/mastodon/pull/11762
+   */
+  @available({ since: '3.0.0' })
+  createMarkers(params: CreateMarkersParams) {
+    return this.post<MarkerMap>('/api/v1/markers', params);
+  }
+
+  /**
+   * Fetch featured tags
+   * @return Featured tags
+   * @see https://github.com/tootsuite/mastodon/pull/11778
+   */
+  @available({ since: '3.0.0' })
+  fetchFeaturedTags() {
+    return this.get<FeaturedTag[]>('/api/v1/featured_tags');
+  }
+
+  /**
+   * Fetch featured tag
+   * @return Featured tags
+   * @see https://github.com/tootsuite/mastodon/pull/11778
+   */
+  @available({ since: '3.0.0' })
+  createFeaturedTag(params: CreateFeaturedTagParams) {
+    return this.post<FeaturedTag>('/api/v1/featured_tags', params);
+  }
+
+  /**
+   * Remove featured tag
+   * @return void
+   * @see https://github.com/tootsuite/mastodon/pull/11778
+   */
+  @available({ since: '3.0.0' })
+  removeFeaturedTag(id: string) {
+    return this.delete<void>(`/api/v1/featured_tags/${id}`);
+  }
+
+  /**
+   * Fetch directory
+   * @return List of accounts
+   * @see https://github.com/tootsuite/mastodon/pull/11688
+   */
+  @available({ since: '3.0.0' })
+  fetchDirectory(params: FetchDirectoryParams) {
+    return this.get<Account[]>('/api/v1/directory', params);
   }
 }
