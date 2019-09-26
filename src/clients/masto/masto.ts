@@ -1267,7 +1267,7 @@ export class Masto extends Gateway {
    */
   @available({ since: '3.0.0' })
   fetchTrends() {
-    return this.get<Trend>('/api/v1/trends');
+    return this.get<Trend[]>('/api/v1/trends');
   }
 
   /**
