@@ -1,3 +1,4 @@
+import { Gateway } from '../../gateway/gateway';
 import { available } from '../decorators';
 
 describe('available', () => {
@@ -7,7 +8,9 @@ describe('available', () => {
 
       // @ts-ignore
       @available({ since: '2.1.0' })
-      method() {}
+      method() {
+        // noop
+      }
     }
 
     const context = new Context();
@@ -23,7 +26,9 @@ describe('available', () => {
 
       // @ts-ignore
       @available({ until: '1.9.0' })
-      method() {}
+      method() {
+        // noop
+      }
     }
 
     const context = new Context();
@@ -38,8 +43,10 @@ describe('available', () => {
       version = '2.0.0';
 
       // @ts-ignore
-      @available({ sicne: '1.9.0', until: '2.1.0' })
-      method() {}
+      @available({ since: '1.9.0', until: '2.1.0' })
+      method() {
+        // noop
+      }
     }
 
     const context = new Context();
@@ -57,6 +64,12 @@ describe('available', () => {
         prop = 'prop';
       }
       new Context();
+    }).toThrow();
+  });
+
+  test('throw an error if evaluated not as a decorator', () => {
+    expect(() => {
+      available({})({} as Gateway, 'foo', { value: undefined });
     }).toThrow();
   });
 });

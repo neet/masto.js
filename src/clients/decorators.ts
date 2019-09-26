@@ -14,13 +14,12 @@ export interface AvailabeParams {
 export const available = (params: AvailabeParams) => (
   _gateway: Gateway,
   name: string | symbol,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  descriptor: TypedPropertyDescriptor<(...args: any[]) => any>,
+  descriptor: TypedPropertyDescriptor<(...args: unknown[]) => unknown>,
 ) => {
   const original = descriptor.value;
   const { since, until } = params;
 
-  if (!original || typeof original !== 'function') {
+  if (!original) {
     throw new Error('available can only apply to a method of a class');
   }
 

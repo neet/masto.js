@@ -1,3 +1,5 @@
 /dist
 /examples
 /docs
+**/__tests__/
+**/__mocks__/
