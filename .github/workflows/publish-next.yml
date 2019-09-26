@@ -23,7 +23,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Set npm token
-        run: npm config "//registry.npmjs.org/:_authToken" $NPM_TOKEN
+        run: npm config set "//registry.npmjs.org/:_authToken" $NPM_TOKEN
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
