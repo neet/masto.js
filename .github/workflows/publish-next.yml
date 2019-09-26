@@ -2,7 +2,7 @@ name: npm publish --tag next
 
 on:
   release:
-    types: prereleased
+    types: [prereleased]
 
 jobs:
   build:
