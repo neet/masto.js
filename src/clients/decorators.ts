@@ -20,7 +20,7 @@ export const available = (params: AvailabeParams) => (
   const original = descriptor.value;
   const { since, until } = params;
 
-  if (!original || typeof original !== 'function') {
+  if (!original) {
     throw new Error('available can only apply to a method of a class');
   }
 
