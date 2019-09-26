@@ -1,0 +1,20 @@
+name: npm publish --tag next
+
+on:
+  release:
+    types: prereleased
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Set npm token
+        run: npm config "//registry.npmjs.org/:_authToken" $NPM_TOKEN
+        env:
+          NPM_TOKEN: ${{ secret.NPM_TOKEN }}
+
+      - name: Publish package with next tag
+        run: npm publish --tag next
