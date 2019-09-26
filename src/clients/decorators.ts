@@ -14,7 +14,8 @@ export interface AvailabeParams {
 export const available = (params: AvailabeParams) => (
   _gateway: Gateway,
   name: string | symbol,
-  descriptor: TypedPropertyDescriptor<(...args: unknown[]) => unknown>,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  descriptor: TypedPropertyDescriptor<(...args: any[]) => any>,
 ) => {
   const original = descriptor.value;
   const { since, until } = params;
