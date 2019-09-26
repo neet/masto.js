@@ -14,7 +14,7 @@ jobs:
       - name: Set npm token
         run: npm config "//registry.npmjs.org/:_authToken" $NPM_TOKEN
         env:
-          NPM_TOKEN: ${{ secret.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish package with next tag
         run: npm publish --tag next
