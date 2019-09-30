@@ -195,6 +195,8 @@ export interface SearchParams extends PaginationParams {
   resolve?: boolean | null;
   /** Account id to search */
   account_id?: string;
+  /** Exclude unreviewed tags */
+  exclude_unreviewed?: boolean;
 }
 
 export interface SearchAccountsParams extends SearchParams {
