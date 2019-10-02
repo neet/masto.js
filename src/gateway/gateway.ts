@@ -2,7 +2,6 @@ import querystring, { ParsedUrlQueryInput } from 'querystring';
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import normalizeUrl from 'normalize-url'; // eslint-disable-line import/default
 import semver from 'semver';
-import * as optchain from 'ts-optchain';
 import { Instance } from '../entities/instance';
 import { MastoNotFoundError } from '../errors/masto-not-found-error';
 import { MastoRateLimitError } from '../errors/masto-rate-limit-error';
@@ -10,8 +9,6 @@ import { MastoUnauthorizedError } from '../errors/masto-unauthorized-error';
 import { createFormData } from './create-form-data';
 import { isAxiosError } from './is-axios-error';
 import { WebSocketEvents } from './websocket';
-
-const { oc } = optchain;
 
 export interface GatewayConstructorParams {
   /** URI of the instance */
@@ -186,21 +183,19 @@ export class Gateway {
         throw error;
       }
 
-      const status = oc(error).response.status();
+      const status = error?.response?.status;
 
       // Error response from REST API might contain error key
       // https://docs.joinmastodon.org/api/entities/#error
-      const { error: errorMessage } = oc(error).response.data({
-        error: 'Unexpected error',
-      });
+      const message = error?.response?.data?.error ?? 'Unexpected error occurred';
 
       switch (status) {
         case 401:
-          throw new MastoUnauthorizedError(errorMessage);
+          throw new MastoUnauthorizedError(message);
         case 404:
-          throw new MastoNotFoundError(errorMessage);
+          throw new MastoNotFoundError(message);
         case 429:
-          throw new MastoRateLimitError(errorMessage);
+          throw new MastoRateLimitError(message);
         default:
           throw error;
       }
@@ -364,15 +359,15 @@ export class Gateway {
       const options = yield response.data;
 
       // Get next URL from "next" in the link header
-      const link = oc(response.headers)
+      const link = response.headers
         .link('')
         .match(/<(.+?)>; rel="next"/) as string[];
-      const match = link && link.length ? link[1] : undefined;
+      const match = link?.length ? link[1] : undefined;
 
-      nextUrl = oc(options).url() || match;
-      nextParams = oc(options).params();
+      nextUrl = options?.url ?? match;
+      nextParams = options?.params;
 
-      if (oc(options).reset()) {
+      if (options?.reset) {
         nextUrl = initialUrl;
         nextParams = initialParams;
       }
