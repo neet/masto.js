@@ -25,7 +25,6 @@
     "isomorphic-ws": "^4.0.1",
     "normalize-url": "^4.4.1",
     "semver": "^6.3.0",
-    "ts-optchain": "^0.1.8",
     "ws": "^7.1.2"
   },
   "devDependencies": {
