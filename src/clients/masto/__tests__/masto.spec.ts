@@ -710,6 +710,7 @@ describe('Masto', () => {
   });
 
   test('fetchStatusCard', async () => {
+    masto.version = '2.9.3';
     await masto.fetchStatusCard('123123');
     expect(mockGet).toBeCalledTimes(1);
     expect(mockGet).toMatchSnapshot();
@@ -862,7 +863,7 @@ describe('Masto', () => {
   });
 
   test('fetchDirectTimeline', async () => {
-    masto.version = '2.5.0';
+    masto.version = '2.9.3';
     masto.fetchDirectTimeline({
       max_id: '5',
       since_id: '3',
