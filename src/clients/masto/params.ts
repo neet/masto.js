@@ -48,6 +48,8 @@ export interface CreateAccountParams {
   email: string;
   /** Whether the user has been agreed to the agreement of the Mastodon instance */
   agreement: boolean;
+  /** Message for approval */
+  reason?: string;
 }
 
 export interface ReportAccountParams {
