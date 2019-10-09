@@ -46,7 +46,7 @@ await masto.createStatus({
 });
 ```
 
-All of available methods are described in the [documentation](https://neet.github.io/masto.js/). You can also refer [examples](https://github.com/neet/masto.js/tree/master/examples) on this repository.
+All of available methods are described in the [documentation](https://neet.github.io/masto.js/classes/_clients_masto_masto_.masto.html). You can also refer [examples](https://github.com/neet/masto.js/tree/master/examples) on this repository.
 
 ## FAQ
 
