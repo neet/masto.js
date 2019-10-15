@@ -357,19 +357,15 @@ export class Gateway {
 
       // Yield will be argument of next()
       const options = yield response.data;
-
       // Get next URL from "next" in the link header
-      const link = response.headers
-        .link('')
-        .match(/<(.+?)>; rel="next"/) as string[];
-      const match = link?.length ? link[1] : undefined;
-
-      nextUrl = options?.url ?? match;
-      nextParams = options?.params;
+      const linkHeaderNext = response.headers.link('').match(/<(.+?)>; rel="next"/)?.[1];
 
       if (options?.reset) {
         nextUrl = initialUrl;
         nextParams = initialParams;
+      } else {
+        nextUrl = options?.url ?? linkHeaderNext;
+        nextParams = options?.params;
       }
     }
   }
