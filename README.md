@@ -2,7 +2,7 @@
   <img src="https://i.imgur.com/z47VXyd.png" width="260px">
 </p>
 
-<p align="center">JavaScript, TypeScript, Node.js, browsers</p>
+<p align="center">Mastodon API client for JavaScript, TypeScript, Node.js, browsers</p>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/masto"><img src="https://img.shields.io/npm/v/masto.svg" alt="npm"/></a>
@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <a href="https://git.io/Je02X">Documentation</a> |
+  <a href="https://git.io/Je02X">Read the Docs</a> |
   <a href="https://github.com/neet/masto.js/releases">Releases</a> |
   <a href="https://github.com/neet/masto.js/issues">Issues</a>
 </p>
