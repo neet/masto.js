@@ -41,15 +41,19 @@ Then, here's a simple example that creates a toot. Replace `TOKEN` to your own t
 ```ts
 import { Masto } from 'masto';
 
-const masto = await Masto.login({
-  uri: 'https://example.com', // URI of your instance
-  accessToken: 'TOKEN',
-});
+async function main() {
+  const masto = await Masto.login({
+    uri: 'https://example.com', // URI of your instance
+    accessToken: 'TOKEN',
+  });
 
-await masto.createStatus({
-  status: 'Hello Mastodon!',
-  visibility: 'direct',
-});
+  await masto.createStatus({
+    status: 'Hello Mastodon!',
+    visibility: 'direct',
+  });
+};
+
+main();
 ```
 
 All of available methods are described in the [documentation](https://neet.github.io/masto.js/classes/_clients_masto_masto_.masto.html). You can also refer [examples](https://github.com/neet/masto.js/tree/master/examples) on this repository.
