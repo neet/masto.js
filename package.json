@@ -31,11 +31,11 @@
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.7",
     "@types/semver": "^6.0.2",
-    "@typescript-eslint/eslint-plugin": "^2.4.0",
-    "@typescript-eslint/parser": "^2.4.0",
+    "@typescript-eslint/eslint-plugin": "^2.6.1",
+    "@typescript-eslint/parser": "^2.6.1",
     "codecov": "^3.6.1",
-    "eslint": "^6.5.1",
-    "eslint-config-prettier": "^6.4.0",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-prettier": "^3.1.1",
     "husky": "^3.0.5",
@@ -55,7 +55,7 @@
     "ts-jest": "^24.1.0",
     "typedoc": "^0.15.0",
     "typedoc-plugin-markdown": "^2.2.6",
-    "typescript": "3.7.0-beta"
+    "typescript": "3.7.2"
   },
   "files": [
     "README.md",

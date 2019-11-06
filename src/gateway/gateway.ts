@@ -183,6 +183,9 @@ export class Gateway {
         throw error;
       }
 
+      // Disable prettier until prettier@2 to be merged
+      // https://github.com/prettier/prettier/pull/6773
+      // eslint-disable-next-line
       const status = error?.response?.status;
 
       // Error response from REST API might contain error key
