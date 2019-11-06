@@ -1,3 +1,8 @@
+## 2.8.0
+- Bump TypeScript 3.7.0 #166
+  - Also removes ts-optchain
+- Bump Rollup.js and rollup-plugin-typescript2 #140
+
 ## 2.7.2
 ### Fixed
 - Add `reason` param to CreateAccountParams #153
