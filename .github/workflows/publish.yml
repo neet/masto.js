@@ -1,8 +1,8 @@
-name: npm publish --tag next
+name: Publish
 
 on:
   release:
-    types: [prereleased]
+    types: [published]
 
 jobs:
   build:
@@ -27,5 +27,10 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish package with next tag
+      - name: Publish package with next tag when prereleased
+        if: github.event.release.prerelease
         run: npm publish --tag next
+      
+      - name: Publish package with latest tag when released
+        if: github.event.release.prerelease != true
+        run: npm publish

@@ -1034,8 +1034,9 @@ export class Masto extends Gateway {
    * Link preview card for a status, if available.
    * @return Returns Card
    * @see https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-card
+   * @deprecated Use `card` attribute of status instead
    */
-  @available({ since: '0.0.0' })
+  @available({ since: '0.0.0', until: '2.9.3' })
   fetchStatusCard(id: string) {
     return this.get<Card>(`/api/v1/statuses/${id}/card`);
   }
@@ -1218,8 +1219,9 @@ export class Masto extends Gateway {
   /**
    * Retrieving a direct timeline
    * @return An iterable of Statuses, most recent ones first.
+   * @deprecated Use conversations API instead
    */
-  @available({ since: '0.0.0', until: '2.5.2' })
+  @available({ since: '0.0.0', until: '2.9.3' })
   fetchDirectTimeline(params?: FetchTimelineParams) {
     return this.paginate<Status[], typeof params>(
       '/api/v1/timelines/direct',

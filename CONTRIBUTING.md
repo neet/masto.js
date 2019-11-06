@@ -6,29 +6,27 @@ Thank you for considering contribution. Please check following guideline and ple
 2. Clone this repository by `git clone`
 3. Run `yarn --pure-lockfile` to install dependencies
 
-## Structure
+## Project Structure
 ```
  └── clients/
- │  └──── masto/       # General API related codes
- │  └──── masto-admin/ # Moderation API related codes
- └── entities/         # Entities (response data types)
+ │   └─── masto/       # Put general API related codes only
+ │   └─── masto-admin/ # Put moderation API related codes only
+ └── entities/         # Domain entities (response data types)
+ └── gateway/          # HTTP wrapper. Files on this directory are used by both masto and masto-admin
  └── errors/           # Custom error classes
- └── gateway/          # HTTP wrapper
  └── index.ts          # Entry point
 ```
 
 ## Scripts
-There are few kinds of scripts in package.json. You can run them with `yarn run`
-- `test:jest` - Unit testing of Jest
-- `test:eslint` - Lints code with ESLint (includes Prettier)
-- `test` - Run all tests
-- `build` - Build source codes with Rollup
-- `prepublishOnly` - Runs before for `npm publish`
-- `docs:build` - Generate documentation with TypeDoc
+There are some useful scripts in `package.json` which you can with `yarn run`.
+- `test:jest`      - Unit testing of Jest
+- `test:eslint`    - Lints code with ESLint (includes Prettier)
+- `test`           - Run all tests
+- `build`          - Build source codes with Rollup
+- `prepublishOnly` - Automatically runs before `npm publish`
+- `docs:build`     - Generate documentation by TypeDoc
 
-You can also run above through VSCode task feature.
-
-### Testing
+## Testing
 We write tests to check if the program works fine. Specifications live in `__tests__` directory. We enforce **100% codecov** on this library.
 
 Husky, a hooker of git, always validates your code satisfies `test:eslint` so you don't need to run them.
