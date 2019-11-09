@@ -1,12 +1,10 @@
 export * from './gateway/gateway';
 export * from './gateway/websocket';
 export * from './gateway/is-axios-error';
-
-export * from './clients/decorators';
+export * from './gateway/decorators';
 
 export * from './clients/masto/masto';
 export * from './clients/masto/params';
-
 export * from './clients/masto-admin/masto-admin';
 export * from './clients/masto-admin/params';
 
