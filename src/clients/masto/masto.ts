@@ -25,7 +25,7 @@ import { Trend } from '../../entities/trend';
 import { FeaturedTag } from '../../entities/featured-tags';
 import { MarkerMap } from '../../entities/marker';
 import { Gateway } from '../../gateway/gateway';
-import { available } from '../decorators';
+import { available } from '../../gateway/decorators';
 import {
   AddPushSubscriptionParams,
   CreateAccountParams,
