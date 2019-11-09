@@ -183,14 +183,14 @@ export class Gateway {
         throw error;
       }
 
-      // Disable prettier until prettier@2 to be merged
-      // https://github.com/prettier/prettier/pull/6773
-      // eslint-disable-next-line
+      // Why??
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
       const status = error?.response?.status;
 
       // Error response from REST API might contain error key
       // https://docs.joinmastodon.org/api/entities/#error
-      const message = error?.response?.data?.error ?? 'Unexpected error occurred';
+      const message =
+        error?.response?.data?.error ?? 'Unexpected error occurred';
 
       switch (status) {
         case 401:
@@ -361,7 +361,9 @@ export class Gateway {
       // Yield will be argument of next()
       const options = yield response.data;
       // Get next URL from "next" in the link header
-      const linkHeaderNext = response.headers?.link?.match(/<(.+?)>; rel="next"/)?.[1];
+      const linkHeaderNext = response.headers?.link?.match(
+        /<(.+?)>; rel="next"/,
+      )?.[1];
 
       if (options?.reset) {
         nextUrl = initialUrl;
