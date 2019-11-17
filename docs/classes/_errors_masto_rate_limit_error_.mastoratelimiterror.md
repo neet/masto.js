@@ -1,0 +1,82 @@
+[masto](../README.md) › [Globals](../globals.md) › ["errors/masto-rate-limit-error"](../modules/_errors_masto_rate_limit_error_.md) › [MastoRateLimitError](_errors_masto_rate_limit_error_.mastoratelimiterror.md)
+
+# Class: MastoRateLimitError
+
+Mastodon rate limit error class
+
+**`param`** Message for users
+
+## Hierarchy
+
+* Error
+
+  ↳ **MastoRateLimitError**
+
+## Index
+
+### Constructors
+
+* [constructor](_errors_masto_rate_limit_error_.mastoratelimiterror.md#constructor)
+
+### Properties
+
+* [message](_errors_masto_rate_limit_error_.mastoratelimiterror.md#message)
+* [name](_errors_masto_rate_limit_error_.mastoratelimiterror.md#name)
+* [stack](_errors_masto_rate_limit_error_.mastoratelimiterror.md#optional-stack)
+* [Error](_errors_masto_rate_limit_error_.mastoratelimiterror.md#static-error)
+
+## Constructors
+
+###  constructor
+
+\+ **new MastoRateLimitError**(...`args`: string[]): *[MastoRateLimitError](_errors_masto_rate_limit_error_.mastoratelimiterror.md)*
+
+*Defined in [src/errors/masto-rate-limit-error.ts:5](https://github.com/neet/masto.js/blob/b9f6bdd/src/errors/masto-rate-limit-error.ts#L5)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`...args` | string[] |
+
+**Returns:** *[MastoRateLimitError](_errors_masto_rate_limit_error_.mastoratelimiterror.md)*
+
+## Properties
+
+###  message
+
+• **message**: *string*
+
+*Inherited from void*
+
+Defined in node_modules/typescript/lib/lib.es5.d.ts:974
+
+___
+
+###  name
+
+• **name**: *string*
+
+*Inherited from void*
+
+Defined in node_modules/typescript/lib/lib.es5.d.ts:973
+
+___
+
+### `Optional` stack
+
+• **stack**? : *undefined | string*
+
+*Inherited from void*
+
+*Overrides void*
+
+Defined in node_modules/typescript/lib/lib.es5.d.ts:975
+
+___
+
+### `Static` Error
+
+▪ **Error**: *ErrorConstructor*
+
+Defined in node_modules/typescript/lib/lib.es5.d.ts:984
