@@ -342,10 +342,7 @@ exports[`Masto dissmissNotification 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      "/api/v1/notifications/dismiss",
-      Object {
-        "id": "123123",
-      },
+      "/api/v1/notifications/123123/dismiss",
     ],
   ],
   "results": Array [
