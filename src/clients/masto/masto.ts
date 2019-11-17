@@ -864,7 +864,7 @@ export class Masto extends Gateway {
    * @see https://docs.joinmastodon.org/api/rest/notifications/#post-api-v1-notifications-dismiss
    */
   @available({ since: '2.6.0' })
-  dissmissNotification(id: string) {
+  dismissNotification(id: string) {
     return this.post<void>(`/api/v1/notifications/${id}/dismiss`);
   }
 

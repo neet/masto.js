@@ -338,7 +338,7 @@ exports[`Masto createStatus with media ids 1`] = `
 }
 `;
 
-exports[`Masto dissmissNotification 1`] = `
+exports[`Masto dismissNotification 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [

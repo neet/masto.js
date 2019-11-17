@@ -568,8 +568,8 @@ describe('Masto', () => {
     expect(mockPost).toMatchSnapshot();
   });
 
-  test('dissmissNotification', async () => {
-    await masto.dissmissNotification('123123');
+  test('dismissNotification', async () => {
+    await masto.dismissNotification('123123');
     expect(mockPost).toBeCalledTimes(1);
     expect(mockPost).toMatchSnapshot();
   });
