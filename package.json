@@ -54,7 +54,7 @@
     "rollup-plugin-typescript2": "^0.25.3",
     "ts-jest": "^24.2.0",
     "typedoc": "^0.15.6",
-    "typescript": "3.7.2"
+    "typescript": "3.7.4"
   },
   "files": [
     "README.md",
