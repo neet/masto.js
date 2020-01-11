@@ -10,7 +10,7 @@ export interface PaginationParams {
   max_id?: string | null;
   /** Get a list of items with ID greater than this value including this ID */
   since_id?: string | null;
-  /** Get a list of items with ID greater than this value exluding this ID */
+  /** Get a list of items with ID greater than this value excluding this ID */
   min_id?: string | null;
   /** Maximum number of items to get */
   limit?: number | null;

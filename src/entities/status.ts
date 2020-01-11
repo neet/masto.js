@@ -23,7 +23,7 @@ export interface Status {
   in_reply_to_account_id?: string | null;
   /** `null` or the reblogged Status */
   reblog?: Status | null;
-  /** Embeded card */
+  /** Embedded card */
   card?: Card;
   /** Body of the status; this will contain HTML (remote HTML already sanitized) */
   content: string;

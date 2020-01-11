@@ -24,7 +24,7 @@
 	- Add Masto.createFeaturedTag for `POST /api/v1/featured_tags`
 	- Add Masto.removeFeaturedTag for `DELETE /api/v1/featured_tags`
 	- Add Masto.fetchDirectory for `DELETE /api/v1/directory`
-	- Add `exclude_unreviewed` option to Mastod.search
+	- Add `exclude_unreviewed` option to Masto.search
 	- Add `category` to Emoji entity
 	- Add return type to `authorizeFollowRequest` and `rejectFollowRequest`
 

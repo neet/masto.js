@@ -2,7 +2,7 @@ import semver from 'semver';
 import { MastoNotFoundError } from '../errors/masto-not-found-error';
 import { Gateway } from '../gateway/gateway';
 
-export interface AvailabeParams {
+export interface AvailableParams {
   since?: string;
   until?: string;
 }
@@ -11,7 +11,7 @@ export interface AvailabeParams {
  * Decorator that verifies the version of the Mastodon instance
  * @param parameters Optional params
  */
-export const available = (params: AvailabeParams) => (
+export const available = (params: AvailableParams) => (
   _gateway: Gateway,
   name: string | symbol,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

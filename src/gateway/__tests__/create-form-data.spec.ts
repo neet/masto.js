@@ -3,7 +3,7 @@ import 'isomorphic-form-data';
 import { createFormData, isArray, isObject } from '../create-form-data';
 
 /**
- * Unfortunatly form-data node.js package doesn't have
+ * Unfortunately form-data node.js package doesn't have
  * the same API of FormData of web... so functions below are
  * a hack implementation for `get` and `getAll` to test them
  */
@@ -20,12 +20,12 @@ const chunk = <T>(array: T[], length: number) =>
     [] as T[][],
   );
 
-const getAll = (formdata: FormData, name: string) =>
-  chunk((formdata as any)._streams as string[], 3)
+const getAll = (formData: FormData, name: string) =>
+  chunk((formData as any)._streams as string[], 3)
     .filter(([boundary]) => boundary.includes(`name="${name}"`))
     .map(([, datum]) => datum);
 
-const get = (formdata: FormData, name: string) => getAll(formdata, name)[0];
+const get = (formData: FormData, name: string) => getAll(formData, name)[0];
 
 test('typed isArray', () => {
   const r1 = isArray([]);
@@ -55,14 +55,14 @@ test('typed isObject', () => {
 
 test('flat value', () => {
   const result = createFormData({
-    apple: 'ringo',
-    orange: 'mikan',
-    grapes: 'budo',
+    apple: 'red',
+    mandarin: 'orange',
+    grapes: 'purple',
   });
 
-  expect(get(result, 'apple')).toEqual('ringo');
-  expect(get(result, 'orange')).toEqual('mikan');
-  expect(get(result, 'grapes')).toEqual('budo');
+  expect(get(result, 'apple')).toEqual('red');
+  expect(get(result, 'mandarin')).toEqual('orange');
+  expect(get(result, 'grapes')).toEqual('purple');
 });
 
 test('array', () => {

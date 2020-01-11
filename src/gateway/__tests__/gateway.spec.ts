@@ -44,7 +44,7 @@ describe('Gateway', () => {
 
     const params = {
       uri: 'https://example.com',
-      accessToken: 'tokentoken',
+      accessToken: 'some token',
     };
     const gateway = await Gateway.login(params);
 
@@ -146,7 +146,7 @@ describe('Gateway', () => {
     expect((mockAxios.request as any) as jest.Mock).toBeCalledWith(options);
   });
 
-  test('throw MastodonUnauthorizedError when 401 responsed', async () => {
+  test('throw MastodonUnauthorizedError when 401 responded', async () => {
     const options = {
       method: 'POST',
       url: '/',
@@ -167,7 +167,7 @@ describe('Gateway', () => {
     );
   });
 
-  test('throw MastodonNotFoundError when 404 responsed', async () => {
+  test('throw MastodonNotFoundError when 404 responded', async () => {
     const options = {
       method: 'POST',
       url: '/',
@@ -188,7 +188,7 @@ describe('Gateway', () => {
     );
   });
 
-  test('throw MastodonRateLimitError when 429 responsed', async () => {
+  test('throw MastodonRateLimitError when 429 responded', async () => {
     const options = {
       method: 'POST',
       url: '/',
@@ -309,18 +309,18 @@ describe('Gateway', () => {
   });
 
   test('initialize WebSocketEvents and call connect with access token', async () => {
-    gateway.accessToken = 'tokentoken';
+    gateway.accessToken = 'token';
     await gateway.stream('/');
-    expect(mockConnect).toBeCalledWith('wss://example.com/', ['tokentoken']);
+    expect(mockConnect).toBeCalledWith('wss://example.com/', ['token']);
   });
 
   test('initialize WebSocketEvents and call connect with access token as a param for Mastodon < v2.8.4', async () => {
     gateway.version = '2.8.3';
-    gateway.accessToken = 'tokentoken';
+    gateway.accessToken = 'token';
     await gateway.stream('/');
 
     expect(mockConnect).toBeCalledWith(
-      'wss://example.com/?access_token=tokentoken',
+      'wss://example.com/?access_token=token',
       [],
     );
   });
@@ -388,18 +388,18 @@ describe('Gateway', () => {
     ((mockAxios.request as any) as jest.Mock).mockResolvedValueOnce({
       data: undefined,
     });
-    const thirdReuslt = await iterable.next();
+    const thirdResult = await iterable.next();
 
     expect(mockAxios.request).toBeCalledTimes(2);
-    expect(thirdReuslt.done).toBe(true);
-    expect(thirdReuslt.value).toBe(undefined);
+    expect(thirdResult.done).toBe(true);
+    expect(thirdResult.value).toBe(undefined);
   });
 
   test('reset iterable when option.reset passed', async () => {
     const initialPath = '/foo';
-    const initialParmas = { a: { b: 'c' } };
+    const initialParams = { a: { b: 'c' } };
 
-    const iterable = gateway.paginate(initialPath, initialParmas);
+    const iterable = gateway.paginate(initialPath, initialParams);
     const response = {
       headers: {
         link: '<https://example.com/next>; rel="next"',
@@ -415,16 +415,16 @@ describe('Gateway', () => {
     expect(mockAxios.request).toHaveBeenLastCalledWith(
       expect.objectContaining({
         url: initialPath,
-        params: initialParmas,
+        params: initialParams,
       }),
     );
   });
 
   test('set next url and next params by calling next with params', async () => {
     const initialPath = '/foo';
-    const initialParmas = { page: '1' };
+    const initialParams = { page: '1' };
 
-    const iterable = gateway.paginate(initialPath, initialParmas);
+    const iterable = gateway.paginate(initialPath, initialParams);
     const response = {
       headers: {
         link: '<https://example.com/foo2>; rel="next"',
@@ -437,19 +437,19 @@ describe('Gateway', () => {
     expect(mockAxios.request).toHaveBeenLastCalledWith(
       expect.objectContaining({
         url: initialPath,
-        params: initialParmas,
+        params: initialParams,
       }),
     );
 
     const customNextUrl = '/bar';
-    const customNextParmas = { page: '777' };
+    const customNextParams = { page: '777' };
 
-    await iterable.next({ url: customNextUrl, params: customNextParmas });
+    await iterable.next({ url: customNextUrl, params: customNextParams });
     expect(mockAxios.request).toBeCalledTimes(2);
     expect(mockAxios.request).toHaveBeenLastCalledWith(
       expect.objectContaining({
         url: customNextUrl,
-        params: customNextParmas,
+        params: customNextParams,
       }),
     );
   });

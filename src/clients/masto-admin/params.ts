@@ -7,7 +7,7 @@ export interface AdminFetchAccountParams {
   disabled?: boolean | null;
   silenced?: boolean | null;
   suspended?: boolean | null;
-  usename?: string | null;
+  username?: string | null;
   display_name?: string | null;
   email?: string | null;
   ip?: string | null;

@@ -12,7 +12,7 @@ export interface PushSubscription {
 export interface PushSubscriptionAlerts {
   /** Boolean of whether you want to receive follow notification event. */
   follow: boolean;
-  /** Boolean of whether you want to receive favaourite notification event. */
+  /** Boolean of whether you want to receive favourite notification event. */
   favourite: boolean;
   /** Boolean of whether you want to receive reblog notification event. */
   reblog: boolean;
