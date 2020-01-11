@@ -1,0 +1,32 @@
+{
+  "version": "0.1",
+  "language": "en,en-GB",
+  "ignorePaths": ["**/node_modules/**", "**/dist/**"],
+  "words": [
+    "AGPL",
+    "blurhash",
+    "builtins",
+    "codecov",
+    "favourited",
+    "Fediverse",
+    "gifv",
+    "Gmail",
+    "idempotency",
+    "Igarashi",
+    "KeyBase",
+    "Masto",
+    "nojekyll",
+    "reblog",
+    "reblogged",
+    "reblogs",
+    "shortcode",
+    "subprotocol",
+    "typedoc",
+    "unassign",
+    "unfavourite",
+    "unfollow",
+    "unreblog",
+    "unreviewed",
+    "unsilence"
+  ]
+}

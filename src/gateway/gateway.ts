@@ -19,7 +19,7 @@ export interface GatewayConstructorParams {
   version?: string;
   /** Access token of the user */
   accessToken?: string;
-  /** Axios configureations. See [Axios'](https://github.com/axios/axios#request-config) docs */
+  /** Axios configurations. See [Axios'](https://github.com/axios/axios#request-config) docs */
   axiosConfig?: AxiosRequestConfig;
 }
 
@@ -108,7 +108,7 @@ export class Gateway {
 
   /**
    * Login to Mastodon
-   * @param params Paramters
+   * @param params Parameters
    * @return Instance of Mastodon class
    */
   static async login<T extends typeof Gateway>(this: T, params: LoginParams) {
@@ -124,7 +124,7 @@ export class Gateway {
   /**
    * Transform JSON to JS object
    * @param response Response object
-   * @return Parsed entitiy
+   * @return Parsed entity
    */
   private transformResponse(data: string, _headers: unknown) {
     try {
@@ -321,7 +321,7 @@ export class Gateway {
     const version = semver.coerce(this.version);
     const protocols = [];
 
-    // Since v2.8.4, it is supported to pass access token with`Sec-Websocket-Protocl`
+    // Since v2.8.4, it is supported to pass access token with`Sec-Websocket-Protocol`
     // https://github.com/tootsuite/mastodon/pull/10818
     if (this.accessToken && version && semver.gte(version, '2.8.4')) {
       protocols.push(this.accessToken);

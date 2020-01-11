@@ -1737,7 +1737,7 @@ exports[`Masto streamLocalTagTimeline 1`] = `
       "/api/v1/streaming",
       Object {
         "stream": "hashtag:local",
-        "tag": "deletetwitter",
+        "tag": "DeleteTwitter",
       },
     ],
   ],
@@ -1776,7 +1776,7 @@ exports[`Masto streamTagTimeline 1`] = `
       "/api/v1/streaming",
       Object {
         "stream": "hashtag",
-        "tag": "deletetwitter",
+        "tag": "DeleteTwitter",
       },
     ],
   ],

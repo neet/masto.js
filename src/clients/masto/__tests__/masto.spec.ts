@@ -44,13 +44,13 @@ describe('Masto', () => {
   });
 
   test('streamTagTimeline', async () => {
-    await masto.streamTagTimeline('deletetwitter');
+    await masto.streamTagTimeline('DeleteTwitter');
     expect(mockStream).toBeCalledTimes(1);
     expect(mockStream).toMatchSnapshot();
   });
 
   test('streamLocalTagTimeline', async () => {
-    await masto.streamLocalTagTimeline('deletetwitter');
+    await masto.streamLocalTagTimeline('DeleteTwitter');
     expect(mockStream).toBeCalledTimes(1);
     expect(mockStream).toMatchSnapshot();
   });
@@ -129,7 +129,7 @@ describe('Masto', () => {
 
   test('updateCredentials', async () => {
     await masto.updateCredentials({
-      display_name: 'Neetshin',
+      display_name: 'Ryo Igarashi',
       avatar: '...',
       header: '...',
       note: 'web frontend engineer',

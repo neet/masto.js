@@ -17,7 +17,7 @@ export interface Relationship {
   muting_notifications: boolean;
   /** Whether the user has requested to follow the account */
   requested: boolean;
-  /** Whether the user is currently blocking the accounts's domain */
+  /** Whether the user is currently blocking the accounts' domain */
   domain_blocking: boolean;
   /** Whether this user is endorsed by authenticated user */
   endorsed: boolean;

@@ -47,7 +47,7 @@ export interface AccountField {
   name?: string | null;
   /** (2.4 or later) Value of profile metadata field. */
   value?: string | null;
-  /** Datetime */
+  /** date time*/
   verified_at?: string | null;
 }
 

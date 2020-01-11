@@ -15,7 +15,7 @@ export class MastoAdmin extends Gateway {
   /**
    * Get accounts
    * @param params parameters
-   * @retunr Accounts
+   * @return Accounts
    */
   @available({ since: '2.9.1' })
   fetchAccounts(params?: AdminFetchAccountParams) {
@@ -146,7 +146,7 @@ export class MastoAdmin extends Gateway {
    * Perform a moderation action on an account
    * @param id ID of the account
    * @param params Params
-   * @return Acccount
+   * @return Account
    */
   @available({ since: '2.9.1' })
   actionAccount(id: string, params: AdminActionAccountParams) {

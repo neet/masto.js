@@ -163,7 +163,7 @@ export class Masto extends Gateway {
   }
 
   /**
-   * Revoke access token parmanently
+   * Revoke access token permanently
    * @param params Client credentials
    * @see https://docs.joinmastodon.org/api/authentication/#post-oauth-revoke
    */
@@ -529,7 +529,7 @@ export class Masto extends Gateway {
   /**
    * Update a text filter.
    * @param id ID of the filter
-   * @param params Optinal parameter
+   * @param params Optional parameter
    * @return Returns Filter
    * @see https://docs.joinmastodon.org/api/rest/filters/#put-api-v1-filters-id
    */
@@ -674,7 +674,7 @@ export class Masto extends Gateway {
 
   /**
    * Fetch a list with id
-   * @param id ID of the targtet list
+   * @param id ID of the target list
    * @return Returns List
    * @see https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists-id
    */
