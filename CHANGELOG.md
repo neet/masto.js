@@ -1,3 +1,17 @@
+## 2.8.2
+### Chagnes
+- Use @rollup/* packages instead of rollup-* #194 #193
+- Use cSpell #195
+- Update dependencies
+
+## 2.8.1
+### Fixes
+- Fix URL of `dismissNotification` #170 #169
+- Fix typo of `dismissNotification`
+
+### Changes
+- Upgrade dependencies #171
+
 ## 2.8.0
 - Bump TypeScript 3.7.0 #166
   - Also removes ts-optchain
