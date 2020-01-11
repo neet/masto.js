@@ -6,8 +6,6 @@ import builtins from 'rollup-plugin-node-builtins';
 import { terser } from 'rollup-plugin-terser';
 import packageJSON from './package.json';
 
-// import autoExternal from 'rollup-plugin-auto-external';
-
 export default [
   {
     input: './src/index.ts',
