@@ -942,4 +942,46 @@ describe('Masto', () => {
     expect(mockGet).toBeCalledTimes(1);
     expect(mockGet).toMatchSnapshot();
   });
+
+  test('bookmarkStatus', async () => {
+    await masto.bookmarkStatus('123');
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
+  });
+
+  test('unbookmarkStatus', async () => {
+    await masto.unbookmarkStatus('123');
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
+  });
+
+  test('fetchBookmarks', async () => {
+    await masto.fetchBookmarks();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
+  });
+
+  test('fetchAnnouncements', async () => {
+    await masto.fetchAnnouncements();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
+  });
+
+  test('dismissAnnouncement', async () => {
+    await masto.dismissAnnouncement('123');
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
+  });
+
+  test('addReactionToAnnouncement', async () => {
+    await masto.addReactionToAnnouncement('123', '😁');
+    expect(mockPut).toBeCalledTimes(1);
+    expect(mockPut).toMatchSnapshot();
+  });
+
+  test('removeReactionFromAnnouncement', async () => {
+    await masto.removeReactionFromAnnouncement('123', '😁');
+    expect(mockDelete).toBeCalledTimes(1);
+    expect(mockDelete).toMatchSnapshot();
+  });
 });
