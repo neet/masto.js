@@ -61,4 +61,6 @@ export interface Status {
   language?: string | null;
   /** Whether this is the pinned status for the account that posted it */
   pinned?: boolean | null;
+  /** Whether the status was bookmarked */
+  bookmarked?: boolean | null;
 }

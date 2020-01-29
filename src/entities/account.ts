@@ -16,6 +16,8 @@ export interface Account {
   bot?: boolean | null;
   /** The time the account was created */
   created_at: string;
+  /** Time of the last status posted */
+  last_status_at: string;
   /** The number of followers for the account */
   followers_count: number;
   /** The number of accounts the given account is following */
@@ -40,6 +42,8 @@ export interface Account {
   moved?: boolean | null;
   /** Array of profile metadata field, each element has 'name' and 'value' */
   fields?: AccountField[] | null;
+  /** no-index flag */
+  discoverable?: false;
 }
 
 export interface AccountField {
