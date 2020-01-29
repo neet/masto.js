@@ -40,6 +40,8 @@ export interface Account {
   moved?: boolean | null;
   /** Array of profile metadata field, each element has 'name' and 'value' */
   fields?: AccountField[] | null;
+  /** no-index flag */
+  discoverable?: false;
 }
 
 export interface AccountField {
