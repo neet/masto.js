@@ -18,6 +18,7 @@ export interface AdminFetchReportsParams {
   resolved?: boolean | null;
   account_id?: string | null;
   target_account_id?: string | null;
+  by_target_domain?: string | null;
 }
 
 export type AccountActionType = 'none' | 'disable' | 'silence' | 'suspend';

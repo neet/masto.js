@@ -56,6 +56,22 @@ exports[`Masto addPushSubscription 1`] = `
 }
 `;
 
+exports[`Masto addReactionToAnnouncement 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/announcements/123/reactions/😁",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
 exports[`Masto authorizeFollowRequest 1`] = `
 [MockFunction] {
   "calls": Array [
@@ -96,6 +112,22 @@ exports[`Masto blockDomain 1`] = `
       Object {
         "domain": "example.com",
       },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto bookmarkStatus 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/statuses/123/bookmark",
     ],
   ],
   "results": Array [
@@ -338,6 +370,22 @@ exports[`Masto createStatus with media ids 1`] = `
 }
 `;
 
+exports[`Masto dismissAnnouncement 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/announcements/123/dismiss",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
 exports[`Masto dismissNotification 1`] = `
 [MockFunction] {
   "calls": Array [
@@ -550,6 +598,22 @@ exports[`Masto fetchAccountStatuses 1`] = `
 }
 `;
 
+exports[`Masto fetchAnnouncements 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/announcements",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
 exports[`Masto fetchBlocks 1`] = `
 [MockFunction] {
   "calls": Array [
@@ -561,6 +625,22 @@ exports[`Masto fetchBlocks 1`] = `
         "min_id": "2",
         "since_id": "3",
       },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto fetchBookmarks 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/bookmarks",
     ],
   ],
   "results": Array [
@@ -1513,6 +1593,22 @@ exports[`Masto removePushSubscription 1`] = `
 }
 `;
 
+exports[`Masto removeReactionFromAnnouncement 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/announcements/123/reactions/😁",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
 exports[`Masto removeScheduledStatus 1`] = `
 [MockFunction] {
   "calls": Array [
@@ -1832,6 +1928,22 @@ exports[`Masto unblockDomain 1`] = `
       Object {
         "domain": "example.com",
       },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto unbookmarkStatus 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/statuses/123/unbookmark",
     ],
   ],
   "results": Array [

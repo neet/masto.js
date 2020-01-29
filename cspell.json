@@ -27,6 +27,7 @@
     "unfollow",
     "unreblog",
     "unreviewed",
-    "unsilence"
+    "unsilence",
+    "unbookmark"
   ]
 }

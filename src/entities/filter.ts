@@ -1,5 +1,10 @@
 /** Type of filter context */
-export type FilterContext = 'home' | 'notifications' | 'public' | 'thread';
+export type FilterContext =
+  | 'home'
+  | 'notifications'
+  | 'public'
+  | 'thread'
+  | 'account';
 
 export interface Filter {
   /** ID of the filter */

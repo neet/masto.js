@@ -1,3 +1,5 @@
+import { Announcement } from '../../entities/announcement';
+import { Reaction } from '../../entities/reaction';
 import {
   Account,
   AccountCredentials,
@@ -1143,6 +1145,35 @@ export class Masto extends Gateway {
   }
 
   /**
+   * Fetch bookmarked statuses
+   * @return Statuses
+   */
+  @available({ since: '3.0.1' })
+  fetchBookmarks() {
+    return this.get<Status[]>(`/api/v1/bookmarks`);
+  }
+
+  /**
+   * Bookmark the status
+   * @param id ID of the status
+   * @return Status
+   */
+  @available({ since: '3.1.0' })
+  bookmarkStatus(id: string) {
+    return this.post<Status>(`/api/v1/statuses/${id}/bookmark`);
+  }
+
+  /**
+   * Unbookmark the status
+   * @param id ID of the status
+   * @return Status
+   */
+  @available({ since: '3.1.0' })
+  unbookmarkStatus(id: string) {
+    return this.post<Status>(`/api/v1/statuses/${id}/unbookmark`);
+  }
+
+  /**
    * Retrieving the home timeline
    * @param params Query parameter
    * @return An array of Statuses, most recent ones first.
@@ -1328,5 +1359,48 @@ export class Masto extends Gateway {
   @available({ since: '3.0.0' })
   fetchDirectory(params: FetchDirectoryParams) {
     return this.get<Account[]>('/api/v1/directory', params);
+  }
+
+  /**
+   * Fetch announcements
+   * @return Announcements
+   */
+  @available({ since: '3.0.1' })
+  fetchAnnouncements() {
+    return this.get<Announcement[]>('/api/v1/announcements');
+  }
+
+  /**
+   * Dismiss announcement
+   * @param id ID of the announcement
+   * @return Nothing
+   */
+  @available({ since: '3.0.1' })
+  dismissAnnouncement(id: string) {
+    return this.post<void>(`/api/v1/announcements/${id}/dismiss`);
+  }
+
+  /**
+   * Add a reaction to an announcement
+   * @param id ID of the announcement
+   * @param name Emoji string
+   * @return Announcement
+   */
+  @available({ since: '3.0.1' })
+  addReactionToAnnouncement(id: string, name: string) {
+    return this.put<Reaction>(`/api/v1/announcements/${id}/reactions/${name}`);
+  }
+
+  /**
+   * Remove a reaction from an announcement
+   * @param id ID of the announcement
+   * @param name Emoji string
+   * @return Announcement
+   */
+  @available({ since: '3.0.1' })
+  removeReactionFromAnnouncement(id: string, name: string) {
+    return this.delete<Reaction>(
+      `/api/v1/announcements/${id}/reactions/${name}`,
+    );
   }
 }
