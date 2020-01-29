@@ -6,7 +6,8 @@ export type NotificationType =
   | 'reblog'
   | 'favourite'
   | 'follow'
-  | 'poll';
+  | 'poll'
+  | 'follow_request';
 
 export interface Notification {
   /** The notification ID */
