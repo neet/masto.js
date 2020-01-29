@@ -1145,6 +1145,35 @@ export class Masto extends Gateway {
   }
 
   /**
+   * Fetch bookmarked statuses
+   * @return Statuses
+   */
+  @available({ since: '3.0.1' })
+  fetchBookmarks() {
+    return this.get<Status[]>(`/api/v1/bookmarks`);
+  }
+
+  /**
+   * Bookmark the status
+   * @param id ID of the status
+   * @return Status
+   */
+  @available({ since: '3.1.0' })
+  bookmarkStatus(id: string) {
+    return this.post<Status>(`/api/v1/statuses/${id}/bookmark`);
+  }
+
+  /**
+   * Unbookmark the status
+   * @param id ID of the status
+   * @return Status
+   */
+  @available({ since: '3.1.0' })
+  unbookmarkStatus(id: string) {
+    return this.post<Status>(`/api/v1/statuses/${id}/unbookmark`);
+  }
+
+  /**
    * Retrieving the home timeline
    * @param params Query parameter
    * @return An array of Statuses, most recent ones first.
