@@ -1,3 +1,5 @@
+import { Announcement } from '../../entities/announcement';
+import { Reaction } from '../../entities/reaction';
 import {
   Account,
   AccountCredentials,
@@ -1328,5 +1330,48 @@ export class Masto extends Gateway {
   @available({ since: '3.0.0' })
   fetchDirectory(params: FetchDirectoryParams) {
     return this.get<Account[]>('/api/v1/directory', params);
+  }
+
+  /**
+   * Fetch announcements
+   * @return Announcements
+   */
+  @available({ since: '3.0.1' })
+  fetchAnnouncements() {
+    return this.get<Announcement[]>('/api/v1/announcements');
+  }
+
+  /**
+   * Dismiss announcement
+   * @param id ID of the announcement
+   * @return Nothing
+   */
+  @available({ since: '3.0.1' })
+  dismissAnnouncement(id: string) {
+    return this.post<void>(`/api/v1/announcements/${id}/dismiss`);
+  }
+
+  /**
+   * Add a reaction to an announcement
+   * @param id ID of the announcement
+   * @param name Emoji string
+   * @return Announcement
+   */
+  @available({ since: '3.0.1' })
+  addReactionToAnnouncement(id: string, name: string) {
+    return this.put<Reaction>(`/api/v1/announcements/${id}/reactions/${name}`);
+  }
+
+  /**
+   * Remove a reaction from an announcement
+   * @param id ID of the announcement
+   * @param name Emoji string
+   * @return Announcement
+   */
+  @available({ since: '3.0.1' })
+  removeReactionFromAnnouncement(id: string, name: string) {
+    return this.delete<Reaction>(
+      `/api/v1/announcements/${id}/reactions/${name}`,
+    );
   }
 }
