@@ -1,4 +1,4 @@
-import { Gateway } from '../../gateway/gateway';
+import { Gateway } from '../gateway';
 import { available } from '../decorators';
 
 describe('available', () => {

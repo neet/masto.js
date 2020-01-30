@@ -1,6 +1,6 @@
 import semver from 'semver';
-import { MastoNotFoundError } from '../errors/masto-not-found-error';
-import { Gateway } from '../gateway/gateway';
+import { MastoNotFoundError } from '../errors';
+import { Gateway } from './gateway';
 
 export interface AvailableParams {
   since?: string;

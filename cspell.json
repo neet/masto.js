@@ -28,6 +28,7 @@
     "unreblog",
     "unreviewed",
     "unsilence",
-    "unbookmark"
+    "unbookmark",
+    "unprocessable"
   ]
 }

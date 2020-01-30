@@ -1,9 +1,13 @@
-import { AccountField, AccountSource } from '../../entities/account';
-import { FilterContext } from '../../entities/filter';
-import { NotificationType } from '../../entities/notification';
-import { PushSubscriptionAlerts } from '../../entities/push-subscription';
-import { StatusVisibility } from '../../entities/status';
-import { MarkerTimeline, Marker } from '../../entities/marker';
+import {
+  AccountField,
+  AccountSource,
+  FilterContext,
+  NotificationType,
+  PushSubscriptionAlerts,
+  StatusVisibility,
+  MarkerTimeline,
+  Marker,
+} from '../../entities';
 
 export interface PaginationParams {
   /** Get a list of items with ID less than this value */

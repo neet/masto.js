@@ -1,33 +1,36 @@
-import { Announcement } from '../../entities/announcement';
-import { Reaction } from '../../entities/reaction';
+import { Gateway } from '../../gateway/gateway';
+import { available } from '../../gateway/decorators';
 import {
+  Announcement,
+  Reaction,
   Account,
   AccountCredentials,
   AccountIdentityProof,
-} from '../../entities/account';
-import { Application } from '../../entities/application';
-import { Attachment } from '../../entities/attachment';
-import { Card } from '../../entities/card';
-import { Context } from '../../entities/context';
-import { Conversation } from '../../entities/conversation';
-import { Emoji } from '../../entities/emoji';
-import { Filter } from '../../entities/filter';
-import { Instance, InstanceActivity } from '../../entities/instance';
-import { List } from '../../entities/list';
-import { Notification } from '../../entities/notification';
-import { OAuthClient, OAuthToken } from '../../entities/oauth';
-import { Poll } from '../../entities/poll';
-import { Preference } from '../../entities/preference';
-import { PushSubscription } from '../../entities/push-subscription';
-import { Relationship } from '../../entities/relationship';
-import { Results, ResultsV1 } from '../../entities/results';
-import { ScheduledStatus } from '../../entities/scheduled-status';
-import { Status } from '../../entities/status';
-import { Trend } from '../../entities/trend';
-import { FeaturedTag } from '../../entities/featured-tags';
-import { MarkerMap } from '../../entities/marker';
-import { Gateway } from '../../gateway/gateway';
-import { available } from '../../gateway/decorators';
+  Application,
+  Attachment,
+  Card,
+  Context,
+  Conversation,
+  Emoji,
+  Filter,
+  Instance,
+  InstanceActivity,
+  List,
+  Notification,
+  OAuthClient,
+  OAuthToken,
+  Poll,
+  Preference,
+  PushSubscription,
+  Relationship,
+  Results,
+  ResultsV1,
+  ScheduledStatus,
+  Status,
+  Trend,
+  FeaturedTag,
+  MarkerMap,
+} from '../../entities';
 import {
   AddPushSubscriptionParams,
   CreateAccountParams,
