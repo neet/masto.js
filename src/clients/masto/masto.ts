@@ -1148,7 +1148,7 @@ export class Masto extends Gateway {
    * Fetch bookmarked statuses
    * @return Statuses
    */
-  @available({ since: '3.0.1' })
+  @available({ since: '3.1.0' })
   fetchBookmarks() {
     return this.get<Status[]>(`/api/v1/bookmarks`);
   }
@@ -1365,7 +1365,7 @@ export class Masto extends Gateway {
    * Fetch announcements
    * @return Announcements
    */
-  @available({ since: '3.0.1' })
+  @available({ since: '3.1.0' })
   fetchAnnouncements() {
     return this.get<Announcement[]>('/api/v1/announcements');
   }
@@ -1375,7 +1375,7 @@ export class Masto extends Gateway {
    * @param id ID of the announcement
    * @return Nothing
    */
-  @available({ since: '3.0.1' })
+  @available({ since: '3.1.0' })
   dismissAnnouncement(id: string) {
     return this.post<void>(`/api/v1/announcements/${id}/dismiss`);
   }
@@ -1386,7 +1386,7 @@ export class Masto extends Gateway {
    * @param name Emoji string
    * @return Announcement
    */
-  @available({ since: '3.0.1' })
+  @available({ since: '3.1.0' })
   addReactionToAnnouncement(id: string, name: string) {
     return this.put<Reaction>(`/api/v1/announcements/${id}/reactions/${name}`);
   }
@@ -1397,7 +1397,7 @@ export class Masto extends Gateway {
    * @param name Emoji string
    * @return Announcement
    */
-  @available({ since: '3.0.1' })
+  @available({ since: '3.1.0' })
   removeReactionFromAnnouncement(id: string, name: string) {
     return this.delete<Reaction>(
       `/api/v1/announcements/${id}/reactions/${name}`,
