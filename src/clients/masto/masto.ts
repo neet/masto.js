@@ -1,35 +1,35 @@
 import { Gateway } from '../../gateway/gateway';
 import { available } from '../../gateway/decorators';
 import {
-  Announcement,
-  Reaction,
   Account,
   AccountCredentials,
-  AccountIdentityProof,
+  Activity,
+  Announcement,
   Application,
   Attachment,
   Card,
   Context,
   Conversation,
   Emoji,
+  FeaturedTag,
   Filter,
+  IdentityProof,
   Instance,
-  InstanceActivity,
   List,
+  MarkerMap,
   Notification,
   OAuthClient,
-  OAuthToken,
   Poll,
   Preference,
   PushSubscription,
+  Reaction,
   Relationship,
   Results,
   ResultsV1,
   ScheduledStatus,
   Status,
+  Token,
   Trend,
-  FeaturedTag,
-  MarkerMap,
 } from '../../entities';
 import {
   AddPushSubscriptionParams,
@@ -160,11 +160,11 @@ export class Masto extends Gateway {
   /**
    * Fetch access token from authorization code
    * @param params Parameters
-   * @return OauthToken
+   * @return Token
    * @see https://docs.joinmastodon.org/api/authentication/#post-oauth-token
    */
   fetchAccessToken(params: FetchAccessTokenParams) {
-    return this.post<OAuthToken>('/oauth/token', params);
+    return this.post<Token>('/oauth/token', params);
   }
 
   /**
@@ -190,14 +190,12 @@ export class Masto extends Gateway {
   /**
    * Fetch identity proofs of the account
    * @param id ID of the account
-   * @return Returns AccountIdentityProofs
+   * @return Returns IdentityProof
    * @see https://github.com/tootsuite/mastodon/pull/10297
    */
   @available({ since: '2.8.0' })
   fetchAccountIdentityProofs(id: string) {
-    return this.get<AccountIdentityProof[]>(
-      `/api/v1/accounts/${id}/identity_proofs`,
-    );
+    return this.get<IdentityProof[]>(`/api/v1/accounts/${id}/identity_proofs`);
   }
 
   /**
@@ -207,7 +205,7 @@ export class Masto extends Gateway {
    */
   @available({ since: '2.7.0' })
   createAccount(params: CreateAccountParams) {
-    return this.post<OAuthToken>('/api/v1/accounts', params);
+    return this.post<Token>('/api/v1/accounts', params);
   }
 
   /**
@@ -638,7 +636,7 @@ export class Masto extends Gateway {
    */
   @available({ since: '2.1.2' })
   fetchInstanceActivity() {
-    return this.get<InstanceActivity[]>('/api/v1/instance/activity');
+    return this.get<Activity[]>('/api/v1/instance/activity');
   }
 
   /**

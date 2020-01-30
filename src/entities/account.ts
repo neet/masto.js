@@ -1,5 +1,14 @@
 import { Emoji } from './emoji';
-import { StatusVisibility } from './status';
+import { Source } from './source';
+
+export interface AccountField {
+  /** (2.4 or later) Label of profile metadata field. */
+  name?: string | null;
+  /** (2.4 or later) Value of profile metadata field. */
+  value?: string | null;
+  /** date time*/
+  verified_at?: string | null;
+}
 
 export interface Account {
   /** The ID of the account */
@@ -46,41 +55,6 @@ export interface Account {
   discoverable?: false;
 }
 
-export interface AccountField {
-  /** (2.4 or later) Label of profile metadata field. */
-  name?: string | null;
-  /** (2.4 or later) Value of profile metadata field. */
-  value?: string | null;
-  /** date time*/
-  verified_at?: string | null;
-}
-
-export interface AccountIdentityProof {
-  /** Name of provider (such as "Keybase") */
-  provider: string;
-  /** Username in the provider */
-  provider_username: string;
-  /** The time the proof was updated */
-  updated_at: string;
-  /** URL of proof */
-  proof_url: string;
-  /** URL of profile on the provider */
-  profile_url: string;
-}
-
 export interface AccountCredentials extends Account {
-  source: AccountSource;
-}
-
-export interface AccountSource {
-  /** Selected preference: Default privacy of new toots */
-  privacy?: StatusVisibility | null;
-  /** Selected preference: Mark media as sensitive by default? */
-  sensitive?: boolean | null;
-  /** User's default language */
-  language: string | null;
-  /** Plain-text version of the account's `note` */
-  note: string;
-  /** Plain-text version of the account's field */
-  fields: AccountField;
+  source: Source;
 }
