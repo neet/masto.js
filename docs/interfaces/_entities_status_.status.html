@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Status | masto - v2.8.2</title>
+	<title>Status | masto - v2.9.0-rc1</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">masto - v2.8.2</a>
+					<a href="../index.html" class="title">masto - v2.9.0-rc1</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -84,6 +84,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_status_.status.html#account" class="tsd-kind-icon">account</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_status_.status.html#application" class="tsd-kind-icon">application</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_status_.status.html#bookmarked" class="tsd-kind-icon">bookmarked</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_status_.status.html#card" class="tsd-kind-icon">card</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_status_.status.html#content" class="tsd-kind-icon">content</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_status_.status.html#created_at" class="tsd-kind-icon">created_<wbr>at</a></li>
@@ -121,7 +122,7 @@
 					<div class="tsd-signature tsd-kind-icon">account<span class="tsd-signature-symbol">:</span> <a href="_entities_account_.account.html" class="tsd-signature-type">Account</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/ebf8289/src/entities/status.ts#L19">src/entities/status.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/status.ts#L19">src/entities/status.ts:19</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -136,7 +137,7 @@
 					<div class="tsd-signature tsd-kind-icon">application<span class="tsd-signature-symbol">:</span> <a href="_entities_application_.application.html" class="tsd-signature-type">Application</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/ebf8289/src/entities/status.ts#L59">src/entities/status.ts:59</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/status.ts#L59">src/entities/status.ts:59</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -146,12 +147,27 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="bookmarked" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> bookmarked</h3>
+					<div class="tsd-signature tsd-kind-icon">bookmarked<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/status.ts#L65">src/entities/status.ts:65</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Whether the status was bookmarked</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="card" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> card</h3>
 					<div class="tsd-signature tsd-kind-icon">card<span class="tsd-signature-symbol">:</span> <a href="_entities_card_.card.html" class="tsd-signature-type">Card</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/ebf8289/src/entities/status.ts#L27">src/entities/status.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/status.ts#L27">src/entities/status.ts:27</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -166,7 +182,7 @@
 					<div class="tsd-signature tsd-kind-icon">content<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/ebf8289/src/entities/status.ts#L29">src/entities/status.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/status.ts#L29">src/entities/status.ts:29</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -181,7 +197,7 @@
 					<div class="tsd-signature tsd-kind-icon">created_<wbr>at<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/ebf8289/src/entities/status.ts#L31">src/entities/status.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/status.ts#L31">src/entities/status.ts:31</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -196,7 +212,7 @@
 					<div class="tsd-signature tsd-kind-icon">emojis<span class="tsd-signature-symbol">:</span> <a href="_entities_emoji_.emoji.html" class="tsd-signature-type">Emoji</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/ebf8289/src/entities/status.ts#L33">src/entities/status.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/status.ts#L33">src/entities/status.ts:33</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -211,7 +227,7 @@
 					<div class="tsd-signature tsd-kind-icon">favourited<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/ebf8289/src/entities/status.ts#L43">src/entities/status.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/status.ts#L43">src/entities/status.ts:43</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -226,7 +242,7 @@
 					<div class="tsd-signature tsd-kind-icon">favourites_<wbr>count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/ebf8289/src/entities/status.ts#L39">src/entities/status.ts:39</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/status.ts#L39">src/entities/status.ts:39</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -241,7 +257,7 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/ebf8289/src/entities/status.ts#L13">src/entities/status.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/status.ts#L13">src/entities/status.ts:13</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -256,7 +272,7 @@
 					<div class="tsd-signature tsd-kind-icon">in_<wbr>reply_<wbr>to_<wbr>account_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/ebf8289/src/entities/status.ts#L23">src/entities/status.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/status.ts#L23">src/entities/status.ts:23</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -271,7 +287,7 @@
 					<div class="tsd-signature tsd-kind-icon">in_<wbr>reply_<wbr>to_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/ebf8289/src/entities/status.ts#L21">src/entities/status.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/status.ts#L21">src/entities/status.ts:21</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -286,7 +302,7 @@
 					<div class="tsd-signature tsd-kind-icon">language<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/ebf8289/src/entities/status.ts#L61">src/entities/status.ts:61</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/status.ts#L61">src/entities/status.ts:61</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -301,7 +317,7 @@
 					<div class="tsd-signature tsd-kind-icon">media_<wbr>attachments<span class="tsd-signature-symbol">:</span> <a href="_entities_attachment_.attachment.html" class="tsd-signature-type">Attachment</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/ebf8289/src/entities/status.ts#L53">src/entities/status.ts:53</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/status.ts#L53">src/entities/status.ts:53</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -316,7 +332,7 @@
 					<div class="tsd-signature tsd-kind-icon">mentions<span class="tsd-signature-symbol">:</span> <a href="_entities_mention_.mention.html" class="tsd-signature-type">Mention</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/ebf8289/src/entities/status.ts#L55">src/entities/status.ts:55</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/status.ts#L55">src/entities/status.ts:55</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -331,7 +347,7 @@
 					<div class="tsd-signature tsd-kind-icon">muted<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/ebf8289/src/entities/status.ts#L45">src/entities/status.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/status.ts#L45">src/entities/status.ts:45</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -346,7 +362,7 @@
 					<div class="tsd-signature tsd-kind-icon">pinned<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/ebf8289/src/entities/status.ts#L63">src/entities/status.ts:63</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/status.ts#L63">src/entities/status.ts:63</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -361,7 +377,7 @@
 					<div class="tsd-signature tsd-kind-icon">reblog<span class="tsd-signature-symbol">:</span> <a href="_entities_status_.status.html" class="tsd-signature-type">Status</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/ebf8289/src/entities/status.ts#L25">src/entities/status.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/status.ts#L25">src/entities/status.ts:25</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -376,7 +392,7 @@
 					<div class="tsd-signature tsd-kind-icon">reblogged<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/ebf8289/src/entities/status.ts#L41">src/entities/status.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/status.ts#L41">src/entities/status.ts:41</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -391,7 +407,7 @@
 					<div class="tsd-signature tsd-kind-icon">reblogs_<wbr>count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/ebf8289/src/entities/status.ts#L37">src/entities/status.ts:37</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/status.ts#L37">src/entities/status.ts:37</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -406,7 +422,7 @@
 					<div class="tsd-signature tsd-kind-icon">replies_<wbr>count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/ebf8289/src/entities/status.ts#L35">src/entities/status.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/status.ts#L35">src/entities/status.ts:35</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -421,7 +437,7 @@
 					<div class="tsd-signature tsd-kind-icon">sensitive<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/ebf8289/src/entities/status.ts#L47">src/entities/status.ts:47</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/status.ts#L47">src/entities/status.ts:47</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -436,7 +452,7 @@
 					<div class="tsd-signature tsd-kind-icon">spoiler_<wbr>text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/ebf8289/src/entities/status.ts#L49">src/entities/status.ts:49</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/status.ts#L49">src/entities/status.ts:49</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -451,7 +467,7 @@
 					<div class="tsd-signature tsd-kind-icon">tags<span class="tsd-signature-symbol">:</span> <a href="_entities_tag_.tag.html" class="tsd-signature-type">Tag</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/ebf8289/src/entities/status.ts#L57">src/entities/status.ts:57</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/status.ts#L57">src/entities/status.ts:57</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -466,7 +482,7 @@
 					<div class="tsd-signature tsd-kind-icon">uri<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/ebf8289/src/entities/status.ts#L15">src/entities/status.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/status.ts#L15">src/entities/status.ts:15</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -481,7 +497,7 @@
 					<div class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/ebf8289/src/entities/status.ts#L17">src/entities/status.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/status.ts#L17">src/entities/status.ts:17</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -496,7 +512,7 @@
 					<div class="tsd-signature tsd-kind-icon">visibility<span class="tsd-signature-symbol">:</span> <a href="../modules/_entities_status_.html#statusvisibility" class="tsd-signature-type">StatusVisibility</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/ebf8289/src/entities/status.ts#L51">src/entities/status.ts:51</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/status.ts#L51">src/entities/status.ts:51</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -530,6 +546,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_entities_status_.status.html#application" class="tsd-kind-icon">application</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_entities_status_.status.html#bookmarked" class="tsd-kind-icon">bookmarked</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_entities_status_.status.html#card" class="tsd-kind-icon">card</a>
