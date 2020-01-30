@@ -2,6 +2,8 @@ import querystring, { ParsedUrlQueryInput } from 'querystring';
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import normalizeUrl from 'normalize-url'; // eslint-disable-line import/default
 import semver from 'semver';
+import { MastoForbiddenError } from '../errors/masto-forbidden-error';
+import { MastoUnprocessableEntityError } from '../errors/masto-unprocessable-entity-error';
 import { Instance } from '../entities/instance';
 import { MastoNotFoundError } from '../errors/masto-not-found-error';
 import { MastoRateLimitError } from '../errors/masto-rate-limit-error';
@@ -183,20 +185,19 @@ export class Gateway {
         throw error;
       }
 
-      // Why??
-      // eslint-disable-next-line @typescript-eslint/no-use-before-define
       const status = error?.response?.status;
-
-      // Error response from REST API might contain error key
-      // https://docs.joinmastodon.org/api/entities/#error
       const message =
         error?.response?.data?.error ?? 'Unexpected error occurred';
 
       switch (status) {
         case 401:
           throw new MastoUnauthorizedError(message);
+        case 403:
+          throw new MastoForbiddenError(message);
         case 404:
           throw new MastoNotFoundError(message);
+        case 422:
+          throw new MastoUnprocessableEntityError(message);
         case 429:
           throw new MastoRateLimitError(message);
         default:
