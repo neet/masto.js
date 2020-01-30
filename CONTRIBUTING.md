@@ -27,6 +27,6 @@ There are some useful scripts in `package.json` which you can with `yarn run`.
 - `docs:build`     - Generate documentation by TypeDoc
 
 ## Testing
-We write tests to check if the program works fine. Specifications live in `__tests__` directory. We enforce **100% codecov** on this library.
+We write tests to check if the program works fine. Specifications live in `__tests__` directory.
 
 Husky, a hooker of git, always validates your code satisfies `test:eslint` so you don't need to run them.
