@@ -2,12 +2,14 @@ import querystring, { ParsedUrlQueryInput } from 'querystring';
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import normalizeUrl from 'normalize-url'; // eslint-disable-line import/default
 import semver from 'semver';
-import { MastoForbiddenError } from '../errors/masto-forbidden-error';
-import { MastoUnprocessableEntityError } from '../errors/masto-unprocessable-entity-error';
-import { Instance } from '../entities/instance';
-import { MastoNotFoundError } from '../errors/masto-not-found-error';
-import { MastoRateLimitError } from '../errors/masto-rate-limit-error';
-import { MastoUnauthorizedError } from '../errors/masto-unauthorized-error';
+import { Instance } from '../entities';
+import {
+  MastoNotFoundError,
+  MastoRateLimitError,
+  MastoUnauthorizedError,
+  MastoForbiddenError,
+  MastoUnprocessableEntityError,
+} from '../errors';
 import { createFormData } from './create-form-data';
 import { isAxiosError } from './is-axios-error';
 import { WebSocketEvents } from './websocket';

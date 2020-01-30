@@ -3,9 +3,11 @@ import axios from 'axios';
 import { Gateway } from '../gateway';
 // @ts-ignore
 import { WebSocketEvents, mockConnect } from '../websocket';
-import { MastoUnauthorizedError } from '../../errors/masto-unauthorized-error';
-import { MastoNotFoundError } from '../../errors/masto-not-found-error';
-import { MastoRateLimitError } from '../../errors/masto-rate-limit-error';
+import {
+  MastoNotFoundError,
+  MastoRateLimitError,
+  MastoUnauthorizedError,
+} from '../../errors';
 import 'isomorphic-form-data';
 
 jest.mock('../websocket');

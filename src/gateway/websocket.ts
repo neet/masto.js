@@ -1,8 +1,6 @@
 import EventEmitter from 'eventemitter3';
 import WebSocket from 'isomorphic-ws';
-import { Conversation } from '../entities/conversation';
-import { Notification } from '../entities/notification';
-import { Status } from '../entities/status';
+import { Conversation, Notification, Status } from '../entities';
 
 /** Map of event name and callback argument */
 export interface EventTypeMap {

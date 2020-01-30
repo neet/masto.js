@@ -1,7 +1,6 @@
-import { AdminAccount } from '../../entities/admin-account';
-import { AdminReport } from '../../entities/admin-report';
 import { Gateway } from '../../gateway/gateway';
 import { available } from '../../gateway/decorators';
+import { AdminAccount, AdminReport } from '../../entities';
 import {
   AdminActionAccountParams,
   AdminFetchAccountParams,
