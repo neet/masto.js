@@ -7,6 +7,8 @@ import {
   MastoNotFoundError,
   MastoRateLimitError,
   MastoUnauthorizedError,
+  MastoForbiddenError,
+  MastoUnprocessableEntityError,
 } from '../../errors';
 import 'isomorphic-form-data';
 
@@ -208,6 +210,48 @@ describe('Gateway', () => {
     // @ts-ignore
     expect(gateway.request(options)).rejects.toThrow(
       new MastoRateLimitError('RateLimit'),
+    );
+  });
+
+  test('throw MastodonForbiddenError when 403 responded', async () => {
+    const options = {
+      method: 'POST',
+      url: '/',
+    };
+
+    ((mockAxios.request as any) as jest.Mock).mockRejectedValue({
+      response: {
+        status: 403,
+        data: {
+          error: 'Forbidden',
+        },
+      },
+    });
+
+    // @ts-ignore
+    expect(gateway.request(options)).rejects.toThrow(
+      new MastoForbiddenError('Forbidden'),
+    );
+  });
+
+  test('throw MastoUnprocessableEntityError when 422 responded', async () => {
+    const options = {
+      method: 'POST',
+      url: '/',
+    };
+
+    ((mockAxios.request as any) as jest.Mock).mockRejectedValue({
+      response: {
+        status: 422,
+        data: {
+          error: 'UnprocessableEntity',
+        },
+      },
+    });
+
+    // @ts-ignore
+    expect(gateway.request(options)).rejects.toThrow(
+      new MastoUnprocessableEntityError('UnprocessableEntity'),
     );
   });
 
