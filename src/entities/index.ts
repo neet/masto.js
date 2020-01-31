@@ -11,6 +11,7 @@ export * from './conversation';
 export * from './emoji';
 export * from './featured-tags';
 export * from './filter';
+export * from './history';
 export * from './identity-proof';
 export * from './instance';
 export * from './list';
