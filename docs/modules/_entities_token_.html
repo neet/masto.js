@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>OAuthToken | masto - v2.9.0-rc1</title>
+	<title>&quot;entities/token&quot; | masto</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">masto - v2.9.0-rc1</a>
+					<a href="../index.html" class="title">masto</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -54,103 +54,53 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_entities_oauth_.html">&quot;entities/oauth&quot;</a>
-				</li>
-				<li>
-					<a href="_entities_oauth_.oauthtoken.html">OAuthToken</a>
+					<a href="_entities_token_.html">&quot;entities/token&quot;</a>
 				</li>
 			</ul>
-			<h1>Interface OAuthToken</h1>
+			<h1>External module &quot;entities/token&quot;</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="target">OAuthToken</span>
-					</li>
-				</ul>
-			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
+							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_oauth_.oauthtoken.html#access_token" class="tsd-kind-icon">access_<wbr>token</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_oauth_.oauthtoken.html#created_at" class="tsd-kind-icon">created_<wbr>at</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_oauth_.oauthtoken.html#scope" class="tsd-kind-icon">scope</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_oauth_.oauthtoken.html#token_type" class="tsd-kind-icon">token_<wbr>type</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_entities_token_.oauthclient.html" class="tsd-kind-icon">OAuth<wbr>Client</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_entities_token_.token.html" class="tsd-kind-icon">Token</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="_entities_token_.html#oauthtoken" class="tsd-kind-icon">OAuth<wbr>Token</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="access_token" class="tsd-anchor"></a>
-					<h3>access_<wbr>token</h3>
-					<div class="tsd-signature tsd-kind-icon">access_<wbr>token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module">
+					<a name="oauthtoken" class="tsd-anchor"></a>
+					<h3>OAuth<wbr>Token</h3>
+					<div class="tsd-signature tsd-kind-icon">OAuth<wbr>Token<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_entities_token_.token.html" class="tsd-signature-type">Token</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/oauth.ts#L10">src/entities/oauth.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/token.ts#L22">src/entities/token.ts:22</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Access token of the account</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="created_at" class="tsd-anchor"></a>
-					<h3>created_<wbr>at</h3>
-					<div class="tsd-signature tsd-kind-icon">created_<wbr>at<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/oauth.ts#L16">src/entities/oauth.ts:16</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Created date of the token</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="scope" class="tsd-anchor"></a>
-					<h3>scope</h3>
-					<div class="tsd-signature tsd-kind-icon">scope<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/oauth.ts#L14">src/entities/oauth.ts:14</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Scope of the token</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="token_type" class="tsd-anchor"></a>
-					<h3>token_<wbr>type</h3>
-					<div class="tsd-signature tsd-kind-icon">token_<wbr>type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/oauth.ts#L12">src/entities/oauth.ts:12</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Type of the token</p>
-						</div>
+						<dl class="tsd-comment-tags">
+							<dt>deprecated</dt>
+							<dd><p>Use Token</p>
+							</dd>
+						</dl>
 					</div>
 				</section>
 			</section>
@@ -162,36 +112,21 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_entities_oauth_.html">&quot;entities/oauth&quot;</a>
+						<a href="_entities_token_.html">&quot;entities/token&quot;</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_entities_oauth_.oauthclient.html" class="tsd-kind-icon">OAuth<wbr>Client</a>
+						<a href="../interfaces/_entities_token_.oauthclient.html" class="tsd-kind-icon">OAuth<wbr>Client</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_entities_oauth_.oauthtoken.html" class="tsd-kind-icon">OAuth<wbr>Token</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_oauth_.oauthtoken.html#access_token" class="tsd-kind-icon">access_<wbr>token</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_oauth_.oauthtoken.html#created_at" class="tsd-kind-icon">created_<wbr>at</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_oauth_.oauthtoken.html#scope" class="tsd-kind-icon">scope</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_oauth_.oauthtoken.html#token_type" class="tsd-kind-icon">token_<wbr>type</a>
-							</li>
-						</ul>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/_entities_token_.token.html" class="tsd-kind-icon">Token</a>
 					</li>
-				</ul>
-				<ul class="after-current">
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="_entities_token_.html#oauthtoken" class="tsd-kind-icon">OAuth<wbr>Token</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

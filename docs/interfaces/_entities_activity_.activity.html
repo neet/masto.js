@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AccountSource | masto - v2.9.0-rc1</title>
+	<title>Activity | masto</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">masto - v2.9.0-rc1</a>
+					<a href="../index.html" class="title">masto</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -54,13 +54,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_entities_account_.html">&quot;entities/account&quot;</a>
+					<a href="../modules/_entities_activity_.html">&quot;entities/activity&quot;</a>
 				</li>
 				<li>
-					<a href="_entities_account_.accountsource.html">AccountSource</a>
+					<a href="_entities_activity_.activity.html">Activity</a>
 				</li>
 			</ul>
-			<h1>Interface AccountSource</h1>
+			<h1>Interface Activity</h1>
 		</div>
 	</div>
 </header>
@@ -71,7 +71,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">AccountSource</span>
+						<span class="target">Activity</span>
 					</li>
 				</ul>
 			</section>
@@ -82,11 +82,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_account_.accountsource.html#fields" class="tsd-kind-icon">fields</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_account_.accountsource.html#language" class="tsd-kind-icon">language</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_account_.accountsource.html#note" class="tsd-kind-icon">note</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_account_.accountsource.html#privacy" class="tsd-kind-icon">privacy</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_account_.accountsource.html#sensitive" class="tsd-kind-icon">sensitive</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_activity_.activity.html#logins" class="tsd-kind-icon">logins</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_activity_.activity.html#registrations" class="tsd-kind-icon">registrations</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_activity_.activity.html#statuses" class="tsd-kind-icon">statuses</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_activity_.activity.html#week" class="tsd-kind-icon">week</a></li>
 							</ul>
 						</section>
 					</div>
@@ -95,77 +94,62 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="fields" class="tsd-anchor"></a>
-					<h3>fields</h3>
-					<div class="tsd-signature tsd-kind-icon">fields<span class="tsd-signature-symbol">:</span> <a href="_entities_account_.accountfield.html" class="tsd-signature-type">AccountField</a></div>
+					<a name="logins" class="tsd-anchor"></a>
+					<h3>logins</h3>
+					<div class="tsd-signature tsd-kind-icon">logins<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/account.ts#L85">src/entities/account.ts:85</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/activity.ts#L7">src/entities/activity.ts:7</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Plain-text version of the account&#39;s field</p>
+							<p>Active users while the week</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="language" class="tsd-anchor"></a>
-					<h3>language</h3>
-					<div class="tsd-signature tsd-kind-icon">language<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<a name="registrations" class="tsd-anchor"></a>
+					<h3>registrations</h3>
+					<div class="tsd-signature tsd-kind-icon">registrations<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/account.ts#L81">src/entities/account.ts:81</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/activity.ts#L9">src/entities/activity.ts:9</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>User&#39;s default language</p>
+							<p>New registrations while the week</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="note" class="tsd-anchor"></a>
-					<h3>note</h3>
-					<div class="tsd-signature tsd-kind-icon">note<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="statuses" class="tsd-anchor"></a>
+					<h3>statuses</h3>
+					<div class="tsd-signature tsd-kind-icon">statuses<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/account.ts#L83">src/entities/account.ts:83</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/activity.ts#L5">src/entities/activity.ts:5</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Plain-text version of the account&#39;s <code>note</code></p>
+							<p>Number of statuses created while the week</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="privacy" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> privacy</h3>
-					<div class="tsd-signature tsd-kind-icon">privacy<span class="tsd-signature-symbol">:</span> <a href="../modules/_entities_status_.html#statusvisibility" class="tsd-signature-type">StatusVisibility</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<a name="week" class="tsd-anchor"></a>
+					<h3>week</h3>
+					<div class="tsd-signature tsd-kind-icon">week<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/account.ts#L77">src/entities/account.ts:77</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/activity.ts#L3">src/entities/activity.ts:3</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Selected preference: Default privacy of new toots</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="sensitive" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> sensitive</h3>
-					<div class="tsd-signature tsd-kind-icon">sensitive<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/account.ts#L79">src/entities/account.ts:79</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Selected preference: Mark media as sensitive by default?</p>
+							<p>Timestamp of 0 o&#39;clock on Monday of the week</p>
 						</div>
 					</div>
 				</section>
@@ -178,48 +162,36 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_entities_account_.html">&quot;entities/account&quot;</a>
+						<a href="../modules/_entities_activity_.html">&quot;entities/activity&quot;</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_entities_account_.account.html" class="tsd-kind-icon">Account</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_entities_account_.accountcredentials.html" class="tsd-kind-icon">Account<wbr>Credentials</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_entities_account_.accountfield.html" class="tsd-kind-icon">Account<wbr>Field</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_entities_account_.accountidentityproof.html" class="tsd-kind-icon">Account<wbr>Identity<wbr>Proof</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_entities_account_.accountsource.html" class="tsd-kind-icon">Account<wbr>Source</a>
+						<a href="_entities_activity_.activity.html" class="tsd-kind-icon">Activity</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_account_.accountsource.html#fields" class="tsd-kind-icon">fields</a>
+								<a href="_entities_activity_.activity.html#logins" class="tsd-kind-icon">logins</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_account_.accountsource.html#language" class="tsd-kind-icon">language</a>
+								<a href="_entities_activity_.activity.html#registrations" class="tsd-kind-icon">registrations</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_account_.accountsource.html#note" class="tsd-kind-icon">note</a>
+								<a href="_entities_activity_.activity.html#statuses" class="tsd-kind-icon">statuses</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_account_.accountsource.html#privacy" class="tsd-kind-icon">privacy</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_account_.accountsource.html#sensitive" class="tsd-kind-icon">sensitive</a>
+								<a href="_entities_activity_.activity.html#week" class="tsd-kind-icon">week</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_entities_activity_.html#instanceactivity" class="tsd-kind-icon">Instance<wbr>Activity</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

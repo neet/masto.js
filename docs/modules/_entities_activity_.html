@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>InstanceActivity | masto - v2.9.0-rc1</title>
+	<title>&quot;entities/activity&quot; | masto</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">masto - v2.9.0-rc1</a>
+					<a href="../index.html" class="title">masto</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -54,103 +54,52 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_entities_instance_.html">&quot;entities/instance&quot;</a>
-				</li>
-				<li>
-					<a href="_entities_instance_.instanceactivity.html">InstanceActivity</a>
+					<a href="_entities_activity_.html">&quot;entities/activity&quot;</a>
 				</li>
 			</ul>
-			<h1>Interface InstanceActivity</h1>
+			<h1>External module &quot;entities/activity&quot;</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="target">InstanceActivity</span>
-					</li>
-				</ul>
-			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
+							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_instance_.instanceactivity.html#logins" class="tsd-kind-icon">logins</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_instance_.instanceactivity.html#registrations" class="tsd-kind-icon">registrations</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_instance_.instanceactivity.html#statuses" class="tsd-kind-icon">statuses</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_instance_.instanceactivity.html#week" class="tsd-kind-icon">week</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_entities_activity_.activity.html" class="tsd-kind-icon">Activity</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="_entities_activity_.html#instanceactivity" class="tsd-kind-icon">Instance<wbr>Activity</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="logins" class="tsd-anchor"></a>
-					<h3>logins</h3>
-					<div class="tsd-signature tsd-kind-icon">logins<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module">
+					<a name="instanceactivity" class="tsd-anchor"></a>
+					<h3>Instance<wbr>Activity</h3>
+					<div class="tsd-signature tsd-kind-icon">Instance<wbr>Activity<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_entities_activity_.activity.html" class="tsd-signature-type">Activity</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/instance.ts#L48">src/entities/instance.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/activity.ts#L15">src/entities/activity.ts:15</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Active users while the week</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="registrations" class="tsd-anchor"></a>
-					<h3>registrations</h3>
-					<div class="tsd-signature tsd-kind-icon">registrations<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/instance.ts#L50">src/entities/instance.ts:50</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>New registrations while the week</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="statuses" class="tsd-anchor"></a>
-					<h3>statuses</h3>
-					<div class="tsd-signature tsd-kind-icon">statuses<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/instance.ts#L46">src/entities/instance.ts:46</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Number of statuses created while the week</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="week" class="tsd-anchor"></a>
-					<h3>week</h3>
-					<div class="tsd-signature tsd-kind-icon">week<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/cdf9262/src/entities/instance.ts#L44">src/entities/instance.ts:44</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Timestamp of 0 o&#39;clock on Monday of the week</p>
-						</div>
+						<dl class="tsd-comment-tags">
+							<dt>deprecated</dt>
+							<dd><p>Use Activity</p>
+							</dd>
+						</dl>
 					</div>
 				</section>
 			</section>
@@ -162,41 +111,17 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_entities_instance_.html">&quot;entities/instance&quot;</a>
+						<a href="_entities_activity_.html">&quot;entities/activity&quot;</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_entities_instance_.instance.html" class="tsd-kind-icon">Instance</a>
+						<a href="../interfaces/_entities_activity_.activity.html" class="tsd-kind-icon">Activity</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_entities_instance_.instanceactivity.html" class="tsd-kind-icon">Instance<wbr>Activity</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_instance_.instanceactivity.html#logins" class="tsd-kind-icon">logins</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_instance_.instanceactivity.html#registrations" class="tsd-kind-icon">registrations</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_instance_.instanceactivity.html#statuses" class="tsd-kind-icon">statuses</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_instance_.instanceactivity.html#week" class="tsd-kind-icon">week</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_entities_instance_.instancestats.html" class="tsd-kind-icon">Instance<wbr>Stats</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_entities_instance_.instanceurls.html" class="tsd-kind-icon">InstanceURLs</a>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="_entities_activity_.html#instanceactivity" class="tsd-kind-icon">Instance<wbr>Activity</a>
 					</li>
 				</ul>
 			</nav>
