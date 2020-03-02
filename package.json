@@ -54,7 +54,7 @@
     "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-terser": "^5.2.0",
     "rollup-plugin-typescript2": "^0.26.0",
-    "ts-jest": "^25.2.0",
+    "ts-jest": "^25.2.1",
     "typedoc": "^0.16.9",
     "typescript": "3.7.5"
   },
