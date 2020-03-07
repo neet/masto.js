@@ -2,10 +2,10 @@
 import { Masto } from '../masto';
 // @ts-ignore
 // prettier-ignore
-import { Gateway, mockGet, mockPost, mockDelete, mockPut, mockPatch, mockPaginate, mockStream } from '../../../gateway/gateway';
+import { Gateway, mockGet, mockPost, mockDelete, mockPut, mockPatch, mockPaginate, mockStream } from '../../../gateway/gateway-impl';
 
 jest.mock('../../../gateway/websocket');
-jest.mock('../../../gateway/gateway');
+jest.mock('../../../gateway/gateway-impl');
 
 describe('Masto', () => {
   const masto = new Masto({

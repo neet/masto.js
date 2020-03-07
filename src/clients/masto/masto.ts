@@ -1,5 +1,4 @@
-import { Gateway } from '../../gateway/gateway';
-import { available } from '../../gateway/decorators';
+import { GatewayImpl, available } from '../../gateway';
 import {
   Account,
   AccountCredentials,
@@ -66,7 +65,7 @@ import {
 /**
  * Mastodon API client
  */
-export class Masto extends Gateway {
+export class Masto extends GatewayImpl {
   /**
    * Starting home timeline and notification streaming
    * @return Instance of EventEmitter
