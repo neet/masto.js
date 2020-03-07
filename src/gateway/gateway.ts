@@ -1,5 +1,5 @@
 import { ParsedUrlQueryInput } from 'querystring';
-import EventEmitter from 'eventemitter3';
+import { EventHandler } from './event-handler';
 
 /**
  * Argument of `Gateway.paginate().next()`.
@@ -27,7 +27,7 @@ export interface Gateway<Options = undefined> {
   put<T>(path: string, data: unknown, options?: Options): Promise<T>;
   patch<T>(path: string, data: unknown, options?: Options): Promise<T>;
   delete<T>(path: string, data: unknown, options?: Options): Promise<T>;
-  stream(path: string, params: ParsedUrlQueryInput): Promise<EventEmitter>;
+  stream(path: string, params: ParsedUrlQueryInput): Promise<EventHandler>;
   paginate<T, U>(
     url: string,
     params?: U,
