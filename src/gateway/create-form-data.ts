@@ -1,8 +1,6 @@
 // eslint-disable-next-line import/no-unassigned-import
 import 'isomorphic-form-data';
 
-export const isArray = (x: unknown): x is unknown[] =>
-  typeof x === 'object' && x !== null && x.constructor === Array;
 export const isObject = (x: unknown): x is { [key: string]: unknown } =>
   typeof x === 'object' && x !== null && x.constructor === Object;
 
@@ -34,7 +32,7 @@ export function createFormData(
   result = new FormData(),
   parentKey = '',
 ) {
-  if (isArray(encodable)) {
+  if (Array.isArray(encodable)) {
     encodable.forEach((value, i) => {
       createFormData(value, result, `${parentKey}[${i}]`);
     });
