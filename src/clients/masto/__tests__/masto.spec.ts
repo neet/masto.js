@@ -488,8 +488,8 @@ describe('Masto', () => {
     expect(mockDelete).toMatchSnapshot();
   });
 
-  test('uploadMediaAttachment', async () => {
-    await masto.uploadMediaAttachment({
+  test('createMediaAttachment', async () => {
+    await masto.createMediaAttachment({
       file: '...',
       description: 'Nice image',
     });

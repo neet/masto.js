@@ -750,7 +750,7 @@ export class Masto extends GatewayImpl {
    * @see https://docs.joinmastodon.org/api/rest/media/#post-api-v1-media
    */
   @available({ since: '0.0.0' })
-  uploadMediaAttachment(params: UploadMediaAttachmentParams) {
+  createMediaAttachment(params: UploadMediaAttachmentParams) {
     return this.post<Attachment>('/api/v1/media', params, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });

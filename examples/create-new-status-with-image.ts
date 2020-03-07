@@ -8,7 +8,7 @@ import { Masto } from '../src';
   });
 
   // Upload the image
-  const attachment = await masto.uploadMediaAttachment({
+  const attachment = await masto.createMediaAttachment({
     file: fs.createReadStream('../some_image.png'),
     description: 'Some image',
   });
