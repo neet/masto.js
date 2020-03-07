@@ -12,7 +12,7 @@ import {
 } from '../errors';
 import { createFormData } from './create-form-data';
 import { isAxiosError } from './is-axios-error';
-import { WebSocketEvents } from './websocket';
+import { EventHandlerImpl } from './event-handler-impl';
 import {
   Gateway,
   GatewayConstructorParams,
@@ -311,7 +311,7 @@ export class GatewayImpl implements Gateway<AxiosRequestConfig> {
       path +
       (Object.keys(params).length ? `?${querystring.stringify(params)}` : '');
 
-    return new WebSocketEvents().connect(url, protocols);
+    return new EventHandlerImpl().connect(url, protocols);
   }
 
   /**

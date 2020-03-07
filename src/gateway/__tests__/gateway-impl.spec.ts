@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { GatewayImpl } from '../gateway-impl';
 // @ts-ignore
-import { WebSocketEvents, mockConnect } from '../websocket';
+import { EventHandlerImpl, mockConnect } from '../event-handler-impl';
 import {
   MastoNotFoundError,
   MastoRateLimitError,
@@ -12,7 +12,7 @@ import {
 } from '../../errors';
 import 'isomorphic-form-data';
 
-jest.mock('../websocket');
+jest.mock('../event-handler-impl');
 
 // Mock `axios.create`. We don't use any functions from axios
 // but from `axios.create`

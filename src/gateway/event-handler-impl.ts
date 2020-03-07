@@ -1,34 +1,12 @@
 import EventEmitter from 'eventemitter3';
 import WebSocket from 'isomorphic-ws';
-import { Conversation, Notification, Status } from '../entities';
-
-/** Map of event name and callback argument */
-export interface EventTypeMap {
-  /** Status posted */
-  update: [Status];
-  /** Status deleted */
-  delete: [Status['id']];
-  /** User's notification */
-  notification: [Notification];
-  /** User's filter changed */
-  filters_changed: [];
-  /** Status added to a conversation */
-  conversation: [Conversation];
-}
-
-/** Supported event names */
-export type EventType = keyof EventTypeMap;
-
-/** Mastodon event */
-export interface Event {
-  event: EventType;
-  payload: string;
-}
+import { EventHandler, EventTypeMap, EventType, Event } from './event-handler';
 
 /**
  * Mastodon streaming api wrapper
  */
-export class WebSocketEvents extends EventEmitter<EventTypeMap> {
+export class EventHandlerImpl extends EventEmitter<EventTypeMap>
+  implements EventHandler {
   private ws?: WebSocket;
 
   /**
@@ -38,7 +16,7 @@ export class WebSocketEvents extends EventEmitter<EventTypeMap> {
    * @param params URL parameters
    */
   connect(url: string, protocols?: string | string[]) {
-    return new Promise<WebSocketEvents>((resolve, reject) => {
+    return new Promise<this>((resolve, reject) => {
       this.ws = new WebSocket(url, protocols);
       this.ws.addEventListener('open', () => resolve(this));
       this.ws.addEventListener('message', this.handleMessage);
@@ -59,7 +37,7 @@ export class WebSocketEvents extends EventEmitter<EventTypeMap> {
    * @param message Websocket message
    */
   handleMessage = ({ data }: { data: string }) => {
-    const event = JSON.parse(data) as Event;
+    const event: Event = JSON.parse(data);
     let args: EventTypeMap[EventType];
 
     try {

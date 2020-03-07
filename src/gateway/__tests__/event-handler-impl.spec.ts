@@ -1,5 +1,5 @@
 import WebSocket from 'isomorphic-ws';
-import { WebSocketEvents } from '../websocket';
+import { EventHandlerImpl } from '../event-handler-impl';
 
 const mockOn = jest.fn();
 const mockEmit = jest.fn();
@@ -24,11 +24,11 @@ jest.mock('isomorphic-ws', () => {
   }));
 });
 
-describe('WebSocketEvents', () => {
-  let wsEvents!: WebSocketEvents;
+describe('EventHandlerImpl', () => {
+  let wsEvents!: EventHandlerImpl;
 
   beforeEach(() => {
-    wsEvents = new WebSocketEvents();
+    wsEvents = new EventHandlerImpl();
     mockOn.mockClear();
     mockAddEventListenerWs.mockClear();
     mockEmit.mockClear();
@@ -75,6 +75,7 @@ describe('WebSocketEvents', () => {
     expect(mockCloseWs).toBeCalled();
   });
 
+  // Fix this tests: handleMessage supposed to be private
   test('emit event with given props', () => {
     const originalPayload = {
       aaaa: 'foobar',
