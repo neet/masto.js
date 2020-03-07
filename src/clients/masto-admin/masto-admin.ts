@@ -1,5 +1,4 @@
-import { Gateway } from '../../gateway/gateway';
-import { available } from '../../gateway/decorators';
+import { GatewayImpl, available } from '../../gateway';
 import { AdminAccount, AdminReport } from '../../entities';
 import {
   AdminActionAccountParams,
@@ -10,7 +9,7 @@ import {
 /**
  * Mastodon Moderation API client
  */
-export class MastoAdmin extends Gateway {
+export class MastoAdmin extends GatewayImpl {
   /**
    * Get accounts
    * @param params parameters

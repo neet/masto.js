@@ -1,6 +1,6 @@
 /* eslint-disable */
 import axios from 'axios';
-import { Gateway } from '../gateway';
+import { GatewayImpl } from '../gateway-impl';
 // @ts-ignore
 import { WebSocketEvents, mockConnect } from '../websocket';
 import {
@@ -20,8 +20,8 @@ jest.mock('axios');
 const mockAxios = jest.genMockFromModule<typeof axios>('axios');
 (axios.create as jest.Mock).mockImplementation(() => mockAxios);
 
-describe('Gateway', () => {
-  const gateway = new Gateway({
+describe('GatewayImpl', () => {
+  const gateway = new GatewayImpl({
     uri: 'https://example.com',
     version: '99.9.9',
     streamingApiUrl: 'wss://example.com',
@@ -50,14 +50,14 @@ describe('Gateway', () => {
       uri: 'https://example.com',
       accessToken: 'some token',
     };
-    const gateway = await Gateway.login(params);
+    const gateway = await GatewayImpl.login(params);
 
     expect(gateway.version).toBe('2.8.0');
     expect(gateway.streamingApiUrl).toBe('wss://example.com/stream');
   });
 
   test('streamingApiUrl has been set if construct with streamingApiUrl', () => {
-    const customGateway = new Gateway({
+    const customGateway = new GatewayImpl({
       uri: 'https://example.com',
       streamingApiUrl: 'wss://example.com',
     });
@@ -65,7 +65,7 @@ describe('Gateway', () => {
   });
 
   test('version has been set if construct with version ', () => {
-    const customGateway = new Gateway({
+    const customGateway = new GatewayImpl({
       uri: 'https://example.com',
       version: '1.2.3',
     });
@@ -73,7 +73,7 @@ describe('Gateway', () => {
   });
 
   test('accessToken has been set if construct with accessToken', () => {
-    const customGateway = new Gateway({
+    const customGateway = new GatewayImpl({
       uri: 'https://example.com',
       accessToken: 'token token',
     });
@@ -81,7 +81,7 @@ describe('Gateway', () => {
   });
 
   test('this._uri accessor works', () => {
-    const customGateway = new Gateway({
+    const customGateway = new GatewayImpl({
       uri: 'https://example.com/aaa',
     });
     customGateway.uri = 'https://example.com/bbb';
@@ -89,7 +89,7 @@ describe('Gateway', () => {
   });
 
   test('this._streamingApiUrl accessor works', () => {
-    const customGateway = new Gateway({
+    const customGateway = new GatewayImpl({
       uri: 'wss://example.com/aaa',
     });
     customGateway.uri = 'wss://example.com/bbb';
