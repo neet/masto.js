@@ -1,9 +1,9 @@
 // @ts-ignore
 // prettier-ignore
-import { Gateway, mockDelete, mockGet, mockPaginate, mockPatch, mockPost, mockPut, mockStream } from '../../../gateway/gateway';
+import { Gateway, mockDelete, mockGet, mockPaginate, mockPatch, mockPost, mockPut, mockStream } from '../../../gateway/gateway-impl';
 import { MastoAdmin } from '../masto-admin';
 
-jest.mock('../../../gateway/gateway');
+jest.mock('../../../gateway/gateway-impl');
 
 describe('MastoAdmin', () => {
   const masto = new MastoAdmin({
