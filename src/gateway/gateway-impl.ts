@@ -34,7 +34,7 @@ export class GatewayImpl implements Gateway<AxiosRequestConfig> {
   /** Streaming API URL of the instance */
   private _streamingApiUrl = '';
   /** Version of the current instance */
-  version = '';
+  version?: string;
   /** API token of the user */
   accessToken?: string;
 
@@ -309,12 +309,11 @@ export class GatewayImpl implements Gateway<AxiosRequestConfig> {
    * @return Instance of EventEmitter
    */
   stream(path: string, params: ParsedUrlQueryInput = {}) {
-    const version = semver.coerce(this.version);
     const protocols = [];
 
     // Since v2.8.4, it is supported to pass access token with`Sec-Websocket-Protocol`
     // https://github.com/tootsuite/mastodon/pull/10818
-    if (this.accessToken && version && semver.gte(version, '2.8.4')) {
+    if (this.accessToken && this.version && semver.gte(this.version, '2.8.4')) {
       protocols.push(this.accessToken);
     } else if (this.accessToken) {
       params.accessToken = this.accessToken;
