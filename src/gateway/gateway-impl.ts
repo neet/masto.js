@@ -1,18 +1,18 @@
-import querystring, { ParsedUrlQueryInput } from 'querystring';
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import normalizeUrl from 'normalize-url'; // eslint-disable-line import/default
-import semver from 'semver';
 import { camelCase, snakeCase } from 'change-case';
+import normalizeUrl from 'normalize-url'; // eslint-disable-line import/default
+import querystring, { ParsedUrlQueryInput } from 'querystring';
+import semver from 'semver';
+
 import { Instance } from '../entities';
 import {
+  MastoForbiddenError,
   MastoNotFoundError,
   MastoRateLimitError,
   MastoUnauthorizedError,
-  MastoForbiddenError,
   MastoUnprocessableEntityError,
 } from '../errors';
 import { createFormData } from './create-form-data';
-import { isAxiosError } from './is-axios-error';
 import { EventHandlerImpl } from './event-handler-impl';
 import {
   Gateway,
@@ -20,6 +20,7 @@ import {
   LoginParams,
   PaginateNext,
 } from './gateway';
+import { isAxiosError } from './is-axios-error';
 import { transformKeys } from './transform-keys';
 
 /**

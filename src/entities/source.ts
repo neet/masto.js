@@ -1,5 +1,5 @@
-import { StatusVisibility } from './status';
 import { AccountField } from './account';
+import { StatusVisibility } from './status';
 
 export interface Source {
   /** Selected preference: Default privacy of new toots */

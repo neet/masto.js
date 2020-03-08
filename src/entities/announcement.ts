@@ -1,7 +1,7 @@
-import { Mention } from './mention';
-import { Tag } from './tag';
 import { Emoji } from './emoji';
+import { Mention } from './mention';
 import { Reaction } from './reaction';
+import { Tag } from './tag';
 
 export interface Announcement {
   id: string;

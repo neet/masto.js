@@ -1,4 +1,3 @@
-import { GatewayImpl, available } from '../../gateway';
 import {
   Account,
   AccountCredentials,
@@ -30,13 +29,18 @@ import {
   Token,
   Trend,
 } from '../../entities';
+import { available, GatewayImpl } from '../../gateway';
 import {
   AddPushSubscriptionParams,
   CreateAccountParams,
   CreateAppParams,
+  CreateFeaturedTagParams,
+  CreateMarkersParams,
   CreateStatusParams,
   FetchAccessTokenParams,
   FetchAccountStatusesParams,
+  FetchDirectoryParams,
+  FetchMarkersParams,
   FetchNotificationsParams,
   FetchTimelineParams,
   FollowAccountParams,
@@ -56,10 +60,6 @@ import {
   UpdateScheduledStatusParams,
   UploadMediaAttachmentParams,
   VotePollParams,
-  FetchMarkersParams,
-  CreateMarkersParams,
-  CreateFeaturedTagParams,
-  FetchDirectoryParams,
 } from './params';
 
 /**

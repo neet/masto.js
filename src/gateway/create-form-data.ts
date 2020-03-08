@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-unassigned-import
 import 'isomorphic-form-data';
+
 import { isObject } from './is-object';
 
 /**

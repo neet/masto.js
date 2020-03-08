@@ -1,4 +1,5 @@
 import EventEmitter from 'eventemitter3';
+
 import { Conversation, Notification, Status } from '../entities';
 
 /** Map of event name and callback argument */

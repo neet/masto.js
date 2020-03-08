@@ -2,11 +2,11 @@ import {
   AccountField,
   AccountSource,
   FilterContext,
+  Marker,
+  MarkerTimeline,
   NotificationType,
   PushSubscriptionAlerts,
   StatusVisibility,
-  MarkerTimeline,
-  Marker,
 } from '../../entities';
 
 export interface PaginationParams {

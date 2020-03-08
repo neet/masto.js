@@ -1,7 +1,8 @@
+import { camelCase } from 'change-case';
 import EventEmitter from 'eventemitter3';
 import WebSocket from 'isomorphic-ws';
-import { camelCase } from 'change-case';
-import { EventHandler, EventTypeMap, EventType, Event } from './event-handler';
+
+import { Event, EventHandler, EventType, EventTypeMap } from './event-handler';
 import { transformKeys } from './transform-keys';
 
 /**
