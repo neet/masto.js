@@ -20,7 +20,6 @@
     "strict": true
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules"],
   "typedocOptions": {
     "out": "./docs",
     "theme": "default",
