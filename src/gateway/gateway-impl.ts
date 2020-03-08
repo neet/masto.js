@@ -134,7 +134,7 @@ export class GatewayImpl implements Gateway<AxiosRequestConfig> {
       config.data = transformKeys(data, snakeCase);
     }
 
-    switch (config.headers['']) {
+    switch (config.headers['Content-Type']) {
       case 'application/json':
         config.data = JSON.stringify(config.data);
 
