@@ -1,19 +1,19 @@
 import { Application } from './application';
 
 export interface OAuthClient extends Application {
-  client_id: string;
-  client_secret: string;
+  clientId: string;
+  clientSecret: string;
 }
 
 export interface Token {
   /** Access token of the account */
-  access_token: string;
+  accessToken: string;
   /** Type of the token */
-  token_type: string;
+  tokenType: string;
   /** Scope of the token */
   scope: string;
   /** Created date of the token */
-  created_at: string;
+  createdAt: string;
 }
 
 /**

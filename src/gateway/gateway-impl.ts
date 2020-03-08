@@ -2,7 +2,7 @@ import querystring, { ParsedUrlQueryInput } from 'querystring';
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import normalizeUrl from 'normalize-url'; // eslint-disable-line import/default
 import semver from 'semver';
-import { snakeCase } from 'change-case';
+import { camelCase, snakeCase } from 'change-case';
 import { Instance } from '../entities';
 import {
   MastoNotFoundError,
@@ -108,7 +108,7 @@ export class GatewayImpl implements Gateway<AxiosRequestConfig> {
    */
   private transformResponse(data: string, _headers: unknown) {
     try {
-      return transformKeys(JSON.parse(data));
+      return transformKeys(JSON.parse(data), camelCase);
     } catch {
       return data;
     }
@@ -134,7 +134,7 @@ export class GatewayImpl implements Gateway<AxiosRequestConfig> {
       config.data = transformKeys(data, snakeCase);
     }
 
-    switch (config.headers['Content-Type']) {
+    switch (config.headers['']) {
       case 'application/json':
         config.data = JSON.stringify(config.data);
 
@@ -320,10 +320,14 @@ export class GatewayImpl implements Gateway<AxiosRequestConfig> {
       params.accessToken = this.accessToken;
     }
 
+    const encodedParams = querystring.stringify(
+      transformKeys<ParsedUrlQueryInput>(params, snakeCase),
+    );
+
     const url =
       this.streamingApiUrl +
       path +
-      (Object.keys(params).length ? `?${querystring.stringify(params)}` : '');
+      (Object.keys(params).length ? '?' + encodedParams : '');
 
     return new EventHandlerImpl().connect(url, protocols);
   }

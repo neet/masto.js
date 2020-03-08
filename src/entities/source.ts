@@ -13,7 +13,7 @@ export interface Source {
   /** Plain-text version of the account's field */
   fields: AccountField;
   /** The number of pending follow requests. */
-  follow_requests_count: number;
+  followRequestsCount: number;
 }
 
 /**

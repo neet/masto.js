@@ -2,13 +2,13 @@ export interface IdentityProof {
   /** Name of provider (such as "Keybase") */
   provider: string;
   /** Username in the provider */
-  provider_username: string;
+  providerUsername: string;
   /** The time the proof was updated */
-  updated_at: string;
+  updatedAt: string;
   /** URL of proof */
-  proof_url: string;
+  proofUrl: string;
   /** URL of profile on the provider */
-  profile_url: string;
+  profileUrl: string;
 }
 
 /**

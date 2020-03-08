@@ -15,7 +15,7 @@ export interface Instance {
   version: string;
   /** thumbnail of the instance */
   thumbnail?: string | null;
-  /** `streaming_api` */
+  /** `streamingApi` */
   urls: InstanceURLs;
   /** stats of the instance */
   stats: InstanceStats;
@@ -34,7 +34,7 @@ export interface InstanceURLs {
 }
 
 export interface InstanceStats {
-  user_count: number;
+  userCount: number;
   statusCount: number;
   domainCount: number;
 }

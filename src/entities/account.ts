@@ -7,7 +7,7 @@ export interface AccountField {
   /** (2.4 or later) Value of profile metadata field. */
   value?: string | null;
   /** date time*/
-  verified_at?: string | null;
+  verifiedAt?: string | null;
 }
 
 export interface Account {
@@ -18,21 +18,21 @@ export interface Account {
   /** Equals username for local users, includes `@domain` for remote ones */
   acct: string;
   /** The account's display name */
-  display_name: string;
+  displayName: string;
   /** Boolean for when the account cannot be followed without waiting for approval first */
   locked: boolean;
   /** Boolean to indicate that the account performs automated actions */
   bot?: boolean | null;
   /** The time the account was created */
-  created_at: string;
+  createdAt: string;
   /** Time of the last status posted */
-  last_status_at: string;
+  lastStatusAt: string;
   /** The number of followers for the account */
-  followers_count: number;
+  followersCount: number;
   /** The number of accounts the given account is following */
-  following_count: number;
+  followingCount: number;
   /** The number of statuses the account has made */
-  statuses_count: number;
+  statusesCount: number;
   /** Biography of user */
   note: string;
   /** URL of the user's profile page (can be remote) */
@@ -40,11 +40,11 @@ export interface Account {
   /** URL to the avatar image */
   avatar: string;
   /** URL to the avatar static image (gif) */
-  avatar_static: string;
+  avatarStatic: string;
   /** URL to the header image */
   header: string;
   /** URL to the header static image (gif) */
-  header_static: string;
+  headerStatic: string;
   /** Array of Emoji in account username and note */
   emojis: Emoji[];
   /** If the owner decided to switch accounts, new account is in this attribute */

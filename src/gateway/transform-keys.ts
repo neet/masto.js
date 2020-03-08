@@ -1,4 +1,3 @@
-import { camelCase } from 'change-case';
 import { isObject } from './is-object';
 
 const fromEntries = <T>(entries: [string, unknown][]) => {
@@ -13,12 +12,12 @@ const fromEntries = <T>(entries: [string, unknown][]) => {
 };
 
 // prettier-ignore
-export const transformKeys = <T extends Record<string, unknown>>(
+export const transformKeys = <T>(
   data: Record<string, unknown>,
-  transform = camelCase,
+  transform: (key: string) => string,
 ): T => fromEntries<T>(
   Object.entries(data).map(([key, value]) => [
     transform(key),
-    isObject(value) ? transformKeys(value) : value,
+    isObject(value) ? transformKeys(value, transform) : value,
   ] as [string, T[keyof T]]),
 );

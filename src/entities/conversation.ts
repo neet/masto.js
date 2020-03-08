@@ -9,5 +9,5 @@ export interface Conversation {
   /** An array of accounts that mentioned this conversation */
   accounts: Account[];
   /** The latest status of this conversation */
-  last_status: Status;
+  lastStatus: Status;
 }

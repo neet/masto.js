@@ -12,13 +12,13 @@ export interface Card {
   /** "link", "photo", "video", or "rich" */
   type: CardType;
   /** OEmbed data */
-  author_name?: string | null;
+  authorName?: string | null;
   /** OEmbed data */
-  author_url?: string | null;
+  authorUrl?: string | null;
   /** OEmbed data */
-  provider_name?: string | null;
+  providerName?: string | null;
   /** OEmbed data */
-  provider_url?: string | null;
+  providerUrl?: string | null;
   /** OEmbed data */
   html?: string | null;
   /** OEmbed data */
