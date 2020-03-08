@@ -1,31 +1,4 @@
-export interface Attachment {
-  /** ID of the attachment */
-  id: string;
-  /** One of: "image", "video", "gifv", "unknown" */
-  type: AttachmentType;
-  /** URL of the locally hosted version of the image */
-  url: string;
-  /** For remote images, the remote URL of the original image */
-  remoteUrl?: string | null;
-  /** URL of the preview image */
-  previewUrl: string;
-  /** Shorter URL for the image, for insertion into text (only present on local images) */
-  textUrl?: string | null;
-  /** See attachment metadata below */
-  meta?: AttachmentMeta | null;
-  /** A description of the image for the visually impaired (maximum 420 characters), or null if none provided */
-  description?: string | null;
-  /** Hash value to decode blurred media */
-  blurhash?: string | null;
-}
-
 export type AttachmentType = 'image' | 'video' | 'gifv' | 'audio' | 'unknown';
-
-export interface AttachmentMeta {
-  small?: AttachmentMetaImage | AttachmentMetaVideo | null;
-  original?: AttachmentMetaImage | AttachmentMetaVideo | null;
-  focus?: AttachmentMetaFocus | null;
-}
 
 export interface AttachmentMetaImage {
   width: number;
@@ -46,4 +19,39 @@ export interface AttachmentMetaVideo {
 export interface AttachmentMetaFocus {
   x: number;
   y: number;
+}
+
+export interface AttachmentMeta {
+  small?: AttachmentMetaImage | AttachmentMetaVideo | null;
+  original?: AttachmentMetaImage | AttachmentMetaVideo | null;
+  focus?: AttachmentMetaFocus | null;
+}
+
+/** Represents a file or media attachment that can be added to a status. */
+export interface Attachment {
+  /** The ID of the attachment in the database. */
+  id: string;
+  /** The type of the attachment. */
+  type: AttachmentType;
+  /** The location of the original full-size attachment. */
+  url: string;
+  /** The location of a scaled-down preview of the attachment. */
+  previewUrl: string;
+
+  /** The location of the full-size original attachment on the remote website. */
+  remoteUrl?: string | null;
+  /** A shorter URL for the attachment. */
+  textUrl?: string | null;
+  /** Metadata returned by Paperclip. */
+  meta?: AttachmentMeta | null;
+  /**
+   * Alternate text that describes what is in the media attachment,
+   * to be used for the visually impaired or when media attachments do not load.
+   */
+  description?: string | null;
+  /**
+   * A hash computed by the BlurHash algorithm,
+   * for generating colorful preview thumbnails when media has not been downloaded yet.
+   */
+  blurhash?: string | null;
 }

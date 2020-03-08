@@ -1,11 +1,11 @@
 import {
-  AccountField,
-  AccountSource,
+  Field,
   FilterContext,
   Marker,
   MarkerTimeline,
   NotificationType,
   PushSubscriptionAlerts,
+  Source,
   StatusVisibility,
 } from '../../entities';
 
@@ -35,14 +35,12 @@ export interface UpdateCredentialsParams {
   header?: unknown;
   /** Whether manual approval of follow requests is required. */
   locked?: boolean | null;
-  source?: Partial<
-    Pick<AccountSource, 'privacy' | 'sensitive' | 'language'>
-  > | null;
+  source?: Partial<Pick<Source, 'privacy' | 'sensitive' | 'language'>> | null;
   /**
    * Profile metadata `name` and `value`.
    * (By default, max 4 fields and 255 characters per property/value)
    */
-  fieldsAttributes?: AccountField[] | null;
+  fieldsAttributes?: Field[] | null;
 }
 
 export interface CreateAccountParams {
@@ -135,7 +133,7 @@ export interface CreateMediaAttachmentParams {
   focus?: string | null;
 }
 
-export type UpdateMediaAttachmentParams = CreateMediaAttachmentParams;
+export type UpdateMediaAttachmentParams = Partial<CreateMediaAttachmentParams>;
 
 export interface ModifyFilterParams {
   /** Text to be filtered */

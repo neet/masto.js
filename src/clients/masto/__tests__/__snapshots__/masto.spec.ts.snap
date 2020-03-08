@@ -23,39 +23,6 @@ exports[`Masto addAccountToList 1`] = `
 }
 `;
 
-exports[`Masto addPushSubscription 1`] = `
-[MockFunction] {
-  "calls": Array [
-    Array [
-      "/api/v1/push/subscription",
-      Object {
-        "data": Object {
-          "alerts": Object {
-            "favourite": true,
-            "follow": true,
-            "mention": true,
-            "reblog": true,
-          },
-        },
-        "subscription": Object {
-          "endpoint": "https://example.com",
-          "keys": Object {
-            "auth": "yyyy",
-            "p256dh": "xxxx",
-          },
-        },
-      },
-    ],
-  ],
-  "results": Array [
-    Object {
-      "type": "return",
-      "value": undefined,
-    },
-  ],
-}
-`;
-
 exports[`Masto addReactionToAnnouncement 1`] = `
 [MockFunction] {
   "calls": Array [
@@ -163,6 +130,7 @@ exports[`Masto createAccount 1`] = `
       Object {
         "agreement": true,
         "email": "example@example.com",
+        "locale": "en_US",
         "password": "password",
         "username": "username",
       },
@@ -276,6 +244,39 @@ exports[`Masto createMarkers 1`] = `
         },
         "notifications": Object {
           "lastReadId": "123123",
+        },
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto createPushSubscription 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/push/subscription",
+      Object {
+        "data": Object {
+          "alerts": Object {
+            "favourite": true,
+            "follow": true,
+            "mention": true,
+            "reblog": true,
+          },
+        },
+        "subscription": Object {
+          "endpoint": "https://example.com",
+          "keys": Object {
+            "auth": "yyyy",
+            "p256dh": "xxxx",
+          },
         },
       },
     ],
@@ -558,7 +559,7 @@ exports[`Masto fetchAccountRelationships 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
-      "/api/v1/accounts/relationship",
+      "/api/v1/accounts/relationships",
       Object {
         "id": Array [
           "123123",
@@ -641,29 +642,7 @@ exports[`Masto fetchBookmarks 1`] = `
   "calls": Array [
     Array [
       "/api/v1/bookmarks",
-    ],
-  ],
-  "results": Array [
-    Object {
-      "type": "return",
-      "value": undefined,
-    },
-  ],
-}
-`;
-
-exports[`Masto fetchCommunityTimeline 1`] = `
-[MockFunction] {
-  "calls": Array [
-    Array [
-      "/api/v1/timelines/public",
-      Object {
-        "limit": 10,
-        "local": true,
-        "maxId": "5",
-        "minId": "2",
-        "sinceId": "3",
-      },
+      undefined,
     ],
   ],
   "results": Array [
@@ -1273,12 +1252,6 @@ exports[`Masto fetchStatusFavouritedBy 1`] = `
   "calls": Array [
     Array [
       "/api/v1/statuses/123123/favourited_by",
-      Object {
-        "limit": 10,
-        "maxId": "5",
-        "minId": "2",
-        "sinceId": "3",
-      },
     ],
   ],
   "results": Array [
@@ -1295,12 +1268,6 @@ exports[`Masto fetchStatusRebloggedBy 1`] = `
   "calls": Array [
     Array [
       "/api/v1/statuses/123123/reblogged_by",
-      Object {
-        "limit": 10,
-        "maxId": "5",
-        "minId": "2",
-        "sinceId": "3",
-      },
     ],
   ],
   "results": Array [
@@ -1317,6 +1284,7 @@ exports[`Masto fetchSuggestions 1`] = `
   "calls": Array [
     Array [
       "/api/v1/suggestions",
+      undefined,
     ],
   ],
   "results": Array [
@@ -1355,6 +1323,7 @@ exports[`Masto fetchTrends 1`] = `
   "calls": Array [
     Array [
       "/api/v1/trends",
+      undefined,
     ],
   ],
   "results": Array [
@@ -1689,26 +1658,6 @@ exports[`Masto revokeAccessToken 1`] = `
       Object {
         "clientId": "123123123",
         "clientSecret": "456456456",
-      },
-    ],
-  ],
-  "results": Array [
-    Object {
-      "type": "return",
-      "value": undefined,
-    },
-  ],
-}
-`;
-
-exports[`Masto search (v1) 1`] = `
-[MockFunction] {
-  "calls": Array [
-    Array [
-      "/api/v1/search",
-      Object {
-        "q": "query",
-        "resolve": true,
       },
     ],
   ],
@@ -2121,6 +2070,7 @@ exports[`Masto updateMediaAttachment 1`] = `
       "/api/v1/media/123123",
       Object {
         "description": "Nice image",
+        "file": "",
         "focus": "0, 0",
       },
     ],

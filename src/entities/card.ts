@@ -1,28 +1,32 @@
 export type CardType = 'link' | 'photo' | 'video' | 'rich';
 
+/** Represents a rich preview card that is generated using OpenGraph tags from a URL. */
 export interface Card {
-  /** The url associated with the card */
+  /** Location of linked resource. */
   url: string;
-  /** The title of the card */
+  /** Title of linked resource. */
   title: string;
-  /** The card description */
+  /** Description of preview. */
   description: string;
-  /** The image associated with the card, if any */
-  image?: string | null;
-  /** "link", "photo", "video", or "rich" */
+  /** The type of the preview card. */
   type: CardType;
-  /** OEmbed data */
+
+  /** The author of the original resource. */
   authorName?: string | null;
-  /** OEmbed data */
+  /** A link to the author of the original resource. */
   authorUrl?: string | null;
-  /** OEmbed data */
+  /** The provider of the original resource. */
   providerName?: string | null;
-  /** OEmbed data */
+  /** A link to the provider of the original resource. */
   providerUrl?: string | null;
-  /** OEmbed data */
+  /** HTML to be used for generating the preview card. */
   html?: string | null;
-  /** OEmbed data */
+  /** Width of preview, in pixels. */
   width?: string | null;
-  /** OEmbed data */
+  /** Height of preview, in pixels. */
   height?: string | null;
+  /** Preview thumbnail. */
+  image?: string | null;
+  /** Used for photo embeds, instead of custom `html`. */
+  embedUrl: string;
 }

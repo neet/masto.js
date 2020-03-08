@@ -1,66 +1,82 @@
-import { Account } from './account';
-import { Application } from './application';
-import { Attachment } from './attachment';
-import { Card } from './card';
-import { Emoji } from './emoji';
-import { Mention } from './mention';
-import { Tag } from './tag';
+import {
+  Account,
+  Application,
+  Attachment,
+  Card,
+  Emoji,
+  Mention,
+  Poll,
+  Tag,
+} from '.';
 
 export type StatusVisibility = 'public' | 'unlisted' | 'private' | 'direct';
 
+/** Represents a status posted by an account. */
 export interface Status {
-  /** The ID of the status */
+  /** ID of the status in the database. */
   id: string;
-  /** A Fediverse-unique resource ID */
+  /** URI of the status used for federation. */
   uri: string;
-  /** URL to the status page (can be remote) */
-  url?: string | null;
-  /** The Account which posted the status */
-  account: Account;
-  /** `null` or the ID of the status it replies to */
-  inReplyToId?: string | null;
-  /** `null` or the ID of the account it replies to */
-  inReplyToAccountId?: string | null;
-  /** `null` or the reblogged Status */
-  reblog?: Status | null;
-  /** Embedded card */
-  card?: Card;
-  /** Body of the status; this will contain HTML (remote HTML already sanitized) */
-  content: string;
-  /** The time the status was created */
+  /** The date when this status was created. */
   createdAt: string;
-  /** An array of Emoji */
-  emojis: Emoji[];
-  /** The number of replies for the status */
-  repliesCount: number;
-  /** The number of reblogs for the status */
-  reblogsCount: number;
-  /** The number of favourites for the status */
-  favouritesCount: number;
-  /** Whether the authenticated user has reblogged the status */
-  reblogged?: boolean | null;
-  /** Whether the authenticated user has favourited the status */
-  favourited?: boolean | null;
-  /** Whether the authenticated user has muted the conversation this status from */
-  muted?: boolean | null;
-  /** Whether media attachments should be hidden by default */
-  sensitive: boolean;
-  /** If not empty, warning text that should be displayed before the actual content */
-  spoilerText: string;
-  /** One of: `public`, `unlisted`, `private`, `direct` */
+  /** The account that authored this status. */
+  account: Account;
+  /** HTML-encoded status content. */
+  content: string;
+  /** Visibility of this status. */
   visibility: StatusVisibility;
-  /** An array of Attachments */
+  /** Is this status marked as sensitive content? */
+  sensitive: boolean;
+  /** Subject or summary line, below which status content is collapsed until expanded. */
+  spoilerText: string;
+  /** Media that is attached to this status. */
   mediaAttachments: Attachment[];
-  /** An array of Mentions */
+  /** The application used to post this status. */
+  application: Application;
+
+  /** Mentions of users within the status content. */
   mentions: Mention[];
-  /** An array of Tags */
+  /** Hashtags used within the status content. */
   tags: Tag[];
-  /** Application from which the status was posted */
-  application?: Application | null;
-  /** The detected language for the status, if detected */
+  /** Custom emoji to be used when rendering status content. */
+  emojis: Emoji[];
+
+  /** How many boosts this status has received. */
+  reblogsCount: number;
+  /** How many favourites this status has received. */
+  favouritesCount: number;
+  /** How many replies this status has received. */
+  repliesCount: number;
+
+  /** A link to the status's HTML representation. */
+  url?: string | null;
+  /** ID of the status being replied. */
+  inReplyToId?: string | null;
+  /** ID of the account being replied to. */
+  inReplyToAccountId?: string | null;
+  /** The status being reblogged. */
+  reblog?: Status | null;
+  /** The poll attached to the status. */
+  poll?: Poll | null;
+  /** Preview card for links included within status content. */
+  card?: Card | null;
+  /** Primary language of this status. */
   language?: string | null;
-  /** Whether this is the pinned status for the account that posted it */
-  pinned?: boolean | null;
-  /** Whether the status was bookmarked */
+  /**
+   * Plain-text source of a status. Returned instead of `content` when status is deleted,
+   * so the user may redraft from the source text without the client having
+   * to reverse-engineer the original text from the HTML content.
+   */
+  text?: string | null;
+
+  /** Have you favourited this status? */
+  favourited?: boolean | null;
+  /** Have you boosted this status? */
+  reblogged?: boolean | null;
+  /** Have you muted notifications for this status's conversation? */
+  muted?: boolean | null;
+  /** Have you bookmarked this status? */
   bookmarked?: boolean | null;
+  /** Have you pinned this status? Only appears if the status is pin-able. */
+  pinned?: boolean | null;
 }

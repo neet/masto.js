@@ -1,22 +1,23 @@
+/** Represents a subscription to the push streaming server. */
 export interface PushSubscription {
-  /** The push subscription ID */
+  /** The id of the push subscription in the database. */
   id: string;
-  /** The endpoint URL */
+  /** Where push alerts will be sent to. */
   endpoint: string;
-  /** The server public key for signature verification. (not for decoding) */
+  /** The streaming server's VAPID key. */
   serverKey: string;
-  /** Map of 'notification event type' and 'push is requested or not' */
+  /** Which alerts should be delivered to the `endpoint`. */
   alerts: PushSubscriptionAlerts;
 }
 
 export interface PushSubscriptionAlerts {
-  /** Boolean of whether you want to receive follow notification event. */
+  /** Receive a push notification when someone has followed you? Boolean. */
   follow: boolean;
-  /** Boolean of whether you want to receive favourite notification event. */
+  /** Receive a push notification when a status you created has been favourited by someone else? Boolean. */
   favourite: boolean;
-  /** Boolean of whether you want to receive reblog notification event. */
+  /** Receive a push notification when someone else has mentioned you in a status? Boolean. */
   reblog: boolean;
-  /** Boolean of whether you want to receive mention notification event. */
+  /** Receive a push notification when a status you created has been boosted by someone else? Boolean. */
   mention: boolean;
   /** Receive a push notification when a poll you voted in or created has ended? Boolean. */
   poll: boolean;

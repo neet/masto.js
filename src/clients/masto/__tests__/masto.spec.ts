@@ -115,6 +115,7 @@ describe('Masto', () => {
       password: 'password',
       email: 'example@example.com',
       agreement: true,
+      locale: 'en_US',
     });
     expect(mockPost).toBeCalledTimes(1);
     expect(mockPost).toMatchSnapshot();
@@ -339,7 +340,7 @@ describe('Masto', () => {
   });
 
   test('createFiler', async () => {
-    await masto.createFiler({
+    await masto.createFilter({
       phrase: 'Twitter',
       context: ['home', 'notifications', 'public', 'thread'],
       irreversible: true,
@@ -392,9 +393,9 @@ describe('Masto', () => {
   });
 
   test('fetchSuggestions', async () => {
-    await masto.fetchSuggestions();
-    expect(mockGet).toBeCalledTimes(1);
-    expect(mockGet).toMatchSnapshot();
+    masto.fetchSuggestions();
+    expect(mockPaginate).toBeCalledTimes(1);
+    expect(mockPaginate).toMatchSnapshot();
   });
 
   test('removeSuggestion', async () => {
@@ -503,6 +504,7 @@ describe('Masto', () => {
 
   test('updateMediaAttachment', async () => {
     await masto.updateMediaAttachment('123123', {
+      file: '',
       description: 'Nice image',
       focus: '0, 0',
     });
@@ -573,8 +575,8 @@ describe('Masto', () => {
     expect(mockPost).toMatchSnapshot();
   });
 
-  test('addPushSubscription', async () => {
-    await masto.addPushSubscription({
+  test('createPushSubscription', async () => {
+    await masto.createPushSubscription({
       subscription: {
         endpoint: 'https://example.com',
         keys: { p256dh: 'xxxx', auth: 'yyyy' },
@@ -645,9 +647,9 @@ describe('Masto', () => {
   });
 
   test('fetchScheduledStatuses', async () => {
-    await masto.fetchScheduledStatuses();
-    expect(mockGet).toBeCalledTimes(1);
-    expect(mockGet).toMatchSnapshot();
+    masto.fetchScheduledStatuses();
+    expect(mockPaginate).toBeCalledTimes(1);
+    expect(mockPaginate).toMatchSnapshot();
   });
 
   test('fetchScheduledStatus', async () => {
@@ -668,18 +670,6 @@ describe('Masto', () => {
     await masto.removeScheduledStatus('123123');
     expect(mockDelete).toBeCalledTimes(1);
     expect(mockDelete).toMatchSnapshot();
-  });
-
-  test('search (v1)', async () => {
-    masto.search(
-      {
-        q: 'query',
-        resolve: true,
-      },
-      'v1',
-    );
-    expect(mockPaginate).toBeCalledTimes(1);
-    expect(mockPaginate).toMatchSnapshot();
   });
 
   test('search', async () => {
@@ -716,25 +706,15 @@ describe('Masto', () => {
   });
 
   test('fetchStatusRebloggedBy', async () => {
-    masto.fetchStatusRebloggedBy('123123', {
-      maxId: '5',
-      sinceId: '3',
-      minId: '2',
-      limit: 10,
-    });
-    expect(mockPaginate).toBeCalledTimes(1);
-    expect(mockPaginate).toMatchSnapshot();
+    masto.fetchStatusRebloggedBy('123123');
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('fetchStatusFavouritedBy', async () => {
-    masto.fetchStatusFavouritedBy('123123', {
-      maxId: '5',
-      sinceId: '3',
-      minId: '2',
-      limit: 10,
-    });
-    expect(mockPaginate).toBeCalledTimes(1);
-    expect(mockPaginate).toMatchSnapshot();
+    masto.fetchStatusFavouritedBy('123123');
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
   });
 
   test('createStatus with content', async () => {
@@ -817,19 +797,8 @@ describe('Masto', () => {
     expect(mockPaginate).toMatchSnapshot();
   });
 
-  test('fetchCommunityTimeline', async () => {
-    await masto.fetchCommunityTimeline({
-      maxId: '5',
-      sinceId: '3',
-      minId: '2',
-      limit: 10,
-    });
-    expect(mockPaginate).toBeCalledTimes(1);
-    expect(mockPaginate).toMatchSnapshot();
-  });
-
   test('fetchPublicTimeline', async () => {
-    await masto.fetchPublicTimeline({
+    masto.fetchPublicTimeline({
       maxId: '5',
       sinceId: '3',
       minId: '2',
@@ -955,9 +924,9 @@ describe('Masto', () => {
   });
 
   test('fetchBookmarks', async () => {
-    await masto.fetchBookmarks();
-    expect(mockGet).toBeCalledTimes(1);
-    expect(mockGet).toMatchSnapshot();
+    masto.fetchBookmarks();
+    expect(mockPaginate).toBeCalledTimes(1);
+    expect(mockPaginate).toMatchSnapshot();
   });
 
   test('fetchAnnouncements', async () => {

@@ -1,6 +1,7 @@
+/** Represents a list of some users that the authenticated user follows. */
 export interface List {
-  /** ID of the list */
+  /** The internal database ID of the list. */
   id: string;
-  /** Title of the list */
+  /** The user-defined title of the list. */
   title: string;
 }

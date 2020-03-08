@@ -16,7 +16,6 @@ import {
   List,
   MarkerMap,
   Notification,
-  OAuthClient,
   Poll,
   Preference,
   PushSubscription,
@@ -335,7 +334,7 @@ export class Masto extends GatewayImpl {
    */
   @available({ since: '0.0.0' })
   createApp(params: CreateAppParams) {
-    return this.post<OAuthClient>(`/api/v1/apps`, params);
+    return this.post<Application>(`/api/v1/apps`, params);
   }
 
   /**
@@ -601,7 +600,7 @@ export class Masto extends GatewayImpl {
    * @see https://docs.joinmastodon.org/methods/accounts/suggestions/
    */
   @available({ since: '2.4.3' })
-  fetchSuggestions(params: PaginationParams) {
+  fetchSuggestions(params?: PaginationParams) {
     return this.paginate<Account[], typeof params>(
       '/api/v1/suggestions',
       params,
@@ -1159,7 +1158,7 @@ export class Masto extends GatewayImpl {
    * @see https://docs.joinmastodon.org/methods/accounts/bookmarks/
    */
   @available({ since: '3.1.0' })
-  fetchBookmarks(params: PaginationParams) {
+  fetchBookmarks(params?: PaginationParams) {
     return this.paginate<Status[], typeof params>('/api/v1/bookmarks', params);
   }
 

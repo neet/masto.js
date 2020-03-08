@@ -14,6 +14,7 @@ export * from './filter';
 export * from './history';
 export * from './identity-proof';
 export * from './instance';
+export * from './field';
 export * from './list';
 export * from './marker';
 export * from './mention';

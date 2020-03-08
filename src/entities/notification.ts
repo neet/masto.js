@@ -9,15 +9,17 @@ export type NotificationType =
   | 'poll'
   | 'follow_request';
 
+/** Represents a notification of an event relevant to the user. */
 export interface Notification {
-  /** The notification ID */
+  /** The id of the notification in the database. */
   id: string;
-  /** One of: "mention", "reblog", "favourite", "follow" */
+  /** The type of event that resulted in the notification. */
   type: NotificationType;
-  /** The time the notification was created */
+  /** The timestamp of the notification. */
   createdAt: string;
-  /** The Account sending the notification to the user */
+  /** The account that performed the action that generated the notification. */
   account: Account;
-  /** The Status associated with the notification, if applicable */
+
+  /** Status that was the object of the notification, e.g. in mentions, reblogs, favourites, or polls. */
   status?: Status | null;
 }

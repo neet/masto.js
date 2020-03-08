@@ -1,10 +1,14 @@
+/** Represents a mention of a user within the content of a status. */
 export interface Mention {
-  /** URL of user's profile (can be remote) */
-  url: string;
-  /** The username of the account */
-  username: string;
-  /** Equals `username` for local users, includes `@domain` for remote ones */
-  acct: string;
-  /** Account ID */
+  /** The account id of the mentioned user. */
   id: string;
+  /** The username of the mentioned user. */
+  username: string;
+  /** The location of the mentioned user's profile. */
+  url: string;
+  /**
+   * The WebFinger acct: URI of the mentioned user.
+   * Equivalent to username for local users, or `username@domain` for remote users.
+   */
+  acct: string;
 }

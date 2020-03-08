@@ -1,15 +1,11 @@
+/** Represents a weekly bucket of instance activity. */
 export interface Activity {
-  /** Timestamp of 0 o'clock on Monday of the week */
+  /** Midnight at the first day of the week. */
   week: string;
-  /** Number of statuses created while the week */
+  /** Statuses created since the week began. */
   statuses: string;
-  /** Active users while the week */
+  /** User logins since the week began. */
   logins: string;
-  /** New registrations while the week */
+  /** User registrations since the week began. */
   registrations: string;
 }
-
-/**
- * @deprecated Use Activity
- */
-export type InstanceActivity = Activity;

@@ -14,13 +14,14 @@ export interface StatusParams
   applicationId: string;
 }
 
+/** Represents a status that will be published at a future scheduled date. */
 export interface ScheduledStatus {
-  /** ID of the scheduled status */
+  /** ID of the scheduled status in the database. */
   id: string;
-  /** Scheduled date */
+  /** ID of the status in the database. */
   scheduledAt: string;
   /** Parameters of the status */
   params: StatusParams;
   /** Media attachments */
-  mediaAttachments: Attachment;
+  mediaAttachments: Attachment[];
 }

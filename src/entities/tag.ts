@@ -1,10 +1,12 @@
-import { History } from './history';
+import { History } from '.';
 
+/** Represents a hashtag used within the content of a status. */
 export interface Tag {
-  /** The hashtag, not including the preceding `#` */
+  /** The value of the hashtag after the # sign. */
   name: string;
-  /** The URL of the hashtag */
+  /** A link to the hashtag on the instance. */
   url: string;
-  /** Array of History */
-  history: History[];
+
+  /** Usage statistics for given days. */
+  history?: History[] | null;
 }

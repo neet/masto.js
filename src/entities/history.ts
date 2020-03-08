@@ -1,10 +1,9 @@
+/** Represents daily usage history of a hashtag. */
 export interface History {
-  /** String of UNIX timestamp */
+  /** UNIX timestamp on midnight of the given day. */
   day: string;
-  /** How many times was used */
-  uses: number;
-  /** How many unique users are there */
-  accounts: number;
+  /** the counted usage of the tag within that day. */
+  uses: string;
+  /** the total of accounts using the tag within that day. */
+  accounts: string;
 }
-
-export type TagHistory = History;

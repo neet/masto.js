@@ -1,58 +1,52 @@
-import { Emoji } from './emoji';
-import { Source } from './source';
+import { Emoji, Field, Source } from '.';
 
-export interface AccountField {
-  /** (2.4 or later) Label of profile metadata field. */
-  name?: string | null;
-  /** (2.4 or later) Value of profile metadata field. */
-  value?: string | null;
-  /** date time*/
-  verifiedAt?: string | null;
-}
-
+/** Represents a user of Mastodon and their associated profile. */
 export interface Account {
-  /** The ID of the account */
+  /** The account id */
   id: string;
-  /** The username of the account */
+  /** The username of the account, not including domain */
   username: string;
-  /** Equals username for local users, includes `@domain` for remote ones */
+  /** The WebFinger account URI. Equal to `username` for local users, or `username@domain` for remote users. */
   acct: string;
-  /** The account's display name */
+  /** The location of the user's profile page. */
+  url: string;
+
+  /** The profile's display name. */
   displayName: string;
-  /** Boolean for when the account cannot be followed without waiting for approval first */
+  /** The profile's bio / description. */
+  note: string;
+  /** An image icon that is shown next to statuses and in the profile. */
+  avatar: string;
+  /** A static version of the `avatar`. Equal to avatar if its value is a static image; different if `avatar` is an animated GIF. */
+  avatarStatic: string;
+  /** An image banner that is shown above the profile and in profile cards. */
+  header: string;
+  /** A static version of the header. Equal to `header` if its value is a static image; different if `header` is an animated GIF. */
+  headerStatic: string;
+  /** Whether the account manually approves follow requests. */
   locked: boolean;
-  /** Boolean to indicate that the account performs automated actions */
-  bot?: boolean | null;
-  /** The time the account was created */
+  /** Custom emoji entities to be used when rendering the profile. If none, an empty array will be returned. */
+  emojis: Emoji[];
+  /** Whether the account has opted into discovery features such as the profile directory. */
+  discoverable: false;
+
+  /** When the account was created. */
   createdAt: string;
+  /** How many statuses are attached to this account. */
+  statusesCount: number;
+  /** The reported followers of this profile. */
+  followersCount: number;
+  /** The reported follows of this profile. */
+  followingCount: number;
   /** Time of the last status posted */
   lastStatusAt: string;
-  /** The number of followers for the account */
-  followersCount: number;
-  /** The number of accounts the given account is following */
-  followingCount: number;
-  /** The number of statuses the account has made */
-  statusesCount: number;
-  /** Biography of user */
-  note: string;
-  /** URL of the user's profile page (can be remote) */
-  url: string;
-  /** URL to the avatar image */
-  avatar: string;
-  /** URL to the avatar static image (gif) */
-  avatarStatic: string;
-  /** URL to the header image */
-  header: string;
-  /** URL to the header static image (gif) */
-  headerStatic: string;
-  /** Array of Emoji in account username and note */
-  emojis: Emoji[];
-  /** If the owner decided to switch accounts, new account is in this attribute */
+
+  /** Indicates that the profile is currently inactive and that its user has moved to a new account. */
   moved?: boolean | null;
-  /** Array of profile metadata field, each element has 'name' and 'value' */
-  fields?: AccountField[] | null;
-  /** no-index flag */
-  discoverable?: false;
+  /** Additional metadata attached to a profile as name-value pairs. */
+  fields?: Field[] | null;
+  /** Boolean to indicate that the account performs automated actions */
+  bot?: boolean | null;
 }
 
 export interface AccountCredentials extends Account {
