@@ -29,4 +29,3 @@ export * from './source';
 export * from './status';
 export * from './tag';
 export * from './token';
-export * from './trend';

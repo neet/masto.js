@@ -6,7 +6,9 @@ import semver from 'semver';
 
 import { Instance } from '../entities';
 import {
+  MastoConflictError,
   MastoForbiddenError,
+  MastoGoneError,
   MastoNotFoundError,
   MastoRateLimitError,
   MastoUnauthorizedError,
@@ -187,6 +189,10 @@ export class GatewayImpl implements Gateway<AxiosRequestConfig> {
           throw new MastoForbiddenError(message);
         case 404:
           throw new MastoNotFoundError(message);
+        case 409:
+          throw new MastoConflictError(message);
+        case 410:
+          throw new MastoGoneError(message);
         case 422:
           throw new MastoUnprocessableEntityError(message);
         case 429:

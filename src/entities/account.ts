@@ -56,5 +56,10 @@ export interface Account {
 }
 
 export interface AccountCredentials extends Account {
+  /**
+   * Note the extra `source` property, which is not visible on accounts other than your own.
+   * Also note that plain-text is used within `source` and HTML is used for their
+   * corresponding properties such as `note` and `fields`.
+   */
   source: Source;
 }

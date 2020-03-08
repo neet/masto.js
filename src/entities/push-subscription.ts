@@ -18,4 +18,6 @@ export interface PushSubscriptionAlerts {
   reblog: boolean;
   /** Boolean of whether you want to receive mention notification event. */
   mention: boolean;
+  /** Receive a push notification when a poll you voted in or created has ended? Boolean. */
+  poll: boolean;
 }
