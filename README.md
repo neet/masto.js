@@ -31,11 +31,7 @@ npm i masto
 
 ## Basic Usage
 
-First, fetch your access token through the following command. DO NOT publish the token.
-
-```bash
-$ npx masto-cli token --uri=URI --email=EMAIL --password=PASSWORD
-```
+First, open `<Your Instance>/settings/applications/new` on your browser and create new application.
 
 Then, here's a simple example that creates a toot. Replace `TOKEN` to your own token.
 
