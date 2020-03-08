@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-unassigned-import
 import 'isomorphic-form-data';
-import { createFormData, isObject } from '../create-form-data';
+import { createFormData } from '../create-form-data';
 
 /**
  * Unfortunately form-data node.js package doesn't have
@@ -26,20 +26,6 @@ const getAll = (formData: FormData, name: string) =>
     .map(([, datum]) => datum);
 
 const get = (formData: FormData, name: string) => getAll(formData, name)[0];
-
-test('typed isObject', () => {
-  const r1 = isObject(null);
-  const r2 = isObject([1, 2]);
-  const r3 = isObject({});
-  const r4 = isObject({ a: 'a' });
-  const r5 = isObject(new FormData());
-
-  expect(r1).toBe(false);
-  expect(r2).toBe(false);
-  expect(r3).toBe(true);
-  expect(r4).toBe(true);
-  expect(r5).toBe(false);
-});
 
 test('flat value', () => {
   const result = createFormData({
