@@ -67,6 +67,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Represents a custom emoji.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -84,9 +91,9 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_emoji_.emoji.html#category" class="tsd-kind-icon">category</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_emoji_.emoji.html#shortcode" class="tsd-kind-icon">shortcode</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_emoji_.emoji.html#static_url" class="tsd-kind-icon">static_<wbr>url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_emoji_.emoji.html#staticurl" class="tsd-kind-icon">static<wbr>Url</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_emoji_.emoji.html#url" class="tsd-kind-icon">url</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_emoji_.emoji.html#visible_in_picker" class="tsd-kind-icon">visible_<wbr>in_<wbr>picker</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_emoji_.emoji.html#visibleinpicker" class="tsd-kind-icon">visible<wbr>InPicker</a></li>
 							</ul>
 						</section>
 					</div>
@@ -100,12 +107,12 @@
 					<div class="tsd-signature tsd-kind-icon">category<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/emoji.ts#L11">src/entities/emoji.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/emoji.ts#L13">src/entities/emoji.ts:13</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Category of the emoji</p>
+							<p>Used for sorting custom emoji in the picker.</p>
 						</div>
 					</div>
 				</section>
@@ -115,27 +122,27 @@
 					<div class="tsd-signature tsd-kind-icon">shortcode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/emoji.ts#L3">src/entities/emoji.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/emoji.ts#L4">src/entities/emoji.ts:4</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The shortcode of the emoji</p>
+							<p>The name of the custom emoji.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="static_url" class="tsd-anchor"></a>
-					<h3>static_<wbr>url</h3>
-					<div class="tsd-signature tsd-kind-icon">static_<wbr>url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="staticurl" class="tsd-anchor"></a>
+					<h3>static<wbr>Url</h3>
+					<div class="tsd-signature tsd-kind-icon">static<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/emoji.ts#L5">src/entities/emoji.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/emoji.ts#L8">src/entities/emoji.ts:8</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>URL to the emoji static image</p>
+							<p>A link to a static copy of the custom emoji.</p>
 						</div>
 					</div>
 				</section>
@@ -145,27 +152,27 @@
 					<div class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/emoji.ts#L7">src/entities/emoji.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/emoji.ts#L6">src/entities/emoji.ts:6</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>URL to the emoji image</p>
+							<p>A link to the custom emoji.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="visible_in_picker" class="tsd-anchor"></a>
-					<h3>visible_<wbr>in_<wbr>picker</h3>
-					<div class="tsd-signature tsd-kind-icon">visible_<wbr>in_<wbr>picker<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="visibleinpicker" class="tsd-anchor"></a>
+					<h3>visible<wbr>InPicker</h3>
+					<div class="tsd-signature tsd-kind-icon">visible<wbr>InPicker<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/emoji.ts#L9">src/entities/emoji.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/emoji.ts#L10">src/entities/emoji.ts:10</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Boolean that indicates if the emoji is visible in picker</p>
+							<p>Whether this Emoji should be visible in the picker or unlisted.</p>
 						</div>
 					</div>
 				</section>
@@ -196,13 +203,13 @@
 								<a href="_entities_emoji_.emoji.html#shortcode" class="tsd-kind-icon">shortcode</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_emoji_.emoji.html#static_url" class="tsd-kind-icon">static_<wbr>url</a>
+								<a href="_entities_emoji_.emoji.html#staticurl" class="tsd-kind-icon">static<wbr>Url</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_entities_emoji_.emoji.html#url" class="tsd-kind-icon">url</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_emoji_.emoji.html#visible_in_picker" class="tsd-kind-icon">visible_<wbr>in_<wbr>picker</a>
+								<a href="_entities_emoji_.emoji.html#visibleinpicker" class="tsd-kind-icon">visible<wbr>InPicker</a>
 							</li>
 						</ul>
 					</li>

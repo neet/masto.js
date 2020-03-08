@@ -67,6 +67,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Represents a rich preview card that is generated using OpenGraph tags from a URL.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -82,14 +89,15 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_card_.card.html#author_name" class="tsd-kind-icon">author_<wbr>name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_card_.card.html#author_url" class="tsd-kind-icon">author_<wbr>url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_card_.card.html#authorname" class="tsd-kind-icon">author<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_card_.card.html#authorurl" class="tsd-kind-icon">author<wbr>Url</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_card_.card.html#description" class="tsd-kind-icon">description</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_card_.card.html#embedurl" class="tsd-kind-icon">embed<wbr>Url</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_card_.card.html#height" class="tsd-kind-icon">height</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_card_.card.html#html" class="tsd-kind-icon">html</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_card_.card.html#image" class="tsd-kind-icon">image</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_card_.card.html#provider_name" class="tsd-kind-icon">provider_<wbr>name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_card_.card.html#provider_url" class="tsd-kind-icon">provider_<wbr>url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_card_.card.html#providername" class="tsd-kind-icon">provider<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_card_.card.html#providerurl" class="tsd-kind-icon">provider<wbr>Url</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_card_.card.html#title" class="tsd-kind-icon">title</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_card_.card.html#type" class="tsd-kind-icon">type</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_card_.card.html#url" class="tsd-kind-icon">url</a></li>
@@ -102,32 +110,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="author_name" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> author_<wbr>name</h3>
-					<div class="tsd-signature tsd-kind-icon">author_<wbr>name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<a name="authorname" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> author<wbr>Name</h3>
+					<div class="tsd-signature tsd-kind-icon">author<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/card.ts#L15">src/entities/card.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/card.ts#L15">src/entities/card.ts:15</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>OEmbed data</p>
+							<p>The author of the original resource.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="author_url" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> author_<wbr>url</h3>
-					<div class="tsd-signature tsd-kind-icon">author_<wbr>url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<a name="authorurl" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> author<wbr>Url</h3>
+					<div class="tsd-signature tsd-kind-icon">author<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/card.ts#L17">src/entities/card.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/card.ts#L17">src/entities/card.ts:17</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>OEmbed data</p>
+							<p>A link to the author of the original resource.</p>
 						</div>
 					</div>
 				</section>
@@ -137,12 +145,27 @@
 					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/card.ts#L9">src/entities/card.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/card.ts#L10">src/entities/card.ts:10</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The card description</p>
+							<p>Description of preview.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="embedurl" class="tsd-anchor"></a>
+					<h3>embed<wbr>Url</h3>
+					<div class="tsd-signature tsd-kind-icon">embed<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/card.ts#L31">src/entities/card.ts:31</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Used for photo embeds, instead of custom <code>html</code>.</p>
 						</div>
 					</div>
 				</section>
@@ -152,12 +175,12 @@
 					<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/card.ts#L27">src/entities/card.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/card.ts#L27">src/entities/card.ts:27</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>OEmbed data</p>
+							<p>Height of preview, in pixels.</p>
 						</div>
 					</div>
 				</section>
@@ -167,12 +190,12 @@
 					<div class="tsd-signature tsd-kind-icon">html<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/card.ts#L23">src/entities/card.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/card.ts#L23">src/entities/card.ts:23</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>OEmbed data</p>
+							<p>HTML to be used for generating the preview card.</p>
 						</div>
 					</div>
 				</section>
@@ -182,42 +205,42 @@
 					<div class="tsd-signature tsd-kind-icon">image<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/card.ts#L11">src/entities/card.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/card.ts#L29">src/entities/card.ts:29</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The image associated with the card, if any</p>
+							<p>Preview thumbnail.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="provider_name" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> provider_<wbr>name</h3>
-					<div class="tsd-signature tsd-kind-icon">provider_<wbr>name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<a name="providername" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> provider<wbr>Name</h3>
+					<div class="tsd-signature tsd-kind-icon">provider<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/card.ts#L19">src/entities/card.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/card.ts#L19">src/entities/card.ts:19</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>OEmbed data</p>
+							<p>The provider of the original resource.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="provider_url" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> provider_<wbr>url</h3>
-					<div class="tsd-signature tsd-kind-icon">provider_<wbr>url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<a name="providerurl" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> provider<wbr>Url</h3>
+					<div class="tsd-signature tsd-kind-icon">provider<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/card.ts#L21">src/entities/card.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/card.ts#L21">src/entities/card.ts:21</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>OEmbed data</p>
+							<p>A link to the provider of the original resource.</p>
 						</div>
 					</div>
 				</section>
@@ -227,12 +250,12 @@
 					<div class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/card.ts#L7">src/entities/card.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/card.ts#L8">src/entities/card.ts:8</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The title of the card</p>
+							<p>Title of linked resource.</p>
 						</div>
 					</div>
 				</section>
@@ -242,12 +265,12 @@
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../modules/_entities_card_.html#cardtype" class="tsd-signature-type">CardType</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/card.ts#L13">src/entities/card.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/card.ts#L12">src/entities/card.ts:12</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>&quot;link&quot;, &quot;photo&quot;, &quot;video&quot;, or &quot;rich&quot;</p>
+							<p>The type of the preview card.</p>
 						</div>
 					</div>
 				</section>
@@ -257,12 +280,12 @@
 					<div class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/card.ts#L5">src/entities/card.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/card.ts#L6">src/entities/card.ts:6</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The url associated with the card</p>
+							<p>Location of linked resource.</p>
 						</div>
 					</div>
 				</section>
@@ -272,12 +295,12 @@
 					<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/card.ts#L25">src/entities/card.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/card.ts#L25">src/entities/card.ts:25</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>OEmbed data</p>
+							<p>Width of preview, in pixels.</p>
 						</div>
 					</div>
 				</section>
@@ -302,13 +325,16 @@
 						<a href="_entities_card_.card.html" class="tsd-kind-icon">Card</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_card_.card.html#author_name" class="tsd-kind-icon">author_<wbr>name</a>
+								<a href="_entities_card_.card.html#authorname" class="tsd-kind-icon">author<wbr>Name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_card_.card.html#author_url" class="tsd-kind-icon">author_<wbr>url</a>
+								<a href="_entities_card_.card.html#authorurl" class="tsd-kind-icon">author<wbr>Url</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_entities_card_.card.html#description" class="tsd-kind-icon">description</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_entities_card_.card.html#embedurl" class="tsd-kind-icon">embed<wbr>Url</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_entities_card_.card.html#height" class="tsd-kind-icon">height</a>
@@ -320,10 +346,10 @@
 								<a href="_entities_card_.card.html#image" class="tsd-kind-icon">image</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_card_.card.html#provider_name" class="tsd-kind-icon">provider_<wbr>name</a>
+								<a href="_entities_card_.card.html#providername" class="tsd-kind-icon">provider<wbr>Name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_card_.card.html#provider_url" class="tsd-kind-icon">provider_<wbr>url</a>
+								<a href="_entities_card_.card.html#providerurl" class="tsd-kind-icon">provider<wbr>Url</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_entities_card_.card.html#title" class="tsd-kind-icon">title</a>

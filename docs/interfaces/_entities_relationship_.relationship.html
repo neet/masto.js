@@ -67,6 +67,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Represents the relationship between accounts, such as following / blocking / muting / etc.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -82,17 +89,17 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_relationship_.relationship.html#blocked_by" class="tsd-kind-icon">blocked_<wbr>by</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_relationship_.relationship.html#blockedby" class="tsd-kind-icon">blocked<wbr>By</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_relationship_.relationship.html#blocking" class="tsd-kind-icon">blocking</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_relationship_.relationship.html#domain_blocking" class="tsd-kind-icon">domain_<wbr>blocking</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_relationship_.relationship.html#domainblocking" class="tsd-kind-icon">domain<wbr>Blocking</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_relationship_.relationship.html#endorsed" class="tsd-kind-icon">endorsed</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_relationship_.relationship.html#followed_by" class="tsd-kind-icon">followed_<wbr>by</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_relationship_.relationship.html#followedby" class="tsd-kind-icon">followed<wbr>By</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_relationship_.relationship.html#following" class="tsd-kind-icon">following</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_relationship_.relationship.html#id" class="tsd-kind-icon">id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_relationship_.relationship.html#muting" class="tsd-kind-icon">muting</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_relationship_.relationship.html#muting_notifications" class="tsd-kind-icon">muting_<wbr>notifications</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_relationship_.relationship.html#mutingnotifications" class="tsd-kind-icon">muting<wbr>Notifications</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_relationship_.relationship.html#requested" class="tsd-kind-icon">requested</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_relationship_.relationship.html#showing_reblogs" class="tsd-kind-icon">showing_<wbr>reblogs</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_relationship_.relationship.html#showingreblogs" class="tsd-kind-icon">showing<wbr>Reblogs</a></li>
 							</ul>
 						</section>
 					</div>
@@ -101,17 +108,17 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="blocked_by" class="tsd-anchor"></a>
-					<h3>blocked_<wbr>by</h3>
-					<div class="tsd-signature tsd-kind-icon">blocked_<wbr>by<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="blockedby" class="tsd-anchor"></a>
+					<h3>blocked<wbr>By</h3>
+					<div class="tsd-signature tsd-kind-icon">blocked<wbr>By<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/relationship.ts#L11">src/entities/relationship.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/relationship.ts#L24">src/entities/relationship.ts:24</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Whether the user is currently being blocked by the account</p>
+							<p>Is this user blocking you?</p>
 						</div>
 					</div>
 				</section>
@@ -121,27 +128,27 @@
 					<div class="tsd-signature tsd-kind-icon">blocking<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/relationship.ts#L13">src/entities/relationship.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/relationship.ts#L20">src/entities/relationship.ts:20</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Whether the user is currently blocking the account</p>
+							<p>Are you blocking this user?</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="domain_blocking" class="tsd-anchor"></a>
-					<h3>domain_<wbr>blocking</h3>
-					<div class="tsd-signature tsd-kind-icon">domain_<wbr>blocking<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="domainblocking" class="tsd-anchor"></a>
+					<h3>domain<wbr>Blocking</h3>
+					<div class="tsd-signature tsd-kind-icon">domain<wbr>Blocking<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/relationship.ts#L21">src/entities/relationship.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/relationship.ts#L22">src/entities/relationship.ts:22</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Whether the user is currently blocking the accounts&#39; domain</p>
+							<p>Are you blocking this user&#39;s domain?</p>
 						</div>
 					</div>
 				</section>
@@ -151,27 +158,27 @@
 					<div class="tsd-signature tsd-kind-icon">endorsed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/relationship.ts#L23">src/entities/relationship.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/relationship.ts#L10">src/entities/relationship.ts:10</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Whether this user is endorsed by authenticated user</p>
+							<p>Are you featuring this user on your profile?</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="followed_by" class="tsd-anchor"></a>
-					<h3>followed_<wbr>by</h3>
-					<div class="tsd-signature tsd-kind-icon">followed_<wbr>by<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="followedby" class="tsd-anchor"></a>
+					<h3>followed<wbr>By</h3>
+					<div class="tsd-signature tsd-kind-icon">followed<wbr>By<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/relationship.ts#L9">src/entities/relationship.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/relationship.ts#L12">src/entities/relationship.ts:12</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Whether the user is currently being followed by the account</p>
+							<p>Are you followed by this user?</p>
 						</div>
 					</div>
 				</section>
@@ -181,12 +188,12 @@
 					<div class="tsd-signature tsd-kind-icon">following<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/relationship.ts#L5">src/entities/relationship.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/relationship.ts#L6">src/entities/relationship.ts:6</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Whether the user is currently following the account</p>
+							<p>Are you following this user?</p>
 						</div>
 					</div>
 				</section>
@@ -196,12 +203,12 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/relationship.ts#L3">src/entities/relationship.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/relationship.ts#L4">src/entities/relationship.ts:4</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Target account id</p>
+							<p>The account id.</p>
 						</div>
 					</div>
 				</section>
@@ -211,27 +218,27 @@
 					<div class="tsd-signature tsd-kind-icon">muting<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/relationship.ts#L15">src/entities/relationship.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/relationship.ts#L14">src/entities/relationship.ts:14</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Whether the user is currently muting the account</p>
+							<p>Are you muting this user?</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="muting_notifications" class="tsd-anchor"></a>
-					<h3>muting_<wbr>notifications</h3>
-					<div class="tsd-signature tsd-kind-icon">muting_<wbr>notifications<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="mutingnotifications" class="tsd-anchor"></a>
+					<h3>muting<wbr>Notifications</h3>
+					<div class="tsd-signature tsd-kind-icon">muting<wbr>Notifications<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/relationship.ts#L17">src/entities/relationship.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/relationship.ts#L16">src/entities/relationship.ts:16</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Whether the user is also muting notifications</p>
+							<p>Are you muting notifications from this user?</p>
 						</div>
 					</div>
 				</section>
@@ -241,27 +248,27 @@
 					<div class="tsd-signature tsd-kind-icon">requested<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/relationship.ts#L19">src/entities/relationship.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/relationship.ts#L8">src/entities/relationship.ts:8</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Whether the user has requested to follow the account</p>
+							<p>Do you have a pending follow request for this user?</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="showing_reblogs" class="tsd-anchor"></a>
-					<h3>showing_<wbr>reblogs</h3>
-					<div class="tsd-signature tsd-kind-icon">showing_<wbr>reblogs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="showingreblogs" class="tsd-anchor"></a>
+					<h3>showing<wbr>Reblogs</h3>
+					<div class="tsd-signature tsd-kind-icon">showing<wbr>Reblogs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/relationship.ts#L7">src/entities/relationship.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/relationship.ts#L18">src/entities/relationship.ts:18</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Whether reblog will be shown in your timeline</p>
+							<p>Are you receiving this user&#39;s boosts in your home timeline?</p>
 						</div>
 					</div>
 				</section>
@@ -286,19 +293,19 @@
 						<a href="_entities_relationship_.relationship.html" class="tsd-kind-icon">Relationship</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_relationship_.relationship.html#blocked_by" class="tsd-kind-icon">blocked_<wbr>by</a>
+								<a href="_entities_relationship_.relationship.html#blockedby" class="tsd-kind-icon">blocked<wbr>By</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_entities_relationship_.relationship.html#blocking" class="tsd-kind-icon">blocking</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_relationship_.relationship.html#domain_blocking" class="tsd-kind-icon">domain_<wbr>blocking</a>
+								<a href="_entities_relationship_.relationship.html#domainblocking" class="tsd-kind-icon">domain<wbr>Blocking</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_entities_relationship_.relationship.html#endorsed" class="tsd-kind-icon">endorsed</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_relationship_.relationship.html#followed_by" class="tsd-kind-icon">followed_<wbr>by</a>
+								<a href="_entities_relationship_.relationship.html#followedby" class="tsd-kind-icon">followed<wbr>By</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_entities_relationship_.relationship.html#following" class="tsd-kind-icon">following</a>
@@ -310,13 +317,13 @@
 								<a href="_entities_relationship_.relationship.html#muting" class="tsd-kind-icon">muting</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_relationship_.relationship.html#muting_notifications" class="tsd-kind-icon">muting_<wbr>notifications</a>
+								<a href="_entities_relationship_.relationship.html#mutingnotifications" class="tsd-kind-icon">muting<wbr>Notifications</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_entities_relationship_.relationship.html#requested" class="tsd-kind-icon">requested</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_relationship_.relationship.html#showing_reblogs" class="tsd-kind-icon">showing_<wbr>reblogs</a>
+								<a href="_entities_relationship_.relationship.html#showingreblogs" class="tsd-kind-icon">showing<wbr>Reblogs</a>
 							</li>
 						</ul>
 					</li>

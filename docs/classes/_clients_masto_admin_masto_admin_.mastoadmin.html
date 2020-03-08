@@ -78,13 +78,19 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="_gateway_gateway_.gateway.html" class="tsd-signature-type">Gateway</a>
+						<a href="_gateway_gateway_impl_.gatewayimpl.html" class="tsd-signature-type">GatewayImpl</a>
 						<ul class="tsd-hierarchy">
 							<li>
 								<span class="target">MastoAdmin</span>
 							</li>
 						</ul>
 					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../interfaces/_gateway_gateway_.gateway.html" class="tsd-signature-type">Gateway</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosRequestConfig</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -147,14 +153,14 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Masto<wbr>Admin<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="../interfaces/_gateway_gateway_.gatewayconstructorparams.html" class="tsd-signature-type">GatewayConstructorParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_clients_masto_admin_masto_admin_.mastoadmin.html" class="tsd-signature-type">MastoAdmin</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Masto<wbr>Admin<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="../interfaces/_gateway_gateway_.gatewayconstructorparams.html" class="tsd-signature-type">GatewayConstructorParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosRequestConfig</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_clients_masto_admin_masto_admin_.mastoadmin.html" class="tsd-signature-type">MastoAdmin</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_gateway_gateway_.gateway.html">Gateway</a>.<a href="_gateway_gateway_.gateway.html#constructor">constructor</a></p>
+								<p>Inherited from <a href="_gateway_gateway_impl_.gatewayimpl.html">GatewayImpl</a>.<a href="_gateway_gateway_impl_.gatewayimpl.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/gateway/gateway.ts#L66">src/gateway/gateway.ts:66</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/gateway/gateway-impl.ts#L42">src/gateway/gateway-impl.ts:42</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -162,7 +168,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>params: <a href="../interfaces/_gateway_gateway_.gatewayconstructorparams.html" class="tsd-signature-type">GatewayConstructorParams</a></h5>
+									<h5>params: <a href="../interfaces/_gateway_gateway_.gatewayconstructorparams.html" class="tsd-signature-type">GatewayConstructorParams</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosRequestConfig</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>Parameters</p>
@@ -182,9 +188,10 @@
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> access<wbr>Token</h3>
 					<div class="tsd-signature tsd-kind-icon">access<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="_gateway_gateway_.gateway.html">Gateway</a>.<a href="_gateway_gateway_.gateway.html#accesstoken">accessToken</a></p>
+						<p>Implementation of <a href="../interfaces/_gateway_gateway_.gateway.html">Gateway</a>.<a href="../interfaces/_gateway_gateway_.gateway.html#accesstoken">accessToken</a></p>
+						<p>Inherited from <a href="_gateway_gateway_impl_.gatewayimpl.html">GatewayImpl</a>.<a href="_gateway_gateway_impl_.gatewayimpl.html#accesstoken">accessToken</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/gateway/gateway.ts#L66">src/gateway/gateway.ts:66</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/gateway/gateway-impl.ts#L42">src/gateway/gateway-impl.ts:42</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -198,9 +205,10 @@
 					<h3>version</h3>
 					<div class="tsd-signature tsd-kind-icon">version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;&quot;</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="_gateway_gateway_.gateway.html">Gateway</a>.<a href="_gateway_gateway_.gateway.html#version">version</a></p>
+						<p>Implementation of <a href="../interfaces/_gateway_gateway_.gateway.html">Gateway</a>.<a href="../interfaces/_gateway_gateway_.gateway.html#version">version</a></p>
+						<p>Inherited from <a href="_gateway_gateway_impl_.gatewayimpl.html">GatewayImpl</a>.<a href="_gateway_gateway_impl_.gatewayimpl.html#version">version</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/gateway/gateway.ts#L64">src/gateway/gateway.ts:64</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/gateway/gateway-impl.ts#L40">src/gateway/gateway-impl.ts:40</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -222,18 +230,18 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_gateway_gateway_.gateway.html">Gateway</a>.<a href="_gateway_gateway_.gateway.html#streamingapiurl">streamingApiUrl</a></p>
+								<p>Inherited from <a href="_gateway_gateway_impl_.gatewayimpl.html">GatewayImpl</a>.<a href="_gateway_gateway_impl_.gatewayimpl.html#streamingapiurl">streamingApiUrl</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/gateway/gateway.ts#L105">src/gateway/gateway.ts:105</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/gateway/gateway-impl.ts#L81">src/gateway/gateway-impl.ts:81</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_gateway_gateway_.gateway.html">Gateway</a>.<a href="_gateway_gateway_.gateway.html#streamingapiurl">streamingApiUrl</a></p>
+								<p>Inherited from <a href="_gateway_gateway_impl_.gatewayimpl.html">GatewayImpl</a>.<a href="_gateway_gateway_impl_.gatewayimpl.html#streamingapiurl">streamingApiUrl</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/gateway/gateway.ts#L109">src/gateway/gateway.ts:109</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/gateway/gateway-impl.ts#L85">src/gateway/gateway-impl.ts:85</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -256,18 +264,18 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_gateway_gateway_.gateway.html">Gateway</a>.<a href="_gateway_gateway_.gateway.html#uri">uri</a></p>
+								<p>Inherited from <a href="_gateway_gateway_impl_.gatewayimpl.html">GatewayImpl</a>.<a href="_gateway_gateway_impl_.gatewayimpl.html#uri">uri</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/gateway/gateway.ts#L97">src/gateway/gateway.ts:97</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/gateway/gateway-impl.ts#L73">src/gateway/gateway-impl.ts:73</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_gateway_gateway_.gateway.html">Gateway</a>.<a href="_gateway_gateway_.gateway.html#uri">uri</a></p>
+								<p>Inherited from <a href="_gateway_gateway_impl_.gatewayimpl.html">GatewayImpl</a>.<a href="_gateway_gateway_impl_.gatewayimpl.html#uri">uri</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/gateway/gateway.ts#L101">src/gateway/gateway.ts:101</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/gateway/gateway-impl.ts#L77">src/gateway/gateway-impl.ts:77</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -293,20 +301,25 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto-admin/masto-admin.ts#L151">src/clients/masto-admin/masto-admin.ts:151</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto-admin/masto-admin.ts#L44">src/clients/masto-admin/masto-admin.ts:44</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Perform a moderation action on an account</p>
+									<p>Perform an action against an account and log this action in the moderation history.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://docs.joinmastodon.org/methods/admin/">https://docs.joinmastodon.org/methods/admin/</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>id: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>ID of the account</p>
+										<p>g ID of the account</p>
 									</div>
 								</li>
 								<li>
@@ -331,13 +344,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto-admin/masto-admin.ts#L50">src/clients/masto-admin/masto-admin.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto-admin/masto-admin.ts#L58">src/clients/masto-admin/masto-admin.ts:58</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Approve pending account</p>
+									<p>Approve the given local account if it is currently pending approval.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://docs.joinmastodon.org/methods/admin/">https://docs.joinmastodon.org/methods/admin/</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -349,7 +367,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_entities_admin_account_.adminaccount.html" class="tsd-signature-type">AdminAccount</a><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Account</p>
+							<p>AdminAccount</p>
 						</li>
 					</ul>
 				</section>
@@ -363,13 +381,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto-admin/masto-admin.ts#L110">src/clients/masto-admin/masto-admin.ts:110</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto-admin/masto-admin.ts#L135">src/clients/masto-admin/masto-admin.ts:135</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Assign report to self</p>
+									<p>Claim the handling of this report to yourself.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://docs.joinmastodon.org/methods/admin/">https://docs.joinmastodon.org/methods/admin/</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -381,7 +404,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_entities_admin_report_.adminreport.html" class="tsd-signature-type">AdminReport</a><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Report</p>
+							<p>AdminReport</p>
 						</li>
 					</ul>
 				</section>
@@ -394,9 +417,10 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_gateway_gateway_.gateway.html">Gateway</a>.<a href="_gateway_gateway_.gateway.html#delete">delete</a></p>
+								<p>Implementation of <a href="../interfaces/_gateway_gateway_.gateway.html">Gateway</a>.<a href="../interfaces/_gateway_gateway_.gateway.html#delete">delete</a></p>
+								<p>Inherited from <a href="_gateway_gateway_impl_.gatewayimpl.html">GatewayImpl</a>.<a href="_gateway_gateway_impl_.gatewayimpl.html#delete">delete</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/gateway/gateway.ts#L280">src/gateway/gateway.ts:280</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/gateway/gateway-impl.ts#L275">src/gateway/gateway-impl.ts:275</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -445,13 +469,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto-admin/masto-admin.ts#L40">src/clients/masto-admin/masto-admin.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto-admin/masto-admin.ts#L80">src/clients/masto-admin/masto-admin.ts:80</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Re-enable account</p>
+									<p>Re-enable a local account whose login is currently disabled.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://docs.joinmastodon.org/methods/admin/">https://docs.joinmastodon.org/methods/admin/</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -463,7 +492,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_entities_admin_account_.adminaccount.html" class="tsd-signature-type">AdminAccount</a><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Account</p>
+							<p>AdminAccount</p>
 						</li>
 					</ul>
 				</section>
@@ -477,13 +506,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto-admin/masto-admin.ts#L30">src/clients/masto-admin/masto-admin.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto-admin/masto-admin.ts#L32">src/clients/masto-admin/masto-admin.ts:32</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get a specific account</p>
+									<p>View admin-level information about the given account.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://docs.joinmastodon.org/methods/admin/">https://docs.joinmastodon.org/methods/admin/</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -495,7 +529,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_entities_admin_account_.adminaccount.html" class="tsd-signature-type">AdminAccount</a><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Account</p>
+							<p>AdminAccount</p>
 						</li>
 					</ul>
 				</section>
@@ -509,25 +543,31 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto-admin/masto-admin.ts#L20">src/clients/masto-admin/masto-admin.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto-admin/masto-admin.ts#L21">src/clients/masto-admin/masto-admin.ts:21</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get accounts</p>
+									<p>View accounts matching certain criteria for filtering, up to 100 at a time.
+									Pagination may be done with the HTTP Link header in the response.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://docs.joinmastodon.org/methods/admin/">https://docs.joinmastodon.org/methods/admin/</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> params: <a href="../interfaces/_clients_masto_admin_params_.adminfetchaccountparams.html" class="tsd-signature-type">AdminFetchAccountParams</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>parameters</p>
+										<p>Parameters</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_entities_admin_account_.adminaccount.html" class="tsd-signature-type">AdminAccount</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Accounts</p>
+							<p>Array of AdminAccount</p>
 						</li>
 					</ul>
 				</section>
@@ -541,13 +581,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto-admin/masto-admin.ts#L100">src/clients/masto-admin/masto-admin.ts:100</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto-admin/masto-admin.ts#L124">src/clients/masto-admin/masto-admin.ts:124</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get a specific report</p>
+									<p>View information about the report with the given ID.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://docs.joinmastodon.org/methods/admin/">https://docs.joinmastodon.org/methods/admin/</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -559,7 +604,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_entities_admin_report_.adminreport.html" class="tsd-signature-type">AdminReport</a><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Report</p>
+							<p>AdminReport</p>
 						</li>
 					</ul>
 				</section>
@@ -573,25 +618,30 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto-admin/masto-admin.ts#L90">src/clients/masto-admin/masto-admin.ts:90</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto-admin/masto-admin.ts#L113">src/clients/masto-admin/masto-admin.ts:113</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get reports</p>
+									<p>View all reports. Pagination may be done with HTTP Link header in the response.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://docs.joinmastodon.org/methods/admin/">https://docs.joinmastodon.org/methods/admin/</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> params: <a href="../interfaces/_clients_masto_admin_params_.adminfetchreportsparams.html" class="tsd-signature-type">AdminFetchReportsParams</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>params</p>
+										<p>Parameters</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_entities_admin_report_.adminreport.html" class="tsd-signature-type">AdminReport</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Reports</p>
+							<p>Array of AdminReport</p>
 						</li>
 					</ul>
 				</section>
@@ -604,9 +654,10 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_gateway_gateway_.gateway.html">Gateway</a>.<a href="_gateway_gateway_.gateway.html#get">get</a></p>
+								<p>Implementation of <a href="../interfaces/_gateway_gateway_.gateway.html">Gateway</a>.<a href="../interfaces/_gateway_gateway_.gateway.html#get">get</a></p>
+								<p>Inherited from <a href="_gateway_gateway_impl_.gatewayimpl.html">GatewayImpl</a>.<a href="_gateway_gateway_impl_.gatewayimpl.html#get">get</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/gateway/gateway.ts#L218">src/gateway/gateway.ts:218</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/gateway/gateway-impl.ts#L213">src/gateway/gateway-impl.ts:213</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -651,9 +702,10 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_gateway_gateway_.gateway.html">Gateway</a>.<a href="_gateway_gateway_.gateway.html#paginate">paginate</a></p>
+								<p>Implementation of <a href="../interfaces/_gateway_gateway_.gateway.html">Gateway</a>.<a href="../interfaces/_gateway_gateway_.gateway.html#paginate">paginate</a></p>
+								<p>Inherited from <a href="_gateway_gateway_impl_.gatewayimpl.html">GatewayImpl</a>.<a href="_gateway_gateway_impl_.gatewayimpl.html#paginate">paginate</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/gateway/gateway.ts#L350">src/gateway/gateway.ts:350</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/gateway/gateway-impl.ts#L349">src/gateway/gateway-impl.ts:349</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -697,9 +749,10 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_gateway_gateway_.gateway.html">Gateway</a>.<a href="_gateway_gateway_.gateway.html#patch">patch</a></p>
+								<p>Implementation of <a href="../interfaces/_gateway_gateway_.gateway.html">Gateway</a>.<a href="../interfaces/_gateway_gateway_.gateway.html#patch">patch</a></p>
+								<p>Inherited from <a href="_gateway_gateway_impl_.gatewayimpl.html">GatewayImpl</a>.<a href="_gateway_gateway_impl_.gatewayimpl.html#patch">patch</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/gateway/gateway.ts#L302">src/gateway/gateway.ts:302</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/gateway/gateway-impl.ts#L297">src/gateway/gateway-impl.ts:297</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -747,9 +800,10 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_gateway_gateway_.gateway.html">Gateway</a>.<a href="_gateway_gateway_.gateway.html#post">post</a></p>
+								<p>Implementation of <a href="../interfaces/_gateway_gateway_.gateway.html">Gateway</a>.<a href="../interfaces/_gateway_gateway_.gateway.html#post">post</a></p>
+								<p>Inherited from <a href="_gateway_gateway_impl_.gatewayimpl.html">GatewayImpl</a>.<a href="_gateway_gateway_impl_.gatewayimpl.html#post">post</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/gateway/gateway.ts#L240">src/gateway/gateway.ts:240</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/gateway/gateway-impl.ts#L235">src/gateway/gateway-impl.ts:235</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -794,9 +848,10 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_gateway_gateway_.gateway.html">Gateway</a>.<a href="_gateway_gateway_.gateway.html#put">put</a></p>
+								<p>Implementation of <a href="../interfaces/_gateway_gateway_.gateway.html">Gateway</a>.<a href="../interfaces/_gateway_gateway_.gateway.html#put">put</a></p>
+								<p>Inherited from <a href="_gateway_gateway_impl_.gatewayimpl.html">GatewayImpl</a>.<a href="_gateway_gateway_impl_.gatewayimpl.html#put">put</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/gateway/gateway.ts#L262">src/gateway/gateway.ts:262</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/gateway/gateway-impl.ts#L257">src/gateway/gateway-impl.ts:257</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -845,13 +900,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto-admin/masto-admin.ts#L60">src/clients/masto-admin/masto-admin.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto-admin/masto-admin.ts#L69">src/clients/masto-admin/masto-admin.ts:69</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Reject pending account</p>
+									<p>Reject the given local account if it is currently pending approval.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://docs.joinmastodon.org/methods/admin/">https://docs.joinmastodon.org/methods/admin/</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -863,7 +923,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_entities_admin_account_.adminaccount.html" class="tsd-signature-type">AdminAccount</a><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Account</p>
+							<p>AdminAccount</p>
 						</li>
 					</ul>
 				</section>
@@ -877,13 +937,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto-admin/masto-admin.ts#L130">src/clients/masto-admin/masto-admin.ts:130</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto-admin/masto-admin.ts#L168">src/clients/masto-admin/masto-admin.ts:168</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Re-open report</p>
+									<p>Reopen a currently closed report.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://docs.joinmastodon.org/methods/admin/">https://docs.joinmastodon.org/methods/admin/</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -895,7 +960,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_entities_admin_report_.adminreport.html" class="tsd-signature-type">AdminReport</a><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Report</p>
+							<p>AdminReport</p>
 						</li>
 					</ul>
 				</section>
@@ -909,13 +974,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto-admin/masto-admin.ts#L140">src/clients/masto-admin/masto-admin.ts:140</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto-admin/masto-admin.ts#L157">src/clients/masto-admin/masto-admin.ts:157</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Close report</p>
+									<p>Mark a report as resolved with no further action taken.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://docs.joinmastodon.org/methods/admin/">https://docs.joinmastodon.org/methods/admin/</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -927,7 +997,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_entities_admin_report_.adminreport.html" class="tsd-signature-type">AdminReport</a><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Report</p>
+							<p>AdminReport</p>
 						</li>
 					</ul>
 				</section>
@@ -935,14 +1005,15 @@
 					<a name="stream" class="tsd-anchor"></a>
 					<h3>stream</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">stream<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">ParsedUrlQueryInput</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_gateway_websocket_.websocketevents.html" class="tsd-signature-type">WebSocketEvents</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">stream<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">ParsedUrlQueryInput</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_gateway_event_handler_impl_.eventhandlerimpl.html" class="tsd-signature-type">EventHandlerImpl</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_gateway_gateway_.gateway.html">Gateway</a>.<a href="_gateway_gateway_.gateway.html#stream">stream</a></p>
+								<p>Implementation of <a href="../interfaces/_gateway_gateway_.gateway.html">Gateway</a>.<a href="../interfaces/_gateway_gateway_.gateway.html#stream">stream</a></p>
+								<p>Inherited from <a href="_gateway_gateway_impl_.gatewayimpl.html">GatewayImpl</a>.<a href="_gateway_gateway_impl_.gatewayimpl.html#stream">stream</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/gateway/gateway.ts#L323">src/gateway/gateway.ts:323</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/gateway/gateway-impl.ts#L318">src/gateway/gateway-impl.ts:318</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -965,7 +1036,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_gateway_websocket_.websocketevents.html" class="tsd-signature-type">WebSocketEvents</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_gateway_event_handler_impl_.eventhandlerimpl.html" class="tsd-signature-type">EventHandlerImpl</a><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>Instance of EventEmitter</p>
 						</li>
 					</ul>
@@ -980,13 +1051,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto-admin/masto-admin.ts#L120">src/clients/masto-admin/masto-admin.ts:120</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto-admin/masto-admin.ts#L146">src/clients/masto-admin/masto-admin.ts:146</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Unassign report from self</p>
+									<p>Unassign a report so that someone else can claim it.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://docs.joinmastodon.org/methods/admin/">https://docs.joinmastodon.org/methods/admin/</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -998,7 +1074,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_entities_admin_report_.adminreport.html" class="tsd-signature-type">AdminReport</a><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Report</p>
+							<p>AdminReport</p>
 						</li>
 					</ul>
 				</section>
@@ -1012,13 +1088,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto-admin/masto-admin.ts#L70">src/clients/masto-admin/masto-admin.ts:70</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto-admin/masto-admin.ts#L91">src/clients/masto-admin/masto-admin.ts:91</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Unsilence account</p>
+									<p>Unsilence a currently silenced account.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://docs.joinmastodon.org/methods/admin/">https://docs.joinmastodon.org/methods/admin/</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1030,7 +1111,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_entities_admin_account_.adminaccount.html" class="tsd-signature-type">AdminAccount</a><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Account</p>
+							<p>AdminAccount</p>
 						</li>
 					</ul>
 				</section>
@@ -1044,13 +1125,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto-admin/masto-admin.ts#L80">src/clients/masto-admin/masto-admin.ts:80</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto-admin/masto-admin.ts#L102">src/clients/masto-admin/masto-admin.ts:102</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Unsuspend account</p>
+									<p>Unsuspend a currently suspended account.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://docs.joinmastodon.org/methods/admin/">https://docs.joinmastodon.org/methods/admin/</a></p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1062,7 +1148,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_entities_admin_account_.adminaccount.html" class="tsd-signature-type">AdminAccount</a><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Account</p>
+							<p>AdminAccount</p>
 						</li>
 					</ul>
 				</section>
@@ -1075,9 +1161,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_gateway_gateway_.gateway.html">Gateway</a>.<a href="_gateway_gateway_.gateway.html#login">login</a></p>
+								<p>Inherited from <a href="_gateway_gateway_impl_.gatewayimpl.html">GatewayImpl</a>.<a href="_gateway_gateway_impl_.gatewayimpl.html#login">login</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/gateway/gateway.ts#L118">src/gateway/gateway.ts:118</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/gateway/gateway-impl.ts#L94">src/gateway/gateway-impl.ts:94</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1088,7 +1174,7 @@
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
-									<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">typeof </span><a href="_gateway_gateway_.gateway.html" class="tsd-signature-type">Gateway</a></h4>
+									<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">typeof </span><a href="_gateway_gateway_impl_.gatewayimpl.html" class="tsd-signature-type">GatewayImpl</a></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>

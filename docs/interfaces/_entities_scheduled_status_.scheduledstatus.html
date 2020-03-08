@@ -67,6 +67,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Represents a status that will be published at a future scheduled date.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -83,9 +90,9 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_scheduled_status_.scheduledstatus.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_scheduled_status_.scheduledstatus.html#media_attachments" class="tsd-kind-icon">media_<wbr>attachments</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_scheduled_status_.scheduledstatus.html#mediaattachments" class="tsd-kind-icon">media<wbr>Attachments</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_scheduled_status_.scheduledstatus.html#params" class="tsd-kind-icon">params</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_scheduled_status_.scheduledstatus.html#scheduled_at" class="tsd-kind-icon">scheduled_<wbr>at</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_scheduled_status_.scheduledstatus.html#scheduledat" class="tsd-kind-icon">scheduled<wbr>At</a></li>
 							</ul>
 						</section>
 					</div>
@@ -99,22 +106,22 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/scheduled-status.ts#L19">src/entities/scheduled-status.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/scheduled-status.ts#L20">src/entities/scheduled-status.ts:20</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>ID of the scheduled status</p>
+							<p>ID of the scheduled status in the database.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="media_attachments" class="tsd-anchor"></a>
-					<h3>media_<wbr>attachments</h3>
-					<div class="tsd-signature tsd-kind-icon">media_<wbr>attachments<span class="tsd-signature-symbol">:</span> <a href="_entities_attachment_.attachment.html" class="tsd-signature-type">Attachment</a></div>
+					<a name="mediaattachments" class="tsd-anchor"></a>
+					<h3>media<wbr>Attachments</h3>
+					<div class="tsd-signature tsd-kind-icon">media<wbr>Attachments<span class="tsd-signature-symbol">:</span> <a href="_entities_attachment_.attachment.html" class="tsd-signature-type">Attachment</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/scheduled-status.ts#L25">src/entities/scheduled-status.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/scheduled-status.ts#L26">src/entities/scheduled-status.ts:26</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -129,7 +136,7 @@
 					<div class="tsd-signature tsd-kind-icon">params<span class="tsd-signature-symbol">:</span> <a href="_entities_scheduled_status_.statusparams.html" class="tsd-signature-type">StatusParams</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/scheduled-status.ts#L23">src/entities/scheduled-status.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/scheduled-status.ts#L24">src/entities/scheduled-status.ts:24</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -139,17 +146,17 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="scheduled_at" class="tsd-anchor"></a>
-					<h3>scheduled_<wbr>at</h3>
-					<div class="tsd-signature tsd-kind-icon">scheduled_<wbr>at<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="scheduledat" class="tsd-anchor"></a>
+					<h3>scheduled<wbr>At</h3>
+					<div class="tsd-signature tsd-kind-icon">scheduled<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/scheduled-status.ts#L21">src/entities/scheduled-status.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/scheduled-status.ts#L22">src/entities/scheduled-status.ts:22</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Scheduled date</p>
+							<p>ID of the status in the database.</p>
 						</div>
 					</div>
 				</section>
@@ -177,13 +184,13 @@
 								<a href="_entities_scheduled_status_.scheduledstatus.html#id" class="tsd-kind-icon">id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_scheduled_status_.scheduledstatus.html#media_attachments" class="tsd-kind-icon">media_<wbr>attachments</a>
+								<a href="_entities_scheduled_status_.scheduledstatus.html#mediaattachments" class="tsd-kind-icon">media<wbr>Attachments</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_entities_scheduled_status_.scheduledstatus.html#params" class="tsd-kind-icon">params</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_scheduled_status_.scheduledstatus.html#scheduled_at" class="tsd-kind-icon">scheduled_<wbr>at</a>
+								<a href="_entities_scheduled_status_.scheduledstatus.html#scheduledat" class="tsd-kind-icon">scheduled<wbr>At</a>
 							</li>
 						</ul>
 					</li>

@@ -67,6 +67,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Represents a notification of an event relevant to the user.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -83,7 +90,7 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_notification_.notification.html#account" class="tsd-kind-icon">account</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_notification_.notification.html#created_at" class="tsd-kind-icon">created_<wbr>at</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_notification_.notification.html#createdat" class="tsd-kind-icon">created<wbr>At</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_notification_.notification.html#id" class="tsd-kind-icon">id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_notification_.notification.html#status" class="tsd-kind-icon">status</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_notification_.notification.html#type" class="tsd-kind-icon">type</a></li>
@@ -100,27 +107,27 @@
 					<div class="tsd-signature tsd-kind-icon">account<span class="tsd-signature-symbol">:</span> <a href="_entities_account_.account.html" class="tsd-signature-type">Account</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/notification.ts#L20">src/entities/notification.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/notification.ts#L21">src/entities/notification.ts:21</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The Account sending the notification to the user</p>
+							<p>The account that performed the action that generated the notification.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="created_at" class="tsd-anchor"></a>
-					<h3>created_<wbr>at</h3>
-					<div class="tsd-signature tsd-kind-icon">created_<wbr>at<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="createdat" class="tsd-anchor"></a>
+					<h3>created<wbr>At</h3>
+					<div class="tsd-signature tsd-kind-icon">created<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/notification.ts#L18">src/entities/notification.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/notification.ts#L19">src/entities/notification.ts:19</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The time the notification was created</p>
+							<p>The timestamp of the notification.</p>
 						</div>
 					</div>
 				</section>
@@ -130,12 +137,12 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/notification.ts#L14">src/entities/notification.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/notification.ts#L15">src/entities/notification.ts:15</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The notification ID</p>
+							<p>The id of the notification in the database.</p>
 						</div>
 					</div>
 				</section>
@@ -145,12 +152,12 @@
 					<div class="tsd-signature tsd-kind-icon">status<span class="tsd-signature-symbol">:</span> <a href="_entities_status_.status.html" class="tsd-signature-type">Status</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/notification.ts#L22">src/entities/notification.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/notification.ts#L24">src/entities/notification.ts:24</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The Status associated with the notification, if applicable</p>
+							<p>Status that was the object of the notification, e.g. in mentions, reblogs, favourites, or polls.</p>
 						</div>
 					</div>
 				</section>
@@ -160,12 +167,12 @@
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../modules/_entities_notification_.html#notificationtype" class="tsd-signature-type">NotificationType</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/notification.ts#L16">src/entities/notification.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/notification.ts#L17">src/entities/notification.ts:17</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>One of: &quot;mention&quot;, &quot;reblog&quot;, &quot;favourite&quot;, &quot;follow&quot;</p>
+							<p>The type of event that resulted in the notification.</p>
 						</div>
 					</div>
 				</section>
@@ -193,7 +200,7 @@
 								<a href="_entities_notification_.notification.html#account" class="tsd-kind-icon">account</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_notification_.notification.html#created_at" class="tsd-kind-icon">created_<wbr>at</a>
+								<a href="_entities_notification_.notification.html#createdat" class="tsd-kind-icon">created<wbr>At</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_entities_notification_.notification.html#id" class="tsd-kind-icon">id</a>

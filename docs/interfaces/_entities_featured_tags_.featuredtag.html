@@ -67,6 +67,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Represents a hashtag that is featured on a profile.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -83,9 +90,9 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_featured_tags_.featuredtag.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_featured_tags_.featuredtag.html#last_status_at" class="tsd-kind-icon">last_<wbr>status_<wbr>at</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_featured_tags_.featuredtag.html#laststatusat" class="tsd-kind-icon">last<wbr>Status<wbr>At</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_featured_tags_.featuredtag.html#name" class="tsd-kind-icon">name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_featured_tags_.featuredtag.html#statuses_count" class="tsd-kind-icon">statuses_<wbr>count</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_featured_tags_.featuredtag.html#statusescount" class="tsd-kind-icon">statuses<wbr>Count</a></li>
 							</ul>
 						</section>
 					</div>
@@ -99,19 +106,29 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/featured-tags.ts#L2">src/entities/featured-tags.ts:2</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/featured-tags.ts#L4">src/entities/featured-tags.ts:4</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The internal ID of the featured tag in the database.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="last_status_at" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> last_<wbr>status_<wbr>at</h3>
-					<div class="tsd-signature tsd-kind-icon">last_<wbr>status_<wbr>at<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<a name="laststatusat" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> last<wbr>Status<wbr>At</h3>
+					<div class="tsd-signature tsd-kind-icon">last<wbr>Status<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/featured-tags.ts#L5">src/entities/featured-tags.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/featured-tags.ts#L10">src/entities/featured-tags.ts:10</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The timestamp of the last authored status containing this hashtag.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="name" class="tsd-anchor"></a>
@@ -119,19 +136,29 @@
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/featured-tags.ts#L3">src/entities/featured-tags.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/featured-tags.ts#L6">src/entities/featured-tags.ts:6</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The name of the hashtag being featured.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="statuses_count" class="tsd-anchor"></a>
-					<h3>statuses_<wbr>count</h3>
-					<div class="tsd-signature tsd-kind-icon">statuses_<wbr>count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="statusescount" class="tsd-anchor"></a>
+					<h3>statuses<wbr>Count</h3>
+					<div class="tsd-signature tsd-kind-icon">statuses<wbr>Count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/featured-tags.ts#L4">src/entities/featured-tags.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/featured-tags.ts#L8">src/entities/featured-tags.ts:8</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The number of authored statuses containing this hashtag</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -157,13 +184,13 @@
 								<a href="_entities_featured_tags_.featuredtag.html#id" class="tsd-kind-icon">id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_featured_tags_.featuredtag.html#last_status_at" class="tsd-kind-icon">last_<wbr>status_<wbr>at</a>
+								<a href="_entities_featured_tags_.featuredtag.html#laststatusat" class="tsd-kind-icon">last<wbr>Status<wbr>At</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_entities_featured_tags_.featuredtag.html#name" class="tsd-kind-icon">name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_featured_tags_.featuredtag.html#statuses_count" class="tsd-kind-icon">statuses_<wbr>count</a>
+								<a href="_entities_featured_tags_.featuredtag.html#statusescount" class="tsd-kind-icon">statuses<wbr>Count</a>
 							</li>
 						</ul>
 					</li>

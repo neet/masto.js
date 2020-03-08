@@ -67,6 +67,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Represents a conversation with &quot;direct message&quot; visibility.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -84,7 +91,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_conversation_.conversation.html#accounts" class="tsd-kind-icon">accounts</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_conversation_.conversation.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_conversation_.conversation.html#last_status" class="tsd-kind-icon">last_<wbr>status</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_conversation_.conversation.html#laststatus" class="tsd-kind-icon">last<wbr>Status</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_conversation_.conversation.html#unread" class="tsd-kind-icon">unread</a></li>
 							</ul>
 						</section>
@@ -99,12 +106,12 @@
 					<div class="tsd-signature tsd-kind-icon">accounts<span class="tsd-signature-symbol">:</span> <a href="_entities_account_.account.html" class="tsd-signature-type">Account</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/conversation.ts#L10">src/entities/conversation.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/conversation.ts#L8">src/entities/conversation.ts:8</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>An array of accounts that mentioned this conversation</p>
+							<p>Participants in the conversation.</p>
 						</div>
 					</div>
 				</section>
@@ -114,27 +121,27 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/conversation.ts#L6">src/entities/conversation.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/conversation.ts#L6">src/entities/conversation.ts:6</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The ID of the conversation</p>
+							<p>Local database ID of the conversation.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="last_status" class="tsd-anchor"></a>
-					<h3>last_<wbr>status</h3>
-					<div class="tsd-signature tsd-kind-icon">last_<wbr>status<span class="tsd-signature-symbol">:</span> <a href="_entities_status_.status.html" class="tsd-signature-type">Status</a></div>
+					<a name="laststatus" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> last<wbr>Status</h3>
+					<div class="tsd-signature tsd-kind-icon">last<wbr>Status<span class="tsd-signature-symbol">:</span> <a href="_entities_status_.status.html" class="tsd-signature-type">Status</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/conversation.ts#L12">src/entities/conversation.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/conversation.ts#L13">src/entities/conversation.ts:13</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The latest status of this conversation</p>
+							<p>The last status in the conversation, to be used for optional display.</p>
 						</div>
 					</div>
 				</section>
@@ -144,12 +151,12 @@
 					<div class="tsd-signature tsd-kind-icon">unread<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/conversation.ts#L8">src/entities/conversation.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/conversation.ts#L10">src/entities/conversation.ts:10</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Wether authorized user has read latest status</p>
+							<p>Is the conversation currently marked as unread?</p>
 						</div>
 					</div>
 				</section>
@@ -180,7 +187,7 @@
 								<a href="_entities_conversation_.conversation.html#id" class="tsd-kind-icon">id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_conversation_.conversation.html#last_status" class="tsd-kind-icon">last_<wbr>status</a>
+								<a href="_entities_conversation_.conversation.html#laststatus" class="tsd-kind-icon">last<wbr>Status</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_entities_conversation_.conversation.html#unread" class="tsd-kind-icon">unread</a>

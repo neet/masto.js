@@ -67,6 +67,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Represents a subscription to the push streaming server.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -85,7 +92,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_push_subscription_.pushsubscription.html#alerts" class="tsd-kind-icon">alerts</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_push_subscription_.pushsubscription.html#endpoint" class="tsd-kind-icon">endpoint</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_push_subscription_.pushsubscription.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_push_subscription_.pushsubscription.html#server_key" class="tsd-kind-icon">server_<wbr>key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_push_subscription_.pushsubscription.html#serverkey" class="tsd-kind-icon">server<wbr>Key</a></li>
 							</ul>
 						</section>
 					</div>
@@ -99,12 +106,12 @@
 					<div class="tsd-signature tsd-kind-icon">alerts<span class="tsd-signature-symbol">:</span> <a href="_entities_push_subscription_.pushsubscriptionalerts.html" class="tsd-signature-type">PushSubscriptionAlerts</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/push-subscription.ts#L9">src/entities/push-subscription.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/push-subscription.ts#L10">src/entities/push-subscription.ts:10</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Map of &#39;notification event type&#39; and &#39;push is requested or not&#39;</p>
+							<p>Which alerts should be delivered to the <code>endpoint</code>.</p>
 						</div>
 					</div>
 				</section>
@@ -114,12 +121,12 @@
 					<div class="tsd-signature tsd-kind-icon">endpoint<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/push-subscription.ts#L5">src/entities/push-subscription.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/push-subscription.ts#L6">src/entities/push-subscription.ts:6</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The endpoint URL</p>
+							<p>Where push alerts will be sent to.</p>
 						</div>
 					</div>
 				</section>
@@ -129,27 +136,27 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/push-subscription.ts#L3">src/entities/push-subscription.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/push-subscription.ts#L4">src/entities/push-subscription.ts:4</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The push subscription ID</p>
+							<p>The id of the push subscription in the database.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="server_key" class="tsd-anchor"></a>
-					<h3>server_<wbr>key</h3>
-					<div class="tsd-signature tsd-kind-icon">server_<wbr>key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="serverkey" class="tsd-anchor"></a>
+					<h3>server<wbr>Key</h3>
+					<div class="tsd-signature tsd-kind-icon">server<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/push-subscription.ts#L7">src/entities/push-subscription.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/push-subscription.ts#L8">src/entities/push-subscription.ts:8</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The server public key for signature verification. (not for decoding)</p>
+							<p>The streaming server&#39;s VAPID key.</p>
 						</div>
 					</div>
 				</section>
@@ -183,7 +190,7 @@
 								<a href="_entities_push_subscription_.pushsubscription.html#id" class="tsd-kind-icon">id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_push_subscription_.pushsubscription.html#server_key" class="tsd-kind-icon">server_<wbr>key</a>
+								<a href="_entities_push_subscription_.pushsubscription.html#serverkey" class="tsd-kind-icon">server<wbr>Key</a>
 							</li>
 						</ul>
 					</li>

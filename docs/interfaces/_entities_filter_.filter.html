@@ -67,6 +67,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Represents a user-defined filter for determining which statuses should not be shown to the user.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -83,11 +90,11 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_filter_.filter.html#context" class="tsd-kind-icon">context</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_filter_.filter.html#expires_at" class="tsd-kind-icon">expires_<wbr>at</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_filter_.filter.html#expiresat" class="tsd-kind-icon">expires<wbr>At</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_filter_.filter.html#id" class="tsd-kind-icon">id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_filter_.filter.html#irreversible" class="tsd-kind-icon">irreversible</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_filter_.filter.html#phrase" class="tsd-kind-icon">phrase</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_filter_.filter.html#whole_word" class="tsd-kind-icon">whole_<wbr>word</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_filter_.filter.html#wholeword" class="tsd-kind-icon">whole<wbr>Word</a></li>
 							</ul>
 						</section>
 					</div>
@@ -101,27 +108,27 @@
 					<div class="tsd-signature tsd-kind-icon">context<span class="tsd-signature-symbol">:</span> <a href="../modules/_entities_filter_.html#filtercontext" class="tsd-signature-type">FilterContext</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/filter.ts#L15">src/entities/filter.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/filter.ts#L15">src/entities/filter.ts:15</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Array of strings that indicate filter context. each string is ont of <code>home</code>, <code>notifications</code>, <code>public</code>, <code>thread</code></p>
+							<p>The contexts in which the filter should be applied.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="expires_at" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> expires_<wbr>at</h3>
-					<div class="tsd-signature tsd-kind-icon">expires_<wbr>at<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<a name="expiresat" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> expires<wbr>At</h3>
+					<div class="tsd-signature tsd-kind-icon">expires<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/filter.ts#L17">src/entities/filter.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/filter.ts#L17">src/entities/filter.ts:17</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>String such as <code>2018-07-06T00:59:13.161Z</code> that indicates when this filter is expired.</p>
+							<p>When the filter should no longer be applied</p>
 						</div>
 					</div>
 				</section>
@@ -131,12 +138,12 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/filter.ts#L11">src/entities/filter.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/filter.ts#L11">src/entities/filter.ts:11</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>ID of the filter</p>
+							<p>The ID of the filter in the database.</p>
 						</div>
 					</div>
 				</section>
@@ -146,12 +153,12 @@
 					<div class="tsd-signature tsd-kind-icon">irreversible<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/filter.ts#L19">src/entities/filter.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/filter.ts#L19">src/entities/filter.ts:19</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Boolean that indicates irreversible server side filtering.</p>
+							<p>Should matching entities in home and notifications be dropped by the server?</p>
 						</div>
 					</div>
 				</section>
@@ -161,27 +168,27 @@
 					<div class="tsd-signature tsd-kind-icon">phrase<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/filter.ts#L13">src/entities/filter.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/filter.ts#L13">src/entities/filter.ts:13</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Keyword or phrase</p>
+							<p>The text to be filtered.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="whole_word" class="tsd-anchor"></a>
-					<h3>whole_<wbr>word</h3>
-					<div class="tsd-signature tsd-kind-icon">whole_<wbr>word<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="wholeword" class="tsd-anchor"></a>
+					<h3>whole<wbr>Word</h3>
+					<div class="tsd-signature tsd-kind-icon">whole<wbr>Word<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/filter.ts#L21">src/entities/filter.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/filter.ts#L21">src/entities/filter.ts:21</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Boolean that indicates word match.</p>
+							<p>Should the filter consider word boundaries?</p>
 						</div>
 					</div>
 				</section>
@@ -209,7 +216,7 @@
 								<a href="_entities_filter_.filter.html#context" class="tsd-kind-icon">context</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_filter_.filter.html#expires_at" class="tsd-kind-icon">expires_<wbr>at</a>
+								<a href="_entities_filter_.filter.html#expiresat" class="tsd-kind-icon">expires<wbr>At</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_entities_filter_.filter.html#id" class="tsd-kind-icon">id</a>
@@ -221,7 +228,7 @@
 								<a href="_entities_filter_.filter.html#phrase" class="tsd-kind-icon">phrase</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_filter_.filter.html#whole_word" class="tsd-kind-icon">whole_<wbr>word</a>
+								<a href="_entities_filter_.filter.html#wholeword" class="tsd-kind-icon">whole<wbr>Word</a>
 							</li>
 						</ul>
 					</li>

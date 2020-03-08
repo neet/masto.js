@@ -84,6 +84,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_params_.fetchdirectoryparams.html#limit" class="tsd-kind-icon">limit</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_params_.fetchdirectoryparams.html#local" class="tsd-kind-icon">local</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_params_.fetchdirectoryparams.html#offset" class="tsd-kind-icon">offset</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_params_.fetchdirectoryparams.html#order" class="tsd-kind-icon">order</a></li>
 							</ul>
 						</section>
@@ -98,9 +99,14 @@
 					<div class="tsd-signature tsd-kind-icon">limit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto/params.ts#L309">src/clients/masto/params.ts:309</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto/params.ts#L331">src/clients/masto/params.ts:331</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>How many accounts to load. Default 40.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="local" class="tsd-anchor"></a>
@@ -108,9 +114,29 @@
 					<div class="tsd-signature tsd-kind-icon">local<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto/params.ts#L311">src/clients/masto/params.ts:311</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto/params.ts#L337">src/clients/masto/params.ts:337</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Only return local accounts.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="offset" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> offset</h3>
+					<div class="tsd-signature tsd-kind-icon">offset<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto/params.ts#L333">src/clients/masto/params.ts:333</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>How many accounts to skip before returning results. Default 0.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="order" class="tsd-anchor"></a>
@@ -118,9 +144,14 @@
 					<div class="tsd-signature tsd-kind-icon">order<span class="tsd-signature-symbol">:</span> <a href="../modules/_clients_masto_params_.html#directoryordertype" class="tsd-signature-type">DirectoryOrderType</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto/params.ts#L310">src/clients/masto/params.ts:310</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto/params.ts#L335">src/clients/masto/params.ts:335</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p><code>active</code> to sort by most recently posted statuses (default) or <code>new</code> to sort by most recently created profiles.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -138,9 +169,6 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_clients_masto_params_.addpushsubscriptionparams.html" class="tsd-kind-icon">Add<wbr>Push<wbr>Subscription<wbr>Params</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_clients_masto_params_.createaccountparams.html" class="tsd-kind-icon">Create<wbr>Account<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
@@ -148,6 +176,12 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_clients_masto_params_.createfeaturedtagparams.html" class="tsd-kind-icon">Create<wbr>Featured<wbr>Tag<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_clients_masto_params_.createmediaattachmentparams.html" class="tsd-kind-icon">Create<wbr>Media<wbr>Attachment<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_clients_masto_params_.createpushsubscriptionparams.html" class="tsd-kind-icon">Create<wbr>Push<wbr>Subscription<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_clients_masto_params_.createstatusparamsbase.html" class="tsd-kind-icon">Create<wbr>Status<wbr>Params<wbr>Base</a>
@@ -185,6 +219,9 @@
 								<a href="_clients_masto_params_.fetchdirectoryparams.html#local" class="tsd-kind-icon">local</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_clients_masto_params_.fetchdirectoryparams.html#offset" class="tsd-kind-icon">offset</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_clients_masto_params_.fetchdirectoryparams.html#order" class="tsd-kind-icon">order</a>
 							</li>
 						</ul>
@@ -199,6 +236,9 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_clients_masto_params_.fetchtimelineparams.html" class="tsd-kind-icon">Fetch<wbr>Timeline<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_clients_masto_params_.fetchtrendsparams.html" class="tsd-kind-icon">Fetch<wbr>Trends<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_clients_masto_params_.followaccountparams.html" class="tsd-kind-icon">Follow<wbr>Account<wbr>Params</a>
@@ -240,9 +280,6 @@
 						<a href="_clients_masto_params_.updatescheduledstatusparams.html" class="tsd-kind-icon">Update<wbr>Scheduled<wbr>Status<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_clients_masto_params_.uploadmediaattachmentparams.html" class="tsd-kind-icon">Upload<wbr>Media<wbr>Attachment<wbr>Params</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_clients_masto_params_.votepollparams.html" class="tsd-kind-icon">Vote<wbr>Poll<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
@@ -259,6 +296,9 @@
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
 						<a href="../modules/_clients_masto_params_.html#granttype" class="tsd-kind-icon">Grant<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_clients_masto_params_.html#searchtype" class="tsd-kind-icon">Search<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
 						<a href="../modules/_clients_masto_params_.html#updatemediaattachmentparams" class="tsd-kind-icon">Update<wbr>Media<wbr>Attachment<wbr>Params</a>

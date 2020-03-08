@@ -67,6 +67,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Represents an OAuth token used for authenticating with the API and performing actions.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -82,10 +89,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_token_.token.html#access_token" class="tsd-kind-icon">access_<wbr>token</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_token_.token.html#created_at" class="tsd-kind-icon">created_<wbr>at</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_token_.token.html#accesstoken" class="tsd-kind-icon">access<wbr>Token</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_token_.token.html#createdat" class="tsd-kind-icon">created<wbr>At</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_token_.token.html#scope" class="tsd-kind-icon">scope</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_token_.token.html#token_type" class="tsd-kind-icon">token_<wbr>type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_token_.token.html#tokentype" class="tsd-kind-icon">token<wbr>Type</a></li>
 							</ul>
 						</section>
 					</div>
@@ -94,32 +101,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="access_token" class="tsd-anchor"></a>
-					<h3>access_<wbr>token</h3>
-					<div class="tsd-signature tsd-kind-icon">access_<wbr>token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="accesstoken" class="tsd-anchor"></a>
+					<h3>access<wbr>Token</h3>
+					<div class="tsd-signature tsd-kind-icon">access<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/token.ts#L10">src/entities/token.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/token.ts#L4">src/entities/token.ts:4</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Access token of the account</p>
+							<p>An OAuth token to be used for authorization.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="created_at" class="tsd-anchor"></a>
-					<h3>created_<wbr>at</h3>
-					<div class="tsd-signature tsd-kind-icon">created_<wbr>at<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="createdat" class="tsd-anchor"></a>
+					<h3>created<wbr>At</h3>
+					<div class="tsd-signature tsd-kind-icon">created<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/token.ts#L16">src/entities/token.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/token.ts#L10">src/entities/token.ts:10</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Created date of the token</p>
+							<p>When the token was generated.</p>
 						</div>
 					</div>
 				</section>
@@ -129,27 +136,27 @@
 					<div class="tsd-signature tsd-kind-icon">scope<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/token.ts#L14">src/entities/token.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/token.ts#L8">src/entities/token.ts:8</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Scope of the token</p>
+							<p>The OAuth scopes granted by this token, space-separated.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="token_type" class="tsd-anchor"></a>
-					<h3>token_<wbr>type</h3>
-					<div class="tsd-signature tsd-kind-icon">token_<wbr>type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="tokentype" class="tsd-anchor"></a>
+					<h3>token<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">token<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/token.ts#L12">src/entities/token.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/token.ts#L6">src/entities/token.ts:6</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Type of the token</p>
+							<p>The OAuth token type. Mastodon uses Bearer tokens.</p>
 						</div>
 					</div>
 				</section>
@@ -168,33 +175,27 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_entities_token_.oauthclient.html" class="tsd-kind-icon">OAuth<wbr>Client</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_entities_token_.token.html" class="tsd-kind-icon">Token</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_token_.token.html#access_token" class="tsd-kind-icon">access_<wbr>token</a>
+								<a href="_entities_token_.token.html#accesstoken" class="tsd-kind-icon">access<wbr>Token</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_token_.token.html#created_at" class="tsd-kind-icon">created_<wbr>at</a>
+								<a href="_entities_token_.token.html#createdat" class="tsd-kind-icon">created<wbr>At</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_entities_token_.token.html#scope" class="tsd-kind-icon">scope</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_token_.token.html#token_type" class="tsd-kind-icon">token_<wbr>type</a>
+								<a href="_entities_token_.token.html#tokentype" class="tsd-kind-icon">token<wbr>Type</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/_entities_token_.html#oauthtoken" class="tsd-kind-icon">OAuth<wbr>Token</a>
-					</li>
 				</ul>
 			</nav>
 		</div>
