@@ -12,14 +12,13 @@ export interface AvailableParams {
  * Decorator that verifies the version of the Mastodon instance
  * @param parameters Optional params
  */
-export const available = (params: AvailableParams) => (
+export const available = ({ since, until }: AvailableParams) => (
   _gateway: Gateway,
   name: string | symbol,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   descriptor: TypedPropertyDescriptor<(...args: any[]) => any>,
 ) => {
   const original = descriptor.value;
-  const { since, until } = params;
 
   if (!original) {
     throw new Error('available can only apply to a method of a class');
@@ -29,20 +28,18 @@ export const available = (params: AvailableParams) => (
     this: Gateway,
     ...args: Parameters<typeof original>
   ) {
-    const version = semver.coerce(this.version);
-
-    if (since && version && semver.lt(version, since)) {
+    if (since && this.version && semver.lt(this.version, since)) {
       throw new MastoNotFoundError(
         `${String(name)} is not available with the current ` +
-          `Mastodon version ${version}. ` +
+          `Mastodon version ${this.version}. ` +
           `It requires greater than or equal to version ${since}.`,
       );
     }
 
-    if (until && version && semver.gt(version, until)) {
+    if (until && this.version && semver.gt(this.version, until)) {
       throw new MastoNotFoundError(
         `${String(name)} is not available with the current ` +
-          `Mastodon version ${version}. ` +
+          `Mastodon version ${this.version}. ` +
           `It was removed on version ${until}.`,
       );
     }

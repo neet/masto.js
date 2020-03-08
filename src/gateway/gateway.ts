@@ -21,7 +21,7 @@ export type PaginateNext<Params> =
 export interface Gateway<Options = undefined> {
   uri: string;
   streamingApiUrl: string;
-  version: string;
+  version?: string;
   accessToken?: string;
   get<T>(path: string, params: unknown, options?: Options): Promise<T>;
   post<T>(path: string, data: unknown, options?: Options): Promise<T>;
