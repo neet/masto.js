@@ -18,9 +18,9 @@ export interface Status {
   /** The Account which posted the status */
   account: Account;
   /** `null` or the ID of the status it replies to */
-  in_reply_to_id?: string | null;
+  inReplyToId?: string | null;
   /** `null` or the ID of the account it replies to */
-  in_reply_to_account_id?: string | null;
+  inReplyToAccountId?: string | null;
   /** `null` or the reblogged Status */
   reblog?: Status | null;
   /** Embedded card */
@@ -28,15 +28,15 @@ export interface Status {
   /** Body of the status; this will contain HTML (remote HTML already sanitized) */
   content: string;
   /** The time the status was created */
-  created_at: string;
+  createdAt: string;
   /** An array of Emoji */
   emojis: Emoji[];
   /** The number of replies for the status */
-  replies_count: number;
+  repliesCount: number;
   /** The number of reblogs for the status */
-  reblogs_count: number;
+  reblogsCount: number;
   /** The number of favourites for the status */
-  favourites_count: number;
+  favouritesCount: number;
   /** Whether the authenticated user has reblogged the status */
   reblogged?: boolean | null;
   /** Whether the authenticated user has favourited the status */
@@ -46,11 +46,11 @@ export interface Status {
   /** Whether media attachments should be hidden by default */
   sensitive: boolean;
   /** If not empty, warning text that should be displayed before the actual content */
-  spoiler_text: string;
+  spoilerText: string;
   /** One of: `public`, `unlisted`, `private`, `direct` */
   visibility: StatusVisibility;
   /** An array of Attachments */
-  media_attachments: Attachment[];
+  mediaAttachments: Attachment[];
   /** An array of Mentions */
   mentions: Mention[];
   /** An array of Tags */

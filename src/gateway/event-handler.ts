@@ -16,7 +16,12 @@ export interface EventTypeMap {
 }
 
 /** Supported event names */
-export type EventType = keyof EventTypeMap;
+export type EventType =
+  | 'update'
+  | 'delete'
+  | 'notification'
+  | 'filters_changed'
+  | 'conversation';
 
 /** Mastodon event */
 export interface Event {

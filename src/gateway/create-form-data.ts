@@ -1,8 +1,6 @@
 // eslint-disable-next-line import/no-unassigned-import
 import 'isomorphic-form-data';
-
-export const isObject = (x: unknown): x is { [key: string]: unknown } =>
-  typeof x === 'object' && x !== null && x.constructor === Object;
+import { isObject } from './is-object';
 
 /**
  * Encode nested object to form-data compatible flat object

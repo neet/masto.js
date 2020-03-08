@@ -4,7 +4,7 @@ export interface PushSubscription {
   /** The endpoint URL */
   endpoint: string;
   /** The server public key for signature verification. (not for decoding) */
-  server_key: string;
+  serverKey: string;
   /** Map of 'notification event type' and 'push is requested or not' */
   alerts: PushSubscriptionAlerts;
 }

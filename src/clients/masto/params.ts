@@ -11,18 +11,18 @@ import {
 
 export interface PaginationParams {
   /** Get a list of items with ID less than this value */
-  max_id?: string | null;
+  maxId?: string | null;
   /** Get a list of items with ID greater than this value including this ID */
-  since_id?: string | null;
+  sinceId?: string | null;
   /** Get a list of items with ID greater than this value excluding this ID */
-  min_id?: string | null;
+  minId?: string | null;
   /** Maximum number of items to get */
   limit?: number | null;
 }
 
 export interface UpdateCredentialsParams {
   /** Display name */
-  display_name?: string | null;
+  displayName?: string | null;
   /** Biography */
   note?: string | null;
   /** Avatar encoded using `multipart/form-data` */
@@ -40,7 +40,7 @@ export interface UpdateCredentialsParams {
     Pick<AccountSource, 'privacy' | 'sensitive' | 'language'>
   > | null;
   /** Profile metadata (max. 4) */
-  fields_attributes?: AccountField[] | null;
+  fieldsAttributes?: AccountField[] | null;
 }
 
 export interface CreateAccountParams {
@@ -58,9 +58,9 @@ export interface CreateAccountParams {
 
 export interface ReportAccountParams {
   /** The ID of the account to report */
-  account_id: string;
+  accountId: string;
   /** The IDs of statuses to report as array */
-  status_ids?: string[] | null;
+  statusIds?: string[] | null;
   /** Reason for the report (up to 1,000 characters) */
   comment?: string | null;
   /** Whether to forward to the remote admin (in case of a remote account) */
@@ -69,9 +69,9 @@ export interface ReportAccountParams {
 
 export interface CreateAppParams {
   /** Name of your application */
-  client_name: string;
+  clientName: string;
   /** Where the user should be redirected after authorization */
-  redirect_uris: string;
+  redirectUris: string;
   /** Space separated list of scopes */
   scopes: string;
   /** URL to the homepage of your app */
@@ -82,7 +82,7 @@ export type GrantType = 'authorization_code' | 'password';
 
 export interface FetchAccessTokenParamsBase<T extends GrantType> {
   /** Grant type */
-  grant_type: T;
+  grantType: T;
 }
 
 export interface FetchAccessTokenParamsWithAuthorizationCode
@@ -90,11 +90,11 @@ export interface FetchAccessTokenParamsWithAuthorizationCode
   /** Authorization code */
   code: string;
   /** Redirect URI which used for the authorization */
-  redirect_uri: string;
+  redirectUri: string;
   /** ID of the client */
-  client_id: string;
+  clientId: string;
   /** Secret of the client */
-  client_secret: string;
+  clientSecret: string;
 }
 
 export interface FetchAccessTokenParamsWithPassword
@@ -113,9 +113,9 @@ export type FetchAccessTokenParams =
 
 export interface RevokeAccessTokenParams {
   /** ID of the client */
-  client_id: string;
+  clientId: string;
   /** Secret of the client */
-  client_secret: string;
+  clientSecret: string;
 }
 
 export interface UploadMediaAttachmentParams {
@@ -140,9 +140,9 @@ export interface ModifyFilterParams {
   /** Irreversible filtering will only work in home and notifications contexts by fully dropping the records. Otherwise, filtering is up to the client. */
   irreversible?: boolean | null;
   /** Whether to consider word boundaries when matching */
-  whole_word?: boolean | null;
+  wholeWord?: boolean | null;
   /** Number that indicates seconds. Filter will be expire in seconds after API processed. Leave blank for no expiration */
-  expires_in?: number | null;
+  expiresIn?: number | null;
 }
 
 export interface ModifyListParams {
@@ -152,14 +152,14 @@ export interface ModifyListParams {
 
 export interface ModifyListAccountsParams {
   /** Array of account IDs */
-  account_ids: string[];
+  accountIds: string[];
 }
 
 export interface FetchNotificationsParams extends PaginationParams {
   /** ID of the account */
-  account_id?: string | null;
+  accountId?: string | null;
   /** Array of notifications to exclude (Allowed values: "follow", "favourite", "reblog", "mention") */
-  exclude_types?: NotificationType[] | null;
+  excludeTypes?: NotificationType[] | null;
 }
 
 export interface AddPushSubscriptionParams {
@@ -200,9 +200,9 @@ export interface SearchParams extends PaginationParams {
   /** Attempt WebFinger look-up */
   resolve?: boolean | null;
   /** Account id to search */
-  account_id?: string;
+  accountId?: string;
   /** Exclude unreviewed tags */
-  exclude_unreviewed?: boolean;
+  excludeUnreviewed?: boolean;
 }
 
 export interface SearchAccountsParams extends SearchParams {
@@ -216,24 +216,24 @@ export interface CreateStatusPollParam {
   /** Array of poll answer strings */
   options: string[];
   /** Duration the poll should be open for in seconds */
-  expires_in: number;
+  expiresIn: number;
   /** Whether multiple choices should be allowed	 */
   multiple?: boolean | null;
   /** Whether to hide totals until the poll ends */
-  hide_totals?: boolean | null;
+  hideTotals?: boolean | null;
 }
 
 export interface CreateStatusParamsBase {
   /** local ID of the status you want to reply to */
-  in_reply_to_id?: string | null;
+  inReplyToId?: string | null;
   /** Set this to mark the media of the status as NSFW */
   sensitive?: boolean | null;
   /** Text to be shown as a warning before the actual content */
-  spoiler_text?: string | null;
+  spoilerText?: string | null;
   /** Either "direct", "private", "unlisted" or "public" */
   visibility?: StatusVisibility | null;
   /** Timestamp string to schedule posting of status (ISO 8601) */
-  scheduled_at?: string | null;
+  scheduledAt?: string | null;
   /** ISO 639-2 language code of the toot, to skip automatic detection */
   language?: string | null;
 }
@@ -242,7 +242,7 @@ export interface CreateStatusParamsWithStatus extends CreateStatusParamsBase {
   /** Text of the status */
   status: string;
   /** Array of media IDs to attach to the status (maximum 4) */
-  media_ids?: string[] | null;
+  mediaIds?: string[] | null;
   /** Nested parameters to attach a poll to the status */
   poll?: CreateStatusPollParam | null;
 }
@@ -251,7 +251,7 @@ export interface CreateStatusParamsWithMediaIds extends CreateStatusParamsBase {
   /** Text of the status */
   status?: string | null;
   /** Array of media IDs to attach to the status (maximum 4) */
-  media_ids: string[] | null;
+  mediaIds: string[] | null;
   /** Poll cannot be combined with media ids */
   poll?: never;
 }
@@ -269,16 +269,16 @@ export interface FetchTimelineParams extends PaginationParams {
   /** Only return statuses originating from this instance (public and tag timelines only) */
   local?: boolean | null;
   /** Only return statuses that have media attachments */
-  only_media?: boolean | null;
+  onlyMedia?: boolean | null;
 }
 
 export interface FetchAccountStatusesParams extends PaginationParams {
   /** Only return statuses that have media attachments */
-  only_media?: boolean | null;
+  onlyMedia?: boolean | null;
   /** Only return statuses that have been pinned */
   pinned?: boolean | null;
   /** Skip statuses that reply to other statuses */
-  exclude_replies?: boolean | null;
+  excludeReplies?: boolean | null;
 }
 
 export interface VotePollParams {
@@ -288,7 +288,7 @@ export interface VotePollParams {
 
 export interface UpdateScheduledStatusParams {
   /** Timestamp string to schedule posting of status (ISO 8601) */
-  scheduled_at: string;
+  scheduledAt: string;
 }
 
 export interface FetchMarkersParams {
@@ -296,7 +296,7 @@ export interface FetchMarkersParams {
 }
 
 export type CreateMarkersParams = {
-  [key in MarkerTimeline]: Pick<Marker, 'last_read_id'>;
+  [key in MarkerTimeline]: Pick<Marker, 'lastReadId'>;
 };
 
 export interface CreateFeaturedTagParams {

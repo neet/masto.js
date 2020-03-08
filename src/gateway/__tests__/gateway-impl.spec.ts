@@ -41,7 +41,7 @@ describe('GatewayImpl', () => {
       data: {
         version: '2.8.0',
         urls: {
-          streaming_api: 'wss://example.com/stream',
+          streamingApi: 'wss://example.com/stream',
         },
       },
     });
@@ -92,8 +92,18 @@ describe('GatewayImpl', () => {
     const customGateway = new GatewayImpl({
       uri: 'wss://example.com/aaa',
     });
-    customGateway.uri = 'wss://example.com/bbb';
-    expect(customGateway.uri).toEqual('wss://example.com/bbb');
+    customGateway.streamingApiUrl = 'wss://example.com/bbb';
+    expect(customGateway.streamingApiUrl).toEqual('wss://example.com/bbb');
+  });
+
+  test('transform params', () => {
+    const config = {
+      params: { keyKey: 'value' },
+      headers: { 'Content-Type': 'application/json' },
+    };
+
+    // @ts-ignore
+    expect(gateway.transformConfig(config).params).toEqual({ key_key: 'value' });
   });
 
   test('transform JSON to JS object', () => {
@@ -373,7 +383,7 @@ describe('GatewayImpl', () => {
 
   test('call next to paginate, finish if nothing in link header', async () => {
     const iterable = gateway.paginate('/', {
-      since_id: '123',
+      sinceId: '123',
     });
 
     const firstResponse = {
@@ -398,7 +408,7 @@ describe('GatewayImpl', () => {
         method: 'GET',
         url: '/',
         params: {
-          since_id: '123',
+          sinceId: '123',
         },
       }),
     );

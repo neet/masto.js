@@ -9,7 +9,7 @@ export interface AdminAccount {
   id: string;
   username: string;
   domain: string;
-  created_at: string;
+  createdAt: string;
   email: string;
   role: AdminAccountRole;
   ip: string;
@@ -20,7 +20,7 @@ export interface AdminAccount {
   approved: boolean;
   account: Account;
   locale?: string | null;
-  invite_request?: string | null;
-  created_by_application_id?: string | null;
-  invited_by_account_id?: string | null;
+  inviteRequest?: string | null;
+  createdByApplicationId?: string | null;
+  invitedByAccountId?: string | null;
 }

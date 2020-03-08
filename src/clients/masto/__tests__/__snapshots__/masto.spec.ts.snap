@@ -6,7 +6,7 @@ exports[`Masto addAccountToList 1`] = `
     Array [
       "/api/v1/lists/123123/accounts",
       Object {
-        "account_ids": Array [
+        "accountIds": Array [
           "123",
           "456",
           "678",
@@ -183,8 +183,8 @@ exports[`Masto createApp 1`] = `
     Array [
       "/api/v1/apps",
       Object {
-        "client_name": "My Client",
-        "redirect_uris": "https://example.com",
+        "clientName": "My Client",
+        "redirectUris": "https://example.com",
         "scopes": "write read",
         "website": "https://example.com",
       },
@@ -230,10 +230,10 @@ exports[`Masto createFiler 1`] = `
           "public",
           "thread",
         ],
-        "expires_in": 3600000,
+        "expiresIn": 3600000,
         "irreversible": true,
         "phrase": "Twitter",
-        "whole_word": true,
+        "wholeWord": true,
       },
     ],
   ],
@@ -272,10 +272,10 @@ exports[`Masto createMarkers 1`] = `
       "/api/v1/markers",
       Object {
         "home": Object {
-          "last_read_id": "123123",
+          "lastReadId": "123123",
         },
         "notifications": Object {
-          "last_read_id": "123123",
+          "lastReadId": "123123",
         },
       },
     ],
@@ -319,11 +319,11 @@ exports[`Masto createStatus with content 1`] = `
     Array [
       "/api/v1/statuses",
       Object {
-        "in_reply_to_id": "123123",
+        "inReplyToId": "123123",
         "language": "en",
         "poll": Object {
-          "expires_in": 60000,
-          "hide_totals": true,
+          "expiresIn": 60000,
+          "hideTotals": true,
           "multiple": false,
           "options": Array [
             "xxx",
@@ -331,9 +331,9 @@ exports[`Masto createStatus with content 1`] = `
             "zzz",
           ],
         },
-        "scheduled_at": "2019-03-28T04:39:31.121Z",
+        "scheduledAt": "2019-03-28T04:39:31.121Z",
         "sensitive": false,
-        "spoiler_text": "spoiler",
+        "spoilerText": "spoiler",
         "status": "Toot!",
         "visibility": "direct",
       },
@@ -354,7 +354,7 @@ exports[`Masto createStatus with media ids 1`] = `
     Array [
       "/api/v1/statuses",
       Object {
-        "media_ids": Array [
+        "mediaIds": Array [
           "123",
           "456",
         ],
@@ -424,11 +424,11 @@ exports[`Masto fetchAccessToken with authorization code 1`] = `
     Array [
       "/oauth/token",
       Object {
-        "client_id": "123123123",
-        "client_secret": "456456456",
+        "clientId": "123123123",
+        "clientSecret": "456456456",
         "code": "789789789",
-        "grant_type": "authorization_code",
-        "redirect_uri": "https://example.com",
+        "grantType": "authorization_code",
+        "redirectUri": "https://example.com",
       },
     ],
   ],
@@ -447,7 +447,7 @@ exports[`Masto fetchAccessToken with password 1`] = `
     Array [
       "/oauth/token",
       Object {
-        "grant_type": "password",
+        "grantType": "password",
         "password": "password",
         "username": "username",
       },
@@ -485,9 +485,9 @@ exports[`Masto fetchAccountFollowers 1`] = `
       "/api/v1/accounts/123123123/followers",
       Object {
         "limit": 10,
-        "max_id": "5",
-        "min_id": "2",
-        "since_id": "3",
+        "maxId": "5",
+        "minId": "2",
+        "sinceId": "3",
       },
     ],
   ],
@@ -507,9 +507,9 @@ exports[`Masto fetchAccountFollowing 1`] = `
       "/api/v1/accounts/123123123/following",
       Object {
         "limit": 10,
-        "max_id": "5",
-        "min_id": "2",
-        "since_id": "3",
+        "maxId": "5",
+        "minId": "2",
+        "sinceId": "3",
       },
     ],
   ],
@@ -583,9 +583,9 @@ exports[`Masto fetchAccountStatuses 1`] = `
       "/api/v1/accounts/123123123/statuses",
       Object {
         "limit": 10,
-        "max_id": "5",
-        "min_id": "2",
-        "since_id": "3",
+        "maxId": "5",
+        "minId": "2",
+        "sinceId": "3",
       },
     ],
   ],
@@ -621,9 +621,9 @@ exports[`Masto fetchBlocks 1`] = `
       "/api/v1/blocks",
       Object {
         "limit": 10,
-        "max_id": "5",
-        "min_id": "2",
-        "since_id": "3",
+        "maxId": "5",
+        "minId": "2",
+        "sinceId": "3",
       },
     ],
   ],
@@ -660,9 +660,9 @@ exports[`Masto fetchCommunityTimeline 1`] = `
       Object {
         "limit": 10,
         "local": true,
-        "max_id": "5",
-        "min_id": "2",
-        "since_id": "3",
+        "maxId": "5",
+        "minId": "2",
+        "sinceId": "3",
       },
     ],
   ],
@@ -682,9 +682,9 @@ exports[`Masto fetchConversations 1`] = `
       "/api/v1/conversations",
       Object {
         "limit": 10,
-        "max_id": "5",
-        "min_id": "2",
-        "since_id": "3",
+        "maxId": "5",
+        "minId": "2",
+        "sinceId": "3",
       },
     ],
   ],
@@ -720,9 +720,9 @@ exports[`Masto fetchDirectTimeline 1`] = `
       "/api/v1/timelines/direct",
       Object {
         "limit": 10,
-        "max_id": "5",
-        "min_id": "2",
-        "since_id": "3",
+        "maxId": "5",
+        "minId": "2",
+        "sinceId": "3",
       },
     ],
   ],
@@ -780,9 +780,9 @@ exports[`Masto fetchEndorsements 1`] = `
       "/api/v1/endorsements",
       Object {
         "limit": 10,
-        "max_id": "5",
-        "min_id": "2",
-        "since_id": "3",
+        "maxId": "5",
+        "minId": "2",
+        "sinceId": "3",
       },
     ],
   ],
@@ -802,9 +802,9 @@ exports[`Masto fetchFavourites 1`] = `
       "/api/v1/favourites",
       Object {
         "limit": 10,
-        "max_id": "5",
-        "min_id": "2",
-        "since_id": "3",
+        "maxId": "5",
+        "minId": "2",
+        "sinceId": "3",
       },
     ],
   ],
@@ -872,9 +872,9 @@ exports[`Masto fetchFollowRequests 1`] = `
       "/api/v1/follow_requests",
       Object {
         "limit": 10,
-        "max_id": "5",
-        "min_id": "2",
-        "since_id": "3",
+        "maxId": "5",
+        "minId": "2",
+        "sinceId": "3",
       },
     ],
   ],
@@ -894,9 +894,9 @@ exports[`Masto fetchHomeTimeline 1`] = `
       "/api/v1/timelines/home",
       Object {
         "limit": 10,
-        "max_id": "5",
-        "min_id": "2",
-        "since_id": "3",
+        "maxId": "5",
+        "minId": "2",
+        "sinceId": "3",
       },
     ],
   ],
@@ -980,9 +980,9 @@ exports[`Masto fetchListAccounts 1`] = `
       "/api/v1/list/123123/accounts",
       Object {
         "limit": 10,
-        "max_id": "5",
-        "min_id": "2",
-        "since_id": "3",
+        "maxId": "5",
+        "minId": "2",
+        "sinceId": "3",
       },
     ],
   ],
@@ -1002,9 +1002,9 @@ exports[`Masto fetchListTimeline 1`] = `
       "/api/v1/timelines/list/123123",
       Object {
         "limit": 10,
-        "max_id": "5",
-        "min_id": "2",
-        "since_id": "3",
+        "maxId": "5",
+        "minId": "2",
+        "sinceId": "3",
       },
     ],
   ],
@@ -1062,9 +1062,9 @@ exports[`Masto fetchMutes 1`] = `
       "/api/v1/mutes",
       Object {
         "limit": 10,
-        "max_id": "5",
-        "min_id": "2",
-        "since_id": "3",
+        "maxId": "5",
+        "minId": "2",
+        "sinceId": "3",
       },
     ],
   ],
@@ -1099,7 +1099,7 @@ exports[`Masto fetchNotifications 1`] = `
     Array [
       "/api/v1/notifications",
       Object {
-        "exclude_types": Array [
+        "excludeTypes": Array [
           "favourite",
           "follow",
           "mention",
@@ -1157,9 +1157,9 @@ exports[`Masto fetchPublicTimeline 1`] = `
       "/api/v1/timelines/public",
       Object {
         "limit": 10,
-        "max_id": "5",
-        "min_id": "2",
-        "since_id": "3",
+        "maxId": "5",
+        "minId": "2",
+        "sinceId": "3",
       },
     ],
   ],
@@ -1275,9 +1275,9 @@ exports[`Masto fetchStatusFavouritedBy 1`] = `
       "/api/v1/statuses/123123/favourited_by",
       Object {
         "limit": 10,
-        "max_id": "5",
-        "min_id": "2",
-        "since_id": "3",
+        "maxId": "5",
+        "minId": "2",
+        "sinceId": "3",
       },
     ],
   ],
@@ -1297,9 +1297,9 @@ exports[`Masto fetchStatusRebloggedBy 1`] = `
       "/api/v1/statuses/123123/reblogged_by",
       Object {
         "limit": 10,
-        "max_id": "5",
-        "min_id": "2",
-        "since_id": "3",
+        "maxId": "5",
+        "minId": "2",
+        "sinceId": "3",
       },
     ],
   ],
@@ -1335,9 +1335,9 @@ exports[`Masto fetchTagTimeline 1`] = `
       "/api/v1/timelines/tag/DeleteTwitter",
       Object {
         "limit": 10,
-        "max_id": "5",
-        "min_id": "2",
-        "since_id": "3",
+        "maxId": "5",
+        "minId": "2",
+        "sinceId": "3",
       },
     ],
   ],
@@ -1512,7 +1512,7 @@ exports[`Masto removeAccountFromList 1`] = `
     Array [
       "/api/v1/lists/123123/accounts",
       Object {
-        "account_ids": Array [
+        "accountIds": Array [
           "123",
           "456",
           "678",
@@ -1663,10 +1663,10 @@ exports[`Masto reportAccount 1`] = `
     Array [
       "/api/v1/reports",
       Object {
-        "account_id": "123123",
+        "accountId": "123123",
         "comment": "this is a report",
         "forward": true,
-        "status_ids": Array [
+        "statusIds": Array [
           "456456",
         ],
       },
@@ -1687,8 +1687,8 @@ exports[`Masto revokeAccessToken 1`] = `
     Array [
       "/oauth/revoke",
       Object {
-        "client_id": "123123123",
-        "client_secret": "456456456",
+        "clientId": "123123123",
+        "clientSecret": "456456456",
       },
     ],
   ],
@@ -1727,13 +1727,13 @@ exports[`Masto search 1`] = `
     Array [
       "/api/v2/search",
       Object {
-        "account_id": "123",
+        "accountId": "123",
         "limit": 10,
-        "max_id": "5",
-        "min_id": "2",
+        "maxId": "5",
+        "minId": "2",
         "q": "query",
         "resolve": true,
-        "since_id": "3",
+        "sinceId": "3",
       },
     ],
   ],
@@ -2079,10 +2079,10 @@ exports[`Masto updateFilter 1`] = `
           "public",
           "thread",
         ],
-        "expires_in": 3600000,
+        "expiresIn": 3600000,
         "irreversible": true,
         "phrase": "Twitter",
-        "whole_word": true,
+        "wholeWord": true,
       },
     ],
   ],
@@ -2166,7 +2166,7 @@ exports[`Masto updateScheduledStatus 1`] = `
     Array [
       "/api/v1/scheduled_statuses/123123",
       Object {
-        "scheduled_at": "2019-03-28T04:39:31.121Z",
+        "scheduledAt": "2019-03-28T04:39:31.121Z",
       },
     ],
   ],

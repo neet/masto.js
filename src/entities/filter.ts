@@ -14,9 +14,9 @@ export interface Filter {
   /** Array of strings that indicate filter context. each string is ont of `home`, `notifications`, `public`, `thread` */
   context: FilterContext[];
   /** String such as `2018-07-06T00:59:13.161Z` that indicates when this filter is expired. */
-  expires_at?: string | null;
+  expiresAt?: string | null;
   /** Boolean that indicates irreversible server side filtering. */
   irreversible: boolean;
   /** Boolean that indicates word match. */
-  whole_word: string;
+  wholeWord: string;
 }

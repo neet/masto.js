@@ -1,6 +1,8 @@
 import EventEmitter from 'eventemitter3';
 import WebSocket from 'isomorphic-ws';
+import { camelCase } from 'change-case';
 import { EventHandler, EventTypeMap, EventType, Event } from './event-handler';
+import { transformKeys } from './transform-keys';
 
 /**
  * Mastodon streaming api wrapper
@@ -37,11 +39,11 @@ export class EventHandlerImpl extends EventEmitter<EventTypeMap>
    * @param message Websocket message
    */
   handleMessage = ({ data }: { data: string }) => {
-    const event: Event = JSON.parse(data);
-    let args: EventTypeMap[EventType];
+    const event = transformKeys<Event>(JSON.parse(data), camelCase);
+    let args: EventTypeMap[EventType] = [];
 
     try {
-      args = [JSON.parse(event.payload)];
+      args.push(transformKeys(JSON.parse(event.payload), camelCase));
     } catch {
       args = [];
     }

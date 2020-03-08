@@ -2,6 +2,7 @@ import querystring, { ParsedUrlQueryInput } from 'querystring';
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import normalizeUrl from 'normalize-url'; // eslint-disable-line import/default
 import semver from 'semver';
+import { camelCase, snakeCase } from 'change-case';
 import { Instance } from '../entities';
 import {
   MastoNotFoundError,
@@ -19,6 +20,7 @@ import {
   LoginParams,
   PaginateNext,
 } from './gateway';
+import { transformKeys } from './transform-keys';
 
 /**
  * Mastodon network request wrapper
@@ -94,7 +96,7 @@ export class GatewayImpl implements Gateway<AxiosRequestConfig> {
     const instance = await gateway.get<Instance>('/api/v1/instance');
 
     gateway.version = instance.version;
-    gateway.streamingApiUrl = instance.urls.streaming_api;
+    gateway.streamingApiUrl = instance.urls.streamingApi;
 
     return gateway;
   }
@@ -106,7 +108,7 @@ export class GatewayImpl implements Gateway<AxiosRequestConfig> {
    */
   private transformResponse(data: string, _headers: unknown) {
     try {
-      return JSON.parse(data);
+      return transformKeys(JSON.parse(data), camelCase);
     } catch {
       return data;
     }
@@ -117,8 +119,20 @@ export class GatewayImpl implements Gateway<AxiosRequestConfig> {
    * @param config Axios config
    * @return New config
    */
-  private transformConfig(originalConfig: AxiosRequestConfig) {
-    const config = { ...originalConfig };
+  private transformConfig({
+    params,
+    data,
+    ...originalConfig
+  }: AxiosRequestConfig) {
+    const config: AxiosRequestConfig = { ...originalConfig };
+
+    if (params) {
+      config.params = transformKeys(params, snakeCase);
+    }
+
+    if (data) {
+      config.data = transformKeys(data, snakeCase);
+    }
 
     switch (config.headers['Content-Type']) {
       case 'application/json':
@@ -303,13 +317,17 @@ export class GatewayImpl implements Gateway<AxiosRequestConfig> {
     if (this.accessToken && version && semver.gte(version, '2.8.4')) {
       protocols.push(this.accessToken);
     } else if (this.accessToken) {
-      params.access_token = this.accessToken;
+      params.accessToken = this.accessToken;
     }
+
+    const encodedParams = querystring.stringify(
+      transformKeys<ParsedUrlQueryInput>(params, snakeCase),
+    );
 
     const url =
       this.streamingApiUrl +
       path +
-      (Object.keys(params).length ? `?${querystring.stringify(params)}` : '');
+      (Object.keys(params).length ? '?' + encodedParams : '');
 
     return new EventHandlerImpl().connect(url, protocols);
   }

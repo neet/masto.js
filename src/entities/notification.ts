@@ -15,7 +15,7 @@ export interface Notification {
   /** One of: "mention", "reblog", "favourite", "follow" */
   type: NotificationType;
   /** The time the notification was created */
-  created_at: string;
+  createdAt: string;
   /** The Account sending the notification to the user */
   account: Account;
   /** The Status associated with the notification, if applicable */

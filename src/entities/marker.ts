@@ -1,6 +1,6 @@
 export interface Marker {
-  last_read_id: string;
-  updated_at: string;
+  lastReadId: string;
+  updatedAt: string;
   version: number;
 }
 

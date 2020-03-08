@@ -6,11 +6,11 @@ export interface Attachment {
   /** URL of the locally hosted version of the image */
   url: string;
   /** For remote images, the remote URL of the original image */
-  remote_url?: string | null;
+  remoteUrl?: string | null;
   /** URL of the preview image */
-  preview_url: string;
+  previewUrl: string;
   /** Shorter URL for the image, for insertion into text (only present on local images) */
-  text_url?: string | null;
+  textUrl?: string | null;
   /** See attachment metadata below */
   meta?: AttachmentMeta | null;
   /** A description of the image for the visually impaired (maximum 420 characters), or null if none provided */
@@ -37,7 +37,7 @@ export interface AttachmentMetaImage {
 export interface AttachmentMetaVideo {
   width: number;
   height: number;
-  frame_rate: string;
+  frameRate: string;
   duration: number;
   bitrate: number;
   aspect: number;

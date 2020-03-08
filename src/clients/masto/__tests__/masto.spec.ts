@@ -68,11 +68,11 @@ describe('Masto', () => {
 
   test('fetchAccessToken with authorization code', async () => {
     await masto.fetchAccessToken({
-      grant_type: 'authorization_code',
+      grantType: 'authorization_code',
       code: '789789789',
-      redirect_uri: 'https://example.com',
-      client_id: '123123123',
-      client_secret: '456456456',
+      redirectUri: 'https://example.com',
+      clientId: '123123123',
+      clientSecret: '456456456',
     });
     expect(mockPost).toBeCalledTimes(1);
     expect(mockPost).toMatchSnapshot();
@@ -80,7 +80,7 @@ describe('Masto', () => {
 
   test('fetchAccessToken with password', async () => {
     await masto.fetchAccessToken({
-      grant_type: 'password',
+      grantType: 'password',
       username: 'username',
       password: 'password',
     });
@@ -90,8 +90,8 @@ describe('Masto', () => {
 
   test('revokeAccessToken', async () => {
     await masto.revokeAccessToken({
-      client_id: '123123123',
-      client_secret: '456456456',
+      clientId: '123123123',
+      clientSecret: '456456456',
     });
     expect(mockPost).toBeCalledTimes(1);
     expect(mockPost).toMatchSnapshot();
@@ -128,7 +128,7 @@ describe('Masto', () => {
 
   test('updateCredentials', async () => {
     await masto.updateCredentials({
-      display_name: 'Ryo Igarashi',
+      displayName: 'Ryo Igarashi',
       avatar: '...',
       header: '...',
       note: 'web frontend engineer',
@@ -138,7 +138,7 @@ describe('Masto', () => {
         sensitive: false,
         language: 'ja',
       },
-      fields_attributes: [
+      fieldsAttributes: [
         {
           name: 'GitHub',
           value: 'https://github.com/neet',
@@ -155,9 +155,9 @@ describe('Masto', () => {
 
   test('fetchAccountFollowers', async () => {
     masto.fetchAccountFollowers('123123123', {
-      max_id: '5',
-      since_id: '3',
-      min_id: '2',
+      maxId: '5',
+      sinceId: '3',
+      minId: '2',
       limit: 10,
     });
     expect(mockPaginate).toBeCalledTimes(1);
@@ -166,9 +166,9 @@ describe('Masto', () => {
 
   test('fetchAccountFollowing', async () => {
     masto.fetchAccountFollowing('123123123', {
-      max_id: '5',
-      since_id: '3',
-      min_id: '2',
+      maxId: '5',
+      sinceId: '3',
+      minId: '2',
       limit: 10,
     });
     expect(mockPaginate).toBeCalledTimes(1);
@@ -177,9 +177,9 @@ describe('Masto', () => {
 
   test('fetchAccountStatuses', async () => {
     masto.fetchAccountStatuses('123123123', {
-      max_id: '5',
-      since_id: '3',
-      min_id: '2',
+      maxId: '5',
+      sinceId: '3',
+      minId: '2',
       limit: 10,
     });
     expect(mockPaginate).toBeCalledTimes(1);
@@ -219,8 +219,8 @@ describe('Masto', () => {
 
   test('createApp', async () => {
     await masto.createApp({
-      client_name: 'My Client',
-      redirect_uris: 'https://example.com',
+      clientName: 'My Client',
+      redirectUris: 'https://example.com',
       scopes: 'write read',
       website: 'https://example.com',
     });
@@ -236,9 +236,9 @@ describe('Masto', () => {
 
   test('fetchBlocks', async () => {
     masto.fetchBlocks({
-      max_id: '5',
-      since_id: '3',
-      min_id: '2',
+      maxId: '5',
+      sinceId: '3',
+      minId: '2',
       limit: 10,
     });
     expect(mockPaginate).toBeCalledTimes(1);
@@ -283,9 +283,9 @@ describe('Masto', () => {
 
   test('fetchEndorsements', async () => {
     masto.fetchEndorsements({
-      max_id: '5',
-      since_id: '3',
-      min_id: '2',
+      maxId: '5',
+      sinceId: '3',
+      minId: '2',
       limit: 10,
     });
     expect(mockPaginate).toBeCalledTimes(1);
@@ -306,9 +306,9 @@ describe('Masto', () => {
 
   test('fetchFavourites', async () => {
     masto.fetchFavourites({
-      max_id: '5',
-      since_id: '3',
-      min_id: '2',
+      maxId: '5',
+      sinceId: '3',
+      minId: '2',
       limit: 10,
     });
     expect(mockPaginate).toBeCalledTimes(1);
@@ -343,8 +343,8 @@ describe('Masto', () => {
       phrase: 'Twitter',
       context: ['home', 'notifications', 'public', 'thread'],
       irreversible: true,
-      whole_word: true,
-      expires_in: 1000 * 60 * 60,
+      wholeWord: true,
+      expiresIn: 1000 * 60 * 60,
     });
     expect(mockPost).toBeCalledTimes(1);
     expect(mockPost).toMatchSnapshot();
@@ -355,8 +355,8 @@ describe('Masto', () => {
       phrase: 'Twitter',
       context: ['home', 'notifications', 'public', 'thread'],
       irreversible: true,
-      whole_word: true,
-      expires_in: 1000 * 60 * 60,
+      wholeWord: true,
+      expiresIn: 1000 * 60 * 60,
     });
     expect(mockPut).toBeCalledTimes(1);
     expect(mockPut).toMatchSnapshot();
@@ -370,9 +370,9 @@ describe('Masto', () => {
 
   test('fetchFollowRequests', async () => {
     masto.fetchFollowRequests({
-      max_id: '5',
-      since_id: '3',
-      min_id: '2',
+      maxId: '5',
+      sinceId: '3',
+      minId: '2',
       limit: 10,
     });
     expect(mockPaginate).toBeCalledTimes(1);
@@ -435,9 +435,9 @@ describe('Masto', () => {
 
   test('fetchListAccounts', async () => {
     masto.fetchListAccounts('123123', {
-      max_id: '5',
-      since_id: '3',
-      min_id: '2',
+      maxId: '5',
+      sinceId: '3',
+      minId: '2',
       limit: 10,
     });
     expect(mockPaginate).toBeCalledTimes(1);
@@ -474,7 +474,7 @@ describe('Masto', () => {
 
   test('addAccountToList', async () => {
     await masto.addAccountToList('123123', {
-      account_ids: ['123', '456', '678'],
+      accountIds: ['123', '456', '678'],
     });
     expect(mockPost).toBeCalledTimes(1);
     expect(mockPost).toMatchSnapshot();
@@ -482,7 +482,7 @@ describe('Masto', () => {
 
   test('removeAccountFromList', async () => {
     await masto.removeAccountFromList('123123', {
-      account_ids: ['123', '456', '678'],
+      accountIds: ['123', '456', '678'],
     });
     expect(mockDelete).toBeCalledTimes(1);
     expect(mockDelete).toMatchSnapshot();
@@ -512,9 +512,9 @@ describe('Masto', () => {
 
   test('fetchMutes', async () => {
     masto.fetchMutes({
-      max_id: '5',
-      since_id: '3',
-      min_id: '2',
+      maxId: '5',
+      sinceId: '3',
+      minId: '2',
       limit: 10,
     });
     expect(mockPaginate).toBeCalledTimes(1);
@@ -549,7 +549,7 @@ describe('Masto', () => {
 
   test('fetchNotifications', async () => {
     masto.fetchNotifications({
-      exclude_types: ['favourite', 'follow', 'mention', 'poll', 'reblog'],
+      excludeTypes: ['favourite', 'follow', 'mention', 'poll', 'reblog'],
     });
     expect(mockPaginate).toBeCalledTimes(1);
     expect(mockPaginate).toMatchSnapshot();
@@ -635,8 +635,8 @@ describe('Masto', () => {
 
   test('reportAccount', async () => {
     await masto.reportAccount({
-      account_id: '123123',
-      status_ids: ['456456'],
+      accountId: '123123',
+      statusIds: ['456456'],
       comment: 'this is a report',
       forward: true,
     });
@@ -658,7 +658,7 @@ describe('Masto', () => {
 
   test('updateScheduledStatus', async () => {
     await masto.updateScheduledStatus('123123', {
-      scheduled_at: '2019-03-28T04:39:31.121Z',
+      scheduledAt: '2019-03-28T04:39:31.121Z',
     });
     expect(mockPut).toBeCalledTimes(1);
     expect(mockPut).toMatchSnapshot();
@@ -686,11 +686,11 @@ describe('Masto', () => {
     masto.search({
       q: 'query',
       resolve: true,
-      max_id: '5',
-      since_id: '3',
-      min_id: '2',
+      maxId: '5',
+      sinceId: '3',
+      minId: '2',
       limit: 10,
-      account_id: '123',
+      accountId: '123',
     });
     expect(mockPaginate).toBeCalledTimes(1);
     expect(mockPaginate).toMatchSnapshot();
@@ -717,9 +717,9 @@ describe('Masto', () => {
 
   test('fetchStatusRebloggedBy', async () => {
     masto.fetchStatusRebloggedBy('123123', {
-      max_id: '5',
-      since_id: '3',
-      min_id: '2',
+      maxId: '5',
+      sinceId: '3',
+      minId: '2',
       limit: 10,
     });
     expect(mockPaginate).toBeCalledTimes(1);
@@ -728,9 +728,9 @@ describe('Masto', () => {
 
   test('fetchStatusFavouritedBy', async () => {
     masto.fetchStatusFavouritedBy('123123', {
-      max_id: '5',
-      since_id: '3',
-      min_id: '2',
+      maxId: '5',
+      sinceId: '3',
+      minId: '2',
       limit: 10,
     });
     expect(mockPaginate).toBeCalledTimes(1);
@@ -740,17 +740,17 @@ describe('Masto', () => {
   test('createStatus with content', async () => {
     await masto.createStatus({
       status: 'Toot!',
-      in_reply_to_id: '123123',
+      inReplyToId: '123123',
       poll: {
         options: ['xxx', 'yyy', 'zzz'],
-        expires_in: 1000 * 60,
+        expiresIn: 1000 * 60,
         multiple: false,
-        hide_totals: true,
+        hideTotals: true,
       },
       sensitive: false,
-      spoiler_text: 'spoiler',
+      spoilerText: 'spoiler',
       visibility: 'direct',
-      scheduled_at: '2019-03-28T04:39:31.121Z',
+      scheduledAt: '2019-03-28T04:39:31.121Z',
       language: 'en',
     });
     expect(mockPost).toBeCalledTimes(1);
@@ -759,7 +759,7 @@ describe('Masto', () => {
 
   test('createStatus with media ids', async () => {
     await masto.createStatus({
-      media_ids: ['123', '456'],
+      mediaIds: ['123', '456'],
     });
     expect(mockPost).toBeCalledTimes(1);
     expect(mockPost).toMatchSnapshot();
@@ -808,9 +808,9 @@ describe('Masto', () => {
 
   test('fetchHomeTimeline', async () => {
     masto.fetchHomeTimeline({
-      max_id: '5',
-      since_id: '3',
-      min_id: '2',
+      maxId: '5',
+      sinceId: '3',
+      minId: '2',
       limit: 10,
     });
     expect(mockPaginate).toBeCalledTimes(1);
@@ -819,9 +819,9 @@ describe('Masto', () => {
 
   test('fetchCommunityTimeline', async () => {
     await masto.fetchCommunityTimeline({
-      max_id: '5',
-      since_id: '3',
-      min_id: '2',
+      maxId: '5',
+      sinceId: '3',
+      minId: '2',
       limit: 10,
     });
     expect(mockPaginate).toBeCalledTimes(1);
@@ -830,9 +830,9 @@ describe('Masto', () => {
 
   test('fetchPublicTimeline', async () => {
     await masto.fetchPublicTimeline({
-      max_id: '5',
-      since_id: '3',
-      min_id: '2',
+      maxId: '5',
+      sinceId: '3',
+      minId: '2',
       limit: 10,
     });
     expect(mockPaginate).toBeCalledTimes(1);
@@ -841,9 +841,9 @@ describe('Masto', () => {
 
   test('fetchTagTimeline', async () => {
     masto.fetchTagTimeline('DeleteTwitter', {
-      max_id: '5',
-      since_id: '3',
-      min_id: '2',
+      maxId: '5',
+      sinceId: '3',
+      minId: '2',
       limit: 10,
     });
     expect(mockPaginate).toBeCalledTimes(1);
@@ -852,9 +852,9 @@ describe('Masto', () => {
 
   test('fetchListTimeline', async () => {
     masto.fetchListTimeline('123123', {
-      max_id: '5',
-      since_id: '3',
-      min_id: '2',
+      maxId: '5',
+      sinceId: '3',
+      minId: '2',
       limit: 10,
     });
     expect(mockPaginate).toBeCalledTimes(1);
@@ -864,9 +864,9 @@ describe('Masto', () => {
   test('fetchDirectTimeline', async () => {
     masto.version = '2.9.3';
     masto.fetchDirectTimeline({
-      max_id: '5',
-      since_id: '3',
-      min_id: '2',
+      maxId: '5',
+      sinceId: '3',
+      minId: '2',
       limit: 10,
     });
     expect(mockPaginate).toBeCalledTimes(1);
@@ -875,9 +875,9 @@ describe('Masto', () => {
 
   test('fetchConversations', async () => {
     masto.fetchConversations({
-      max_id: '5',
-      since_id: '3',
-      min_id: '2',
+      maxId: '5',
+      sinceId: '3',
+      minId: '2',
       limit: 10,
     });
     expect(mockPaginate).toBeCalledTimes(1);
@@ -910,8 +910,8 @@ describe('Masto', () => {
 
   test('createMarkers', async () => {
     await masto.createMarkers({
-      home: { last_read_id: '123123' },
-      notifications: { last_read_id: '123123' },
+      home: { lastReadId: '123123' },
+      notifications: { lastReadId: '123123' },
     });
 
     expect(mockPost).toBeCalledTimes(1);
