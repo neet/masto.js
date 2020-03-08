@@ -6,8 +6,8 @@ import { Masto } from '../src';
   });
 
   masto.createApp({
-    client_name: 'My app',
-    redirect_uris: 'urn:ietf:wg:oauth:2.0:oob',
+    clientName: 'My app',
+    redirectUris: 'urn:ietf:wg:oauth:2.0:oob',
     scopes: 'read write',
     website: 'example.com'
   }).then((oauthInfo) => {
