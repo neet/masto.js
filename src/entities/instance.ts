@@ -8,7 +8,7 @@ export interface Instance {
   /** A description for the instance */
   description: string;
   /** Short description */
-  short_description?: string;
+  shortDescription?: string;
   /** An email address which can be used to contact the instance administrator */
   email: string;
   /** The Mastodon version used by instance. */
@@ -22,19 +22,19 @@ export interface Instance {
   /** Array of ISO 6391 language codes the instance has chosen to advertise */
   languages: string[];
   /** Account of the admin or another contact person */
-  contact_account?: Account | null;
+  contactAccount?: Account | null;
   /** Whether registration is open or not */
   registrations: boolean;
   /** Whether approval required */
-  approval_required?: boolean | null;
+  approvalRequired?: boolean | null;
 }
 
 export interface InstanceURLs {
-  streaming_api: string;
+  streamingApi: string;
 }
 
 export interface InstanceStats {
   user_count: number;
-  status_count: number;
-  domain_count: number;
+  statusCount: number;
+  domainCount: number;
 }
