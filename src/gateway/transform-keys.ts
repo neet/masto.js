@@ -15,9 +15,10 @@ const fromEntries = <T>(entries: [string, unknown][]) => {
 // prettier-ignore
 export const transformKeys = <T extends Record<string, unknown>>(
   data: Record<string, unknown>,
+  transform = camelCase,
 ): T => fromEntries<T>(
   Object.entries(data).map(([key, value]) => [
-    camelCase(key),
+    transform(key),
     isObject(value) ? transformKeys(value) : value,
   ] as [string, T[keyof T]]),
 );
