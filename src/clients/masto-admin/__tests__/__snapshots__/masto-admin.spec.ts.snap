@@ -6,11 +6,11 @@ exports[`MastoAdmin actionAccount 1`] = `
     Array [
       "/api/v1/admin/accounts/123/action",
       Object {
-        "report_id": "123123",
-        "send_email_notification": false,
+        "reportId": "123123",
+        "sendEmailNotification": false,
         "text": "Your account have been disabled",
         "type": "disable",
-        "warning_preset_id": "123123",
+        "warningPresetId": "123123",
       },
     ],
   ],

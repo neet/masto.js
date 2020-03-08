@@ -3,9 +3,14 @@ import { StatusVisibility } from './status';
 export type PreferenceReadingExpandMedia = 'show_all' | 'hide_all' | 'default';
 
 export interface Preference {
-  'posting:default:visibility'?: StatusVisibility | null;
-  'posting:default:sensitive'?: boolean | null;
-  'posting:default:language'?: string | null;
-  'reading:expand:media'?: PreferenceReadingExpandMedia | null;
-  'reading:expand:spoilers'?: boolean | null;
+  /** Default visibility for new posts. Equivalent to Source#privacy. */
+  'posting:default:visibility': StatusVisibility;
+  /** Default sensitivity flag for new posts. Equivalent to Source#sensitive. */
+  'posting:default:sensitive': boolean;
+  /** Default language for new posts. Equivalent to Source#language */
+  'posting:default:language': string;
+  /** Whether media attachments should be automatically displayed or blurred/hidden. */
+  'reading:expand:media': PreferenceReadingExpandMedia;
+  /** Whether CWs should be expanded by default. */
+  'reading:expand:spoilers': boolean;
 }

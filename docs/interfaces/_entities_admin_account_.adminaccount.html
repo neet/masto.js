@@ -70,7 +70,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Account entity from moderation apis</p>
+						<p>Admin-level information about a given account.</p>
 					</div>
 				</div>
 			</section>
@@ -92,14 +92,14 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_account_.adminaccount.html#account" class="tsd-kind-icon">account</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_account_.adminaccount.html#approved" class="tsd-kind-icon">approved</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_account_.adminaccount.html#confirmed" class="tsd-kind-icon">confirmed</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_account_.adminaccount.html#created_at" class="tsd-kind-icon">created_<wbr>at</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_account_.adminaccount.html#created_by_application_id" class="tsd-kind-icon">created_<wbr>by_<wbr>application_<wbr>id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_account_.adminaccount.html#createdat" class="tsd-kind-icon">created<wbr>At</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_account_.adminaccount.html#createdbyapplicationid" class="tsd-kind-icon">created<wbr>ByApplication<wbr>Id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_account_.adminaccount.html#disabled" class="tsd-kind-icon">disabled</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_account_.adminaccount.html#domain" class="tsd-kind-icon">domain</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_account_.adminaccount.html#email" class="tsd-kind-icon">email</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_account_.adminaccount.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_account_.adminaccount.html#invite_request" class="tsd-kind-icon">invite_<wbr>request</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_account_.adminaccount.html#invited_by_account_id" class="tsd-kind-icon">invited_<wbr>by_<wbr>account_<wbr>id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_account_.adminaccount.html#inviterequest" class="tsd-kind-icon">invite<wbr>Request</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_account_.adminaccount.html#invitedbyaccountid" class="tsd-kind-icon">invited<wbr>ByAccount<wbr>Id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_account_.adminaccount.html#ip" class="tsd-kind-icon">ip</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_account_.adminaccount.html#locale" class="tsd-kind-icon">locale</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_account_.adminaccount.html#role" class="tsd-kind-icon">role</a></li>
@@ -119,9 +119,14 @@
 					<div class="tsd-signature tsd-kind-icon">account<span class="tsd-signature-symbol">:</span> <a href="_entities_account_.account.html" class="tsd-signature-type">Account</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/admin-account.ts#L21">src/entities/admin-account.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/admin-account.ts#L37">src/entities/admin-account.ts:37</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>User-level information about the account.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="approved" class="tsd-anchor"></a>
@@ -129,9 +134,14 @@
 					<div class="tsd-signature tsd-kind-icon">approved<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/admin-account.ts#L20">src/entities/admin-account.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/admin-account.ts#L29">src/entities/admin-account.ts:29</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Whether the account is currently approved.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="confirmed" class="tsd-anchor"></a>
@@ -139,29 +149,44 @@
 					<div class="tsd-signature tsd-kind-icon">confirmed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/admin-account.ts#L16">src/entities/admin-account.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/admin-account.ts#L27">src/entities/admin-account.ts:27</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Whether the account has confirmed their email address.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="created_at" class="tsd-anchor"></a>
-					<h3>created_<wbr>at</h3>
-					<div class="tsd-signature tsd-kind-icon">created_<wbr>at<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="createdat" class="tsd-anchor"></a>
+					<h3>created<wbr>At</h3>
+					<div class="tsd-signature tsd-kind-icon">created<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/admin-account.ts#L12">src/entities/admin-account.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/admin-account.ts#L14">src/entities/admin-account.ts:14</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>When the account was first discovered.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="created_by_application_id" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> created_<wbr>by_<wbr>application_<wbr>id</h3>
-					<div class="tsd-signature tsd-kind-icon">created_<wbr>by_<wbr>application_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<a name="createdbyapplicationid" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> created<wbr>ByApplication<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">created<wbr>ByApplication<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/admin-account.ts#L24">src/entities/admin-account.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/admin-account.ts#L40">src/entities/admin-account.ts:40</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The ID of the application that created this account.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="disabled" class="tsd-anchor"></a>
@@ -169,9 +194,14 @@
 					<div class="tsd-signature tsd-kind-icon">disabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/admin-account.ts#L19">src/entities/admin-account.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/admin-account.ts#L31">src/entities/admin-account.ts:31</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Whether the account is currently disabled.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="domain" class="tsd-anchor"></a>
@@ -179,9 +209,14 @@
 					<div class="tsd-signature tsd-kind-icon">domain<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/admin-account.ts#L11">src/entities/admin-account.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/admin-account.ts#L12">src/entities/admin-account.ts:12</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The domain of the account.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="email" class="tsd-anchor"></a>
@@ -189,9 +224,14 @@
 					<div class="tsd-signature tsd-kind-icon">email<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/admin-account.ts#L13">src/entities/admin-account.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/admin-account.ts#L16">src/entities/admin-account.ts:16</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The email address associated with the account.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="id" class="tsd-anchor"></a>
@@ -199,29 +239,44 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/admin-account.ts#L9">src/entities/admin-account.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/admin-account.ts#L8">src/entities/admin-account.ts:8</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The ID of the account in the database.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="invite_request" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> invite_<wbr>request</h3>
-					<div class="tsd-signature tsd-kind-icon">invite_<wbr>request<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<a name="inviterequest" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> invite<wbr>Request</h3>
+					<div class="tsd-signature tsd-kind-icon">invite<wbr>Request<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/admin-account.ts#L23">src/entities/admin-account.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/admin-account.ts#L22">src/entities/admin-account.ts:22</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Invite request text ???</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="invited_by_account_id" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> invited_<wbr>by_<wbr>account_<wbr>id</h3>
-					<div class="tsd-signature tsd-kind-icon">invited_<wbr>by_<wbr>account_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<a name="invitedbyaccountid" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> invited<wbr>ByAccount<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">invited<wbr>ByAccount<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/admin-account.ts#L25">src/entities/admin-account.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/admin-account.ts#L42">src/entities/admin-account.ts:42</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The ID of the account that invited this user</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="ip" class="tsd-anchor"></a>
@@ -229,9 +284,14 @@
 					<div class="tsd-signature tsd-kind-icon">ip<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/admin-account.ts#L15">src/entities/admin-account.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/admin-account.ts#L18">src/entities/admin-account.ts:18</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The IP address last used to login to this account.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="locale" class="tsd-anchor"></a>
@@ -239,9 +299,14 @@
 					<div class="tsd-signature tsd-kind-icon">locale<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/admin-account.ts#L22">src/entities/admin-account.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/admin-account.ts#L20">src/entities/admin-account.ts:20</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The locale of the account.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="role" class="tsd-anchor"></a>
@@ -249,9 +314,14 @@
 					<div class="tsd-signature tsd-kind-icon">role<span class="tsd-signature-symbol">:</span> <a href="../modules/_entities_admin_account_.html#adminaccountrole" class="tsd-signature-type">AdminAccountRole</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/admin-account.ts#L14">src/entities/admin-account.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/admin-account.ts#L25">src/entities/admin-account.ts:25</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The current role of the account.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="silenced" class="tsd-anchor"></a>
@@ -259,9 +329,14 @@
 					<div class="tsd-signature tsd-kind-icon">silenced<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/admin-account.ts#L18">src/entities/admin-account.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/admin-account.ts#L33">src/entities/admin-account.ts:33</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Whether the account is currently silenced.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="suspended" class="tsd-anchor"></a>
@@ -269,9 +344,14 @@
 					<div class="tsd-signature tsd-kind-icon">suspended<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/admin-account.ts#L17">src/entities/admin-account.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/admin-account.ts#L35">src/entities/admin-account.ts:35</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Whether the account is currently suspended.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="username" class="tsd-anchor"></a>
@@ -279,9 +359,14 @@
 					<div class="tsd-signature tsd-kind-icon">username<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/admin-account.ts#L10">src/entities/admin-account.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/admin-account.ts#L10">src/entities/admin-account.ts:10</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The username of the account.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -313,10 +398,10 @@
 								<a href="_entities_admin_account_.adminaccount.html#confirmed" class="tsd-kind-icon">confirmed</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_admin_account_.adminaccount.html#created_at" class="tsd-kind-icon">created_<wbr>at</a>
+								<a href="_entities_admin_account_.adminaccount.html#createdat" class="tsd-kind-icon">created<wbr>At</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_admin_account_.adminaccount.html#created_by_application_id" class="tsd-kind-icon">created_<wbr>by_<wbr>application_<wbr>id</a>
+								<a href="_entities_admin_account_.adminaccount.html#createdbyapplicationid" class="tsd-kind-icon">created<wbr>ByApplication<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_entities_admin_account_.adminaccount.html#disabled" class="tsd-kind-icon">disabled</a>
@@ -331,10 +416,10 @@
 								<a href="_entities_admin_account_.adminaccount.html#id" class="tsd-kind-icon">id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_admin_account_.adminaccount.html#invite_request" class="tsd-kind-icon">invite_<wbr>request</a>
+								<a href="_entities_admin_account_.adminaccount.html#inviterequest" class="tsd-kind-icon">invite<wbr>Request</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_admin_account_.adminaccount.html#invited_by_account_id" class="tsd-kind-icon">invited_<wbr>by_<wbr>account_<wbr>id</a>
+								<a href="_entities_admin_account_.adminaccount.html#invitedbyaccountid" class="tsd-kind-icon">invited<wbr>ByAccount<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_entities_admin_account_.adminaccount.html#ip" class="tsd-kind-icon">ip</a>

@@ -82,8 +82,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_poll_.polloption.html#emojis" class="tsd-kind-icon">emojis</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_poll_.polloption.html#title" class="tsd-kind-icon">title</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_poll_.polloption.html#votes_count" class="tsd-kind-icon">votes_<wbr>count</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_poll_.polloption.html#votescount" class="tsd-kind-icon">votes<wbr>Count</a></li>
 							</ul>
 						</section>
 					</div>
@@ -92,32 +93,47 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="emojis" class="tsd-anchor"></a>
+					<h3>emojis</h3>
+					<div class="tsd-signature tsd-kind-icon">emojis<span class="tsd-signature-symbol">:</span> <a href="_entities_emoji_.emoji.html" class="tsd-signature-type">Emoji</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/poll.ts#L9">src/entities/poll.ts:9</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Custom emoji to be used for rendering poll options.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="title" class="tsd-anchor"></a>
 					<h3>title</h3>
 					<div class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/poll.ts#L3">src/entities/poll.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/poll.ts#L5">src/entities/poll.ts:5</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Title of the option</p>
+							<p>The text value of the poll option. String.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="votes_count" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> votes_<wbr>count</h3>
-					<div class="tsd-signature tsd-kind-icon">votes_<wbr>count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<a name="votescount" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> votes<wbr>Count</h3>
+					<div class="tsd-signature tsd-kind-icon">votes<wbr>Count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/poll.ts#L5">src/entities/poll.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/poll.ts#L7">src/entities/poll.ts:7</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Cont of votes for this option</p>
+							<p>The number of received votes for this option. Number, or null if results are not published yet.</p>
 						</div>
 					</div>
 				</section>
@@ -145,10 +161,13 @@
 						<a href="_entities_poll_.polloption.html" class="tsd-kind-icon">Poll<wbr>Option</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_entities_poll_.polloption.html#emojis" class="tsd-kind-icon">emojis</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_entities_poll_.polloption.html#title" class="tsd-kind-icon">title</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_poll_.polloption.html#votes_count" class="tsd-kind-icon">votes_<wbr>count</a>
+								<a href="_entities_poll_.polloption.html#votescount" class="tsd-kind-icon">votes<wbr>Count</a>
 							</li>
 						</ul>
 					</li>

@@ -1,8 +1,8 @@
 /* eslint-disable */
 import axios from 'axios';
-import { Gateway } from '../gateway';
+import { GatewayImpl } from '../gateway-impl';
 // @ts-ignore
-import { WebSocketEvents, mockConnect } from '../websocket';
+import { EventHandlerImpl, mockConnect } from '../event-handler-impl';
 import {
   MastoNotFoundError,
   MastoRateLimitError,
@@ -12,7 +12,7 @@ import {
 } from '../../errors';
 import 'isomorphic-form-data';
 
-jest.mock('../websocket');
+jest.mock('../event-handler-impl');
 
 // Mock `axios.create`. We don't use any functions from axios
 // but from `axios.create`
@@ -20,8 +20,8 @@ jest.mock('axios');
 const mockAxios = jest.genMockFromModule<typeof axios>('axios');
 (axios.create as jest.Mock).mockImplementation(() => mockAxios);
 
-describe('Gateway', () => {
-  const gateway = new Gateway({
+describe('GatewayImpl', () => {
+  const gateway = new GatewayImpl({
     uri: 'https://example.com',
     version: '99.9.9',
     streamingApiUrl: 'wss://example.com',
@@ -41,7 +41,7 @@ describe('Gateway', () => {
       data: {
         version: '2.8.0',
         urls: {
-          streaming_api: 'wss://example.com/stream',
+          streamingApi: 'wss://example.com/stream',
         },
       },
     });
@@ -50,14 +50,14 @@ describe('Gateway', () => {
       uri: 'https://example.com',
       accessToken: 'some token',
     };
-    const gateway = await Gateway.login(params);
+    const gateway = await GatewayImpl.login(params);
 
     expect(gateway.version).toBe('2.8.0');
     expect(gateway.streamingApiUrl).toBe('wss://example.com/stream');
   });
 
   test('streamingApiUrl has been set if construct with streamingApiUrl', () => {
-    const customGateway = new Gateway({
+    const customGateway = new GatewayImpl({
       uri: 'https://example.com',
       streamingApiUrl: 'wss://example.com',
     });
@@ -65,7 +65,7 @@ describe('Gateway', () => {
   });
 
   test('version has been set if construct with version ', () => {
-    const customGateway = new Gateway({
+    const customGateway = new GatewayImpl({
       uri: 'https://example.com',
       version: '1.2.3',
     });
@@ -73,7 +73,7 @@ describe('Gateway', () => {
   });
 
   test('accessToken has been set if construct with accessToken', () => {
-    const customGateway = new Gateway({
+    const customGateway = new GatewayImpl({
       uri: 'https://example.com',
       accessToken: 'token token',
     });
@@ -81,7 +81,7 @@ describe('Gateway', () => {
   });
 
   test('this._uri accessor works', () => {
-    const customGateway = new Gateway({
+    const customGateway = new GatewayImpl({
       uri: 'https://example.com/aaa',
     });
     customGateway.uri = 'https://example.com/bbb';
@@ -89,11 +89,21 @@ describe('Gateway', () => {
   });
 
   test('this._streamingApiUrl accessor works', () => {
-    const customGateway = new Gateway({
+    const customGateway = new GatewayImpl({
       uri: 'wss://example.com/aaa',
     });
-    customGateway.uri = 'wss://example.com/bbb';
-    expect(customGateway.uri).toEqual('wss://example.com/bbb');
+    customGateway.streamingApiUrl = 'wss://example.com/bbb';
+    expect(customGateway.streamingApiUrl).toEqual('wss://example.com/bbb');
+  });
+
+  test('transform params', () => {
+    const config = {
+      params: { keyKey: 'value' },
+      headers: { 'Content-Type': 'application/json' },
+    };
+
+    // @ts-ignore
+    expect(gateway.transformConfig(config).params).toEqual({ key_key: 'value' });
   });
 
   test('transform JSON to JS object', () => {
@@ -373,7 +383,7 @@ describe('Gateway', () => {
 
   test('call next to paginate, finish if nothing in link header', async () => {
     const iterable = gateway.paginate('/', {
-      since_id: '123',
+      sinceId: '123',
     });
 
     const firstResponse = {
@@ -398,7 +408,7 @@ describe('Gateway', () => {
         method: 'GET',
         url: '/',
         params: {
-          since_id: '123',
+          sinceId: '123',
         },
       }),
     );

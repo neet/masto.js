@@ -83,12 +83,14 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_poll_.poll.html#expired" class="tsd-kind-icon">expired</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_poll_.poll.html#expires_at" class="tsd-kind-icon">expires_<wbr>at</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_poll_.poll.html#expiresat" class="tsd-kind-icon">expires<wbr>At</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_poll_.poll.html#id" class="tsd-kind-icon">id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_poll_.poll.html#multiple" class="tsd-kind-icon">multiple</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_poll_.poll.html#options" class="tsd-kind-icon">options</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_poll_.poll.html#ownvotes" class="tsd-kind-icon">own<wbr>Votes</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_poll_.poll.html#voted" class="tsd-kind-icon">voted</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_poll_.poll.html#votes_count" class="tsd-kind-icon">votes_<wbr>count</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_poll_.poll.html#voterscount" class="tsd-kind-icon">voters<wbr>Count</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_poll_.poll.html#votescount" class="tsd-kind-icon">votes<wbr>Count</a></li>
 							</ul>
 						</section>
 					</div>
@@ -102,27 +104,27 @@
 					<div class="tsd-signature tsd-kind-icon">expired<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/poll.ts#L14">src/entities/poll.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/poll.ts#L18">src/entities/poll.ts:18</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Whether the poll has been expired</p>
+							<p>Is the poll currently expired?</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="expires_at" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> expires_<wbr>at</h3>
-					<div class="tsd-signature tsd-kind-icon">expires_<wbr>at<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<a name="expiresat" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> expires<wbr>At</h3>
+					<div class="tsd-signature tsd-kind-icon">expires<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/poll.ts#L12">src/entities/poll.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/poll.ts#L16">src/entities/poll.ts:16</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Duration the poll should be open for in seconds</p>
+							<p>When the poll ends.</p>
 						</div>
 					</div>
 				</section>
@@ -132,12 +134,12 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/poll.ts#L10">src/entities/poll.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/poll.ts#L14">src/entities/poll.ts:14</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>ID of the poll</p>
+							<p>The ID of the poll in the database.</p>
 						</div>
 					</div>
 				</section>
@@ -147,12 +149,12 @@
 					<div class="tsd-signature tsd-kind-icon">multiple<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/poll.ts#L16">src/entities/poll.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/poll.ts#L20">src/entities/poll.ts:20</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Whether multiple choices should be allowed</p>
+							<p>Does the poll allow multiple-choice answers?</p>
 						</div>
 					</div>
 				</section>
@@ -162,12 +164,28 @@
 					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <a href="_entities_poll_.polloption.html" class="tsd-signature-type">PollOption</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/poll.ts#L20">src/entities/poll.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/poll.ts#L33">src/entities/poll.ts:33</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Array of options</p>
+							<p>Possible answers for the poll.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="ownvotes" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> own<wbr>Votes</h3>
+					<div class="tsd-signature tsd-kind-icon">own<wbr>Votes<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/poll.ts#L31">src/entities/poll.ts:31</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>When called with a user token, which options has the authorized user chosen?
+							Contains an array of index values for options.</p>
 						</div>
 					</div>
 				</section>
@@ -177,27 +195,42 @@
 					<div class="tsd-signature tsd-kind-icon">voted<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/poll.ts#L22">src/entities/poll.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/poll.ts#L26">src/entities/poll.ts:26</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Whether the authenticated user voted</p>
+							<p>When called with a user token, has the authorized user voted?</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="votes_count" class="tsd-anchor"></a>
-					<h3>votes_<wbr>count</h3>
-					<div class="tsd-signature tsd-kind-icon">votes_<wbr>count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="voterscount" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> voters<wbr>Count</h3>
+					<div class="tsd-signature tsd-kind-icon">voters<wbr>Count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/poll.ts#L18">src/entities/poll.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/poll.ts#L24">src/entities/poll.ts:24</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Count of the votes</p>
+							<p>How many unique accounts have voted on a multiple-choice poll.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="votescount" class="tsd-anchor"></a>
+					<h3>votes<wbr>Count</h3>
+					<div class="tsd-signature tsd-kind-icon">votes<wbr>Count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/poll.ts#L22">src/entities/poll.ts:22</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>How many votes have been received.</p>
 						</div>
 					</div>
 				</section>
@@ -225,7 +258,7 @@
 								<a href="_entities_poll_.poll.html#expired" class="tsd-kind-icon">expired</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_poll_.poll.html#expires_at" class="tsd-kind-icon">expires_<wbr>at</a>
+								<a href="_entities_poll_.poll.html#expiresat" class="tsd-kind-icon">expires<wbr>At</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_entities_poll_.poll.html#id" class="tsd-kind-icon">id</a>
@@ -237,10 +270,16 @@
 								<a href="_entities_poll_.poll.html#options" class="tsd-kind-icon">options</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_entities_poll_.poll.html#ownvotes" class="tsd-kind-icon">own<wbr>Votes</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_entities_poll_.poll.html#voted" class="tsd-kind-icon">voted</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_poll_.poll.html#votes_count" class="tsd-kind-icon">votes_<wbr>count</a>
+								<a href="_entities_poll_.poll.html#voterscount" class="tsd-kind-icon">voters<wbr>Count</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_entities_poll_.poll.html#votescount" class="tsd-kind-icon">votes<wbr>Count</a>
 							</li>
 						</ul>
 					</li>

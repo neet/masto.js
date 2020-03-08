@@ -3,5 +3,5 @@ export interface Reaction {
   count: number;
   me: boolean;
   url: string;
-  static_url: string;
+  staticUrl: string;
 }

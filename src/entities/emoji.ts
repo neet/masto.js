@@ -1,12 +1,14 @@
+/** Represents a custom emoji. */
 export interface Emoji {
-  /** The shortcode of the emoji */
+  /** The name of the custom emoji. */
   shortcode: string;
-  /** URL to the emoji static image */
-  static_url: string;
-  /** URL to the emoji image */
+  /** A link to the custom emoji. */
   url: string;
-  /** Boolean that indicates if the emoji is visible in picker */
-  visible_in_picker: boolean;
-  /** Category of the emoji */
+  /** A link to a static copy of the custom emoji. */
+  staticUrl: string;
+  /** Whether this Emoji should be visible in the picker or unlisted. */
+  visibleInPicker: boolean;
+
+  /** Used for sorting custom emoji in the picker. */
   category?: string | null;
 }

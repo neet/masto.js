@@ -1,22 +1,11 @@
-import { Application } from './application';
-
-export interface OAuthClient extends Application {
-  client_id: string;
-  client_secret: string;
-}
-
+/** Represents an OAuth token used for authenticating with the API and performing actions. */
 export interface Token {
-  /** Access token of the account */
-  access_token: string;
-  /** Type of the token */
-  token_type: string;
-  /** Scope of the token */
+  /** An OAuth token to be used for authorization. */
+  accessToken: string;
+  /** The OAuth token type. Mastodon uses Bearer tokens. */
+  tokenType: string;
+  /** The OAuth scopes granted by this token, space-separated. */
   scope: string;
-  /** Created date of the token */
-  created_at: string;
+  /** When the token was generated. */
+  createdAt: string;
 }
-
-/**
- * @deprecated Use Token
- */
-export type OAuthToken = Token;

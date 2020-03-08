@@ -1,60 +1,59 @@
-import { Emoji } from './emoji';
-import { Source } from './source';
+import { Emoji, Field, Source } from '.';
 
-export interface AccountField {
-  /** (2.4 or later) Label of profile metadata field. */
-  name?: string | null;
-  /** (2.4 or later) Value of profile metadata field. */
-  value?: string | null;
-  /** date time*/
-  verified_at?: string | null;
-}
-
+/** Represents a user of Mastodon and their associated profile. */
 export interface Account {
-  /** The ID of the account */
+  /** The account id */
   id: string;
-  /** The username of the account */
+  /** The username of the account, not including domain */
   username: string;
-  /** Equals username for local users, includes `@domain` for remote ones */
+  /** The WebFinger account URI. Equal to `username` for local users, or `username@domain` for remote users. */
   acct: string;
-  /** The account's display name */
-  display_name: string;
-  /** Boolean for when the account cannot be followed without waiting for approval first */
+  /** The location of the user's profile page. */
+  url: string;
+
+  /** The profile's display name. */
+  displayName: string;
+  /** The profile's bio / description. */
+  note: string;
+  /** An image icon that is shown next to statuses and in the profile. */
+  avatar: string;
+  /** A static version of the `avatar`. Equal to avatar if its value is a static image; different if `avatar` is an animated GIF. */
+  avatarStatic: string;
+  /** An image banner that is shown above the profile and in profile cards. */
+  header: string;
+  /** A static version of the header. Equal to `header` if its value is a static image; different if `header` is an animated GIF. */
+  headerStatic: string;
+  /** Whether the account manually approves follow requests. */
   locked: boolean;
+  /** Custom emoji entities to be used when rendering the profile. If none, an empty array will be returned. */
+  emojis: Emoji[];
+  /** Whether the account has opted into discovery features such as the profile directory. */
+  discoverable: false;
+
+  /** When the account was created. */
+  createdAt: string;
+  /** How many statuses are attached to this account. */
+  statusesCount: number;
+  /** The reported followers of this profile. */
+  followersCount: number;
+  /** The reported follows of this profile. */
+  followingCount: number;
+  /** Time of the last status posted */
+  lastStatusAt: string;
+
+  /** Indicates that the profile is currently inactive and that its user has moved to a new account. */
+  moved?: boolean | null;
+  /** Additional metadata attached to a profile as name-value pairs. */
+  fields?: Field[] | null;
   /** Boolean to indicate that the account performs automated actions */
   bot?: boolean | null;
-  /** The time the account was created */
-  created_at: string;
-  /** Time of the last status posted */
-  last_status_at: string;
-  /** The number of followers for the account */
-  followers_count: number;
-  /** The number of accounts the given account is following */
-  following_count: number;
-  /** The number of statuses the account has made */
-  statuses_count: number;
-  /** Biography of user */
-  note: string;
-  /** URL of the user's profile page (can be remote) */
-  url: string;
-  /** URL to the avatar image */
-  avatar: string;
-  /** URL to the avatar static image (gif) */
-  avatar_static: string;
-  /** URL to the header image */
-  header: string;
-  /** URL to the header static image (gif) */
-  header_static: string;
-  /** Array of Emoji in account username and note */
-  emojis: Emoji[];
-  /** If the owner decided to switch accounts, new account is in this attribute */
-  moved?: boolean | null;
-  /** Array of profile metadata field, each element has 'name' and 'value' */
-  fields?: AccountField[] | null;
-  /** no-index flag */
-  discoverable?: false;
 }
 
 export interface AccountCredentials extends Account {
+  /**
+   * Note the extra `source` property, which is not visible on accounts other than your own.
+   * Also note that plain-text is used within `source` and HTML is used for their
+   * corresponding properties such as `note` and `fields`.
+   */
   source: Source;
 }

@@ -84,6 +84,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_params_.createaccountparams.html#agreement" class="tsd-kind-icon">agreement</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_params_.createaccountparams.html#email" class="tsd-kind-icon">email</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_params_.createaccountparams.html#locale" class="tsd-kind-icon">locale</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_params_.createaccountparams.html#password" class="tsd-kind-icon">password</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_params_.createaccountparams.html#reason" class="tsd-kind-icon">reason</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_params_.createaccountparams.html#username" class="tsd-kind-icon">username</a></li>
@@ -100,12 +101,12 @@
 					<div class="tsd-signature tsd-kind-icon">agreement<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto/params.ts#L54">src/clients/masto/params.ts:54</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto/params.ts#L54">src/clients/masto/params.ts:54</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Whether the user has been agreed to the agreement of the Mastodon instance</p>
+							<p>Whether the user agrees to the local rules, terms, and policies. These should be presented to the user in order to allow them to consent before setting this parameter to TRUE.</p>
 						</div>
 					</div>
 				</section>
@@ -115,12 +116,27 @@
 					<div class="tsd-signature tsd-kind-icon">email<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto/params.ts#L52">src/clients/masto/params.ts:52</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto/params.ts#L52">src/clients/masto/params.ts:52</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Email of the user</p>
+							<p>The email address to be used for login</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="locale" class="tsd-anchor"></a>
+					<h3>locale</h3>
+					<div class="tsd-signature tsd-kind-icon">locale<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto/params.ts#L56">src/clients/masto/params.ts:56</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The language of the confirmation email that will be sent</p>
 						</div>
 					</div>
 				</section>
@@ -130,12 +146,12 @@
 					<div class="tsd-signature tsd-kind-icon">password<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto/params.ts#L50">src/clients/masto/params.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto/params.ts#L50">src/clients/masto/params.ts:50</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Password of the user</p>
+							<p>The password to be used for login</p>
 						</div>
 					</div>
 				</section>
@@ -145,12 +161,12 @@
 					<div class="tsd-signature tsd-kind-icon">reason<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto/params.ts#L56">src/clients/masto/params.ts:56</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto/params.ts#L58">src/clients/masto/params.ts:58</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Message for approval</p>
+							<p>Text that will be reviewed by moderators if registrations require manual approval.</p>
 						</div>
 					</div>
 				</section>
@@ -160,12 +176,12 @@
 					<div class="tsd-signature tsd-kind-icon">username<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto/params.ts#L48">src/clients/masto/params.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto/params.ts#L48">src/clients/masto/params.ts:48</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Username to create</p>
+							<p>The desired username for the account</p>
 						</div>
 					</div>
 				</section>
@@ -184,9 +200,6 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_clients_masto_params_.addpushsubscriptionparams.html" class="tsd-kind-icon">Add<wbr>Push<wbr>Subscription<wbr>Params</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
@@ -197,6 +210,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_clients_masto_params_.createaccountparams.html#email" class="tsd-kind-icon">email</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_clients_masto_params_.createaccountparams.html#locale" class="tsd-kind-icon">locale</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_clients_masto_params_.createaccountparams.html#password" class="tsd-kind-icon">password</a>
@@ -216,6 +232,12 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_clients_masto_params_.createfeaturedtagparams.html" class="tsd-kind-icon">Create<wbr>Featured<wbr>Tag<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_clients_masto_params_.createmediaattachmentparams.html" class="tsd-kind-icon">Create<wbr>Media<wbr>Attachment<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_clients_masto_params_.createpushsubscriptionparams.html" class="tsd-kind-icon">Create<wbr>Push<wbr>Subscription<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_clients_masto_params_.createstatusparamsbase.html" class="tsd-kind-icon">Create<wbr>Status<wbr>Params<wbr>Base</a>
@@ -252,6 +274,9 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_clients_masto_params_.fetchtimelineparams.html" class="tsd-kind-icon">Fetch<wbr>Timeline<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_clients_masto_params_.fetchtrendsparams.html" class="tsd-kind-icon">Fetch<wbr>Trends<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_clients_masto_params_.followaccountparams.html" class="tsd-kind-icon">Follow<wbr>Account<wbr>Params</a>
@@ -293,9 +318,6 @@
 						<a href="_clients_masto_params_.updatescheduledstatusparams.html" class="tsd-kind-icon">Update<wbr>Scheduled<wbr>Status<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_clients_masto_params_.uploadmediaattachmentparams.html" class="tsd-kind-icon">Upload<wbr>Media<wbr>Attachment<wbr>Params</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_clients_masto_params_.votepollparams.html" class="tsd-kind-icon">Vote<wbr>Poll<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
@@ -312,6 +334,9 @@
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
 						<a href="../modules/_clients_masto_params_.html#granttype" class="tsd-kind-icon">Grant<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_clients_masto_params_.html#searchtype" class="tsd-kind-icon">Search<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
 						<a href="../modules/_clients_masto_params_.html#updatemediaattachmentparams" class="tsd-kind-icon">Update<wbr>Media<wbr>Attachment<wbr>Params</a>

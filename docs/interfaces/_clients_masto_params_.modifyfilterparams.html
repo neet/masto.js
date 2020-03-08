@@ -83,10 +83,10 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_params_.modifyfilterparams.html#context" class="tsd-kind-icon">context</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_params_.modifyfilterparams.html#expires_in" class="tsd-kind-icon">expires_<wbr>in</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_params_.modifyfilterparams.html#expiresin" class="tsd-kind-icon">expires<wbr>In</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_params_.modifyfilterparams.html#irreversible" class="tsd-kind-icon">irreversible</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_params_.modifyfilterparams.html#phrase" class="tsd-kind-icon">phrase</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_params_.modifyfilterparams.html#whole_word" class="tsd-kind-icon">whole_<wbr>word</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_params_.modifyfilterparams.html#wholeword" class="tsd-kind-icon">whole<wbr>Word</a></li>
 							</ul>
 						</section>
 					</div>
@@ -96,31 +96,32 @@
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="context" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> context</h3>
+					<h3>context</h3>
 					<div class="tsd-signature tsd-kind-icon">context<span class="tsd-signature-symbol">:</span> <a href="../modules/_entities_filter_.html#filtercontext" class="tsd-signature-type">FilterContext</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto/params.ts#L139">src/clients/masto/params.ts:139</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto/params.ts#L145">src/clients/masto/params.ts:145</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Array of strings that means filtering context. each string is one of <code>home</code>, <code>notifications</code>, <code>public</code>, <code>thread</code>. At least one context must be specified</p>
+							<p>Array of enumerable strings <code>home</code>, <code>notifications</code>, <code>public</code>, <code>thread</code>.
+							At least one context must be specified.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="expires_in" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> expires_<wbr>in</h3>
-					<div class="tsd-signature tsd-kind-icon">expires_<wbr>in<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<a name="expiresin" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> expires<wbr>In</h3>
+					<div class="tsd-signature tsd-kind-icon">expires<wbr>In<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto/params.ts#L145">src/clients/masto/params.ts:145</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto/params.ts#L151">src/clients/masto/params.ts:151</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Number that indicates seconds. Filter will be expire in seconds after API processed. Leave blank for no expiration</p>
+							<p>ISO 8601 Date-time for when the filter expires. Otherwise, null for a filter that doesn&#39;t expire.</p>
 						</div>
 					</div>
 				</section>
@@ -130,42 +131,42 @@
 					<div class="tsd-signature tsd-kind-icon">irreversible<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto/params.ts#L141">src/clients/masto/params.ts:141</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto/params.ts#L147">src/clients/masto/params.ts:147</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Irreversible filtering will only work in home and notifications contexts by fully dropping the records. Otherwise, filtering is up to the client.</p>
+							<p>Should the server irreversibly drop matching entities from home and notifications?</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="phrase" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> phrase</h3>
-					<div class="tsd-signature tsd-kind-icon">phrase<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<h3>phrase</h3>
+					<div class="tsd-signature tsd-kind-icon">phrase<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto/params.ts#L137">src/clients/masto/params.ts:137</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto/params.ts#L140">src/clients/masto/params.ts:140</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Keyword or phrase to filter</p>
+							<p>Text to be filtered</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="whole_word" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> whole_<wbr>word</h3>
-					<div class="tsd-signature tsd-kind-icon">whole_<wbr>word<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<a name="wholeword" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> whole<wbr>Word</h3>
+					<div class="tsd-signature tsd-kind-icon">whole<wbr>Word<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto/params.ts#L143">src/clients/masto/params.ts:143</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto/params.ts#L149">src/clients/masto/params.ts:149</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Whether to consider word boundaries when matching</p>
+							<p>Consider word boundaries?</p>
 						</div>
 					</div>
 				</section>
@@ -185,9 +186,6 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_clients_masto_params_.addpushsubscriptionparams.html" class="tsd-kind-icon">Add<wbr>Push<wbr>Subscription<wbr>Params</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_clients_masto_params_.createaccountparams.html" class="tsd-kind-icon">Create<wbr>Account<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
@@ -195,6 +193,12 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_clients_masto_params_.createfeaturedtagparams.html" class="tsd-kind-icon">Create<wbr>Featured<wbr>Tag<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_clients_masto_params_.createmediaattachmentparams.html" class="tsd-kind-icon">Create<wbr>Media<wbr>Attachment<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_clients_masto_params_.createpushsubscriptionparams.html" class="tsd-kind-icon">Create<wbr>Push<wbr>Subscription<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_clients_masto_params_.createstatusparamsbase.html" class="tsd-kind-icon">Create<wbr>Status<wbr>Params<wbr>Base</a>
@@ -233,6 +237,9 @@
 						<a href="_clients_masto_params_.fetchtimelineparams.html" class="tsd-kind-icon">Fetch<wbr>Timeline<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_clients_masto_params_.fetchtrendsparams.html" class="tsd-kind-icon">Fetch<wbr>Trends<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_clients_masto_params_.followaccountparams.html" class="tsd-kind-icon">Follow<wbr>Account<wbr>Params</a>
 					</li>
 				</ul>
@@ -244,7 +251,7 @@
 								<a href="_clients_masto_params_.modifyfilterparams.html#context" class="tsd-kind-icon">context</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_clients_masto_params_.modifyfilterparams.html#expires_in" class="tsd-kind-icon">expires_<wbr>in</a>
+								<a href="_clients_masto_params_.modifyfilterparams.html#expiresin" class="tsd-kind-icon">expires<wbr>In</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_clients_masto_params_.modifyfilterparams.html#irreversible" class="tsd-kind-icon">irreversible</a>
@@ -253,7 +260,7 @@
 								<a href="_clients_masto_params_.modifyfilterparams.html#phrase" class="tsd-kind-icon">phrase</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_clients_masto_params_.modifyfilterparams.html#whole_word" class="tsd-kind-icon">whole_<wbr>word</a>
+								<a href="_clients_masto_params_.modifyfilterparams.html#wholeword" class="tsd-kind-icon">whole<wbr>Word</a>
 							</li>
 						</ul>
 					</li>
@@ -293,9 +300,6 @@
 						<a href="_clients_masto_params_.updatescheduledstatusparams.html" class="tsd-kind-icon">Update<wbr>Scheduled<wbr>Status<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_clients_masto_params_.uploadmediaattachmentparams.html" class="tsd-kind-icon">Upload<wbr>Media<wbr>Attachment<wbr>Params</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_clients_masto_params_.votepollparams.html" class="tsd-kind-icon">Vote<wbr>Poll<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
@@ -312,6 +316,9 @@
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
 						<a href="../modules/_clients_masto_params_.html#granttype" class="tsd-kind-icon">Grant<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_clients_masto_params_.html#searchtype" class="tsd-kind-icon">Search<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
 						<a href="../modules/_clients_masto_params_.html#updatemediaattachmentparams" class="tsd-kind-icon">Update<wbr>Media<wbr>Attachment<wbr>Params</a>

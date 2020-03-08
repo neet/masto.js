@@ -67,6 +67,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Represents a proof from an external identity provider.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -82,11 +89,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_identity_proof_.identityproof.html#profile_url" class="tsd-kind-icon">profile_<wbr>url</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_identity_proof_.identityproof.html#proof_url" class="tsd-kind-icon">proof_<wbr>url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_identity_proof_.identityproof.html#profileurl" class="tsd-kind-icon">profile<wbr>Url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_identity_proof_.identityproof.html#proofurl" class="tsd-kind-icon">proof<wbr>Url</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_identity_proof_.identityproof.html#provider" class="tsd-kind-icon">provider</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_identity_proof_.identityproof.html#provider_username" class="tsd-kind-icon">provider_<wbr>username</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_identity_proof_.identityproof.html#updated_at" class="tsd-kind-icon">updated_<wbr>at</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_identity_proof_.identityproof.html#providerusername" class="tsd-kind-icon">provider<wbr>Username</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_identity_proof_.identityproof.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a></li>
 							</ul>
 						</section>
 					</div>
@@ -95,32 +102,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="profile_url" class="tsd-anchor"></a>
-					<h3>profile_<wbr>url</h3>
-					<div class="tsd-signature tsd-kind-icon">profile_<wbr>url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="profileurl" class="tsd-anchor"></a>
+					<h3>profile<wbr>Url</h3>
+					<div class="tsd-signature tsd-kind-icon">profile<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/identity-proof.ts#L11">src/entities/identity-proof.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/identity-proof.ts#L8">src/entities/identity-proof.ts:8</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>URL of profile on the provider</p>
+							<p>The account owner&#39;s profile URL on the identity provider.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="proof_url" class="tsd-anchor"></a>
-					<h3>proof_<wbr>url</h3>
-					<div class="tsd-signature tsd-kind-icon">proof_<wbr>url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="proofurl" class="tsd-anchor"></a>
+					<h3>proof<wbr>Url</h3>
+					<div class="tsd-signature tsd-kind-icon">proof<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/identity-proof.ts#L9">src/entities/identity-proof.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/identity-proof.ts#L10">src/entities/identity-proof.ts:10</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>URL of proof</p>
+							<p>A link to a statement of identity proof, hosted by the identity provider.</p>
 						</div>
 					</div>
 				</section>
@@ -130,42 +137,42 @@
 					<div class="tsd-signature tsd-kind-icon">provider<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/identity-proof.ts#L3">src/entities/identity-proof.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/identity-proof.ts#L4">src/entities/identity-proof.ts:4</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Name of provider (such as &quot;Keybase&quot;)</p>
+							<p>The name of the identity provider.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="provider_username" class="tsd-anchor"></a>
-					<h3>provider_<wbr>username</h3>
-					<div class="tsd-signature tsd-kind-icon">provider_<wbr>username<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="providerusername" class="tsd-anchor"></a>
+					<h3>provider<wbr>Username</h3>
+					<div class="tsd-signature tsd-kind-icon">provider<wbr>Username<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/identity-proof.ts#L5">src/entities/identity-proof.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/identity-proof.ts#L6">src/entities/identity-proof.ts:6</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Username in the provider</p>
+							<p>The account owner&#39;s username on the identity provider&#39;s service.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="updated_at" class="tsd-anchor"></a>
-					<h3>updated_<wbr>at</h3>
-					<div class="tsd-signature tsd-kind-icon">updated_<wbr>at<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="updatedat" class="tsd-anchor"></a>
+					<h3>updated<wbr>At</h3>
+					<div class="tsd-signature tsd-kind-icon">updated<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/identity-proof.ts#L7">src/entities/identity-proof.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/identity-proof.ts#L12">src/entities/identity-proof.ts:12</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The time the proof was updated</p>
+							<p>The name of the identity provider.</p>
 						</div>
 					</div>
 				</section>
@@ -190,19 +197,19 @@
 						<a href="_entities_identity_proof_.identityproof.html" class="tsd-kind-icon">Identity<wbr>Proof</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_identity_proof_.identityproof.html#profile_url" class="tsd-kind-icon">profile_<wbr>url</a>
+								<a href="_entities_identity_proof_.identityproof.html#profileurl" class="tsd-kind-icon">profile<wbr>Url</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_identity_proof_.identityproof.html#proof_url" class="tsd-kind-icon">proof_<wbr>url</a>
+								<a href="_entities_identity_proof_.identityproof.html#proofurl" class="tsd-kind-icon">proof<wbr>Url</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_entities_identity_proof_.identityproof.html#provider" class="tsd-kind-icon">provider</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_identity_proof_.identityproof.html#provider_username" class="tsd-kind-icon">provider_<wbr>username</a>
+								<a href="_entities_identity_proof_.identityproof.html#providerusername" class="tsd-kind-icon">provider<wbr>Username</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_identity_proof_.identityproof.html#updated_at" class="tsd-kind-icon">updated_<wbr>at</a>
+								<a href="_entities_identity_proof_.identityproof.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a>
 							</li>
 						</ul>
 					</li>

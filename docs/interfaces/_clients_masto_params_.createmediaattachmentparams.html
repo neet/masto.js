@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AddPushSubscriptionParams | masto</title>
+	<title>CreateMediaAttachmentParams | masto</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,10 +57,10 @@
 					<a href="../modules/_clients_masto_params_.html">&quot;clients/masto/params&quot;</a>
 				</li>
 				<li>
-					<a href="_clients_masto_params_.addpushsubscriptionparams.html">AddPushSubscriptionParams</a>
+					<a href="_clients_masto_params_.createmediaattachmentparams.html">CreateMediaAttachmentParams</a>
 				</li>
 			</ul>
-			<h1>Interface AddPushSubscriptionParams</h1>
+			<h1>Interface CreateMediaAttachmentParams</h1>
 		</div>
 	</div>
 </header>
@@ -71,7 +71,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">AddPushSubscriptionParams</span>
+						<span class="target">CreateMediaAttachmentParams</span>
 					</li>
 				</ul>
 			</section>
@@ -82,8 +82,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_params_.addpushsubscriptionparams.html#data" class="tsd-kind-icon">data</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_params_.addpushsubscriptionparams.html#subscription" class="tsd-kind-icon">subscription</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_params_.createmediaattachmentparams.html#description" class="tsd-kind-icon">description</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_params_.createmediaattachmentparams.html#file" class="tsd-kind-icon">file</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_params_.createmediaattachmentparams.html#focus" class="tsd-kind-icon">focus</a></li>
 							</ul>
 						</section>
 					</div>
@@ -92,57 +93,48 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="data" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> data</h3>
-					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>alerts<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="_entities_push_subscription_.pushsubscriptionalerts.html" class="tsd-signature-type">PushSubscriptionAlerts</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<a name="description" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> description</h3>
+					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto/params.ts#L177">src/clients/masto/params.ts:177</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto/params.ts#L131">src/clients/masto/params.ts:131</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A plain-text description of the media, for accessibility purposes.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="subscription" class="tsd-anchor"></a>
-					<h3>subscription</h3>
-					<div class="tsd-signature tsd-kind-icon">subscription<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>endpoint<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>keys<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>auth<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>p256dh<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> }</span></div>
+					<a name="file" class="tsd-anchor"></a>
+					<h3>file</h3>
+					<div class="tsd-signature tsd-kind-icon">file<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">unknown</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto/params.ts#L166">src/clients/masto/params.ts:166</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto/params.ts#L129">src/clients/masto/params.ts:129</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter">
-								<h5>endpoint<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<div class="lead">
-										<p>Endpoint URL that called when notification is happen.</p>
-									</div>
-								</div>
-							</li>
-							<li class="tsd-parameter">
-								<h5>keys<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>auth<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>p256dh<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></h5>
-								<ul class="tsd-parameters">
-									<li class="tsd-parameter">
-										<h5>auth<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-										<div class="tsd-comment tsd-typography">
-											<div class="lead">
-												<p>Auth secret. Base64 encoded string of 16 bytes random data.</p>
-											</div>
-										</div>
-									</li>
-									<li class="tsd-parameter">
-										<h5>p256dh<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-										<div class="tsd-comment tsd-typography">
-											<div class="lead">
-												<p>User agent public key. Base64 encoded string of public key of ECDH key that using &#39;prime256v1&#39; curve.</p>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</li>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The file to be attached, using multipart form data.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="focus" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> focus</h3>
+					<div class="tsd-signature tsd-kind-icon">focus<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto/params.ts#L133">src/clients/masto/params.ts:133</a></li>
 						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Two floating points (x,y), comma-delimited, ranging from -1.0 to 1.0</p>
+						</div>
 					</div>
 				</section>
 			</section>
@@ -160,21 +152,6 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_clients_masto_params_.addpushsubscriptionparams.html" class="tsd-kind-icon">Add<wbr>Push<wbr>Subscription<wbr>Params</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_clients_masto_params_.addpushsubscriptionparams.html#data" class="tsd-kind-icon">data</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_clients_masto_params_.addpushsubscriptionparams.html#subscription" class="tsd-kind-icon">subscription</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_clients_masto_params_.createaccountparams.html" class="tsd-kind-icon">Create<wbr>Account<wbr>Params</a>
 					</li>
@@ -183,6 +160,27 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_clients_masto_params_.createfeaturedtagparams.html" class="tsd-kind-icon">Create<wbr>Featured<wbr>Tag<wbr>Params</a>
+					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_clients_masto_params_.createmediaattachmentparams.html" class="tsd-kind-icon">Create<wbr>Media<wbr>Attachment<wbr>Params</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_clients_masto_params_.createmediaattachmentparams.html#description" class="tsd-kind-icon">description</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_clients_masto_params_.createmediaattachmentparams.html#file" class="tsd-kind-icon">file</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_clients_masto_params_.createmediaattachmentparams.html#focus" class="tsd-kind-icon">focus</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_clients_masto_params_.createpushsubscriptionparams.html" class="tsd-kind-icon">Create<wbr>Push<wbr>Subscription<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_clients_masto_params_.createstatusparamsbase.html" class="tsd-kind-icon">Create<wbr>Status<wbr>Params<wbr>Base</a>
@@ -219,6 +217,9 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_clients_masto_params_.fetchtimelineparams.html" class="tsd-kind-icon">Fetch<wbr>Timeline<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_clients_masto_params_.fetchtrendsparams.html" class="tsd-kind-icon">Fetch<wbr>Trends<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_clients_masto_params_.followaccountparams.html" class="tsd-kind-icon">Follow<wbr>Account<wbr>Params</a>
@@ -260,9 +261,6 @@
 						<a href="_clients_masto_params_.updatescheduledstatusparams.html" class="tsd-kind-icon">Update<wbr>Scheduled<wbr>Status<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_clients_masto_params_.uploadmediaattachmentparams.html" class="tsd-kind-icon">Upload<wbr>Media<wbr>Attachment<wbr>Params</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_clients_masto_params_.votepollparams.html" class="tsd-kind-icon">Vote<wbr>Poll<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
@@ -279,6 +277,9 @@
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
 						<a href="../modules/_clients_masto_params_.html#granttype" class="tsd-kind-icon">Grant<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/_clients_masto_params_.html#searchtype" class="tsd-kind-icon">Search<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
 						<a href="../modules/_clients_masto_params_.html#updatemediaattachmentparams" class="tsd-kind-icon">Update<wbr>Media<wbr>Attachment<wbr>Params</a>

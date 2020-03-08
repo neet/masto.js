@@ -10,10 +10,15 @@
     "plugin:prettier/recommended",
     "prettier/@typescript-eslint"
   ],
-  "plugins": ["import"],
+  "plugins": ["import", "simple-import-sort"],
   "parserOptions": {
     "ecmaVersion": 9,
     "sourceType": "module"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true
   },
   "rules": {
     "@typescript-eslint/explicit-function-return-type": "off",
@@ -29,7 +34,6 @@
       }
     ],
     "no-console": "error",
-    "import/order": 2,
-    "import/no-unassigned-import": "error"
+    "simple-import-sort/sort": "error"
   }
 }

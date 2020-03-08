@@ -67,6 +67,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Admin-level information about a filed report.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -82,16 +89,16 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_report_.adminreport.html#account_id" class="tsd-kind-icon">account_<wbr>id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_report_.adminreport.html#action_taken" class="tsd-kind-icon">action_<wbr>taken</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_report_.adminreport.html#action_taken_by_account_id" class="tsd-kind-icon">action_<wbr>taken_<wbr>by_<wbr>account_<wbr>id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_report_.adminreport.html#assigned_account_id" class="tsd-kind-icon">assigned_<wbr>account_<wbr>id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_report_.adminreport.html#account" class="tsd-kind-icon">account</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_report_.adminreport.html#actiontaken" class="tsd-kind-icon">action<wbr>Taken</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_report_.adminreport.html#actiontakenbyaccount" class="tsd-kind-icon">action<wbr>Taken<wbr>ByAccount</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_report_.adminreport.html#assignedaccount" class="tsd-kind-icon">assigned<wbr>Account</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_report_.adminreport.html#comment" class="tsd-kind-icon">comment</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_report_.adminreport.html#created_at" class="tsd-kind-icon">created_<wbr>at</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_report_.adminreport.html#createdat" class="tsd-kind-icon">created<wbr>At</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_report_.adminreport.html#id" class="tsd-kind-icon">id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_report_.adminreport.html#statuses" class="tsd-kind-icon">statuses</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_report_.adminreport.html#target_account_id" class="tsd-kind-icon">target_<wbr>account_<wbr>id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_report_.adminreport.html#updated_at" class="tsd-kind-icon">updated_<wbr>at</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_report_.adminreport.html#targetaccount" class="tsd-kind-icon">target<wbr>Account</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_admin_report_.adminreport.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a></li>
 							</ul>
 						</section>
 					</div>
@@ -100,44 +107,64 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="account_id" class="tsd-anchor"></a>
-					<h3>account_<wbr>id</h3>
-					<div class="tsd-signature tsd-kind-icon">account_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="account" class="tsd-anchor"></a>
+					<h3>account</h3>
+					<div class="tsd-signature tsd-kind-icon">account<span class="tsd-signature-symbol">:</span> <a href="_entities_account_.account.html" class="tsd-signature-type">Account</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/admin-report.ts#L9">src/entities/admin-report.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/admin-report.ts#L16">src/entities/admin-report.ts:16</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The account which filed the report.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="action_taken" class="tsd-anchor"></a>
-					<h3>action_<wbr>taken</h3>
-					<div class="tsd-signature tsd-kind-icon">action_<wbr>taken<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="actiontaken" class="tsd-anchor"></a>
+					<h3>action<wbr>Taken</h3>
+					<div class="tsd-signature tsd-kind-icon">action<wbr>Taken<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/admin-report.ts#L5">src/entities/admin-report.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/admin-report.ts#L8">src/entities/admin-report.ts:8</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The action taken to resolve this report.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="action_taken_by_account_id" class="tsd-anchor"></a>
-					<h3>action_<wbr>taken_<wbr>by_<wbr>account_<wbr>id</h3>
-					<div class="tsd-signature tsd-kind-icon">action_<wbr>taken_<wbr>by_<wbr>account_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="actiontakenbyaccount" class="tsd-anchor"></a>
+					<h3>action<wbr>Taken<wbr>ByAccount</h3>
+					<div class="tsd-signature tsd-kind-icon">action<wbr>Taken<wbr>ByAccount<span class="tsd-signature-symbol">:</span> <a href="_entities_account_.account.html" class="tsd-signature-type">Account</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/admin-report.ts#L12">src/entities/admin-report.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/admin-report.ts#L22">src/entities/admin-report.ts:22</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The action taken by the moderator who handled the report.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="assigned_account_id" class="tsd-anchor"></a>
-					<h3>assigned_<wbr>account_<wbr>id</h3>
-					<div class="tsd-signature tsd-kind-icon">assigned_<wbr>account_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="assignedaccount" class="tsd-anchor"></a>
+					<h3>assigned<wbr>Account</h3>
+					<div class="tsd-signature tsd-kind-icon">assigned<wbr>Account<span class="tsd-signature-symbol">:</span> <a href="_entities_account_.account.html" class="tsd-signature-type">Account</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/admin-report.ts#L11">src/entities/admin-report.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/admin-report.ts#L20">src/entities/admin-report.ts:20</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The account of the moderator assigned to this report.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="comment" class="tsd-anchor"></a>
@@ -145,19 +172,29 @@
 					<div class="tsd-signature tsd-kind-icon">comment<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/admin-report.ts#L6">src/entities/admin-report.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/admin-report.ts#L10">src/entities/admin-report.ts:10</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An optional reason for reporting.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="created_at" class="tsd-anchor"></a>
-					<h3>created_<wbr>at</h3>
-					<div class="tsd-signature tsd-kind-icon">created_<wbr>at<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="createdat" class="tsd-anchor"></a>
+					<h3>created<wbr>At</h3>
+					<div class="tsd-signature tsd-kind-icon">created<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/admin-report.ts#L7">src/entities/admin-report.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/admin-report.ts#L12">src/entities/admin-report.ts:12</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The time the report was filed.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="id" class="tsd-anchor"></a>
@@ -165,9 +202,14 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/admin-report.ts#L4">src/entities/admin-report.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/admin-report.ts#L6">src/entities/admin-report.ts:6</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The ID of the report in the database.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="statuses" class="tsd-anchor"></a>
@@ -175,29 +217,44 @@
 					<div class="tsd-signature tsd-kind-icon">statuses<span class="tsd-signature-symbol">:</span> <a href="_entities_status_.status.html" class="tsd-signature-type">Status</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/admin-report.ts#L13">src/entities/admin-report.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/admin-report.ts#L24">src/entities/admin-report.ts:24</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Statuses attached to the report, for context.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="target_account_id" class="tsd-anchor"></a>
-					<h3>target_<wbr>account_<wbr>id</h3>
-					<div class="tsd-signature tsd-kind-icon">target_<wbr>account_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="targetaccount" class="tsd-anchor"></a>
+					<h3>target<wbr>Account</h3>
+					<div class="tsd-signature tsd-kind-icon">target<wbr>Account<span class="tsd-signature-symbol">:</span> <a href="_entities_account_.account.html" class="tsd-signature-type">Account</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/admin-report.ts#L10">src/entities/admin-report.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/admin-report.ts#L18">src/entities/admin-report.ts:18</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The account being reported.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="updated_at" class="tsd-anchor"></a>
-					<h3>updated_<wbr>at</h3>
-					<div class="tsd-signature tsd-kind-icon">updated_<wbr>at<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="updatedat" class="tsd-anchor"></a>
+					<h3>updated<wbr>At</h3>
+					<div class="tsd-signature tsd-kind-icon">updated<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/admin-report.ts#L8">src/entities/admin-report.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/admin-report.ts#L14">src/entities/admin-report.ts:14</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The time of last action on this report.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -220,22 +277,22 @@
 						<a href="_entities_admin_report_.adminreport.html" class="tsd-kind-icon">Admin<wbr>Report</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_admin_report_.adminreport.html#account_id" class="tsd-kind-icon">account_<wbr>id</a>
+								<a href="_entities_admin_report_.adminreport.html#account" class="tsd-kind-icon">account</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_admin_report_.adminreport.html#action_taken" class="tsd-kind-icon">action_<wbr>taken</a>
+								<a href="_entities_admin_report_.adminreport.html#actiontaken" class="tsd-kind-icon">action<wbr>Taken</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_admin_report_.adminreport.html#action_taken_by_account_id" class="tsd-kind-icon">action_<wbr>taken_<wbr>by_<wbr>account_<wbr>id</a>
+								<a href="_entities_admin_report_.adminreport.html#actiontakenbyaccount" class="tsd-kind-icon">action<wbr>Taken<wbr>ByAccount</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_admin_report_.adminreport.html#assigned_account_id" class="tsd-kind-icon">assigned_<wbr>account_<wbr>id</a>
+								<a href="_entities_admin_report_.adminreport.html#assignedaccount" class="tsd-kind-icon">assigned<wbr>Account</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_entities_admin_report_.adminreport.html#comment" class="tsd-kind-icon">comment</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_admin_report_.adminreport.html#created_at" class="tsd-kind-icon">created_<wbr>at</a>
+								<a href="_entities_admin_report_.adminreport.html#createdat" class="tsd-kind-icon">created<wbr>At</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_entities_admin_report_.adminreport.html#id" class="tsd-kind-icon">id</a>
@@ -244,10 +301,10 @@
 								<a href="_entities_admin_report_.adminreport.html#statuses" class="tsd-kind-icon">statuses</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_admin_report_.adminreport.html#target_account_id" class="tsd-kind-icon">target_<wbr>account_<wbr>id</a>
+								<a href="_entities_admin_report_.adminreport.html#targetaccount" class="tsd-kind-icon">target<wbr>Account</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_admin_report_.adminreport.html#updated_at" class="tsd-kind-icon">updated_<wbr>at</a>
+								<a href="_entities_admin_report_.adminreport.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a>
 							</li>
 						</ul>
 					</li>

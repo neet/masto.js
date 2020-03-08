@@ -1,22 +1,19 @@
+import { Field } from './field';
 import { StatusVisibility } from './status';
-import { AccountField } from './account';
 
+/** Represents display or publishing preferences of user's own account. Returned as an additional entity when verifying and updated credentials, as an attribute of Account. */
 export interface Source {
-  /** Selected preference: Default privacy of new toots */
-  privacy?: StatusVisibility | null;
-  /** Selected preference: Mark media as sensitive by default? */
-  sensitive?: boolean | null;
-  /** User's default language */
-  language: string | null;
-  /** Plain-text version of the account's `note` */
+  /** Profile bio. */
   note: string;
-  /** Plain-text version of the account's field */
-  fields: AccountField;
-  /** The number of pending follow requests. */
-  follow_requests_count: number;
-}
+  /** Metadata about the account. */
+  fields: Field;
 
-/**
- * @deprecated Use Source
- */
-export type AccountSource = Source;
+  /** The default post privacy to be used for new statuses. */
+  privacy?: StatusVisibility | null;
+  /** Whether new statuses should be marked sensitive by default. */
+  sensitive?: boolean | null;
+  /** The default posting language for new statuses. */
+  language: string | null;
+  /** The number of pending follow requests. */
+  followRequestsCount: number;
+}

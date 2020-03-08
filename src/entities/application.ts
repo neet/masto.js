@@ -1,8 +1,14 @@
+/** Represents an application that interfaces with the REST API to access accounts or post statuses. */
 export interface Application {
-  /** Name of the app */
+  /** The name of your application. */
   name: string;
-  /** Homepage URL of the app */
-  website?: string | null;
-  /** VAPID key */
-  vapid_key?: string | null;
+  /** The website associated with your application. */
+  website: string | null;
+  /** Used for Push Streaming API. Returned with POST /api/v1/apps. Equivalent to PushSubscription#server_key */
+  vapidKey: string | null;
+
+  /** Client ID key, to be used for obtaining OAuth tokens */
+  clientId?: string;
+  /** Client secret key, to be used for obtaining OAuth tokens */
+  clientSecret?: string;
 }

@@ -82,11 +82,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_admin_params_.adminactionaccountparams.html#report_id" class="tsd-kind-icon">report_<wbr>id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_admin_params_.adminactionaccountparams.html#send_email_notification" class="tsd-kind-icon">send_<wbr>email_<wbr>notification</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_admin_params_.adminactionaccountparams.html#reportid" class="tsd-kind-icon">report<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_admin_params_.adminactionaccountparams.html#sendemailnotification" class="tsd-kind-icon">send<wbr>Email<wbr>Notification</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_admin_params_.adminactionaccountparams.html#text" class="tsd-kind-icon">text</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_admin_params_.adminactionaccountparams.html#type" class="tsd-kind-icon">type</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_admin_params_.adminactionaccountparams.html#warning_preset_id" class="tsd-kind-icon">warning_<wbr>preset_<wbr>id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_clients_masto_admin_params_.adminactionaccountparams.html#warningpresetid" class="tsd-kind-icon">warning<wbr>Preset<wbr>Id</a></li>
 							</ul>
 						</section>
 					</div>
@@ -95,24 +95,34 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="report_id" class="tsd-anchor"></a>
-					<h3>report_<wbr>id</h3>
-					<div class="tsd-signature tsd-kind-icon">report_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="reportid" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> report<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">report<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto-admin/params.ts#L28">src/clients/masto-admin/params.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto-admin/params.ts#L43">src/clients/masto-admin/params.ts:43</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>ID of an associated report that caused this action to be taken</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="send_email_notification" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> send_<wbr>email_<wbr>notification</h3>
-					<div class="tsd-signature tsd-kind-icon">send_<wbr>email_<wbr>notification<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<a name="sendemailnotification" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> send<wbr>Email<wbr>Notification</h3>
+					<div class="tsd-signature tsd-kind-icon">send<wbr>Email<wbr>Notification<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto-admin/params.ts#L31">src/clients/masto-admin/params.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto-admin/params.ts#L49">src/clients/masto-admin/params.ts:49</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Whether an email should be sent to the user with the above information.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="text" class="tsd-anchor"></a>
@@ -120,29 +130,44 @@
 					<div class="tsd-signature tsd-kind-icon">text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto-admin/params.ts#L30">src/clients/masto-admin/params.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto-admin/params.ts#L47">src/clients/masto-admin/params.ts:47</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Additional text for clarification of why this action was taken</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> type</h3>
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../modules/_clients_masto_admin_params_.html#accountactiontype" class="tsd-signature-type">AccountActionType</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto-admin/params.ts#L27">src/clients/masto-admin/params.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto-admin/params.ts#L41">src/clients/masto-admin/params.ts:41</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Type of action to be taken. Enumerable oneOf: <code>none</code> <code>disable</code> <code>silence</code> <code>suspend</code></p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="warning_preset_id" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> warning_<wbr>preset_<wbr>id</h3>
-					<div class="tsd-signature tsd-kind-icon">warning_<wbr>preset_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<a name="warningpresetid" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> warning<wbr>Preset<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">warning<wbr>Preset<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/clients/masto-admin/params.ts#L29">src/clients/masto-admin/params.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/clients/masto-admin/params.ts#L45">src/clients/masto-admin/params.ts:45</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>ID of a preset warning</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -165,10 +190,10 @@
 						<a href="_clients_masto_admin_params_.adminactionaccountparams.html" class="tsd-kind-icon">Admin<wbr>Action<wbr>Account<wbr>Params</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_clients_masto_admin_params_.adminactionaccountparams.html#report_id" class="tsd-kind-icon">report_<wbr>id</a>
+								<a href="_clients_masto_admin_params_.adminactionaccountparams.html#reportid" class="tsd-kind-icon">report<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_clients_masto_admin_params_.adminactionaccountparams.html#send_email_notification" class="tsd-kind-icon">send_<wbr>email_<wbr>notification</a>
+								<a href="_clients_masto_admin_params_.adminactionaccountparams.html#sendemailnotification" class="tsd-kind-icon">send<wbr>Email<wbr>Notification</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_clients_masto_admin_params_.adminactionaccountparams.html#text" class="tsd-kind-icon">text</a>
@@ -177,7 +202,7 @@
 								<a href="_clients_masto_admin_params_.adminactionaccountparams.html#type" class="tsd-kind-icon">type</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_clients_masto_admin_params_.adminactionaccountparams.html#warning_preset_id" class="tsd-kind-icon">warning_<wbr>preset_<wbr>id</a>
+								<a href="_clients_masto_admin_params_.adminactionaccountparams.html#warningpresetid" class="tsd-kind-icon">warning<wbr>Preset<wbr>Id</a>
 							</li>
 						</ul>
 					</li>

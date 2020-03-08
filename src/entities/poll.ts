@@ -1,23 +1,34 @@
+import { Emoji } from './emoji';
+
 export interface PollOption {
-  /** Title of the option */
+  /** The text value of the poll option. String. */
   title: string;
-  /** Cont of votes for this option */
-  votes_count?: number;
+  /** The number of received votes for this option. Number, or null if results are not published yet. */
+  votesCount?: number;
+  /** Custom emoji to be used for rendering poll options. */
+  emojis: Emoji[];
 }
 
 export interface Poll {
-  /** ID of the poll */
+  /** The ID of the poll in the database. */
   id: string;
-  /** Duration the poll should be open for in seconds */
-  expires_at?: string | null;
-  /** Whether the poll has been expired */
+  /** When the poll ends. */
+  expiresAt?: string | null;
+  /** Is the poll currently expired? */
   expired: boolean;
-  /** Whether multiple choices should be allowed */
+  /** Does the poll allow multiple-choice answers? */
   multiple: boolean;
-  /** Count of the votes */
-  votes_count: number;
-  /** Array of options */
-  options: PollOption[];
-  /** Whether the authenticated user voted */
+  /** How many votes have been received. */
+  votesCount: number;
+  /** How many unique accounts have voted on a multiple-choice poll. */
+  votersCount?: number | null;
+  /** When called with a user token, has the authorized user voted? */
   voted?: boolean;
+  /**
+   * When called with a user token, which options has the authorized user chosen?
+   * Contains an array of index values for options.
+   */
+  ownVotes?: number[] | null;
+  /** Possible answers for the poll. */
+  options: PollOption[];
 }

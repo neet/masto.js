@@ -1,13 +1,14 @@
-import { Account } from './account';
-import { Status } from './status';
+import { Account, Status } from '.';
 
+/** Represents a conversation with "direct message" visibility. */
 export interface Conversation {
-  /** The ID of the conversation */
+  /** Local database ID of the conversation. */
   id: string;
-  /** Wether authorized user has read latest status */
-  unread: boolean;
-  /** An array of accounts that mentioned this conversation */
+  /** Participants in the conversation. */
   accounts: Account[];
-  /** The latest status of this conversation */
-  last_status: Status;
+  /** Is the conversation currently marked as unread? */
+  unread: boolean;
+
+  /** The last status in the conversation, to be used for optional display. */
+  lastStatus?: Status | null;
 }

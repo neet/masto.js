@@ -1,40 +1,46 @@
 import { Account } from './account';
 
+/** Represents the software instance of Mastodon running on this domain. */
 export interface Instance {
-  /** URI of the current instance */
+  /** The domain name of the instance. */
   uri: string;
-  /** The instance's title */
+  /** The title of the website. */
   title: string;
-  /** A description for the instance */
+  /** Admin-defined description of the Mastodon site. */
   description: string;
-  /** Short description */
-  short_description?: string;
-  /** An email address which can be used to contact the instance administrator */
+  /** A shorter description defined by the admin. */
+  shortDescription: string;
+  /** An email that may be contacted for any inquiries. */
   email: string;
-  /** The Mastodon version used by instance. */
+  /** The version of Mastodon installed on the instance. */
   version: string;
-  /** thumbnail of the instance */
-  thumbnail?: string | null;
-  /** `streaming_api` */
-  urls: InstanceURLs;
-  /** stats of the instance */
-  stats: InstanceStats;
-  /** Array of ISO 6391 language codes the instance has chosen to advertise */
+  /** Primary languages of the website and its staff. */
   languages: string[];
-  /** Account of the admin or another contact person */
-  contact_account?: Account | null;
-  /** Whether registration is open or not */
+  /** Whether registrations are enabled. */
   registrations: boolean;
-  /** Whether approval required */
-  approval_required?: boolean | null;
+  /** Whether registrations require moderator approval. */
+  approvalRequired: boolean;
+  /** URLs of interest for clients apps. */
+  urls: InstanceURLs;
+  /** Statistics about how much information the instance contains. */
+  stats: InstanceStats;
+
+  /** Banner image for the website. */
+  thumbnail?: string | null;
+  /** A user that can be contacted, as an alternative to `email`. */
+  contactAccount?: Account | null;
 }
 
 export interface InstanceURLs {
-  streaming_api: string;
+  /** WebSockets address for push streaming. String (URL). */
+  streamingApi: string;
 }
 
 export interface InstanceStats {
-  user_count: number;
-  status_count: number;
-  domain_count: number;
+  /** Users registered on this instance. Number. */
+  userCount: number;
+  /** Statuses authored by users on instance. Number. */
+  statusCount: number;
+  /** Domains federated with this instance. Number. */
+  domainCount: number;
 }

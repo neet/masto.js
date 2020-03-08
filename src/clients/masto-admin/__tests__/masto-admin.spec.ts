@@ -1,9 +1,9 @@
 // @ts-ignore
 // prettier-ignore
-import { Gateway, mockDelete, mockGet, mockPaginate, mockPatch, mockPost, mockPut, mockStream } from '../../../gateway/gateway';
+import { Gateway, mockDelete, mockGet, mockPaginate, mockPatch, mockPost, mockPut, mockStream } from '../../../gateway/gateway-impl';
 import { MastoAdmin } from '../masto-admin';
 
-jest.mock('../../../gateway/gateway');
+jest.mock('../../../gateway/gateway-impl');
 
 describe('MastoAdmin', () => {
   const masto = new MastoAdmin({
@@ -104,10 +104,10 @@ describe('MastoAdmin', () => {
   test('actionAccount', async () => {
     await masto.actionAccount('123', {
       type: 'disable',
-      report_id: '123123',
-      warning_preset_id: '123123',
+      reportId: '123123',
+      warningPresetId: '123123',
       text: 'Your account have been disabled',
-      send_email_notification: false,
+      sendEmailNotification: false,
     });
     expect(mockPost).toBeCalledTimes(1);
     expect(mockPost).toMatchSnapshot();

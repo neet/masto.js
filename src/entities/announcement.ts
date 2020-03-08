@@ -1,14 +1,11 @@
-import { Mention } from './mention';
-import { Tag } from './tag';
-import { Emoji } from './emoji';
-import { Reaction } from './reaction';
+import { Emoji, Mention, Reaction, Tag } from '.';
 
 export interface Announcement {
   id: string;
   content: string;
-  starts_at: string;
-  ends_at: string;
-  all_day: boolean;
+  startsAt: string;
+  endsAt: string;
+  allDay: boolean;
   mentions: Mention[];
   tags: Tag[];
   emojis: Emoji[];

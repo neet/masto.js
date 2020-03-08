@@ -1,4 +1,3 @@
-/** Type of filter context */
 export type FilterContext =
   | 'home'
   | 'notifications'
@@ -6,17 +5,18 @@ export type FilterContext =
   | 'thread'
   | 'account';
 
+/** Represents a user-defined filter for determining which statuses should not be shown to the user. */
 export interface Filter {
-  /** ID of the filter */
+  /** The ID of the filter in the database. */
   id: string;
-  /** Keyword or phrase */
+  /** The text to be filtered. */
   phrase: string;
-  /** Array of strings that indicate filter context. each string is ont of `home`, `notifications`, `public`, `thread` */
+  /** The contexts in which the filter should be applied. */
   context: FilterContext[];
-  /** String such as `2018-07-06T00:59:13.161Z` that indicates when this filter is expired. */
-  expires_at?: string | null;
-  /** Boolean that indicates irreversible server side filtering. */
+  /** When the filter should no longer be applied */
+  expiresAt?: string | null;
+  /** Should matching entities in home and notifications be dropped by the server? */
   irreversible: boolean;
-  /** Boolean that indicates word match. */
-  whole_word: string;
+  /** Should the filter consider word boundaries? */
+  wholeWord: string;
 }

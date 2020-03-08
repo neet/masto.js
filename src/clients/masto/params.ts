@@ -1,78 +1,84 @@
 import {
-  AccountField,
-  AccountSource,
+  Field,
   FilterContext,
+  Marker,
+  MarkerTimeline,
   NotificationType,
   PushSubscriptionAlerts,
+  Source,
   StatusVisibility,
-  MarkerTimeline,
-  Marker,
 } from '../../entities';
 
 export interface PaginationParams {
-  /** Get a list of items with ID less than this value */
-  max_id?: string | null;
-  /** Get a list of items with ID greater than this value including this ID */
-  since_id?: string | null;
+  /** **Internal parameter.** Use HTTP Link header from response for pagination. */
+  maxId?: string | null;
+  /** **Internal parameter.** Use HTTP Link header from response for pagination. */
+  sinceId?: string | null;
   /** Get a list of items with ID greater than this value excluding this ID */
-  min_id?: string | null;
-  /** Maximum number of items to get */
+  minId?: string | null;
+  /** Maximum number of results to return per page. Defaults to 40. NOTE: Pagination is done with the Link header from the response. */
   limit?: number | null;
 }
 
 export interface UpdateCredentialsParams {
-  /** Display name */
-  display_name?: string | null;
-  /** Biography */
+  /** Whether the account should be shown in the profile directory. */
+  discoverable?: boolean;
+  /** Whether the account has a bot flag. */
+  bot?: boolean;
+  /** The display name to use for the profile. */
+  displayName?: string | null;
+  /** The account bio. */
   note?: string | null;
-  /** Avatar encoded using `multipart/form-data` */
+  /** Avatar image encoded using multipart/form-data */
   avatar?: unknown;
-  /** Header image encoded using `multipart/form-data` */
+  /** Header image encoded using multipart/form-data */
   header?: unknown;
-  /** Enable follow requests */
+  /** Whether manual approval of follow requests is required. */
   locked?: boolean | null;
+  source?: Partial<Pick<Source, 'privacy' | 'sensitive' | 'language'>> | null;
   /**
-   * privacy: Default post privacy preference
-   * sensitive: Whether to mark statuses as sensitive by default
-   * language: Override language on statuses by default (ISO6391)
+   * Profile metadata `name` and `value`.
+   * (By default, max 4 fields and 255 characters per property/value)
    */
-  source?: Partial<
-    Pick<AccountSource, 'privacy' | 'sensitive' | 'language'>
-  > | null;
-  /** Profile metadata (max. 4) */
-  fields_attributes?: AccountField[] | null;
+  fieldsAttributes?: Field[] | null;
 }
 
 export interface CreateAccountParams {
-  /** Username to create */
+  /** The desired username for the account */
   username: string;
-  /** Password of the user */
+  /** The password to be used for login */
   password: string;
-  /** Email of the user */
+  /** The email address to be used for login */
   email: string;
-  /** Whether the user has been agreed to the agreement of the Mastodon instance */
+  /** Whether the user agrees to the local rules, terms, and policies. These should be presented to the user in order to allow them to consent before setting this parameter to TRUE. */
   agreement: boolean;
-  /** Message for approval */
+  /** The language of the confirmation email that will be sent */
+  locale: string;
+  /** Text that will be reviewed by moderators if registrations require manual approval. */
   reason?: string;
 }
 
 export interface ReportAccountParams {
-  /** The ID of the account to report */
-  account_id: string;
-  /** The IDs of statuses to report as array */
-  status_ids?: string[] | null;
-  /** Reason for the report (up to 1,000 characters) */
+  /** ID of the account to report */
+  accountId: string;
+  /** Array of Statuses to attach to the report, for context */
+  statusIds?: string[] | null;
+  /** Reason for the report (default max 1000 characters) */
   comment?: string | null;
-  /** Whether to forward to the remote admin (in case of a remote account) */
+  /** If the account is remote, should the report be forwarded to the remote admin? */
   forward?: boolean | null;
 }
 
 export interface CreateAppParams {
-  /** Name of your application */
-  client_name: string;
-  /** Where the user should be redirected after authorization */
-  redirect_uris: string;
-  /** Space separated list of scopes */
+  /** A name of your application */
+  clientName: string;
+  /**
+   * Where the user should be redirected after authorization.
+   * To display the authorization code to the user instead of redirecting to a web page,
+   * use `urn:ietf:wg:oauth:2.0:oob` in this parameter.
+   */
+  redirectUris: string;
+  /** Space separated list of scopes. If none is provided, defaults to `read`. */
   scopes: string;
   /** URL to the homepage of your app */
   website?: string | null;
@@ -82,7 +88,7 @@ export type GrantType = 'authorization_code' | 'password';
 
 export interface FetchAccessTokenParamsBase<T extends GrantType> {
   /** Grant type */
-  grant_type: T;
+  grantType: T;
 }
 
 export interface FetchAccessTokenParamsWithAuthorizationCode
@@ -90,11 +96,11 @@ export interface FetchAccessTokenParamsWithAuthorizationCode
   /** Authorization code */
   code: string;
   /** Redirect URI which used for the authorization */
-  redirect_uri: string;
+  redirectUri: string;
   /** ID of the client */
-  client_id: string;
+  clientId: string;
   /** Secret of the client */
-  client_secret: string;
+  clientSecret: string;
 }
 
 export interface FetchAccessTokenParamsWithPassword
@@ -113,64 +119,64 @@ export type FetchAccessTokenParams =
 
 export interface RevokeAccessTokenParams {
   /** ID of the client */
-  client_id: string;
+  clientId: string;
   /** Secret of the client */
-  client_secret: string;
+  clientSecret: string;
 }
 
-export interface UploadMediaAttachmentParams {
-  /** Media to be uploaded (encoded using `multipart/form-data`) */
+export interface CreateMediaAttachmentParams {
+  /** The file to be attached, using multipart form data. */
   file: unknown;
-  /** A plain-text description of the media, for accessibility (max 420 chars) */
+  /** A plain-text description of the media, for accessibility purposes. */
   description?: string | null;
-  /** Focal point: Two floating points, comma-delimited */
+  /** Two floating points (x,y), comma-delimited, ranging from -1.0 to 1.0 */
   focus?: string | null;
 }
 
-export type UpdateMediaAttachmentParams = Omit<
-  UploadMediaAttachmentParams,
-  'file'
->;
+export type UpdateMediaAttachmentParams = Partial<CreateMediaAttachmentParams>;
 
 export interface ModifyFilterParams {
-  /** Keyword or phrase to filter */
-  phrase?: string | null;
-  /** Array of strings that means filtering context. each string is one of `home`, `notifications`, `public`, `thread`. At least one context must be specified */
-  context?: FilterContext[] | null;
-  /** Irreversible filtering will only work in home and notifications contexts by fully dropping the records. Otherwise, filtering is up to the client. */
+  /** Text to be filtered */
+  phrase: string;
+  /**
+   * Array of enumerable strings `home`, `notifications`, `public`, `thread`.
+   * At least one context must be specified.
+   */
+  context: FilterContext[] | null;
+  /** Should the server irreversibly drop matching entities from home and notifications? */
   irreversible?: boolean | null;
-  /** Whether to consider word boundaries when matching */
-  whole_word?: boolean | null;
-  /** Number that indicates seconds. Filter will be expire in seconds after API processed. Leave blank for no expiration */
-  expires_in?: number | null;
+  /** Consider word boundaries? */
+  wholeWord?: boolean | null;
+  /** ISO 8601 Date-time for when the filter expires. Otherwise, null for a filter that doesn't expire. */
+  expiresIn?: number | null;
 }
 
 export interface ModifyListParams {
-  /** Title of the list */
+  /** The title of the list to be created. */
   title: string;
 }
 
 export interface ModifyListAccountsParams {
   /** Array of account IDs */
-  account_ids: string[];
+  accountIds: string[];
 }
 
 export interface FetchNotificationsParams extends PaginationParams {
   /** ID of the account */
-  account_id?: string | null;
+  accountId?: string | null;
   /** Array of notifications to exclude (Allowed values: "follow", "favourite", "reblog", "mention") */
-  exclude_types?: NotificationType[] | null;
+  excludeTypes?: NotificationType[] | null;
 }
 
-export interface AddPushSubscriptionParams {
+export interface CreatePushSubscriptionParams {
   subscription: {
-    /** Endpoint URL that called when notification is happen. */
+    /** Endpoint URL that is called when a notification event occurs. */
     endpoint: string;
 
     keys: {
-      /** User agent public key. Base64 encoded string of public key of ECDH key that using 'prime256v1' curve. */
+      /** User agent public key. Base64 encoded string of public key of ECDH key using `prime256v1` curve. */
       p256dh: string;
-      /** Auth secret. Base64 encoded string of 16 bytes random data. */
+      /** Auth secret. Base64 encoded string of 16 bytes of random data. */
       auth: string;
     };
   };
@@ -180,7 +186,7 @@ export interface AddPushSubscriptionParams {
 }
 
 export type UpdatePushSubscriptionParams = Pick<
-  AddPushSubscriptionParams,
+  CreatePushSubscriptionParams,
   'data'
 >;
 
@@ -190,69 +196,77 @@ export interface FollowAccountParams {
 }
 
 export interface MuteAccountParams {
-  /** Whether the mute will mute notifications or not */
+  /** Mute notifications in addition to statuses? Defaults to true. */
   notifications: boolean;
 }
 
+export type SearchType = 'accounts' | 'hashtags' | 'statuses';
+
 export interface SearchParams extends PaginationParams {
-  /** The search query */
+  /** Attempt WebFinger lookup. Defaults to false. */
   q: string;
+  /** Enum(accounts, hashtags, statuses) */
+  type?: SearchType | null;
   /** Attempt WebFinger look-up */
   resolve?: boolean | null;
-  /** Account id to search */
-  account_id?: string;
-  /** Exclude unreviewed tags */
-  exclude_unreviewed?: boolean;
+  /** If provided, statuses returned will be authored only by this account */
+  accountId?: string | null;
+  /** Filter out unreviewed tags? Defaults to false. Use true when trying to find trending tags. */
+  excludeUnreviewed?: boolean | null;
+  /** Only include accounts that the user is following. Defaults to false. */
+  following?: boolean | null;
 }
 
 export interface SearchAccountsParams extends SearchParams {
-  /** Maximum number of matching accounts to return (default: `40`) */
+  /** What to search for */
+  q: string;
+  /** Maximum number of results. Defaults to 40. */
   limit?: number | null;
-  /** Only who the user is following */
+  /** Attempt WebFinger lookup. Defaults to false. Use this when `q` is an exact address. */
+  resolve?: boolean | null;
+  /** Only who the user is following. Defaults to false. */
   following?: boolean | null;
 }
 
 export interface CreateStatusPollParam {
-  /** Array of poll answer strings */
+  /** Array of possible answers. If provided, `media_ids` cannot be used, and `poll[expires_in]` must be provided. */
   options: string[];
-  /** Duration the poll should be open for in seconds */
-  expires_in: number;
-  /** Whether multiple choices should be allowed	 */
+  /** Duration the poll should be open, in seconds. If provided, media_ids cannot be used, and poll[options] must be provided. */
+  expiresIn: number;
+  /** Allow multiple choices? */
   multiple?: boolean | null;
-  /** Whether to hide totals until the poll ends */
-  hide_totals?: boolean | null;
+  /** Hide vote counts until the poll ends? */
+  hideTotals?: boolean | null;
 }
 
 export interface CreateStatusParamsBase {
-  /** local ID of the status you want to reply to */
-  in_reply_to_id?: string | null;
-  /** Set this to mark the media of the status as NSFW */
+  /** ID of the status being replied to, if status is a reply */
+  inReplyToId?: string | null;
+  /** Mark status and attached media as sensitive? */
   sensitive?: boolean | null;
-  /** Text to be shown as a warning before the actual content */
-  spoiler_text?: string | null;
-  /** Either "direct", "private", "unlisted" or "public" */
+  /** Text to be shown as a warning or subject before the actual content. Statuses are generally collapsed behind this field. */
+  spoilerText?: string | null;
+  /** Visibility of the posted status. Enumerable oneOf public, unlisted, private, direct. */
   visibility?: StatusVisibility | null;
-  /** Timestamp string to schedule posting of status (ISO 8601) */
-  scheduled_at?: string | null;
-  /** ISO 639-2 language code of the toot, to skip automatic detection */
+  /** ISO 8601 Date-time at which to schedule a status. Providing this paramter will cause ScheduledStatus to be returned instead of Status. Must be at least 5 minutes in the future. */
+  scheduledAt?: string | null;
+  /** ISO 639 language code for this status. */
   language?: string | null;
 }
 
 export interface CreateStatusParamsWithStatus extends CreateStatusParamsBase {
-  /** Text of the status */
+  /** Text content of the status. If `media_ids` is provided, this becomes optional. Attaching a `poll` is optional while `status` is provided. */
   status: string;
-  /** Array of media IDs to attach to the status (maximum 4) */
-  media_ids?: string[] | null;
-  /** Nested parameters to attach a poll to the status */
+  /** Array of Attachment ids to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used. */
+  mediaIds?: string[] | null;
   poll?: CreateStatusPollParam | null;
 }
 
 export interface CreateStatusParamsWithMediaIds extends CreateStatusParamsBase {
-  /** Text of the status */
+  /** Array of Attachment ids to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used. */
+  mediaIds: string[] | null;
+  /** Text content of the status. If `media_ids` is provided, this becomes optional. Attaching a `poll` is optional while `status` is provided. */
   status?: string | null;
-  /** Array of media IDs to attach to the status (maximum 4) */
-  media_ids: string[] | null;
-  /** Poll cannot be combined with media ids */
   poll?: never;
 }
 
@@ -261,52 +275,69 @@ export type CreateStatusParams =
   | CreateStatusParamsWithMediaIds;
 
 export interface ReblogStatusParams {
-  /** Reblog visibility */
+  /** any visibility except limited or direct (i.e. public, unlisted, private). Defaults to public. Currently unused in UI. */
   visibility: StatusVisibility;
 }
 
 export interface FetchTimelineParams extends PaginationParams {
-  /** Only return statuses originating from this instance (public and tag timelines only) */
+  /** Show only local statuses? Defaults to false. */
   local?: boolean | null;
-  /** Only return statuses that have media attachments */
-  only_media?: boolean | null;
+  /** Show only statuses with media attached? Defaults to false. */
+  onlyMedia?: boolean | null;
 }
 
 export interface FetchAccountStatusesParams extends PaginationParams {
   /** Only return statuses that have media attachments */
-  only_media?: boolean | null;
+  onlyMedia?: boolean | null;
   /** Only return statuses that have been pinned */
   pinned?: boolean | null;
   /** Skip statuses that reply to other statuses */
-  exclude_replies?: boolean | null;
+  excludeReplies?: boolean | null;
 }
 
 export interface VotePollParams {
-  /** Array of choice indices */
+  /** Array of own votes containing index for each option (starting from 0) */
   choices: string[];
 }
 
 export interface UpdateScheduledStatusParams {
-  /** Timestamp string to schedule posting of status (ISO 8601) */
-  scheduled_at: string;
+  /** ISO 8601 Date-time at which the status will be published. Must be at least 5 minutes into the future. */
+  scheduledAt: string;
 }
 
 export interface FetchMarkersParams {
+  /**
+   * Array of markers to fetch.
+   * String enum anyOf `home`, `notifications`.
+   * If not provided, an empty object will be returned.
+   */
   timeline: MarkerTimeline[];
 }
 
 export type CreateMarkersParams = {
-  [key in MarkerTimeline]: Pick<Marker, 'last_read_id'>;
+  /** ID of the last status read in the timeline. */
+  [key in MarkerTimeline]: Pick<Marker, 'lastReadId'>;
 };
 
 export interface CreateFeaturedTagParams {
+  /** The hashtag to be featured. */
   name: string;
 }
 
 export type DirectoryOrderType = 'active' | 'new';
 
 export interface FetchDirectoryParams {
+  /** How many accounts to load. Default 40. */
   limit?: number | null;
+  /** How many accounts to skip before returning results. Default 0. */
+  offset?: number | null;
+  /** `active` to sort by most recently posted statuses (default) or `new` to sort by most recently created profiles. */
   order?: DirectoryOrderType | null;
+  /** Only return local accounts. */
   local?: boolean | null;
+}
+
+export interface FetchTrendsParams {
+  /** Maximum number of results to return. Defaults to 10. */
+  limit: number;
 }

@@ -67,6 +67,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Represents the software instance of Mastodon running on this domain.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -82,13 +89,13 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_instance_.instance.html#approval_required" class="tsd-kind-icon">approval_<wbr>required</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_instance_.instance.html#contact_account" class="tsd-kind-icon">contact_<wbr>account</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_instance_.instance.html#approvalrequired" class="tsd-kind-icon">approval<wbr>Required</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_instance_.instance.html#contactaccount" class="tsd-kind-icon">contact<wbr>Account</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_instance_.instance.html#description" class="tsd-kind-icon">description</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_instance_.instance.html#email" class="tsd-kind-icon">email</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_instance_.instance.html#languages" class="tsd-kind-icon">languages</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_instance_.instance.html#registrations" class="tsd-kind-icon">registrations</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_instance_.instance.html#short_description" class="tsd-kind-icon">short_<wbr>description</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_instance_.instance.html#shortdescription" class="tsd-kind-icon">short<wbr>Description</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_instance_.instance.html#stats" class="tsd-kind-icon">stats</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_instance_.instance.html#thumbnail" class="tsd-kind-icon">thumbnail</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_instance_.instance.html#title" class="tsd-kind-icon">title</a></li>
@@ -103,32 +110,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="approval_required" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> approval_<wbr>required</h3>
-					<div class="tsd-signature tsd-kind-icon">approval_<wbr>required<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<a name="approvalrequired" class="tsd-anchor"></a>
+					<h3>approval<wbr>Required</h3>
+					<div class="tsd-signature tsd-kind-icon">approval<wbr>Required<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/instance.ts#L29">src/entities/instance.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/instance.ts#L22">src/entities/instance.ts:22</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Whether approval required</p>
+							<p>Whether registrations require moderator approval.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="contact_account" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> contact_<wbr>account</h3>
-					<div class="tsd-signature tsd-kind-icon">contact_<wbr>account<span class="tsd-signature-symbol">:</span> <a href="_entities_account_.account.html" class="tsd-signature-type">Account</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<a name="contactaccount" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> contact<wbr>Account</h3>
+					<div class="tsd-signature tsd-kind-icon">contact<wbr>Account<span class="tsd-signature-symbol">:</span> <a href="_entities_account_.account.html" class="tsd-signature-type">Account</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/instance.ts#L25">src/entities/instance.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/instance.ts#L31">src/entities/instance.ts:31</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Account of the admin or another contact person</p>
+							<p>A user that can be contacted, as an alternative to <code>email</code>.</p>
 						</div>
 					</div>
 				</section>
@@ -138,12 +145,12 @@
 					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/instance.ts#L9">src/entities/instance.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/instance.ts#L10">src/entities/instance.ts:10</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>A description for the instance</p>
+							<p>Admin-defined description of the Mastodon site.</p>
 						</div>
 					</div>
 				</section>
@@ -153,12 +160,12 @@
 					<div class="tsd-signature tsd-kind-icon">email<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/instance.ts#L13">src/entities/instance.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/instance.ts#L14">src/entities/instance.ts:14</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>An email address which can be used to contact the instance administrator</p>
+							<p>An email that may be contacted for any inquiries.</p>
 						</div>
 					</div>
 				</section>
@@ -168,12 +175,12 @@
 					<div class="tsd-signature tsd-kind-icon">languages<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/instance.ts#L23">src/entities/instance.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/instance.ts#L18">src/entities/instance.ts:18</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Array of ISO 6391 language codes the instance has chosen to advertise</p>
+							<p>Primary languages of the website and its staff.</p>
 						</div>
 					</div>
 				</section>
@@ -183,27 +190,27 @@
 					<div class="tsd-signature tsd-kind-icon">registrations<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/instance.ts#L27">src/entities/instance.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/instance.ts#L20">src/entities/instance.ts:20</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Whether registration is open or not</p>
+							<p>Whether registrations are enabled.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="short_description" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> short_<wbr>description</h3>
-					<div class="tsd-signature tsd-kind-icon">short_<wbr>description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<a name="shortdescription" class="tsd-anchor"></a>
+					<h3>short<wbr>Description</h3>
+					<div class="tsd-signature tsd-kind-icon">short<wbr>Description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/instance.ts#L11">src/entities/instance.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/instance.ts#L12">src/entities/instance.ts:12</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Short description</p>
+							<p>A shorter description defined by the admin.</p>
 						</div>
 					</div>
 				</section>
@@ -213,12 +220,12 @@
 					<div class="tsd-signature tsd-kind-icon">stats<span class="tsd-signature-symbol">:</span> <a href="_entities_instance_.instancestats.html" class="tsd-signature-type">InstanceStats</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/instance.ts#L21">src/entities/instance.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/instance.ts#L26">src/entities/instance.ts:26</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>stats of the instance</p>
+							<p>Statistics about how much information the instance contains.</p>
 						</div>
 					</div>
 				</section>
@@ -228,12 +235,12 @@
 					<div class="tsd-signature tsd-kind-icon">thumbnail<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/instance.ts#L17">src/entities/instance.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/instance.ts#L29">src/entities/instance.ts:29</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>thumbnail of the instance</p>
+							<p>Banner image for the website.</p>
 						</div>
 					</div>
 				</section>
@@ -243,12 +250,12 @@
 					<div class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/instance.ts#L7">src/entities/instance.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/instance.ts#L8">src/entities/instance.ts:8</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The instance&#39;s title</p>
+							<p>The title of the website.</p>
 						</div>
 					</div>
 				</section>
@@ -258,12 +265,12 @@
 					<div class="tsd-signature tsd-kind-icon">uri<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/instance.ts#L5">src/entities/instance.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/instance.ts#L6">src/entities/instance.ts:6</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>URI of the current instance</p>
+							<p>The domain name of the instance.</p>
 						</div>
 					</div>
 				</section>
@@ -273,12 +280,12 @@
 					<div class="tsd-signature tsd-kind-icon">urls<span class="tsd-signature-symbol">:</span> <a href="_entities_instance_.instanceurls.html" class="tsd-signature-type">InstanceURLs</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/instance.ts#L19">src/entities/instance.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/instance.ts#L24">src/entities/instance.ts:24</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p><code>streaming_api</code></p>
+							<p>URLs of interest for clients apps.</p>
 						</div>
 					</div>
 				</section>
@@ -288,12 +295,12 @@
 					<div class="tsd-signature tsd-kind-icon">version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/fb89a2d/src/entities/instance.ts#L15">src/entities/instance.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/3f4bec7/src/entities/instance.ts#L16">src/entities/instance.ts:16</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The Mastodon version used by instance.</p>
+							<p>The version of Mastodon installed on the instance.</p>
 						</div>
 					</div>
 				</section>
@@ -318,10 +325,10 @@
 						<a href="_entities_instance_.instance.html" class="tsd-kind-icon">Instance</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_instance_.instance.html#approval_required" class="tsd-kind-icon">approval_<wbr>required</a>
+								<a href="_entities_instance_.instance.html#approvalrequired" class="tsd-kind-icon">approval<wbr>Required</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_instance_.instance.html#contact_account" class="tsd-kind-icon">contact_<wbr>account</a>
+								<a href="_entities_instance_.instance.html#contactaccount" class="tsd-kind-icon">contact<wbr>Account</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_entities_instance_.instance.html#description" class="tsd-kind-icon">description</a>
@@ -336,7 +343,7 @@
 								<a href="_entities_instance_.instance.html#registrations" class="tsd-kind-icon">registrations</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_instance_.instance.html#short_description" class="tsd-kind-icon">short_<wbr>description</a>
+								<a href="_entities_instance_.instance.html#shortdescription" class="tsd-kind-icon">short<wbr>Description</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_entities_instance_.instance.html#stats" class="tsd-kind-icon">stats</a>

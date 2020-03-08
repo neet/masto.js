@@ -1,8 +1,9 @@
-import { Status } from './status';
+import { Status } from '.';
 
+/** Represents the tree around a given status. Used for reconstructing threads of statuses. */
 export interface Context {
-  /** The ancestors of the status in the conversation, as a list of Statuses */
+  /** Parents in the thread. */
   ancestors: Status[];
-  /** The descendants of the status in the conversation, as a list of Statuses */
+  /** Children in the thread. */
   descendants: Status[];
 }

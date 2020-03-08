@@ -8,7 +8,7 @@ import { Masto } from '../src';
   });
 
   // Upload the image
-  const attachment = await masto.uploadMediaAttachment({
+  const attachment = await masto.createMediaAttachment({
     file: fs.createReadStream('../some_image.png'),
     description: 'Some image',
   });
@@ -17,7 +17,7 @@ import { Masto } from '../src';
   masto.createStatus({
     status: 'Toot from TypeScript',
     visibility: 'direct',
-    media_ids: [attachment.id],
+    mediaIds: [attachment.id],
   }).then((newStatus) => {
     console.log(newStatus);
   });
