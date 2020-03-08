@@ -1188,6 +1188,7 @@ exports[`Masto fetchScheduledStatuses 1`] = `
   "calls": Array [
     Array [
       "/api/v1/scheduled_statuses",
+      undefined,
     ],
   ],
   "results": Array [
