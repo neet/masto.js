@@ -1062,7 +1062,7 @@ export class Masto extends GatewayImpl {
    */
   @available({ since: '0.0.0' })
   fetchStatusRebloggedBy(id: string) {
-    return this.get(`/api/v1/statuses/${id}/reblogged_by`);
+    return this.get<Account[]>(`/api/v1/statuses/${id}/reblogged_by`);
   }
 
   /**
@@ -1073,7 +1073,7 @@ export class Masto extends GatewayImpl {
    */
   @available({ since: '0.0.0' })
   fetchStatusFavouritedBy(id: string) {
-    return this.get(`/api/v1/statuses/${id}/favourited_by`);
+    return this.get<Account[]>(`/api/v1/statuses/${id}/favourited_by`);
   }
 
   /**
