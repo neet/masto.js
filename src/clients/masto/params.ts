@@ -197,7 +197,7 @@ export interface FollowAccountParams {
 
 export interface MuteAccountParams {
   /** Mute notifications in addition to statuses? Defaults to true. */
-  notifications: boolean;
+  notifications?: boolean;
 }
 
 export type SearchType = 'accounts' | 'hashtags' | 'statuses';
@@ -311,7 +311,7 @@ export interface FetchMarkersParams {
    * String enum anyOf `home`, `notifications`.
    * If not provided, an empty object will be returned.
    */
-  timeline: MarkerTimeline[];
+  timeline?: MarkerTimeline[];
 }
 
 export type CreateMarkersParams = {

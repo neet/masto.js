@@ -795,7 +795,7 @@ export class Masto extends GatewayImpl {
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
   @available({ since: '0.0.0' })
-  muteAccount(id: string, params: MuteAccountParams) {
+  muteAccount(id: string, params?: MuteAccountParams) {
     return this.post<Relationship>(`/api/v1/accounts/${id}/mute`, params);
   }
 
@@ -1328,7 +1328,7 @@ export class Masto extends GatewayImpl {
    * @see https://docs.joinmastodon.org/methods/timelines/markers/
    */
   @available({ since: '3.0.0' })
-  fetchMarkers(params: FetchMarkersParams) {
+  fetchMarkers(params?: FetchMarkersParams) {
     return this.get<Marker>('/api/v1/markers', params);
   }
 
@@ -1392,7 +1392,7 @@ export class Masto extends GatewayImpl {
    * @see https://docs.joinmastodon.org/methods/instance/directory/
    */
   @available({ since: '3.0.0' })
-  fetchDirectory(params: FetchDirectoryParams) {
+  fetchDirectory(params?: FetchDirectoryParams) {
     return this.get<Account[]>('/api/v1/directory', params);
   }
 
