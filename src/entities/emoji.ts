@@ -1,4 +1,7 @@
-/** Represents a custom emoji. */
+/**
+ * Represents a custom emoji.
+ * @see https://docs.joinmastodon.org/entities/emoji/
+ */
 export interface Emoji {
   /** The name of the custom emoji. */
   shortcode: string;

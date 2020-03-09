@@ -1,7 +1,7 @@
 import {
   Field,
   FilterContext,
-  Marker,
+  MarkerItem,
   MarkerTimeline,
   NotificationType,
   PushSubscriptionAlerts,
@@ -316,7 +316,7 @@ export interface FetchMarkersParams {
 
 export type CreateMarkersParams = {
   /** ID of the last status read in the timeline. */
-  [key in MarkerTimeline]: Pick<Marker, 'lastReadId'>;
+  [key in MarkerTimeline]: Pick<MarkerItem, 'lastReadId'>;
 };
 
 export interface CreateFeaturedTagParams {

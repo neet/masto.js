@@ -2,6 +2,10 @@ import { StatusVisibility } from './status';
 
 export type PreferenceReadingExpandMedia = 'show_all' | 'hide_all' | 'default';
 
+/**
+ * Represents a user's preferences.
+ * @see https://docs.joinmastodon.org/entities/preferences/
+ */
 export interface Preference {
   /** Default visibility for new posts. Equivalent to Source#privacy. */
   'posting:default:visibility': StatusVisibility;

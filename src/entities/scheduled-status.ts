@@ -14,7 +14,10 @@ export interface StatusParams
   applicationId: string;
 }
 
-/** Represents a status that will be published at a future scheduled date. */
+/**
+ * Represents a status that will be published at a future scheduled date.
+ * @see https://docs.joinmastodon.org/entities/scheduledstatus/
+ */
 export interface ScheduledStatus {
   /** ID of the scheduled status in the database. */
   id: string;

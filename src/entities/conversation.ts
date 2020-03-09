@@ -1,6 +1,9 @@
 import { Account, Status } from '.';
 
-/** Represents a conversation with "direct message" visibility. */
+/**
+ * Represents a conversation with "direct message" visibility.
+ * @see https://docs.joinmastodon.org/entities/conversation/
+ */
 export interface Conversation {
   /** Local database ID of the conversation. */
   id: string;

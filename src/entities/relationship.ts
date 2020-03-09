@@ -1,4 +1,7 @@
-/** Represents the relationship between accounts, such as following / blocking / muting / etc. */
+/**
+ * Represents the relationship between accounts, such as following / blocking / muting / etc.
+ * @see https://docs.joinmastodon.org/entities/relationship/
+ */
 export interface Relationship {
   /** The account id. */
   id: string;

@@ -1,8 +1,9 @@
-import { Account } from './account';
-import { Status } from './status';
-import { Tag } from './tag';
+import { Account, Status, Tag } from '.';
 
-/** Represents the results of a search. */
+/**
+ * Represents the results of a search.
+ * @see https://docs.joinmastodon.org/entities/results/
+ */
 export interface Results {
   /** Accounts which match the given query */
   accounts: Account[];

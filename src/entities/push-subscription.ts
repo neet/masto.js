@@ -1,4 +1,7 @@
-/** Represents a subscription to the push streaming server. */
+/**
+ * Represents a subscription to the push streaming server.
+ * @see https://docs.joinmastodon.org/entities/push-subscription/
+ */
 export interface PushSubscription {
   /** The id of the push subscription in the database. */
   id: string;

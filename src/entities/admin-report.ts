@@ -1,6 +1,9 @@
 import { Account, Status } from '.';
 
-/** Admin-level information about a filed report. */
+/**
+ * Admin-level information about a filed report.
+ * @see https://docs.joinmastodon.org/entities/admin-report/
+ */
 export interface AdminReport {
   /** The ID of the report in the database. */
   id: string;

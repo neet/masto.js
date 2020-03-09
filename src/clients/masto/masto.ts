@@ -14,7 +14,7 @@ import {
   IdentityProof,
   Instance,
   List,
-  MarkerMap,
+  Marker,
   Notification,
   Poll,
   Preference,
@@ -61,9 +61,7 @@ import {
   VotePollParams,
 } from './params';
 
-/**
- * Mastodon API client
- */
+/** Mastodon API client */
 export class Masto extends GatewayImpl {
   /**
    * Starting home timeline and notification streaming
@@ -1331,7 +1329,7 @@ export class Masto extends GatewayImpl {
    */
   @available({ since: '3.0.0' })
   fetchMarkers(params: FetchMarkersParams) {
-    return this.get<MarkerMap>('/api/v1/markers', params);
+    return this.get<Marker>('/api/v1/markers', params);
   }
 
   /**
@@ -1342,7 +1340,7 @@ export class Masto extends GatewayImpl {
    */
   @available({ since: '3.0.0' })
   createMarkers(params: CreateMarkersParams) {
-    return this.post<MarkerMap>('/api/v1/markers', params);
+    return this.post<Marker>('/api/v1/markers', params);
   }
 
   /**

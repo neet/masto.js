@@ -11,7 +11,10 @@ import {
 
 export type StatusVisibility = 'public' | 'unlisted' | 'private' | 'direct';
 
-/** Represents a status posted by an account. */
+/**
+ * Represents a status posted by an account.
+ * @see https://docs.joinmastodon.org/entities/status/
+ */
 export interface Status {
   /** ID of the status in the database. */
   id: string;

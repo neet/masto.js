@@ -1,4 +1,7 @@
-/** Represents a hashtag that is featured on a profile. */
+/**
+ * Represents a hashtag that is featured on a profile.
+ * @see https://docs.joinmastodon.org/entities/featuredtag/
+ */
 export interface FeaturedTag {
   /** The internal ID of the featured tag in the database. */
   id: string;

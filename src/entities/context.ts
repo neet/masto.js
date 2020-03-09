@@ -1,6 +1,9 @@
 import { Status } from '.';
 
-/** Represents the tree around a given status. Used for reconstructing threads of statuses. */
+/**
+ * Represents the tree around a given status. Used for reconstructing threads of statuses.
+ * @see https://docs.joinmastodon.org/entities/context/
+ */
 export interface Context {
   /** Parents in the thread. */
   ancestors: Status[];

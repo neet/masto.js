@@ -1,4 +1,7 @@
-/** Represents a mention of a user within the content of a status. */
+/**
+ * Represents a mention of a user within the content of a status.
+ * @see https://docs.joinmastodon.org/entities/mention/
+ */
 export interface Mention {
   /** The account id of the mentioned user. */
   id: string;

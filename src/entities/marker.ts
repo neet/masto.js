@@ -1,4 +1,4 @@
-export interface Marker {
+export interface MarkerItem {
   /** The ID of the most recently viewed entity. */
   lastReadId: string;
   /** The timestamp of when the marker was set. */
@@ -9,5 +9,8 @@ export interface Marker {
 
 export type MarkerTimeline = 'home' | 'notifications';
 
-/** Represents the last read position within a user's timelines. */
-export type MarkerMap = { [key in MarkerTimeline]: Marker };
+/**
+ * Represents the last read position within a user's timelines.
+ * @see https://docs.joinmastodon.org/entities/marker/
+ */
+export type Marker = { [key in MarkerTimeline]: MarkerItem };

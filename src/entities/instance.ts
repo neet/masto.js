@@ -1,6 +1,9 @@
-import { Account } from './account';
+import { Account } from '.';
 
-/** Represents the software instance of Mastodon running on this domain. */
+/**
+ * Represents the software instance of Mastodon running on this domain.
+ * @see https://docs.joinmastodon.org/entities/instance/
+ */
 export interface Instance {
   /** The domain name of the instance. */
   uri: string;

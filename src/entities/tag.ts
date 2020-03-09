@@ -1,6 +1,9 @@
 import { History } from '.';
 
-/** Represents a hashtag used within the content of a status. */
+/**
+ * Represents a hashtag used within the content of a status.
+ * @see https://docs.joinmastodon.org/entities/tag/
+ */
 export interface Tag {
   /** The value of the hashtag after the # sign. */
   name: string;

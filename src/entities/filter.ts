@@ -5,7 +5,10 @@ export type FilterContext =
   | 'thread'
   | 'account';
 
-/** Represents a user-defined filter for determining which statuses should not be shown to the user. */
+/**
+ * Represents a user-defined filter for determining which statuses should not be shown to the user.
+ * @see https://docs.joinmastodon.org/entities/filter/
+ */
 export interface Filter {
   /** The ID of the filter in the database. */
   id: string;

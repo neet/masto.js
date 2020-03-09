@@ -6,9 +6,7 @@ import {
   AdminFetchReportsParams,
 } from './params';
 
-/**
- * Mastodon Moderation API client
- */
+/** Mastodon Moderation API client */
 export class MastoAdmin extends GatewayImpl {
   /**
    * View accounts matching certain criteria for filtering, up to 100 at a time.

@@ -2,7 +2,10 @@ import { Account } from '.';
 
 export type AdminAccountRole = 'moderator' | 'admin' | 'user';
 
-/** Admin-level information about a given account. */
+/**
+ * Admin-level information about a given account.
+ * @see https://docs.joinmastodon.org/entities/admin-account/
+ */
 export interface AdminAccount {
   /** The ID of the account in the database. */
   id: string;

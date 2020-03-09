@@ -1,4 +1,7 @@
-/** Represents a proof from an external identity provider. */
+/**
+ * Represents a proof from an external identity provider.
+ * @see https://docs.joinmastodon.org/entities/identityproof/
+ */
 export interface IdentityProof {
   /** The name of the identity provider. */
   provider: string;
@@ -11,8 +14,3 @@ export interface IdentityProof {
   /** The name of the identity provider. */
   updatedAt: string;
 }
-
-/**
- * @deprecated Use IdentityProof
- */
-export type AccountIdentityProof = IdentityProof;

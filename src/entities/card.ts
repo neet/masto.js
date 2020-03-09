@@ -1,6 +1,9 @@
 export type CardType = 'link' | 'photo' | 'video' | 'rich';
 
-/** Represents a rich preview card that is generated using OpenGraph tags from a URL. */
+/**
+ * Represents a rich preview card that is generated using OpenGraph tags from a URL.
+ * @see https://docs.joinmastodon.org/entities/card/
+ */
 export interface Card {
   /** Location of linked resource. */
   url: string;

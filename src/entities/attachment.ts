@@ -27,7 +27,10 @@ export interface AttachmentMeta {
   focus?: AttachmentMetaFocus | null;
 }
 
-/** Represents a file or media attachment that can be added to a status. */
+/**
+ * Represents a file or media attachment that can be added to a status.
+ * @see https://docs.joinmastodon.org/entities/attachment/
+ */
 export interface Attachment {
   /** The ID of the attachment in the database. */
   id: string;

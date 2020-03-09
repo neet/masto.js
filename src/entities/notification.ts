@@ -9,7 +9,10 @@ export type NotificationType =
   | 'poll'
   | 'follow_request';
 
-/** Represents a notification of an event relevant to the user. */
+/**
+ * Represents a notification of an event relevant to the user.
+ * @see https://docs.joinmastodon.org/entities/notification
+ */
 export interface Notification {
   /** The id of the notification in the database. */
   id: string;

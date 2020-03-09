@@ -1,4 +1,7 @@
-/** Represents a weekly bucket of instance activity. */
+/**
+ * Represents a weekly bucket of instance activity.
+ * @see https://docs.joinmastodon.org/entities/activity/
+ */
 export interface Activity {
   /** Midnight at the first day of the week. */
   week: string;

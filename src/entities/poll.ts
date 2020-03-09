@@ -9,6 +9,10 @@ export interface PollOption {
   emojis: Emoji[];
 }
 
+/**
+ * Represents a poll attached to a status.
+ * @see https://docs.joinmastodon.org/entities/poll/
+ */
 export interface Poll {
   /** The ID of the poll in the database. */
   id: string;

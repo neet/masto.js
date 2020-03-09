@@ -1,4 +1,7 @@
-/** Represents an OAuth token used for authenticating with the API and performing actions. */
+/**
+ * Represents an OAuth token used for authenticating with the API and performing actions.
+ * @see https://docs.joinmastodon.org/entities/token/
+ */
 export interface Token {
   /** An OAuth token to be used for authorization. */
   accessToken: string;

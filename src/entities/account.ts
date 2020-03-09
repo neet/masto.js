@@ -1,6 +1,9 @@
 import { Emoji, Field, Source } from '.';
 
-/** Represents a user of Mastodon and their associated profile. */
+/**
+ * Represents a user of Mastodon and their associated profile.
+ * @see https://docs.joinmastodon.org/entities/account/
+ */
 export interface Account {
   /** The account id */
   id: string;
@@ -28,7 +31,7 @@ export interface Account {
   /** Custom emoji entities to be used when rendering the profile. If none, an empty array will be returned. */
   emojis: Emoji[];
   /** Whether the account has opted into discovery features such as the profile directory. */
-  discoverable: false;
+  discoverable: boolean;
 
   /** When the account was created. */
   createdAt: string;
