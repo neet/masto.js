@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AttachmentMetaVideo | masto</title>
+	<title>Client | masto</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,13 +54,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_entities_attachment_.html">&quot;entities/attachment&quot;</a>
+					<a href="../modules/_entities_application_.html">&quot;entities/application&quot;</a>
 				</li>
 				<li>
-					<a href="_entities_attachment_.attachmentmetavideo.html">AttachmentMetaVideo</a>
+					<a href="_entities_application_.client.html">Client</a>
 				</li>
 			</ul>
-			<h1>Interface AttachmentMetaVideo</h1>
+			<h1>Interface Client</h1>
 		</div>
 	</div>
 </header>
@@ -71,7 +71,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">AttachmentMetaVideo</span>
+						<a href="_entities_application_.application.html" class="tsd-signature-type">Application</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">Client</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -82,12 +87,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_attachment_.attachmentmetavideo.html#aspect" class="tsd-kind-icon">aspect</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_attachment_.attachmentmetavideo.html#bitrate" class="tsd-kind-icon">bitrate</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_attachment_.attachmentmetavideo.html#duration" class="tsd-kind-icon">duration</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_attachment_.attachmentmetavideo.html#framerate" class="tsd-kind-icon">frame<wbr>Rate</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_attachment_.attachmentmetavideo.html#height" class="tsd-kind-icon">height</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_attachment_.attachmentmetavideo.html#width" class="tsd-kind-icon">width</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_application_.client.html#clientid" class="tsd-kind-icon">client<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_entities_application_.client.html#clientsecret" class="tsd-kind-icon">client<wbr>Secret</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_entities_application_.client.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_entities_application_.client.html#vapidkey" class="tsd-kind-icon">vapid<wbr>Key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_entities_application_.client.html#website" class="tsd-kind-icon">website</a></li>
 							</ul>
 						</section>
 					</div>
@@ -96,64 +100,82 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="aspect" class="tsd-anchor"></a>
-					<h3>aspect</h3>
-					<div class="tsd-signature tsd-kind-icon">aspect<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="clientid" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> client<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">client<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/bd3c220/src/entities/attachment.ts#L16">src/entities/attachment.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/bd3c220/src/entities/application.ts#L16">src/entities/application.ts:16</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Client ID key, to be used for obtaining OAuth tokens</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="bitrate" class="tsd-anchor"></a>
-					<h3>bitrate</h3>
-					<div class="tsd-signature tsd-kind-icon">bitrate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="clientsecret" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> client<wbr>Secret</h3>
+					<div class="tsd-signature tsd-kind-icon">client<wbr>Secret<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/bd3c220/src/entities/attachment.ts#L15">src/entities/attachment.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/bd3c220/src/entities/application.ts#L18">src/entities/application.ts:18</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Client secret key, to be used for obtaining OAuth tokens</p>
+						</div>
+					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="duration" class="tsd-anchor"></a>
-					<h3>duration</h3>
-					<div class="tsd-signature tsd-kind-icon">duration<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="_entities_application_.application.html">Application</a>.<a href="_entities_application_.application.html#name">name</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/bd3c220/src/entities/attachment.ts#L14">src/entities/attachment.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/bd3c220/src/entities/application.ts#L7">src/entities/application.ts:7</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The name of your application.</p>
+						</div>
+					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="framerate" class="tsd-anchor"></a>
-					<h3>frame<wbr>Rate</h3>
-					<div class="tsd-signature tsd-kind-icon">frame<wbr>Rate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="vapidkey" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> vapid<wbr>Key</h3>
+					<div class="tsd-signature tsd-kind-icon">vapid<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="_entities_application_.application.html">Application</a>.<a href="_entities_application_.application.html#vapidkey">vapidKey</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/bd3c220/src/entities/attachment.ts#L13">src/entities/attachment.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/bd3c220/src/entities/application.ts#L11">src/entities/application.ts:11</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Used for Push Streaming API. Returned with POST /api/v1/apps. Equivalent to PushSubscription#server_key</p>
+						</div>
+					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="height" class="tsd-anchor"></a>
-					<h3>height</h3>
-					<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="website" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> website</h3>
+					<div class="tsd-signature tsd-kind-icon">website<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="_entities_application_.application.html">Application</a>.<a href="_entities_application_.application.html#website">website</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/bd3c220/src/entities/attachment.ts#L12">src/entities/attachment.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/bd3c220/src/entities/application.ts#L9">src/entities/application.ts:9</a></li>
 						</ul>
 					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="width" class="tsd-anchor"></a>
-					<h3>width</h3>
-					<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/bd3c220/src/entities/attachment.ts#L11">src/entities/attachment.ts:11</a></li>
-						</ul>
-					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The website associated with your application.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -164,54 +186,39 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_entities_attachment_.html">&quot;entities/attachment&quot;</a>
+						<a href="../modules/_entities_application_.html">&quot;entities/application&quot;</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_entities_attachment_.attachment.html" class="tsd-kind-icon">Attachment</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_entities_attachment_.attachmentmeta.html" class="tsd-kind-icon">Attachment<wbr>Meta</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_entities_attachment_.attachmentmetafocus.html" class="tsd-kind-icon">Attachment<wbr>Meta<wbr>Focus</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_entities_attachment_.attachmentmetaimage.html" class="tsd-kind-icon">Attachment<wbr>Meta<wbr>Image</a>
+						<a href="_entities_application_.application.html" class="tsd-kind-icon">Application</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_entities_attachment_.attachmentmetavideo.html" class="tsd-kind-icon">Attachment<wbr>Meta<wbr>Video</a>
+						<a href="_entities_application_.client.html" class="tsd-kind-icon">Client</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_attachment_.attachmentmetavideo.html#aspect" class="tsd-kind-icon">aspect</a>
+								<a href="_entities_application_.client.html#clientid" class="tsd-kind-icon">client<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_attachment_.attachmentmetavideo.html#bitrate" class="tsd-kind-icon">bitrate</a>
+								<a href="_entities_application_.client.html#clientsecret" class="tsd-kind-icon">client<wbr>Secret</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_attachment_.attachmentmetavideo.html#duration" class="tsd-kind-icon">duration</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_entities_application_.client.html#name" class="tsd-kind-icon">name</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_attachment_.attachmentmetavideo.html#framerate" class="tsd-kind-icon">frame<wbr>Rate</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_entities_application_.client.html#vapidkey" class="tsd-kind-icon">vapid<wbr>Key</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_attachment_.attachmentmetavideo.html#height" class="tsd-kind-icon">height</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_entities_attachment_.attachmentmetavideo.html#width" class="tsd-kind-icon">width</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_entities_application_.client.html#website" class="tsd-kind-icon">website</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/_entities_attachment_.html#attachmenttype" class="tsd-kind-icon">Attachment<wbr>Type</a>
-					</li>
 				</ul>
 			</nav>
 		</div>
