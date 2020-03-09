@@ -3,9 +3,9 @@ import {
   AccountCredentials,
   Activity,
   Announcement,
-  Application,
   Attachment,
   Card,
+  Client,
   Context,
   Conversation,
   Emoji,
@@ -334,7 +334,7 @@ export class Masto extends GatewayImpl {
    */
   @available({ since: '0.0.0' })
   createApp(params: CreateAppParams) {
-    return this.post<Application>(`/api/v1/apps`, params);
+    return this.post<Client>(`/api/v1/apps`, params);
   }
 
   /**
@@ -344,7 +344,7 @@ export class Masto extends GatewayImpl {
    */
   @available({ since: '2.0.0' })
   verifyAppCredentials() {
-    return this.get<Application>(`/api/v1/apps/verify_credentials`);
+    return this.get<Client>(`/api/v1/apps/verify_credentials`);
   }
 
   /**
