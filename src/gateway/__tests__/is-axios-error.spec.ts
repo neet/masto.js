@@ -2,7 +2,7 @@ import { isAxiosError } from '../is-axios-error';
 
 test('return true if `response` is contained in the object', () => {
   const obj = {
-    response: 'some response',
+    isAxiosError: true,
   };
 
   expect(isAxiosError(obj)).toBe(true);

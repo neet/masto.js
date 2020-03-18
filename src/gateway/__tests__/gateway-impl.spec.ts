@@ -4,6 +4,8 @@ import { GatewayImpl } from '../gateway-impl';
 // @ts-ignore
 import { EventHandlerImpl, mockConnect } from '../event-handler-impl';
 import {
+  MastoGoneError,
+  MastoConflictError,
   MastoNotFoundError,
   MastoRateLimitError,
   MastoUnauthorizedError,
@@ -160,13 +162,14 @@ describe('GatewayImpl', () => {
     expect((mockAxios.request as any) as jest.Mock).toBeCalledWith(options);
   });
 
-  test('throw MastodonUnauthorizedError when 401 responded', async () => {
+  test('throw MastoUnauthorizedError when 401 responded', async () => {
     const options = {
       method: 'POST',
       url: '/',
     };
 
     ((mockAxios.request as any) as jest.Mock).mockRejectedValue({
+      isAxiosError: true,
       response: {
         status: 401,
         data: {
@@ -181,13 +184,14 @@ describe('GatewayImpl', () => {
     );
   });
 
-  test('throw MastodonNotFoundError when 404 responded', async () => {
+  test('throw MastoNotFoundError when 404 responded', async () => {
     const options = {
       method: 'POST',
       url: '/',
     };
 
     ((mockAxios.request as any) as jest.Mock).mockRejectedValue({
+      isAxiosError: true,
       response: {
         status: 404,
         data: {
@@ -202,13 +206,14 @@ describe('GatewayImpl', () => {
     );
   });
 
-  test('throw MastodonRateLimitError when 429 responded', async () => {
+  test('throw MastoRateLimitError when 429 responded', async () => {
     const options = {
       method: 'POST',
       url: '/',
     };
 
     ((mockAxios.request as any) as jest.Mock).mockRejectedValue({
+      isAxiosError: true,
       response: {
         status: 429,
         data: {
@@ -223,13 +228,14 @@ describe('GatewayImpl', () => {
     );
   });
 
-  test('throw MastodonForbiddenError when 403 responded', async () => {
+  test('throw MastoForbiddenError when 403 responded', async () => {
     const options = {
       method: 'POST',
       url: '/',
     };
 
     ((mockAxios.request as any) as jest.Mock).mockRejectedValue({
+      isAxiosError: true,
       response: {
         status: 403,
         data: {
@@ -251,6 +257,7 @@ describe('GatewayImpl', () => {
     };
 
     ((mockAxios.request as any) as jest.Mock).mockRejectedValue({
+      isAxiosError: true,
       response: {
         status: 422,
         data: {
@@ -265,25 +272,64 @@ describe('GatewayImpl', () => {
     );
   });
 
+  test('throw MastoGoneError when 401 responded', async () => {
+    const options = {
+      method: 'POST',
+      url: '/',
+    };
+
+    ((mockAxios.request as any) as jest.Mock).mockRejectedValue({
+      isAxiosError: true,
+      response: {
+        status: 410,
+        data: {
+          error: 'Gone',
+        },
+      },
+    });
+
+    // @ts-ignore
+    expect(gateway.request(options)).rejects.toThrow(
+      new MastoGoneError('Gone'),
+    );
+  });
+
+  test('throw MastoConflictError when 409 responded', async () => {
+    const options = {
+      method: 'POST',
+      url: '/',
+    };
+
+    ((mockAxios.request as any) as jest.Mock).mockRejectedValue({
+      isAxiosError: true,
+      response: {
+        status: 409,
+        data: {
+          error: 'Conflict',
+        },
+      },
+    });
+
+    // @ts-ignore
+    expect(gateway.request(options)).rejects.toThrow(
+      new MastoConflictError('Conflict'),
+    );
+  });
+
   test('AxiosError: throw given error directly if non of prepared statuses matched', () => {
     const options = {
       method: 'POST',
       url: '/',
     };
 
-    class MyAxiosError extends Error {
-      constructor() {
-        super();
-        // @ts-ignore
-        this.response = {
-          status: 418,
-        };
+    const error = {
+      isAxiosError: true,
+      response: {
+        status: 418,
       }
-    }
+    };
 
-    const error = new MyAxiosError();
     ((mockAxios.request as any) as jest.Mock).mockRejectedValue(error);
-
     // @ts-ignore
     expect(gateway.request(options)).rejects.toThrow(error);
   });
