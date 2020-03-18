@@ -952,4 +952,22 @@ describe('Masto', () => {
     expect(mockDelete).toBeCalledTimes(1);
     expect(mockDelete).toMatchSnapshot();
   });
+
+  test('removeConversation', async () => {
+    await masto.removeConversation('123');
+    expect(mockDelete).toBeCalledTimes(1);
+    expect(mockDelete).toMatchSnapshot();
+  });
+
+  test('readConversation', async () => {
+    await masto.readConversation('123');
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
+  });
+
+  test('fetchSuggestedFeaturedTags', async () => {
+    await masto.fetchSuggestedFeaturedTags();
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
+  });
 });

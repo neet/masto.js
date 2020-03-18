@@ -1280,6 +1280,22 @@ exports[`Masto fetchStatusRebloggedBy 1`] = `
 }
 `;
 
+exports[`Masto fetchSuggestedFeaturedTags 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/featured_tags/suggestions",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
 exports[`Masto fetchSuggestions 1`] = `
 [MockFunction] {
   "calls": Array [
@@ -1441,6 +1457,22 @@ exports[`Masto pinStatus 1`] = `
 }
 `;
 
+exports[`Masto readConversation 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/conversations/123/read",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
 exports[`Masto reblogStatus 1`] = `
 [MockFunction] {
   "calls": Array [
@@ -1488,6 +1520,22 @@ exports[`Masto removeAccountFromList 1`] = `
           "678",
         ],
       },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto removeConversation 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/conversations/123",
     ],
   ],
   "results": Array [
