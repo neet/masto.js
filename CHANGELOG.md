@@ -1,3 +1,25 @@
+## 3.0.0
+This is the 3rd major version of Masto.js 🎉
+
+### Breaking Changes
+- The response objects are now `camelCase` #224 #230
+- Renamed `uploadMediaAttachment` to `createMediaAttachment` #229
+- Decouple 3rd party packages from Masto.js #228 #225
+
+### Added
+- Add missing `readCoversation` and `removeConversation`
+
+### Fixed
+- Better version handling #231
+
+### Updated
+- Follow TSDoc comments to docs.joinmastodon.org
+- Update dependencies
+
+### Internal changes
+- Added `eslint-simple-import-sort` 0dba63b3920e0d83b0205a41d36021238df1b75c
+- Updated examples
+
 ## 2.8.2
 ### Chagnes
 - Use @rollup/* packages instead of rollup-* #194 #193
