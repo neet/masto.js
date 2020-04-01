@@ -7,13 +7,11 @@ import { Masto } from '../src';
     accessToken: 'YOUR TOKEN',
   });
 
-  const profile = {
-    display_name: 'Fluffy elephant friend',
-    note:         'Hi fediverse!',
-    avatar:       fs.createReadStream('../some_image.png'),
-  }
+  const newProfile = await masto.updateCredentials({
+    displayName: 'Fluffy elephant friend',
+    note: 'Hi fediverse!',
+    avatar: fs.createReadStream('../some_image.png'),
+  });
 
-  masto.updateCredentials(profile).then((newProfile) => {
-    console.log(newProfile);
-  })
+  console.log(newProfile);
 })()
