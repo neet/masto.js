@@ -1,4 +1,4 @@
-import { Gateway } from "../gateway";
+import { Gateway } from '../gateway';
 
 export const mockGet = jest.fn();
 export const mockPost = jest.fn();

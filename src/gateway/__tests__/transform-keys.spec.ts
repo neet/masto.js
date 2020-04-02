@@ -4,11 +4,14 @@ import { camelCase } from 'change-case';
 describe('transformKeys', () => {
   it('transforms a flat object', () => {
     expect(
-      transformKeys({
-        key: 'value',
-        key_key: ['value', 'value'],
-        key_key_key: 3,
-      }, camelCase),
+      transformKeys(
+        {
+          key: 'value',
+          key_key: ['value', 'value'],
+          key_key_key: 3,
+        },
+        camelCase,
+      ),
     ).toEqual({
       key: 'value',
       keyKey: ['value', 'value'],
@@ -18,13 +21,16 @@ describe('transformKeys', () => {
 
   it('transforms a deep object', () => {
     expect(
-      transformKeys({
-        key: {
-          key_key: {
-            key_key_key: 'value',
+      transformKeys(
+        {
+          key: {
+            key_key: {
+              key_key_key: 'value',
+            },
           },
         },
-      }, camelCase),
+        camelCase,
+      ),
     ).toEqual({
       key: { keyKey: { keyKeyKey: 'value' } },
     });

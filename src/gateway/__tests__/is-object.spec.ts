@@ -10,4 +10,3 @@ test('typed isObject', () => {
   expect(isObject({})).toBe(true);
   expect(isObject({ a: 'a' })).toBe(true);
 });
-

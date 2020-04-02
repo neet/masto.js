@@ -9,16 +9,13 @@ import { createFormData } from '../create-form-data';
  */
 
 const chunk = <T>(array: T[], length: number) =>
-  array.reduce(
-    (acc, current, i) => {
-      const position = Math.floor(i / length);
-      if (!acc[position]) acc[position] = [];
-      acc[position].push(current);
+  array.reduce((acc, current, i) => {
+    const position = Math.floor(i / length);
+    if (!acc[position]) acc[position] = [];
+    acc[position].push(current);
 
-      return acc;
-    },
-    [] as T[][],
-  );
+    return acc;
+  }, [] as T[][]);
 
 const getAll = (formData: FormData, name: string) =>
   chunk((formData as any)._streams as string[], 3)
