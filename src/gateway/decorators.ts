@@ -24,7 +24,7 @@ export const available = ({ since, until }: AvailableParams) => (
     throw new Error('available can only apply to a method of a class');
   }
 
-  descriptor.value = function(
+  descriptor.value = function (
     this: Gateway,
     ...args: Parameters<typeof original>
   ) {

@@ -105,7 +105,9 @@ describe('GatewayImpl', () => {
     };
 
     // @ts-ignore
-    expect(gateway.transformConfig(config).params).toEqual({ key_key: 'value' });
+    expect(gateway.transformConfig(config).params).toEqual({
+      key_key: 'value',
+    });
   });
 
   test('transform JSON to JS object', () => {
@@ -326,7 +328,7 @@ describe('GatewayImpl', () => {
       isAxiosError: true,
       response: {
         status: 418,
-      }
+      },
     };
 
     ((mockAxios.request as any) as jest.Mock).mockRejectedValue(error);
