@@ -2765,18 +2765,7 @@ growly@^1.3.0:
   resolved "https://registry.yarnpkg.com/growly/-/growly-1.3.0.tgz#f10748cbe76af964b7c96c93c6bcc28af120c081"
   integrity sha1-8QdIy+dq+WS3yWyTxrzCivEgwIE=
 
-handlebars@^4.5.3:
-  version "4.5.3"
-  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.5.3.tgz#5cf75bd8714f7605713511a56be7c349becb0482"
-  integrity sha512-3yPecJoJHK/4c6aZhSvxOyG4vJKDshV36VHp0iVCDVh7o9w2vwi3NSnL2MMPj3YdduqaBcu7cGbggJQM0br9xA==
-  dependencies:
-    neo-async "^2.6.0"
-    optimist "^0.6.1"
-    source-map "^0.6.1"
-  optionalDependencies:
-    uglify-js "^3.1.4"
-
-handlebars@^4.7.2:
+handlebars@^4.5.3, handlebars@^4.7.2:
   version "4.7.3"
   resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.7.3.tgz#8ece2797826886cf8082d1726ff21d2a022550ee"
   integrity sha512-SRGwSYuNfx8DwHD/6InAPzD6RgeruWLT+B8e8a7gGs8FWgHzlExpTFMEq2IA6QpAfOClpKHy6+8IqTjeBCu6Kg==
@@ -6164,10 +6153,10 @@ typedoc-default-themes@^0.7.2:
     lunr "^2.3.8"
     underscore "^1.9.1"
 
-typedoc@^0.16.9:
-  version "0.16.9"
-  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.16.9.tgz#d6f46f4dea7d3362029927a92981efdf896f435b"
-  integrity sha512-UvOGoy76yqwCXwxPgatwgXWfsQ3FczyZ6ZNLjhCPK+TsDir6LiU3YB6N9XZmPv36E+7LA860mnc8a0v6YADKFw==
+typedoc@^0.16.11:
+  version "0.16.11"
+  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.16.11.tgz#95f862c6eba78533edc9af7096d2295b718eddc1"
+  integrity sha512-YEa5i0/n0yYmLJISJ5+po6seYfJQJ5lQYcHCPF9ffTF92DB/TAZO/QrazX5skPHNPtmlIht5FdTXCM2kC7jQFQ==
   dependencies:
     "@types/minimatch" "3.0.3"
     fs-extra "^8.1.0"
@@ -6181,15 +6170,10 @@ typedoc@^0.16.9:
     typedoc-default-themes "^0.7.2"
     typescript "3.7.x"
 
-typescript@3.7.5:
+typescript@3.7.5, typescript@3.7.x:
   version "3.7.5"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.5.tgz#0692e21f65fd4108b9330238aac11dd2e177a1ae"
   integrity sha512-/P5lkRXkWHNAbcJIiHPfRoKqyd7bsyCma1hZNUGfn20qm64T6ZBlrzprymeu918H+mB/0rIg2gGK/BXkhhYgBw==
-
-typescript@3.7.x:
-  version "3.7.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.4.tgz#1743a5ec5fef6a1fa9f3e4708e33c81c73876c19"
-  integrity sha512-A25xv5XCtarLwXpcDNZzCGvW2D1S3/bACratYBx2sax8PefsFhlYmkQicKHvpYflFS8if4zne5zT5kpJ7pzuvw==
 
 uglify-js@^3.1.4:
   version "3.6.0"
