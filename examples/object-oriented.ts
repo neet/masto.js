@@ -1,6 +1,6 @@
 import { Masto, Status, Notification } from 'masto';
 
-export class MyBot {
+class MyBot {
   private uri: string;
   private token: string;
   private client?: Masto;
@@ -11,7 +11,7 @@ export class MyBot {
     this.initialize();
   }
 
-  private async initialize() {
+  async initialize() {
     this.client = await Masto.login({
       uri: this.uri,
       accessToken: this.token,
@@ -62,3 +62,9 @@ export class MyBot {
     }
   }
 }
+
+// main
+(async () => {
+  const bot = new MyBot('https://example.com', 'TOKEN');
+  await bot.initialize();
+})();
