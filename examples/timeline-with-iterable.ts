@@ -1,9 +1,8 @@
-import { Masto } from '../src';
+import { Masto } from 'masto';
 
 (async () => {
   const masto = await Masto.login({
     uri: 'https://example.com',
-    accessToken: 'YOUR TOKEN',
   });
 
   // Generate iterable of timeline

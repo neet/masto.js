@@ -1,16 +1,16 @@
-import { Masto } from '../src';
+import { Masto } from 'masto';
 
 (async () => {
   const masto = await Masto.login({
     uri: 'https://example.com',
   });
 
-  masto.createApp({
+  const app = await masto.createApp({
     clientName: 'My app',
     redirectUris: 'urn:ietf:wg:oauth:2.0:oob',
     scopes: 'read write',
-    website: 'example.com'
-  }).then((oauthInfo) => {
-    console.log(oauthInfo);
+    website: 'example.com',
   });
-})()
+
+  console.log(app);
+})();

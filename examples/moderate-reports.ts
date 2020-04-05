@@ -1,4 +1,4 @@
-import { MastoAdmin } from '../src';
+import { MastoAdmin } from 'masto';
 
 (async () => {
   const admin = await MastoAdmin.login({
@@ -10,7 +10,7 @@ import { MastoAdmin } from '../src';
   const reports = await admin.fetchReports();
 
   // Disable an account of the 1st report
-  await admin.actionAccount(reports[0].accountId, {
+  await admin.actionAccount(reports[0].account.id, {
     type: 'disable',
     reportId: reports[0].id,
     text: 'Your account has been disabled'

@@ -1,4 +1,4 @@
-import { Masto } from '../src';
+import { Masto } from 'masto';
 
 (async () => {
   const masto = await Masto.login({

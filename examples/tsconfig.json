@@ -1,0 +1,10 @@
+{
+  "extends": "..",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "masto": ["../src/index.ts"]
+    }
+  },
+  "include": ["./**/*"]
+}
