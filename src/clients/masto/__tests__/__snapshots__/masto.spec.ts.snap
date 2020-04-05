@@ -257,6 +257,56 @@ exports[`Masto createMarkers 1`] = `
 }
 `;
 
+exports[`Masto createMediaAttachment 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v2/media",
+      Object {
+        "description": "Nice image",
+        "file": "...",
+      },
+      Object {
+        "headers": Object {
+          "Content-Type": "multipart/form-data",
+        },
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto createMediaAttachment v1 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/media",
+      Object {
+        "description": "Nice image",
+        "file": "...",
+      },
+      Object {
+        "headers": Object {
+          "Content-Type": "multipart/form-data",
+        },
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
 exports[`Masto createPushSubscription 1`] = `
 [MockFunction] {
   "calls": Array [
@@ -1732,6 +1782,25 @@ exports[`Masto search 1`] = `
         "q": "query",
         "resolve": true,
         "sinceId": "3",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Masto search v1 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/search",
+      Object {
+        "q": "query",
       },
     ],
   ],

@@ -495,12 +495,20 @@ describe('Masto', () => {
       description: 'Nice image',
     });
     expect(mockPost).toBeCalledTimes(1);
-    expect(mockPost).toBeCalledWith(
-      expect.any(String),
-      expect.anything(),
-      expect.any(Object),
-    );
+    expect(mockPost).toMatchSnapshot();
+    expect(mockPost).toBeCalledWith('/api/v2/media', expect.anything(), expect.anything());
   });
+
+  test('createMediaAttachment v1', async () => {
+    masto.version = '0.0.0';
+    await masto.createMediaAttachment({
+      file: '...',
+      description: 'Nice image',
+    });
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
+    expect(mockPost).toBeCalledWith('/api/v1/media', expect.anything(), expect.anything());
+  })
 
   test('updateMediaAttachment', async () => {
     await masto.updateMediaAttachment('123123', {
@@ -684,6 +692,17 @@ describe('Masto', () => {
     });
     expect(mockPaginate).toBeCalledTimes(1);
     expect(mockPaginate).toMatchSnapshot();
+    expect(mockPaginate).toBeCalledWith('/api/v2/search', expect.anything());
+  });
+
+  test('search v1', async () => {
+    masto.version = '0.0.0';
+    masto.search({
+      q: 'query',
+    });
+    expect(mockPaginate).toBeCalledTimes(1);
+    expect(mockPaginate).toMatchSnapshot();
+    expect(mockPaginate).toBeCalledWith('/api/v1/search', expect.anything());
   });
 
   test('fetchStatus', async () => {
