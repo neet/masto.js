@@ -18,12 +18,6 @@
   <a href="https://github.com/neet/masto.js/issues">Issues</a>
 </p>
 
-## Features
-- 🌎 **Isomorphic** which means browsers and Node.js are both supported
-- ⌨️ **TypeScript** powers static typing. And of course there's no `any`!
-- 💪 **You don't need to type URLs** because each endpoints have their own function
-- 📄 **Detailed docs** and rich hovering menu for IDE, provided by TSDoc
-
 ## Installation
 
 ```
@@ -34,6 +28,12 @@ npm i masto
 
 - **Node.js**: `>= 10.x`
 - **TypeScript** (optional peer dependency): `>= 3.6.0`
+
+## Features
+- 🌎 **Isomorphic** which means browsers and Node.js are both supported
+- ⌨️ **TypeScript** powers static typing. And of course there's no `any`!
+- 💪 **You don't need to type URLs** because each endpoints have their own function
+- 📄 **Detailed docs** and rich hovering menu for IDE, provided by TSDoc
 
 ## Basic Usage
 
