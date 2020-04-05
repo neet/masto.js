@@ -14,6 +14,8 @@ export interface EventTypeMap {
   filters_changed: [];
   /** Status added to a conversation */
   conversation: [Conversation];
+  /** for RxJS' `fromEvent` compatibility */
+  [K: string]: unknown[];
 }
 
 /** Supported event names */
