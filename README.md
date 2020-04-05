@@ -18,6 +18,12 @@
   <a href="https://github.com/neet/masto.js/issues">Issues</a>
 </p>
 
+## Features
+- 🌎 **Isomorphic** which means browsers and Node.js are both supported
+- ⌨️ **TypeScript** powers static typing. And of course there's no `any`!
+- 💪 **You don't need to type URLs** because each endpoints have their own function
+- 📄 **Detailed docs** and rich hovering menu for IDE, provided by TSDoc
+
 ## Installation
 
 ```
@@ -31,16 +37,18 @@ npm i masto
 
 ## Basic Usage
 
-First, open `<Your Instance>/settings/applications/new` on your browser and create new application.
+First, open `/settings/applications/new` of your instance on your browser and create new application.
 
-Then, here's a simple example that creates a toot. Replace `TOKEN` to your own token.
+![Create New App](https://i.imgur.com/lgbt0l5.png)
+
+Then, here's a simple example that creates a toot. Replace `TOKEN` to your own access token.
 
 ```ts
 import { Masto } from 'masto';
 
 async function main() {
   const masto = await Masto.login({
-    uri: 'https://example.com', // URI of your instance
+    uri: 'https://example.com',
     accessToken: 'TOKEN',
   });
 
@@ -56,14 +64,6 @@ main();
 All of available methods are described in the [documentation](https://neet.github.io/masto.js/classes/_clients_masto_masto_.masto.html). You can also refer [examples](https://github.com/neet/masto.js/tree/master/examples) on this repository.
 
 ## FAQ
-
-### Q. What is the deference between Masto.js and the others?
-
-- [x] **Isomorphic** which means browsers and Node.js are both supported
-- [x] **TypeScript** powers static typing. And of course there's no `any`!
-- [x] **You don't need to type URLs** because each endpoints have their own function
-- [x] **Detailed docs** and rich hovering menu for IDE, provided by TSDoc
-- [x] **AsyncIterator** makes timeline pagination easier.
 
 ### Q. I got an error `Symbol.asyncIterator is not defined`
 
