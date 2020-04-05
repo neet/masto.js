@@ -62,6 +62,7 @@ describe('GatewayImpl', () => {
     const customGateway = new GatewayImpl({
       uri: 'https://example.com',
       streamingApiUrl: 'wss://example.com',
+      version: '0.0.0',
     });
     expect(customGateway.streamingApiUrl).toBe('wss://example.com');
   });
@@ -78,6 +79,7 @@ describe('GatewayImpl', () => {
     const customGateway = new GatewayImpl({
       uri: 'https://example.com',
       accessToken: 'token token',
+      version: '0.0.0',
     });
     expect(customGateway.accessToken).toBe('token token');
   });
@@ -85,6 +87,7 @@ describe('GatewayImpl', () => {
   test('this._uri accessor works', () => {
     const customGateway = new GatewayImpl({
       uri: 'https://example.com/aaa',
+      version: '0.0.0',
     });
     customGateway.uri = 'https://example.com/bbb';
     expect(customGateway.uri).toEqual('https://example.com/bbb');
@@ -93,6 +96,7 @@ describe('GatewayImpl', () => {
   test('this._streamingApiUrl accessor works', () => {
     const customGateway = new GatewayImpl({
       uri: 'wss://example.com/aaa',
+      version: '0.0.0',
     });
     customGateway.streamingApiUrl = 'wss://example.com/bbb';
     expect(customGateway.streamingApiUrl).toEqual('wss://example.com/bbb');

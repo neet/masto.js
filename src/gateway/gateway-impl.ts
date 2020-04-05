@@ -37,7 +37,7 @@ export class GatewayImpl implements Gateway<AxiosRequestConfig> {
   /** Streaming API URL of the instance */
   private _streamingApiUrl = '';
   /** Version of the current instance */
-  version?: string;
+  version: string;
   /** API token of the user */
   accessToken?: string;
 
@@ -46,6 +46,7 @@ export class GatewayImpl implements Gateway<AxiosRequestConfig> {
    */
   constructor(params: GatewayConstructorParams<AxiosRequestConfig>) {
     this.uri = params.uri;
+    this.version = params.version;
 
     if (params.accessToken) {
       this.accessToken = params.accessToken;
@@ -53,10 +54,6 @@ export class GatewayImpl implements Gateway<AxiosRequestConfig> {
 
     if (params.streamingApiUrl) {
       this.streamingApiUrl = params.streamingApiUrl;
-    }
-
-    if (params.version) {
-      this.version = params.version;
     }
 
     this.axios = axios.create({
@@ -93,8 +90,9 @@ export class GatewayImpl implements Gateway<AxiosRequestConfig> {
    */
   static async login<T extends typeof GatewayImpl>(
     this: T,
-    params: LoginParams,
+    _params: LoginParams,
   ) {
+    const params = { ..._params, version: '0.0.0' };
     const gateway = new this(params) as InstanceType<T>;
     const instance = await gateway.get<Instance>('/api/v1/instance');
 

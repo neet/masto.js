@@ -41,7 +41,7 @@ export interface GatewayConstructorParams<T = undefined> {
   /** Streaming API URL */
   streamingApiUrl?: string;
   /** Version of the instance */
-  version?: string;
+  version: string;
   /** Access token of the user */
   accessToken?: string;
   /** Axios configurations. See [Axios'](https://github.com/axios/axios#request-config) docs */
