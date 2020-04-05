@@ -346,7 +346,7 @@ export class GatewayImpl implements Gateway<AxiosRequestConfig> {
   async *paginate<T, U>(
     initialUrl: string,
     initialParams?: U,
-  ): AsyncGenerator<T, void, PaginateNext<U>> {
+  ): AsyncGenerator<T, void, PaginateNext<U> | undefined> {
     let nextUrl: string | undefined = initialUrl;
     let nextParams = initialParams;
 
