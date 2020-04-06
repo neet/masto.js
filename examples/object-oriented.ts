@@ -3,7 +3,7 @@ import { Masto, Status, Notification } from 'masto';
 class MyBot {
   private uri: string;
   private token: string;
-  private client?: Masto;
+  private masto?: Masto;
 
   constructor(uri: string, token: string) {
     this.uri = uri;
@@ -11,7 +11,7 @@ class MyBot {
   }
 
   async initialize() {
-    this.client = await Masto.login({
+    this.masto = await Masto.login({
       uri: this.uri,
       accessToken: this.token,
     });
@@ -19,11 +19,11 @@ class MyBot {
   }
 
   private async subscribe() {
-    if (!this.client) {
+    if (!this.masto) {
       return;
     }
 
-    const timeline = await this.client.streamUser();
+    const timeline = await this.masto.streamUser();
 
     // Add handlers
     timeline.on('update', this.handleUpdate);
@@ -36,28 +36,26 @@ class MyBot {
   }
 
   private handleNotification = async (notification: Notification) => {
-    if (!this.client) {
+    if (!this.masto) {
       return;
     }
 
-    const { type, account, status } = notification;
-
     // When your status got favourited, log
-    if (type === 'favourite') {
-      console.log(`${account.username} favourited your status!`);
+    if (notification.type === 'favourite') {
+      console.log(`${notification.account.username} favourited your status!`);
     }
 
     // When you got a mention, reply
-    if (type === 'mention' && status) {
-      await this.client.createStatus({
+    if (notification.type === 'mention' && notification.status) {
+      await this.masto.createStatus({
         status: 'I received your mention!',
-        inReplyToId: status.id,
+        inReplyToId: notification.status.id,
       });
     }
 
     // When you got followed, follow them back
-    if (type === 'follow') {
-      await this.client.followAccount(account.id);
+    if (notification.type === 'follow') {
+      await this.masto.followAccount(notification.account.id);
     }
   }
 }
