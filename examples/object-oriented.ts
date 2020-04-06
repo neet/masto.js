@@ -8,7 +8,6 @@ class MyBot {
   constructor(uri: string, token: string) {
     this.uri = uri;
     this.token = token;
-    this.initialize();
   }
 
   async initialize() {
