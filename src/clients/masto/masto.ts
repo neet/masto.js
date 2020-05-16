@@ -102,6 +102,18 @@ export class Masto extends GatewayImpl {
   }
 
   /**
+   * Stream remote public timeline
+   * @return Instance of EventEmitter
+   * @see https://docs.joinmastodon.org/methods/timelines/streaming/
+   */
+  @available({ since: '0.0.0' })
+  streamRemotePublicTimeline() {
+    return this.stream('/api/v1/streaming', {
+      stream: 'public:remote',
+    });
+  }
+
+  /**
    * Starting tag timeline streaming
    * @param id ID of the tag
    * @return Instance of EventEmitter

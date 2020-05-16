@@ -1932,6 +1932,25 @@ exports[`Masto streamPublicTimeline 1`] = `
 }
 `;
 
+exports[`Masto streamRemotePublicTimeline 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/streaming",
+      Object {
+        "stream": "public:remote",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
 exports[`Masto streamTagTimeline 1`] = `
 [MockFunction] {
   "calls": Array [
