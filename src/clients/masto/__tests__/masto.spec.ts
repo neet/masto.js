@@ -36,6 +36,12 @@ describe('Masto', () => {
     expect(mockStream).toMatchSnapshot();
   });
 
+  test('streamRemotePublicTimeline', async () => {
+    await masto.streamRemotePublicTimeline();
+    expect(mockStream).toBeCalledTimes(1);
+    expect(mockStream).toMatchSnapshot();
+  });
+
   test('streamCommunityTimeline', async () => {
     await masto.streamCommunityTimeline();
     expect(mockStream).toBeCalledTimes(1);
