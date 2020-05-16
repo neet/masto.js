@@ -27,6 +27,8 @@ export interface Instance {
   urls: InstanceURLs;
   /** Statistics about how much information the instance contains. */
   stats: InstanceStats;
+  /** Whether invitation in enabled */
+  invitesEnabled: boolean;
 
   /** Banner image for the website. */
   thumbnail?: string | null;
