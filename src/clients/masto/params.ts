@@ -284,6 +284,8 @@ export interface FetchTimelineParams extends PaginationParams {
   local?: boolean | null;
   /** Show only statuses with media attached? Defaults to false. */
   onlyMedia?: boolean | null;
+  /** Remote only */
+  remote?: boolean | null;
 }
 
 export interface FetchAccountStatusesParams extends PaginationParams {
