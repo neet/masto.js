@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>masto</title>
-	<meta name="description" content="">
+	<meta name="description" content="Documentation for masto">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
 </head>
@@ -13,7 +13,7 @@
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -71,6 +71,7 @@
 					<a href="https://github.com/neet/masto.js/actions"><img src="https://github.com/neet/masto.js/workflows/CI/badge.svg" /></a>
 					<a href="https://codecov.io/gh/neet/masto.js"><img src="https://codecov.io/gh/neet/masto.js/branch/master/graph/badge.svg" /></a>
 					<a href="https://codeclimate.com/github/neet/masto.js/maintainability"><img src="https://api.codeclimate.com/v1/badges/f56a1d2e6728a89d0a94/maintainability" /></a>
+					<a href="https://mastodon.social/@neet"><img src="https://img.shields.io/mastodon/follow/76721?style=social" alt="Mastodon" /></a>
 				</p>
 				<p align="center">
 					<a href="https://github.com/neet/masto.js/tree/master/examples">Examples</a> |
@@ -89,16 +90,26 @@
 					<li><strong>Node.js</strong>: <code>&gt;= 10.x</code></li>
 					<li><strong>TypeScript</strong> (optional peer dependency): <code>&gt;= 3.6.0</code></li>
 				</ul>
+				<a href="#features" id="features" style="color: inherit; text-decoration: none;">
+					<h2>Features</h2>
+				</a>
+				<ul>
+					<li>🌎 <strong>Isomorphic</strong> which means browsers and Node.js are both supported</li>
+					<li>⌨️ <strong>TypeScript</strong> powers static typing. And of course there&#39;s no <code>any</code>!</li>
+					<li>💪 <strong>You don&#39;t need to type URLs</strong> because each endpoints have their own function</li>
+					<li>📄 <strong>Detailed docs</strong> and rich hovering menu for IDE, provided by TSDoc</li>
+				</ul>
 				<a href="#basic-usage" id="basic-usage" style="color: inherit; text-decoration: none;">
 					<h2>Basic Usage</h2>
 				</a>
-				<p>First, open <code>&lt;Your Instance&gt;/settings/applications/new</code> on your browser and create new application.</p>
-				<p>Then, here&#39;s a simple example that creates a toot. Replace <code>TOKEN</code> to your own token.</p>
+				<p>First, open <code>/settings/applications/new</code> of your instance on your browser and create new application.</p>
+				<p><img src="https://i.imgur.com/lgbt0l5.png" alt="Create New App"></p>
+				<p>Then, here&#39;s a simple example that creates a toot. Replace <code>TOKEN</code> to your own access token.</p>
 				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Masto } <span class="hljs-keyword">from</span> <span class="hljs-string">'masto'</span>;
 
 <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-keyword">const</span> masto = <span class="hljs-keyword">await</span> Masto.login({
-    uri: <span class="hljs-string">'https://example.com'</span>, <span class="hljs-comment">// URI of your instance</span>
+    uri: <span class="hljs-string">'https://example.com'</span>,
     accessToken: <span class="hljs-string">'TOKEN'</span>,
   });
 
@@ -113,17 +124,7 @@ main();</code></pre>
 				<a href="#faq" id="faq" style="color: inherit; text-decoration: none;">
 					<h2>FAQ</h2>
 				</a>
-				<a href="#q-what-is-the-deference-between-mastojs-and-the-others" id="q-what-is-the-deference-between-mastojs-and-the-others" style="color: inherit; text-decoration: none;">
-					<h3>Q. What is the deference between Masto.js and the others?</h3>
-				</a>
-				<ul>
-					<li><input checked="" disabled="" type="checkbox"> <strong>Isomorphic</strong> which means browsers and Node.js are both supported</li>
-					<li><input checked="" disabled="" type="checkbox"> <strong>TypeScript</strong> powers static typing. And of course there&#39;s no <code>any</code>!</li>
-					<li><input checked="" disabled="" type="checkbox"> <strong>You don&#39;t need to type URLs</strong> because each endpoints have their own function</li>
-					<li><input checked="" disabled="" type="checkbox"> <strong>Detailed docs</strong> and rich hovering menu for IDE, provided by TSDoc</li>
-					<li><input checked="" disabled="" type="checkbox"> <strong>AsyncIterator</strong> makes timeline pagination easier.</li>
-				</ul>
-				<a href="#q-i-got-an-error-codesymbolasynciterator-is-not-definedcode" id="q-i-got-an-error-codesymbolasynciterator-is-not-definedcode" style="color: inherit; text-decoration: none;">
+				<a href="#q-i-got-an-error-symbolasynciterator-is-not-defined" id="q-i-got-an-error-symbolasynciterator-is-not-defined" style="color: inherit; text-decoration: none;">
 					<h3>Q. I got an error <code>Symbol.asyncIterator is not defined</code></h3>
 				</a>
 				<p>A. Masto.js is using <a href="https://github.com/tc39/proposal-async-iteration">AsyncIterator</a> which is very new JS feature and it may not be supported in particular environments. So in browsers, you need to use a polyfill like <a href="https://babeljs.io/docs/en/babel-plugin-proposal-async-generator-functions">Babel&#39;s</a>. In Node.js, it is supported on <a href="https://medium.com/@nairihar/async-iteration-in-nodejs-v10-3c17dc00ed9f">v10</a> so you can update and use it.</p>
@@ -149,178 +150,178 @@ main();</code></pre>
 					<li class="globals  ">
 						<a href="globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_clients_masto_admin_index_.html">&quot;clients/masto-<wbr>admin/index&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_clients_masto_admin_masto_admin_.html">&quot;clients/masto-<wbr>admin/masto-<wbr>admin&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_clients_masto_admin_params_.html">&quot;clients/masto-<wbr>admin/params&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_clients_masto_index_.html">&quot;clients/masto/index&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_clients_masto_masto_.html">&quot;clients/masto/masto&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_clients_masto_params_.html">&quot;clients/masto/params&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_account_.html">&quot;entities/account&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_activity_.html">&quot;entities/activity&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_admin_account_.html">&quot;entities/admin-<wbr>account&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_admin_report_.html">&quot;entities/admin-<wbr>report&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_announcement_.html">&quot;entities/announcement&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_application_.html">&quot;entities/application&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_attachment_.html">&quot;entities/attachment&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_card_.html">&quot;entities/card&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_context_.html">&quot;entities/context&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_conversation_.html">&quot;entities/conversation&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_emoji_.html">&quot;entities/emoji&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_featured_tags_.html">&quot;entities/featured-<wbr>tags&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_field_.html">&quot;entities/field&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_filter_.html">&quot;entities/filter&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_history_.html">&quot;entities/history&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_identity_proof_.html">&quot;entities/identity-<wbr>proof&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_index_.html">&quot;entities/index&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_instance_.html">&quot;entities/instance&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_list_.html">&quot;entities/list&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_marker_.html">&quot;entities/marker&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_mention_.html">&quot;entities/mention&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_notification_.html">&quot;entities/notification&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_poll_.html">&quot;entities/poll&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_preference_.html">&quot;entities/preference&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_push_subscription_.html">&quot;entities/push-<wbr>subscription&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_reaction_.html">&quot;entities/reaction&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_relationship_.html">&quot;entities/relationship&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_results_.html">&quot;entities/results&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_scheduled_status_.html">&quot;entities/scheduled-<wbr>status&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_source_.html">&quot;entities/source&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_status_.html">&quot;entities/status&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_tag_.html">&quot;entities/tag&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_entities_token_.html">&quot;entities/token&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_errors_index_.html">&quot;errors/index&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_errors_masto_conflict_error_.html">&quot;errors/masto-<wbr>conflict-<wbr>error&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_errors_masto_forbidden_error_.html">&quot;errors/masto-<wbr>forbidden-<wbr>error&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_errors_masto_gone_error_.html">&quot;errors/masto-<wbr>gone-<wbr>error&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_errors_masto_not_found_error_.html">&quot;errors/masto-<wbr>not-<wbr>found-<wbr>error&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_errors_masto_rate_limit_error_.html">&quot;errors/masto-<wbr>rate-<wbr>limit-<wbr>error&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_errors_masto_unauthorized_error_.html">&quot;errors/masto-<wbr>unauthorized-<wbr>error&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_errors_masto_unprocessable_entity_error_.html">&quot;errors/masto-<wbr>unprocessable-<wbr>entity-<wbr>error&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_gateway_create_form_data_.html">&quot;gateway/create-<wbr>form-<wbr>data&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_gateway_decorators_.html">&quot;gateway/decorators&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_gateway_event_handler_.html">&quot;gateway/event-<wbr>handler&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_gateway_event_handler_impl_.html">&quot;gateway/event-<wbr>handler-<wbr>impl&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_gateway_gateway_.html">&quot;gateway/gateway&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_gateway_gateway_impl_.html">&quot;gateway/gateway-<wbr>impl&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_gateway_index_.html">&quot;gateway/index&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_gateway_is_axios_error_.html">&quot;gateway/is-<wbr>axios-<wbr>error&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_gateway_is_object_.html">&quot;gateway/is-<wbr>object&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_gateway_transform_keys_.html">&quot;gateway/transform-<wbr>keys&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class=" tsd-kind-module">
 						<a href="modules/_index_.html">&quot;index&quot;</a>
 					</li>
 				</ul>
@@ -337,57 +338,17 @@ main();</code></pre>
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
-				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
-				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
-				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
 				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
-				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
 				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
-				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
-				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
 			</ul>
 		</div>
 	</div>
