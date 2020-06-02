@@ -22,7 +22,7 @@
     "@types/ws": "^7.2.4",
     "axios": "^0.19.2",
     "change-case": "^4.1.1",
-    "eventemitter3": "^4.0.0",
+    "eventemitter3": "^4.0.4",
     "isomorphic-form-data": "^2.0.0",
     "isomorphic-ws": "^4.0.1",
     "normalize-url": "^5.0.0",
