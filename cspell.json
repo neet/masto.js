@@ -4,6 +4,7 @@
   "ignorePaths": ["**/node_modules/**", "**/dist/**"],
   "words": [
     "AGPL",
+    "asynckit",
     "blurhash",
     "builtins",
     "codecov",
