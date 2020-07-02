@@ -58,7 +58,7 @@
     "rollup-plugin-typescript2": "^0.27.1",
     "rxjs": "^6.5.5",
     "ts-jest": "^25.5.1",
-    "typedoc": "^0.17.6",
+    "typedoc": "^0.17.8",
     "typescript": "3.9.3"
   },
   "files": [
