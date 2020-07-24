@@ -31,6 +31,7 @@ import {
 } from '../../entities';
 import { available, GatewayImpl } from '../../gateway';
 import {
+  CreateAccountNoteParams,
   CreateAccountParams,
   CreateAppParams,
   CreateFeaturedTagParams,
@@ -1453,5 +1454,16 @@ export class Masto extends GatewayImpl {
     return this.delete<Reaction>(
       `/api/v1/announcements/${id}/reactions/${name}`,
     );
+  }
+
+  /**
+   * Add personal note to the account
+   * @param id ID of the account
+   * @param param Parameters
+   * @return Relationship
+   */
+  @available({ since: '3.2.0' })
+  createAccountNote(id: string, params: CreateAccountNoteParams) {
+    return this.post<Relationship>(`/api/v1/accounts/${id}/note`, params);
   }
 }

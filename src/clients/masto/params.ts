@@ -131,6 +131,8 @@ export interface CreateMediaAttachmentParams {
   description?: string | null;
   /** Two floating points (x,y), comma-delimited, ranging from -1.0 to 1.0 */
   focus?: string | null;
+  /** Custom thumbnail */
+  thumbnail?: unknown | null;
 }
 
 export type UpdateMediaAttachmentParams = Partial<CreateMediaAttachmentParams>;
@@ -342,4 +344,8 @@ export interface FetchDirectoryParams {
 export interface FetchTrendsParams {
   /** Maximum number of results to return. Defaults to 10. */
   limit: number;
+}
+
+export interface CreateAccountNoteParams {
+  comment: string;
 }

@@ -13,6 +13,8 @@ export interface Card {
   description: string;
   /** The type of the preview card. */
   type: CardType;
+  /** Blurhash */
+  blurhash: string;
 
   /** The author of the original resource. */
   authorName?: string | null;

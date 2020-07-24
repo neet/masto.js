@@ -21,10 +21,17 @@ export interface AttachmentMetaFocus {
   y: number;
 }
 
+export interface AttachmentMetaColors {
+  background: string;
+  foreground: string;
+  accent: string;
+}
+
 export interface AttachmentMeta {
   small?: AttachmentMetaImage | AttachmentMetaVideo | null;
   original?: AttachmentMetaImage | AttachmentMetaVideo | null;
   focus?: AttachmentMetaFocus | null;
+  colors?: AttachmentMetaColors | null;
 }
 
 /**
@@ -43,6 +50,8 @@ export interface Attachment {
 
   /** The location of the full-size original attachment on the remote website. */
   remoteUrl?: string | null;
+  /** Remote version of previewUrl */
+  previewRemoteUrl?: string | null;
   /** A shorter URL for the attachment. */
   textUrl?: string | null;
   /** Metadata returned by Paperclip. */
