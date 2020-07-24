@@ -21,10 +21,17 @@ export interface AttachmentMetaFocus {
   y: number;
 }
 
+export interface AttachmentMetaColors {
+  background: string;
+  foreground: string;
+  accent: string;
+}
+
 export interface AttachmentMeta {
   small?: AttachmentMetaImage | AttachmentMetaVideo | null;
   original?: AttachmentMetaImage | AttachmentMetaVideo | null;
   focus?: AttachmentMetaFocus | null;
+  colors?: AttachmentMetaColors | null;
 }
 
 /**
