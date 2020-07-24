@@ -25,4 +25,6 @@ export interface Relationship {
   domainBlocking: boolean;
   /** Is this user blocking you? */
   blockedBy: boolean;
+  /** Personal note for this account */
+  note?: string | null;
 }

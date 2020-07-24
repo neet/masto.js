@@ -343,3 +343,7 @@ export interface FetchTrendsParams {
   /** Maximum number of results to return. Defaults to 10. */
   limit: number;
 }
+
+export interface CreateNoteToAccount {
+  note: string;
+}
