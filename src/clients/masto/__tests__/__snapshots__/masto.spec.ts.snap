@@ -307,6 +307,25 @@ exports[`Masto createMediaAttachment v1 1`] = `
 }
 `;
 
+exports[`Masto createNoteToAccount 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/accounts/123/note",
+      Object {
+        "comment": "foo",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
 exports[`Masto createPushSubscription 1`] = `
 [MockFunction] {
   "calls": Array [

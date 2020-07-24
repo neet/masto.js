@@ -346,6 +346,6 @@ export interface FetchTrendsParams {
   limit: number;
 }
 
-export interface CreateNoteToAccount {
-  note: string;
+export interface CreateAccountNoteParams {
+  comment: string;
 }

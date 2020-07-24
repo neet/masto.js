@@ -502,7 +502,11 @@ describe('Masto', () => {
     });
     expect(mockPost).toBeCalledTimes(1);
     expect(mockPost).toMatchSnapshot();
-    expect(mockPost).toBeCalledWith('/api/v2/media', expect.anything(), expect.anything());
+    expect(mockPost).toBeCalledWith(
+      '/api/v2/media',
+      expect.anything(),
+      expect.anything(),
+    );
   });
 
   test('createMediaAttachment v1', async () => {
@@ -513,8 +517,12 @@ describe('Masto', () => {
     });
     expect(mockPost).toBeCalledTimes(1);
     expect(mockPost).toMatchSnapshot();
-    expect(mockPost).toBeCalledWith('/api/v1/media', expect.anything(), expect.anything());
-  })
+    expect(mockPost).toBeCalledWith(
+      '/api/v1/media',
+      expect.anything(),
+      expect.anything(),
+    );
+  });
 
   test('updateMediaAttachment', async () => {
     await masto.updateMediaAttachment('123123', {
@@ -994,5 +1002,11 @@ describe('Masto', () => {
     await masto.fetchSuggestedFeaturedTags();
     expect(mockGet).toBeCalledTimes(1);
     expect(mockGet).toMatchSnapshot();
+  });
+
+  test('createNoteToAccount', async () => {
+    await masto.createAccountNote('123', { comment: 'foo' });
+    expect(mockPost).toBeCalledTimes(1);
+    expect(mockPost).toMatchSnapshot();
   });
 });

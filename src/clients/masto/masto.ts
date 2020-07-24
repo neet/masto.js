@@ -31,12 +31,12 @@ import {
 } from '../../entities';
 import { available, GatewayImpl } from '../../gateway';
 import {
+  CreateAccountNoteParams,
   CreateAccountParams,
   CreateAppParams,
   CreateFeaturedTagParams,
   CreateMarkersParams,
   CreateMediaAttachmentParams,
-  CreateNoteToAccount,
   CreatePushSubscriptionParams,
   CreateStatusParams,
   FetchAccessTokenParams,
@@ -1463,7 +1463,7 @@ export class Masto extends GatewayImpl {
    * @return Relationship
    */
   @available({ since: '3.2.0' })
-  createNoteToAccount(id: string, params: CreateNoteToAccount) {
+  createAccountNote(id: string, params: CreateAccountNoteParams) {
     return this.post<Relationship>(`/api/v1/accounts/${id}/note`, params);
   }
 }
