@@ -9,7 +9,6 @@
   <a href="https://github.com/neet/masto.js/actions"><img src="https://github.com/neet/masto.js/workflows/CI/badge.svg" /></a>
   <a href="https://codecov.io/gh/neet/masto.js"><img src="https://codecov.io/gh/neet/masto.js/branch/master/graph/badge.svg" /></a>
   <a href="https://codeclimate.com/github/neet/masto.js/maintainability"><img src="https://api.codeclimate.com/v1/badges/f56a1d2e6728a89d0a94/maintainability" /></a>
-  <a href="https://mastodon.social/@neet"><img src="https://img.shields.io/mastodon/follow/76721?style=social" alt="Mastodon" /></a>
 </p>
 
 <p align="center">
