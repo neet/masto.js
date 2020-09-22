@@ -13,7 +13,7 @@
 
 <p align="center">
   <a href="https://github.com/neet/masto.js/tree/master/examples">Examples</a> |
-  <a href="https://git.io/Je02X">Read the Docs</a> |
+  <a href="https://git.io/JUgU8">Read the Docs</a> |
   <a href="https://github.com/neet/masto.js/releases">Releases</a> |
   <a href="https://github.com/neet/masto.js/issues">Issues</a>
 </p>
