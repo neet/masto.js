@@ -1009,4 +1009,10 @@ describe('Masto', () => {
     expect(mockPost).toBeCalledTimes(1);
     expect(mockPost).toMatchSnapshot();
   });
+
+  test('fetchMediaAttachment', async () => {
+    await masto.fetchMediaAttachment('123');
+    expect(mockGet).toBeCalledTimes(1);
+    expect(mockGet).toMatchSnapshot();
+  });
 });

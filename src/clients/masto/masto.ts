@@ -30,6 +30,7 @@ import {
   Token,
 } from '../../entities';
 import { available, GatewayImpl } from '../../gateway';
+import { delay } from '../../utils/delay';
 import {
   CreateAccountNoteParams,
   CreateAccountParams,
@@ -781,6 +782,16 @@ export class Masto extends GatewayImpl {
   }
 
   /**
+   * Fetches an attachment to be used with a new status.
+   * @param id ID of the attachment
+   * @see https://github.com/tootsuite/mastodon/pull/13210
+   */
+  @available({ since: '3.1.3' })
+  fetchMediaAttachment(id: string) {
+    return this.get<Attachment>(`/api/v1/media/${id}`);
+  }
+
+  /**
    * Update an Attachment, before it is attached to a status and posted.
    * @param id The id of the Attachment entity to be updated
    * @param params Parameters
@@ -1465,5 +1476,26 @@ export class Masto extends GatewayImpl {
   @available({ since: '3.2.0' })
   createAccountNote(id: string, params: CreateAccountNoteParams) {
     return this.post<Relationship>(`/api/v1/accounts/${id}/note`, params);
+  }
+
+  /**
+   * @experimental
+   * @param id ID of the media
+   * @param interval interval of polling
+   * @returns Media attachment that has done processing
+   */
+  async waitForMediaAttachment(id: string, interval = 1000) {
+    let media: Attachment | null = null;
+
+    while (media == null) {
+      await delay(interval);
+      const processing = await this.fetchMediaAttachment(id);
+
+      if (processing.url != null) {
+        media = processing;
+      }
+    }
+
+    return media;
   }
 }
