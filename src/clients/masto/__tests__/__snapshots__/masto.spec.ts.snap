@@ -1103,6 +1103,22 @@ exports[`Masto fetchMarkers 1`] = `
 }
 `;
 
+exports[`Masto fetchMediaAttachment 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/media/123",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
 exports[`Masto fetchMutes 1`] = `
 [MockFunction] {
   "calls": Array [

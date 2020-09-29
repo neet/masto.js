@@ -8,10 +8,12 @@ import { Masto } from 'masto';
   });
 
   // Upload the image
-  const attachment = await masto.createMediaAttachment({
-    file: fs.createReadStream('../some_image.png'),
-    description: 'Some image',
-  });
+  const attachment = await masto
+    .createMediaAttachment({
+      file: fs.createReadStream('../some_image.png'),
+      description: 'Some image',
+    })
+    .then(({ id }) => masto.waitForMediaAttachment(id));
 
   // Toot!
   masto.createStatus({
