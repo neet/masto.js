@@ -44,7 +44,7 @@ export interface Attachment {
   /** The type of the attachment. */
   type: AttachmentType;
   /** The location of the original full-size attachment. */
-  url: string;
+  url?: string | null;
   /** The location of a scaled-down preview of the attachment. */
   previewUrl: string;
 
