@@ -1,15 +1,17 @@
 import { MastoTimeoutError } from '../errors';
 
-export const timeout = <T>(
-  promise: Promise<T>,
-  ms: number = Number.MAX_SAFE_INTEGER,
-) =>
-  Promise.race([
-    promise,
-    new Promise((_, reject) =>
+export const timeout = <T>(task: Promise<T>, ms?: number): Promise<T> => {
+  if (ms == null) {
+    return task;
+  }
+
+  return Promise.race([
+    task,
+    new Promise<never>((_, reject) =>
       setTimeout(
         () => reject(new MastoTimeoutError(`Timeout of ${ms}ms exceeded`)),
         ms,
       ),
     ),
   ]);
+};
