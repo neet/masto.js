@@ -31,6 +31,7 @@ import {
 } from '../../entities';
 import { available, GatewayImpl } from '../../gateway';
 import { delay } from '../../utils/delay';
+import { timeout } from '../../utils/timeout';
 import {
   CreateAccountNoteParams,
   CreateAccountParams,
@@ -1485,17 +1486,22 @@ export class Masto extends GatewayImpl {
    * @returns Media attachment that has done processing
    */
   async waitForMediaAttachment(id: string, interval = 1000) {
-    let media: Attachment | null = null;
+    return timeout(
+      (async () => {
+        let media: Attachment | null = null;
 
-    while (media == null) {
-      await delay(interval);
-      const processing = await this.fetchMediaAttachment(id);
+        while (media == null) {
+          await delay(interval);
+          const processing = await this.fetchMediaAttachment(id);
 
-      if (processing.url != null) {
-        media = processing;
-      }
-    }
+          if (processing.url != null) {
+            media = processing;
+          }
+        }
 
-    return media;
+        return media;
+      })(),
+      this.timeout,
+    );
   }
 }
