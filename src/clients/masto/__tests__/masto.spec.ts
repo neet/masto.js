@@ -1015,4 +1015,15 @@ describe('Masto', () => {
     expect(mockGet).toBeCalledTimes(1);
     expect(mockGet).toMatchSnapshot();
   });
+
+  test('waitForMediaAttachment', async () => {
+    ((mockGet as any) as jest.Mock).mockResolvedValueOnce({ url: null });
+    setTimeout(() => {
+      ((mockGet as any) as jest.Mock)
+        .mockResolvedValueOnce({ url: 'https://example.com'});
+    }, 1100);
+    await masto.waitForMediaAttachment('123');
+    expect(mockGet).toBeCalledTimes(2);
+    expect(mockGet).toMatchSnapshot();
+  })
 });

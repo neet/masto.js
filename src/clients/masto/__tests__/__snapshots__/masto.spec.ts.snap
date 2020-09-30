@@ -2355,3 +2355,26 @@ exports[`Masto votePoll 1`] = `
   ],
 }
 `;
+
+exports[`Masto waitForMediaAttachment 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/media/123",
+    ],
+    Array [
+      "/api/v1/media/123",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+    Object {
+      "type": "return",
+      "value": Promise {},
+    },
+  ],
+}
+`;
