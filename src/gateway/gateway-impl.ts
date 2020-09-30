@@ -29,7 +29,7 @@ import { transformKeys } from './transform-keys';
  * Mastodon network request wrapper
  * @param params Optional params
  */
-export class GatewayImpl implements Gateway<AxiosRequestConfig> {
+export class GatewayImpl implements Gateway {
   /** Configured axios instance */
   private axios: AxiosInstance;
   /** URI of the instance */
@@ -44,7 +44,7 @@ export class GatewayImpl implements Gateway<AxiosRequestConfig> {
   /**
    * @param params Parameters
    */
-  constructor(params: GatewayConstructorParams<AxiosRequestConfig>) {
+  constructor(params: GatewayConstructorParams) {
     this.uri = params.uri;
     this.version = params.version;
 

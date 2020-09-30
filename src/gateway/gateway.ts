@@ -1,3 +1,4 @@
+import { AxiosRequestConfig } from 'axios';
 import { ParsedUrlQueryInput } from 'querystring';
 
 import { EventHandler } from './event-handler';
@@ -35,7 +36,7 @@ export interface Gateway<Options = undefined> {
   ): AsyncGenerator<T, void, PaginateNext<U>>;
 }
 
-export interface GatewayConstructorParams<T = undefined> {
+export interface GatewayConstructorParams {
   /** URI of the instance */
   uri: string;
   /** Streaming API URL */
@@ -45,7 +46,7 @@ export interface GatewayConstructorParams<T = undefined> {
   /** Access token of the user */
   accessToken?: string;
   /** Axios configurations. See [Axios'](https://github.com/axios/axios#request-config) docs */
-  defaultOptions?: T;
+  defaultOptions?: AxiosRequestConfig;
 }
 
 export type LoginParams = Omit<
@@ -53,7 +54,7 @@ export type LoginParams = Omit<
   'version' | 'streamingApiUrl'
 >;
 
-export interface GatewayConstructor<Options = undefined> {
-  new (params: GatewayConstructorParams<Options>): Gateway;
+export interface GatewayConstructor {
+  new (params: GatewayConstructorParams): Gateway;
   login(params: LoginParams): Promise<Gateway>;
 }
