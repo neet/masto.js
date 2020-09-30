@@ -67,6 +67,10 @@ export class GatewayImpl implements Gateway<AxiosRequestConfig> {
     this.axios.defaults.headers.common.Authorization = `Bearer ${this.accessToken}`;
   }
 
+  get timeout() {
+    return this.axios.defaults.timeout;
+  }
+
   get uri() {
     return this._uri;
   }
