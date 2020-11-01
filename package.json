@@ -19,7 +19,7 @@
     "docs:build": "typedoc ./src && touch ./docs/.nojekyll"
   },
   "dependencies": {
-    "@types/ws": "^7.2.6",
+    "@types/ws": "^7.2.9",
     "axios": "^0.20.0",
     "change-case": "^4.1.1",
     "eventemitter3": "^4.0.7",
