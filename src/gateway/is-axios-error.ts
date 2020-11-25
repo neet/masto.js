@@ -1,4 +1,4 @@
-import { AxiosError } from 'axios';
+import type { AxiosError } from 'axios';
 
 // https://github.com/axios/axios/issues/2013
 export const isAxiosError = (error: unknown): error is AxiosError => {
