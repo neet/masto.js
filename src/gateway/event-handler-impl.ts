@@ -8,7 +8,8 @@ import { transformKeys } from './transform-keys';
 /**
  * Mastodon streaming api wrapper
  */
-export class EventHandlerImpl extends EventEmitter<EventTypeMap>
+export class EventHandlerImpl
+  extends EventEmitter<EventTypeMap>
   implements EventHandler {
   private ws?: WebSocket;
 
