@@ -104,17 +104,17 @@
 				<p>First, open <code>/settings/applications/new</code> of your instance on your browser and create new application.</p>
 				<p><img src="https://i.imgur.com/lgbt0l5.png" alt="Create New App"></p>
 				<p>Then, here&#39;s a simple example that creates a toot. Replace <code>TOKEN</code> to your own access token.</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Masto } <span class="hljs-keyword">from</span> <span class="hljs-string">'masto'</span>;
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Masto } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;masto&#x27;</span>;
 
 <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-keyword">const</span> masto = <span class="hljs-keyword">await</span> Masto.login({
-    uri: <span class="hljs-string">'https://example.com'</span>,
-    accessToken: <span class="hljs-string">'TOKEN'</span>,
+    <span class="hljs-attr">uri</span>: <span class="hljs-string">&#x27;https://example.com&#x27;</span>,
+    <span class="hljs-attr">accessToken</span>: <span class="hljs-string">&#x27;TOKEN&#x27;</span>,
   });
 
   <span class="hljs-keyword">await</span> masto.createStatus({
-    status: <span class="hljs-string">'Hello Mastodon!'</span>,
-    visibility: <span class="hljs-string">'direct'</span>,
+    <span class="hljs-attr">status</span>: <span class="hljs-string">&#x27;Hello Mastodon!&#x27;</span>,
+    <span class="hljs-attr">visibility</span>: <span class="hljs-string">&#x27;direct&#x27;</span>,
   });
 };
 
@@ -129,9 +129,9 @@ main();</code></pre>
 				<p>A. Masto.js is using <a href="https://github.com/tc39/proposal-async-iteration">AsyncIterator</a> which is very new JS feature and it may not be supported in particular environments. So in browsers, you need to use a polyfill like <a href="https://babeljs.io/docs/en/babel-plugin-proposal-async-generator-functions">Babel&#39;s</a>. In Node.js, it is supported on <a href="https://medium.com/@nairihar/async-iteration-in-nodejs-v10-3c17dc00ed9f">v10</a> so you can update and use it.</p>
 				<p>If you&#39;re using Masto.js with TypeScript, you need to add the following config to <code>tsconfig.json</code> for static typing.</p>
 				<pre><code class="language-diff">{
-  "compilerOptions": {
-    "lib": [
-<span class="hljs-addition">+      "esnext.asynciterable"</span>
+  &quot;compilerOptions&quot;: {
+    &quot;lib&quot;: [
+<span class="hljs-addition">+      &quot;esnext.asynciterable&quot;</span>
       ...</code></pre>
 				<a href="#contribution" id="contribution" style="color: inherit; text-decoration: none;">
 					<h2>Contribution</h2>
@@ -357,7 +357,6 @@ main();</code></pre>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
-				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
 			</ul>
 		</div>
 	</div>
