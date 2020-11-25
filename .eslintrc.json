@@ -35,6 +35,6 @@
       }
     ],
     "no-console": "error",
-    "simple-import-sort/sort": "error"
+    "simple-import-sort/imports": "error"
   }
 }
