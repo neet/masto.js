@@ -39,7 +39,7 @@
     "@typescript-eslint/eslint-plugin": "^4.9.0",
     "@typescript-eslint/parser": "^4.8.2",
     "codecov": "^3.8.1",
-    "cspell": "^4.2.2",
+    "cspell": "^4.2.5",
     "eslint": "^7.14.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-import": "^2.22.1",
