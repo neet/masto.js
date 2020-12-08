@@ -28,7 +28,11 @@ export const available = ({ since, until }: AvailableParams) => (
     this: Gateway,
     ...args: Parameters<typeof original>
   ) {
-    if (since && this.version && semver.lt(this.version, since)) {
+    if (
+      since &&
+      this.version &&
+      semver.lt(this.version, since, { loose: true })
+    ) {
       throw new MastoNotFoundError(
         `${String(name)} is not available with the current ` +
           `Mastodon version ${this.version}. ` +
@@ -36,7 +40,11 @@ export const available = ({ since, until }: AvailableParams) => (
       );
     }
 
-    if (until && this.version && semver.gt(this.version, until)) {
+    if (
+      until &&
+      this.version &&
+      semver.gt(this.version, until, { loose: true })
+    ) {
       throw new MastoNotFoundError(
         `${String(name)} is not available with the current ` +
           `Mastodon version ${this.version}. ` +

@@ -322,7 +322,11 @@ export class GatewayImpl implements Gateway {
 
     // Since v2.8.4, it is supported to pass access token with`Sec-Websocket-Protocol`
     // https://github.com/tootsuite/mastodon/pull/10818
-    if (this.accessToken && this.version && semver.gte(this.version, '2.8.4')) {
+    if (
+      this.accessToken &&
+      this.version &&
+      semver.gte(this.version, '2.8.4', { loose: true })
+    ) {
       protocols.push(this.accessToken);
     } else if (this.accessToken) {
       params.accessToken = this.accessToken;
