@@ -776,7 +776,7 @@ export class Masto extends GatewayImpl {
    */
   @available({ since: '0.0.0' })
   createMediaAttachment(params: CreateMediaAttachmentParams) {
-    const v = semver.gt(this.version, '3.1.3') ? 'v2' : 'v1';
+    const v = semver.gt(this.version, '3.1.3', { loose: true }) ? 'v2' : 'v1';
     return this.post<Attachment>(`/api/${v}/media`, params, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
@@ -1045,7 +1045,7 @@ export class Masto extends GatewayImpl {
    */
   @available({ since: '0.0.0' })
   search(params: SearchParams) {
-    const v = semver.gt(this.version, '2.4.1') ? 'v2' : 'v1';
+    const v = semver.gt(this.version, '2.4.1', { loose: true }) ? 'v2' : 'v1';
     return this.paginate<Results, typeof params>(`/api/${v}/search`, params);
   }
 
