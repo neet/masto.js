@@ -1,4 +1,5 @@
 export * from './account';
+export * from './account-featured-tags';
 export * from './activity';
 export * from './admin-account';
 export * from './admin-report';

@@ -3,6 +3,7 @@ import semver from 'semver';
 import {
   Account,
   AccountCredentials,
+  AccountFeaturedTag,
   Activity,
   Announcement,
   Attachment,
@@ -1486,7 +1487,9 @@ export class Masto extends GatewayImpl {
    */
   @available({ since: '3.3.0' })
   fetchAccountFeaturedTags(id: string) {
-    return this.get<FeaturedTag[]>(`/api/v1/accounts/${id}/featured_tags`);
+    return this.get<AccountFeaturedTag[]>(
+      `/api/v1/accounts/${id}/featured_tags`,
+    );
   }
 
   /**
