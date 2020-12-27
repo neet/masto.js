@@ -1480,6 +1480,16 @@ export class Masto extends GatewayImpl {
   }
 
   /**
+   * Get featured tag of the account
+   * @param id ID of the account
+   * @return FeaturedTags
+   */
+  @available({ since: '3.3.0' })
+  fetchAccountFeaturedTags(id: string) {
+    return this.get<FeaturedTag[]>(`/api/v1/accounts/${id}/featured_tags`);
+  }
+
+  /**
    * @experimental
    * @param id ID of the media
    * @param interval interval of polling

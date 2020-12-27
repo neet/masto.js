@@ -548,6 +548,22 @@ exports[`Masto fetchAccount 1`] = `
 }
 `;
 
+exports[`Masto fetchAccountFeaturedTags 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "/api/v1/accounts/123/featured_tags",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
 exports[`Masto fetchAccountFollowers 1`] = `
 [MockFunction] {
   "calls": Array [
