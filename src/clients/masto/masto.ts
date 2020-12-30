@@ -3,6 +3,7 @@ import semver from 'semver';
 import {
   Account,
   AccountCredentials,
+  AccountFeaturedTag,
   Activity,
   Announcement,
   Attachment,
@@ -1477,6 +1478,18 @@ export class Masto extends GatewayImpl {
   @available({ since: '3.2.0' })
   createAccountNote(id: string, params: CreateAccountNoteParams) {
     return this.post<Relationship>(`/api/v1/accounts/${id}/note`, params);
+  }
+
+  /**
+   * Get featured tag of the account
+   * @param id ID of the account
+   * @return FeaturedTags
+   */
+  @available({ since: '3.3.0' })
+  fetchAccountFeaturedTags(id: string) {
+    return this.get<AccountFeaturedTag[]>(
+      `/api/v1/accounts/${id}/featured_tags`,
+    );
   }
 
   /**
