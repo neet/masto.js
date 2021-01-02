@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@types/ws": "^7.4.0",
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "change-case": "^4.1.1",
     "eventemitter3": "^4.0.7",
     "isomorphic-form-data": "^2.0.0",
