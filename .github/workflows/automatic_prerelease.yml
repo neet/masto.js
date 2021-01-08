@@ -7,7 +7,7 @@ on:
 name: Automatic Prerelease
 
 jobs:
-  build:
+  prerelease:
     name: Create Release
     runs-on: ubuntu-latest
     steps:
