@@ -22,5 +22,5 @@ jobs:
 
       - name: Prerelease
         run: |
-          yarn run release --prerelease
+          yarn run release
           git push origin master
