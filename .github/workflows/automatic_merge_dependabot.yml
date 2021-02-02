@@ -12,4 +12,4 @@ jobs:
         with:
           # only merge when PR is a minor bump
           target: minor
-          github-token: ${{ github.token }}
+          github-token: ${{ secrets.MERGE_TOKEN }}
