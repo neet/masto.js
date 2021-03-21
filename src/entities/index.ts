@@ -1,8 +1,7 @@
 export * from './account';
 export * from './account-featured-tags';
 export * from './activity';
-export * from './admin-account';
-export * from './admin-report';
+export * as Admin from './admin';
 export * from './announcement';
 export * from './application';
 export * from './attachment';
