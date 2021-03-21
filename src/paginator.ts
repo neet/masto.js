@@ -20,16 +20,21 @@ export class Paginator<Params, Result>
   };
 
   async next(params?: Params): Promise<IteratorResult<Result>> {
+    if (this.nextUrl == null) {
+      return { done: true, value: null };
+    }
+
     const response: Response<Result> = await this.http.request({
       method: 'get',
-      path: params ? this.nextUrl : this.initialUrl,
+      // if no params specified, use link header
+      url: params ? this.initialUrl : this.nextUrl,
       body: params ?? this.nextParams,
     });
 
     this.nextUrl = this.pluckNext(response.headers?.link as string);
 
     return {
-      done: this.nextUrl != null,
+      done: false,
       value: response.data,
     };
   }

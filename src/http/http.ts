@@ -2,7 +2,7 @@ export type Headers = { readonly [key: string]: unknown };
 export type Body = unknown;
 
 export type Request = {
-  readonly path?: string;
+  readonly url?: string;
   readonly method?: 'get' | 'post' | 'patch' | 'delete' | 'put' | 'options';
   readonly headers?: Headers;
   readonly body?: Body;

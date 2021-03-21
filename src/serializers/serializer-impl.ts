@@ -28,7 +28,12 @@ export class SerializerImpl implements Serializer {
     }
   }
 
-  deserialize<T = Record<string, unknown>>(_type: MimeType, data: string): T {
-    return transformKeys(JSON.parse(data), camelCase);
+  deserialize<T = Record<string, unknown>>(type: MimeType, data: string): T {
+    switch (type) {
+      case 'application/json':
+        return transformKeys(JSON.parse(data), camelCase);
+      default:
+        throw new Error(`Unknown content type ${type}, ${data}`);
+    }
   }
 }

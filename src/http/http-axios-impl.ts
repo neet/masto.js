@@ -31,7 +31,10 @@ export class HttpAxiosImpl implements Http {
       transformRequest: (data, headers) =>
         this.serializer.serialize(headers['Content-Type'], data),
       transformResponse: (data, headers) =>
-        this.serializer.deserialize(headers['Content-Type'], data),
+        this.serializer.deserialize(
+          headers['Content-Type'] ?? 'application/json',
+          data,
+        ),
       paramsSerializer: (params) =>
         this.serializer.serialize('application/json', params) as string,
       ...config,
@@ -76,46 +79,46 @@ export class HttpAxiosImpl implements Http {
     }
   }
 
-  get<T>(path: string, body?: Body, init: Request = {}): Promise<T> {
+  get<T>(url: string, body?: Body, init: Request = {}): Promise<T> {
     return this.request({
       method: 'get',
-      path,
+      url,
       body,
       ...init,
     }).then((response) => response.data as T);
   }
 
-  post<T>(path: string, body?: Body, init: Request = {}): Promise<T> {
+  post<T>(url: string, body?: Body, init: Request = {}): Promise<T> {
     return this.request({
       method: 'post',
-      path,
+      url,
       body,
       ...init,
     }).then((response) => response.data as T);
   }
 
-  delete<T>(path: string, body?: Body, init: Request = {}): Promise<T> {
+  delete<T>(url: string, body?: Body, init: Request = {}): Promise<T> {
     return this.request({
       method: 'delete',
-      path,
+      url,
       body,
       ...init,
     }).then((response) => response.data as T);
   }
 
-  put<T>(path: string, body?: Body, init: Request = {}): Promise<T> {
+  put<T>(url: string, body?: Body, init: Request = {}): Promise<T> {
     return this.request({
       method: 'put',
-      path,
+      url,
       body,
       ...init,
     }).then((response) => response.data as T);
   }
 
-  patch<T>(path: string, body?: Body, init: Request = {}): Promise<T> {
+  patch<T>(url: string, body?: Body, init: Request = {}): Promise<T> {
     return this.request({
       method: 'patch',
-      path,
+      url,
       body,
       ...init,
     }).then((response) => response.data as T);
