@@ -1,6 +1,7 @@
 import 'isomorphic-form-data';
 
 import { camelCase, snakeCase } from 'change-case';
+import { ParsedUrlQuery, stringify } from 'querystring';
 
 import { flattenObject } from './form-data';
 import { MimeType, Serializer } from './serializer';
@@ -23,6 +24,8 @@ export class SerializerImpl implements Serializer {
           .forEach(([key, value]) => formData.append(key, value as string));
         return formData;
       }
+      case 'application/x-www-form-urlencoded':
+        return stringify(data as ParsedUrlQuery);
       default:
         return;
     }

@@ -1,6 +1,5 @@
 import EventEmitter from 'eventemitter3';
 import WebSocket from 'isomorphic-ws';
-import querystring, { ParsedUrlQuery } from 'querystring';
 import semver from 'semver';
 
 import { Serializer } from '../serializers';
@@ -33,9 +32,9 @@ export class WsEventsImpl
     return new Promise<WsEvents>((resolve, reject) => {
       const ws = new WebSocket(url, protocols);
       const instance = new WsEventsImpl(ws, serializer);
-      ws.addEventListener('open', () => resolve(instance));
       ws.addEventListener('message', instance.handleMessage);
       ws.addEventListener('error', reject);
+      ws.addEventListener('open', () => resolve(instance));
     });
   }
 
@@ -51,7 +50,7 @@ export class WsEventsImpl
    * Parse JSON data and emit it as an event
    * @param message Websocket message
    */
-  handleMessage = ({ data }: { data: string }) => {
+  private handleMessage = ({ data }: { data: string }) => {
     const event = this.serializer.deserialize<Event>('application/json', data);
     let args: EventTypeMap[EventType] = [];
 
@@ -73,7 +72,10 @@ export class WsImpl implements Ws {
     private readonly accessToken?: string,
   ) {}
 
-  stream(path: string, rawParams: Record<string, unknown>): Promise<WsEvents> {
+  stream(
+    path: string,
+    rawParams: Record<string, unknown> = {},
+  ): Promise<WsEvents> {
     // Since v2.8.4, it is supported to pass access token with`Sec-Websocket-Protocol`
     // https://github.com/tootsuite/mastodon/pull/10818
     const protocols = [];
@@ -87,11 +89,9 @@ export class WsImpl implements Ws {
       rawParams.accessToken = this.accessToken;
     }
 
-    const params = querystring.stringify(
-      this.serializer.serialize(
-        'application/json',
-        rawParams,
-      ) as ParsedUrlQuery,
+    const params = this.serializer.serialize(
+      'application/x-www-form-urlencoded',
+      rawParams,
     );
 
     const url =

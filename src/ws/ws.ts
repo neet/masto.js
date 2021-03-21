@@ -28,7 +28,10 @@ export interface Event {
 export interface WsEvents {
   // readonly connect: () => Promise<WsEvents>;
   readonly disconnect: () => void;
-  readonly on: (name: string, cb: () => void) => void;
+  readonly on: <T extends EventType>(
+    name: T,
+    cb: (...data: EventTypeMap[T]) => void,
+  ) => void;
 }
 
 export interface Ws {
