@@ -1,0 +1,15 @@
+import { Ws, WsEvents } from './ws';
+
+export const wsDisconnect = jest.fn();
+export const wsOn = jest.fn();
+export const wsStream = jest.fn();
+
+export class WsEventsMockImpl implements WsEvents {
+  static connect = jest.fn();
+  disconnect = wsDisconnect;
+  on = wsOn;
+}
+
+export class WsMockImpl implements Ws {
+  stream = wsStream;
+}

@@ -33,13 +33,13 @@ export interface CreateStatusParamsWithStatus extends CreateStatusParamsBase {
   /** Text content of the status. If `media_ids` is provided, this becomes optional. Attaching a `poll` is optional while `status` is provided. */
   readonly status: string;
   /** Array of Attachment ids to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used. */
-  readonly mediaIds?: string[] | null;
+  readonly mediaIds?: never;
   readonly poll?: CreateStatusPollParam | null;
 }
 
 export interface CreateStatusParamsWithMediaIds extends CreateStatusParamsBase {
   /** Array of Attachment ids to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used. */
-  readonly mediaIds: string[] | null;
+  readonly mediaIds: readonly string[];
   /** Text content of the status. If `media_ids` is provided, this becomes optional. Attaching a `poll` is optional while `status` is provided. */
   readonly status?: string | null;
   readonly poll?: never;
