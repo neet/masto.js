@@ -1,36 +1,21 @@
 name: Publish
 
 on:
-  release:
-    types: [published]
+  schedule:
+    - cron: '0 0 * * *'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [10]
-
+    env:
+      GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      NPM_TOKEN: ${{secrets.NPM_TOKEN}}
     steps:
-      - uses: actions/checkout@v1
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Set npm token
-        run: npm config set "//registry.npmjs.org/:_authToken" $NPM_TOKEN
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Publish package with next tag when prereleased
-        if: github.event.release.prerelease
-        run: npm publish --tag next
-      
-      - name: Publish package with latest tag when released
-        if: github.event.release.prerelease != true
-        run: npm publish
+          node-version: 14
+      - run: yarn install --frozen-lockfiles
+      - run: yarn test
+      - run: yarn build
+      - run: yarn run semantic-release
