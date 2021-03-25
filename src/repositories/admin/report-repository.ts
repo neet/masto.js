@@ -19,7 +19,7 @@ export class ReportRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '2.9.1' })
-  fetchReports(params?: AdminFetchReportsParams): Promise<Admin.Report[]> {
+  fetchAll(params?: AdminFetchReportsParams): Promise<Admin.Report[]> {
     return this.http.get('/api/v1/admin/reports', params);
   }
 
@@ -30,7 +30,7 @@ export class ReportRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '2.9.1' })
-  fetchReport(id: string): Promise<Admin.Report> {
+  fetch(id: string): Promise<Admin.Report> {
     return this.http.get(`/api/v1/admin/reports/${id}`);
   }
 
@@ -41,7 +41,7 @@ export class ReportRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '2.9.1' })
-  assignReportToSelf(id: string): Promise<Admin.Report> {
+  assignToSelf(id: string): Promise<Admin.Report> {
     return this.http.post(`/api/v1/admin/reports/${id}/assign_to_self`);
   }
 
@@ -52,7 +52,7 @@ export class ReportRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '2.9.1' })
-  unassignReport(id: string): Promise<Admin.Report> {
+  unassign(id: string): Promise<Admin.Report> {
     return this.http.post(`/api/v1/admin/reports/${id}/unassign`);
   }
 
@@ -63,7 +63,7 @@ export class ReportRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '2.9.1' })
-  resolveReport(id: string): Promise<Admin.Report> {
+  resolve(id: string): Promise<Admin.Report> {
     return this.http.post(`/api/v1/admin/reports/${id}/resolve`);
   }
 
@@ -74,7 +74,7 @@ export class ReportRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '2.9.1' })
-  reopenReport(id: string): Promise<Admin.Report> {
+  reopen(id: string): Promise<Admin.Report> {
     return this.http.post(`/api/v1/admin/reports/${id}/reopen`);
   }
 }

@@ -62,7 +62,7 @@ export class AccountRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '2.9.1' })
-  fetchAccounts(params?: AdminFetchAccountParams): Promise<Admin.Account[]> {
+  fetchAll(params?: AdminFetchAccountParams): Promise<Admin.Account[]> {
     return this.http.get('/api/v1/admin/accounts', params);
   }
 
@@ -73,7 +73,7 @@ export class AccountRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '2.9.1' })
-  fetchAccount(id: string): Promise<Admin.Account> {
+  fetch(id: string): Promise<Admin.Account> {
     return this.http.get(`/api/v1/admin/accounts/${id}`);
   }
 
@@ -85,10 +85,7 @@ export class AccountRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '2.9.1' })
-  actionAccount(
-    id: string,
-    params: AdminActionAccountParams,
-  ): Promise<Admin.Account> {
+  createAction(id: string, params: AdminActionAccountParams): Promise<Admin.Account> {
     return this.http.post(`/api/v1/admin/accounts/${id}/action`, params);
   }
 
@@ -99,7 +96,7 @@ export class AccountRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '2.9.1' })
-  approveAccount(id: string): Promise<Admin.Account> {
+  approve(id: string): Promise<Admin.Account> {
     return this.http.post(`/api/v1/admin/accounts/${id}/approve`);
   }
 
@@ -110,7 +107,7 @@ export class AccountRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '2.9.1' })
-  rejectAccount(id: string): Promise<Admin.Account> {
+  reject(id: string): Promise<Admin.Account> {
     return this.http.post(`/api/v1/admin/accounts/${id}/reject`);
   }
 
@@ -121,7 +118,7 @@ export class AccountRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '2.9.1' })
-  enableAccount(id: string): Promise<Admin.Account> {
+  enable(id: string): Promise<Admin.Account> {
     return this.http.post(`/api/v1/admin/accounts/${id}/enable`);
   }
 
@@ -132,7 +129,7 @@ export class AccountRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '2.9.1' })
-  unsilenceAccount(id: string): Promise<Admin.Account> {
+  unsilence(id: string): Promise<Admin.Account> {
     return this.http.post(`/api/v1/admin/accounts/${id}/unsilence`);
   }
 
@@ -143,7 +140,7 @@ export class AccountRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '2.9.1' })
-  unsuspendAccount(id: string): Promise<Admin.Account> {
+  unsuspend(id: string): Promise<Admin.Account> {
     return this.http.post(`/api/v1/admin/accounts/${id}/unsuspend`);
   }
 }
