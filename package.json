@@ -7,7 +7,6 @@
   "license": "AGPL-3.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
-  "browser": "./dist/browser.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "test": "npm-run-all test:*",
@@ -33,7 +32,6 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-json": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^11.2.0",
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.31",
     "@types/semver": "^7.3.4",
@@ -51,9 +49,7 @@
     "prettier": "^2.2.1",
     "rollup": "^2.40.0",
     "rollup-plugin-auto-external": "^2.0.0",
-    "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-globals": "^1.4.0",
-    "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.30.0",
     "rxjs": "^6.6.6",
     "standard-version": "^9.1.1",
