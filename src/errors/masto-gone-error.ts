@@ -1,10 +1,12 @@
+import { MastoError } from './masto-error';
+
 /**
  * Mastodon gone error
- * @param message Message for users
  */
-export class MastoGoneError extends Error {
-  constructor(...args: string[]) {
-    super(...args);
-    this.name = 'MastoGoneError';
+export class MastoGoneError extends MastoError {
+  readonly name = 'MastoGoneError';
+
+  constructor(readonly message: string, readonly description?: string) {
+    super();
   }
 }

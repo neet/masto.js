@@ -1,10 +1,13 @@
+import { MastoError } from './masto-error';
+
 /**
  * Mastodon forbidden error
- * @param message Message for users
  */
-export class MastoForbiddenError extends Error {
-  constructor(...args: string[]) {
-    super(...args);
-    this.name = 'MastoForbiddenError';
+export class MastoForbiddenError extends MastoError {
+  readonly name = 'MastoForbiddenError';
+  readonly statusCode = 403;
+
+  constructor(readonly message: string, readonly description?: string) {
+    super();
   }
 }

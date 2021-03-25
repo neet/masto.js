@@ -57,22 +57,29 @@ export class HttpAxiosImpl implements Http {
       const status = error?.response?.status;
       const message =
         error?.response?.data?.error ?? 'Unexpected error occurred';
+      const description = error?.response?.data?.errorDescription;
 
       switch (status) {
         case 401:
-          throw new MastoUnauthorizedError(message);
+          throw new MastoUnauthorizedError(message, description);
         case 403:
-          throw new MastoForbiddenError(message);
+          throw new MastoForbiddenError(message, description);
         case 404:
-          throw new MastoNotFoundError(message);
+          throw new MastoNotFoundError(message, description);
         case 409:
-          throw new MastoConflictError(message);
+          throw new MastoConflictError(message, description);
         case 410:
-          throw new MastoGoneError(message);
+          throw new MastoGoneError(message, description);
         case 422:
-          throw new MastoUnprocessableEntityError(message);
+          throw new MastoUnprocessableEntityError(message, description);
         case 429:
-          throw new MastoRateLimitError(message);
+          throw new MastoRateLimitError(
+            message,
+            error?.response?.headers?.['X-RateLimit-Limit'],
+            error?.response?.headers?.['X-RateLimit-Remaining'],
+            error?.response?.headers?.['X-RateLimit-Reset'],
+            description,
+          );
         default:
           throw error;
       }
