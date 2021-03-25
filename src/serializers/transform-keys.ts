@@ -22,10 +22,14 @@ export const transformKeys = <T>(
     return data.map((value) => transformKeys(value, transform)) as unknown as T;
   }
   
-  return fromEntries<T>(
-    Object.entries(data).map(([key, value]) => [
-      transform(key),
-      isObject(value) ? transformKeys(value, transform) : value,
-    ]) as any,
-  );
+  if (isObject(data)) {
+    return fromEntries<T>(
+      Object.entries(data).map(([key, value]) => [
+        transform(key),
+        isObject(value) ? transformKeys(value, transform) : value,
+      ]) as any,
+    );
+  }
+
+  return data;
 }

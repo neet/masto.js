@@ -60,10 +60,10 @@ export interface SearchParams extends DefaultPaginationParams {
 
 export class FacadeRepositories {
   constructor(
-    readonly http: Http,
-    readonly ws: Ws,
+    private readonly http: Http,
+    private readonly ws: Ws,
     readonly version: string,
-    readonly config: MastoConfig,
+    private readonly config: MastoConfig,
   ) {}
 
   readonly admin = new AdminFacadeRepositories(this.http, this.version);
