@@ -27,7 +27,11 @@ export class MediaAttachmentRepository
       CreateMediaAttachmentParams,
       UpdateMediaAttachmentParams
     > {
-  constructor(private readonly http: Http, readonly version: string) {}
+  constructor(
+    private readonly http: Http,
+    readonly version: string,
+    readonly timeout?: number,
+  ) {}
 
   /**
    * @experimental
@@ -51,8 +55,7 @@ export class MediaAttachmentRepository
 
         return media;
       })(),
-      // TODO: fix
-      3000,
+      this.timeout ?? 3000,
     );
   }
 

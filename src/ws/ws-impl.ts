@@ -2,6 +2,7 @@ import EventEmitter from 'eventemitter3';
 import WebSocket from 'isomorphic-ws';
 import semver from 'semver';
 
+import { MastoConfig } from '../config';
 import { Serializer } from '../serializers';
 import { Event, EventType, EventTypeMap, Ws, WsEvents } from './ws';
 
@@ -68,8 +69,8 @@ export class WsImpl implements Ws {
   constructor(
     private readonly baseUrl: string,
     private readonly version: string,
+    private readonly config: MastoConfig,
     private readonly serializer: Serializer,
-    private readonly accessToken?: string,
   ) {}
 
   stream(
@@ -80,13 +81,13 @@ export class WsImpl implements Ws {
     // https://github.com/tootsuite/mastodon/pull/10818
     const protocols = [];
     if (
-      this.accessToken &&
       this.version &&
+      this.config.accessToken &&
       semver.gte(this.version, '2.8.4', { loose: true })
     ) {
-      protocols.push(this.accessToken);
-    } else if (this.accessToken) {
-      rawParams.accessToken = this.accessToken;
+      protocols.push(this.config.accessToken);
+    } else if (this.config.accessToken) {
+      rawParams.accessToken = this.config.accessToken;
     }
 
     const params = this.serializer.serialize(

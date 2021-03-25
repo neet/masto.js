@@ -20,7 +20,6 @@ export type Method = <T>(
 ) => Promise<T>;
 
 export interface Http {
-  readonly baseURL: string;
   readonly request: <T>(request: Request) => Promise<Response<T>>;
   readonly get: Method;
   readonly post: Method;

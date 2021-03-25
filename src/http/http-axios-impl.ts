@@ -1,5 +1,6 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import axios, { AxiosInstance } from 'axios';
 
+import { MastoConfig } from '../config';
 import {
   MastoConflictError,
   MastoForbiddenError,
@@ -15,17 +16,12 @@ import { Body, Http, Request, Response } from './http';
 export class HttpAxiosImpl implements Http {
   private readonly axios: AxiosInstance;
 
-  constructor(
-    readonly baseURL: string,
-    readonly serializer: Serializer,
-    readonly config: AxiosRequestConfig = {},
-    readonly accessToken?: string,
-  ) {
+  constructor(readonly config: MastoConfig, readonly serializer: Serializer) {
     this.axios = axios.create({
-      baseURL,
-      headers: this.accessToken
+      baseURL: config.url,
+      headers: this.config.accessToken
         ? {
-            Authorization: `Bearer ${this.accessToken}`,
+            Authorization: `Bearer ${this.config.accessToken}`,
           }
         : {},
       transformRequest: (data, headers) =>

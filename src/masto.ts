@@ -1,6 +1,5 @@
-import { AxiosRequestConfig } from 'axios';
-
 import { AdminFacadeRepositories } from './admin';
+import { MastoConfig } from './config';
 import { version } from './decorators';
 import { Results } from './entities';
 import { Http } from './http';
@@ -60,7 +59,12 @@ export interface SearchParams extends DefaultPaginationParams {
 }
 
 export class FacadeRepositories {
-  constructor(readonly http: Http, readonly ws: Ws, readonly version: string) {}
+  constructor(
+    readonly http: Http,
+    readonly ws: Ws,
+    readonly version: string,
+    readonly config: MastoConfig,
+  ) {}
 
   readonly admin = new AdminFacadeRepositories(this.http, this.version);
 
@@ -106,6 +110,7 @@ export class FacadeRepositories {
   readonly mediaAttachments = new MediaAttachmentRepository(
     this.http,
     this.version,
+    this.config.timeout,
   );
 
   readonly mutes = new MuteRepository(this.http, this.version);
@@ -149,19 +154,17 @@ export class FacadeRepositories {
 }
 
 export const login = async (
-  url: string,
-  accessToken?: string,
-  axiosConfig?: AxiosRequestConfig,
+  config: MastoConfig,
 ): Promise<FacadeRepositories> => {
   const serializer = new SerializerImpl();
-  const http = new HttpAxiosImpl(url, serializer, axiosConfig, accessToken);
+  const http = new HttpAxiosImpl(config, serializer);
   const instance = await new InstanceRepository(http, '1.0.0').fetch();
   const ws = new WsImpl(
     instance.urls.streamingApi,
     instance.version,
+    config,
     serializer,
-    accessToken,
   );
 
-  return new FacadeRepositories(http, ws, instance.version);
+  return new FacadeRepositories(http, ws, instance.version, config);
 };
