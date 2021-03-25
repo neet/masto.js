@@ -28,7 +28,7 @@ export class Paginator<Params, Result>
       method: 'get',
       // if no params specified, use link header
       url: params ? this.initialUrl : this.nextUrl,
-      body: params ?? this.nextParams,
+      data: params ?? this.nextParams,
     });
 
     this.nextUrl = this.pluckNext(response.headers?.link as string);

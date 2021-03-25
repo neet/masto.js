@@ -1,11 +1,12 @@
 export type Headers = { readonly [key: string]: unknown };
-export type Body = unknown;
+export type Data = unknown;
 
 export type Request = {
   readonly url?: string;
   readonly method?: 'get' | 'post' | 'patch' | 'delete' | 'put' | 'options';
   readonly headers?: Headers;
-  readonly body?: Body;
+  readonly params?: Data;
+  readonly data?: Data;
 };
 
 export type Response<T> = {
@@ -15,7 +16,7 @@ export type Response<T> = {
 
 export type Method = <T>(
   path: string,
-  body?: Body,
+  data?: Data,
   request?: Request,
 ) => Promise<T>;
 

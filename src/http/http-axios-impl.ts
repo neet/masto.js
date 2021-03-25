@@ -11,7 +11,7 @@ import {
   MastoUnprocessableEntityError,
 } from '../errors';
 import { Serializer } from '../serializers';
-import { Body, Http, Request, Response } from './http';
+import { Data, Http, Request, Response } from './http';
 
 export class HttpAxiosImpl implements Http {
   private readonly axios: AxiosInstance;
@@ -19,21 +19,40 @@ export class HttpAxiosImpl implements Http {
   constructor(readonly config: MastoConfig, readonly serializer: Serializer) {
     this.axios = axios.create({
       baseURL: config.url,
-      headers: this.config.accessToken
-        ? {
-            Authorization: `Bearer ${this.config.accessToken}`,
-          }
-        : {},
-      transformRequest: (data, headers) =>
-        this.serializer.serialize(headers['Content-Type'], data),
+      headers: {
+        Authorization:
+          this.config.accessToken && `Bearer ${this.config.accessToken}`,
+        'Content-Type': 'application/json',
+        ...config.headers,
+      },
+      proxy: config.proxy,
+      timeout: config.timeout,
+      transformRequest: (data, headers) => {
+        const result = this.serializer.serialize(headers['Content-Type'], data);
+
+        // In Node.js, axios doesn't set boundary data to the header
+        // so set it manually by using getHeaders of form-data node.js package
+        // https://github.com/form-data/form-data#headers-getheaders-headers-userheaders-
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        if (typeof (result as any)?.getHeaders === 'function') {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          headers['Content-Type'] = (result as any).getHeaders()[
+            'content-type'
+          ];
+        }
+
+        return result;
+      },
       transformResponse: (data, headers) =>
         this.serializer.deserialize(
           headers['Content-Type'] ?? 'application/json',
           data,
         ),
       paramsSerializer: (params) =>
-        this.serializer.serialize('application/json', params) as string,
-      ...config,
+        this.serializer.serialize(
+          'application/x-www-form-urlencoded',
+          params,
+        ) as string,
     });
   }
 
@@ -82,47 +101,47 @@ export class HttpAxiosImpl implements Http {
     }
   }
 
-  get<T>(url: string, body?: Body, init: Request = {}): Promise<T> {
+  get<T>(url: string, data?: Data, init: Request = {}): Promise<T> {
     return this.request({
       method: 'get',
       url,
-      body,
+      params: data,
       ...init,
     }).then((response) => response.data as T);
   }
 
-  post<T>(url: string, body?: Body, init: Request = {}): Promise<T> {
+  post<T>(url: string, data?: Data, init: Request = {}): Promise<T> {
     return this.request({
       method: 'post',
       url,
-      body,
+      data,
       ...init,
     }).then((response) => response.data as T);
   }
 
-  delete<T>(url: string, body?: Body, init: Request = {}): Promise<T> {
+  delete<T>(url: string, data?: Data, init: Request = {}): Promise<T> {
     return this.request({
       method: 'delete',
       url,
-      body,
+      data,
       ...init,
     }).then((response) => response.data as T);
   }
 
-  put<T>(url: string, body?: Body, init: Request = {}): Promise<T> {
+  put<T>(url: string, data?: Data, init: Request = {}): Promise<T> {
     return this.request({
       method: 'put',
       url,
-      body,
+      data,
       ...init,
     }).then((response) => response.data as T);
   }
 
-  patch<T>(url: string, body?: Body, init: Request = {}): Promise<T> {
+  patch<T>(url: string, data?: Data, init: Request = {}): Promise<T> {
     return this.request({
       method: 'patch',
       url,
-      body,
+      data,
       ...init,
     }).then((response) => response.data as T);
   }

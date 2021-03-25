@@ -7,9 +7,11 @@ test('flat value', () => {
     grapes: 'purple',
   });
 
-  expect(result['apple']).toEqual('red');
-  expect(result['mandarin']).toEqual('orange');
-  expect(result['grapes']).toEqual('purple');
+  expect(result).toStrictEqual({
+    apple: 'red',
+    mandarin: 'orange',
+    grapes: 'purple',
+  });
 });
 
 test('array', () => {
@@ -17,9 +19,11 @@ test('array', () => {
     animals: ['lion', 'giraffe', 'elephant'],
   });
 
-  expect(result['animals[0]']).toEqual('lion');
-  expect(result['animals[1]']).toEqual('giraffe');
-  expect(result['animals[2]']).toEqual('elephant');
+  expect(result).toStrictEqual({
+    'animals[0]': 'lion',
+    'animals[1]': 'giraffe',
+    'animals[2]': 'elephant',
+  });
 });
 
 test('nested object', () => {
@@ -38,14 +42,16 @@ test('nested object', () => {
     },
   });
 
-  expect(result['a']).toEqual('string');
-  expect(result['b']).toEqual(123);
-  expect(result['c[0]']).toEqual(1);
-  expect(result['c[1]']).toEqual(2);
-  expect(result['c[2]']).toEqual(3);
-  expect(result['e[e1]']).toEqual('string');
-  expect(result['e[e2][e21][e211]']).toEqual('string');
-  expect(result['e[e2][e22][0][value]']).toEqual(1);
-  expect(result['e[e2][e22][1][value]']).toEqual(2);
-  expect(result['e[e2][e22][2][value]']).toEqual(3);
+  expect(result).toStrictEqual({
+    a: 'string',
+    b: 123,
+    'c[0]': 1,
+    'c[1]': 2,
+    'c[2]': 3,
+    'e[e1]': 'string',
+    'e[e2][e21][e211]': 'string',
+    'e[e2][e22][0][value]': 1,
+    'e[e2][e22][1][value]': 2,
+    'e[e2][e22][2][value]': 3,
+  });
 });
