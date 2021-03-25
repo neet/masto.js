@@ -12,8 +12,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/neet/masto.js/tree/master/examples">Examples</a> |
-  <a href="https://neet.github.io/masto.js/globals.html">Read the Docs</a> |
+  <a href="https://github.com/neet/masto.js/tree/main/examples">Examples</a> |
+  <a href="https://neet.github.io/masto.js">Read the Docs</a> |
   <a href="https://github.com/neet/masto.js/releases">Releases</a> |
   <a href="https://github.com/neet/masto.js/issues">Issues</a>
 </p>
@@ -61,7 +61,7 @@ async function main() {
 main();
 ```
 
-All of available methods are described in the [documentation](https://neet.github.io/masto.js/globals.html). You can also refer [examples](https://github.com/neet/masto.js/tree/master/examples) on this repository.
+All of available methods are described in the [documentation](https://neet.github.io/masto.js). You can also refer [examples](https://github.com/neet/masto.js/tree/main/examples) on this repository.
 
 ## FAQ
 
