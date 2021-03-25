@@ -13,7 +13,7 @@
 
 <p align="center">
   <a href="https://github.com/neet/masto.js/tree/master/examples">Examples</a> |
-  <a href="https://git.io/JUgU8">Read the Docs</a> |
+  <a href="https://neet.github.io/masto.js/globals.html">Read the Docs</a> |
   <a href="https://github.com/neet/masto.js/releases">Releases</a> |
   <a href="https://github.com/neet/masto.js/issues">Issues</a>
 </p>
@@ -44,15 +44,15 @@ First, open `/settings/applications/new` of your instance on your browser and cr
 Then, here's a simple example that creates a toot. Replace `TOKEN` to your own access token.
 
 ```ts
-import { Masto } from 'masto';
+import { login } from 'masto';
 
 async function main() {
-  const masto = await Masto.login({
-    uri: 'https://example.com',
+  const masto = await login({
+    url: 'https://example.com',
     accessToken: 'TOKEN',
   });
 
-  await masto.createStatus({
+  await masto.statuses.create({
     status: 'Hello Mastodon!',
     visibility: 'direct',
   });
@@ -61,7 +61,7 @@ async function main() {
 main();
 ```
 
-All of available methods are described in the [documentation](https://git.io/JUgU8). You can also refer [examples](https://github.com/neet/masto.js/tree/master/examples) on this repository.
+All of available methods are described in the [documentation](https://neet.github.io/masto.js/globals.html). You can also refer [examples](https://github.com/neet/masto.js/tree/master/examples) on this repository.
 
 ## FAQ
 
