@@ -1,2 +1,2 @@
-export { Serializer } from './serializer';
-export { SerializerImpl } from './serializer-impl';
+export * from './serializer';
+export * from './serializer-impl';
