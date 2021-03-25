@@ -32,7 +32,7 @@ export interface Event {
   payload: string;
 }
 
-export interface WsEvents extends Omit<EventEmitter, 'on'> {
+export interface WsEvents extends Omit<EventEmitter<EventTypeMap>, 'on'> {
   // readonly connect: () => Promise<WsEvents>;
   readonly disconnect: () => void;
   readonly on: <T extends EventType>(

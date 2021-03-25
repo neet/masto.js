@@ -26,7 +26,6 @@
     "out": "./docs",
     "theme": "default",
     "exclude": "**/+(__tests__|__mocks__)/*",
-    "excludeNotExported": true,
     "excludePrivate": true,
     "excludeProtected": true,
   }
