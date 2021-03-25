@@ -12,7 +12,7 @@ export interface CreateStatusParamsBase {
   readonly spoilerText?: string | null;
   /** Visibility of the posted status. Enumerable oneOf public, unlisted, private, direct. */
   readonly visibility?: StatusVisibility | null;
-  /** ISO 8601 Date-time at which to schedule a status. Providing this paramter will cause ScheduledStatus to be returned instead of Status. Must be at least 5 minutes in the future. */
+  /** ISO 8601 Date-time at which to schedule a status. Providing this parameter will cause ScheduledStatus to be returned instead of Status. Must be at least 5 minutes in the future. */
   readonly scheduledAt?: string | null;
   /** ISO 639 language code for this status. */
   readonly language?: string | null;
