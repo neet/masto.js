@@ -3,12 +3,12 @@ import semver from 'semver';
 import { MastoNotFoundError } from '../errors';
 
 export interface Version {
-  readonly version?: string;
+  readonly version: string;
 }
 
 export interface AvailableParams {
-  since?: string;
-  until?: string;
+  since?: `${number}.${number}.${number}`;
+  until?: `${number}.${number}.${number}`;
 }
 
 /**
@@ -31,11 +31,7 @@ export const version = ({ since, until }: AvailableParams) => (
     this: Version,
     ...args: Parameters<typeof original>
   ) {
-    if (
-      since &&
-      this.version &&
-      semver.lt(this.version, since, { loose: true })
-    ) {
+    if (since && semver.lt(this.version, since, { loose: true })) {
       throw new MastoNotFoundError(
         `${String(name)} is not available with the current ` +
           `Mastodon version ${this.version}. ` +
@@ -43,11 +39,7 @@ export const version = ({ since, until }: AvailableParams) => (
       );
     }
 
-    if (
-      until &&
-      this.version &&
-      semver.gt(this.version, until, { loose: true })
-    ) {
+    if (until && semver.gt(this.version, until, { loose: true })) {
       throw new MastoNotFoundError(
         `${String(name)} is not available with the current ` +
           `Mastodon version ${this.version}. ` +
