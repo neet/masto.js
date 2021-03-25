@@ -1,10 +1,10 @@
-import Masto, { Status, Notification } from 'masto';
+import { login, Status, Notification } from 'masto';
 import { fromEvent } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
 (async () => {
-  const masto = await Masto.login({ uri: 'https://example.com' });
-  const timeline = await masto.streamPublicTimeline();
+  const masto = await login({ url: 'https://example.com' });
+  const timeline = await masto.stream.streamPublicTimeline();
 
   const update$ = fromEvent<Status>(timeline, 'update');
   const notification$ = fromEvent<Notification>(timeline, 'notifications');

@@ -1,4 +1,6 @@
-import { Conversation, Status } from '../entities';
+import EventEmitter from 'eventemitter3';
+
+import { Conversation, Notification, Status } from '../entities';
 
 /** Map of event name and callback argument */
 export interface EventTypeMap {
@@ -30,7 +32,7 @@ export interface Event {
   payload: string;
 }
 
-export interface WsEvents {
+export interface WsEvents extends Omit<EventEmitter, 'on'> {
   // readonly connect: () => Promise<WsEvents>;
   readonly disconnect: () => void;
   readonly on: <T extends EventType>(

@@ -1,15 +1,12 @@
-import { Masto } from 'masto';
+import { login } from 'masto';
 
 (async () => {
-  const masto = await Masto.login({
-    uri: 'https://example.com',
+  const masto = await login({
+    url: 'https://example.com',
   });
 
-  // Generate iterable of timeline
-  const timeline = masto.fetchPublicTimeline();
-
   // You can fetch each page of timeline with `.next()`
-  const result = await timeline.next();
+  const result = await masto.timelines.public.next();
 
   if (result) {
     // `.done` represents whether there are more pages
@@ -21,9 +18,9 @@ import { Masto } from 'masto';
   }
 
   // You can also use `for-await-of` syntax to page down the timeline
-  for await (const statuses of timeline) {
+  for await (const statuses of masto.timelines.public) {
     statuses.forEach((status) => {
-      masto.favouriteStatus(status.id);
+      masto.statuses.favourite(status.id);
     });
   }
 })();

@@ -1,15 +1,13 @@
-import { Masto } from 'masto';
+import { login } from 'masto';
 
 (async () => {
-  const masto = await Masto.login({
-    uri: 'https://example.com',
+  const masto = await login({
+    url: 'https://example.com',
     accessToken: 'YOUR TOKEN',
   });
 
-  masto.createStatus({
+  await masto.statuses.create({
     status: 'Toot from TypeScript',
     visibility: 'direct',
-  }).then((newStatus) => {
-    console.log(newStatus);
-  });
+  })
 })()

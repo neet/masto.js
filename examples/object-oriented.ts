@@ -1,29 +1,22 @@
-import { Masto, Status, Notification } from 'masto';
+import { login, Status, Notification, FacadeRepositories } from 'masto';
 
 class MyBot {
-  private uri: string;
-  private token: string;
-  private masto?: Masto;
+  private masto: FacadeRepositories;
 
-  constructor(uri: string, token: string) {
-    this.uri = uri;
-    this.token = token;
+  constructor(masto: FacadeRepositories) {
+    this.masto = masto;
   }
 
-  async initialize() {
-    this.masto = await Masto.login({
-      uri: this.uri,
-      accessToken: this.token,
+  static async init() {
+    const masto = await login({
+      url: process.env.URI as string,
+      accessToken: process.env.ACCESS_TOKEN as string,
     });
-    await this.subscribe();
+    await new MyBot(masto).subscribe();
   }
 
   private async subscribe() {
-    if (!this.masto) {
-      return;
-    }
-
-    const timeline = await this.masto.streamUser();
+    const timeline = await this.masto.stream.streamUser();
 
     // Add handlers
     timeline.on('update', this.handleUpdate);
@@ -36,10 +29,6 @@ class MyBot {
   }
 
   private handleNotification = async (notification: Notification) => {
-    if (!this.masto) {
-      return;
-    }
-
     // When your status got favourited, log
     if (notification.type === 'favourite') {
       console.log(`${notification.account.username} favourited your status!`);
@@ -47,7 +36,7 @@ class MyBot {
 
     // When you got a mention, reply
     if (notification.type === 'mention' && notification.status) {
-      await this.masto.createStatus({
+      await this.masto.statuses.create({
         status: 'I received your mention!',
         inReplyToId: notification.status.id,
       });
@@ -55,13 +44,12 @@ class MyBot {
 
     // When you got followed, follow them back
     if (notification.type === 'follow') {
-      await this.masto.followAccount(notification.account.id);
+      await this.masto.accounts.follow(notification.account.id);
     }
   }
 }
 
 // main
 (async () => {
-  const bot = new MyBot('https://example.com', 'TOKEN');
-  await bot.initialize();
+  await MyBot.init();
 })();

@@ -1,13 +1,13 @@
-import { Masto } from 'masto';
+import { login } from 'masto';
 
 (async () => {
-  const masto = await Masto.login({
-    uri: 'https://example.com',
+  const masto = await login({
+    url: 'https://example.com',
     accessToken: 'YOUR TOKEN',
   });
 
   // Connect to the streaming api
-  const stream = await masto.streamPublicTimeline();
+  const stream = await masto.stream.streamPublicTimeline();
 
   // Subscribe to updates
   stream.on('update', status => {

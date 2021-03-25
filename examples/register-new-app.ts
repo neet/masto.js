@@ -1,11 +1,11 @@
-import { Masto } from 'masto';
+import { login } from 'masto';
 
 (async () => {
-  const masto = await Masto.login({
-    uri: 'https://example.com',
+  const masto = await login({
+    url: 'https://example.com',
   });
 
-  const app = await masto.createApp({
+  const app = await masto.apps.create({
     clientName: 'My app',
     redirectUris: 'urn:ietf:wg:oauth:2.0:oob',
     scopes: 'read write',
