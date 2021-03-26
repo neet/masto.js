@@ -1,3 +1,31 @@
+# [4.0.0](https://github.com/neet/masto.js/compare/v3.7.0...v4.0.0) (2021-03-26)
+
+
+### Bug Fixes
+
+* Add RC suffix to prerelease ([cb1e88a](https://github.com/neet/masto.js/commit/cb1e88a1e239fd99b4eeb5855823d3969e311b33))
+* Fix curcular bug on flattenObject ([bd4463a](https://github.com/neet/masto.js/commit/bd4463acbb3538b4b72c5382c8f52c7d365e78f1))
+* Fix EventType ([a8d35ae](https://github.com/neet/masto.js/commit/a8d35ae456fe1bc9c1d669ef2a181171d35c25b1))
+* Fix naming convention for Admin API ([c5759cd](https://github.com/neet/masto.js/commit/c5759cd59b63429eddb01139fe876284f1978c08))
+* Fix paging ([a1e499c](https://github.com/neet/masto.js/commit/a1e499cab860b4c6ce550cab02551d2974d9c941))
+* Fix transform-keys for primitive data ([93c2a14](https://github.com/neet/masto.js/commit/93c2a149130af1cc7d06fd2adb46ea476b660e4e))
+* Fix typo ([4a6733f](https://github.com/neet/masto.js/commit/4a6733f428890572cf7d041ea0b28c54fb74ff96))
+* Fix ws connection issue ([71f6a90](https://github.com/neet/masto.js/commit/71f6a90767fdb8988a1535489329316630853015))
+* Remove --prerelease ([8e6cd48](https://github.com/neet/masto.js/commit/8e6cd48bddb551d11afdc84a6782098588f4c088))
+
+
+### Features
+
+* Add abstraction for AxiosRequestConfig ([23be967](https://github.com/neet/masto.js/commit/23be9678775c84b75774d146f4b40c4859bd0992))
+* Enable polling of media attachment by default ([03625e6](https://github.com/neet/masto.js/commit/03625e6b2a3ce339db1fd864a4eb48b0e626daef))
+* Introduce new APIs ([69f6131](https://github.com/neet/masto.js/commit/69f6131a19fbe7a14a3fd8aea52ab003438a7203))
+* **233:** Better error handling ([bbafee1](https://github.com/neet/masto.js/commit/bbafee11cb6dc3f4b0a8091846ebe026fe77d663))
+
+
+### BREAKING CHANGES
+
+* Monolithic `Masto` class has been segregated into several different classes and now you can access through the facede class
+
 ## 3.0.0
 This is the 3rd major version of Masto.js 🎉
 
