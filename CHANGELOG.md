@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/neet/masto.js/compare/v4.0.0...v4.0.1) (2021-04-18)
+
+
+### Bug Fixes
+
+* Use build commit as a patch ([63b46ea](https://github.com/neet/masto.js/commit/63b46ea9198335e50edd34ff3e4ae2bcbb205cb4))
+
 # [4.0.0](https://github.com/neet/masto.js/compare/v3.7.0...v4.0.0) (2021-03-26)
 
 
