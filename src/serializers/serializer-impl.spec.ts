@@ -36,4 +36,29 @@ describe('transformKeys', () => {
       key: { keyKey: { keyKeyKey: 'value' } },
     });
   });
+
+  it('transforms a deep object inside an array', () => {
+    expect(transformKeys([{ key_one: 'value' }], camelCase)).toEqual([
+      {
+        keyOne: 'value',
+      },
+    ]);
+  });
+
+  it('transforms a array inside an object', () => {
+    expect(
+      transformKeys(
+        {
+          key_one: [
+            {
+              value_one: 'value',
+            },
+          ],
+        },
+        camelCase,
+      ),
+    ).toEqual({
+      keyOne: [{ valueOne: 'value' }],
+    });
+  });
 });

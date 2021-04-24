@@ -15,7 +15,7 @@ const fromEntries = <T>(entries: [string, unknown][]) => {
 
 // prettier-ignore
 export const transformKeys = <T>(
-  data: Record<string, unknown>,
+  data: unknown,
   transform: (key: string) => string,
 ): T => {
   if (Array.isArray(data)) {
@@ -26,10 +26,10 @@ export const transformKeys = <T>(
     return fromEntries<T>(
       Object.entries(data).map(([key, value]) => [
         transform(key),
-        isObject(value) ? transformKeys(value, transform) : value,
+        transformKeys(value, transform),
       ]) as any,
     );
   }
 
-  return data;
+  return data as T;
 }
