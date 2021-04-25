@@ -1,3 +1,10 @@
+## [4.0.2](https://github.com/neet/masto.js/compare/v4.0.1...v4.0.2) (2021-04-25)
+
+
+### Bug Fixes
+
+* Transform arrays inside an object ([d22a145](https://github.com/neet/masto.js/commit/d22a145da48ada5bff24d6c6b972164cf3fa6705))
+
 ## [4.0.1](https://github.com/neet/masto.js/compare/v4.0.0...v4.0.1) (2021-04-18)
 
 
