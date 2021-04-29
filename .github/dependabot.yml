@@ -1,0 +1,20 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: monthly
+    time: "20:00"
+  open-pull-requests-limit: 10
+  versioning-strategy: increase
+  ignore:
+  - dependency-name: cspell
+    versions:
+    - 5.3.4
+    - 5.3.9
+  - dependency-name: eslint-config-prettier
+    versions:
+    - 8.1.0
+  - dependency-name: eslint
+    versions:
+    - 7.19.0
