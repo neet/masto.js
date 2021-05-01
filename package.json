@@ -53,7 +53,7 @@
     "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-typescript2": "^0.30.0",
-    "rxjs": "^6.6.7",
+    "rxjs": "^7.0.0",
     "semantic-release": "^17.4.2",
     "ts-jest": "^26.5.5",
     "typedoc": "^0.20.34",
