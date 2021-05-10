@@ -28,4 +28,5 @@ export * from './status-repository';
 export * from './suggestion-repository';
 export * from './timelines-repository';
 export * from './trend-repository';
+export * from './email-repository';
 export * as AdminRepositories from './admin';
