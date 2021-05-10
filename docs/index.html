@@ -69,8 +69,8 @@
 					<a href="https://codeclimate.com/github/neet/masto.js/maintainability"><img src="https://api.codeclimate.com/v1/badges/f56a1d2e6728a89d0a94/maintainability" /></a>
 				</p>
 				<p align="center">
-					<a href="https://github.com/neet/masto.js/tree/master/examples">Examples</a> |
-					<a href="https://git.io/JUgU8">Read the Docs</a> |
+					<a href="https://github.com/neet/masto.js/tree/main/examples">Examples</a> |
+					<a href="https://neet.github.io/masto.js">Read the Docs</a> |
 					<a href="https://github.com/neet/masto.js/releases">Releases</a> |
 					<a href="https://github.com/neet/masto.js/issues">Issues</a>
 				</p>
@@ -101,15 +101,15 @@
 				<p>First, open <code>/settings/applications/new</code> of your instance on your browser and create new application.</p>
 				<p><img src="https://i.imgur.com/lgbt0l5.png" alt="Create New App"></p>
 				<p>Then, here&#39;s a simple example that creates a toot. Replace <code>TOKEN</code> to your own access token.</p>
-				<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Masto</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;masto&#039;</span><span style="color: #000000">;</span>
+				<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">login</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;masto&#039;</span><span style="color: #000000">;</span>
 
 <span style="color: #0000FF">async</span><span style="color: #000000"> </span><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">main</span><span style="color: #000000">() {</span>
-<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">masto</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">Masto</span><span style="color: #000000">.</span><span style="color: #795E26">login</span><span style="color: #000000">({</span>
-<span style="color: #000000">    </span><span style="color: #001080">uri:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;https://example.com&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">masto</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #795E26">login</span><span style="color: #000000">({</span>
+<span style="color: #000000">    </span><span style="color: #001080">url:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;https://example.com&#039;</span><span style="color: #000000">,</span>
 <span style="color: #000000">    </span><span style="color: #001080">accessToken:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;TOKEN&#039;</span><span style="color: #000000">,</span>
 <span style="color: #000000">  });</span>
 
-<span style="color: #000000">  </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">masto</span><span style="color: #000000">.</span><span style="color: #795E26">createStatus</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">masto</span><span style="color: #000000">.</span><span style="color: #001080">statuses</span><span style="color: #000000">.</span><span style="color: #795E26">create</span><span style="color: #000000">({</span>
 <span style="color: #000000">    </span><span style="color: #001080">status:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Hello Mastodon!&#039;</span><span style="color: #000000">,</span>
 <span style="color: #000000">    </span><span style="color: #001080">visibility:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;direct&#039;</span><span style="color: #000000">,</span>
 <span style="color: #000000">  });</span>
@@ -117,7 +117,7 @@
 
 <span style="color: #795E26">main</span><span style="color: #000000">();</span>
 </code></pre>
-				<p>All of available methods are described in the <a href="https://git.io/JUgU8">documentation</a>. You can also refer <a href="https://github.com/neet/masto.js/tree/master/examples">examples</a> on this repository.</p>
+				<p>All of available methods are described in the <a href="https://neet.github.io/masto.js">documentation</a>. You can also refer <a href="https://github.com/neet/masto.js/tree/main/examples">examples</a> on this repository.</p>
 				<a href="#faq" id="faq" style="color: inherit; text-decoration: none;">
 					<h2>FAQ</h2>
 				</a>
@@ -357,6 +357,9 @@
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/repositories_domain_block_repository.html">repositories/domain-<wbr>block-<wbr>repository</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/repositories_email_repository.html">repositories/email-<wbr>repository</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/repositories_endorsement_repository.html">repositories/endorsement-<wbr>repository</a>

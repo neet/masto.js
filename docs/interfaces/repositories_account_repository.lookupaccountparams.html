@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>InstanceStats | masto</title>
+	<title>LookupAccountParams | masto</title>
 	<meta name="description" content="Documentation for masto">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,13 +55,13 @@
 					<a href="../modules.html">masto</a>
 				</li>
 				<li>
-					<a href="../modules/entities_instance.html">entities/instance</a>
+					<a href="../modules/repositories_account_repository.html">repositories/account-repository</a>
 				</li>
 				<li>
-					<a href="entities_instance.instancestats.html">InstanceStats</a>
+					<a href="repositories_account_repository.lookupaccountparams.html">LookupAccountParams</a>
 				</li>
 			</ul>
-			<h1>Interface InstanceStats</h1>
+			<h1>Interface LookupAccountParams</h1>
 		</div>
 	</div>
 </header>
@@ -72,7 +72,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">InstanceStats</span>
+						<span class="target">LookupAccountParams</span>
 					</li>
 				</ul>
 			</section>
@@ -83,9 +83,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="entities_instance.instancestats.html#domaincount" class="tsd-kind-icon">domain<wbr>Count</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="entities_instance.instancestats.html#statuscount" class="tsd-kind-icon">status<wbr>Count</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="entities_instance.instancestats.html#usercount" class="tsd-kind-icon">user<wbr>Count</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="repositories_account_repository.lookupaccountparams.html#acct" class="tsd-kind-icon">acct</a></li>
 							</ul>
 						</section>
 					</div>
@@ -94,49 +92,14 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="domaincount" class="tsd-anchor"></a>
-					<h3>domain<wbr>Count</h3>
-					<div class="tsd-signature tsd-kind-icon">domain<wbr>Count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="acct" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> acct</h3>
+					<div class="tsd-signature tsd-kind-icon">acct<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/433e4c4/src/entities/instance.ts#L50">src/entities/instance.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/433e4c4/src/repositories/account-repository.ts#L92">src/repositories/account-repository.ts:92</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Domains federated with this instance. Number.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="statuscount" class="tsd-anchor"></a>
-					<h3>status<wbr>Count</h3>
-					<div class="tsd-signature tsd-kind-icon">status<wbr>Count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/433e4c4/src/entities/instance.ts#L48">src/entities/instance.ts:48</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Statuses authored by users on instance. Number.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="usercount" class="tsd-anchor"></a>
-					<h3>user<wbr>Count</h3>
-					<div class="tsd-signature tsd-kind-icon">user<wbr>Count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/neet/masto.js/blob/433e4c4/src/entities/instance.ts#L46">src/entities/instance.ts:46</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Users registered on this instance. Number.</p>
-						</div>
-					</div>
 				</section>
 			</section>
 		</div>
@@ -147,35 +110,47 @@
 						<a href="../modules.html">Exports</a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="../modules/entities_instance.html">entities/instance</a>
+						<a href="../modules/repositories_account_repository.html">repositories/account-<wbr>repository</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/repositories_account_repository.accountrepository.html" class="tsd-kind-icon">Account<wbr>Repository</a>
+					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="entities_instance.instance.html" class="tsd-kind-icon">Instance</a>
+						<a href="repositories_account_repository.createaccountnoteparams.html" class="tsd-kind-icon">Create<wbr>Account<wbr>Note<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="repositories_account_repository.createaccountparams.html" class="tsd-kind-icon">Create<wbr>Account<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="repositories_account_repository.fetchaccountstatusesparams.html" class="tsd-kind-icon">Fetch<wbr>Account<wbr>Statuses<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="repositories_account_repository.followaccountparams.html" class="tsd-kind-icon">Follow<wbr>Account<wbr>Params</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="entities_instance.instancestats.html" class="tsd-kind-icon">Instance<wbr>Stats</a>
+						<a href="repositories_account_repository.lookupaccountparams.html" class="tsd-kind-icon">Lookup<wbr>Account<wbr>Params</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="entities_instance.instancestats.html#domaincount" class="tsd-kind-icon">domain<wbr>Count</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="entities_instance.instancestats.html#statuscount" class="tsd-kind-icon">status<wbr>Count</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="entities_instance.instancestats.html#usercount" class="tsd-kind-icon">user<wbr>Count</a>
+								<a href="repositories_account_repository.lookupaccountparams.html#acct" class="tsd-kind-icon">acct</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="entities_instance.instanceurls.html" class="tsd-kind-icon">InstanceURLs</a>
+						<a href="repositories_account_repository.muteaccountparams.html" class="tsd-kind-icon">Mute<wbr>Account<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="repositories_account_repository.searchaccountsparams.html" class="tsd-kind-icon">Search<wbr>Accounts<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="repositories_account_repository.updatecredentialsparams.html" class="tsd-kind-icon">Update<wbr>Credentials<wbr>Params</a>
 					</li>
 				</ul>
 			</nav>
