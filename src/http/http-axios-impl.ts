@@ -3,6 +3,7 @@ import axios, { AxiosInstance } from 'axios';
 import { MastoConfig } from '../config';
 import {
   MastoConflictError,
+  MastoError,
   MastoForbiddenError,
   MastoGoneError,
   MastoNotFoundError,
@@ -73,20 +74,22 @@ export class HttpAxiosImpl implements Http {
       const message =
         error?.response?.data?.error ?? 'Unexpected error occurred';
       const description = error?.response?.data?.errorDescription;
+      const details = error?.response?.data?.details;
+      const args = [message, description, details] as const;
 
       switch (status) {
         case 401:
-          throw new MastoUnauthorizedError(message, description);
+          throw new MastoUnauthorizedError(...args);
         case 403:
-          throw new MastoForbiddenError(message, description);
+          throw new MastoForbiddenError(...args);
         case 404:
-          throw new MastoNotFoundError(message, description);
+          throw new MastoNotFoundError(...args);
         case 409:
-          throw new MastoConflictError(message, description);
+          throw new MastoConflictError(...args);
         case 410:
-          throw new MastoGoneError(message, description);
+          throw new MastoGoneError(...args);
         case 422:
-          throw new MastoUnprocessableEntityError(message, description);
+          throw new MastoUnprocessableEntityError(...args);
         case 429:
           throw new MastoRateLimitError(
             message,
@@ -96,7 +99,7 @@ export class HttpAxiosImpl implements Http {
             description,
           );
         default:
-          throw error;
+          throw new MastoError(...args);
       }
     }
   }

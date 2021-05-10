@@ -1,4 +1,4 @@
-import { MastoError } from './masto-error';
+import { MastoError, MastoErrorDetails } from './masto-error';
 
 /**
  * Mastodon unprocessable entity
@@ -6,9 +6,12 @@ import { MastoError } from './masto-error';
  */
 export class MastoUnprocessableEntityError extends MastoError {
   readonly name = 'MastoUnprocessableEntityError';
-  readonly statusCode = 422;
 
-  constructor(readonly message: string, readonly description?: string) {
-    super();
+  constructor(
+    message: string,
+    description?: string,
+    details?: MastoErrorDetails,
+  ) {
+    super(message, 422, description, details);
   }
 }

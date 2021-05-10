@@ -1,13 +1,16 @@
-import { MastoError } from './masto-error';
+import { MastoError, MastoErrorDetails } from './masto-error';
 
 /**
  * Mastodon gone error
  */
 export class MastoGoneError extends MastoError {
   readonly name = 'MastoGoneError';
-  readonly statusCode = 410;
 
-  constructor(readonly message: string, readonly description?: string) {
-    super();
+  constructor(
+    message: string,
+    description?: string,
+    details?: MastoErrorDetails,
+  ) {
+    super(message, 410, description, details);
   }
 }
