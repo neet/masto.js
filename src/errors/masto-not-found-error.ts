@@ -1,13 +1,16 @@
-import { MastoError } from './masto-error';
+import { MastoError, MastoErrorDetails } from './masto-error';
 
 /**
  * Mastodon not found error class
  */
 export class MastoNotFoundError extends MastoError {
-  readonly statusCode = 404;
   readonly name = 'MastoNotFoundError';
 
-  constructor(readonly message: string, readonly description?: string) {
-    super();
+  constructor(
+    message: string,
+    description?: string,
+    details?: MastoErrorDetails,
+  ) {
+    super(message, 404, description, details);
   }
 }

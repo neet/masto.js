@@ -88,6 +88,10 @@ export interface SearchAccountsParams {
   readonly following?: boolean | null;
 }
 
+export interface LookupAccountParams {
+  readonly acct: string;
+}
+
 export class AccountRepository
   implements Repository<Account, CreateAccountParams> {
   constructor(private readonly http: Http, readonly version: string) {}
@@ -344,5 +348,15 @@ export class AccountRepository
   @version({ since: '2.8.0' })
   fetchIdentityProofs(id: string): Promise<IdentityProof> {
     return this.http.get(`/api/v1/accounts/${id}/identity_proofs`);
+  }
+
+  /**
+   * This method allows to quickly convert a username of a known account to an ID that can be used with the REST API, or to check if a username is available for sign-up
+   * @param params Parameters
+   * @return Account
+   */
+  @version({ since: '3.4.0' })
+  lookup(params: LookupAccountParams): Promise<Account> {
+    return this.http.get('/api/v1/accounts/lookup', params);
   }
 }

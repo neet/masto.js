@@ -15,6 +15,7 @@ import {
   CustomEmojiRepository,
   DirectoryRepository,
   DomainBlockRepository,
+  EmailRepository,
   EndorsementRepository,
   FavouriteRepository,
   FeaturedTagRepository,
@@ -140,6 +141,8 @@ export class FacadeRepositories {
   readonly timelines = new TimelinesRepository(this.http, this.version);
 
   readonly trends = new TrendRepository(this.http, this.version);
+
+  readonly email = new EmailRepository(this.http, this.version);
 
   /**
    * Search results

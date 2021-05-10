@@ -1,4 +1,4 @@
-import { MastoError } from './masto-error';
+import { MastoError, MastoErrorDetails } from './masto-error';
 
 /**
  * Mastodon Timeout error
@@ -7,7 +7,11 @@ import { MastoError } from './masto-error';
 export class MastoTimeoutError extends MastoError {
   readonly name = 'MastoTimeoutError';
 
-  constructor(readonly message: string, readonly description?: string) {
-    super();
+  constructor(
+    message: string,
+    description?: string,
+    details?: MastoErrorDetails,
+  ) {
+    super(message, undefined, description, details);
   }
 }
