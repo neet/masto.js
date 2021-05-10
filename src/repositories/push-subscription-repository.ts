@@ -3,6 +3,8 @@ import { PushSubscription, PushSubscriptionAlerts } from '../entities';
 import { Http } from '../http';
 import { Repository } from '../repository';
 
+export type SubscriptionPolicy = 'all' | 'followed' | 'follower' | 'none';
+
 export interface CreatePushSubscriptionParams {
   readonly subscription: {
     /** Endpoint URL that is called when a notification event occurs. */
@@ -17,6 +19,7 @@ export interface CreatePushSubscriptionParams {
   };
   readonly data?: {
     readonly alerts?: Partial<PushSubscriptionAlerts> | null;
+    readonly policy?: SubscriptionPolicy;
   } | null;
 }
 
