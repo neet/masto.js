@@ -1,3 +1,13 @@
+# [4.1.0](https://github.com/neet/masto.js/compare/v4.0.4...v4.1.0) (2021-05-11)
+
+
+### Features
+
+* Add /api/v1/email/confirmations ([0f47ad2](https://github.com/neet/masto.js/commit/0f47ad292bb6fadceac9f01192ce722057ef3c80))
+* Add details field for MastoError ([5a369f6](https://github.com/neet/masto.js/commit/5a369f6b6927a28c20beb915dae42d23af34d050))
+* Add lookup API ([4e1f593](https://github.com/neet/masto.js/commit/4e1f5938c9dd41220bbcb83c70f54debf2139dce))
+* Add policy to PushSubscriptionRepository#create ([eba850e](https://github.com/neet/masto.js/commit/eba850eba5bf580c50051bf31c787d9e8264b6a1))
+
 ## [4.0.4](https://github.com/neet/masto.js/compare/v4.0.3...v4.0.4) (2021-05-03)
 
 ## [4.0.3](https://github.com/neet/masto.js/compare/v4.0.2...v4.0.3) (2021-04-30)
