@@ -38,7 +38,7 @@
     "@types/node": "^15.0.1",
     "@types/semver": "^7.3.5",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
-    "@typescript-eslint/parser": "^4.22.0",
+    "@typescript-eslint/parser": "^4.26.0",
     "codecov": "^3.8.1",
     "cspell": "^5.3.12",
     "eslint": "^7.25.0",
