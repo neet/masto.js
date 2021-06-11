@@ -1,3 +1,5 @@
+## [4.1.4](https://github.com/neet/masto.js/compare/v4.1.3...v4.1.4) (2021-06-11)
+
 ## [4.1.3](https://github.com/neet/masto.js/compare/v4.1.2...v4.1.3) (2021-06-04)
 
 ## [4.1.2](https://github.com/neet/masto.js/compare/v4.1.1...v4.1.2) (2021-06-03)
