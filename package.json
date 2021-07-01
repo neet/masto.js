@@ -27,7 +27,7 @@
     "isomorphic-ws": "^4.0.1",
     "normalize-url": "^6.0.1",
     "semver": "^7.3.5",
-    "ws": "^7.4.6"
+    "ws": "^7.5.1"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^19.0.0",
