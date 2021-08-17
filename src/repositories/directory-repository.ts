@@ -17,7 +17,8 @@ export interface FetchDirectoryParams {
 }
 
 export class DirectoryRepository
-  implements Repository<Account, never, never, FetchDirectoryParams> {
+  implements Repository<Account, never, never, FetchDirectoryParams>
+{
   constructor(private readonly http: Http, readonly version: string) {}
 
   /**

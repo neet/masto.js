@@ -11,7 +11,8 @@ import { Event, EventType, EventTypeMap, Ws, WsEvents } from './ws';
  */
 export class WsEventsImpl
   extends EventEmitter<EventTypeMap>
-  implements WsEvents {
+  implements WsEvents
+{
   constructor(
     private readonly ws: WebSocket,
     private readonly serializer: Serializer,

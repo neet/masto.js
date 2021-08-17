@@ -10,7 +10,8 @@ export interface UpdateScheduledStatusParams {
 }
 
 export class ScheduledStatusesRepository
-  implements AsyncIterable<ScheduledStatus[]> {
+  implements AsyncIterable<ScheduledStatus[]>
+{
   constructor(private readonly http: Http, readonly version: string) {}
 
   async *[Symbol.asyncIterator]() {

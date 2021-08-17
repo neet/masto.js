@@ -10,7 +10,7 @@ const fromEntries = <T>(entries: [string, unknown][]) => {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return (object as any) as T;
+  return object as any as T;
 };
 
 // prettier-ignore

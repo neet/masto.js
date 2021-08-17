@@ -34,7 +34,8 @@ export class PushSubscriptionsRepository
       PushSubscription,
       CreatePushSubscriptionParams,
       UpdatePushSubscriptionParams
-    > {
+    >
+{
   constructor(private readonly http: Http, readonly version: string) {}
 
   /**

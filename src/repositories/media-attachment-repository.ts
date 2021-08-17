@@ -26,7 +26,8 @@ export class MediaAttachmentRepository
       Attachment,
       CreateMediaAttachmentParams,
       UpdateMediaAttachmentParams
-    > {
+    >
+{
   constructor(
     private readonly http: Http,
     readonly version: string,

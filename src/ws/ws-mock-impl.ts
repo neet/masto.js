@@ -8,7 +8,8 @@ export const wsStream = jest.fn();
 
 export class WsEventsMockImpl
   extends EventEmitter<EventTypeMap>
-  implements WsEvents {
+  implements WsEvents
+{
   static connect = jest.fn();
   disconnect = wsDisconnect;
   on = wsOn;
