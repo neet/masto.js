@@ -1,5 +1,5 @@
 import { version } from '../decorators';
-import { List } from '../entities';
+import { Account, List } from '../entities';
 import { Http } from '../http';
 import { Paginator } from '../paginator';
 import { DefaultPaginationParams, Repository } from '../repository';
