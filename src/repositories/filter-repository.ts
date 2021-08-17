@@ -22,7 +22,8 @@ export interface CreateFilterParams {
 export type UpdateFilterParams = CreateFilterParams;
 
 export class FilterRepository
-  implements Repository<Filter, CreateFilterParams, UpdateFilterParams> {
+  implements Repository<Filter, CreateFilterParams, UpdateFilterParams>
+{
   constructor(private readonly http: Http, readonly version: string) {}
 
   /**

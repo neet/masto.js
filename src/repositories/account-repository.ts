@@ -93,7 +93,8 @@ export interface LookupAccountParams {
 }
 
 export class AccountRepository
-  implements Repository<Account, CreateAccountParams> {
+  implements Repository<Account, CreateAccountParams>
+{
   constructor(private readonly http: Http, readonly version: string) {}
 
   /**

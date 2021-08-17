@@ -15,7 +15,8 @@ export interface ModifyListAccountsParams {
 }
 
 export class ListRepository
-  implements Repository<List, ModifyListParams, ModifyListParams> {
+  implements Repository<List, ModifyListParams, ModifyListParams>
+{
   constructor(private readonly http: Http, readonly version: string) {}
 
   /**
