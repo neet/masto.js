@@ -22,7 +22,7 @@ export const deprecated =
     ) {
       if (
         process.env.NODE_ENV !== 'production' ||
-        process.env.MASTO_IGNORE_WARNING
+        !process.env.NODE_IGNORE_MASTO_WARNINGS
       ) {
         // eslint-disable-next-line no-console
         console.warn(`#${name.toString()} is deprecated. ${message}`);
