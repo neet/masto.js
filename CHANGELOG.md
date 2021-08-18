@@ -1,3 +1,12 @@
+## [4.1.10](https://github.com/neet/masto.js/compare/v4.1.9...v4.1.10) (2021-08-18)
+
+
+### Bug Fixes
+
+* FIx NODE_IGNORE_MASTO_WARNINGS ([c84a6cf](https://github.com/neet/masto.js/commit/c84a6cfb2cbdc5e71fcd1c6b715b4a6615dc01bc))
+* Fix prettier warning ([efe9d5a](https://github.com/neet/masto.js/commit/efe9d5ac26cff9e3d05c921de42a5f81c6389251))
+* Fix tsc error about Account ([38f848d](https://github.com/neet/masto.js/commit/38f848dff0bc6e168cc4cb34a702f40c68eec731))
+
 ## [4.1.9](https://github.com/neet/masto.js/compare/v4.1.8...v4.1.9) (2021-08-12)
 
 ## [4.1.8](https://github.com/neet/masto.js/compare/v4.1.7...v4.1.8) (2021-08-05)
