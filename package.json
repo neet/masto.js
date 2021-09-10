@@ -23,7 +23,6 @@
     "axios": "^0.21.1",
     "change-case": "^4.1.2",
     "eventemitter3": "^4.0.7",
-    "isomorphic-form-data": "^2.0.0",
     "isomorphic-ws": "^4.0.1",
     "normalize-url": "^7.0.1",
     "semver": "^7.3.5",
@@ -75,5 +74,8 @@
   "bugs": {
     "url": "https://github.com/neet/masto.js/issues"
   },
-  "homepage": "https://github.com/neet/masto.js#readme"
+  "homepage": "https://github.com/neet/masto.js#readme",
+  "peerDependencies": {
+    "isomorphic-form-data": "^2.0.0"
+  }
 }
