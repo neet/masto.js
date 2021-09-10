@@ -99,7 +99,7 @@ export class HttpAxiosImpl implements Http {
             description,
           );
         default:
-          throw new MastoError(...args);
+          throw new MastoError(message, status, description, details);
       }
     }
   }
