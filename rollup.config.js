@@ -11,6 +11,7 @@ const external = [
   'combined-stream',
   'eventemitter3',
   'fs',
+  'form-data',
   'http',
   'https',
   'isomorphic-ws',
