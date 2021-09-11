@@ -1,3 +1,11 @@
+## [4.1.13](https://github.com/neet/masto.js/compare/v4.1.12...v4.1.13) (2021-09-11)
+
+
+### Bug Fixes
+
+* Add exception handling for JSON.parse ([bb6c7d0](https://github.com/neet/masto.js/commit/bb6c7d0d34588fff0a985ec583e4cc61f1b3eebc))
+* Include statusCode in the default MastoError ([88fa4dc](https://github.com/neet/masto.js/commit/88fa4dc6cc552eca1666e3d69cf5e02e87454352))
+
 ## [4.1.12](https://github.com/neet/masto.js/compare/v4.1.11...v4.1.12) (2021-09-03)
 
 ## [4.1.11](https://github.com/neet/masto.js/compare/v4.1.10...v4.1.11) (2021-09-02)
