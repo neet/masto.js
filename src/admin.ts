@@ -1,7 +1,7 @@
 import { Http } from './http';
 import { AdminRepositories } from './repositories';
 
-export class AdminFacadeRepositories {
+export class MastoAdminClient {
   constructor(private readonly http: Http, private readonly version: string) {}
 
   readonly account = new AdminRepositories.AccountRepository(
@@ -14,3 +14,8 @@ export class AdminFacadeRepositories {
     this.version,
   );
 }
+
+/**
+ * @deprecated This alias will be removed in v5.0.0
+ */
+export const AdminFacadeRepositories = MastoAdminClient;
