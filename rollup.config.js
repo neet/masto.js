@@ -11,7 +11,6 @@ export default [
     output: {
       file: packageJSON.main,
       format: 'cjs',
-      exports: 'named',
     },
     plugins: [commonjs(), json(), typescript(), autoExternal()],
   },
@@ -20,7 +19,6 @@ export default [
     output: {
       file: packageJSON.module,
       format: 'esm',
-      exports: 'named',
     },
     plugins: [commonjs(), json(), typescript(), autoExternal()],
   },
