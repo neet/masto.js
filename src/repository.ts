@@ -14,7 +14,7 @@ export interface Repository<
   CreateParams = never,
   UpdateParams = never,
   FetchParams = never,
-  PaginationParams = DefaultPaginationParams
+  PaginationParams = DefaultPaginationParams,
 > {
   readonly [Symbol.asyncIterator]?: () => AsyncIterable<Entity[]>;
   readonly getIterator?: (params: PaginationParams) => AsyncIterable<Entity[]>;

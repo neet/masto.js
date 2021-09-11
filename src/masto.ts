@@ -1,4 +1,4 @@
-import { AdminFacadeRepositories } from './admin';
+import { MastoAdminClient } from './admin';
 import { MastoConfig } from './config';
 import { version } from './decorators';
 import { Results } from './entities';
@@ -59,7 +59,7 @@ export interface SearchParams extends DefaultPaginationParams {
   readonly following?: boolean | null;
 }
 
-export class FacadeRepositories {
+export class MastoClient {
   constructor(
     private readonly http: Http,
     private readonly ws: Ws,
@@ -67,7 +67,7 @@ export class FacadeRepositories {
     private readonly config: MastoConfig,
   ) {}
 
-  readonly admin = new AdminFacadeRepositories(this.http, this.version);
+  readonly admin = new MastoAdminClient(this.http, this.version);
 
   readonly stream = new StreamRepository(this.ws, this.version);
 
@@ -156,9 +156,7 @@ export class FacadeRepositories {
   }
 }
 
-export const login = async (
-  config: MastoConfig,
-): Promise<FacadeRepositories> => {
+export const login = async (config: MastoConfig): Promise<MastoClient> => {
   const serializer = new SerializerImpl();
   const http = new HttpAxiosImpl(config, serializer);
   const instance = await new InstanceRepository(http, '1.0.0').fetch();
@@ -169,5 +167,10 @@ export const login = async (
     serializer,
   );
 
-  return new FacadeRepositories(http, ws, instance.version, config);
+  return new MastoClient(http, ws, instance.version, config);
 };
+
+/**
+ * @deprecated This type alias will be removed in v5.x
+ */
+export const FacadeRepositories = MastoClient;
