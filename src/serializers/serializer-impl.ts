@@ -1,3 +1,5 @@
+import 'isomorphic-form-data';
+
 import { camelCase, snakeCase } from 'change-case';
 import { ParsedUrlQuery, stringify } from 'querystring';
 
