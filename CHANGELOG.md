@@ -1,3 +1,13 @@
+## [4.1.14](https://github.com/neet/masto.js/compare/v4.1.13...v4.1.14) (2021-09-12)
+
+
+### Bug Fixes
+
+* Avoid unintuitive keyword like "facade" ([7f6b9bf](https://github.com/neet/masto.js/commit/7f6b9bfe6aa8b1181e6f35e04368245fa4bbaa27))
+* Remove exports field in rollup config ([4c60880](https://github.com/neet/masto.js/commit/4c608803de221d4efa2a2d6f466f4b62f430465b))
+* Remove imports of isomorhpic-form-data ([f61bfe5](https://github.com/neet/masto.js/commit/f61bfe5dae8f737fcb36ef6c2ae8c100583a98c9))
+* Use rollup-plugin-auto-external ([ead7c36](https://github.com/neet/masto.js/commit/ead7c3686a2061848b50fb8984324d0baf0c113f))
+
 ## [4.1.13](https://github.com/neet/masto.js/compare/v4.1.12...v4.1.13) (2021-09-11)
 
 
