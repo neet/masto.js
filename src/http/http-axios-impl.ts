@@ -1,31 +1,20 @@
 import axios, { AxiosInstance } from 'axios';
 
 import { MastoConfig } from '../config';
-import {
-  MastoConflictError,
-  MastoError,
-  MastoForbiddenError,
-  MastoGoneError,
-  MastoNotFoundError,
-  MastoRateLimitError,
-  MastoUnauthorizedError,
-  MastoUnprocessableEntityError,
-} from '../errors';
+import { createError, CreateErrorParams } from '../errors';
 import { Serializer } from '../serializers';
-import { Data, Http, Request, Response } from './http';
+import { BaseHttp } from './base-http';
+import { Http, Request, Response } from './http';
 
-export class HttpAxiosImpl implements Http {
+export class HttpAxiosImpl extends BaseHttp implements Http {
   private readonly axios: AxiosInstance;
 
   constructor(readonly config: MastoConfig, readonly serializer: Serializer) {
+    super();
+
     this.axios = axios.create({
       baseURL: config.url,
-      headers: {
-        Authorization:
-          this.config.accessToken && `Bearer ${this.config.accessToken}`,
-        'Content-Type': 'application/json',
-        ...config.headers,
-      },
+      headers: this.createHeader(),
       proxy: config.proxy,
       timeout: config.timeout,
       transformRequest: (data, headers) => {
@@ -70,82 +59,15 @@ export class HttpAxiosImpl implements Http {
         throw error;
       }
 
-      const status = error?.response?.status;
-      const message =
-        error?.response?.data?.error ?? 'Unexpected error occurred';
-      const description = error?.response?.data?.errorDescription;
-      const details = error?.response?.data?.details;
-      const args = [message, description, details] as const;
-
-      switch (status) {
-        case 401:
-          throw new MastoUnauthorizedError(...args);
-        case 403:
-          throw new MastoForbiddenError(...args);
-        case 404:
-          throw new MastoNotFoundError(...args);
-        case 409:
-          throw new MastoConflictError(...args);
-        case 410:
-          throw new MastoGoneError(...args);
-        case 422:
-          throw new MastoUnprocessableEntityError(...args);
-        case 429:
-          throw new MastoRateLimitError(
-            message,
-            error?.response?.headers?.['X-RateLimit-Limit'],
-            error?.response?.headers?.['X-RateLimit-Remaining'],
-            error?.response?.headers?.['X-RateLimit-Reset'],
-            description,
-          );
-        default:
-          throw new MastoError(message, status, description, details);
-      }
+      throw createError({
+        statusCode: error?.response?.status,
+        message: error?.response?.data?.error,
+        details: error?.response?.data?.errorDescription,
+        description: error?.response?.data?.details,
+        limit: error?.response?.headers?.['X-RateLimit-Limit'],
+        remaining: error?.response?.headers?.['X-RateLimit-Remaining'],
+        reset: error?.response?.headers?.['X-RateLimit-Reset'],
+      } as CreateErrorParams);
     }
-  }
-
-  get<T>(url: string, data?: Data, init: Request = {}): Promise<T> {
-    return this.request({
-      method: 'get',
-      url,
-      params: data,
-      ...init,
-    }).then((response) => response.data as T);
-  }
-
-  post<T>(url: string, data?: Data, init: Request = {}): Promise<T> {
-    return this.request({
-      method: 'post',
-      url,
-      data,
-      ...init,
-    }).then((response) => response.data as T);
-  }
-
-  delete<T>(url: string, data?: Data, init: Request = {}): Promise<T> {
-    return this.request({
-      method: 'delete',
-      url,
-      data,
-      ...init,
-    }).then((response) => response.data as T);
-  }
-
-  put<T>(url: string, data?: Data, init: Request = {}): Promise<T> {
-    return this.request({
-      method: 'put',
-      url,
-      data,
-      ...init,
-    }).then((response) => response.data as T);
-  }
-
-  patch<T>(url: string, data?: Data, init: Request = {}): Promise<T> {
-    return this.request({
-      method: 'patch',
-      url,
-      data,
-      ...init,
-    }).then((response) => response.data as T);
   }
 }

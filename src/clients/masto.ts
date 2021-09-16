@@ -1,10 +1,8 @@
-import { MastoAdminClient } from './admin';
-import { MastoConfig } from './config';
-import { version } from './decorators';
-import { Results } from './entities';
-import { Http } from './http';
-import { HttpAxiosImpl } from './http/http-axios-impl';
-import { Paginator } from './paginator';
+import { MastoConfig } from '../config';
+import { version } from '../decorators';
+import { Results } from '../entities';
+import { Http } from '../http';
+import { Paginator } from '../paginator';
 import {
   AccountRepository,
   AnnouncementRepository,
@@ -37,10 +35,10 @@ import {
   SuggestionRepository,
   TimelinesRepository,
   TrendRepository,
-} from './repositories';
-import { DefaultPaginationParams } from './repository';
-import { SerializerImpl } from './serializers';
-import { Ws, WsImpl } from './ws';
+} from '../repositories';
+import { DefaultPaginationParams } from '../repository';
+import { Ws } from '../ws';
+import { MastoAdminClient } from './admin';
 
 export type SearchType = 'accounts' | 'hashtags' | 'statuses';
 
@@ -60,12 +58,17 @@ export interface SearchParams extends DefaultPaginationParams {
 }
 
 export class MastoClient {
-  constructor(
-    private readonly http: Http,
-    private readonly ws: Ws,
-    readonly version: string,
-    private readonly config: MastoConfig,
-  ) {}
+  private readonly http!: Http;
+  private readonly ws!: Ws;
+  readonly version!: string;
+  private readonly config!: MastoConfig;
+
+  constructor(http: Http, ws: Ws, version: string, config: MastoConfig) {
+    this.http = http;
+    this.ws = ws;
+    this.version = version;
+    this.config = config;
+  }
 
   readonly admin = new MastoAdminClient(this.http, this.version);
 
@@ -155,20 +158,6 @@ export class MastoClient {
     return new Paginator(this.http, `/api/v2/search`, params);
   }
 }
-
-export const login = async (config: MastoConfig): Promise<MastoClient> => {
-  const serializer = new SerializerImpl();
-  const http = new HttpAxiosImpl(config, serializer);
-  const instance = await new InstanceRepository(http, '1.0.0').fetch();
-  const ws = new WsImpl(
-    instance.urls.streamingApi,
-    instance.version,
-    config,
-    serializer,
-  );
-
-  return new MastoClient(http, ws, instance.version, config);
-};
 
 /**
  * @deprecated This type alias will be removed in v5.x

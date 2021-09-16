@@ -24,7 +24,6 @@
     "eventemitter3": "^4.0.7",
     "isomorphic-form-data": "^2.0.0",
     "isomorphic-ws": "^4.0.1",
-    "normalize-url": "^7.0.1",
     "semver": "^7.3.5",
     "ws": "^8.2.1"
   },
@@ -51,6 +50,7 @@
     "prettier": "^2.3.2",
     "rollup": "^2.56.3",
     "rollup-plugin-auto-external": "^2.0.0",
+    "rollup-plugin-dts": "^4.0.0",
     "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-typescript2": "^0.30.0",
     "rxjs": "^7.3.0",

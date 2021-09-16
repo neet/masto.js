@@ -1,2 +1,3 @@
 export * from './serializer';
-export * from './serializer-impl';
+export * from './serializer-nodejs-impl';
+export * from './serializer-native-impl';

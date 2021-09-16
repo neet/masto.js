@@ -7,8 +7,8 @@ import { flattenObject } from './form-data';
 import { MimeType, Serializer } from './serializer';
 import { transformKeys } from './transform-keys';
 
-export class SerializerImpl implements Serializer {
-  serialize(type: MimeType, rawData: Record<string, unknown>): unknown {
+export class SerializerNodejsImpl implements Serializer {
+  serialize(type: MimeType, rawData: unknown): unknown {
     if (rawData == null) return;
 
     const data = transformKeys(rawData, snakeCase);
