@@ -7,3 +7,4 @@ export * from './masto-timeout-error';
 export * from './masto-unauthorized-error';
 export * from './masto-unprocessable-entity-error';
 export * from './masto-error';
+export * from './factory';

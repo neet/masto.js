@@ -1,5 +1,4 @@
 import EventEmitter from 'eventemitter3';
-import WebSocket from 'isomorphic-ws';
 
 import { MastoConfig } from '../config';
 import { Serializer } from '../serializers';
@@ -9,7 +8,7 @@ import { Event, EventType, EventTypeMap, Ws, WsEvents } from './ws';
 /**
  * Mastodon streaming api wrapper
  */
-export class WsEventsNodejsImpl
+export class WsEventsNativeImpl
   extends EventEmitter<EventTypeMap>
   implements WsEvents
 {
@@ -33,7 +32,7 @@ export class WsEventsNodejsImpl
   ) {
     return new Promise<WsEvents>((resolve, reject) => {
       const ws = new WebSocket(url, protocols);
-      const instance = new WsEventsNodejsImpl(ws, serializer);
+      const instance = new WsEventsNativeImpl(ws, serializer);
       ws.addEventListener('message', instance.handleMessage);
       ws.addEventListener('error', reject);
       ws.addEventListener('open', () => resolve(instance));
@@ -66,7 +65,7 @@ export class WsEventsNodejsImpl
   };
 }
 
-export class WsNodejsImpl extends BaseWs implements Ws {
+export class WsNativeImpl extends BaseWs implements Ws {
   constructor(
     protected readonly baseUrl: string,
     protected readonly version: string,
@@ -80,7 +79,7 @@ export class WsNodejsImpl extends BaseWs implements Ws {
     path: string,
     params: Record<string, unknown> = {},
   ): Promise<WsEvents> {
-    return WsEventsNodejsImpl.connect(
+    return WsEventsNativeImpl.connect(
       this.resolveUrl(path, params),
       this.serializer,
       this.createProtocols(),

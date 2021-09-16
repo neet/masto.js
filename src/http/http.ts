@@ -2,8 +2,8 @@ export type Headers = { readonly [key: string]: unknown };
 export type Data = unknown;
 
 export type Request = {
-  readonly url?: string;
-  readonly method?: 'get' | 'post' | 'patch' | 'delete' | 'put' | 'options';
+  readonly url: string;
+  readonly method: 'get' | 'post' | 'patch' | 'delete' | 'put' | 'options';
   readonly headers?: Headers;
   readonly params?: Data;
   readonly data?: Data;
@@ -17,7 +17,7 @@ export type Response<T> = {
 export type Method = <T>(
   path: string,
   data?: Data,
-  request?: Request,
+  request?: Partial<Request>,
 ) => Promise<T>;
 
 export interface Http {

@@ -4,6 +4,6 @@ export type MimeType =
   | 'application/x-www-form-urlencoded';
 
 export interface Serializer {
-  serialize(type: MimeType, data: Record<string, unknown>): unknown;
+  serialize(type: MimeType, data: unknown): unknown;
   deserialize<T = Record<string, unknown>>(type: MimeType, data: unknown): T;
 }
