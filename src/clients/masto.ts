@@ -58,94 +58,88 @@ export interface SearchParams extends DefaultPaginationParams {
 }
 
 export class MastoClient {
-  private readonly http!: Http;
-  private readonly ws!: Ws;
-  readonly version!: string;
-  private readonly config!: MastoConfig;
+  readonly admin: MastoAdminClient;
+  readonly stream: StreamRepository;
+  readonly accounts: AccountRepository;
+  readonly announcements: AnnouncementRepository;
+  readonly apps: AppRepository;
+  readonly blocks: BlockRepository;
+  readonly bookmarks: BookmarkRepository;
+  readonly conversations: ConversationRepository;
+  readonly customEmojis: CustomEmojiRepository;
+  readonly directory: DirectoryRepository;
+  readonly domainBlocks: DomainBlockRepository;
+  readonly endorsements: EndorsementRepository;
+  readonly favourites: FavouriteRepository;
+  readonly featuredTags: FeaturedTagRepository;
+  readonly filters: FilterRepository;
+  readonly followRequests: FollowRequestRepository;
+  readonly instances: InstanceRepository;
+  readonly lists: ListRepository;
+  readonly markers: MarkerRepository;
+  readonly mediaAttachments: MediaAttachmentRepository;
+  readonly mutes: MuteRepository;
+  readonly notifications: NotificationsRepository;
+  readonly poll: PollRepository;
+  readonly preferences: PreferenceRepository;
+  readonly pushSubscriptions: PushSubscriptionsRepository;
+  readonly reports: ReportRepository;
+  readonly scheduledStatuses: ScheduledStatusesRepository;
+  readonly statuses: StatusRepository;
+  readonly suggestions: SuggestionRepository;
+  readonly timelines: TimelinesRepository;
+  readonly trends: TrendRepository;
+  readonly email: EmailRepository;
 
-  constructor(http: Http, ws: Ws, version: string, config: MastoConfig) {
-    this.http = http;
-    this.ws = ws;
-    this.version = version;
-    this.config = config;
+  constructor(
+    private readonly http: Http,
+    private readonly ws: Ws,
+    readonly version: string,
+    private readonly config: MastoConfig,
+  ) {
+    this.admin = new MastoAdminClient(this.http, this.version);
+    this.stream = new StreamRepository(this.ws, this.version);
+    this.accounts = new AccountRepository(this.http, this.version);
+    this.announcements = new AnnouncementRepository(this.http, this.version);
+    this.apps = new AppRepository(this.http, this.version);
+    this.blocks = new BlockRepository(this.http, this.version);
+    this.bookmarks = new BookmarkRepository(this.http, this.version);
+    this.conversations = new ConversationRepository(this.http, this.version);
+    this.customEmojis = new CustomEmojiRepository(this.http, this.version);
+    this.directory = new DirectoryRepository(this.http, this.version);
+    this.domainBlocks = new DomainBlockRepository(this.http, this.version);
+    this.endorsements = new EndorsementRepository(this.http, this.version);
+    this.favourites = new FavouriteRepository(this.http, this.version);
+    this.featuredTags = new FeaturedTagRepository(this.http, this.version);
+    this.filters = new FilterRepository(this.http, this.version);
+    this.followRequests = new FollowRequestRepository(this.http, this.version);
+    this.instances = new InstanceRepository(this.http, this.version);
+    this.lists = new ListRepository(this.http, this.version);
+    this.markers = new MarkerRepository(this.http, this.version);
+    this.mediaAttachments = new MediaAttachmentRepository(
+      this.http,
+      this.version,
+      this.config.timeout,
+    );
+    this.mutes = new MuteRepository(this.http, this.version);
+    this.notifications = new NotificationsRepository(this.http, this.version);
+    this.poll = new PollRepository(this.http, this.version);
+    this.preferences = new PreferenceRepository(this.http, this.version);
+    this.pushSubscriptions = new PushSubscriptionsRepository(
+      this.http,
+      this.version,
+    );
+    this.reports = new ReportRepository(this.http, this.version);
+    this.scheduledStatuses = new ScheduledStatusesRepository(
+      this.http,
+      this.version,
+    );
+    this.statuses = new StatusRepository(this.http, this.version);
+    this.suggestions = new SuggestionRepository(this.http, this.version);
+    this.timelines = new TimelinesRepository(this.http, this.version);
+    this.trends = new TrendRepository(this.http, this.version);
+    this.email = new EmailRepository(this.http, this.version);
   }
-
-  readonly admin = new MastoAdminClient(this.http, this.version);
-
-  readonly stream = new StreamRepository(this.ws, this.version);
-
-  readonly accounts = new AccountRepository(this.http, this.version);
-
-  readonly announcements = new AnnouncementRepository(this.http, this.version);
-
-  readonly apps = new AppRepository(this.http, this.version);
-
-  readonly blocks = new BlockRepository(this.http, this.version);
-
-  readonly bookmarks = new BookmarkRepository(this.http, this.version);
-
-  readonly conversations = new ConversationRepository(this.http, this.version);
-
-  readonly customEmojis = new CustomEmojiRepository(this.http, this.version);
-
-  readonly directory = new DirectoryRepository(this.http, this.version);
-
-  readonly domainBlocks = new DomainBlockRepository(this.http, this.version);
-
-  readonly endorsements = new EndorsementRepository(this.http, this.version);
-
-  readonly favourites = new FavouriteRepository(this.http, this.version);
-
-  readonly featuredTags = new FeaturedTagRepository(this.http, this.version);
-
-  readonly filters = new FilterRepository(this.http, this.version);
-
-  readonly followRequests = new FollowRequestRepository(
-    this.http,
-    this.version,
-  );
-
-  readonly instances = new InstanceRepository(this.http, this.version);
-
-  readonly lists = new ListRepository(this.http, this.version);
-
-  readonly markers = new MarkerRepository(this.http, this.version);
-
-  readonly mediaAttachments = new MediaAttachmentRepository(
-    this.http,
-    this.version,
-    this.config.timeout,
-  );
-
-  readonly mutes = new MuteRepository(this.http, this.version);
-
-  readonly notifications = new NotificationsRepository(this.http, this.version);
-
-  readonly poll = new PollRepository(this.http, this.version);
-
-  readonly preferences = new PreferenceRepository(this.http, this.version);
-
-  readonly pushSubscriptions = new PushSubscriptionsRepository(
-    this.http,
-    this.version,
-  );
-
-  readonly reports = new ReportRepository(this.http, this.version);
-
-  readonly scheduledStatuses = new ScheduledStatusesRepository(
-    this.http,
-    this.version,
-  );
-
-  readonly statuses = new StatusRepository(this.http, this.version);
-
-  readonly suggestions = new SuggestionRepository(this.http, this.version);
-
-  readonly timelines = new TimelinesRepository(this.http, this.version);
-
-  readonly trends = new TrendRepository(this.http, this.version);
-
-  readonly email = new EmailRepository(this.http, this.version);
 
   /**
    * Search results
