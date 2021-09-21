@@ -1,3 +1,10 @@
+## [4.1.16](https://github.com/neet/masto.js/compare/v4.1.15...v4.1.16) (2021-09-21)
+
+
+### Bug Fixes
+
+* Remove mock exports ([e50d27c](https://github.com/neet/masto.js/commit/e50d27c53355c0b3f411ba1a94ce31246e89d012))
+
 ## [4.1.15](https://github.com/neet/masto.js/compare/v4.1.14...v4.1.15) (2021-09-17)
 
 ## [4.1.14](https://github.com/neet/masto.js/compare/v4.1.13...v4.1.14) (2021-09-12)
