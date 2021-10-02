@@ -25,14 +25,14 @@
     "isomorphic-form-data": "^2.0.0",
     "isomorphic-ws": "^4.0.1",
     "semver": "^7.3.5",
-    "ws": "^8.2.1"
+    "ws": "^8.2.2"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-commonjs": "^21.0.0",
     "@rollup/plugin-json": "^4.1.0",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.0",
-    "@types/jest": "^27.0.1",
+    "@types/jest": "^27.0.2",
     "@types/node": "^16.7.10",
     "@types/semver": "^7.3.8",
     "@types/ws": "^7.4.7",
