@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>WsImpl | masto</title>
+	<title>MastoAdminClient | masto</title>
 	<meta name="description" content="Documentation for masto">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,13 +55,13 @@
 					<a href="../modules.html">masto</a>
 				</li>
 				<li>
-					<a href="../modules/ws_ws_impl.html">ws/ws-impl</a>
+					<a href="../modules/clients_admin.html">clients/admin</a>
 				</li>
 				<li>
-					<a href="ws_ws_impl.wsimpl.html">WsImpl</a>
+					<a href="clients_admin.MastoAdminClient.html">MastoAdminClient</a>
 				</li>
 			</ul>
-			<h1>Class WsImpl</h1>
+			<h1>Class MastoAdminClient</h1>
 		</div>
 	</div>
 </header>
@@ -72,14 +72,8 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">WsImpl</span>
+						<span class="target">MastoAdminClient</span>
 					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel">
-				<h3>Implements</h3>
-				<ul class="tsd-hierarchy">
-					<li><a href="../interfaces/ws_ws.ws.html" class="tsd-signature-type" data-tsd-kind="Interface">Ws</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -89,13 +83,14 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="ws_ws_impl.wsimpl.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="clients_admin.MastoAdminClient.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
-							<h3>Methods</h3>
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="ws_ws_impl.wsimpl.html#stream" class="tsd-kind-icon">stream</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="clients_admin.MastoAdminClient.html#account" class="tsd-kind-icon">account</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="clients_admin.MastoAdminClient.html#report" class="tsd-kind-icon">report</a></li>
 							</ul>
 						</section>
 					</div>
@@ -107,63 +102,50 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>WsImpl<span class="tsd-signature-symbol">(</span>baseUrl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, version<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, config<span class="tsd-signature-symbol">: </span><a href="../interfaces/config.mastoconfig.html" class="tsd-signature-type" data-tsd-kind="Interface">MastoConfig</a>, serializer<span class="tsd-signature-symbol">: </span><a href="../interfaces/serializers_serializer.serializer.html" class="tsd-signature-type" data-tsd-kind="Interface">Serializer</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="ws_ws_impl.wsimpl.html" class="tsd-signature-type" data-tsd-kind="Class">WsImpl</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Masto<wbr>Admin<wbr>Client<span class="tsd-signature-symbol">(</span>http<span class="tsd-signature-symbol">: </span><a href="../interfaces/http_http.Http.html" class="tsd-signature-type" data-tsd-kind="Interface">Http</a>, version<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="clients_admin.MastoAdminClient.html" class="tsd-signature-type" data-tsd-kind="Class">MastoAdminClient</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/433e4c4/src/ws/ws-impl.ts#L68">src/ws/ws-impl.ts:68</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/e50d27c/src/clients/admin.ts#L8">src/clients/admin.ts:8</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>baseUrl: <span class="tsd-signature-type">string</span></h5>
+									<h5>http: <a href="../interfaces/http_http.Http.html" class="tsd-signature-type" data-tsd-kind="Interface">Http</a></h5>
 								</li>
 								<li>
 									<h5>version: <span class="tsd-signature-type">string</span></h5>
 								</li>
-								<li>
-									<h5>config: <a href="../interfaces/config.mastoconfig.html" class="tsd-signature-type" data-tsd-kind="Interface">MastoConfig</a></h5>
-								</li>
-								<li>
-									<h5>serializer: <a href="../interfaces/serializers_serializer.serializer.html" class="tsd-signature-type" data-tsd-kind="Interface">Serializer</a></h5>
-								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="ws_ws_impl.wsimpl.html" class="tsd-signature-type" data-tsd-kind="Class">WsImpl</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="clients_admin.MastoAdminClient.html" class="tsd-signature-type" data-tsd-kind="Class">MastoAdminClient</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="stream" class="tsd-anchor"></a>
-					<h3>stream</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">stream<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, rawParams<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ws_ws.wsevents.html" class="tsd-signature-type" data-tsd-kind="Interface">WsEvents</a><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/ws_ws.ws.html">Ws</a>.<a href="../interfaces/ws_ws.ws.html#stream">stream</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/433e4c4/src/ws/ws-impl.ts#L76">src/ws/ws-impl.ts:76</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>path: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>rawParams: <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ws_ws.wsevents.html" class="tsd-signature-type" data-tsd-kind="Interface">WsEvents</a><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="account" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> account</h3>
+					<div class="tsd-signature tsd-kind-icon">account<span class="tsd-signature-symbol">:</span> <a href="repositories_admin_account_repository.AccountRepository.html" class="tsd-signature-type" data-tsd-kind="Class">AccountRepository</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/e50d27c/src/clients/admin.ts#L5">src/clients/admin.ts:5</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="report" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> report</h3>
+					<div class="tsd-signature tsd-kind-icon">report<span class="tsd-signature-symbol">:</span> <a href="repositories_admin_report_repository.ReportRepository.html" class="tsd-signature-type" data-tsd-kind="Class">ReportRepository</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/neet/masto.js/blob/e50d27c/src/clients/admin.ts#L6">src/clients/admin.ts:6</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -171,33 +153,36 @@
 			<nav class="tsd-navigation primary">
 				<ul>
 					<li class=" ">
-						<a href="../modules.html">Exports</a>
+						<a href="../modules.html">Modules</a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="../modules/ws_ws_impl.html">ws/ws-<wbr>impl</a>
+						<a href="../modules/clients_admin.html">clients/admin</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-module">
-						<a href="ws_ws_impl.wseventsimpl.html" class="tsd-kind-icon">Ws<wbr>Events<wbr>Impl</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-module">
-						<a href="ws_ws_impl.wsimpl.html" class="tsd-kind-icon">Ws<wbr>Impl</a>
+						<a href="clients_admin.MastoAdminClient.html" class="tsd-kind-icon">Masto<wbr>Admin<wbr>Client</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="ws_ws_impl.wsimpl.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="clients_admin.MastoAdminClient.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="ws_ws_impl.wsimpl.html#stream" class="tsd-kind-icon">stream</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="clients_admin.MastoAdminClient.html#account" class="tsd-kind-icon">account</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="clients_admin.MastoAdminClient.html#report" class="tsd-kind-icon">report</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="../modules/clients_admin.html#AdminFacadeRepositories" class="tsd-kind-icon">Admin<wbr>Facade<wbr>Repositories</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
@@ -218,7 +203,7 @@
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
 				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
 				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>

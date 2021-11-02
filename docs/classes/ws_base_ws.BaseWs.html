@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SerializerImpl | masto</title>
+	<title>BaseWs | masto</title>
 	<meta name="description" content="Documentation for masto">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,13 +55,13 @@
 					<a href="../modules.html">masto</a>
 				</li>
 				<li>
-					<a href="../modules/serializers_serializer_impl.html">serializers/serializer-impl</a>
+					<a href="../modules/ws_base_ws.html">ws/base-ws</a>
 				</li>
 				<li>
-					<a href="serializers_serializer_impl.serializerimpl.html">SerializerImpl</a>
+					<a href="ws_base_ws.BaseWs.html">BaseWs</a>
 				</li>
 			</ul>
-			<h1>Class SerializerImpl</h1>
+			<h1>Class BaseWs</h1>
 		</div>
 	</div>
 </header>
@@ -72,14 +72,22 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">SerializerImpl</span>
+						<span class="target">BaseWs</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<a href="ws_ws_impl.WsNodejsImpl.html" class="tsd-signature-type" data-tsd-kind="Class">WsNodejsImpl</a>
+							</li>
+							<li>
+								<a href="ws_ws_native_impl.WsNativeImpl.html" class="tsd-signature-type" data-tsd-kind="Class">WsNativeImpl</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel">
 				<h3>Implements</h3>
 				<ul class="tsd-hierarchy">
-					<li><a href="../interfaces/serializers_serializer.serializer.html" class="tsd-signature-type" data-tsd-kind="Interface">Serializer</a></li>
+					<li><a href="../interfaces/ws_ws.Ws.html" class="tsd-signature-type" data-tsd-kind="Interface">Ws</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -89,14 +97,15 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="serializers_serializer_impl.serializerimpl.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="ws_base_ws.BaseWs.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="serializers_serializer_impl.serializerimpl.html#deserialize" class="tsd-kind-icon">deserialize</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="serializers_serializer_impl.serializerimpl.html#serialize" class="tsd-kind-icon">serialize</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="ws_base_ws.BaseWs.html#createProtocols" class="tsd-kind-icon">create<wbr>Protocols</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="ws_base_ws.BaseWs.html#resolveUrl" class="tsd-kind-icon">resolve<wbr>Url</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="ws_base_ws.BaseWs.html#stream" class="tsd-kind-icon">stream</a></li>
 							</ul>
 						</section>
 					</div>
@@ -108,76 +117,92 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Serializer<wbr>Impl<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="serializers_serializer_impl.serializerimpl.html" class="tsd-signature-type" data-tsd-kind="Class">SerializerImpl</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Base<wbr>Ws<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="ws_base_ws.BaseWs.html" class="tsd-signature-type" data-tsd-kind="Class">BaseWs</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="serializers_serializer_impl.serializerimpl.html" class="tsd-signature-type" data-tsd-kind="Class">SerializerImpl</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="ws_base_ws.BaseWs.html" class="tsd-signature-type" data-tsd-kind="Class">BaseWs</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-					<a name="deserialize" class="tsd-anchor"></a>
-					<h3>deserialize</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">deserialize&lt;T&gt;<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><a href="../modules/serializers_serializer.html#mimetype" class="tsd-signature-type" data-tsd-kind="Type alias">MimeType</a>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="createProtocols" class="tsd-anchor"></a>
+					<h3>create<wbr>Protocols</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Protocols<span class="tsd-signature-symbol">(</span>protocols<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/serializers_serializer.serializer.html">Serializer</a>.<a href="../interfaces/serializers_serializer.serializer.html#deserialize">deserialize</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/433e4c4/src/serializers/serializer-impl.ts#L34">src/serializers/serializer-impl.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/e50d27c/src/ws/base-ws.ts#L33">src/ws/base-ws.ts:33</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-type-parameters-title">Type parameters</h4>
-							<ul class="tsd-type-parameters">
-								<li>
-									<h4>T = <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></h4>
-								</li>
-							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>type: <a href="../modules/serializers_serializer.html#mimetype" class="tsd-signature-type" data-tsd-kind="Type alias">MimeType</a></h5>
-								</li>
-								<li>
-									<h5>data: <span class="tsd-signature-type">string</span></h5>
+									<h5>protocols: <span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="serialize" class="tsd-anchor"></a>
-					<h3>serialize</h3>
+					<a name="resolveUrl" class="tsd-anchor"></a>
+					<h3>resolve<wbr>Url</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">serialize<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><a href="../modules/serializers_serializer.html#mimetype" class="tsd-signature-type" data-tsd-kind="Type alias">MimeType</a>, rawData<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></li>
+						<li class="tsd-signature tsd-kind-icon">resolve<wbr>Url<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/serializers_serializer.serializer.html">Serializer</a>.<a href="../interfaces/serializers_serializer.serializer.html#serialize">serialize</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/433e4c4/src/serializers/serializer-impl.ts#L11">src/serializers/serializer-impl.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/e50d27c/src/ws/base-ws.ts#L20">src/ws/base-ws.ts:20</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>type: <a href="../modules/serializers_serializer.html#mimetype" class="tsd-signature-type" data-tsd-kind="Type alias">MimeType</a></h5>
+									<h5>path: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>rawData: <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>params: <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = {}</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">unknown</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="stream" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagAbstract">Abstract</span> stream</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">stream<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ws_ws.WsEvents.html" class="tsd-signature-type" data-tsd-kind="Interface">WsEvents</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/ws_ws.Ws.html">Ws</a>.<a href="../interfaces/ws_ws.Ws.html#stream">stream</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/e50d27c/src/ws/base-ws.ts#L12">src/ws/base-ws.ts:12</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>path: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>params: <span class="tsd-signature-type">unknown</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ws_ws.WsEvents.html" class="tsd-signature-type" data-tsd-kind="Interface">WsEvents</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -187,10 +212,10 @@
 			<nav class="tsd-navigation primary">
 				<ul>
 					<li class=" ">
-						<a href="../modules.html">Exports</a>
+						<a href="../modules.html">Modules</a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="../modules/serializers_serializer_impl.html">serializers/serializer-<wbr>impl</a>
+						<a href="../modules/ws_base_ws.html">ws/base-<wbr>ws</a>
 					</li>
 				</ul>
 			</nav>
@@ -199,16 +224,19 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-module">
-						<a href="serializers_serializer_impl.serializerimpl.html" class="tsd-kind-icon">Serializer<wbr>Impl</a>
+						<a href="ws_base_ws.BaseWs.html" class="tsd-kind-icon">Base<wbr>Ws</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="serializers_serializer_impl.serializerimpl.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-								<a href="serializers_serializer_impl.serializerimpl.html#deserialize" class="tsd-kind-icon">deserialize</a>
+								<a href="ws_base_ws.BaseWs.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="serializers_serializer_impl.serializerimpl.html#serialize" class="tsd-kind-icon">serialize</a>
+								<a href="ws_base_ws.BaseWs.html#createProtocols" class="tsd-kind-icon">create<wbr>Protocols</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="ws_base_ws.BaseWs.html#resolveUrl" class="tsd-kind-icon">resolve<wbr>Url</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="ws_base_ws.BaseWs.html#stream" class="tsd-kind-icon">stream</a>
 							</li>
 						</ul>
 					</li>

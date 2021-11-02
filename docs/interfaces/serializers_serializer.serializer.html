@@ -58,7 +58,7 @@
 					<a href="../modules/serializers_serializer.html">serializers/serializer</a>
 				</li>
 				<li>
-					<a href="serializers_serializer.serializer.html">Serializer</a>
+					<a href="serializers_serializer.Serializer.html">Serializer</a>
 				</li>
 			</ul>
 			<h1>Interface Serializer</h1>
@@ -79,7 +79,8 @@
 			<section class="tsd-panel">
 				<h3>Implemented by</h3>
 				<ul class="tsd-hierarchy">
-					<li><a href="../classes/serializers_serializer_impl.serializerimpl.html" class="tsd-signature-type" data-tsd-kind="Class">SerializerImpl</a></li>
+					<li><a href="../classes/serializers_serializer_native_impl.SerializerNativeImpl.html" class="tsd-signature-type" data-tsd-kind="Class">SerializerNativeImpl</a></li>
+					<li><a href="../classes/serializers_serializer_nodejs_impl.SerializerNodejsImpl.html" class="tsd-signature-type" data-tsd-kind="Class">SerializerNodejsImpl</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -89,8 +90,8 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="serializers_serializer.serializer.html#deserialize" class="tsd-kind-icon">deserialize</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="serializers_serializer.serializer.html#serialize" class="tsd-kind-icon">serialize</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="serializers_serializer.Serializer.html#deserialize" class="tsd-kind-icon">deserialize</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="serializers_serializer.Serializer.html#serialize" class="tsd-kind-icon">serialize</a></li>
 							</ul>
 						</section>
 					</div>
@@ -102,13 +103,13 @@
 					<a name="deserialize" class="tsd-anchor"></a>
 					<h3>deserialize</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">deserialize&lt;T&gt;<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><a href="../modules/serializers_serializer.html#mimetype" class="tsd-signature-type" data-tsd-kind="Type alias">MimeType</a>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+						<li class="tsd-signature tsd-kind-icon">deserialize&lt;T&gt;<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><a href="../modules/serializers_serializer.html#MimeType" class="tsd-signature-type" data-tsd-kind="Type alias">MimeType</a>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/433e4c4/src/serializers/serializer.ts#L8">src/serializers/serializer.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/e50d27c/src/serializers/serializer.ts#L8">src/serializers/serializer.ts:8</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -120,7 +121,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>type: <a href="../modules/serializers_serializer.html#mimetype" class="tsd-signature-type" data-tsd-kind="Type alias">MimeType</a></h5>
+									<h5>type: <a href="../modules/serializers_serializer.html#MimeType" class="tsd-signature-type" data-tsd-kind="Type alias">MimeType</a></h5>
 								</li>
 								<li>
 									<h5>data: <span class="tsd-signature-type">unknown</span></h5>
@@ -134,22 +135,22 @@
 					<a name="serialize" class="tsd-anchor"></a>
 					<h3>serialize</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">serialize<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><a href="../modules/serializers_serializer.html#mimetype" class="tsd-signature-type" data-tsd-kind="Type alias">MimeType</a>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></li>
+						<li class="tsd-signature tsd-kind-icon">serialize<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><a href="../modules/serializers_serializer.html#MimeType" class="tsd-signature-type" data-tsd-kind="Type alias">MimeType</a>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/neet/masto.js/blob/433e4c4/src/serializers/serializer.ts#L7">src/serializers/serializer.ts:7</a></li>
+									<li>Defined in <a href="https://github.com/neet/masto.js/blob/e50d27c/src/serializers/serializer.ts#L7">src/serializers/serializer.ts:7</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>type: <a href="../modules/serializers_serializer.html#mimetype" class="tsd-signature-type" data-tsd-kind="Type alias">MimeType</a></h5>
+									<h5>type: <a href="../modules/serializers_serializer.html#MimeType" class="tsd-signature-type" data-tsd-kind="Type alias">MimeType</a></h5>
 								</li>
 								<li>
-									<h5>data: <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>data: <span class="tsd-signature-type">unknown</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">unknown</span></h4>
@@ -162,7 +163,7 @@
 			<nav class="tsd-navigation primary">
 				<ul>
 					<li class=" ">
-						<a href="../modules.html">Exports</a>
+						<a href="../modules.html">Modules</a>
 					</li>
 					<li class="current tsd-kind-module">
 						<a href="../modules/serializers_serializer.html">serializers/serializer</a>
@@ -174,20 +175,20 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="serializers_serializer.serializer.html" class="tsd-kind-icon">Serializer</a>
+						<a href="serializers_serializer.Serializer.html" class="tsd-kind-icon">Serializer</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-								<a href="serializers_serializer.serializer.html#deserialize" class="tsd-kind-icon">deserialize</a>
+								<a href="serializers_serializer.Serializer.html#deserialize" class="tsd-kind-icon">deserialize</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="serializers_serializer.serializer.html#serialize" class="tsd-kind-icon">serialize</a>
+								<a href="serializers_serializer.Serializer.html#serialize" class="tsd-kind-icon">serialize</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/serializers_serializer.html#mimetype" class="tsd-kind-icon">Mime<wbr>Type</a>
+						<a href="../modules/serializers_serializer.html#MimeType" class="tsd-kind-icon">Mime<wbr>Type</a>
 					</li>
 				</ul>
 			</nav>
