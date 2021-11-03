@@ -2,7 +2,7 @@
   "name": "masto",
   "description": "Mastodon API client for JavaScript, TypeScript, Node.js, browsers",
   "private": false,
-  "version": "4.1.18",
+  "version": "4.1.19",
   "author": "Ryo Igarashi <n33t5hin@gmail.com>",
   "license": "AGPL-3.0",
   "main": "./dist/index.js",
