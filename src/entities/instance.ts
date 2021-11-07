@@ -1,5 +1,38 @@
 import { Account } from '.';
 
+export interface InstanceStatusesConfiguration {
+  maxCharacters: number;
+  maxMediaAttachments: number;
+  charactersReservedPerUrl: string;
+}
+
+export interface InstanceMediaAttachmentsConfiguration {
+  supportedMimeTypes: string[];
+  imageSizeLimit: number;
+  imageMatrixLimit: number;
+  videoSizeLimit: number;
+  videoFrameRateLimit: number;
+  videoMatrixLimit: number;
+}
+
+export interface InstancePollsConfiguration {
+  supportedMimeTypes: string[];
+  imageSizeLimit: number;
+  imageMatrixLimit: number;
+  videoSizeLimit: number;
+  videoFrameRateLimit: number;
+  videoMatrixLimit: number;
+}
+
+/**
+ * @see https://github.com/mastodon/mastodon/pull/16485
+ */
+export interface InstanceConfiguration {
+  statuses: InstanceStatusesConfiguration;
+  mediaAttachments: InstanceMediaAttachmentsConfiguration;
+  polls: InstancePollsConfiguration;
+}
+
 /**
  * Represents the software instance of Mastodon running on this domain.
  * @see https://docs.joinmastodon.org/entities/instance/
@@ -29,6 +62,8 @@ export interface Instance {
   stats: InstanceStats;
   /** Whether invitation in enabled */
   invitesEnabled: boolean;
+  /** List various values like file size limits and supported mime types */
+  configuration: InstanceConfiguration;
 
   /** Banner image for the website. */
   thumbnail?: string | null;
