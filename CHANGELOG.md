@@ -1,3 +1,10 @@
+# [4.2.0](https://github.com/neet/masto.js/compare/v4.1.19...v4.2.0) (2021-11-08)
+
+
+### Features
+
+* Support instance configuration ([b7e5f23](https://github.com/neet/masto.js/commit/b7e5f23ac7320d73f76086a71bfa13234970db59))
+
 ## [4.1.19](https://github.com/neet/masto.js/compare/v4.1.18...v4.1.19) (2021-11-03)
 
 ## [4.1.18](https://github.com/neet/masto.js/compare/v4.1.17...v4.1.18) (2021-10-10)
