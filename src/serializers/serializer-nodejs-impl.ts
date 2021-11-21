@@ -1,6 +1,5 @@
-import 'isomorphic-form-data';
-
 import { camelCase, snakeCase } from 'change-case';
+import { FormData } from 'formdata-node';
 import { ParsedUrlQuery, stringify } from 'querystring';
 
 import { flattenObject } from './form-data';

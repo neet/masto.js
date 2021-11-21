@@ -1,14 +1,15 @@
 import { MastoClient } from '../clients';
 import { MastoConfig } from '../config';
-import { HttpAxiosImpl } from '../http';
+import { HttpNativeImpl } from '../http';
 import { InstanceRepository } from '../repositories';
 import { SerializerNodejsImpl } from '../serializers';
 import { WsNodejsImpl } from '../ws';
 
 export const login = async (config: MastoConfig): Promise<MastoClient> => {
   const serializer = new SerializerNodejsImpl();
-  const http = new HttpAxiosImpl(config, serializer);
+  const http = new HttpNativeImpl(config, serializer);
   const instance = await new InstanceRepository(http, '1.0.0').fetch();
+
   const ws = new WsNodejsImpl(
     instance.urls.streamingApi,
     instance.version,

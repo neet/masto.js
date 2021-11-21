@@ -22,7 +22,10 @@
     "axios": "^0.21.2",
     "change-case": "^4.1.2",
     "eventemitter3": "^4.0.7",
+    "formdata-node": "^4.3.1",
+    "formdata-polyfill": "^4.0.10",
     "isomorphic-form-data": "^2.0.0",
+    "isomorphic-unfetch": "^3.1.0",
     "isomorphic-ws": "^4.0.1",
     "semver": "^7.3.5",
     "ws": "^8.2.3"

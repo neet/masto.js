@@ -4,7 +4,7 @@
     "module": "es6",
     "outDir": "./dist",
     "baseUrl": "./",
-    "lib": ["es2019", "dom", "esnext.asynciterable"],
+    "lib": ["es2019", "dom", "dom.iterable", "esnext.asynciterable"],
     "declaration": false,
     "esModuleInterop": true,
     "experimentalDecorators": true,
@@ -19,14 +19,12 @@
     "skipLibCheck": true,
     "strict": true
   },
-  "include": [
-    "src/**/*",
-  ],
+  "include": ["src/**/*"],
   "typedocOptions": {
     "out": "./docs",
     "theme": "default",
     "exclude": "**/+(__tests__|__mocks__)/*",
     "excludePrivate": true,
-    "excludeProtected": true,
+    "excludeProtected": true
   }
 }

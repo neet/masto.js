@@ -56,7 +56,7 @@ export class MediaAttachmentRepository
 
         return media;
       })(),
-      this.timeout ?? 3000,
+      this.timeout ?? 30000,
     );
   }
 

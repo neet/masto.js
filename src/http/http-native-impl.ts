@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-unfetch';
+
 import { MastoConfig } from '../config';
 import { createError, CreateErrorParams } from '../errors';
 import { MimeType, Serializer } from '../serializers';
@@ -24,10 +26,15 @@ export class HttpNativeImpl extends BaseHttp implements Http {
     }
 
     const url = this.resolveUrl(request.url, request.params);
-    const headers = new Headers(
-      this.createHeader(request.headers) as unknown as Record<string, string>,
-    );
-    const contentType = headers.get('Content-Type') ?? 'application/json';
+
+    // unfetch does not support Header class
+    const headers = this.createHeader(request.headers) as unknown as Record<
+      string,
+      string
+    >;
+
+    const contentType =
+      headers['Content-Type'] ?? headers['content-type'] ?? 'application/json';
     const body = this.serializer.serialize(contentType as MimeType, data);
 
     try {
@@ -38,12 +45,17 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       });
       const text = await response.text();
 
-      return this.serializer.deserialize(
-        response.headers.get('Content-Type') as MimeType,
+      const data = this.serializer.deserialize(
+        response.headers.get('Content-Type')?.split('; ')?.[0] as MimeType,
         text,
       );
-    } catch (e) {
-      if (!(e instanceof Response)) {
+
+      return {
+        data: data as T,
+        headers: Object.fromEntries(response.headers.entries()),
+      };
+    } catch (e: any) {
+      if (!('json' in e && typeof e.json === 'function')) {
         throw e;
       }
 
