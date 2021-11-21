@@ -24,7 +24,7 @@ export abstract class BaseHttp implements Http {
     );
 
     return `${this.config.url}${path}${
-      searchParams !== '{}' ? `?${searchParams}` : ''
+      searchParams !== '' ? `?${searchParams}` : ''
     }`;
   }
 
