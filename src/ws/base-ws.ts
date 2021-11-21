@@ -5,6 +5,7 @@ import { Serializer } from '../serializers';
 import { Ws, WsEvents } from './ws';
 
 export abstract class BaseWs implements Ws {
+  protected abstract readonly baseUrl: string;
   protected abstract readonly config: MastoConfig;
   protected abstract readonly version: string;
   protected abstract readonly serializer: Serializer;
@@ -14,7 +15,11 @@ export abstract class BaseWs implements Ws {
   private supportsSecureToken() {
     // Since v2.8.4, it is supported to pass access token with`Sec-Websocket-Protocol`
     // https://github.com/tootsuite/mastodon/pull/10818
-    return this.version && semver.gte(this.version, '2.8.4', { loose: true });
+    return (
+      this.version &&
+      this.baseUrl.startsWith('wss:') &&
+      semver.gte(this.version, '2.8.4', { loose: true })
+    );
   }
 
   resolveUrl(path: string, params: Record<string, unknown> = {}) {
@@ -27,7 +32,7 @@ export abstract class BaseWs implements Ws {
       params,
     );
 
-    return this.config.url + path + (query !== '{}' ? `?${params}` : '');
+    return this.baseUrl + path + (query !== '' ? `?${query}` : '');
   }
 
   createProtocols(protocols = []) {
