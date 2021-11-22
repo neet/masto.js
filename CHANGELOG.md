@@ -1,3 +1,10 @@
+## [4.2.1](https://github.com/neet/masto.js/compare/v4.2.0...v4.2.1) (2021-11-22)
+
+
+### Bug Fixes
+
+* Use streamingApiUrl to resolve streaming api ([451203f](https://github.com/neet/masto.js/commit/451203fe10aa92b82f9f48f1ed094bc50f35cf13))
+
 # [4.2.0](https://github.com/neet/masto.js/compare/v4.1.19...v4.2.0) (2021-11-08)
 
 
