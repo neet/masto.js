@@ -50,7 +50,7 @@
     "prettier": "^2.4.1",
     "rollup": "^2.59.0",
     "rollup-plugin-auto-external": "^2.0.0",
-    "rollup-plugin-dts": "^4.0.0",
+    "rollup-plugin-dts": "^4.0.1",
     "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-typescript2": "^0.31.1",
     "rxjs": "^7.4.0",
