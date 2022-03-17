@@ -1,3 +1,4 @@
+import { StatusEdit } from 'src/entities/status-edit';
 import { deprecated, version } from '../decorators';
 import { Account, Card, Context, Status, StatusVisibility } from '../entities';
 import { Http } from '../http';
@@ -49,6 +50,8 @@ export type CreateStatusParams =
   | CreateStatusParamsWithStatus
   | CreateStatusParamsWithMediaIds;
 
+export type UpdateStatusParams = CreateStatusParams;
+
 export interface ReblogStatusParams {
   /** any visibility except limited or direct (i.e. public, unlisted, private). Defaults to public. Currently unused in UI. */
   readonly visibility: StatusVisibility;
@@ -84,6 +87,17 @@ export class StatusRepository implements Repository<Status> {
     }
 
     return this.http.post('/api/v1/statuses', params);
+  }
+
+  /**
+   * Update a status
+   * @param params Parameters
+   * @return Status. When scheduled_at is present, ScheduledStatus is returned instead.
+   * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses
+   */
+  @version({ since: '0.0.0' })
+  update(params: UpdateStatusParams): Promise<Status> {
+    return this.http.put('/api/v1/statuses', params);
   }
 
   /**
@@ -251,5 +265,10 @@ export class StatusRepository implements Repository<Status> {
   @version({ since: '3.1.0' })
   unbookmark(id: string): Promise<Status> {
     return this.http.post(`/api/v1/statuses/${id}/unbookmark`);
+  }
+
+  @version({ since: '3.5.0' })
+  fetchHistory(id: string): Promise<StatusEdit[]> {
+    return this.http.get(`/api/v1/statuses/${id}/history`);
   }
 }
