@@ -14,12 +14,14 @@ export interface FetchTimelineParams extends DefaultPaginationParams {
 }
 
 export class TimelinesRepository {
-  readonly home: Paginator<FetchTimelineParams, Status[]>;
-  readonly public: Paginator<FetchTimelineParams, Status[]>;
+  constructor(private readonly http: Http, readonly version: string) {}
 
-  constructor(private readonly http: Http, readonly version: string) {
-    this.home = this.getHomeIterable();
-    this.public = this.getPublicIterable();
+  get home(): Paginator<FetchTimelineParams, Status[]> {
+    return this.getHomeIterable();
+  }
+
+  get public(): Paginator<FetchTimelineParams, Status[]> {
+    return this.getPublicIterable();
   }
 
   /**
