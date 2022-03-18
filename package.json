@@ -41,7 +41,7 @@
     "codecov": "^3.8.3",
     "cspell": "^5.18.5",
     "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.4.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
