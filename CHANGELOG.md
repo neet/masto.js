@@ -1,3 +1,10 @@
+## [4.2.7](https://github.com/neet/masto.js/compare/v4.2.6...v4.2.7) (2022-03-19)
+
+
+### Bug Fixes
+
+* Use getter for timeline.{home,public} ([99e1c23](https://github.com/neet/masto.js/commit/99e1c235cf278fb0eb476d8224bad4f4b13e9932))
+
 ## [4.2.6](https://github.com/neet/masto.js/compare/v4.2.5...v4.2.6) (2022-02-17)
 
 ## [4.2.5](https://github.com/neet/masto.js/compare/v4.2.4...v4.2.5) (2022-02-06)
