@@ -2,7 +2,8 @@ import { Http } from './http';
 import { Response } from './http/http';
 
 export class Paginator<Params, Result>
-  implements AsyncIterableIterator<Result> {
+  implements AsyncIterableIterator<Result>
+{
   private nextUrl?: string;
   private nextParams?: Params;
 
