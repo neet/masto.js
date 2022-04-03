@@ -5,6 +5,8 @@ import { Paginator } from '../paginator';
 import { DefaultPaginationParams, Repository } from '../repository';
 
 export interface FetchNotificationsParams extends DefaultPaginationParams {
+  /** Instead of specifying every known type to exclude, you can specify only the types you want. */
+  readonly types?: NotificationType[] | null;
   /** ID of the account */
   readonly accountId?: string | null;
   /** Array of notifications to exclude (Allowed values: "follow", "favourite", "reblog", "mention") */
