@@ -1,7 +1,6 @@
 const enum ScopeVerb {
   Read = 'read',
   Write = 'write',
-  Follow = 'follow',
   Push = 'push',
 }
 

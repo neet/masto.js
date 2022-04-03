@@ -69,6 +69,8 @@ export interface Instance {
   thumbnail?: string | null;
   /** A user that can be contacted, as an alternative to `email`. */
   contactAccount?: Account | null;
+
+  rules?: InstanceRule[] | null;
 }
 
 export interface InstanceURLs {
@@ -83,4 +85,9 @@ export interface InstanceStats {
   statusCount: number;
   /** Domains federated with this instance. Number. */
   domainCount: number;
+}
+
+export interface InstanceRule {
+  id: string;
+  text: string;
 }
