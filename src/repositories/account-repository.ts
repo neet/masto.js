@@ -360,4 +360,22 @@ export class AccountRepository
   lookup(params: LookupAccountParams): Promise<Account> {
     return this.http.get('/api/v1/accounts/lookup', params);
   }
+
+  /**
+   * TODO: stub
+   * @returns Accounts
+   */
+  @version({ since: '3.5.0' })
+  fetchFamiliarFollowers(): Promise<Account[]> {
+    return this.http.get(`/api/v1/accounts/familiar_followers`);
+  }
+
+  /**
+   * @param id ID of the account
+   * @returns N/A
+   */
+  @version({ since: '3.5.0' })
+  removeFromFollowers(id: string): Promise<void> {
+    return this.http.post(`/api/v1/accounts/${id}/remove_from_followers`);
+  }
 }
