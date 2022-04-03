@@ -1,6 +1,8 @@
 import { version } from '../decorators';
 import { Http } from '../http';
 
+export type ReportCategory = 'spam' | 'violation' | 'other';
+
 export interface ReportAccountParams {
   /** ID of the account to report */
   readonly accountId: string;
@@ -10,6 +12,10 @@ export interface ReportAccountParams {
   readonly comment?: string | null;
   /** If the account is remote, should the report be forwarded to the remote admin? */
   readonly forward?: boolean | null;
+  /** category can be one of: spam, violation, other (default) */
+  readonly category?: ReportCategory | null;
+  /** must reference rules returned in GET /api/v1/instance */
+  readonly ruleIds?: string[] | null;
 }
 
 export class ReportRepository {
