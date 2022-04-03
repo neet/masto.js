@@ -14,17 +14,14 @@ export interface EventTypeMap {
   filters_changed: [];
   /** Status added to a conversation */
   conversation: [Conversation];
+  /** Status updated */
+  'status.update': [Status];
   /** for RxJS' `fromEvent` compatibility */
   [K: string]: unknown[];
 }
 
 /** Supported event names */
-export type EventType =
-  | 'update'
-  | 'delete'
-  | 'notification'
-  | 'filters_changed'
-  | 'conversation';
+export type EventType = keyof EventTypeMap;
 
 /** Mastodon event */
 export interface Event {

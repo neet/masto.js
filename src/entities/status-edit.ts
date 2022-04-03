@@ -1,17 +1,12 @@
-import { Account } from './account';
-import { Attachment } from './attachment';
-import { Emoji } from './emoji';
-import { Poll } from './poll';
+import { Status } from './status';
 
-export interface StatusEdit {
-  account: Account;
-
-  content: string;
-  spoilerText: string;
-  sensitive: boolean;
-  createdAt: string;
-  orderedMediaAttachments: Attachment[];
-  emojis: Emoji[];
-
-  poll?: Poll[] | null;
-}
+export type StatusEdit = Pick<
+  Status,
+  | 'content'
+  | 'spoilerText'
+  | 'sensitive'
+  | 'createdAt'
+  | 'account'
+  | 'mediaAttachments'
+  | 'emojis'
+>;

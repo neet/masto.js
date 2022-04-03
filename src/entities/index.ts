@@ -28,5 +28,7 @@ export * from './results';
 export * from './scheduled-status';
 export * from './source';
 export * from './status';
+export * from './status-edit';
+export * from './status-source';
 export * from './tag';
 export * from './token';
