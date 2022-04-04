@@ -1,3 +1,15 @@
+# [4.3.0](https://github.com/neet/masto.js/compare/v4.2.7...v4.3.0) (2022-04-04)
+
+
+### Features
+
+* Add familiar followers, remove from followers ([2761173](https://github.com/neet/masto.js/commit/2761173aa18946965926845df5e3468cf594c307))
+* Add ruleIds and category param to reports ([44edad9](https://github.com/neet/masto.js/commit/44edad94cb6425995e18c9a560ac412bbcbc5c2f))
+* Add type field to FetchNotificationsParams ([7e44e22](https://github.com/neet/masto.js/commit/7e44e22a5fee1fddee2e5c3ce0713a7482241d89))
+* Remove follow scope ([bafc5df](https://github.com/neet/masto.js/commit/bafc5df3b845b35e33a190588b23821889831b5b))
+* Support status edit api ([8621213](https://github.com/neet/masto.js/commit/862121396fa120739b965ae7d29fd4481776ca1d))
+* Update trends api ([3d1d236](https://github.com/neet/masto.js/commit/3d1d236d2fe804e632fac7fa9983512e1f6909a4))
+
 ## [4.2.7](https://github.com/neet/masto.js/compare/v4.2.6...v4.2.7) (2022-03-19)
 
 
