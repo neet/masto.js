@@ -1,6 +1,6 @@
 import { login } from 'masto';
 
-(async () => {
+const main = async () => {
   const masto = await login({
     url: 'https://example.com',
   });
@@ -23,4 +23,8 @@ import { login } from 'masto';
       masto.statuses.favourite(status.id);
     });
   }
-})();
+};
+
+main().catch((error) => {
+  console.error(error);
+});

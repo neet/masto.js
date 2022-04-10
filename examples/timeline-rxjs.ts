@@ -2,7 +2,7 @@ import { login, Status, Notification } from 'masto';
 import { fromEvent } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
-(async () => {
+const main = async () => {
   const masto = await login({ url: 'https://example.com' });
   const timeline = await masto.stream.streamPublicTimeline();
 
@@ -21,4 +21,8 @@ import { filter, map } from 'rxjs/operators';
     .subscribe((body) => {
       console.log(body);
     });
-})();
+};
+
+main().catch((error) => {
+  console.error(error);
+});

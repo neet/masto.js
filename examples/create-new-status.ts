@@ -1,6 +1,6 @@
 import { login } from 'masto';
 
-(async () => {
+const main = async () => {
   const masto = await login({
     url: 'https://example.com',
     accessToken: 'YOUR TOKEN',
@@ -9,5 +9,9 @@ import { login } from 'masto';
   await masto.statuses.create({
     status: 'Toot from TypeScript',
     visibility: 'direct',
-  })
-})()
+  });
+};
+
+main().catch((error) => {
+  console.error(error);
+});

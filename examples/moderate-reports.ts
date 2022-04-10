@@ -1,6 +1,6 @@
 import { login } from 'masto';
 
-(async () => {
+const main = async () => {
   const masto = await login({
     url: 'https://example.com',
     accessToken: 'TOKEN',
@@ -13,6 +13,10 @@ import { login } from 'masto';
   await masto.admin.account.createAction(reports[0].account.id, {
     type: 'disable',
     reportId: reports[0].id,
-    text: 'Your account has been disabled'
+    text: 'Your account has been disabled',
   });
-})();
+};
+
+main().catch((error) => {
+  console.error(error);
+});
