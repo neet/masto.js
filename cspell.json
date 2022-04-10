@@ -1,13 +1,17 @@
 {
   "version": "0.1",
   "language": "en,en-GB",
-  "ignorePaths": ["**/node_modules/**", "**/dist/**"],
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/dist/**"
+  ],
   "words": [
     "AGPL",
     "asynckit",
     "blurhash",
     "builtins",
     "codecov",
+    "entrypoints",
     "favourited",
     "Fediverse",
     "gifv",
@@ -25,12 +29,12 @@
     "subprotocol",
     "typedoc",
     "unassign",
+    "unbookmark",
     "unfavourite",
     "unfollow",
+    "unprocessable",
     "unreblog",
     "unreviewed",
-    "unsilence",
-    "unbookmark",
-    "unprocessable"
+    "unsilence"
   ]
 }
