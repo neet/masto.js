@@ -1,7 +1,7 @@
 import fs from 'fs';
 import { login } from 'masto';
 
-(async () => {
+const main = async () => {
   const masto = await login({
     url: 'https://example.com',
     accessToken: 'YOUR TOKEN',
@@ -14,4 +14,8 @@ import { login } from 'masto';
   });
 
   console.log(newProfile);
-})()
+};
+
+main().catch((error) => {
+  console.error(error);
+});

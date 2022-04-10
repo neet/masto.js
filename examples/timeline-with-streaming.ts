@@ -1,6 +1,6 @@
 import { login } from 'masto';
 
-(async () => {
+const main = async () => {
   const masto = await login({
     url: 'https://example.com',
     accessToken: 'YOUR TOKEN',
@@ -10,13 +10,16 @@ import { login } from 'masto';
   const stream = await masto.stream.streamPublicTimeline();
 
   // Subscribe to updates
-  stream.on('update', status => {
+  stream.on('update', (status) => {
     console.log(`${status.account.username}: ${status.content}`);
   });
 
   // Subscribe to notifications
-  stream.on('notification', notification => {
+  stream.on('notification', (notification) => {
     console.log(`${notification.account.username}: ${notification.type}`);
-  })
-})()
+  });
+};
 
+main().catch((error) => {
+  console.error(error);
+});

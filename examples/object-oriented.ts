@@ -26,7 +26,7 @@ class MyBot {
   private handleUpdate = (status: Status) => {
     const { content, account } = status;
     console.log(`${account.username} said ${content}`);
-  }
+  };
 
   private handleNotification = async (notification: Notification) => {
     // When your status got favourited, log
@@ -46,10 +46,10 @@ class MyBot {
     if (notification.type === 'follow') {
       await this.masto.accounts.follow(notification.account.id);
     }
-  }
+  };
 }
 
 // main
-(async () => {
-  await MyBot.init();
-})();
+MyBot.init().catch((error) => {
+  console.error(error);
+});
