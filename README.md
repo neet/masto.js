@@ -30,6 +30,7 @@ npm i masto
 - **TypeScript** (optional peer dependency): `>= 3.6.0`
 
 ## Features
+
 - 🌎 **Isomorphic** which means browsers and Node.js are both supported
 - ⌨️ **TypeScript** powers static typing. And of course there's no `any`!
 - 💪 **You don't need to type URLs** because each endpoints have their own function
@@ -56,9 +57,11 @@ async function main() {
     status: 'Hello Mastodon!',
     visibility: 'direct',
   });
-};
+}
 
-main();
+main().catch((error) => {
+  console.error(error);
+});
 ```
 
 All of available methods are described in the [documentation](https://neet.github.io/masto.js). You can also refer [examples](https://github.com/neet/masto.js/tree/main/examples) on this repository.

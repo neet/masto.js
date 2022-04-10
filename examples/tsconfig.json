@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "masto": ["../src/index.ts"]
+      "masto": ["../src/entrypoints/nodejs.ts"]
     }
   },
   "include": ["./**/*"]

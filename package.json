@@ -16,7 +16,7 @@
     "build": "rollup -c rollup.config.js",
     "prepublishOnly": "yarn run test && yarn run build",
     "release": "standard-version",
-    "docs:build": "typedoc ./src && touch ./docs/.nojekyll"
+    "docs:build": "typedoc ./src/entrypoints/nodejs.ts && touch ./docs/.nojekyll"
   },
   "dependencies": {
     "axios": "^0.21.2",

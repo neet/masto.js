@@ -19,14 +19,12 @@
     "skipLibCheck": true,
     "strict": true
   },
-  "include": [
-    "src/**/*",
-  ],
+  "include": ["src/**/*"],
   "typedocOptions": {
     "out": "./docs",
     "theme": "default",
     "exclude": "**/+(__tests__|__mocks__)/*",
     "excludePrivate": true,
-    "excludeProtected": true,
+    "excludeProtected": true
   }
 }
