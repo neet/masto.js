@@ -1,3 +1,10 @@
+## [4.3.1](https://github.com/neet/masto.js/compare/v4.3.0...v4.3.1) (2022-04-11)
+
+
+### Bug Fixes
+
+* Fix unhandled promise rejection of examples ([d205bf8](https://github.com/neet/masto.js/commit/d205bf8a893473aa0005279fe93cc7a1e7dc85e5))
+
 # [4.3.0](https://github.com/neet/masto.js/compare/v4.2.7...v4.3.0) (2022-04-04)
 
 
