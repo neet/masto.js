@@ -1,8 +1,10 @@
+import { headerCase } from 'change-case';
+
 import { MastoConfig } from '../config';
 import { createError, CreateErrorParams } from '../errors';
 import { MimeType, Serializer } from '../serializers';
 import { BaseHttp } from './base-http';
-import { Http, Request, Response } from './http';
+import { Headers, Http, Request, Response } from './http';
 
 export class HttpNativeImpl extends BaseHttp implements Http {
   constructor(readonly config: MastoConfig, readonly serializer: Serializer) {
@@ -37,10 +39,14 @@ export class HttpNativeImpl extends BaseHttp implements Http {
         body: body as string,
       });
       const text = await response.text();
-      const contentType =
-        this.getContentType(response.headers) ?? 'application/json';
 
-      return this.serializer.deserialize(contentType, text);
+      return {
+        headers: HttpNativeImpl.toHeaders(response.headers),
+        data: this.serializer.deserialize(
+          this.getContentType(response.headers) ?? 'application/json',
+          text,
+        ),
+      };
     } catch (e) {
       if (!(e instanceof Response)) {
         throw e;
@@ -58,5 +64,13 @@ export class HttpNativeImpl extends BaseHttp implements Http {
         reset: e.headers.get('X-RateLimit-Reset'),
       } as CreateErrorParams);
     }
+  }
+
+  private static toHeaders(headers: globalThis.Headers): Headers {
+    const result: Record<string, unknown> = {};
+    headers.forEach((value, key) => {
+      result[headerCase(key)] = value;
+    });
+    return result;
   }
 }
