@@ -37,11 +37,10 @@ export class HttpNativeImpl extends BaseHttp implements Http {
         body: body as string,
       });
       const text = await response.text();
+      const contentType =
+        this.getContentType(response.headers) ?? 'application/json';
 
-      return this.serializer.deserialize(
-        response.headers.get('Content-Type') as MimeType,
-        text,
-      );
+      return this.serializer.deserialize(contentType, text);
     } catch (e) {
       if (!(e instanceof Response)) {
         throw e;

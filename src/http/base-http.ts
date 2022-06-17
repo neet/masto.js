@@ -1,5 +1,5 @@
 import { MastoConfig } from '../config';
-import { Serializer } from '../serializers';
+import { MimeType, Serializer } from '../serializers';
 import { Data, Headers, Http, Request, Response } from './http';
 
 export abstract class BaseHttp implements Http {
@@ -26,6 +26,18 @@ export abstract class BaseHttp implements Http {
     return `${this.config.url}${path}${
       searchParams !== '' ? `?${searchParams}` : ''
     }`;
+  }
+
+  getContentType(headers: Headers | globalThis.Headers): MimeType | undefined {
+    const contentType =
+      headers instanceof globalThis.Headers
+        ? headers.get('Content-Type')
+        : headers['Content-Type'];
+    if (typeof contentType != 'string') {
+      return undefined;
+    }
+
+    return contentType.replace(/\s*;.*$/, '') as MimeType;
   }
 
   get<T>(url: string, data?: Data, init: Partial<Request> = {}): Promise<T> {
