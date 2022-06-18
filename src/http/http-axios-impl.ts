@@ -35,7 +35,7 @@ export class HttpAxiosImpl extends BaseHttp implements Http {
       },
       transformResponse: (data, headers) =>
         this.serializer.deserialize(
-          headers['Content-Type'] ?? 'application/json',
+          this.getContentType(headers) ?? 'application/json',
           data,
         ),
       paramsSerializer: (params) =>

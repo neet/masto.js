@@ -1,8 +1,10 @@
+import { headerCase } from 'change-case';
+
 import { MastoConfig } from '../config';
 import { createError, CreateErrorParams } from '../errors';
 import { MimeType, Serializer } from '../serializers';
 import { BaseHttp } from './base-http';
-import { Http, Request, Response } from './http';
+import { Headers, Http, Request, Response } from './http';
 
 export class HttpNativeImpl extends BaseHttp implements Http {
   constructor(readonly config: MastoConfig, readonly serializer: Serializer) {
@@ -29,6 +31,16 @@ export class HttpNativeImpl extends BaseHttp implements Http {
     );
     const contentType = headers.get('Content-Type') ?? 'application/json';
     const body = this.serializer.serialize(contentType as MimeType, data);
+    if (
+      body instanceof FormData &&
+      contentType == 'multipart/form-data' &&
+      HttpNativeImpl.hasBlob(body)
+    ) {
+      // As multipart form data should contain an arbitrary boundary,
+      // leave Content-Type header undefined, so that fetch() API
+      // automatically configure Content-Type with an appropriate boundary.
+      headers.delete('Content-Type');
+    }
 
     try {
       const response = await fetch(url, {
@@ -38,10 +50,13 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       });
       const text = await response.text();
 
-      return this.serializer.deserialize(
-        response.headers.get('Content-Type') as MimeType,
-        text,
-      );
+      return {
+        headers: HttpNativeImpl.toHeaders(response.headers),
+        data: this.serializer.deserialize(
+          this.getContentType(response.headers) ?? 'application/json',
+          text,
+        ),
+      };
     } catch (e) {
       if (!(e instanceof Response)) {
         throw e;
@@ -59,5 +74,19 @@ export class HttpNativeImpl extends BaseHttp implements Http {
         reset: e.headers.get('X-RateLimit-Reset'),
       } as CreateErrorParams);
     }
+  }
+
+  private static toHeaders(headers: globalThis.Headers): Headers {
+    const result: Record<string, unknown> = {};
+    headers.forEach((value, key) => {
+      result[headerCase(key)] = value;
+    });
+    return result;
+  }
+
+  private static hasBlob(formData: FormData): boolean {
+    let hasBlob = false;
+    formData.forEach((v: string | Blob) => (hasBlob ||= v instanceof Blob));
+    return hasBlob;
   }
 }
