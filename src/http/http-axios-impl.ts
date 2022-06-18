@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 
 import { MastoConfig } from '../config';
-import { createError, CreateErrorParams } from '../errors';
+import { createError, CreateErrorParams, MastoError } from '../errors';
 import { Serializer } from '../serializers';
 import { BaseHttp } from './base-http';
 import { Http, Request, Response } from './http';
@@ -33,11 +33,14 @@ export class HttpAxiosImpl extends BaseHttp implements Http {
 
         return result;
       },
-      transformResponse: (data, headers) =>
-        this.serializer.deserialize(
-          this.getContentType(headers) ?? 'application/json',
-          data,
-        ),
+      transformResponse: (data, headers) => {
+        const contentType = this.getContentType(headers);
+        if (contentType == null) {
+          throw new MastoError('Content-Type is not defined');
+        }
+
+        return this.serializer.deserialize(contentType, data);
+      },
       paramsSerializer: (params) =>
         this.serializer.serialize(
           'application/x-www-form-urlencoded',

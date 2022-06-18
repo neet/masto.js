@@ -28,11 +28,8 @@ export abstract class BaseHttp implements Http {
     }`;
   }
 
-  getContentType(headers: Headers | globalThis.Headers): MimeType | undefined {
-    const contentType =
-      headers instanceof globalThis.Headers
-        ? headers.get('Content-Type')
-        : headers['Content-Type'];
+  getContentType(headers: Headers): MimeType | undefined {
+    const contentType = headers['Content-Type'];
     if (typeof contentType != 'string') {
       return undefined;
     }

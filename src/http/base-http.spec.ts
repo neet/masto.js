@@ -1,5 +1,6 @@
 import { SerializerNodejsImpl } from '../serializers';
 import { BaseHttp } from './base-http';
+import { Headers } from './http';
 
 class Test extends BaseHttp {
   config = {
@@ -42,5 +43,11 @@ describe('BaseHttp', () => {
     expect(test.resolveUrl('/api/v1/yay', { query: true })).toEqual(
       'https://mastodon.social/api/v1/yay?query=true',
     );
+  });
+
+  it('removes charset from content-type', () => {
+    const test = new Test();
+    const headers: Headers = { 'Content-Type': 'text/plain; charset=utf-8' };
+    expect(test.getContentType(headers)).toEqual('text/plain');
   });
 });
