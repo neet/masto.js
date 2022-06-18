@@ -1,7 +1,7 @@
 import { headerCase } from 'change-case';
 
 import { MastoConfig } from '../config';
-import { createError, CreateErrorParams } from '../errors';
+import { createError, CreateErrorParams, MastoError } from '../errors';
 import { MimeType, Serializer } from '../serializers';
 import { BaseHttp } from './base-http';
 import { Headers, Http, Request, Response } from './http';
@@ -29,11 +29,12 @@ export class HttpNativeImpl extends BaseHttp implements Http {
     const headers = new Headers(
       this.createHeader(request.headers) as unknown as Record<string, string>,
     );
-    const contentType = headers.get('Content-Type') ?? 'application/json';
-    const body = this.serializer.serialize(contentType as MimeType, data);
+    const reqContentType = headers.get('Content-Type') ?? 'application/json';
+    const body = this.serializer.serialize(reqContentType as MimeType, data);
+
     if (
       body instanceof FormData &&
-      contentType == 'multipart/form-data' &&
+      reqContentType === 'multipart/form-data' &&
       HttpNativeImpl.hasBlob(body)
     ) {
       // As multipart form data should contain an arbitrary boundary,
@@ -49,13 +50,17 @@ export class HttpNativeImpl extends BaseHttp implements Http {
         body: body as string,
       });
       const text = await response.text();
+      const resContentType = this.getContentType(
+        HttpNativeImpl.toHeaders(response.headers),
+      );
+
+      if (resContentType == null) {
+        throw new MastoError('Content-Type is not defined');
+      }
 
       return {
         headers: HttpNativeImpl.toHeaders(response.headers),
-        data: this.serializer.deserialize(
-          this.getContentType(response.headers) ?? 'application/json',
-          text,
-        ),
+        data: this.serializer.deserialize('application/json', text),
       };
     } catch (e) {
       if (!(e instanceof Response)) {
