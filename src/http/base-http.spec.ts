@@ -1,6 +1,5 @@
 import { SerializerNodejsImpl } from '../serializers';
 import { BaseHttp } from './base-http';
-import { Headers } from './http';
 
 class Test extends BaseHttp {
   config = {
@@ -45,9 +44,12 @@ describe('BaseHttp', () => {
     );
   });
 
-  it('removes charset from content-type', () => {
+  test.each([
+    [{ 'Content-Type': 'text/plain; charset=utf-8' }, 'text/plain'],
+    [{ 'content-type': 'text/plain; charset=utf-8' }, 'text/plain'],
+    [{ 'Content-Type': 'text/plain' }, 'text/plain'],
+  ])('removes charset from content-type', (headers, expected) => {
     const test = new Test();
-    const headers: Headers = { 'Content-Type': 'text/plain; charset=utf-8' };
-    expect(test.getContentType(headers)).toEqual('text/plain');
+    expect(test.getContentType(headers)).toBe(expected);
   });
 });

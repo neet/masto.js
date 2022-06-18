@@ -29,9 +29,9 @@ export abstract class BaseHttp implements Http {
   }
 
   getContentType(headers: Headers): MimeType | undefined {
-    const contentType = headers['Content-Type'];
-    if (typeof contentType != 'string') {
-      return undefined;
+    const contentType = headers['Content-Type'] ?? headers['content-type'];
+    if (typeof contentType !== 'string') {
+      return;
     }
 
     return contentType.replace(/\s*;.*$/, '') as MimeType;
