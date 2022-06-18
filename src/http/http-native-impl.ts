@@ -31,6 +31,16 @@ export class HttpNativeImpl extends BaseHttp implements Http {
     );
     const contentType = headers.get('Content-Type') ?? 'application/json';
     const body = this.serializer.serialize(contentType as MimeType, data);
+    if (
+      body instanceof FormData &&
+      contentType == 'multipart/form-data' &&
+      HttpNativeImpl.hasBlob(body)
+    ) {
+      // As multipart form data should contain an arbitrary boundary,
+      // leave Content-Type header undefined, so that fetch() API
+      // automatically configure Content-Type with an appropriate boundary.
+      headers.delete('Content-Type');
+    }
 
     try {
       const response = await fetch(url, {
@@ -72,5 +82,11 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       result[headerCase(key)] = value;
     });
     return result;
+  }
+
+  private static hasBlob(formData: FormData): boolean {
+    let hasBlob = false;
+    formData.forEach((v: string | Blob) => (hasBlob ||= v instanceof Blob));
+    return hasBlob;
   }
 }
