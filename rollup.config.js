@@ -24,6 +24,22 @@ export default [
     plugins: [commonjs(), json(), typescript(), autoExternal()],
   },
   {
+    input: './src/entrypoints/fetch.ts',
+    output: {
+      file: './dist/fetch.js',
+      format: 'cjs',
+    },
+    plugins: [json(), typescript(), autoExternal()],
+  },
+  {
+    input: './src/entrypoints/fetch.ts',
+    output: {
+      file: './dist/fetch.mjs',
+      format: 'esm',
+    },
+    plugins: [commonjs(), json(), typescript(), autoExternal()],
+  },
+  {
     input: './src/entrypoints/nodejs.ts',
     output: {
       file: packageJSON.types,

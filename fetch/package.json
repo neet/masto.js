@@ -1,0 +1,7 @@
+{
+  "name": "masto/fetch",
+  "private": true,
+  "main": "../dist/fetch.js",
+  "module": "../dist/fetch.mjs",
+  "types": "../dist/index.d.ts"
+}

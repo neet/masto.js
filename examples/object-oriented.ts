@@ -1,9 +1,9 @@
-import { login, Status, Notification, FacadeRepositories } from 'masto';
+import { login, Status, Notification, MastoClient } from 'masto';
 
 class MyBot {
-  private masto: FacadeRepositories;
+  private masto: MastoClient;
 
-  constructor(masto: FacadeRepositories) {
+  constructor(masto: MastoClient) {
     this.masto = masto;
   }
 
@@ -51,5 +51,5 @@ class MyBot {
 
 // main
 MyBot.init().catch((error) => {
-  console.error(error);
+  throw error;
 });

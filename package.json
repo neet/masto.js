@@ -62,6 +62,7 @@
   "files": [
     "README.md",
     "dist",
+    "fetch",
     "!**/__tests__",
     "!**/__mocks__"
   ],
