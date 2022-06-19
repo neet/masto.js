@@ -1,4 +1,4 @@
-export type Headers = { readonly [key: string]: unknown };
+export type Headers = { readonly [key: string]: string | number | boolean };
 export type Data = unknown;
 
 export type Request = {
