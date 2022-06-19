@@ -1,3 +1,14 @@
+## [4.3.4](https://github.com/neet/masto.js/compare/v4.3.3...v4.3.4) (2022-06-19)
+
+
+### Bug Fixes
+
+* Change getContentType to case insensitive ([b20bf4c](https://github.com/neet/masto.js/commit/b20bf4c0a6c886dcbbbccc89bf2f44d589704794))
+* HttpNativeImpl.request()'s return type ([5536100](https://github.com/neet/masto.js/commit/5536100ac7d002d5e33b56edaa5b5de9cf1f7907))
+* Let HttpNativeImpl make multipart/form-data w/ appropriate boundary ([f277388](https://github.com/neet/masto.js/commit/f2773886f77b146435834aa5c5bce91481227e86))
+* Throw error when content-type is not set on response ([b6e4a8c](https://github.com/neet/masto.js/commit/b6e4a8cb9f97d308b403069480af5064824e68b2))
+* Trim content type params from HTTP responses ([281cfcb](https://github.com/neet/masto.js/commit/281cfcb8aae35b6ac6f58e6232a2275cd4f2c404))
+
 ## [4.3.3](https://github.com/neet/masto.js/compare/v4.3.2...v4.3.3) (2022-06-11)
 
 ## [4.3.2](https://github.com/neet/masto.js/compare/v4.3.1...v4.3.2) (2022-06-05)
