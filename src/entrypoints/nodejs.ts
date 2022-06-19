@@ -1,3 +1,5 @@
+import 'isomorphic-form-data';
+
 import { MastoClient } from '../clients';
 import { MastoConfig } from '../config';
 import { HttpAxiosImpl } from '../http';

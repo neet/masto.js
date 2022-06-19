@@ -49,6 +49,11 @@ export class HttpNativeImpl extends BaseHttp implements Http {
         headers,
         body: body as string,
       });
+
+      if (!response.ok) {
+        throw response;
+      }
+
       const text = await response.text();
       const resContentType = this.getContentType(
         HttpNativeImpl.toHeaders(response.headers),

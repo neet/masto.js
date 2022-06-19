@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { login } from 'masto';
+import { login } from 'masto/fetch';
 
 const main = async () => {
   const masto = await login({
@@ -9,7 +9,7 @@ const main = async () => {
 
   // Upload the image
   const attachment = await masto.mediaAttachments.create({
-    file: fs.createReadStream('../some_image.png'),
+    file: new Blob([fs.readFileSync('../some_image.png')]),
     description: 'Some image',
   });
 
