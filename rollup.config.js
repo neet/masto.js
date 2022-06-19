@@ -26,6 +26,14 @@ export default [
   {
     input: './src/entrypoints/fetch.ts',
     output: {
+      file: './dist/fetch.js',
+      format: 'cjs',
+    },
+    plugins: [json(), typescript(), autoExternal()],
+  },
+  {
+    input: './src/entrypoints/fetch.ts',
+    output: {
       file: './dist/fetch.mjs',
       format: 'esm',
     },
