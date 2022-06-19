@@ -86,7 +86,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
     headers.forEach((value, key) => {
       result[headerCase(key)] = value;
     });
-    return result;
+    return result as Headers;
   }
 
   private static hasBlob(formData: FormData): boolean {

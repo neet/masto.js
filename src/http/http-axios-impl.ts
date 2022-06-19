@@ -1,8 +1,8 @@
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosInstance, AxiosRequestHeaders } from 'axios';
 
 import { MastoConfig } from '../config';
 import { createError, CreateErrorParams, MastoError } from '../errors';
-import { Serializer } from '../serializers';
+import { MimeType, Serializer } from '../serializers';
 import { BaseHttp } from './base-http';
 import { Http, Request, Response } from './http';
 
@@ -14,11 +14,18 @@ export class HttpAxiosImpl extends BaseHttp implements Http {
 
     this.axios = axios.create({
       baseURL: config.url,
-      headers: this.createHeader(),
+      headers: this.createHeader() as AxiosRequestHeaders,
       proxy: config.proxy,
       timeout: config.timeout,
       transformRequest: (data, headers) => {
-        const result = this.serializer.serialize(headers['Content-Type'], data);
+        if (headers == null) {
+          throw new MastoError('headers is null');
+        }
+
+        const result = this.serializer.serialize(
+          headers['Content-Type'] as MimeType,
+          data,
+        );
 
         // In Node.js, axios doesn't set boundary data to the header
         // so set it manually by using getHeaders of form-data node.js package
@@ -34,6 +41,10 @@ export class HttpAxiosImpl extends BaseHttp implements Http {
         return result;
       },
       transformResponse: (data, headers) => {
+        if (headers == null) {
+          throw new MastoError('headers is null');
+        }
+
         const contentType = this.getContentType(headers);
         if (contentType == null) {
           throw new MastoError('Content-Type is not defined');
@@ -62,11 +73,14 @@ export class HttpAxiosImpl extends BaseHttp implements Http {
         throw error;
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const data = error.response?.data as any;
+
       throw createError({
         statusCode: error?.response?.status,
-        message: error?.response?.data?.error,
-        details: error?.response?.data?.errorDescription,
-        description: error?.response?.data?.details,
+        message: data?.error,
+        details: data?.errorDescription,
+        description: data?.details,
         limit: error?.response?.headers?.['X-RateLimit-Limit'],
         remaining: error?.response?.headers?.['X-RateLimit-Remaining'],
         reset: error?.response?.headers?.['X-RateLimit-Reset'],
