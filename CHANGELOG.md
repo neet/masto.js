@@ -1,3 +1,16 @@
+# [4.4.0](https://github.com/neet/masto.js/compare/v4.3.4...v4.4.0) (2022-06-20)
+
+
+### Bug Fixes
+
+* Fix build script ([24b1830](https://github.com/neet/masto.js/commit/24b183028c5e5f635159e66d78a06c02c9007566))
+* Fix npm config ([b189848](https://github.com/neet/masto.js/commit/b189848747c687976fc0fd7556b19e1d87a9386f))
+
+
+### Features
+
+* Support Node.js 18 Fetch API ([f3085e6](https://github.com/neet/masto.js/commit/f3085e6a5a62a9a352c797fa44777ecf1c3ba444))
+
 ## [4.3.4](https://github.com/neet/masto.js/compare/v4.3.3...v4.3.4) (2022-06-19)
 
 
