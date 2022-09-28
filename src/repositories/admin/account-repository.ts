@@ -85,7 +85,10 @@ export class AccountRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '2.9.1' })
-  createAction(id: string, params: AdminActionAccountParams): Promise<Admin.Account> {
+  createAction(
+    id: string,
+    params: AdminActionAccountParams,
+  ): Promise<Admin.Account> {
     return this.http.post(`/api/v1/admin/accounts/${id}/action`, params);
   }
 

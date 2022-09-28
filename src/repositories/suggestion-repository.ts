@@ -1,7 +1,7 @@
 import { version } from '../decorators';
 import { Account } from '../entities';
 import { Http } from '../http';
-import { Paginator } from '../paginator';
+import { Paginator, PaginatorImpl } from '../paginator';
 import { DefaultPaginationParams, Repository } from '../repository';
 
 export class SuggestionRepository implements Repository<Account> {
@@ -14,7 +14,7 @@ export class SuggestionRepository implements Repository<Account> {
   getIterator(
     params?: DefaultPaginationParams,
   ): Paginator<DefaultPaginationParams, Account[]> {
-    return new Paginator(this.http, `/api/v1/blocks`, params);
+    return new PaginatorImpl(this.http, `/api/v1/blocks`, params);
   }
 
   /**

@@ -1,7 +1,7 @@
 import { version } from '../decorators';
 import { Link, Status, Tag } from '../entities';
 import { Http } from '../http';
-import { Paginator } from '../paginator';
+import { Paginator, PaginatorImpl } from '../paginator';
 import { DefaultPaginationParams, Repository } from '../repository';
 
 export interface FetchTrendsParams {
@@ -24,14 +24,14 @@ export class TrendRepository implements Repository<Tag> {
   getStatuses(
     params?: DefaultPaginationParams,
   ): Paginator<DefaultPaginationParams, Status[]> {
-    return new Paginator(this.http, '/api/v1/trends/statuses', params);
+    return new PaginatorImpl(this.http, '/api/v1/trends/statuses', params);
   }
 
   @version({ since: '3.5.0' })
   getLinks(
     params?: DefaultPaginationParams,
   ): Paginator<DefaultPaginationParams, Link[]> {
-    return new Paginator(this.http, '/api/v1/trends/links', params);
+    return new PaginatorImpl(this.http, '/api/v1/trends/links', params);
   }
 
   /**

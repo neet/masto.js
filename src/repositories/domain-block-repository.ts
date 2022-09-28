@@ -1,6 +1,6 @@
 import { version } from '../decorators';
 import { Http } from '../http';
-import { Paginator } from '../paginator';
+import { Paginator, PaginatorImpl } from '../paginator';
 import { DefaultPaginationParams, Repository } from '../repository';
 
 export class DomainBlockRepository implements Repository<string> {
@@ -20,7 +20,7 @@ export class DomainBlockRepository implements Repository<string> {
   getIterator(
     params?: DefaultPaginationParams,
   ): Paginator<DefaultPaginationParams, string[]> {
-    return new Paginator(this.http, `/api/v1/domain_blocks`, params);
+    return new PaginatorImpl(this.http, `/api/v1/domain_blocks`, params);
   }
 
   /**

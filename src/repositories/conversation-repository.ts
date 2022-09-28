@@ -1,7 +1,7 @@
 import { version } from '../decorators';
 import { Conversation } from '../entities';
 import { Http } from '../http';
-import { Paginator } from '../paginator';
+import { Paginator, PaginatorImpl } from '../paginator';
 import { DefaultPaginationParams, Repository } from '../repository';
 
 export class ConversationRepository implements Repository<Conversation> {
@@ -21,7 +21,7 @@ export class ConversationRepository implements Repository<Conversation> {
   getIterator(
     params?: DefaultPaginationParams,
   ): Paginator<DefaultPaginationParams, Conversation[]> {
-    return new Paginator(this.http, '/api/v1/conversations', params);
+    return new PaginatorImpl(this.http, '/api/v1/conversations', params);
   }
 
   /**

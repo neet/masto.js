@@ -1,7 +1,7 @@
 import { version } from '../decorators';
 import { ScheduledStatus } from '../entities';
 import { Http } from '../http';
-import { Paginator } from '../paginator';
+import { Paginator, PaginatorImpl } from '../paginator';
 import { DefaultPaginationParams } from '../repository';
 
 export interface UpdateScheduledStatusParams {
@@ -28,7 +28,7 @@ export class ScheduledStatusesRepository
   getIterator(
     params?: DefaultPaginationParams,
   ): Paginator<DefaultPaginationParams, ScheduledStatus[]> {
-    return new Paginator(this.http, '/api/v1/scheduled_statuses', params);
+    return new PaginatorImpl(this.http, '/api/v1/scheduled_statuses', params);
   }
 
   /**

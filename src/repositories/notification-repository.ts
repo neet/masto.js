@@ -1,7 +1,7 @@
 import { version } from '../decorators';
 import { Notification, NotificationType } from '../entities';
 import { Http } from '../http';
-import { Paginator } from '../paginator';
+import { Paginator, PaginatorImpl } from '../paginator';
 import { DefaultPaginationParams, Repository } from '../repository';
 
 export interface FetchNotificationsParams extends DefaultPaginationParams {
@@ -32,7 +32,7 @@ export class NotificationsRepository implements Repository<Notification> {
   getIterator(
     params?: FetchNotificationsParams,
   ): Paginator<FetchNotificationsParams, Notification[]> {
-    return new Paginator(this.http, '/api/v1/notifications', params);
+    return new PaginatorImpl(this.http, '/api/v1/notifications', params);
   }
 
   /**

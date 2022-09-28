@@ -11,7 +11,7 @@ import type {
   Status,
 } from '../entities';
 import { Http } from '../http';
-import { Paginator } from '../paginator';
+import { Paginator, PaginatorImpl } from '../paginator';
 import { DefaultPaginationParams, Repository } from '../repository';
 
 export interface CreateAccountParams {
@@ -156,9 +156,13 @@ export class AccountRepository
   @version({ since: '0.0.0' })
   getFollowersIterable(
     id: string,
-    params: DefaultPaginationParams,
+    params: DefaultPaginationParams = {},
   ): Paginator<DefaultPaginationParams, Account[]> {
-    return new Paginator(this.http, `/api/v1/accounts/${id}/followers`, params);
+    return new PaginatorImpl(
+      this.http,
+      `/api/v1/accounts/${id}/followers`,
+      params,
+    );
   }
 
   /**
@@ -171,9 +175,13 @@ export class AccountRepository
   @version({ since: '0.0.0' })
   getFollowingIterable(
     id: string,
-    params: DefaultPaginationParams,
+    params: DefaultPaginationParams = {},
   ): Paginator<DefaultPaginationParams, Account[]> {
-    return new Paginator(this.http, `/api/v1/accounts/${id}/following`, params);
+    return new PaginatorImpl(
+      this.http,
+      `/api/v1/accounts/${id}/following`,
+      params,
+    );
   }
 
   /**
@@ -186,9 +194,13 @@ export class AccountRepository
   @version({ since: '0.0.0' })
   getStatusesIterable(
     id: string,
-    params: FetchAccountStatusesParams,
+    params: FetchAccountStatusesParams = {},
   ): Paginator<FetchAccountStatusesParams, Status[]> {
-    return new Paginator(this.http, `/api/v1/accounts/${id}/statuses`, params);
+    return new PaginatorImpl(
+      this.http,
+      `/api/v1/accounts/${id}/statuses`,
+      params,
+    );
   }
 
   /**

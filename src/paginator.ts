@@ -1,8 +1,15 @@
 import { Http } from './http';
 import { Response } from './http/http';
 
-export class Paginator<Params, Result>
-  implements AsyncIterableIterator<Result>
+export interface Paginator<Params, Result> {
+  next(params: Params): Promise<IteratorResult<Result>>;
+  return<T, U>(value: U | Promise<U>): Promise<IteratorResult<T, U>>;
+  throw<T, U>(error: unknown): Promise<IteratorResult<T, U>>;
+  [Symbol.asyncIterator](): AsyncGenerator<Result, Result, Params | undefined>;
+}
+
+export class PaginatorImpl<Params, Result>
+  implements Paginator<Params, Result>, AsyncIterableIterator<Result>
 {
   private nextUrl?: string;
   private nextParams?: Params;
@@ -54,4 +61,24 @@ export class Paginator<Params, Result>
   [Symbol.asyncIterator](): AsyncGenerator<Result, Result, Params | undefined> {
     return this;
   }
+}
+
+export function asyncMap<P, T, U>(
+  fn: (x: T) => U,
+  paginator: Paginator<P, T>,
+): Paginator<P, U> {
+  return {
+    next: async (params) => {
+      const x = await paginator.next(params);
+      return {
+        done: x.done,
+        value: fn(x.value),
+      };
+    },
+    return: paginator.return,
+    throw: paginator.throw,
+    [Symbol.asyncIterator]() {
+      return this;
+    },
+  };
 }

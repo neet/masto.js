@@ -1,7 +1,7 @@
 import { version } from '../decorators';
 import { Account, List } from '../entities';
 import { Http } from '../http';
-import { Paginator } from '../paginator';
+import { Paginator, PaginatorImpl } from '../paginator';
 import { DefaultPaginationParams, Repository } from '../repository';
 
 export interface ModifyListParams {
@@ -86,7 +86,7 @@ export class ListRepository
     id: string,
     params?: DefaultPaginationParams,
   ): Paginator<DefaultPaginationParams, Account[]> {
-    return new Paginator(this.http, `/api/v1/list/${id}/accounts`, params);
+    return new PaginatorImpl(this.http, `/api/v1/list/${id}/accounts`, params);
   }
 
   /**

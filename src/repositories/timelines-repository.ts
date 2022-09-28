@@ -1,7 +1,7 @@
 import { deprecated, version } from '../decorators';
 import { Status } from '../entities';
 import { Http } from '../http';
-import { Paginator } from '../paginator';
+import { Paginator, PaginatorImpl } from '../paginator';
 import { DefaultPaginationParams } from '../repository';
 
 export interface FetchTimelineParams extends DefaultPaginationParams {
@@ -34,7 +34,7 @@ export class TimelinesRepository {
   getHomeIterable(
     params?: FetchTimelineParams,
   ): Paginator<FetchTimelineParams, Status[]> {
-    return new Paginator(this.http, '/api/v1/timelines/home', params);
+    return new PaginatorImpl(this.http, '/api/v1/timelines/home', params);
   }
 
   /**
@@ -47,7 +47,7 @@ export class TimelinesRepository {
   getPublicIterable(
     params?: FetchTimelineParams,
   ): Paginator<FetchTimelineParams, Status[]> {
-    return new Paginator(this.http, '/api/v1/timelines/public', params);
+    return new PaginatorImpl(this.http, '/api/v1/timelines/public', params);
   }
 
   /**
@@ -62,7 +62,11 @@ export class TimelinesRepository {
     hashtag: string,
     params?: FetchTimelineParams,
   ): Paginator<FetchTimelineParams, Status[]> {
-    return new Paginator(this.http, `/api/v1/timelines/tag/${hashtag}`, params);
+    return new PaginatorImpl(
+      this.http,
+      `/api/v1/timelines/tag/${hashtag}`,
+      params,
+    );
   }
 
   /**
@@ -77,7 +81,7 @@ export class TimelinesRepository {
     id: string,
     params?: FetchTimelineParams,
   ): Paginator<FetchTimelineParams, Status[]> {
-    return new Paginator(this.http, `/api/v1/timelines/list/${id}`, params);
+    return new PaginatorImpl(this.http, `/api/v1/timelines/list/${id}`, params);
   }
 
   /**
@@ -91,6 +95,6 @@ export class TimelinesRepository {
   getDirect(
     params?: FetchTimelineParams,
   ): Paginator<FetchTimelineParams, Status[]> {
-    return new Paginator(this.http, '/api/v1/timelines/direct', params);
+    return new PaginatorImpl(this.http, '/api/v1/timelines/direct', params);
   }
 }
