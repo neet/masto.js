@@ -8,13 +8,15 @@ export abstract class BaseHttp implements Http {
 
   abstract request<T>(request: Request): Promise<Response<T>>;
 
-  createHeader(header: Partial<Headers> = {}) {
-    return {
-      Authorization:
-        this.config.accessToken && `Bearer ${this.config.accessToken}`,
+  createHeader(header: Partial<Headers> = {}): Headers {
+    const headers: Headers = {
       'Content-Type': 'application/json',
       ...header,
     };
+    if (this.config.accessToken) {
+      headers['Authorization'] = `Bearer ${this.config.accessToken}`;
+    }
+    return headers;
   }
 
   resolveUrl(path: string, params: Data = {}) {

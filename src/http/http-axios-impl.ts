@@ -1,4 +1,8 @@
-import axios, { AxiosInstance, AxiosRequestHeaders } from 'axios';
+import axios, {
+  AxiosInstance,
+  AxiosRequestConfig,
+  RawAxiosRequestHeaders,
+} from 'axios';
 
 import { MastoConfig } from '../config';
 import { createError, CreateErrorParams, MastoError } from '../errors';
@@ -14,7 +18,7 @@ export class HttpAxiosImpl extends BaseHttp implements Http {
 
     this.axios = axios.create({
       baseURL: config.url,
-      headers: this.createHeader() as AxiosRequestHeaders,
+      headers: this.createHeader(),
       proxy: config.proxy,
       timeout: config.timeout,
       transformRequest: (data, headers) => {
@@ -52,23 +56,39 @@ export class HttpAxiosImpl extends BaseHttp implements Http {
 
         return this.serializer.deserialize(contentType, data);
       },
-      paramsSerializer: (params) =>
-        this.serializer.serialize(
-          'application/x-www-form-urlencoded',
-          params,
-        ) as string,
+      paramsSerializer: {
+        serialize: (params) =>
+          this.serializer.serialize(
+            'application/x-www-form-urlencoded',
+            params,
+          ) as string,
+      },
     });
   }
 
   async request<T>(params: Request): Promise<Response<T>> {
     try {
-      const response = await this.axios.request<T>(params);
+      const config: AxiosRequestConfig = {};
+      config.url = params.url;
+      config.method = params.method;
+      if (params.headers) {
+        config.headers = params.headers as RawAxiosRequestHeaders;
+      }
+      if (params.params) {
+        config.params = params.params;
+      }
+      if (params.data) {
+        config.data = params.data;
+      }
+
+      const response = await this.axios.request<T>(config);
 
       return {
         headers: response.headers,
         data: response.data,
       };
     } catch (error) {
+      // eslint-disable-next-line import/no-named-as-default-member
       if (!axios.isAxiosError(error)) {
         throw error;
       }
