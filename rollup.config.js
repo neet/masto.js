@@ -1,12 +1,12 @@
-import commonjs from '@rollup/plugin-commonjs';
-import json from '@rollup/plugin-json';
-import autoExternal from 'rollup-plugin-auto-external';
-import dts from 'rollup-plugin-dts';
-import typescript from 'rollup-plugin-typescript2';
+const commonjs = require('@rollup/plugin-commonjs');
+const json = require('@rollup/plugin-json');
+const autoExternal = require('rollup-plugin-auto-external');
+const { default: dts } = require('rollup-plugin-dts');
+const typescript = require('rollup-plugin-typescript2');
 
-import packageJSON from './package.json' assert { type: 'json' };
+const packageJSON = require('./package.json');
 
-export default [
+module.exports = [
   {
     input: './src/entrypoints/nodejs.ts',
     output: {

@@ -23,7 +23,7 @@
     "test:jest": "jest --coverage --config=jest.config.js",
     "test:eslint": "eslint -c .eslintrc.json ./src/**/*.ts",
     "test:spellcheck": "cspell '{src,examples}/**/*.{ts,tsx,js,json,md}'",
-    "build": "rollup -c rollup.config.mjs",
+    "build": "rollup -c rollup.config.js",
     "prepublishOnly": "yarn run test && yarn run build",
     "release": "standard-version",
     "docs:build": "typedoc ./src/entrypoints/nodejs.ts && touch ./docs/.nojekyll"
