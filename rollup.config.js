@@ -1,16 +1,16 @@
-import commonjs from '@rollup/plugin-commonjs';
-import json from '@rollup/plugin-json';
-import autoExternal from 'rollup-plugin-auto-external';
-import dts from 'rollup-plugin-dts';
-import typescript from 'rollup-plugin-typescript2';
+const commonjs = require('@rollup/plugin-commonjs');
+const json = require('@rollup/plugin-json');
+const autoExternal = require('rollup-plugin-auto-external');
+const { default: dts } = require('rollup-plugin-dts');
+const typescript = require('rollup-plugin-typescript2');
 
-import packageJSON from './package.json';
+const packageJSON = require('./package.json');
 
-export default [
+module.exports = [
   {
     input: './src/entrypoints/nodejs.ts',
     output: {
-      file: packageJSON.main,
+      file: packageJSON.exports['.'].require,
       format: 'cjs',
     },
     plugins: [json(), typescript(), autoExternal()],
@@ -18,7 +18,7 @@ export default [
   {
     input: './src/entrypoints/nodejs.ts',
     output: {
-      file: packageJSON.module,
+      file: packageJSON.exports['.'].import,
       format: 'esm',
     },
     plugins: [commonjs(), json(), typescript(), autoExternal()],
@@ -26,7 +26,7 @@ export default [
   {
     input: './src/entrypoints/fetch.ts',
     output: {
-      file: './dist/fetch.js',
+      file: packageJSON.exports['./fetch'].require,
       format: 'cjs',
     },
     plugins: [json(), typescript(), autoExternal()],
@@ -34,7 +34,7 @@ export default [
   {
     input: './src/entrypoints/fetch.ts',
     output: {
-      file: './dist/fetch.mjs',
+      file: packageJSON.exports['./fetch'].import,
       format: 'esm',
     },
     plugins: [commonjs(), json(), typescript(), autoExternal()],
@@ -42,7 +42,7 @@ export default [
   {
     input: './src/entrypoints/nodejs.ts',
     output: {
-      file: packageJSON.types,
+      file: packageJSON.exports['.'].types,
       format: 'esm',
     },
     plugins: [dts()],
