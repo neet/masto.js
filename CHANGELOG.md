@@ -1,3 +1,12 @@
+## [4.4.1](https://github.com/neet/masto.js/compare/v4.4.0...v4.4.1) (2022-11-04)
+
+
+### Bug Fixes
+
+* Apply typescript-eslint only for ts files ([f69603e](https://github.com/neet/masto.js/commit/f69603e3ea685e7b57b54f4364d55d7d7c210eb5))
+* Use cjs for rollup.config.js ([80cc322](https://github.com/neet/masto.js/commit/80cc322f2b373fb9505b881e7b7fd68142e4c36d))
+* Use exports ([4383fe4](https://github.com/neet/masto.js/commit/4383fe4654fb92e78737dcd0da7bea48e7c3a362))
+
 # [4.4.0](https://github.com/neet/masto.js/compare/v4.3.4...v4.4.0) (2022-06-20)
 
 
