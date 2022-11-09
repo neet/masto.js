@@ -1,3 +1,4 @@
+import { MastoConfig } from '../config';
 import { version } from '../decorators';
 import { Account } from '../entities';
 import { Http } from '../http';
@@ -19,7 +20,11 @@ export interface FetchDirectoryParams {
 export class DirectoryRepository
   implements Repository<Account, never, never, FetchDirectoryParams>
 {
-  constructor(private readonly http: Http, readonly version: string) {}
+  constructor(
+    private readonly http: Http,
+    readonly version: string,
+    readonly config: MastoConfig,
+  ) {}
 
   /**
    * List accounts visible in the directory.

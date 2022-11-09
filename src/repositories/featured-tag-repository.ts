@@ -1,3 +1,4 @@
+import { MastoConfig } from '../config';
 import { version } from '../decorators';
 import { FeaturedTag, Tag } from '../entities';
 import { Http } from '../http';
@@ -9,7 +10,11 @@ export interface CreateFeaturedTagParams {
 }
 
 export class FeaturedTagRepository implements Repository<FeaturedTag> {
-  constructor(private readonly http: Http, readonly version: string) {}
+  constructor(
+    private readonly http: Http,
+    readonly version: string,
+    readonly config: MastoConfig,
+  ) {}
 
   /**
    * View your featured tags

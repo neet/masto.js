@@ -1,3 +1,4 @@
+import { MastoConfig } from '../config';
 import { version } from '../decorators/version';
 import type {
   Account,
@@ -95,7 +96,11 @@ export interface LookupAccountParams {
 export class AccountRepository
   implements Repository<Account, CreateAccountParams>
 {
-  constructor(private readonly http: Http, readonly version: string) {}
+  constructor(
+    private readonly http: Http,
+    readonly version: string,
+    readonly config: MastoConfig,
+  ) {}
 
   /**
    * View information about a profile.

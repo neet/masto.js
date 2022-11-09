@@ -1,3 +1,4 @@
+import { MastoConfig } from '../config';
 import { Http } from '../http';
 
 export interface CreateConfirmationParams {
@@ -5,7 +6,11 @@ export interface CreateConfirmationParams {
 }
 
 export class EmailRepository {
-  constructor(private readonly http: Http, readonly version: string) {}
+  constructor(
+    private readonly http: Http,
+    readonly version: string,
+    readonly config: MastoConfig,
+  ) {}
 
   createConfirmation(params?: CreateConfirmationParams): Promise<void> {
     return this.http.post('/api/v1/email/confirmations', params);

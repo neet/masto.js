@@ -1,3 +1,4 @@
+import { MastoConfig } from '../config';
 import { deprecated, version } from '../decorators';
 import { Attachment } from '../entities';
 import { Http } from '../http';
@@ -31,7 +32,7 @@ export class MediaAttachmentRepository
   constructor(
     private readonly http: Http,
     readonly version: string,
-    readonly timeout?: number,
+    readonly config: MastoConfig,
   ) {}
 
   /**
@@ -56,7 +57,7 @@ export class MediaAttachmentRepository
 
         return media;
       })(),
-      this.timeout ?? 3000,
+      this.config.timeout ?? 3000,
     );
   }
 

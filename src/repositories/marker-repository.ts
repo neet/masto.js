@@ -1,3 +1,4 @@
+import { MastoConfig } from '../config';
 import { version } from '../decorators';
 import { Marker, MarkerItem, MarkerTimeline } from '../entities';
 import { Http } from '../http';
@@ -20,7 +21,11 @@ export type CreateMarkersParams = {
 export class MarkerRepository
   implements Repository<Marker, CreateMarkersParams, never, FetchMarkersParams>
 {
-  constructor(private readonly http: Http, readonly version: string) {}
+  constructor(
+    private readonly http: Http,
+    readonly version: string,
+    readonly config: MastoConfig,
+  ) {}
 
   /**
    * Get saved timeline position

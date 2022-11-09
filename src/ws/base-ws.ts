@@ -13,6 +13,10 @@ export abstract class BaseWs implements Ws {
   abstract stream(path: string, params: unknown): Promise<WsEvents>;
 
   private supportsSecureToken() {
+    if (this.config.disableVersionCheck) {
+      return false;
+    }
+
     // Since v2.8.4, it is supported to pass access token with`Sec-Websocket-Protocol`
     // https://github.com/tootsuite/mastodon/pull/10818
     return (

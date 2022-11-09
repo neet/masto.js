@@ -1,9 +1,16 @@
-import { httpDelete, httpGet, HttpMockImpl, httpPost } from '../../http/http-mock-impl';
+import {
+  httpDelete,
+  httpGet,
+  HttpMockImpl,
+  httpPost,
+} from '../../http/http-mock-impl';
 import { StatusRepository } from '../status-repository';
 
 describe('status', () => {
   const mockHttp = new HttpMockImpl();
-  const status = new StatusRepository(mockHttp, '999.0.0');
+  const status = new StatusRepository(mockHttp, '999.0.0', {
+    url: 'https://example.com',
+  });
 
   beforeEach(() => {
     mockHttp.clear();
@@ -22,7 +29,7 @@ describe('status', () => {
     expect(httpPost.mock.calls[0][1]).toStrictEqual({
       status: 'hello',
     });
-  })
+  });
 
   test('type checks', () => {
     status.create({
@@ -33,7 +40,7 @@ describe('status', () => {
 
     // Status can be null when mediaIds provided
     status.create({
-      mediaIds: ['123123']
+      mediaIds: ['123123'],
     });
 
     // @ts-expect-error: Status cannot be null when mediaIds are not provided

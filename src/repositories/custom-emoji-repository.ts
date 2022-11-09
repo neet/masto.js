@@ -1,10 +1,15 @@
+import { MastoConfig } from '../config';
 import { version } from '../decorators';
 import { Emoji } from '../entities';
 import { Http } from '../http';
 import { Repository } from '../repository';
 
 export class CustomEmojiRepository implements Repository<Emoji> {
-  constructor(private readonly http: Http, readonly version: string) {}
+  constructor(
+    private readonly http: Http,
+    readonly version: string,
+    readonly config: MastoConfig,
+  ) {}
 
   /**
    * Returns custom emojis that are available on the server.
