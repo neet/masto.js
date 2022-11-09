@@ -1,3 +1,4 @@
+import { MastoConfig } from '../config';
 import { deprecated, version } from '../decorators';
 import { Status } from '../entities';
 import { Http } from '../http';
@@ -14,7 +15,11 @@ export interface FetchTimelineParams extends DefaultPaginationParams {
 }
 
 export class TimelinesRepository {
-  constructor(private readonly http: Http, readonly version: string) {}
+  constructor(
+    private readonly http: Http,
+    readonly version: string,
+    readonly config: MastoConfig,
+  ) {}
 
   get home(): Paginator<FetchTimelineParams, Status[]> {
     return this.getHomeIterable();

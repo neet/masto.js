@@ -1,3 +1,4 @@
+import { MastoConfig } from '../config';
 import { version } from '../decorators';
 import { Status } from '../entities';
 import { Http } from '../http';
@@ -5,7 +6,11 @@ import { Paginator } from '../paginator';
 import { DefaultPaginationParams, Repository } from '../repository';
 
 export class FavouriteRepository implements Repository<Status> {
-  constructor(private readonly http: Http, readonly version: string) {}
+  constructor(
+    private readonly http: Http,
+    readonly version: string,
+    readonly config: MastoConfig,
+  ) {}
 
   async *[Symbol.asyncIterator]() {
     yield* this.getIterator();

@@ -1,3 +1,4 @@
+import { MastoConfig } from '../config';
 import { version } from '../decorators';
 import { Account } from '../entities';
 import { Http } from '../http';
@@ -5,7 +6,11 @@ import { Paginator } from '../paginator';
 import { DefaultPaginationParams, Repository } from '../repository';
 
 export class SuggestionRepository implements Repository<Account> {
-  constructor(private readonly http: Http, readonly version: string) {}
+  constructor(
+    private readonly http: Http,
+    readonly version: string,
+    readonly config: MastoConfig,
+  ) {}
 
   async *[Symbol.asyncIterator]() {
     yield* this.getIterator();

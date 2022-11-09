@@ -1,3 +1,4 @@
+import { MastoConfig } from '../config';
 import { version } from '../decorators';
 import type { Client } from '../entities';
 import type { Http } from '../http';
@@ -19,7 +20,11 @@ export interface CreateAppParams {
 }
 
 export class AppRepository implements Repository<Client, CreateAppParams> {
-  constructor(private readonly http: Http, readonly version: string) {}
+  constructor(
+    private readonly http: Http,
+    readonly version: string,
+    readonly config: MastoConfig,
+  ) {}
 
   /**
    * Create a new application to obtain OAuth2 credentials.

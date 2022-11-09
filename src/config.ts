@@ -17,4 +17,7 @@ export interface MastoConfig {
   readonly timeout?: number;
   readonly headers?: { [key: string]: string };
   readonly proxy?: MastoProxyConfig;
+  readonly disableVersionCheck?: boolean;
+  readonly disableDeprecatedWarning?: boolean;
+  readonly disableExperimentalWarning?: boolean;
 }

@@ -95,50 +95,112 @@ export class MastoClient {
     private readonly http: Http,
     private readonly ws: Ws,
     readonly version: string,
-    private readonly config: MastoConfig,
+    readonly config: MastoConfig,
   ) {
-    this.admin = new MastoAdminClient(this.http, this.version);
-    this.stream = new StreamRepository(this.ws, this.version);
-    this.accounts = new AccountRepository(this.http, this.version);
-    this.announcements = new AnnouncementRepository(this.http, this.version);
-    this.apps = new AppRepository(this.http, this.version);
-    this.blocks = new BlockRepository(this.http, this.version);
-    this.bookmarks = new BookmarkRepository(this.http, this.version);
-    this.conversations = new ConversationRepository(this.http, this.version);
-    this.customEmojis = new CustomEmojiRepository(this.http, this.version);
-    this.directory = new DirectoryRepository(this.http, this.version);
-    this.domainBlocks = new DomainBlockRepository(this.http, this.version);
-    this.endorsements = new EndorsementRepository(this.http, this.version);
-    this.favourites = new FavouriteRepository(this.http, this.version);
-    this.featuredTags = new FeaturedTagRepository(this.http, this.version);
-    this.filters = new FilterRepository(this.http, this.version);
-    this.followRequests = new FollowRequestRepository(this.http, this.version);
-    this.instances = new InstanceRepository(this.http, this.version);
-    this.lists = new ListRepository(this.http, this.version);
-    this.markers = new MarkerRepository(this.http, this.version);
+    this.admin = new MastoAdminClient(this.http, this.version, this.config);
+    this.stream = new StreamRepository(this.ws, this.version, this.config);
+    this.accounts = new AccountRepository(this.http, this.version, this.config);
+    this.announcements = new AnnouncementRepository(
+      this.http,
+      this.version,
+      this.config,
+    );
+    this.apps = new AppRepository(this.http, this.version, this.config);
+    this.blocks = new BlockRepository(this.http, this.version, this.config);
+    this.bookmarks = new BookmarkRepository(
+      this.http,
+      this.version,
+      this.config,
+    );
+    this.conversations = new ConversationRepository(
+      this.http,
+      this.version,
+      this.config,
+    );
+    this.customEmojis = new CustomEmojiRepository(
+      this.http,
+      this.version,
+      this.config,
+    );
+    this.directory = new DirectoryRepository(
+      this.http,
+      this.version,
+      this.config,
+    );
+    this.domainBlocks = new DomainBlockRepository(
+      this.http,
+      this.version,
+      this.config,
+    );
+    this.endorsements = new EndorsementRepository(
+      this.http,
+      this.version,
+      this.config,
+    );
+    this.favourites = new FavouriteRepository(
+      this.http,
+      this.version,
+      this.config,
+    );
+    this.featuredTags = new FeaturedTagRepository(
+      this.http,
+      this.version,
+      this.config,
+    );
+    this.filters = new FilterRepository(this.http, this.version, this.config);
+    this.followRequests = new FollowRequestRepository(
+      this.http,
+      this.version,
+      this.config,
+    );
+    this.instances = new InstanceRepository(
+      this.http,
+      this.version,
+      this.config,
+    );
+    this.lists = new ListRepository(this.http, this.version, this.config);
+    this.markers = new MarkerRepository(this.http, this.version, this.config);
     this.mediaAttachments = new MediaAttachmentRepository(
       this.http,
       this.version,
-      this.config.timeout,
+      this.config,
     );
-    this.mutes = new MuteRepository(this.http, this.version);
-    this.notifications = new NotificationsRepository(this.http, this.version);
-    this.poll = new PollRepository(this.http, this.version);
-    this.preferences = new PreferenceRepository(this.http, this.version);
+    this.mutes = new MuteRepository(this.http, this.version, this.config);
+    this.notifications = new NotificationsRepository(
+      this.http,
+      this.version,
+      this.config,
+    );
+    this.poll = new PollRepository(this.http, this.version, this.config);
+    this.preferences = new PreferenceRepository(
+      this.http,
+      this.version,
+      this.config,
+    );
     this.pushSubscriptions = new PushSubscriptionsRepository(
       this.http,
       this.version,
+      this.config,
     );
-    this.reports = new ReportRepository(this.http, this.version);
+    this.reports = new ReportRepository(this.http, this.version, this.config);
     this.scheduledStatuses = new ScheduledStatusesRepository(
       this.http,
       this.version,
+      this.config,
     );
-    this.statuses = new StatusRepository(this.http, this.version);
-    this.suggestions = new SuggestionRepository(this.http, this.version);
-    this.timelines = new TimelinesRepository(this.http, this.version);
-    this.trends = new TrendRepository(this.http, this.version);
-    this.email = new EmailRepository(this.http, this.version);
+    this.statuses = new StatusRepository(this.http, this.version, this.config);
+    this.suggestions = new SuggestionRepository(
+      this.http,
+      this.version,
+      this.config,
+    );
+    this.timelines = new TimelinesRepository(
+      this.http,
+      this.version,
+      this.config,
+    );
+    this.trends = new TrendRepository(this.http, this.version, this.config);
+    this.email = new EmailRepository(this.http, this.version, this.config);
   }
 
   /**

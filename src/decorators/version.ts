@@ -1,9 +1,11 @@
 import semver from 'semver';
 
+import { MastoConfig } from '../config';
 import { MastoNotFoundError } from '../errors';
 
-export interface Version {
+interface Target {
   readonly version: string;
+  readonly config: MastoConfig;
 }
 
 export interface AvailableParams {
@@ -11,28 +13,29 @@ export interface AvailableParams {
   until?: `${number}.${number}.${number}`;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Fn = (...args: any[]) => any;
+
 /**
  * Decorator that verifies the version of the Mastodon instance
  * @param parameters Optional params
  */
 export const version =
   ({ since, until }: AvailableParams) =>
-  (
-    _version: Version,
-    name: string | symbol,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    descriptor: TypedPropertyDescriptor<(...args: any[]) => any>,
-  ) => {
-    const original = descriptor.value;
-
-    if (!original) {
-      throw new Error('available can only apply to a method of a class');
+  (_target: Target, name: string, descriptor: TypedPropertyDescriptor<Fn>) => {
+    const origin = descriptor.value;
+    if (!origin) {
+      throw new Error('version can only apply to a method of a class');
     }
 
     descriptor.value = function (
-      this: Version,
-      ...args: Parameters<typeof original>
+      this: Target,
+      ...args: Parameters<typeof origin>
     ) {
+      if (this.config.disableVersionCheck) {
+        return origin.apply(this, args);
+      }
+
       if (since && semver.lt(this.version, since, { loose: true })) {
         throw new MastoNotFoundError(
           `${String(name)} is not available with the current ` +
@@ -49,6 +52,6 @@ export const version =
         );
       }
 
-      return original.apply(this, args);
+      return origin.apply(this, args);
     };
   };

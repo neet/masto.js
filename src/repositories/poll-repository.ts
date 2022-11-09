@@ -1,3 +1,4 @@
+import { MastoConfig } from '../config';
 import { version } from '../decorators';
 import { Poll } from '../entities';
 import { Http } from '../http';
@@ -9,7 +10,11 @@ export interface VotePollParams {
 }
 
 export class PollRepository implements Repository<Poll> {
-  constructor(private readonly http: Http, readonly version: string) {}
+  constructor(
+    private readonly http: Http,
+    readonly version: string,
+    readonly config: MastoConfig,
+  ) {}
   /**
    * View a poll
    * @param id ID of the poll in the database

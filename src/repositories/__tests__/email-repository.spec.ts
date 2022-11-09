@@ -3,7 +3,9 @@ import { EmailRepository } from '../email-repository';
 
 describe('email', () => {
   const mockHttp = new HttpMockImpl();
-  const email = new EmailRepository(mockHttp, '999.0.0');
+  const email = new EmailRepository(mockHttp, '999.0.0', {
+    url: 'https://example.com',
+  });
 
   test('create confirmations', () => {
     email.createConfirmation({ email: 'foo@example.com' });

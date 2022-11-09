@@ -1,3 +1,4 @@
+import { MastoConfig } from '../config';
 import { version } from '../decorators';
 import { Account, List } from '../entities';
 import { Http } from '../http';
@@ -17,7 +18,11 @@ export interface ModifyListAccountsParams {
 export class ListRepository
   implements Repository<List, ModifyListParams, ModifyListParams>
 {
-  constructor(private readonly http: Http, readonly version: string) {}
+  constructor(
+    private readonly http: Http,
+    readonly version: string,
+    readonly config: MastoConfig,
+  ) {}
 
   /**
    * Fetch the list with the given ID. Used for verifying the title of a list.

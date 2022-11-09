@@ -1,3 +1,4 @@
+import { MastoConfig } from '../config';
 import { version } from '../decorators';
 import { ScheduledStatus } from '../entities';
 import { Http } from '../http';
@@ -12,7 +13,11 @@ export interface UpdateScheduledStatusParams {
 export class ScheduledStatusesRepository
   implements AsyncIterable<ScheduledStatus[]>
 {
-  constructor(private readonly http: Http, readonly version: string) {}
+  constructor(
+    private readonly http: Http,
+    readonly version: string,
+    readonly config: MastoConfig,
+  ) {}
 
   async *[Symbol.asyncIterator]() {
     yield* this.getIterator();

@@ -1,3 +1,4 @@
+import { MastoConfig } from '../../config';
 import { version } from '../../decorators';
 import { Admin } from '../../entities';
 import { Http } from '../../http';
@@ -10,7 +11,11 @@ export interface AdminFetchReportsParams {
 }
 
 export class ReportRepository {
-  constructor(private readonly http: Http, readonly version: string) {}
+  constructor(
+    private readonly http: Http,
+    readonly version: string,
+    readonly config: MastoConfig,
+  ) {}
 
   /**
    * View all reports. Pagination may be done with HTTP Link header in the response.

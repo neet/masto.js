@@ -1,3 +1,4 @@
+import { MastoConfig } from '../config';
 import { deprecated, version } from '../decorators';
 import {
   Account,
@@ -65,7 +66,11 @@ export interface ReblogStatusParams {
 }
 
 export class StatusRepository implements Repository<Status> {
-  constructor(private readonly http: Http, readonly version: string) {}
+  constructor(
+    private readonly http: Http,
+    readonly version: string,
+    readonly config: MastoConfig,
+  ) {}
 
   /**
    * View information about a status.
