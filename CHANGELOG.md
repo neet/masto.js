@@ -1,3 +1,10 @@
+# [4.5.0](https://github.com/neet/masto.js/compare/v4.4.1...v4.5.0) (2022-11-10)
+
+
+### Features
+
+* Add an option to disable version check ([782fa60](https://github.com/neet/masto.js/commit/782fa60909e12f409ffd7cd7528e64770c90a502))
+
 ## [4.4.1](https://github.com/neet/masto.js/compare/v4.4.0...v4.4.1) (2022-11-04)
 
 
