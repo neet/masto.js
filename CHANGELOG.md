@@ -1,3 +1,10 @@
+## [4.5.1](https://github.com/neet/masto.js/compare/v4.5.0...v4.5.1) (2022-11-11)
+
+
+### Bug Fixes
+
+* Remove obsolete debug code ([79cb0d8](https://github.com/neet/masto.js/commit/79cb0d803a70b6e8863766f20787c0aebebe5bc1))
+
 # [4.5.0](https://github.com/neet/masto.js/compare/v4.4.1...v4.5.0) (2022-11-10)
 
 
