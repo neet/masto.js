@@ -1,3 +1,15 @@
+# [4.6.0](https://github.com/neet/masto.js/compare/v4.5.1...v4.6.0) (2022-11-12)
+
+
+### Bug Fixes
+
+* Use Rails formed URL search params ([ff5daad](https://github.com/neet/masto.js/commit/ff5daadd11655bcd8ac5b37786f500efaff51cff))
+
+
+### Features
+
+* Add non-iterable fetch methods ([c158e0e](https://github.com/neet/masto.js/commit/c158e0e99c299fb71885299873070f5233849b52))
+
 ## [4.5.1](https://github.com/neet/masto.js/compare/v4.5.0...v4.5.1) (2022-11-11)
 
 
