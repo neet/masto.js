@@ -1,10 +1,10 @@
 import { MastoConfig } from '../config';
-import { MimeType, Serializer } from '../serializers';
+import { MimeType } from '../serializers';
+import { railsQueryString } from '../serializers/rails-querystring';
 import { Data, Headers, Http, Request, Response } from './http';
 
 export abstract class BaseHttp implements Http {
   abstract readonly config: MastoConfig;
-  abstract readonly serializer: Serializer;
 
   abstract request<T>(request: Request): Promise<Response<T>>;
 
@@ -19,11 +19,12 @@ export abstract class BaseHttp implements Http {
     return headers;
   }
 
+  encodeParams(params: Data = {}) {
+    return railsQueryString.stringify(params);
+  }
+
   resolveUrl(path: string, params: Data = {}) {
-    const searchParams = this.serializer.serialize(
-      'application/x-www-form-urlencoded',
-      params,
-    );
+    const searchParams = this.encodeParams(params);
 
     return `${this.config.url}${path}${
       searchParams !== '' ? `?${searchParams}` : ''

@@ -2,6 +2,7 @@ import semver from 'semver';
 
 import { MastoConfig } from '../config';
 import { Serializer } from '../serializers';
+import { railsQueryString } from '../serializers/rails-querystring';
 import { Ws, WsEvents } from './ws';
 
 export abstract class BaseWs implements Ws {
@@ -30,11 +31,7 @@ export abstract class BaseWs implements Ws {
     if (!this.supportsSecureToken()) {
       params.accessToken = this.config.accessToken;
     }
-
-    const query = this.serializer.serialize(
-      'application/x-www-form-urlencoded',
-      params,
-    );
+    const query = railsQueryString.stringify(params);
 
     return this.baseUrl + path + (query !== '' ? `?${query}` : '');
   }
