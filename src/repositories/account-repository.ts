@@ -13,7 +13,8 @@ import type {
 } from '../entities';
 import { Http } from '../http';
 import { Paginator } from '../paginator';
-import { DefaultPaginationParams, Repository } from '../repository';
+import { lift } from '../utils/lift';
+import { DefaultPaginationParams, Repository } from './repository';
 
 export interface CreateAccountParams {
   /** The desired username for the account */
@@ -102,6 +103,32 @@ export class AccountRepository
     readonly config: MastoConfig,
   ) {}
 
+  @version({ since: '0.0.0' })
+  getFollowersIterable(
+    id: string,
+    params: DefaultPaginationParams,
+  ): Paginator<DefaultPaginationParams, Account[]> {
+    return new Paginator(this.http, `/api/v1/accounts/${id}/followers`, params);
+  }
+
+  @version({ since: '0.0.0' })
+  getFollowingIterable(
+    id: string,
+    params: DefaultPaginationParams,
+  ): Paginator<DefaultPaginationParams, Account[]> {
+    return new Paginator(this.http, `/api/v1/accounts/${id}/following`, params);
+  }
+
+  @version({ since: '0.0.0' })
+  getStatusesIterable(
+    id: string,
+    params: FetchAccountStatusesParams,
+  ): Paginator<FetchAccountStatusesParams, Status[]> {
+    return new Paginator(this.http, `/api/v1/accounts/${id}/statuses`, params);
+  }
+
+  // ====
+
   /**
    * View information about a profile.
    * @param id The id of the account in the database
@@ -158,13 +185,7 @@ export class AccountRepository
    * @return Array of Account
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  @version({ since: '0.0.0' })
-  getFollowersIterable(
-    id: string,
-    params: DefaultPaginationParams,
-  ): Paginator<DefaultPaginationParams, Account[]> {
-    return new Paginator(this.http, `/api/v1/accounts/${id}/followers`, params);
-  }
+  fetchFollowers = lift(this.getFollowersIterable.bind(this));
 
   /**
    * Accounts which the given account is following, if network is not hidden by the account owner.
@@ -173,13 +194,7 @@ export class AccountRepository
    * @return Array of Account
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  @version({ since: '0.0.0' })
-  getFollowingIterable(
-    id: string,
-    params: DefaultPaginationParams,
-  ): Paginator<DefaultPaginationParams, Account[]> {
-    return new Paginator(this.http, `/api/v1/accounts/${id}/following`, params);
-  }
+  fetchFollowing = lift(this.getFollowersIterable.bind(this));
 
   /**
    * Statuses posted to the given account.
@@ -188,13 +203,7 @@ export class AccountRepository
    * @return Array of Status
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  @version({ since: '0.0.0' })
-  getStatusesIterable(
-    id: string,
-    params: FetchAccountStatusesParams,
-  ): Paginator<FetchAccountStatusesParams, Status[]> {
-    return new Paginator(this.http, `/api/v1/accounts/${id}/statuses`, params);
-  }
+  fetchStatuses = lift(this.getStatusesIterable.bind(this));
 
   /**
    * Follow the given account.

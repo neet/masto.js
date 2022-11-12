@@ -2,7 +2,7 @@ import { MastoConfig } from '../config';
 import { version } from '../decorators';
 import { Preference } from '../entities';
 import { Http } from '../http';
-import { Repository } from '../repository';
+import { Repository } from './repository';
 
 export class PreferenceRepository implements Repository<Preference> {
   constructor(

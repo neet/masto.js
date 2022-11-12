@@ -3,17 +3,16 @@ import { version } from '../decorators';
 import { Status } from '../entities';
 import { Http } from '../http';
 import { Paginator } from '../paginator';
-import { DefaultPaginationParams, Repository } from '../repository';
+import { IterableRepository } from './iterable-repository';
+import { DefaultPaginationParams } from './repository';
 
-export class FavouriteRepository implements Repository<Status> {
+export class FavouriteRepository extends IterableRepository<Status> {
   constructor(
     private readonly http: Http,
     readonly version: string,
     readonly config: MastoConfig,
-  ) {}
-
-  async *[Symbol.asyncIterator]() {
-    yield* this.getIterator();
+  ) {
+    super();
   }
 
   /**

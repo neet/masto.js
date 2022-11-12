@@ -10,7 +10,7 @@ import {
   StatusVisibility,
 } from '../entities';
 import { Http } from '../http';
-import { Repository } from '../repository';
+import { Repository } from './repository';
 
 export interface CreateStatusParamsBase {
   /** ID of the status being replied to, if status is a reply */

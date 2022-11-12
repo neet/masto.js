@@ -2,7 +2,7 @@ import { MastoConfig } from '../config';
 import { version } from '../decorators';
 import type { Client } from '../entities';
 import type { Http } from '../http';
-import type { Repository } from '../repository';
+import type { Repository } from './repository';
 
 export interface CreateAppParams {
   /** A name of your application */

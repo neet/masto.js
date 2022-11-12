@@ -2,17 +2,16 @@ import { MastoConfig } from '../config';
 import { version } from '../decorators';
 import { Http } from '../http';
 import { Paginator } from '../paginator';
-import { DefaultPaginationParams, Repository } from '../repository';
+import { IterableRepository } from './iterable-repository';
+import { DefaultPaginationParams } from './repository';
 
-export class DomainBlockRepository implements Repository<string> {
+export class DomainBlockRepository extends IterableRepository<string> {
   constructor(
     private readonly http: Http,
     readonly version: string,
     readonly config: MastoConfig,
-  ) {}
-
-  async *[Symbol.asyncIterator]() {
-    yield* this.getIterator();
+  ) {
+    super();
   }
 
   /**
