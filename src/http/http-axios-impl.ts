@@ -57,11 +57,7 @@ export class HttpAxiosImpl extends BaseHttp implements Http {
         return this.serializer.deserialize(contentType, data);
       },
       paramsSerializer: {
-        serialize: (params) =>
-          this.serializer.serialize(
-            'application/x-www-form-urlencoded',
-            params,
-          ) as string,
+        serialize: (params) => this.encodeParams(params),
       },
     });
   }
