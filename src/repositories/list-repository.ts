@@ -3,7 +3,8 @@ import { version } from '../decorators';
 import { Account, List } from '../entities';
 import { Http } from '../http';
 import { Paginator } from '../paginator';
-import { DefaultPaginationParams, Repository } from '../repository';
+import { lift } from '../utils/lift';
+import { DefaultPaginationParams, Repository } from './repository';
 
 export interface ModifyListParams {
   /** The title of the list to be created. */
@@ -23,6 +24,14 @@ export class ListRepository
     readonly version: string,
     readonly config: MastoConfig,
   ) {}
+
+  @version({ since: '2.1.0' })
+  getAccountIterator(
+    id: string,
+    params?: DefaultPaginationParams,
+  ): Paginator<DefaultPaginationParams, Account[]> {
+    return new Paginator(this.http, `/api/v1/list/${id}/accounts`, params);
+  }
 
   /**
    * Fetch the list with the given ID. Used for verifying the title of a list.
@@ -86,13 +95,7 @@ export class ListRepository
    * @return Array of Account
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
-  @version({ since: '2.1.0' })
-  getAccountIterator(
-    id: string,
-    params?: DefaultPaginationParams,
-  ): Paginator<DefaultPaginationParams, Account[]> {
-    return new Paginator(this.http, `/api/v1/list/${id}/accounts`, params);
-  }
+  fetchAccounts = lift(this.getAccountIterator.bind(this));
 
   /**
    * Add accounts to the given list. Note that the user must be following these accounts.

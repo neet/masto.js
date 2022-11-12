@@ -2,7 +2,7 @@ import { MastoConfig } from '../config';
 import { version } from '../decorators';
 import { Poll } from '../entities';
 import { Http } from '../http';
-import { Repository } from '../repository';
+import { Repository } from './repository';
 
 export interface VotePollParams {
   /** Array of own votes containing index for each option (starting from 0) */

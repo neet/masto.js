@@ -3,7 +3,8 @@ import { version } from '../decorators';
 import { Notification, NotificationType } from '../entities';
 import { Http } from '../http';
 import { Paginator } from '../paginator';
-import { DefaultPaginationParams, Repository } from '../repository';
+import { IterableRepository } from './iterable-repository';
+import { DefaultPaginationParams } from './repository';
 
 export interface FetchNotificationsParams extends DefaultPaginationParams {
   /** Instead of specifying every known type to exclude, you can specify only the types you want. */
@@ -14,15 +15,13 @@ export interface FetchNotificationsParams extends DefaultPaginationParams {
   readonly excludeTypes?: NotificationType[] | null;
 }
 
-export class NotificationsRepository implements Repository<Notification> {
+export class NotificationsRepository extends IterableRepository<Notification> {
   constructor(
     private readonly http: Http,
     readonly version: string,
     readonly config: MastoConfig,
-  ) {}
-
-  async *[Symbol.asyncIterator]() {
-    yield* this.getIterator();
+  ) {
+    super();
   }
 
   /**

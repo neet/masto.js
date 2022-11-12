@@ -3,17 +3,16 @@ import { version } from '../decorators';
 import { Account } from '../entities';
 import { Http } from '../http';
 import { Paginator } from '../paginator';
-import { DefaultPaginationParams, Repository } from '../repository';
+import { IterableRepository } from './iterable-repository';
+import { DefaultPaginationParams } from './repository';
 
-export class BlockRepository implements Repository<Account> {
+export class BlockRepository extends IterableRepository<Account> {
   constructor(
     private readonly http: Http,
     readonly version: string,
     readonly config: MastoConfig,
-  ) {}
-
-  async *[Symbol.asyncIterator]() {
-    yield* this.getIterator();
+  ) {
+    super();
   }
 
   /**
@@ -23,7 +22,7 @@ export class BlockRepository implements Repository<Account> {
    * @see https://docs.joinmastodon.org/methods/accounts/blocks/
    */
   @version({ since: '0.0.0' })
-  getIterator(
+  override getIterator(
     params?: DefaultPaginationParams,
   ): Paginator<DefaultPaginationParams, Account[]> {
     return new Paginator(this.http, `/api/v1/blocks`, params);

@@ -2,7 +2,7 @@ import { MastoConfig } from '../config';
 import { version } from '../decorators';
 import { Announcement, Reaction } from '../entities';
 import { Http } from '../http';
-import { Repository } from '../repository';
+import { Repository } from './repository';
 
 export class AnnouncementRepository implements Repository<Announcement> {
   constructor(

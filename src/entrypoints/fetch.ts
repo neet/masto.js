@@ -36,4 +36,3 @@ export * from '../ws';
 export * from '../clients';
 export * from '../config';
 export * from '../paginator';
-export * from '../repository';

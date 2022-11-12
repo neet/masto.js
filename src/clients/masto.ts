@@ -11,6 +11,7 @@ import {
   BookmarkRepository,
   ConversationRepository,
   CustomEmojiRepository,
+  DefaultPaginationParams,
   DirectoryRepository,
   DomainBlockRepository,
   EmailRepository,
@@ -36,7 +37,6 @@ import {
   TimelinesRepository,
   TrendRepository,
 } from '../repositories';
-import { DefaultPaginationParams } from '../repository';
 import { Ws } from '../ws';
 import { MastoAdminClient } from './admin';
 

@@ -16,12 +16,19 @@ export interface Repository<
   FetchParams = never,
   PaginationParams = DefaultPaginationParams,
 > {
-  readonly [Symbol.asyncIterator]?: () => AsyncIterable<Entity[]>;
-  readonly getIterator?: (params: PaginationParams) => AsyncIterable<Entity[]>;
+  readonly [Symbol.asyncIterator]?: () => AsyncIterableIterator<Entity[]>;
+
+  readonly getIterator?: (
+    params?: PaginationParams,
+  ) => AsyncIterableIterator<Entity[]>;
 
   readonly fetch?:
     | ((id: string) => Promise<Entity>)
     | ((params?: FetchParams) => Promise<Entity>);
+
+  readonly fetchMany?: (
+    params?: PaginationParams,
+  ) => Promise<IteratorResult<Entity[]>>;
 
   readonly fetchAll?: (params?: FetchParams) => Promise<Entity[]>;
 

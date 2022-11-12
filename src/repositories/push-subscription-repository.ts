@@ -2,7 +2,7 @@ import { MastoConfig } from '../config';
 import { version } from '../decorators';
 import { PushSubscription, PushSubscriptionAlerts } from '../entities';
 import { Http } from '../http';
-import { Repository } from '../repository';
+import { Repository } from './repository';
 
 export type SubscriptionPolicy = 'all' | 'followed' | 'follower' | 'none';
 

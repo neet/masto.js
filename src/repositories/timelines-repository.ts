@@ -3,7 +3,7 @@ import { deprecated, version } from '../decorators';
 import { Status } from '../entities';
 import { Http } from '../http';
 import { Paginator } from '../paginator';
-import { DefaultPaginationParams } from '../repository';
+import { DefaultPaginationParams } from './repository';
 
 export interface FetchTimelineParams extends DefaultPaginationParams {
   /** Show only local statuses? Defaults to false. */
