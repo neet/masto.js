@@ -20,7 +20,7 @@
   },
   "scripts": {
     "test": "npm-run-all test:*",
-    "test:jest": "jest --coverage --config=jest.config.js",
+    "test:jest": "jest --coverage --runInBand --config=jest.config.js",
     "test:eslint": "eslint -c .eslintrc.json ./src/**/*.ts",
     "test:spellcheck": "cspell '{src,examples}/**/*.{ts,tsx,js,json,md}'",
     "build": "rollup -c rollup.config.js",
