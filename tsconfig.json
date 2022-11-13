@@ -16,7 +16,7 @@
     "skipLibCheck": true,
     "strict": true
   },
-  "include": ["./**/*"],
+  "include": ["./src/**/*", "./tests/**/*", "./test-utils/**/*"],
   "typedocOptions": {
     "out": "./docs",
     "theme": "default",
