@@ -13,8 +13,8 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     strategy:
+      max-parallel: 1
       matrix:
-        max-parallel: 1
         node-version: [14, 16, 18]
     env:
       NPM_TOKEN: ${{secrets.NPM_TOKEN}}
