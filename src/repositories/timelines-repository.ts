@@ -29,6 +29,46 @@ export class TimelinesRepository {
     return this.getPublicIterable();
   }
 
+  @version({ since: '0.0.0' })
+  getHomeIterable(
+    params?: FetchTimelineParams,
+  ): Paginator<FetchTimelineParams, Status[]> {
+    return new Paginator(this.http, '/api/v1/timelines/home', params);
+  }
+
+  @version({ since: '0.0.0' })
+  getPublicIterable(
+    params?: FetchTimelineParams,
+  ): Paginator<FetchTimelineParams, Status[]> {
+    return new Paginator(this.http, '/api/v1/timelines/public', params);
+  }
+
+  @version({ since: '0.0.0' })
+  getHashtagIterable(
+    hashtag: string,
+    params?: FetchTimelineParams,
+  ): Paginator<FetchTimelineParams, Status[]> {
+    return new Paginator(this.http, `/api/v1/timelines/tag/${hashtag}`, params);
+  }
+
+  @version({ since: '2.1.0' })
+  getListIterable(
+    id: string,
+    params?: FetchTimelineParams,
+  ): Paginator<FetchTimelineParams, Status[]> {
+    return new Paginator(this.http, `/api/v1/timelines/list/${id}`, params);
+  }
+
+  @deprecated('Use conversations API instead')
+  @version({ since: '0.0.0', until: '2.9.3' })
+  getDirectIterable(
+    params?: FetchTimelineParams,
+  ): Paginator<FetchTimelineParams, Status[]> {
+    return new Paginator(this.http, '/api/v1/timelines/direct', params);
+  }
+
+  // ====
+
   /**
    * View statuses from followed users.
    * @param params Parameters
@@ -36,10 +76,8 @@ export class TimelinesRepository {
    * @see https://docs.joinmastodon.org/methods/timelines/
    */
   @version({ since: '0.0.0' })
-  getHomeIterable(
-    params?: FetchTimelineParams,
-  ): Paginator<FetchTimelineParams, Status[]> {
-    return new Paginator(this.http, '/api/v1/timelines/home', params);
+  fetchHome(params?: FetchTimelineParams): Promise<IteratorResult<Status[]>> {
+    return this.getHomeIterable(params).next();
   }
 
   /**
@@ -49,10 +87,8 @@ export class TimelinesRepository {
    * @see https://docs.joinmastodon.org/methods/timelines/
    */
   @version({ since: '0.0.0' })
-  getPublicIterable(
-    params?: FetchTimelineParams,
-  ): Paginator<FetchTimelineParams, Status[]> {
-    return new Paginator(this.http, '/api/v1/timelines/public', params);
+  fetchPublic(params?: FetchTimelineParams): Promise<IteratorResult<Status[]>> {
+    return this.getPublicIterable(params).next();
   }
 
   /**
@@ -63,11 +99,11 @@ export class TimelinesRepository {
    * @see https://docs.joinmastodon.org/methods/timelines/
    */
   @version({ since: '0.0.0' })
-  getTagIterable(
+  fetchHashtag(
     hashtag: string,
     params?: FetchTimelineParams,
-  ): Paginator<FetchTimelineParams, Status[]> {
-    return new Paginator(this.http, `/api/v1/timelines/tag/${hashtag}`, params);
+  ): Promise<IteratorResult<Status[]>> {
+    return this.getHashtagIterable(hashtag, params).next();
   }
 
   /**
@@ -78,11 +114,11 @@ export class TimelinesRepository {
    * @see https://docs.joinmastodon.org/methods/timelines/
    */
   @version({ since: '2.1.0' })
-  getList(
+  fetchList(
     id: string,
     params?: FetchTimelineParams,
-  ): Paginator<FetchTimelineParams, Status[]> {
-    return new Paginator(this.http, `/api/v1/timelines/list/${id}`, params);
+  ): Promise<IteratorResult<Status[]>> {
+    return this.getListIterable(id, params).next();
   }
 
   /**
@@ -93,9 +129,24 @@ export class TimelinesRepository {
    */
   @deprecated('Use conversations API instead')
   @version({ since: '0.0.0', until: '2.9.3' })
-  getDirect(
-    params?: FetchTimelineParams,
-  ): Paginator<FetchTimelineParams, Status[]> {
-    return new Paginator(this.http, '/api/v1/timelines/direct', params);
+  fetchDirect(params?: FetchTimelineParams): Promise<IteratorResult<Status[]>> {
+    return this.getDirectIterable(params).next();
   }
+
+  // ====
+
+  /**
+   * @deprecated Use getHashtagIterable instead.
+   */
+  getTagIterable = this.getHashtagIterable.bind(this);
+
+  /**
+   * @deprecated Use getListIterable instead.
+   */
+  getList = this.getListIterable.bind(this);
+
+  /**
+   * @deprecated Use getDirectIterable instead.
+   */
+  getDirect = this.getDirectIterable.bind(this);
 }
