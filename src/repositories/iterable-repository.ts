@@ -1,4 +1,3 @@
-import { lift } from '../utils/lift';
 import { DefaultPaginationParams, Repository } from './repository';
 
 export abstract class IterableRepository<
@@ -11,7 +10,9 @@ export abstract class IterableRepository<
 {
   abstract getIterator(params?: RMany): AsyncIterableIterator<T[]>;
 
-  fetchMany = lift(this.getIterator.bind(this));
+  fetchMany(params?: RMany): Promise<IteratorResult<T[]>> {
+    return this.getIterator(params).next();
+  }
 
   async *[Symbol.asyncIterator]() {
     if (this.getIterator != null) {

@@ -3,7 +3,6 @@ import { version } from '../decorators';
 import { Account, List } from '../entities';
 import { Http } from '../http';
 import { Paginator } from '../paginator';
-import { lift } from '../utils/lift';
 import { DefaultPaginationParams, Repository } from './repository';
 
 export interface ModifyListParams {
@@ -30,7 +29,7 @@ export class ListRepository
     id: string,
     params?: DefaultPaginationParams,
   ): Paginator<DefaultPaginationParams, Account[]> {
-    return new Paginator(this.http, `/api/v1/list/${id}/accounts`, params);
+    return new Paginator(this.http, `/api/v1/lists/${id}/accounts`, params);
   }
 
   /**
@@ -95,7 +94,12 @@ export class ListRepository
    * @return Array of Account
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
-  fetchAccounts = lift(this.getAccountIterator.bind(this));
+  fetchAccounts(
+    id: string,
+    params?: DefaultPaginationParams,
+  ): Promise<IteratorResult<Account[]>> {
+    return this.getAccountIterator(id, params).next();
+  }
 
   /**
    * Add accounts to the given list. Note that the user must be following these accounts.

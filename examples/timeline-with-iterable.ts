@@ -5,20 +5,19 @@ const main = async () => {
     url: 'https://example.com',
   });
 
-  // You can fetch each page of timeline with `.next()`
-  const result = await masto.timelines.public.next();
+  const result = await masto.timelines.fetchPublic({
+    limit: 30,
+  });
 
   if (result) {
     // `.done` represents whether there are more pages
     console.log(result.done);
     // `.value` contains response object
     console.log(result.value);
-    // More about iterators:
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators
   }
 
-  // You can also use `for-await-of` syntax to page down the timeline
-  for await (const statuses of masto.timelines.public) {
+  // You can also use `for-await-of` syntax to iterate over the timeline
+  for await (const statuses of masto.timelines.getPublicIterable()) {
     statuses.forEach((status) => {
       masto.statuses.favourite(status.id);
     });

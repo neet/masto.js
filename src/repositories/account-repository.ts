@@ -13,7 +13,6 @@ import type {
 } from '../entities';
 import { Http } from '../http';
 import { Paginator } from '../paginator';
-import { lift } from '../utils/lift';
 import { DefaultPaginationParams, Repository } from './repository';
 
 export interface CreateAccountParams {
@@ -185,7 +184,12 @@ export class AccountRepository
    * @return Array of Account
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  fetchFollowers = lift(this.getFollowersIterable.bind(this));
+  fetchFollowers(
+    id: string,
+    params: DefaultPaginationParams = {},
+  ): Promise<IteratorResult<Account[]>> {
+    return this.getFollowersIterable(id, params).next();
+  }
 
   /**
    * Accounts which the given account is following, if network is not hidden by the account owner.
@@ -194,7 +198,12 @@ export class AccountRepository
    * @return Array of Account
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  fetchFollowing = lift(this.getFollowersIterable.bind(this));
+  fetchFollowing(
+    id: string,
+    params: DefaultPaginationParams = {},
+  ): Promise<IteratorResult<Account[]>> {
+    return this.getFollowersIterable(id, params).next();
+  }
 
   /**
    * Statuses posted to the given account.
@@ -203,7 +212,12 @@ export class AccountRepository
    * @return Array of Status
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  fetchStatuses = lift(this.getStatusesIterable.bind(this));
+  fetchStatuses(
+    id: string,
+    params: DefaultPaginationParams = {},
+  ): Promise<IteratorResult<Status[]>> {
+    return this.getStatusesIterable(id, params).next();
+  }
 
   /**
    * Follow the given account.
