@@ -8,7 +8,7 @@ export const httpPut = jest.fn();
 export const httpDelete = jest.fn();
 
 export class HttpMockImpl implements Http {
-  clear() {
+  clear(): void {
     httpRequest.mockClear();
     httpGet.mockClear();
     httpPost.mockClear();

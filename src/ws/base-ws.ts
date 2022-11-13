@@ -27,7 +27,7 @@ export abstract class BaseWs implements Ws {
     );
   }
 
-  resolveUrl(path: string, params: Record<string, unknown> = {}) {
+  resolveUrl(path: string, params: Record<string, unknown> = {}): string {
     if (!this.supportsSecureToken()) {
       params.accessToken = this.config.accessToken;
     }
@@ -36,7 +36,7 @@ export abstract class BaseWs implements Ws {
     return this.baseUrl + path + (query !== '' ? `?${query}` : '');
   }
 
-  createProtocols(protocols = []) {
+  createProtocols(protocols = []): string[] {
     return this.supportsSecureToken() && this.config.accessToken != null
       ? [this.config.accessToken, ...protocols]
       : [];

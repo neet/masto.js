@@ -39,7 +39,7 @@ export class ListRepository
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
   @version({ since: '2.1.0' })
-  fetch(id: string) {
+  fetch(id: string): Promise<List> {
     return this.http.get<List>(`/api/v1/lists/${id}`);
   }
 
@@ -49,7 +49,7 @@ export class ListRepository
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
   @version({ since: '2.1.0' })
-  fetchAll() {
+  fetchAll(): Promise<List[]> {
     return this.http.get<List[]>('/api/v1/lists');
   }
 
@@ -60,7 +60,7 @@ export class ListRepository
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
   @version({ since: '2.1.0' })
-  create(params: ModifyListParams) {
+  create(params: ModifyListParams): Promise<List> {
     return this.http.post<List>('/api/v1/lists', params);
   }
 
@@ -72,7 +72,7 @@ export class ListRepository
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
   @version({ since: '2.1.0' })
-  update(id: string, params: ModifyListParams) {
+  update(id: string, params: ModifyListParams): Promise<List> {
     return this.http.put<List>(`/api/v1/lists/${id}`, params);
   }
 
@@ -83,7 +83,7 @@ export class ListRepository
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
   @version({ since: '2.1.0' })
-  remove(id: string) {
+  remove(id: string): Promise<void> {
     return this.http.delete<void>(`/api/v1/lists/${id}`);
   }
 
@@ -109,7 +109,7 @@ export class ListRepository
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
   @version({ since: '2.1.0' })
-  addAccount(id: string, params: ModifyListAccountsParams) {
+  addAccount(id: string, params: ModifyListAccountsParams): Promise<void> {
     return this.http.post<void>(`/api/v1/lists/${id}/accounts`, params);
   }
 
@@ -121,7 +121,7 @@ export class ListRepository
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
   @version({ since: '2.1.0' })
-  removeAccount(id: string, params: ModifyListAccountsParams) {
+  removeAccount(id: string, params: ModifyListAccountsParams): Promise<void> {
     return this.http.delete<void>(`/api/v1/lists/${id}/accounts`, params);
   }
 }

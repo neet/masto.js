@@ -30,7 +30,7 @@ export class WsEventsNodejsImpl
     url: string,
     serializer: Serializer,
     protocols?: string | string[],
-  ) {
+  ): Promise<WsEvents> {
     return new Promise<WsEvents>((resolve, reject) => {
       const ws = new WebSocket(url, protocols);
       const instance = new WsEventsNodejsImpl(ws, serializer);
@@ -43,7 +43,7 @@ export class WsEventsNodejsImpl
   /**
    * Disconnect from the websocket endpoint
    */
-  disconnect() {
+  disconnect(): void {
     if (!this.ws) return;
     this.ws.close();
   }

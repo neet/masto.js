@@ -52,7 +52,7 @@ export class PushSubscriptionsRepository
    * @see https://docs.joinmastodon.org/methods/notifications/push/
    */
   @version({ since: '2.4.0' })
-  create(params: CreatePushSubscriptionParams) {
+  create(params: CreatePushSubscriptionParams): Promise<PushSubscription> {
     return this.http.post<PushSubscription>(
       '/api/v1/push/subscription',
       params,
@@ -65,7 +65,7 @@ export class PushSubscriptionsRepository
    * @see https://docs.joinmastodon.org/methods/notifications/push/
    */
   @version({ since: '2.4.0' })
-  fetch() {
+  fetch(): Promise<PushSubscription> {
     return this.http.get<PushSubscription>('/api/v1/push/subscription');
   }
 
@@ -86,7 +86,7 @@ export class PushSubscriptionsRepository
    * @see https://docs.joinmastodon.org/methods/notifications/push/
    */
   @version({ since: '2.4.0' })
-  remove() {
+  remove(): Promise<void> {
     return this.http.delete<void>('/api/v1/push/subscription');
   }
 }

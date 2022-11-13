@@ -17,7 +17,7 @@ export class PreferenceRepository implements Repository<Preference> {
    * @see https://docs.joinmastodon.org/methods/accounts/preferences/
    */
   @version({ since: '2.8.0' })
-  fetch() {
+  fetch(): Promise<Preference> {
     return this.http.get<Preference>('/api/v1/preferences');
   }
 }

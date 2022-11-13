@@ -33,7 +33,7 @@ export class ReportRepository {
    * @see https://docs.joinmastodon.org/methods/accounts/reports/
    */
   @version({ since: '1.1.0' })
-  create(params: ReportAccountParams) {
+  create(params: ReportAccountParams): Promise<void> {
     return this.http.post<void>('/api/v1/reports', params);
   }
 }

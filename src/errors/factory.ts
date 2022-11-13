@@ -28,7 +28,7 @@ export type CreateErrorParams =
   | CreateDefaultErrorParams
   | CreateRateLimitErrorParams;
 
-export const createError = (params: CreateErrorParams) => {
+export const createError = (params: CreateErrorParams): MastoError => {
   const message = params.message ?? 'Unexpected error occurred';
   const description =
     params.description ?? 'No description provided for this error';

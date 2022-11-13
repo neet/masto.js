@@ -86,7 +86,7 @@ export class MediaAttachmentRepository
    * @see https://github.com/tootsuite/mastodon/pull/13210
    */
   @version({ since: '3.1.3' })
-  fetch(id: string) {
+  fetch(id: string): Promise<Attachment> {
     return this.http.get<Attachment>(`/api/v1/media/${id}`);
   }
 
@@ -122,7 +122,7 @@ export class MediaAttachmentRepository
    */
   @deprecated('Use Masto.media#create instead')
   @version({ since: '0.0.0', until: '3.1.3' })
-  v1__create(params: CreateMediaAttachmentParams) {
+  v1__create(params: CreateMediaAttachmentParams): Promise<Attachment> {
     return this.http.post<Attachment>(`/api/v1/media`, params, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });

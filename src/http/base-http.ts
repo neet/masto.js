@@ -19,11 +19,11 @@ export abstract class BaseHttp implements Http {
     return headers;
   }
 
-  encodeParams(params: Data = {}) {
+  encodeParams(params: Data = {}): string {
     return railsQueryString.stringify(params);
   }
 
-  resolveUrl(path: string, params: Data = {}) {
+  resolveUrl(path: string, params: Data = {}): string {
     const searchParams = this.encodeParams(params);
 
     return `${this.config.url}${path}${

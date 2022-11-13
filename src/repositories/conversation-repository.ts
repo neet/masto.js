@@ -35,7 +35,7 @@ export class ConversationRepository extends IterableRepository<Conversation> {
    * @see https://docs.joinmastodon.org/methods/timelines/conversations/
    */
   @version({ since: '2.6.0' })
-  remove(id: string) {
+  remove(id: string): Promise<void> {
     return this.http.delete<void>(`/api/v1/conversations/${id}`);
   }
 
@@ -46,7 +46,7 @@ export class ConversationRepository extends IterableRepository<Conversation> {
    * @see https://docs.joinmastodon.org/methods/timelines/conversations/
    */
   @version({ since: '2.6.0' })
-  read(id: string) {
+  read(id: string): Promise<Conversation> {
     return this.http.post<Conversation>(`/api/v1/conversations/${id}/read`);
   }
 }

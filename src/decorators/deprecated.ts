@@ -17,7 +17,7 @@ export const deprecated =
     _target: Target,
     name: string | symbol,
     descriptor: TypedPropertyDescriptor<Fn>,
-  ) => {
+  ): void => {
     const origin = descriptor.value;
     if (!origin) {
       throw new Error('deprecated can only apply to a method of a class');

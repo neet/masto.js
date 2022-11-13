@@ -33,7 +33,7 @@ export class AppRepository implements Repository<Client, CreateAppParams> {
    * @see https://docs.joinmastodon.org/methods/apps/
    */
   @version({ since: '0.0.0' })
-  create(params: CreateAppParams) {
+  create(params: CreateAppParams): Promise<Client> {
     return this.http.post<Client>(`/api/v1/apps`, params);
   }
 
@@ -43,7 +43,7 @@ export class AppRepository implements Repository<Client, CreateAppParams> {
    * @see https://docs.joinmastodon.org/methods/apps/
    */
   @version({ since: '2.0.0' })
-  verifyCredentials() {
+  verifyCredentials(): Promise<Client> {
     return this.http.get<Client>(`/api/v1/apps/verify_credentials`);
   }
 }

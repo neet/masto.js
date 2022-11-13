@@ -33,7 +33,7 @@ export class DirectoryRepository
    * @see https://docs.joinmastodon.org/methods/instance/directory/
    */
   @version({ since: '3.0.0' })
-  fetchAll(params?: FetchDirectoryParams) {
+  fetchAll(params?: FetchDirectoryParams): Promise<Account[]> {
     return this.http.get<Account[]>('/api/v1/directory', params);
   }
 }

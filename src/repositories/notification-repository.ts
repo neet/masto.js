@@ -46,7 +46,7 @@ export class NotificationsRepository extends IterableRepository<Notification> {
    * @see https://docs.joinmastodon.org/methods/notifications/
    */
   @version({ since: '0.0.0' })
-  fetch(id: string) {
+  fetch(id: string): Promise<Notification> {
     return this.http.get<Notification>(`/api/v1/notifications/${id}`);
   }
 
@@ -56,7 +56,7 @@ export class NotificationsRepository extends IterableRepository<Notification> {
    * @see https://docs.joinmastodon.org/methods/notifications/
    */
   @version({ since: '0.0.0' })
-  clear() {
+  clear(): Promise<void> {
     return this.http.post<void>('/api/v1/notifications/clear');
   }
 
@@ -67,7 +67,7 @@ export class NotificationsRepository extends IterableRepository<Notification> {
    * @see https://docs.joinmastodon.org/methods/notifications/
    */
   @version({ since: '2.6.0' })
-  dismiss(id: string) {
+  dismiss(id: string): Promise<void> {
     return this.http.post<void>(`/api/v1/notifications/${id}/dismiss`);
   }
 }

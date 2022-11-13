@@ -37,7 +37,7 @@ export class FilterRepository
    * @see https://docs.joinmastodon.org/methods/accounts/filters/
    */
   @version({ since: '2.4.3' })
-  fetchAll() {
+  fetchAll(): Promise<Filter[]> {
     return this.http.get<Filter[]>(`/api/v1/filters`);
   }
 
@@ -48,7 +48,7 @@ export class FilterRepository
    * @see https://docs.joinmastodon.org/methods/accounts/filters/
    */
   @version({ since: '2.4.3' })
-  fetch(id: string) {
+  fetch(id: string): Promise<Filter> {
     return this.http.get<Filter>(`/api/v1/filters/${id}`);
   }
 
@@ -59,7 +59,7 @@ export class FilterRepository
    * @see https://docs.joinmastodon.org/methods/accounts/filters/
    */
   @version({ since: '2.4.3' })
-  create(params?: CreateFilterParams) {
+  create(params?: CreateFilterParams): Promise<Filter> {
     return this.http.post<Filter>(`/api/v1/filters`, params);
   }
 
@@ -71,7 +71,7 @@ export class FilterRepository
    * @see https://docs.joinmastodon.org/methods/accounts/filters/
    */
   @version({ since: '2.4.3' })
-  update(id: string, params?: UpdateFilterParams) {
+  update(id: string, params?: UpdateFilterParams): Promise<Filter> {
     return this.http.put<Filter>(`/api/v1/filters/${id}`, params);
   }
 
@@ -82,7 +82,7 @@ export class FilterRepository
    * @see https://docs.joinmastodon.org/methods/accounts/filters/
    */
   @version({ since: '2.4.3' })
-  remove(id: string) {
+  remove(id: string): Promise<void> {
     return this.http.delete<void>(`/api/v1/filters/${id}`);
   }
 }

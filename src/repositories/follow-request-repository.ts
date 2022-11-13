@@ -1,6 +1,6 @@
 import { MastoConfig } from '../config';
 import { version } from '../decorators';
-import { Account } from '../entities';
+import { Account, Relationship } from '../entities';
 import { Http } from '../http';
 import { Paginator } from '../paginator';
 import { IterableRepository } from './iterable-repository';
@@ -35,8 +35,10 @@ export class FollowRequestRepository extends IterableRepository<Account> {
    * @see https://docs.joinmastodon.org/methods/accounts/follow_requests/
    */
   @version({ since: '0.0.0' })
-  authorize(id: string) {
-    return this.http.post(`/api/v1/follow_requests/${id}/authorize`);
+  authorize(id: string): Promise<Relationship> {
+    return this.http.post<Relationship>(
+      `/api/v1/follow_requests/${id}/authorize`,
+    );
   }
 
   /**
@@ -46,7 +48,7 @@ export class FollowRequestRepository extends IterableRepository<Account> {
    * @see https://docs.joinmastodon.org/methods/accounts/follow_requests/
    */
   @version({ since: '0.0.0' })
-  reject(id: string) {
-    return this.http.post(`/api/v1/follow_requests/${id}/reject`);
+  reject(id: string): Promise<Relationship> {
+    return this.http.post<Relationship>(`/api/v1/follow_requests/${id}/reject`);
   }
 }

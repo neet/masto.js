@@ -38,7 +38,7 @@ export class DomainBlockRepository extends IterableRepository<string> {
    * @see https://docs.joinmastodon.org/methods/accounts/domain_blocks/
    */
   @version({ since: '1.4.0' })
-  block(domain: string) {
+  block(domain: string): Promise<void> {
     return this.http.post<void>(`/api/v1/domain_blocks`, {
       domain,
     });
@@ -51,7 +51,7 @@ export class DomainBlockRepository extends IterableRepository<string> {
    * @see https://docs.joinmastodon.org/methods/accounts/domain_blocks/
    */
   @version({ since: '1.4.0' })
-  unblock(domain: string) {
+  unblock(domain: string): Promise<void> {
     return this.http.delete<void>(`/api/v1/domain_blocks`, {
       domain,
     });

@@ -23,7 +23,7 @@ export class FeaturedTagRepository implements Repository<FeaturedTag> {
    * @done
    */
   @version({ since: '3.0.0' })
-  fetchAll() {
+  fetchAll(): Promise<FeaturedTag[]> {
     return this.http.get<FeaturedTag[]>('/api/v1/featured_tags');
   }
 
@@ -34,7 +34,7 @@ export class FeaturedTagRepository implements Repository<FeaturedTag> {
    * @see https://docs.joinmastodon.org/methods/accounts/featured_tags/
    */
   @version({ since: '3.0.0' })
-  create(params: CreateFeaturedTagParams) {
+  create(params: CreateFeaturedTagParams): Promise<FeaturedTag> {
     return this.http.post<FeaturedTag>('/api/v1/featured_tags', params);
   }
 
@@ -44,7 +44,7 @@ export class FeaturedTagRepository implements Repository<FeaturedTag> {
    * @see https://docs.joinmastodon.org/methods/accounts/featured_tags/
    */
   @version({ since: '3.0.0' })
-  fetchSuggestions() {
+  fetchSuggestions(): Promise<Tag[]> {
     return this.http.get<Tag[]>('/api/v1/featured_tags/suggestions');
   }
 
@@ -55,7 +55,7 @@ export class FeaturedTagRepository implements Repository<FeaturedTag> {
    * @see https://docs.joinmastodon.org/methods/accounts/featured_tags/
    */
   @version({ since: '3.0.0' })
-  remove(id: string) {
+  remove(id: string): Promise<void> {
     return this.http.delete<void>(`/api/v1/featured_tags/${id}`);
   }
 }

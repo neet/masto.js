@@ -22,7 +22,7 @@ export class PollRepository implements Repository<Poll> {
    * @see https://docs.joinmastodon.org/methods/statuses/polls/
    */
   @version({ since: '2.8.0' })
-  fetch(id: string) {
+  fetch(id: string): Promise<Poll> {
     return this.http.get<Poll>(`/api/v1/polls/${id}`);
   }
 
@@ -34,7 +34,7 @@ export class PollRepository implements Repository<Poll> {
    * @see https://docs.joinmastodon.org/methods/statuses/polls/
    */
   @version({ since: '2.8.0' })
-  vote(id: string, params: VotePollParams) {
+  vote(id: string, params: VotePollParams): Promise<Poll> {
     return this.http.post<Poll>(`/api/v1/polls/${id}/votes`, params);
   }
 }

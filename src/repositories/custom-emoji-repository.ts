@@ -17,7 +17,7 @@ export class CustomEmojiRepository implements Repository<Emoji> {
    * @see https://docs.joinmastodon.org/methods/instance/custom_emojis/
    */
   @version({ since: '2.0.0' })
-  fetchAll() {
+  fetchAll(): Promise<Emoji[]> {
     return this.http.get<Emoji[]>(`/api/v1/custom_emojis`);
   }
 }

@@ -45,7 +45,7 @@ export class MarkerRepository
    * @see https://github.com/tootsuite/mastodon/pull/11762
    */
   @version({ since: '3.0.0' })
-  create(params: CreateMarkersParams) {
+  create(params: CreateMarkersParams): Promise<Marker> {
     return this.http.post<Marker>('/api/v1/markers', params);
   }
 }

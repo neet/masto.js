@@ -22,7 +22,11 @@ type Fn = (...args: any[]) => any;
  */
 export const version =
   ({ since, until }: AvailableParams) =>
-  (_target: Target, name: string, descriptor: TypedPropertyDescriptor<Fn>) => {
+  (
+    _target: Target,
+    name: string,
+    descriptor: TypedPropertyDescriptor<Fn>,
+  ): void => {
     const origin = descriptor.value;
     if (!origin) {
       throw new Error('version can only apply to a method of a class');

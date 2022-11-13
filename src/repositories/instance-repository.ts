@@ -17,7 +17,7 @@ export class InstanceRepository implements Repository<Instance> {
    * @see https://docs.joinmastodon.org/methods/instance/
    */
   @version({ since: '1.0.0' })
-  fetch() {
+  fetch(): Promise<Instance> {
     return this.http.get<Instance>('/api/v1/instance');
   }
 
@@ -27,7 +27,7 @@ export class InstanceRepository implements Repository<Instance> {
    * @see https://docs.joinmastodon.org/methods/instance/
    */
   @version({ since: '2.1.2' })
-  fetchPeers() {
+  fetchPeers(): Promise<string[]> {
     return this.http.get<string[]>('/api/v1/instance/peers');
   }
 
@@ -37,7 +37,7 @@ export class InstanceRepository implements Repository<Instance> {
    * @see https://docs.joinmastodon.org/methods/instance/
    */
   @version({ since: '2.1.2' })
-  fetchActivity() {
+  fetchActivity(): Promise<Activity[]> {
     return this.http.get<Activity[]>('/api/v1/instance/activity');
   }
 }
