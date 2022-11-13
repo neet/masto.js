@@ -94,7 +94,10 @@ export class ListRepository
    * @return Array of Account
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
-  fetchAccounts(id: string, params?: DefaultPaginationParams) {
+  fetchAccounts(
+    id: string,
+    params?: DefaultPaginationParams,
+  ): Promise<IteratorResult<Account[]>> {
     return this.getAccountIterator(id, params).next();
   }
 
