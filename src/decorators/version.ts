@@ -1,6 +1,6 @@
 import semver from 'semver';
 
-import { MastoConfig } from '../config';
+import type { MastoConfig } from '../config';
 import { MastoNotFoundError } from '../errors';
 
 interface Target {

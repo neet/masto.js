@@ -1,9 +1,9 @@
 import semver from 'semver';
 
-import { MastoConfig } from '../config';
-import { Serializer } from '../serializers';
+import type { MastoConfig } from '../config';
+import type { Serializer } from '../serializers';
 import { railsQueryString } from '../serializers/rails-querystring';
-import { Ws, WsEvents } from './ws';
+import type { Ws, WsEvents } from './ws';
 
 export abstract class BaseWs implements Ws {
   protected abstract readonly baseUrl: string;

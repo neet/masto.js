@@ -1,8 +1,8 @@
-import { MastoConfig } from '../config';
+import type { MastoConfig } from '../config';
 import { version } from '../decorators';
-import { FeaturedTag, Tag } from '../entities';
-import { Http } from '../http';
-import { Repository } from './repository';
+import type { FeaturedTag, Tag } from '../entities';
+import type { Http } from '../http';
+import type { Repository } from './repository';
 
 export interface CreateFeaturedTagParams {
   /** The hashtag to be featured. */

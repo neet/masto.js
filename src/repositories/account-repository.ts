@@ -1,4 +1,4 @@
-import { MastoConfig } from '../config';
+import type { MastoConfig } from '../config';
 import { version } from '../decorators/version';
 import type {
   Account,
@@ -11,9 +11,9 @@ import type {
   Source,
   Status,
 } from '../entities';
-import { Http } from '../http';
+import type { Http } from '../http';
 import { Paginator } from '../paginator';
-import { DefaultPaginationParams, Repository } from './repository';
+import type { DefaultPaginationParams, Repository } from './repository';
 
 export interface CreateAccountParams {
   /** The desired username for the account */

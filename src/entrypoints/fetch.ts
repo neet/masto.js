@@ -1,5 +1,5 @@
 import { MastoClient } from '../clients';
-import { MastoConfig } from '../config';
+import type { MastoConfig } from '../config';
 import { HttpNativeImpl } from '../http';
 import { InstanceRepository } from '../repositories';
 import { SerializerNativeImpl } from '../serializers';

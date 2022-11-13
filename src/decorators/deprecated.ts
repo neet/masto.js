@@ -1,4 +1,4 @@
-import { MastoConfig } from '../config';
+import type { MastoConfig } from '../config';
 
 interface Target {
   readonly config: MastoConfig;

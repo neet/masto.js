@@ -1,4 +1,4 @@
-import { Account as PublicAccount } from '..';
+import type { Account as PublicAccount } from '..';
 
 export type AccountRole = 'moderator' | 'admin' | 'user';
 

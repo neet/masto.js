@@ -1,7 +1,7 @@
 import 'isomorphic-form-data';
 
 import { MastoClient } from '../clients';
-import { MastoConfig } from '../config';
+import type { MastoConfig } from '../config';
 import { HttpAxiosImpl } from '../http';
 import { InstanceRepository } from '../repositories';
 import { SerializerNodejsImpl } from '../serializers';

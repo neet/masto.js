@@ -1,8 +1,8 @@
-import { MastoConfig } from '../config';
+import type { MastoConfig } from '../config';
 import { version } from '../decorators';
-import { Emoji } from '../entities';
-import { Http } from '../http';
-import { Repository } from './repository';
+import type { Emoji } from '../entities';
+import type { Http } from '../http';
+import type { Repository } from './repository';
 
 export class CustomEmojiRepository implements Repository<Emoji> {
   constructor(

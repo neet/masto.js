@@ -1,10 +1,10 @@
-import { MastoConfig } from '../config';
+import type { MastoConfig } from '../config';
 import { version } from '../decorators';
-import { ScheduledStatus } from '../entities';
-import { Http } from '../http';
+import type { ScheduledStatus } from '../entities';
+import type { Http } from '../http';
 import { Paginator } from '../paginator';
 import { IterableRepository } from './iterable-repository';
-import { DefaultPaginationParams } from './repository';
+import type { DefaultPaginationParams } from './repository';
 
 export interface UpdateScheduledStatusParams {
   /** ISO 8601 Date-time at which the status will be published. Must be at least 5 minutes into the future. */

@@ -1,4 +1,4 @@
-import { Status } from '.';
+import type { Status } from '.';
 
 /**
  * Represents the tree around a given status. Used for reconstructing threads of statuses.

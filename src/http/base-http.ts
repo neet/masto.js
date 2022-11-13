@@ -1,7 +1,7 @@
-import { MastoConfig } from '../config';
-import { MimeType } from '../serializers';
+import type { MastoConfig } from '../config';
+import type { MimeType } from '../serializers';
 import { railsQueryString } from '../serializers/rails-querystring';
-import { Data, Headers, Http, Request, Response } from './http';
+import type { Data, Headers, Http, Request, Response } from './http';
 
 export abstract class BaseHttp implements Http {
   abstract readonly config: MastoConfig;

@@ -1,5 +1,6 @@
 import { MastoConflictError } from './masto-conflict-error';
-import { MastoError, MastoErrorDetails } from './masto-error';
+import type { MastoErrorDetails } from './masto-error';
+import { MastoError } from './masto-error';
 import { MastoForbiddenError } from './masto-forbidden-error';
 import { MastoGoneError } from './masto-gone-error';
 import { MastoNotFoundError } from './masto-not-found-error';

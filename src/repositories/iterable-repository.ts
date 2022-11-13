@@ -1,4 +1,4 @@
-import { DefaultPaginationParams, Repository } from './repository';
+import type { DefaultPaginationParams, Repository } from './repository';
 
 export abstract class IterableRepository<
   T = never,

@@ -1,14 +1,16 @@
-import axios, {
+import type {
   AxiosInstance,
   AxiosRequestConfig,
   RawAxiosRequestHeaders,
 } from 'axios';
+import axios from 'axios';
 
-import { MastoConfig } from '../config';
-import { createError, CreateErrorParams, MastoError } from '../errors';
-import { MimeType, Serializer } from '../serializers';
+import type { MastoConfig } from '../config';
+import type { CreateErrorParams } from '../errors';
+import { createError, MastoError } from '../errors';
+import type { MimeType, Serializer } from '../serializers';
 import { BaseHttp } from './base-http';
-import { Http, Request, Response } from './http';
+import type { Http, Request, Response } from './http';
 
 export class HttpAxiosImpl extends BaseHttp implements Http {
   private readonly axios: AxiosInstance;

@@ -1,4 +1,4 @@
-import { Account, Status } from '.';
+import type { Account, Status } from '.';
 
 /**
  * Represents a conversation with "direct message" visibility.

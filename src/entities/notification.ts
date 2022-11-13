@@ -1,5 +1,5 @@
-import { Account } from './account';
-import { Status } from './status';
+import type { Account } from './account';
+import type { Status } from './status';
 
 export type NotificationType =
   | 'mention'

@@ -1,4 +1,4 @@
-import { Field, StatusVisibility } from '.';
+import type { Field, StatusVisibility } from '.';
 
 /**
  * Represents display or publishing preferences of user's own account.

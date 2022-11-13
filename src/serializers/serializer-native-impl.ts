@@ -1,7 +1,7 @@
 import { camelCase, snakeCase } from 'change-case';
 
 import { flattenObject } from './form-data';
-import { MimeType, Serializer } from './serializer';
+import type { MimeType, Serializer } from './serializer';
 import { transformKeys } from './transform-keys';
 
 export class SerializerNativeImpl implements Serializer {

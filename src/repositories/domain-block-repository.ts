@@ -1,9 +1,9 @@
-import { MastoConfig } from '../config';
+import type { MastoConfig } from '../config';
 import { version } from '../decorators';
-import { Http } from '../http';
+import type { Http } from '../http';
 import { Paginator } from '../paginator';
 import { IterableRepository } from './iterable-repository';
-import { DefaultPaginationParams } from './repository';
+import type { DefaultPaginationParams } from './repository';
 
 export class DomainBlockRepository extends IterableRepository<string> {
   constructor(

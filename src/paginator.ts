@@ -1,5 +1,4 @@
-import { Http } from './http';
-import { Response } from './http/http';
+import type { Http, Response } from './http';
 
 export class Paginator<Params, Result>
   implements AsyncIterableIterator<Result>

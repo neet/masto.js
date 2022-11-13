@@ -1,6 +1,6 @@
-import EventEmitter from 'eventemitter3';
+import type EventEmitter from 'eventemitter3';
 
-import { Conversation, Notification, Status } from '../entities';
+import type { Conversation, Notification, Status } from '../entities';
 
 /** Map of event name and callback argument */
 export interface EventTypeMap {

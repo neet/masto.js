@@ -1,8 +1,9 @@
 import { camelCase, snakeCase } from 'change-case';
-import { ParsedUrlQuery, stringify } from 'querystring';
+import type { ParsedUrlQuery } from 'querystring';
+import { stringify } from 'querystring';
 
 import { flattenObject } from './form-data';
-import { MimeType, Serializer } from './serializer';
+import type { MimeType, Serializer } from './serializer';
 import { transformKeys } from './transform-keys';
 
 export class SerializerNodejsImpl implements Serializer {

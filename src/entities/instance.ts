@@ -1,4 +1,4 @@
-import { Account } from '.';
+import type { Account } from '.';
 
 export interface InstanceStatusesConfiguration {
   maxCharacters: number;

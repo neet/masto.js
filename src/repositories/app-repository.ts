@@ -1,4 +1,4 @@
-import { MastoConfig } from '../config';
+import type { MastoConfig } from '../config';
 import { version } from '../decorators';
 import type { Client } from '../entities';
 import type { Http } from '../http';

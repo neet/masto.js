@@ -1,4 +1,4 @@
-import { Emoji } from './emoji';
+import type { Emoji } from './emoji';
 
 export interface PollOption {
   /** The text value of the poll option. String. */

@@ -1,5 +1,5 @@
-import { Attachment } from './attachment';
-import { Status } from './status';
+import type { Attachment } from './attachment';
+import type { Status } from './status';
 
 export interface StatusParams
   extends Pick<

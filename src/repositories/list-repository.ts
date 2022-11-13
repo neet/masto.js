@@ -1,9 +1,9 @@
-import { MastoConfig } from '../config';
+import type { MastoConfig } from '../config';
 import { version } from '../decorators';
-import { Account, List } from '../entities';
-import { Http } from '../http';
+import type { Account, List } from '../entities';
+import type { Http } from '../http';
 import { Paginator } from '../paginator';
-import { DefaultPaginationParams, Repository } from './repository';
+import type { DefaultPaginationParams, Repository } from './repository';
 
 export interface ModifyListParams {
   /** The title of the list to be created. */

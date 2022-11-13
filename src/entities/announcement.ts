@@ -1,4 +1,4 @@
-import { Emoji, Mention, Reaction, Tag } from '.';
+import type { Emoji, Mention, Reaction, Tag } from '.';
 
 export interface Announcement {
   id: string;

@@ -1,4 +1,4 @@
-import { StatusVisibility } from './status';
+import type { StatusVisibility } from './status';
 
 export type PreferenceReadingExpandMedia = 'show_all' | 'hide_all' | 'default';
 

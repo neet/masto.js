@@ -1,5 +1,5 @@
-import { MastoConfig } from '../config';
-import { Http } from '../http';
+import type { MastoConfig } from '../config';
+import type { Http } from '../http';
 
 export interface CreateConfirmationParams {
   readonly email?: string;

@@ -1,4 +1,5 @@
-import { MastoError, MastoErrorDetails } from './masto-error';
+import type { MastoErrorDetails } from './masto-error';
+import { MastoError } from './masto-error';
 
 /**
  * Mastodon unauthorized error class

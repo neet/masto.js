@@ -1,7 +1,7 @@
-import { MastoConfig } from '../../config';
+import type { MastoConfig } from '../../config';
 import { version } from '../../decorators';
-import { Admin } from '../../entities';
-import { Http } from '../../http';
+import type { Admin } from '../../entities';
+import type { Http } from '../../http';
 
 export interface AdminFetchReportsParams {
   readonly resolved?: boolean | null;

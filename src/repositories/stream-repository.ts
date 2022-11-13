@@ -1,6 +1,6 @@
-import { MastoConfig } from '../config';
+import type { MastoConfig } from '../config';
 import { version } from '../decorators';
-import { Ws, WsEvents } from '../ws';
+import type { Ws, WsEvents } from '../ws';
 
 export class StreamRepository {
   constructor(

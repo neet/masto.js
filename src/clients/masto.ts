@@ -1,8 +1,9 @@
-import { MastoConfig } from '../config';
+import type { MastoConfig } from '../config';
 import { version } from '../decorators';
-import { Results } from '../entities';
-import { Http } from '../http';
+import type { Results } from '../entities';
+import type { Http } from '../http';
 import { Paginator } from '../paginator';
+import type { DefaultPaginationParams } from '../repositories';
 import {
   AccountRepository,
   AnnouncementRepository,
@@ -11,7 +12,6 @@ import {
   BookmarkRepository,
   ConversationRepository,
   CustomEmojiRepository,
-  DefaultPaginationParams,
   DirectoryRepository,
   DomainBlockRepository,
   EmailRepository,
@@ -37,7 +37,7 @@ import {
   TimelinesRepository,
   TrendRepository,
 } from '../repositories';
-import { Ws } from '../ws';
+import type { Ws } from '../ws';
 import { MastoAdminClient } from './admin';
 
 export type SearchType = 'accounts' | 'hashtags' | 'statuses';

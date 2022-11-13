@@ -1,8 +1,8 @@
-import { MastoConfig } from '../config';
+import type { MastoConfig } from '../config';
 import { version } from '../decorators';
-import { Poll } from '../entities';
-import { Http } from '../http';
-import { Repository } from './repository';
+import type { Poll } from '../entities';
+import type { Http } from '../http';
+import type { Repository } from './repository';
 
 export interface VotePollParams {
   /** Array of own votes containing index for each option (starting from 0) */

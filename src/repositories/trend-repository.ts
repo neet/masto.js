@@ -1,9 +1,9 @@
-import { MastoConfig } from '../config';
+import type { MastoConfig } from '../config';
 import { version } from '../decorators';
-import { Link, Status, Tag } from '../entities';
-import { Http } from '../http';
+import type { Link, Status, Tag } from '../entities';
+import type { Http } from '../http';
 import { Paginator } from '../paginator';
-import { DefaultPaginationParams, Repository } from './repository';
+import type { DefaultPaginationParams, Repository } from './repository';
 
 export interface FetchTrendsParams {
   /** Maximum number of results to return. Defaults to 10. */

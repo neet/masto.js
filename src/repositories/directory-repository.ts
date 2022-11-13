@@ -1,8 +1,8 @@
-import { MastoConfig } from '../config';
+import type { MastoConfig } from '../config';
 import { version } from '../decorators';
-import { Account } from '../entities';
-import { Http } from '../http';
-import { Repository } from './repository';
+import type { Account } from '../entities';
+import type { Http } from '../http';
+import type { Repository } from './repository';
 
 export type DirectoryOrderType = 'active' | 'new';
 

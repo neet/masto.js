@@ -1,6 +1,6 @@
-import { MastoConfig } from '../config';
+import type { MastoConfig } from '../config';
 import { version } from '../decorators';
-import { Http } from '../http';
+import type { Http } from '../http';
 
 export type ReportCategory = 'spam' | 'violation' | 'other';
 

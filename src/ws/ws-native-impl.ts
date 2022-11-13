@@ -1,9 +1,9 @@
 import EventEmitter from 'eventemitter3';
 
-import { MastoConfig } from '../config';
-import { Serializer } from '../serializers';
+import type { MastoConfig } from '../config';
+import type { Serializer } from '../serializers';
 import { BaseWs } from './base-ws';
-import { Event, EventType, EventTypeMap, Ws, WsEvents } from './ws';
+import type { Event, EventType, EventTypeMap, Ws, WsEvents } from './ws';
 
 /**
  * Mastodon streaming api wrapper

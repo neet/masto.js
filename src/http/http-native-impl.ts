@@ -1,10 +1,12 @@
 import { headerCase } from 'change-case';
 
-import { MastoConfig } from '../config';
-import { createError, CreateErrorParams, MastoError } from '../errors';
-import { MimeType, Serializer } from '../serializers';
+import type { MastoConfig } from '../config';
+import type { CreateErrorParams } from '../errors';
+import { createError, MastoError } from '../errors';
+import type { MimeType, Serializer } from '../serializers';
 import { BaseHttp } from './base-http';
-import { Headers, Http, Request, Response } from './http';
+import type { Http, Request } from './http';
+import { Headers, Response } from './http';
 
 export class HttpNativeImpl extends BaseHttp implements Http {
   constructor(readonly config: MastoConfig, readonly serializer: Serializer) {

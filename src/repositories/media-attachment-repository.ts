@@ -1,9 +1,9 @@
-import { MastoConfig } from '../config';
+import type { MastoConfig } from '../config';
 import { deprecated, version } from '../decorators';
-import { Attachment } from '../entities';
-import { Http } from '../http';
+import type { Attachment } from '../entities';
+import type { Http } from '../http';
 import { delay, timeout } from '../utils';
-import { Repository } from './repository';
+import type { Repository } from './repository';
 
 export interface CreateMediaAttachmentParams {
   /** The file to be attached, using multipart form data. */

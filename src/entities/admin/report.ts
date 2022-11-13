@@ -1,4 +1,4 @@
-import { Account, Status } from '..';
+import type { Account, Status } from '..';
 
 /**
  * Admin-level information about a filed report.
