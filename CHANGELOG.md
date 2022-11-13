@@ -1,3 +1,11 @@
+## [4.6.1](https://github.com/neet/masto.js/compare/v4.6.0...v4.6.1) (2022-11-13)
+
+
+### Bug Fixes
+
+* Add missing non-iterable methods for timelines ([496aa04](https://github.com/neet/masto.js/commit/496aa0452b65fadc966d584714b726f75e7993bb))
+* Fix URL /lists/:id/accounts ([fb20092](https://github.com/neet/masto.js/commit/fb20092902b357d09f5bfa8fc732a7b98c53c4cb))
+
 # [4.6.0](https://github.com/neet/masto.js/compare/v4.5.1...v4.6.0) (2022-11-12)
 
 
