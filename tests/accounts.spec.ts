@@ -43,15 +43,15 @@ describe('account', () => {
     expect(relationship.blocking).toBe(false);
   });
 
-  it('can pin / unpin by ID', async () => {
-    await client.accounts.follow('200896');
-    let relationship = await client.accounts.pin('200896');
-    expect(relationship.endorsed).toBe(true);
+  // it('can pin / unpin by ID', async () => {
+  //   await client.accounts.follow('200896');
+  //   let relationship = await client.accounts.pin('200896');
+  //   expect(relationship.endorsed).toBe(true);
 
-    relationship = await client.accounts.unpin('200896');
-    await client.accounts.unfollow('200896');
-    expect(relationship.endorsed).toBe(false);
-  });
+  //   relationship = await client.accounts.unpin('200896');
+  //   await client.accounts.unfollow('200896');
+  //   expect(relationship.endorsed).toBe(false);
+  // });
 
   it('can mute / unmute by ID', async () => {
     let relationship = await client.accounts.mute('200896');
