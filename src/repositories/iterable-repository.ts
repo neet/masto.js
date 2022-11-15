@@ -15,10 +15,6 @@ export abstract class IterableRepository<
   }
 
   async *[Symbol.asyncIterator](): AsyncIterableIterator<T[]> {
-    if (this.getIterator != null) {
-      yield* this.getIterator();
-    } else {
-      yield* [];
-    }
+    yield* this.getIterator != undefined ? this.getIterator() : [];
   }
 }

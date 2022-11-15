@@ -24,7 +24,7 @@ export class HttpAxiosImpl extends BaseHttp implements Http {
       proxy: config.proxy,
       timeout: config.timeout,
       transformRequest: (data, headers) => {
-        if (headers == null) {
+        if (headers == undefined) {
           throw new MastoError('headers is null');
         }
 
@@ -47,12 +47,12 @@ export class HttpAxiosImpl extends BaseHttp implements Http {
         return result;
       },
       transformResponse: (data, headers) => {
-        if (headers == null) {
+        if (headers == undefined) {
           throw new MastoError('headers is null');
         }
 
         const contentType = this.getContentType(headers);
-        if (contentType == null) {
+        if (contentType == undefined) {
           throw new MastoError('Content-Type is not defined');
         }
 
