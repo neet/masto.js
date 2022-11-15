@@ -1,6 +1,4 @@
 import { camelCase, snakeCase } from 'change-case';
-import type { ParsedUrlQuery } from 'querystring';
-import { stringify } from 'querystring';
 
 import { flattenObject } from './form-data';
 import type { MimeType, Serializer } from './serializer';
@@ -24,7 +22,7 @@ export class SerializerNodejsImpl implements Serializer {
         return formData;
       }
       case 'application/x-www-form-urlencoded':
-        return stringify(data as ParsedUrlQuery);
+        return new URLSearchParams(data as Record<string, string>).toString();
       default:
         return;
     }
