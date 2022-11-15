@@ -44,13 +44,13 @@ export class MediaAttachmentRepository
   waitFor(id: string, interval = 1000): Promise<Attachment> {
     return timeout(
       (async () => {
-        let media: Attachment | null = null;
+        let media: Attachment | undefined;
 
-        while (media == null) {
+        while (media == undefined) {
           await delay(interval);
           const processing = await this.fetch(id);
 
-          if (processing.url != null) {
+          if (processing.url != undefined) {
             media = processing;
           }
         }

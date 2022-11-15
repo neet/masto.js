@@ -15,19 +15,19 @@ export class HttpNativeImpl extends BaseHttp implements Http {
 
   async request<T>(request: Request): Promise<Response<T>> {
     const { timeout, proxy } = this.config;
-    const { method, data } = request;
+    const { method, data, params } = request;
 
-    if (proxy != null) {
+    if (proxy != undefined) {
       // eslint-disable-next-line no-console
       console.warn('Proxies are not supported on HttpNativeImpl');
     }
 
-    if (timeout != null) {
+    if (timeout != undefined) {
       // eslint-disable-next-line no-console
       console.warn('Timeouts are not supported on HttpNativeImpl');
     }
 
-    const url = this.resolveUrl(request.url, request.params);
+    const url = this.resolveUrl(request.url, params);
     const headers = new Headers(
       this.createHeader(request.headers) as unknown as Record<string, string>,
     );
@@ -61,7 +61,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
         HttpNativeImpl.toHeaders(response.headers),
       );
 
-      if (resContentType == null) {
+      if (resContentType == undefined) {
         throw new MastoError('Content-Type is not defined');
       }
 
@@ -69,35 +69,36 @@ export class HttpNativeImpl extends BaseHttp implements Http {
         headers: HttpNativeImpl.toHeaders(response.headers),
         data: this.serializer.deserialize('application/json', text),
       };
-    } catch (e) {
-      if (!(e instanceof Response)) {
-        throw e;
+    } catch (error) {
+      if (!(error instanceof Response)) {
+        throw error;
       }
 
-      const data = await e.json();
+      const data = await error.json();
 
       throw createError({
-        statusCode: e.status,
+        statusCode: error.status,
         message: data?.error,
         details: data?.errorDescription,
         description: data?.details,
-        limit: e.headers.get('X-RateLimit-Limit'),
-        remaining: e.headers.get('X-RateLimit-Remaining'),
-        reset: e.headers.get('X-RateLimit-Reset'),
+        limit: error.headers.get('X-RateLimit-Limit'),
+        remaining: error.headers.get('X-RateLimit-Remaining'),
+        reset: error.headers.get('X-RateLimit-Reset'),
       } as CreateErrorParams);
     }
   }
 
   private static toHeaders(headers: globalThis.Headers): Headers {
     const result: Record<string, unknown> = {};
-    headers.forEach((value, key) => {
+    for (const [key, value] of Object.entries(headers)) {
       result[headerCase(key)] = value;
-    });
+    }
     return result as Headers;
   }
 
   private static hasBlob(formData: FormData): boolean {
     let hasBlob = false;
+    // eslint-disable-next-line unicorn/no-array-for-each
     formData.forEach((v: string | Blob) => (hasBlob ||= v instanceof Blob));
     return hasBlob;
   }

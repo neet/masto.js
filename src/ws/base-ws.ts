@@ -37,7 +37,7 @@ export abstract class BaseWs implements Ws {
   }
 
   createProtocols(protocols = []): string[] {
-    return this.supportsSecureToken() && this.config.accessToken != null
+    return this.supportsSecureToken() && this.config.accessToken != undefined
       ? [this.config.accessToken, ...protocols]
       : [];
   }

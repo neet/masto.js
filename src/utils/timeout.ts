@@ -3,9 +3,9 @@ import { MastoTimeoutError } from '../errors';
 export const timeout = async <T>(task: Promise<T>, ms?: number): Promise<T> => {
   // It actually is depending on the runtime...
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let cancellationToken: any | null = null;
+  let cancellationToken: any | undefined;
 
-  if (ms == null) {
+  if (ms == undefined) {
     return task;
   }
 

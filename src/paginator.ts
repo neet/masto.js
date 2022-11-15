@@ -20,8 +20,8 @@ export class Paginator<Params, Result>
   };
 
   async next(params?: Params): Promise<IteratorResult<Result>> {
-    if (this.nextUrl == null) {
-      return { done: true, value: null };
+    if (this.nextUrl == undefined) {
+      return { done: true, value: undefined };
     }
 
     const response: Response<Result> = await this.http.request({

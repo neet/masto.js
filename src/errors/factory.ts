@@ -36,19 +36,25 @@ export const createError = (params: CreateErrorParams): MastoError => {
   const args = [message, description, params.details] as const;
 
   switch (params.statusCode) {
-    case 401:
+    case 401: {
       return new MastoUnauthorizedError(...args);
-    case 403:
+    }
+    case 403: {
       return new MastoForbiddenError(...args);
-    case 404:
+    }
+    case 404: {
       return new MastoNotFoundError(...args);
-    case 409:
+    }
+    case 409: {
       return new MastoConflictError(...args);
-    case 410:
+    }
+    case 410: {
       return new MastoGoneError(...args);
-    case 422:
+    }
+    case 422: {
       return new MastoUnprocessableEntityError(...args);
-    case 429:
+    }
+    case 429: {
       return new MastoRateLimitError(
         message,
         params.limit,
@@ -56,12 +62,14 @@ export const createError = (params: CreateErrorParams): MastoError => {
         params.reset,
         description,
       );
-    default:
+    }
+    default: {
       return new MastoError(
         message,
         params.statusCode,
         description,
         params.details,
       );
+    }
   }
 };

@@ -2,8 +2,8 @@
   "parser": "@typescript-eslint/parser",
   "extends": [
     "eslint:recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings",
+    "plugin:import/recommended",
+    "plugin:unicorn/recommended",
     "plugin:prettier/recommended"
   ],
   "plugins": ["import", "simple-import-sort"],
@@ -18,7 +18,9 @@
   },
   "rules": {
     "no-console": "error",
-    "simple-import-sort/imports": "error"
+    "simple-import-sort/imports": "error",
+    "unicorn/prevent-abbreviations": "off",
+    "unicorn/no-array-reduce": "off"
   },
   "overrides": [
     {
