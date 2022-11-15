@@ -11,11 +11,20 @@ jobs:
     env:
       GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+      MASTODON_URL: ${{secrets.MASTODON_URL}}
+      MASTODON_TOKEN: ${{secrets.MASTODON_TOKEN}}
+
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
         with:
-          node-version: 16
+          fetch-depth: 2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: yarn
+
       - run: yarn install --frozen-lockfiles
       - run: yarn test
       - run: yarn build
