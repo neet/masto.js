@@ -1,3 +1,11 @@
+## [4.6.2](https://github.com/neet/masto.js/compare/v4.6.1...v4.6.2) (2022-11-16)
+
+
+### Bug Fixes
+
+* Add missing env variables to github actions ([a98a52c](https://github.com/neet/masto.js/commit/a98a52c467feda874f7d59a8b1f002a2b303d215))
+* Remove legacy URL module to support non-Node.js env ([458340e](https://github.com/neet/masto.js/commit/458340e07c3d4b0fd6061c4bc14fe3345a2bb2c3))
+
 ## [4.6.1](https://github.com/neet/masto.js/compare/v4.6.0...v4.6.1) (2022-11-13)
 
 
