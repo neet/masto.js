@@ -46,6 +46,8 @@ export interface Account {
 
   /** Indicates that the profile is currently inactive and that its user has moved to a new account. */
   moved?: boolean | null;
+  /** An extra entity returned when an account is suspended. **/
+  suspended?: boolean | null;
   /** Additional metadata attached to a profile as name-value pairs. */
   fields?: Field[] | null;
   /** Boolean to indicate that the account performs automated actions */
