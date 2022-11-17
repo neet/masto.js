@@ -90,8 +90,9 @@ export class HttpNativeImpl extends BaseHttp implements Http {
 
   private static toHeaders(headers: globalThis.Headers): Headers {
     const result: Record<string, unknown> = {};
+    // eslint-disable-next-line unicorn/no-array-for-each
     headers.forEach((value, key) => {
-        result[headerCase(key)] = value;
+      result[headerCase(key)] = value;
     });
     return result as Headers;
   }
