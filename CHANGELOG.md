@@ -1,3 +1,10 @@
+## [4.6.3](https://github.com/neet/masto.js/compare/v4.6.2...v4.6.3) (2022-11-18)
+
+
+### Bug Fixes
+
+* Fix eslint warning in 682 ([1c860eb](https://github.com/neet/masto.js/commit/1c860eba015b3a4f8e2b121a20e428032af61836))
+
 ## [4.6.2](https://github.com/neet/masto.js/compare/v4.6.1...v4.6.2) (2022-11-16)
 
 
