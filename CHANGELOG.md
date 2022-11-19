@@ -1,3 +1,10 @@
+## [4.6.4](https://github.com/neet/masto.js/compare/v4.6.3...v4.6.4) (2022-11-19)
+
+
+### Bug Fixes
+
+* add suspended flag to account ([#685](https://github.com/neet/masto.js/issues/685)) ([fa8a45f](https://github.com/neet/masto.js/commit/fa8a45f0b81ae4d85d420da2bd195774f1b97acb))
+
 ## [4.6.3](https://github.com/neet/masto.js/compare/v4.6.2...v4.6.3) (2022-11-18)
 
 
