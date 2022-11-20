@@ -1,3 +1,10 @@
+## [4.6.5](https://github.com/neet/masto.js/compare/v4.6.4...v4.6.5) (2022-11-20)
+
+
+### Bug Fixes
+
+* Use `params` instead of `data` in pagination ([#687](https://github.com/neet/masto.js/issues/687)) ([e333ac1](https://github.com/neet/masto.js/commit/e333ac12252742403f5c5683e827bd67e10e1465))
+
 ## [4.6.4](https://github.com/neet/masto.js/compare/v4.6.3...v4.6.4) (2022-11-19)
 
 
