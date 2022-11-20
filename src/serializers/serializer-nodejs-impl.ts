@@ -1,6 +1,7 @@
 import { camelCase, snakeCase } from 'change-case';
 
 import { flattenObject } from './form-data';
+import { railsQueryString } from './rails-querystring';
 import type { MimeType, Serializer } from './serializer';
 import { transformKeys } from './transform-keys';
 
@@ -21,13 +22,15 @@ export class SerializerNodejsImpl implements Serializer {
           .entries(flattenObject(data))) formData.append(key, value as string);
         return formData;
       }
-      case 'application/x-www-form-urlencoded': {
-        return new URLSearchParams(data as Record<string, string>).toString();
-      }
       default: {
         return;
       }
     }
+  }
+
+  serializeQueryString(rawData: unknown): string {
+    const data = transformKeys(rawData, snakeCase);
+    return railsQueryString.stringify(data);
   }
 
   deserialize<T = Record<string, unknown>>(type: MimeType, data: string): T {
