@@ -1,3 +1,10 @@
+## [4.6.6](https://github.com/neet/masto.js/compare/v4.6.5...v4.6.6) (2022-11-21)
+
+
+### Bug Fixes
+
+* Transform of URL search params' cases ([#690](https://github.com/neet/masto.js/issues/690)) ([a9582ff](https://github.com/neet/masto.js/commit/a9582ff1b29ef444f2bf0a719f367eeb3ded8a0b))
+
 ## [4.6.5](https://github.com/neet/masto.js/compare/v4.6.4...v4.6.5) (2022-11-20)
 
 
