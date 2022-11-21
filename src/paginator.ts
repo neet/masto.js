@@ -15,9 +15,9 @@ export class Paginator<Params, Result>
     this.nextParams = initialParams;
   }
 
-  private pluckNext = (link: string | undefined) => {
+  private pluckNext = (link: string) => {
     return link
-      ?.match(/<(.+?)>; rel="next"/)?.[1]
+      .match(/<(.+?)>; rel="next"/)?.[1]
       .replace(/^https?:\/\/[^/]+/, '');
   };
 
@@ -33,7 +33,10 @@ export class Paginator<Params, Result>
       params: params ?? this.nextParams,
     });
 
-    this.nextUrl = this.pluckNext(response.headers?.Link);
+    this.nextUrl =
+      typeof response.headers?.Link === 'string'
+        ? this.pluckNext(response.headers.Link)
+        : undefined;
 
     return {
       done: false,

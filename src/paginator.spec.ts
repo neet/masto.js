@@ -42,4 +42,17 @@ describe('Paginator', () => {
       url: '/api/v1/timelines/home?max_id=109382006402042919',
     });
   });
+
+  it('returns done when next link does not exist', async () => {
+    const http = new Test();
+    http.request.mockReturnValue({
+      headers: {},
+    });
+    const paginator = new Paginator(http, '/v1/api/timelines');
+    await paginator.next();
+    const result = await paginator.next();
+    expect(result).toEqual({
+      done: true,
+    });
+  });
 });
