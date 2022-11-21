@@ -1,4 +1,4 @@
-export type Headers = Record<string, unknown>;
+export type Headers = Record<string, string>;
 export type Data = unknown;
 
 export type Request = {

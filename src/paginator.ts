@@ -15,8 +15,10 @@ export class Paginator<Params, Result>
     this.nextParams = initialParams;
   }
 
-  private pluckNext = (link: string) => {
-    return link?.match(/<(.+?)>; rel="next"/)?.[1];
+  private pluckNext = (link: string | undefined) => {
+    return link
+      ?.match(/<(.+?)>; rel="next"/)?.[1]
+      .replace(/^https?:\/\/[^/]+/, '');
   };
 
   async next(params?: Params): Promise<IteratorResult<Result>> {
@@ -31,7 +33,7 @@ export class Paginator<Params, Result>
       params: params ?? this.nextParams,
     });
 
-    this.nextUrl = this.pluckNext(response.headers?.link as string);
+    this.nextUrl = this.pluckNext(response.headers?.Link);
 
     return {
       done: false,
