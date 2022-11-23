@@ -88,4 +88,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## License
 
-[GNU Affero General Public License v3](https://www.gnu.org/licenses/agpl-3.0.en.html)
+Masto.js is distributed under [the MIT license](https://opensource.org/licenses/MIT)
