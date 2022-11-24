@@ -1,3 +1,10 @@
+## [4.6.7](https://github.com/neet/masto.js/compare/v4.6.6...v4.6.7) (2022-11-24)
+
+
+### Bug Fixes
+
+* Use `serializeQueryString` in base-ws ([#693](https://github.com/neet/masto.js/issues/693)) ([fc6a00d](https://github.com/neet/masto.js/commit/fc6a00db9bcc39a89b976dd17456dfdbd88827ec))
+
 ## [4.6.6](https://github.com/neet/masto.js/compare/v4.6.5...v4.6.6) (2022-11-21)
 
 
