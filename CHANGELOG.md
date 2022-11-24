@@ -1,3 +1,10 @@
+## [4.6.8](https://github.com/neet/masto.js/compare/v4.6.7...v4.6.8) (2022-11-24)
+
+
+### Bug Fixes
+
+* Force to use Axios 1.1.3 ([#696](https://github.com/neet/masto.js/issues/696)) ([e3a94b8](https://github.com/neet/masto.js/commit/e3a94b8880f8cfb77c7f61e8cc5b63a17496ff30))
+
 ## [4.6.7](https://github.com/neet/masto.js/compare/v4.6.6...v4.6.7) (2022-11-24)
 
 
