@@ -34,8 +34,8 @@ export class Paginator<Params, Result>
     });
 
     this.nextUrl =
-      typeof response.headers?.Link === 'string'
-        ? this.pluckNext(response.headers.Link)
+      typeof response.headers?.link === 'string'
+        ? this.pluckNext(response.headers.link)
         : undefined;
 
     return {
