@@ -1,5 +1,3 @@
-import { headerCase } from 'change-case';
-
 import type { MastoConfig } from '../config';
 import type { CreateErrorParams } from '../errors';
 import { createError, MastoError } from '../errors';
@@ -92,7 +90,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
     const result: Record<string, unknown> = {};
     // eslint-disable-next-line unicorn/no-array-for-each
     headers.forEach((value, key) => {
-      result[headerCase(key)] = value;
+      result[key.toLowerCase()] = value;
     });
     return result as Headers;
   }
