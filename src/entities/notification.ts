@@ -2,12 +2,16 @@ import type { Account } from './account';
 import type { Status } from './status';
 
 export type NotificationType =
-  | 'mention'
-  | 'reblog'
-  | 'favourite'
-  | 'follow'
-  | 'poll'
-  | 'follow_request';
+  | 'mention' // Someone mentioned you in their status
+  | 'status' //Someone you enabled notifications for has posted a status
+  | 'reblog' //Someone boosted one of your statuses
+  | 'follow' // Someone followed you
+  | 'follow_request' // Someone requested to follow you
+  | 'favourite' // Someone favourited one of your statuses
+  | 'poll' // A poll you have voted in or created has ended
+  | 'update' // A status you interacted with has been edited
+  | 'admin.sign_up' // Someone signed up (optionally sent to admins)
+  | 'admin.report'; // A new report has been filed
 
 /**
  * Represents a notification of an event relevant to the user.
