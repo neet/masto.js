@@ -14,13 +14,17 @@ const stringify = (object?: unknown): string => {
   const values = Object.entries(object)
     .reduce<string[]>((prev, [k, v]) => {
       if (Array.isArray(v)) {
-        const xs = v.map((x) => `${k}[]=${x}`);
+        const xs = v.map((x) => `${k}[]=${encodeURIComponent(x)}`);
         return [...prev, ...xs];
       }
-      if (isObject(v)) {
-        throw new TypeError('Encoding nested object is not supported');
+      if (
+        typeof v === 'string' ||
+        typeof v === 'number' ||
+        typeof v === 'boolean'
+      ) {
+        return [...prev, `${k}=${encodeURIComponent(v)}`];
       }
-      return [...prev, `${k}=${v}`];
+      throw new TypeError('Encoding nested object is not supported');
     }, [])
     .join('&');
 
