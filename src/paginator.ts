@@ -37,6 +37,7 @@ export class Paginator<Params, Result>
       typeof response.headers?.link === 'string'
         ? this.pluckNext(response.headers.link)
         : undefined;
+    this.nextParams = {} as Params;
 
     return {
       done: false,

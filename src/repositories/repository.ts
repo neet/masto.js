@@ -1,7 +1,7 @@
 export interface DefaultPaginationParams {
-  /** **Internal parameter.** Use HTTP Link header from response for pagination. */
+  /** Return results older than this ID. */
   readonly maxId?: string | null;
-  /** **Internal parameter.** Use HTTP Link header from response for pagination. */
+  /** Return results newer than this ID. */
   readonly sinceId?: string | null;
   /** Get a list of items with ID greater than this value excluding this ID */
   readonly minId?: string | null;
