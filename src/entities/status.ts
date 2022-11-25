@@ -22,6 +22,8 @@ export interface Status {
   uri: string;
   /** The date when this status was created. */
   createdAt: string;
+  /** Timestamp of when the status was last edited. */
+  editedAt: string | null;
   /** The account that authored this status. */
   account: Account;
   /** HTML-encoded status content. */
