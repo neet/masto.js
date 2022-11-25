@@ -25,6 +25,14 @@ describe('railsQueryString', () => {
     expect(result).toBe('key1=value1&key2=value2');
   });
 
+  it('encodes string safely', () => {
+    const result = railsQueryString.stringify({
+      q: 'https://neet.love',
+    });
+    // cspell:disable-next-line
+    expect(result).toBe('q=https%3A%2F%2Fneet.love');
+  });
+
   it('encodes an array inside a record', () => {
     const result = railsQueryString.stringify({
       key1: 'value1',
