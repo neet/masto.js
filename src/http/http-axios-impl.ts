@@ -20,7 +20,7 @@ export class HttpAxiosImpl extends BaseHttp implements Http {
 
     this.axios = axios.create({
       baseURL: config.url,
-      headers: this.createHeader(),
+      headers: this.createHeader(config.headers),
       proxy: config.proxy,
       timeout: config.timeout,
       transformRequest: (data, headers) => {
