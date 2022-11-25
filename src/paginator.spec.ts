@@ -43,7 +43,7 @@ describe('Paginator', () => {
     await paginator.next();
     expect(http.request).toBeCalledWith({
       method: 'get',
-      params: undefined,
+      params: {},
       url: '/api/v1/timelines/home?max_id=109382006402042919',
     });
   });
