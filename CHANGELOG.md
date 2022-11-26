@@ -1,3 +1,17 @@
+## [4.6.9](https://github.com/neet/masto.js/compare/v4.6.8...v4.6.9) (2022-11-26)
+
+
+### Bug Fixes
+
+* Actually send user-specified headers in `HttpAxiosImpl` ([b602fe4](https://github.com/neet/masto.js/commit/b602fe4cb16aad9dd41bf5ddaabee97a53720a0b)), closes [#697](https://github.com/neet/masto.js/issues/697)
+* Encode URI components in serializer ([8a2be08](https://github.com/neet/masto.js/commit/8a2be086c6c8a63711e280ef1f1f290e45f4780d))
+* **fetch:** Normalize header to be lowercase ([f7fce11](https://github.com/neet/masto.js/commit/f7fce11f55b0426ddfe74467071c4dc1e44eda57))
+* Fix failing test in [#702](https://github.com/neet/masto.js/issues/702) ([a2a4c26](https://github.com/neet/masto.js/commit/a2a4c26df904d54d35eec0388b0e37fefcf70c59))
+* read next link from response ([68c71bd](https://github.com/neet/masto.js/commit/68c71bd8f3154df72a2e309d848e7fd7b066da9d))
+* Set `Paginator.nextParams` to an empty object after first request ([4ce57a6](https://github.com/neet/masto.js/commit/4ce57a63dd84a57faf6284c85287c9201a2ea582)), closes [#698](https://github.com/neet/masto.js/issues/698)
+* Unmark `DefaultPaginationParams.{maxId, sinceId}` as internal parameters ([257359e](https://github.com/neet/masto.js/commit/257359e60b69d9afb0f98b265b8483cd975e97ce)), closes [#698](https://github.com/neet/masto.js/issues/698)
+* Update Notification.type types ([#706](https://github.com/neet/masto.js/issues/706)) ([50c5c5c](https://github.com/neet/masto.js/commit/50c5c5c8adf4362d2b9daf7ce7c64bcfd3d02118))
+
 ## [4.6.8](https://github.com/neet/masto.js/compare/v4.6.7...v4.6.8) (2022-11-24)
 
 
