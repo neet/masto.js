@@ -17,6 +17,9 @@ const stringify = (object?: unknown): string => {
         const xs = v.map((x) => `${k}[]=${encodeURIComponent(x)}`);
         return [...prev, ...xs];
       }
+      if (v == undefined) {
+        return prev;
+      }
       if (
         typeof v === 'string' ||
         typeof v === 'number' ||
