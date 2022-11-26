@@ -43,4 +43,22 @@ describe('railsQueryString', () => {
       'key1=value1&key2=value2&key3[]=apple&key3[]=facebook&key3[]=microsoft',
     );
   });
+
+  it('encodes null', () => {
+    const result = railsQueryString.stringify({
+      foo: null,
+      bar: 'baz',
+    });
+
+    expect(result).toBe('bar=baz');
+  });
+
+  it('encodes undefined', () => {
+    const result = railsQueryString.stringify({
+      foo: undefined,
+      bar: 'baz',
+    });
+
+    expect(result).toBe('bar=baz');
+  });
 });
