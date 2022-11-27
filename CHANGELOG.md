@@ -1,3 +1,10 @@
+## [4.6.10](https://github.com/neet/masto.js/compare/v4.6.9...v4.6.10) (2022-11-27)
+
+
+### Bug Fixes
+
+* Allow passing null and undefined as a query parameter ([#707](https://github.com/neet/masto.js/issues/707)) ([1436dc6](https://github.com/neet/masto.js/commit/1436dc6c2186712ebff81c21089410456a781b87))
+
 ## [4.6.9](https://github.com/neet/masto.js/compare/v4.6.8...v4.6.9) (2022-11-26)
 
 
