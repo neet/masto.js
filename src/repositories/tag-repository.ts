@@ -12,7 +12,7 @@ export class TagRepository implements Repository<Tag> {
   ) {}
 
   /**
-   * Show a hashtag and its associated iformation
+   * Show a hashtag and its associated information
    * @param id The name of the hashtag
    * @return Tag
    */
