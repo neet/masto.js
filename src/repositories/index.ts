@@ -31,4 +31,6 @@ export * from './trend-repository';
 export * from './email-repository';
 export * from './iterable-repository';
 export * from './repository';
+export * from './tag-repository';
+export * from './followed-tag-repository';
 export * as AdminRepositories from './admin';
