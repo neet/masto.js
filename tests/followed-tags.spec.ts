@@ -13,7 +13,9 @@ describe('FollowedTag', () => {
     expect(tags.value).toHaveLength(1);
     expect(tags.value[0].name).toBe('mastodon');
 
-    tag = await masto.tags.unfollow('mastodon');
+    await masto.tags.unfollow('mastodon');
+    tag = await masto.tags.fetch('mastodon');
+
     expect(tag.following).toBe(false);
   });
 });
