@@ -12,4 +12,6 @@ export interface Tag {
 
   /** Usage statistics for given days. */
   history?: History[] | null;
+  /** Whether the current token’s authorized user is following this tag. */
+  following?: boolean | null;
 }

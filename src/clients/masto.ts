@@ -19,6 +19,7 @@ import {
   FavouriteRepository,
   FeaturedTagRepository,
   FilterRepository,
+  FollowedTagRepository,
   FollowRequestRepository,
   InstanceRepository,
   ListRepository,
@@ -34,6 +35,7 @@ import {
   StatusRepository,
   StreamRepository,
   SuggestionRepository,
+  TagRepository,
   TimelinesRepository,
   TrendRepository,
 } from '../repositories';
@@ -90,6 +92,8 @@ export class MastoClient {
   readonly timelines: TimelinesRepository;
   readonly trends: TrendRepository;
   readonly email: EmailRepository;
+  readonly tags: TagRepository;
+  readonly followedTags: FollowedTagRepository;
 
   constructor(
     private readonly http: Http,
@@ -201,6 +205,12 @@ export class MastoClient {
     );
     this.trends = new TrendRepository(this.http, this.version, this.config);
     this.email = new EmailRepository(this.http, this.version, this.config);
+    this.tags = new TagRepository(this.http, this.version, this.config);
+    this.followedTags = new FollowedTagRepository(
+      this.http,
+      this.version,
+      this.config,
+    );
   }
 
   /**
