@@ -1,3 +1,10 @@
+# [4.7.0](https://github.com/neet/masto.js/compare/v4.6.10...v4.7.0) (2022-11-29)
+
+
+### Features
+
+* Support tag follow / unfollow ([#709](https://github.com/neet/masto.js/issues/709)) ([6883fb9](https://github.com/neet/masto.js/commit/6883fb9e2da2cb382d61d88b6b9a89b5792c03ee))
+
 ## [4.6.10](https://github.com/neet/masto.js/compare/v4.6.9...v4.6.10) (2022-11-27)
 
 
