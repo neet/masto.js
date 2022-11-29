@@ -1,24 +1,31 @@
 import type { MastoConfig } from '../config';
 import { version } from '../decorators';
-import type { Account } from '../entities';
+import type { Suggestion } from '../entities';
 import type { Http } from '../http';
-import { Paginator } from '../paginator';
-import { IterableRepository } from './iterable-repository';
-import type { DefaultPaginationParams } from './repository';
+import type { Repository } from './repository';
 
-export class SuggestionRepository extends IterableRepository<Account> {
+export interface FetchSuggestionParams {
+  /** Integer. Maximum number of results to return. Defaults to 40. */
+  limit?: number | null;
+}
+
+export class SuggestionRepository
+  implements Repository<Suggestion, never, never, FetchSuggestionParams>
+{
   constructor(
     private readonly http: Http,
     readonly version: string,
     readonly config: MastoConfig,
-  ) {
-    super();
-  }
+  ) {}
 
-  getIterator(
-    params?: DefaultPaginationParams,
-  ): Paginator<DefaultPaginationParams, Account[]> {
-    return new Paginator(this.http, `/api/v1/blocks`, params);
+  /**
+   * View follow suggestions.
+   * Accounts that are promoted by staff, or that the user has had past positive interactions with, but is not yet following.
+   * @param params
+   * @returns
+   */
+  fetchAll(params?: FetchSuggestionParams): Promise<Suggestion[]> {
+    return this.http.get('/api/v2/suggestions', params);
   }
 
   /**

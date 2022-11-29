@@ -33,3 +33,4 @@ export * from './status-edit';
 export * from './status-source';
 export * from './tag';
 export * from './token';
+export * from './suggestion';
