@@ -4,9 +4,6 @@ import { isObject } from './is-object';
  * Encodes URI in Rails format
  */
 const stringify = (object?: unknown): string => {
-  if (object == undefined) {
-    return '';
-  }
   if (!isObject(object)) {
     return '';
   }
