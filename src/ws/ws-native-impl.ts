@@ -1,4 +1,5 @@
 import EventEmitter from 'eventemitter3';
+import WebSocket from 'isomorphic-ws';
 
 import type { MastoConfig } from '../config';
 import type { Serializer } from '../serializers';
@@ -51,7 +52,7 @@ export class WsEventsNativeImpl
    * Parse JSON data and emit it as an event
    * @param message Websocket message
    */
-  private handleMessage = ({ data }: { data: string }) => {
+  private handleMessage = ({ data }: WebSocket.MessageEvent) => {
     const event = this.serializer.deserialize<Event>('application/json', data);
     let args: EventTypeMap[EventType] = [];
 

@@ -3,7 +3,7 @@ import type { MastoConfig } from '../config';
 import { HttpNativeImpl } from '../http';
 import { InstanceRepository } from '../repositories';
 import { SerializerNativeImpl } from '../serializers';
-import { WsNodejsImpl } from '../ws';
+import { WsNativeImpl } from '../ws';
 
 export const login = async (config: MastoConfig): Promise<MastoClient> => {
   if (!config.disableExperimentalWarning) {
@@ -16,7 +16,7 @@ export const login = async (config: MastoConfig): Promise<MastoClient> => {
   const serializer = new SerializerNativeImpl();
   const http = new HttpNativeImpl(config, serializer);
   const instance = await new InstanceRepository(http, '1.0.0', config).fetch();
-  const ws = new WsNodejsImpl(
+  const ws = new WsNativeImpl(
     instance.urls.streamingApi,
     instance.version,
     config,
