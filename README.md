@@ -26,7 +26,7 @@ npm i masto
 
 ### Requirements
 
-- **Node.js**: `>= 10.x`
+- **Node.js**: `>= 14.x`
 - **TypeScript** (optional peer dependency): `>= 3.6.0`
 
 ## Features
