@@ -59,6 +59,14 @@ export class TimelinesRepository {
     return new Paginator(this.http, '/api/v1/timelines/direct', params);
   }
 
+  get home(): Paginator<FetchTimelineParams, Status[]> {
+    return this.iterateHome();
+  }
+
+  get public(): Paginator<FetchTimelineParams, Status[]> {
+    return this.iteratePublic();
+  }
+
   // ====
 
   /**
@@ -133,14 +141,6 @@ export class TimelinesRepository {
   getList = this.iterateList.bind(this);
   /** @deprecated Use `iterateDirect` instead. */
   getDirect = this.iterateDirect.bind(this);
-  /** @deprecated Use `iterateHome` instead` */
-  get home(): Paginator<FetchTimelineParams, Status[]> {
-    return this.iterateHome();
-  }
-  /** @deprecated Use `iteratePublic` instead` */
-  get public(): Paginator<FetchTimelineParams, Status[]> {
-    return this.iteratePublic();
-  }
   /** @deprecated Use `iterateHome` instead` */
   getHomeIterable = this.iterateHome.bind(this);
   /** @deprecated Use `iteratePublic` instead` */

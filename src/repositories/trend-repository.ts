@@ -31,6 +31,14 @@ export class TrendRepository {
     return new Paginator(this.http, '/api/v1/trends/links', params);
   }
 
+  get statuses(): Paginator<DefaultPaginationParams, Status[]> {
+    return this.iterateStatuses();
+  }
+
+  get links(): Paginator<DefaultPaginationParams, Link[]> {
+    return this.iterateLinks();
+  }
+
   /**
    * Tags that are being used more frequently within the past week.
    * @param params Parameters
@@ -48,12 +56,4 @@ export class TrendRepository {
   getStatuses = this.iterateStatuses.bind(this);
   /** @deprecated Use `iterateStatuses` instead */
   getLinks = this.iterateLinks.bind(this);
-  /** @deprecated Use `iterateStatuses` instead */
-  get statuses(): Paginator<DefaultPaginationParams, Status[]> {
-    return this.iterateStatuses();
-  }
-  /** @deprecated Use `iterateStatuses` instead */
-  get links(): Paginator<DefaultPaginationParams, Link[]> {
-    return this.iterateLinks();
-  }
 }
