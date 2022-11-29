@@ -14,7 +14,7 @@ export abstract class BaseWs implements Ws {
 
   private supportsSecureToken() {
     if (this.config.disableVersionCheck) {
-      return false;
+      return true;
     }
 
     // Since v2.8.4, it is supported to pass access token with`Sec-Websocket-Protocol`
@@ -38,6 +38,6 @@ export abstract class BaseWs implements Ws {
   createProtocols(protocols = []): string[] {
     return this.supportsSecureToken() && this.config.accessToken != undefined
       ? [this.config.accessToken, ...protocols]
-      : [];
+      : protocols;
   }
 }

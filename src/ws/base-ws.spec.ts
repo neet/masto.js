@@ -31,4 +31,21 @@ describe('BaseWs', () => {
     const test = new Test();
     expect(test.createProtocols()).toEqual(['token']);
   });
+
+  test('Issue #713', () => {
+    class Test713 extends BaseWs {
+      baseUrl = 'wss://mastodon.social';
+      config = {
+        url: 'https://mastodon.social',
+        accessToken: 'token',
+        disableVersionCheck: true,
+      };
+      serializer = new SerializerNativeImpl();
+      version = 'invalid semver string';
+      stream = jest.fn();
+    }
+
+    const test = new Test713();
+    expect(test.createProtocols()).toEqual(['token']);
+  });
 });
