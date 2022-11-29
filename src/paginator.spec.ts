@@ -1,6 +1,6 @@
 import { BaseHttp } from './http/base-http';
 import { Paginator } from './paginator';
-import { SerializerNodejsImpl } from './serializers';
+import { SerializerNativeImpl } from './serializers';
 
 const request = jest.fn();
 class Test extends BaseHttp {
@@ -9,7 +9,7 @@ class Test extends BaseHttp {
     accessToken: 'token',
   };
   request = request;
-  serializer = new SerializerNodejsImpl();
+  serializer = new SerializerNativeImpl();
 }
 
 describe('Paginator', () => {

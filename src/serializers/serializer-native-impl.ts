@@ -11,15 +11,15 @@ export class SerializerNativeImpl implements Serializer {
 
     const data = transformKeys(rawData, snakeCase);
 
-    // prettier-ignore
     switch (type) {
       case 'application/json': {
         return JSON.stringify(data);
       }
       case 'multipart/form-data': {
         const formData = new FormData();
-        for (const [key, value] of Object
-          .entries(flattenObject(data))) formData.append(key, value as string);
+        for (const [key, value] of Object.entries(flattenObject(data))) {
+          formData.append(key, value as string);
+        }
         return formData;
       }
       default: {

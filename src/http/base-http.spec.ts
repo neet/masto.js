@@ -1,4 +1,4 @@
-import { SerializerNodejsImpl } from '../serializers';
+import { SerializerNativeImpl } from '../serializers';
 import { BaseHttp } from './base-http';
 
 class Test extends BaseHttp {
@@ -7,7 +7,7 @@ class Test extends BaseHttp {
     accessToken: 'token',
   };
   request = jest.fn();
-  serializer = new SerializerNodejsImpl();
+  serializer = new SerializerNativeImpl();
 }
 
 describe('BaseHttp', () => {
