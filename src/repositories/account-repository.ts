@@ -202,7 +202,7 @@ export class AccountRepository
     id: string,
     params: DefaultPaginationParams = {},
   ): Promise<IteratorResult<Account[]>> {
-    return this.getFollowersIterable(id, params).next();
+    return this.getFollowingIterable(id, params).next();
   }
 
   /**
