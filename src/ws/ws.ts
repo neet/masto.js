@@ -29,13 +29,13 @@ export interface Event {
   payload: string;
 }
 
+export type WsEventHandler<T extends EventType> = (
+  ...data: EventTypeMap[T]
+) => unknown;
+
 export interface WsEvents extends Omit<EventEmitter<EventTypeMap>, 'on'> {
-  // readonly connect: () => Promise<WsEvents>;
   readonly disconnect: () => void;
-  readonly on: <T extends EventType>(
-    name: T,
-    cb: (...data: EventTypeMap[T]) => void,
-  ) => void;
+  readonly on: <T extends EventType>(name: T, cb: WsEventHandler<T>) => void;
 }
 
 export interface Ws {
