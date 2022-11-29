@@ -21,7 +21,7 @@ export class EndorsementRepository extends IterableRepository<Account> {
    * @see https://docs.joinmastodon.org/methods/accounts/endorsements/
    */
   @version({ since: '2.5.0' })
-  getIterator(
+  iterate(
     params?: DefaultPaginationParams,
   ): Paginator<DefaultPaginationParams, Account[]> {
     return new Paginator(this.http, `/api/v1/endorsements`, params);

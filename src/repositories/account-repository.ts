@@ -103,7 +103,7 @@ export class AccountRepository
   ) {}
 
   @version({ since: '0.0.0' })
-  getFollowersIterable(
+  iterateFollowers(
     id: string,
     params: DefaultPaginationParams,
   ): Paginator<DefaultPaginationParams, Account[]> {
@@ -111,7 +111,7 @@ export class AccountRepository
   }
 
   @version({ since: '0.0.0' })
-  getFollowingIterable(
+  iterateFollowing(
     id: string,
     params: DefaultPaginationParams,
   ): Paginator<DefaultPaginationParams, Account[]> {
@@ -119,12 +119,19 @@ export class AccountRepository
   }
 
   @version({ since: '0.0.0' })
-  getStatusesIterable(
+  iterateStatuses(
     id: string,
     params: FetchAccountStatusesParams,
   ): Paginator<FetchAccountStatusesParams, Status[]> {
     return new Paginator(this.http, `/api/v1/accounts/${id}/statuses`, params);
   }
+
+  /** @deprecated Use `iterateFollowers` */
+  getFollowersIterable = this.iterateFollowers.bind(this);
+  /** @deprecated Use `iterateFollowing` */
+  getFollowingIterable = this.iterateFollowing.bind(this);
+  /** @deprecated Use `iterateStatuses` */
+  getStatusesIterable = this.iterateStatuses.bind(this);
 
   // ====
 
@@ -188,7 +195,7 @@ export class AccountRepository
     id: string,
     params: DefaultPaginationParams = {},
   ): Promise<IteratorResult<Account[]>> {
-    return this.getFollowersIterable(id, params).next();
+    return this.iterateFollowers(id, params).next();
   }
 
   /**
@@ -202,7 +209,7 @@ export class AccountRepository
     id: string,
     params: DefaultPaginationParams = {},
   ): Promise<IteratorResult<Account[]>> {
-    return this.getFollowingIterable(id, params).next();
+    return this.iterateFollowing(id, params).next();
   }
 
   /**
@@ -216,7 +223,7 @@ export class AccountRepository
     id: string,
     params: DefaultPaginationParams = {},
   ): Promise<IteratorResult<Status[]>> {
-    return this.getStatusesIterable(id, params).next();
+    return this.iterateStatuses(id, params).next();
   }
 
   /**

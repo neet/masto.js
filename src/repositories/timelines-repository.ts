@@ -21,30 +21,22 @@ export class TimelinesRepository {
     readonly config: MastoConfig,
   ) {}
 
-  get home(): Paginator<FetchTimelineParams, Status[]> {
-    return this.getHomeIterable();
-  }
-
-  get public(): Paginator<FetchTimelineParams, Status[]> {
-    return this.getPublicIterable();
-  }
-
   @version({ since: '0.0.0' })
-  getHomeIterable(
+  iterateHome(
     params?: FetchTimelineParams,
   ): Paginator<FetchTimelineParams, Status[]> {
     return new Paginator(this.http, '/api/v1/timelines/home', params);
   }
 
   @version({ since: '0.0.0' })
-  getPublicIterable(
+  iteratePublic(
     params?: FetchTimelineParams,
   ): Paginator<FetchTimelineParams, Status[]> {
     return new Paginator(this.http, '/api/v1/timelines/public', params);
   }
 
   @version({ since: '0.0.0' })
-  getHashtagIterable(
+  iterateHashtag(
     hashtag: string,
     params?: FetchTimelineParams,
   ): Paginator<FetchTimelineParams, Status[]> {
@@ -52,7 +44,7 @@ export class TimelinesRepository {
   }
 
   @version({ since: '2.1.0' })
-  getListIterable(
+  iterateList(
     id: string,
     params?: FetchTimelineParams,
   ): Paginator<FetchTimelineParams, Status[]> {
@@ -61,7 +53,7 @@ export class TimelinesRepository {
 
   @deprecated('Use conversations API instead')
   @version({ since: '0.0.0', until: '2.9.3' })
-  getDirectIterable(
+  iterateDirect(
     params?: FetchTimelineParams,
   ): Paginator<FetchTimelineParams, Status[]> {
     return new Paginator(this.http, '/api/v1/timelines/direct', params);
@@ -77,7 +69,7 @@ export class TimelinesRepository {
    */
   @version({ since: '0.0.0' })
   fetchHome(params?: FetchTimelineParams): Promise<IteratorResult<Status[]>> {
-    return this.getHomeIterable(params).next();
+    return this.iterateHome(params).next();
   }
 
   /**
@@ -88,7 +80,7 @@ export class TimelinesRepository {
    */
   @version({ since: '0.0.0' })
   fetchPublic(params?: FetchTimelineParams): Promise<IteratorResult<Status[]>> {
-    return this.getPublicIterable(params).next();
+    return this.iteratePublic(params).next();
   }
 
   /**
@@ -103,7 +95,7 @@ export class TimelinesRepository {
     hashtag: string,
     params?: FetchTimelineParams,
   ): Promise<IteratorResult<Status[]>> {
-    return this.getHashtagIterable(hashtag, params).next();
+    return this.iterateHashtag(hashtag, params).next();
   }
 
   /**
@@ -118,7 +110,7 @@ export class TimelinesRepository {
     id: string,
     params?: FetchTimelineParams,
   ): Promise<IteratorResult<Status[]>> {
-    return this.getListIterable(id, params).next();
+    return this.iterateList(id, params).next();
   }
 
   /**
@@ -130,23 +122,33 @@ export class TimelinesRepository {
   @deprecated('Use conversations API instead')
   @version({ since: '0.0.0', until: '2.9.3' })
   fetchDirect(params?: FetchTimelineParams): Promise<IteratorResult<Status[]>> {
-    return this.getDirectIterable(params).next();
+    return this.iterateDirect(params).next();
   }
 
   // ====
 
-  /**
-   * @deprecated Use getHashtagIterable instead.
-   */
-  getTagIterable = this.getHashtagIterable.bind(this);
-
-  /**
-   * @deprecated Use getListIterable instead.
-   */
-  getList = this.getListIterable.bind(this);
-
-  /**
-   * @deprecated Use getDirectIterable instead.
-   */
-  getDirect = this.getDirectIterable.bind(this);
+  /** @deprecated Use `iterateHashtag` instead. */
+  getTagIterable = this.iterateHashtag.bind(this);
+  /** @deprecated Use `iterateList` instead. */
+  getList = this.iterateList.bind(this);
+  /** @deprecated Use `iterateDirect` instead. */
+  getDirect = this.iterateDirect.bind(this);
+  /** @deprecated Use `iterateHome` instead` */
+  get home(): Paginator<FetchTimelineParams, Status[]> {
+    return this.iterateHome();
+  }
+  /** @deprecated Use `iteratePublic` instead` */
+  get public(): Paginator<FetchTimelineParams, Status[]> {
+    return this.iteratePublic();
+  }
+  /** @deprecated Use `iterateHome` instead` */
+  getHomeIterable = this.iterateHome.bind(this);
+  /** @deprecated Use `iteratePublic` instead` */
+  getPublicIterable = this.iteratePublic.bind(this);
+  /** @deprecated Use `iterateHashtag` instead` */
+  getHashtagIterable = this.iterateHashtag.bind(this);
+  /** @deprecated Use `iterateList` instead` */
+  getListIterable = this.iterateList.bind(this);
+  /** @deprecated Use `iterateDirect` instead` */
+  getDirectIterable = this.iterateDirect.bind(this);
 }

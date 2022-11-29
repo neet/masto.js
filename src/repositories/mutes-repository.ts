@@ -22,7 +22,7 @@ export class MuteRepository extends IterableRepository<Account> {
    * @see https://docs.joinmastodon.org/methods/accounts/mutes/
    */
   @version({ since: '0.0.0' })
-  getIterator(
+  iterate(
     params?: DefaultPaginationParams,
   ): Paginator<DefaultPaginationParams, Account[]> {
     return new Paginator(this.http, '/api/v1/mutes', params);

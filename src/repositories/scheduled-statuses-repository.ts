@@ -27,7 +27,7 @@ export class ScheduledStatusesRepository extends IterableRepository<ScheduledSta
    * @see https://docs.joinmastodon.org/methods/statuses/scheduled_statuses/
    */
   @version({ since: '2.7.0' })
-  getIterator(
+  iterate(
     params?: DefaultPaginationParams,
   ): Paginator<DefaultPaginationParams, ScheduledStatus[]> {
     return new Paginator(this.http, '/api/v1/scheduled_statuses', params);

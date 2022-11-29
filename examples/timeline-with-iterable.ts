@@ -17,7 +17,7 @@ const main = async () => {
   }
 
   // You can also use `for-await-of` syntax to iterate over the timeline
-  for await (const statuses of masto.timelines.getPublicIterable()) {
+  for await (const statuses of masto.timelines.iteratePublic()) {
     statuses.forEach((status) => {
       masto.statuses.favourite(status.id);
     });

@@ -33,7 +33,7 @@ export class NotificationsRepository extends IterableRepository<Notification> {
    * @see https://docs.joinmastodon.org/methods/notifications/
    */
   @version({ since: '0.0.0' })
-  getIterator(
+  iterate(
     params?: FetchNotificationsParams,
   ): Paginator<FetchNotificationsParams, Notification[]> {
     return new Paginator(this.http, '/api/v1/notifications', params);

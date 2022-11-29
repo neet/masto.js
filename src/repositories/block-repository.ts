@@ -22,7 +22,7 @@ export class BlockRepository extends IterableRepository<Account> {
    * @see https://docs.joinmastodon.org/methods/accounts/blocks/
    */
   @version({ since: '0.0.0' })
-  override getIterator(
+  override iterate(
     params?: DefaultPaginationParams,
   ): Paginator<DefaultPaginationParams, Account[]> {
     return new Paginator(this.http, `/api/v1/blocks`, params);

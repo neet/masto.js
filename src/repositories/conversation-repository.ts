@@ -22,7 +22,7 @@ export class ConversationRepository extends IterableRepository<Conversation> {
    * @see https://docs.joinmastodon.org/methods/timelines/conversations/
    */
   @version({ since: '2.6.0' })
-  getIterator(
+  iterate(
     params?: DefaultPaginationParams,
   ): Paginator<DefaultPaginationParams, Conversation[]> {
     return new Paginator(this.http, '/api/v1/conversations', params);

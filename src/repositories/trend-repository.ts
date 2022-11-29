@@ -17,23 +17,15 @@ export class TrendRepository {
     readonly config: MastoConfig,
   ) {}
 
-  get statuses(): Paginator<DefaultPaginationParams, Status[]> {
-    return this.getStatuses();
-  }
-
-  get links(): Paginator<DefaultPaginationParams, Link[]> {
-    return this.getLinks();
-  }
-
   @version({ since: '3.5.0' })
-  getStatuses(
+  iterateStatuses(
     params?: DefaultPaginationParams,
   ): Paginator<DefaultPaginationParams, Status[]> {
     return new Paginator(this.http, '/api/v1/trends/statuses', params);
   }
 
   @version({ since: '3.5.0' })
-  getLinks(
+  iterateLinks(
     params?: DefaultPaginationParams,
   ): Paginator<DefaultPaginationParams, Link[]> {
     return new Paginator(this.http, '/api/v1/trends/links', params);
@@ -52,4 +44,16 @@ export class TrendRepository {
 
   /** @deprecated Use `fetchTags` */
   fetchAll = this.fetchTags.bind(this);
+  /** @deprecated Use `iterateStatuses` instead */
+  getStatuses = this.iterateStatuses.bind(this);
+  /** @deprecated Use `iterateStatuses` instead */
+  getLinks = this.iterateLinks.bind(this);
+  /** @deprecated Use `iterateStatuses` instead */
+  get statuses(): Paginator<DefaultPaginationParams, Status[]> {
+    return this.iterateStatuses();
+  }
+  /** @deprecated Use `iterateStatuses` instead */
+  get links(): Paginator<DefaultPaginationParams, Link[]> {
+    return this.iterateLinks();
+  }
 }

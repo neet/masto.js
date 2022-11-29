@@ -22,7 +22,7 @@ export class FollowRequestRepository extends IterableRepository<Account> {
    * @see https://docs.joinmastodon.org/methods/accounts/follow_requests/
    */
   @version({ since: '0.0.0' })
-  getIterator(
+  iterate(
     params?: DefaultPaginationParams,
   ): Paginator<DefaultPaginationParams, Account[]> {
     return new Paginator(this.http, `/api/v1/follow_requests`, params);

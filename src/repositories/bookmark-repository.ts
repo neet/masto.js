@@ -22,7 +22,7 @@ export class BookmarkRepository extends IterableRepository<Status> {
    * @see https://docs.joinmastodon.org/methods/accounts/bookmarks/
    */
   @version({ since: '3.1.0' })
-  override getIterator(
+  override iterate(
     params?: DefaultPaginationParams,
   ): Paginator<DefaultPaginationParams, Status[]> {
     return new Paginator(this.http, '/api/v1/bookmarks', params);

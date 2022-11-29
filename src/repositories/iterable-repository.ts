@@ -8,13 +8,19 @@ export abstract class IterableRepository<
   RMany = DefaultPaginationParams,
 > implements Repository<T, C, U, R, RMany>
 {
-  abstract getIterator(params?: RMany): AsyncIterableIterator<T[]>;
+  abstract iterate(params?: RMany): AsyncIterableIterator<T[]>;
+
+  /** @deprecated Use `iterate` instead */
+  getIterator = this.iterate.bind(this);
 
   fetchMany(params?: RMany): Promise<IteratorResult<T[]>> {
-    return this.getIterator(params).next();
+    return this.iterate(params).next();
   }
 
   async *[Symbol.asyncIterator](): AsyncIterableIterator<T[]> {
-    yield* this.getIterator != undefined ? this.getIterator() : [];
+    if (this.iterate == undefined) {
+      yield* [];
+    }
+    yield* this.iterate();
   }
 }
