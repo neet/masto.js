@@ -95,6 +95,7 @@ export class HttpAxiosImpl extends BaseHttp implements Http {
       const data = error.response?.data as any;
 
       throw createError({
+        cause: error,
         statusCode: error?.response?.status,
         message: data?.error,
         details: data?.errorDescription,

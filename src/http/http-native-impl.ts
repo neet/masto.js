@@ -75,6 +75,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       const data = await error.json();
 
       throw createError({
+        cause: error,
         statusCode: error.status,
         message: data?.error,
         details: data?.errorDescription,

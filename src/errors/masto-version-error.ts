@@ -2,10 +2,10 @@ import type { MastoErrorProps } from './masto-error';
 import { MastoError } from './masto-error';
 
 /**
- * Mastodon Timeout error
+ * Mastodon version error
  */
-export class MastoTimeoutError extends MastoError {
-  override name = 'MastoTimeoutError';
+export class MastoVersionError extends MastoError {
+  override name = 'MastoVersionError';
 
   constructor(message: string, props?: MastoErrorProps) {
     super(message, props);

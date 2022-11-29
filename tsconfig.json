@@ -3,7 +3,7 @@
     "target": "es5",
     "module": "es6",
     "outDir": "./dist",
-    "lib": ["es2019", "dom", "esnext.asynciterable"],
+    "lib": ["ESNext", "DOM"],
     "declaration": false,
     "esModuleInterop": true,
     "experimentalDecorators": true,

@@ -18,24 +18,32 @@ export interface MastoErrorDetail {
 
 export type MastoErrorDetails = Record<string, readonly MastoErrorDetail[]>;
 
+export type MastoErrorProps = {
+  readonly cause?: unknown;
+  readonly description?: string;
+  readonly details?: MastoErrorDetails;
+};
+
 /**
  * Error object
  * @see https://docs.joinmastodon.org/entities/error/
  */
 export class MastoError extends Error {
+  name = 'MastoError';
+  /** A longer description of the error, mainly provided with the OAuth API. */
+  readonly description?: string;
+  /** Used by /api/v1/accounts */
+  readonly details?: MastoErrorDetails;
   /** Helper to check if the error has been thrown from Masto */
   readonly isMastoError = true;
 
-  constructor(
-    /** The error message. Equivalent for the `error` field from the Error entity */
-    readonly message: string,
-    /** HTTP status code */
-    readonly statusCode?: number,
-    /** A longer description of the error, mainly provided with the OAuth API. */
-    readonly description?: string | null,
-    /** Used by /api/v1/accounts */
-    readonly details?: MastoErrorDetails | null,
-  ) {
-    super();
+  /**
+   * @param message The error message. Equivalent for the `error` field from the Error entity
+   * @param props Additional properties
+   */
+  constructor(message: string, props: MastoErrorProps = {}) {
+    super(message, { cause: props.cause });
+    this.description = props.description;
+    this.details = props.details;
   }
 }
