@@ -3,14 +3,14 @@ import { version } from '../decorators';
 import type { Link, Status, Tag } from '../entities';
 import type { Http } from '../http';
 import { Paginator } from '../paginator';
-import type { DefaultPaginationParams, Repository } from './repository';
+import type { DefaultPaginationParams } from './repository';
 
 export interface FetchTrendsParams {
   /** Maximum number of results to return. Defaults to 10. */
   readonly limit: number;
 }
 
-export class TrendRepository implements Repository<Tag> {
+export class TrendRepository {
   constructor(
     private readonly http: Http,
     readonly version: string,
@@ -46,7 +46,10 @@ export class TrendRepository implements Repository<Tag> {
    * @see https://docs.joinmastodon.org/methods/instance/trends/
    */
   @version({ since: '3.0.0' })
-  fetchAll(params?: FetchTrendsParams): Promise<Tag[]> {
+  fetchTags(params?: FetchTrendsParams): Promise<Tag[]> {
     return this.http.get<Tag[]>('/api/v1/trends/tags', params);
   }
+
+  /** @deprecated Use `fetchTags` */
+  fetchAll = this.fetchTags.bind(this);
 }
