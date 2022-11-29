@@ -1,4 +1,5 @@
-import type { Http, Response } from './http';
+import type { Http } from './http';
+import { railsQueryString } from './serializers/rails-querystring';
 
 export class Paginator<Params, Result>
   implements AsyncIterableIterator<Result>
@@ -26,22 +27,28 @@ export class Paginator<Params, Result>
       return { done: true, value: undefined };
     }
 
-    const response: Response<Result> = await this.http.request({
+    // FIXME 共通化したい
+    const path = params ? this.initialUrl : this.nextUrl;
+    const searchParams = railsQueryString.stringify(
+      params ?? (this.nextParams as any),
+    );
+    const finalPath =
+      searchParams !== '' ? path : `${path}?${searchParams.toString()}`;
+
+    const response = await this.http.request(finalPath, {
       method: 'get',
-      // if no params specified, use link header
-      url: params ? this.initialUrl : this.nextUrl,
-      params: params ?? this.nextParams,
     });
 
-    this.nextUrl =
-      typeof response.headers?.link === 'string'
-        ? this.pluckNext(response.headers.link)
-        : undefined;
+    this.nextUrl = response.headers.has('link')
+      ? // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        this.pluckNext(response.headers.get('link')!)
+      : undefined;
+
     this.nextParams = {} as Params;
 
     return {
       done: false,
-      value: response.data,
+      value: await response.json(),
     };
   }
 

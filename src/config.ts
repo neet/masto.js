@@ -1,3 +1,5 @@
+import type { URL } from 'node:url';
+
 export interface MastoProxyConfig {
   readonly host: string;
   readonly port: number;
@@ -12,10 +14,10 @@ export interface MastoProxyConfig {
  * Abstraction of AxiosRequestConfig
  */
 export interface MastoConfig {
-  readonly url: string;
+  readonly url: URL;
   readonly accessToken?: string;
   readonly timeout?: number;
-  readonly headers?: { [key: string]: string };
+  readonly headers?: HeadersInit;
   readonly proxy?: MastoProxyConfig;
   readonly disableVersionCheck?: boolean;
   readonly disableDeprecatedWarning?: boolean;

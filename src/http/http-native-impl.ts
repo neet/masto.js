@@ -3,17 +3,15 @@ import type { CreateErrorParams } from '../errors';
 import { createError, MastoError } from '../errors';
 import type { MimeType, Serializer } from '../serializers';
 import { BaseHttp } from './base-http';
-import type { Http, Request } from './http';
-import { Headers, Response } from './http';
+import type { Http } from './http';
 
 export class HttpNativeImpl extends BaseHttp implements Http {
   constructor(readonly config: MastoConfig, readonly serializer: Serializer) {
     super();
   }
 
-  async request<T>(request: Request): Promise<Response<T>> {
+  async request(path: string, request: RequestInit): Promise<Response> {
     const { timeout, proxy } = this.config;
-    const { method, data, params } = request;
 
     if (proxy != undefined) {
       // eslint-disable-next-line no-console
@@ -25,7 +23,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       console.warn('Timeouts are not supported on HttpNativeImpl');
     }
 
-    const url = this.resolveUrl(request.url, params);
+    const url = this.resolveUrl(path);
     const headers = new Headers(
       this.createHeader(request.headers) as unknown as Record<string, string>,
     );

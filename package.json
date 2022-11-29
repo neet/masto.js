@@ -32,6 +32,7 @@
     "change-case": "^4.1.2",
     "eventemitter3": "^4.0.7",
     "isomorphic-form-data": "^2.0.0",
+    "isomorphic-unfetch": "^3.1.0",
     "isomorphic-ws": "^5.0.0",
     "semver": "^7.3.7",
     "ws": "^8.8.0"

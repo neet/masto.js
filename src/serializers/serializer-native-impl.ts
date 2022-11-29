@@ -34,6 +34,7 @@ export class SerializerNativeImpl implements Serializer {
     return railsQueryString.stringify(data);
   }
 
+  // FIXME 責務が微妙に違う
   deserialize<T = Record<string, unknown>>(type: MimeType, data: string): T {
     switch (type) {
       case 'application/json': {
