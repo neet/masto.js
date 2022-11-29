@@ -1,4 +1,4 @@
-import { SerializerNodejsImpl } from '../serializers';
+import { SerializerNativeImpl } from '../serializers';
 import { BaseWs } from './base-ws';
 
 class Test extends BaseWs {
@@ -7,7 +7,7 @@ class Test extends BaseWs {
     url: 'https://mastodon.social',
     accessToken: 'token',
   };
-  serializer = new SerializerNodejsImpl();
+  serializer = new SerializerNativeImpl();
   version = '99.99.9';
   stream = jest.fn();
 }
