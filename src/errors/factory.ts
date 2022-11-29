@@ -1,14 +1,15 @@
-import { MastoConflictError } from './masto-conflict-error';
-import type { MastoErrorDetails } from './masto-error';
-import { MastoError } from './masto-error';
-import { MastoForbiddenError } from './masto-forbidden-error';
-import { MastoGoneError } from './masto-gone-error';
-import { MastoNotFoundError } from './masto-not-found-error';
-import { MastoRateLimitError } from './masto-rate-limit-error';
-import { MastoUnauthorizedError } from './masto-unauthorized-error';
-import { MastoUnprocessableEntityError } from './masto-unprocessable-entity-error';
+import type { MastoError, MastoErrorDetails } from './masto-error';
+import { MastoHttpConflictError } from './masto-http-conflict-error';
+import { MastoHttpError } from './masto-http-error';
+import { MastoHttpForbiddenError } from './masto-http-forbidden-error';
+import { MastoHttpGoneError } from './masto-http-gone-error';
+import { MastoHttpNotFoundError } from './masto-http-not-found-error';
+import { MastoHttpRateLimitError } from './masto-http-rate-limit-error';
+import { MastoHttpUnauthorizedError } from './masto-http-unauthorized-error';
+import { MastoHttpUnprocessableEntityError } from './masto-http-unprocessable-entity-error';
 
 export interface BaseCreateErrorParams {
+  readonly cause?: unknown;
   readonly message: string;
   readonly description?: string;
   readonly details?: MastoErrorDetails;
@@ -31,45 +32,42 @@ export type CreateErrorParams =
 
 export const createError = (params: CreateErrorParams): MastoError => {
   const message = params.message ?? 'Unexpected error occurred';
-  const description =
-    params.description ?? 'No description provided for this error';
-  const args = [message, description, params.details] as const;
+  const props = {
+    cause: params.cause,
+    description:
+      params.description ?? 'No further description is provided for this error',
+    details: params.details,
+  };
 
   switch (params.statusCode) {
     case 401: {
-      return new MastoUnauthorizedError(...args);
+      return new MastoHttpUnauthorizedError(message, props);
     }
     case 403: {
-      return new MastoForbiddenError(...args);
+      return new MastoHttpForbiddenError(message, props);
     }
     case 404: {
-      return new MastoNotFoundError(...args);
+      return new MastoHttpNotFoundError(message, props);
     }
     case 409: {
-      return new MastoConflictError(...args);
+      return new MastoHttpConflictError(message, props);
     }
     case 410: {
-      return new MastoGoneError(...args);
+      return new MastoHttpGoneError(message, props);
     }
     case 422: {
-      return new MastoUnprocessableEntityError(...args);
+      return new MastoHttpUnprocessableEntityError(message, props);
     }
     case 429: {
-      return new MastoRateLimitError(
-        message,
-        params.limit,
-        params.remaining,
-        params.reset,
-        description,
-      );
+      return new MastoHttpRateLimitError(message, {
+        ...props,
+        limit: params.limit,
+        remaining: params.remaining,
+        reset: params.reset,
+      });
     }
     default: {
-      return new MastoError(
-        message,
-        params.statusCode,
-        description,
-        params.details,
-      );
+      return new MastoHttpError(message, params.statusCode, props);
     }
   }
 };

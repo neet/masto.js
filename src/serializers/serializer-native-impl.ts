@@ -1,5 +1,6 @@
 import { camelCase, snakeCase } from 'change-case';
 
+import { MastoDeserializeError } from '../errors';
 import { flattenObject } from './form-data';
 import { railsQueryString } from './rails-querystring';
 import type { MimeType, Serializer } from './serializer';
@@ -43,7 +44,11 @@ export class SerializerNativeImpl implements Serializer {
         }
       }
       default: {
-        throw new Error(`Unknown content type ${type}, ${data}`);
+        throw new MastoDeserializeError(
+          `Unknown content type ${type} returned from the server.`,
+          type,
+          data,
+        );
       }
     }
   }

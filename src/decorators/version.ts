@@ -1,14 +1,15 @@
 import semver from 'semver';
 
 import type { MastoConfig } from '../config';
-import { MastoNotFoundError } from '../errors';
+import { MastoError } from '../errors';
+import { MastoVersionError } from '../errors/masto-version-error';
 
 interface Target {
   readonly version: string;
   readonly config: MastoConfig;
 }
 
-export interface AvailableParams {
+export interface VersionParams {
   since?: `${number}.${number}.${number}`;
   until?: `${number}.${number}.${number}`;
 }
@@ -21,7 +22,7 @@ type Fn = (...args: any[]) => any;
  * @param parameters Optional params
  */
 export const version =
-  ({ since, until }: AvailableParams) =>
+  ({ since, until }: VersionParams) =>
   (
     _target: Target,
     name: string,
@@ -29,7 +30,7 @@ export const version =
   ): void => {
     const origin = descriptor.value;
     if (!origin) {
-      throw new Error('version can only apply to a method of a class');
+      throw new MastoError('version can only apply to a method of a class');
     }
 
     descriptor.value = function (
@@ -41,18 +42,20 @@ export const version =
       }
 
       if (since && semver.lt(this.version, since, { loose: true })) {
-        throw new MastoNotFoundError(
-          `${String(name)} is not available with the current ` +
-            `Mastodon version ${this.version}. ` +
-            `It requires greater than or equal to version ${since}.`,
+        throw new MastoVersionError(
+          `${String(this.constructor.name)}.${String(name)}` +
+            ` is not available with the current Mastodon version ` +
+            this.version +
+            ` It requires greater than or equal to version ${since}.`,
         );
       }
 
       if (until && semver.gt(this.version, until, { loose: true })) {
-        throw new MastoNotFoundError(
-          `${String(name)} is not available with the current ` +
-            `Mastodon version ${this.version}. ` +
-            `It was removed on version ${until}.`,
+        throw new MastoVersionError(
+          `${String(this.constructor.name)}.${String(name)}` +
+            ` is not available with the current Mastodon version` +
+            this.version +
+            ` It was removed on version ${until}.`,
         );
       }
 
