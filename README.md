@@ -68,6 +68,18 @@ All of available methods are described in the [documentation](https://neet.githu
 
 ## FAQ
 
+### Q. I want to use in Mastodon-compatible servers
+
+Masto.js validates your Mastodon instance's version to provide more helpful error messages, but this may lead to not working with some Mastodon-compatible software. Therefore, we are offering a way to disable this feature.
+
+```diff
+await login({
+  url: "https://example.com",
+  accessToken: "...",
++  disableVersionCheck: true
+});
+```
+
 ### Q. I got an error `Symbol.asyncIterator is not defined`
 
 A. Masto.js is using [AsyncIterator](https://github.com/tc39/proposal-async-iteration) which is very new JS feature and it may not be supported in particular environments. So in browsers, you need to use a polyfill like [Babel's](https://babeljs.io/docs/en/babel-plugin-proposal-async-generator-functions). In Node.js, it is supported on [v10](https://medium.com/@nairihar/async-iteration-in-nodejs-v10-3c17dc00ed9f) so you can update and use it.
