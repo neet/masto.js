@@ -1,3 +1,13 @@
+## [4.7.1](https://github.com/neet/masto.js/compare/v4.7.0...v4.7.1) (2022-11-30)
+
+
+### Bug Fixes
+
+* Correct iterable used when fetching following accounts ([9dc35fb](https://github.com/neet/masto.js/commit/9dc35fbca470bb99a7bfc047fc621615ad21ad5b))
+* Fix suggestion API URL ([2887c98](https://github.com/neet/masto.js/commit/2887c98ef29e4256e199c2bbe10ae4baa4e3f1b9))
+* Rename fetchAll to fetchTags ([027e57c](https://github.com/neet/masto.js/commit/027e57cf066d7463f72ba9c47aa6e008adc626cd))
+* Use Sec-Websocket-Protocols when disabling version check ([7755fbd](https://github.com/neet/masto.js/commit/7755fbd2772c43d0fce04d7c250664d2dca44b49))
+
 # [4.7.0](https://github.com/neet/masto.js/compare/v4.6.10...v4.7.0) (2022-11-29)
 
 
