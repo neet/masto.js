@@ -22,7 +22,7 @@ export class FavouriteRepository extends IterableRepository<Status> {
    * @see https://docs.joinmastodon.org/methods/accounts/favourites/
    */
   @version({ since: '0.0.0' })
-  getIterator(
+  iterate(
     params?: DefaultPaginationParams,
   ): Paginator<DefaultPaginationParams, Status[]> {
     return new Paginator(this.http, `/api/v1/favourites`, params);

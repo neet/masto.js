@@ -16,7 +16,7 @@ export class FollowedTagRepository extends IterableRepository<Tag> {
   }
 
   @version({ since: '4.0.0' })
-  getIterator(
+  iterate(
     params?: DefaultPaginationParams | undefined,
   ): AsyncIterableIterator<Tag[]> {
     return new Paginator(this.http, '/api/v1/followed_tags', params);

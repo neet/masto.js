@@ -18,7 +18,7 @@ export interface Repository<
 > {
   readonly [Symbol.asyncIterator]?: () => AsyncIterableIterator<Entity[]>;
 
-  readonly getIterator?: (
+  readonly iterate?: (
     params?: PaginationParams,
   ) => AsyncIterableIterator<Entity[]>;
 

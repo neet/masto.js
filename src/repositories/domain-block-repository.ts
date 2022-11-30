@@ -21,7 +21,7 @@ export class DomainBlockRepository extends IterableRepository<string> {
    * @see https://docs.joinmastodon.org/methods/accounts/domain_blocks/
    */
   @version({ since: '1.4.0' })
-  getIterator(
+  iterate(
     params?: DefaultPaginationParams,
   ): Paginator<DefaultPaginationParams, string[]> {
     return new Paginator(this.http, `/api/v1/domain_blocks`, params);

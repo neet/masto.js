@@ -72,9 +72,9 @@ describe('account', () => {
     expect(relationship.note).toBe(comment);
   });
 
-  it('excludes replies from getStatusesIterable', async () => {
+  it('excludes replies from iterateStatuses', async () => {
     const statuses = await client.accounts
-      .getStatusesIterable(TARGET_ID, {
+      .iterateStatuses(TARGET_ID, {
         excludeReplies: true,
       })
       .next();

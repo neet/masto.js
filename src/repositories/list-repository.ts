@@ -25,12 +25,15 @@ export class ListRepository
   ) {}
 
   @version({ since: '2.1.0' })
-  getAccountIterator(
+  iterateAccounts(
     id: string,
     params?: DefaultPaginationParams,
   ): Paginator<DefaultPaginationParams, Account[]> {
     return new Paginator(this.http, `/api/v1/lists/${id}/accounts`, params);
   }
+
+  /** @deprecated Use `iterateAccounts` instead */
+  getAccountIterator = this.iterateAccounts.bind(this);
 
   /**
    * Fetch the list with the given ID. Used for verifying the title of a list.
@@ -98,7 +101,7 @@ export class ListRepository
     id: string,
     params?: DefaultPaginationParams,
   ): Promise<IteratorResult<Account[]>> {
-    return this.getAccountIterator(id, params).next();
+    return this.iterateAccounts(id, params).next();
   }
 
   /**
