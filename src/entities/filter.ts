@@ -16,10 +16,10 @@ export interface Filter {
   phrase: string;
   /** The contexts in which the filter should be applied. */
   context: FilterContext[];
-  /** When the filter should no longer be applied */
-  expiresAt?: string | null;
   /** Should matching entities in home and notifications be dropped by the server? */
   irreversible: boolean;
   /** Should the filter consider word boundaries? */
-  wholeWord: string;
+  whole_word: boolean;
+  /** When the filter should no longer be applied */
+  expires_at?: string | null;
 }
