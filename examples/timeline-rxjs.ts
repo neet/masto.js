@@ -1,4 +1,5 @@
-import { login, Status, Notification } from 'masto';
+import type { Notification, Status } from 'masto';
+import { login } from 'masto';
 import { fromEvent } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
@@ -24,5 +25,6 @@ const main = async () => {
 };
 
 main().catch((error) => {
-  throw error;
+  console.error(error);
+  process.exit(1);
 });

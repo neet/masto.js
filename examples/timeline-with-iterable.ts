@@ -9,21 +9,20 @@ const main = async () => {
     limit: 30,
   });
 
-  if (result) {
-    // `.done` represents whether there are more pages
-    console.log(result.done);
-    // `.value` contains response object
-    console.log(result.value);
-  }
+  // `.done` represents whether there are more pages
+  console.log(result.done);
+  // `.value` contains response object
+  console.log(result.value);
 
   // You can also use `for-await-of` syntax to iterate over the timeline
   for await (const statuses of masto.timelines.iteratePublic()) {
-    statuses.forEach((status) => {
+    for (const status of statuses) {
       masto.statuses.favourite(status.id);
-    });
+    }
   }
 };
 
 main().catch((error) => {
-  throw error;
+  console.error(error);
+  process.exit(1);
 });

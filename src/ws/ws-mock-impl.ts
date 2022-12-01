@@ -12,7 +12,7 @@ export class WsEventsMockImpl
 {
   static connect = jest.fn();
   disconnect = wsDisconnect;
-  on = wsOn;
+  override on = wsOn;
 }
 
 export class WsMockImpl implements Ws {

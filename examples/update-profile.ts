@@ -1,4 +1,5 @@
-import fs from 'fs';
+import fs from 'node:fs';
+
 import { login } from 'masto';
 
 const main = async () => {
@@ -17,5 +18,6 @@ const main = async () => {
 };
 
 main().catch((error) => {
-  throw error;
+  console.error(error);
+  process.exit(1);
 });
