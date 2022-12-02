@@ -3,7 +3,6 @@ import WebSocket from 'isomorphic-ws';
 
 import type { MastoConfig } from '../config';
 import type { Serializer } from '../serializers';
-import { BaseWs } from './base-ws';
 import type { Event, EventType, EventTypeMap, Ws, WsEvents } from './ws';
 
 /**
@@ -74,24 +73,20 @@ export class WsEventsNativeImpl
   };
 }
 
-export class WsNativeImpl extends BaseWs implements Ws {
+export class WsNativeImpl implements Ws {
   constructor(
-    protected readonly baseUrl: string,
-    protected readonly version: string,
-    protected readonly config: MastoConfig,
-    protected readonly serializer: Serializer,
-  ) {
-    super();
-  }
+    private readonly config: MastoConfig,
+    private readonly serializer: Serializer,
+  ) {}
 
   stream(
     path: string,
     params: Record<string, unknown> = {},
   ): Promise<WsEvents> {
     return WsEventsNativeImpl.connect(
-      this.resolveUrl(path, params),
+      this.config.resolveWebsocketPath(path, params),
       this.serializer,
-      this.createProtocols(),
+      this.config.createWebsocketProtocols(),
     );
   }
 }

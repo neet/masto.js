@@ -1,11 +1,9 @@
 import semver from 'semver';
 
 import type { MastoConfig } from '../config';
-import { MastoError } from '../errors';
-import { MastoVersionError } from '../errors/masto-version-error';
+import { MastoError, MastoVersionError } from '../errors';
 
 interface Target {
-  readonly version: string;
   readonly config: MastoConfig;
 }
 
@@ -37,24 +35,24 @@ export const version =
       this: Target,
       ...args: Parameters<typeof origin>
     ) {
-      if (this.config.disableVersionCheck) {
+      if (this.config.shouldCheckVersion()) {
         return origin.apply(this, args);
       }
 
-      if (since && semver.lt(this.version, since, { loose: true })) {
+      if (since && semver.lt(this.config.version, since, { loose: true })) {
         throw new MastoVersionError(
           `${String(this.constructor.name)}.${String(name)}` +
             ` is not available with the current Mastodon version ` +
-            this.version +
+            this.config.version.version +
             ` It requires greater than or equal to version ${since}.`,
         );
       }
 
-      if (until && semver.gt(this.version, until, { loose: true })) {
+      if (until && semver.gt(this.config.version, until, { loose: true })) {
         throw new MastoVersionError(
           `${String(this.constructor.name)}.${String(name)}` +
             ` is not available with the current Mastodon version` +
-            this.version +
+            this.config.version.version +
             ` It was removed on version ${until}.`,
         );
       }

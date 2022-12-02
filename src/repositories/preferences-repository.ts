@@ -5,11 +5,7 @@ import type { Http } from '../http';
 import type { Repository } from './repository';
 
 export class PreferenceRepository implements Repository<Preference> {
-  constructor(
-    private readonly http: Http,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {}
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   /**
    * Preferences defined by the user in their account settings.

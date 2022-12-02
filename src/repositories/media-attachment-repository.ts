@@ -29,11 +29,7 @@ export class MediaAttachmentRepository
       UpdateMediaAttachmentParams
     >
 {
-  constructor(
-    private readonly http: Http,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {}
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   /**
    * @experimental
@@ -57,7 +53,7 @@ export class MediaAttachmentRepository
 
         return media;
       })(),
-      this.config.timeout ?? 3000,
+      this.config.timeout,
     );
   }
 

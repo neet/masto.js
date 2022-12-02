@@ -7,11 +7,7 @@ import { IterableRepository } from './iterable-repository';
 import type { DefaultPaginationParams } from './repository';
 
 export class FollowedTagRepository extends IterableRepository<Tag> {
-  constructor(
-    private readonly http: Http,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {
+  constructor(private readonly http: Http, readonly config: MastoConfig) {
     super();
   }
 

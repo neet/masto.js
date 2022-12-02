@@ -1,24 +1,44 @@
 import 'isomorphic-form-data';
+import 'isomorphic-fetch';
+
+import { SemVer } from 'semver';
 
 import { MastoClient } from '../clients';
-import type { MastoConfig } from '../config';
-import { HttpAxiosImpl } from '../http/http-axios-impl';
+import type { MastoConfigProps } from '../config';
+import { MastoConfig } from '../config';
+import { HttpNativeImpl } from '../http';
 import { InstanceRepository } from '../repositories';
 import { SerializerNativeImpl } from '../serializers';
 import { WsNativeImpl } from '../ws';
 
-export const login = async (config: MastoConfig): Promise<MastoClient> => {
+export const login = async (
+  rawConfig: Omit<MastoConfigProps, 'streamingApiUrl' | 'version'>,
+): Promise<MastoClient> => {
+  const configProps = {
+    ...rawConfig,
+    version: new SemVer('1.0.0'),
+    streamingApiUrl: '',
+  };
   const serializer = new SerializerNativeImpl();
-  const http = new HttpAxiosImpl(config, serializer);
-  const instance = await new InstanceRepository(http, '1.0.0', config).fetch();
-  const ws = new WsNativeImpl(
-    instance.urls.streamingApi,
-    instance.version,
-    config,
-    serializer,
-  );
 
-  return new MastoClient(http, ws, instance.version, config);
+  {
+    const tempConfig = new MastoConfig(configProps, serializer);
+    const http = new HttpNativeImpl(fetch, tempConfig, serializer);
+    const instance = await new InstanceRepository(http, tempConfig).fetch();
+
+    if (configProps.version == undefined) {
+      configProps.version = new SemVer(instance.version);
+    }
+    if (configProps.streamingApiUrl == undefined) {
+      configProps.streamingApiUrl = instance.urls.streamingApi;
+    }
+  }
+
+  const config = new MastoConfig(configProps, serializer);
+  const ws = new WsNativeImpl(config, serializer);
+  const http = new HttpNativeImpl(fetch, config, serializer);
+
+  return new MastoClient(http, ws, config);
 };
 
 export * from '../decorators';

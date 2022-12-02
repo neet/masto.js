@@ -66,11 +66,7 @@ export interface ReblogStatusParams {
 }
 
 export class StatusRepository implements Repository<Status> {
-  constructor(
-    private readonly http: Http,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {}
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   /**
    * View information about a status.

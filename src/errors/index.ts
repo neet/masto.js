@@ -9,4 +9,5 @@ export * from './masto-http-not-found-error';
 export * from './masto-http-rate-limit-error';
 export * from './masto-http-unauthorized-error';
 export * from './masto-http-unprocessable-entity-error';
+export * from './masto-version-error';
 export * from './masto-timeout-error';

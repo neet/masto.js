@@ -57,11 +57,7 @@ export class AccountRepository
   implements
     Repository<Admin.Account, never, never, never, FetchAccountsParams>
 {
-  constructor(
-    private readonly http: Http,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {}
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   /**
    * View accounts matching certain criteria for filtering, up to 100 at a time.

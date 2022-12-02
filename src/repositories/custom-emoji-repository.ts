@@ -5,11 +5,7 @@ import type { Http } from '../http';
 import type { Repository } from './repository';
 
 export class CustomEmojiRepository implements Repository<Emoji> {
-  constructor(
-    private readonly http: Http,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {}
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   /**
    * Returns custom emojis that are available on the server.

@@ -25,11 +25,7 @@ export type UpdateFilterParams = CreateFilterParams;
 export class FilterRepository
   implements Repository<Filter, CreateFilterParams, UpdateFilterParams>
 {
-  constructor(
-    private readonly http: Http,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {}
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   /**
    * View all filters

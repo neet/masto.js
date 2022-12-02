@@ -10,11 +10,7 @@ export interface VotePollParams {
 }
 
 export class PollRepository implements Repository<Poll> {
-  constructor(
-    private readonly http: Http,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {}
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
   /**
    * View a poll
    * @param id ID of the poll in the database

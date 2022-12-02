@@ -16,11 +16,7 @@ export interface FetchNotificationsParams extends DefaultPaginationParams {
 }
 
 export class NotificationsRepository extends IterableRepository<Notification> {
-  constructor(
-    private readonly http: Http,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {
+  constructor(private readonly http: Http, readonly config: MastoConfig) {
     super();
   }
 

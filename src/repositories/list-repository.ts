@@ -18,11 +18,7 @@ export interface ModifyListAccountsParams {
 export class ListRepository
   implements Repository<List, ModifyListParams, ModifyListParams>
 {
-  constructor(
-    private readonly http: Http,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {}
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   @version({ since: '2.1.0' })
   iterateAccounts(
