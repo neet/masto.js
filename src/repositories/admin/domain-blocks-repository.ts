@@ -5,7 +5,7 @@ import type { Http } from '../../http';
 
 export interface AdminDomainBlocksFetchParams {
   /** The domain to block federation required*/
-  readonly domain: string;
+  domain: string;
   /** Whether to apply a silence, suspend, or noop to the domain?*/
   readonly severity?: string | 'silence';
   /** Whether media attachments should be rejected*/
@@ -19,6 +19,10 @@ export interface AdminDomainBlocksFetchParams {
   /** Whether to partially censor the domain when shown in public*/
   readonly obfuscate?: boolean | false;
 }
+
+export type AllBlockedDomain = {
+  limit: number | 100;
+};
 
 export type AdminDomainBlockUpdate = Omit<
   AdminDomainBlocksFetchParams,
@@ -39,9 +43,7 @@ export class DomainBlocksRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '2.9.1' })
-  fetchAll(
-    params?: AdminDomainBlocksFetchParams,
-  ): Promise<Admin.DomainBlocks[]> {
+  fetchAll(params?: AllBlockedDomain): Promise<Admin.DomainBlocks[]> {
     return this.http.get('/api/v1/admin/domain_blocks', params);
   }
 
@@ -77,7 +79,7 @@ export class DomainBlocksRepository {
   @version({ since: '2.9.1' })
   update(
     id: string,
-    params: AdminDomainBlockUpdate,
+    params?: AdminDomainBlockUpdate,
   ): Promise<Admin.DomainBlocks> {
     return this.http.put(`/api/v1/admin/domain_blocks/${id}`, params);
   }
