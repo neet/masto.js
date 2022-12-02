@@ -20,7 +20,8 @@
     "no-console": "error",
     "simple-import-sort/imports": "error",
     "unicorn/prevent-abbreviations": "off",
-    "unicorn/no-array-reduce": "off"
+    "unicorn/no-array-reduce": "off",
+    "prettier/prettier": ["error", { "endOfLine": "auto" }, {"usePrettier": true}]
   },
   "overrides": [
     {
