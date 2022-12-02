@@ -5,11 +5,7 @@ import type { Http } from '../http';
 import type { Repository } from './repository';
 
 export class AnnouncementRepository implements Repository<Announcement> {
-  constructor(
-    private readonly http: Http,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {}
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   /**
    * Fetch announcements

@@ -20,11 +20,7 @@ export interface FetchDirectoryParams {
 export class DirectoryRepository
   implements Repository<Account, never, never, FetchDirectoryParams>
 {
-  constructor(
-    private readonly http: Http,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {}
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   /**
    * List accounts visible in the directory.

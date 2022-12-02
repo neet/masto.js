@@ -10,11 +10,7 @@ export interface CreateFeaturedTagParams {
 }
 
 export class FeaturedTagRepository implements Repository<FeaturedTag> {
-  constructor(
-    private readonly http: Http,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {}
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   /**
    * View your featured tags

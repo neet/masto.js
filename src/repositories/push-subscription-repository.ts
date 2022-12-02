@@ -37,11 +37,7 @@ export class PushSubscriptionsRepository
       UpdatePushSubscriptionParams
     >
 {
-  constructor(
-    private readonly http: Http,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {}
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   /**
    * Add a Web Push API subscription to receive notifications.

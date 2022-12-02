@@ -12,11 +12,7 @@ export interface UpdateScheduledStatusParams {
 }
 
 export class ScheduledStatusesRepository extends IterableRepository<ScheduledStatus> {
-  constructor(
-    private readonly http: Http,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {
+  constructor(private readonly http: Http, readonly config: MastoConfig) {
     super();
   }
 

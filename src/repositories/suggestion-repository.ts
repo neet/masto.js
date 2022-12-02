@@ -12,11 +12,7 @@ export interface FetchSuggestionParams {
 export class SuggestionRepository
   implements Repository<Suggestion, never, never, FetchSuggestionParams>
 {
-  constructor(
-    private readonly http: Http,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {}
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   /**
    * View follow suggestions.

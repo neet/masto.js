@@ -2,39 +2,33 @@ import type { MastoConfig } from '../config';
 import type { CreateErrorParams } from '../errors';
 import { createError, MastoError } from '../errors';
 import type { MimeType, Serializer } from '../serializers';
+import { mergeAbortSignals } from '../utils';
 import { BaseHttp } from './base-http';
-import type { Http, Request } from './http';
-import { Headers, Response } from './http';
+import { getContentType } from './get-content-type';
+import type { Http, HttpRequestParams, HttpRequestResult } from './http';
 
 export class HttpNativeImpl extends BaseHttp implements Http {
-  constructor(readonly config: MastoConfig, readonly serializer: Serializer) {
+  constructor(
+    private readonly fetchImpl: typeof fetch,
+    private readonly config: MastoConfig,
+    private readonly serializer: Serializer,
+  ) {
     super();
   }
 
-  async request<T>(request: Request): Promise<Response<T>> {
-    const { timeout, proxy } = this.config;
-    const { method, data, params } = request;
+  async request(params: HttpRequestParams): Promise<HttpRequestResult> {
+    const { path, searchParams, requestInit } = params;
 
-    if (proxy != undefined) {
-      // eslint-disable-next-line no-console
-      console.warn('Proxies are not supported on HttpNativeImpl');
-    }
+    const url = this.config.resolveHttpPath(path);
+    url.search = this.serializer.serializeQueryString(searchParams);
 
-    if (timeout != undefined) {
-      // eslint-disable-next-line no-console
-      console.warn('Timeouts are not supported on HttpNativeImpl');
-    }
-
-    const url = this.resolveUrl(request.url, params);
-    const headers = new Headers(
-      this.createHeader(request.headers) as unknown as Record<string, string>,
-    );
-    const reqContentType = headers.get('Content-Type') ?? 'application/json';
-    const body = this.serializer.serialize(reqContentType as MimeType, data);
+    const headers = this.config.createHeader(requestInit?.headers);
+    const reqType = headers.get('Content-Type') ?? 'application/json';
+    const body = this.serializer.serialize(reqType as MimeType, params.body);
 
     if (
       body instanceof FormData &&
-      reqContentType === 'multipart/form-data' &&
+      reqType === 'multipart/form-data' &&
       HttpNativeImpl.hasBlob(body)
     ) {
       // As multipart form data should contain an arbitrary boundary,
@@ -43,11 +37,21 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       headers.delete('Content-Type');
     }
 
+    const signals: AbortSignal[] = [];
+    const timeoutController = this.config.createTimeoutController();
+    if (timeoutController) {
+      signals.push(timeoutController.signal);
+    }
+    if (requestInit?.signal != undefined) {
+      signals.push(requestInit.signal);
+    }
+
     try {
-      const response = await fetch(url, {
-        method,
+      const response = await this.fetchImpl(url, {
+        ...requestInit,
         headers,
         body: body as string,
+        signal: mergeAbortSignals(signals),
       });
 
       if (!response.ok) {
@@ -55,16 +59,14 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       }
 
       const text = await response.text();
-      const resContentType = this.getContentType(
-        HttpNativeImpl.toHeaders(response.headers),
-      );
+      const resType = getContentType(response.headers);
 
-      if (resContentType == undefined) {
+      if (resType == undefined) {
         throw new MastoError('Content-Type is not defined');
       }
 
       return {
-        headers: HttpNativeImpl.toHeaders(response.headers),
+        headers: response.headers,
         data: this.serializer.deserialize('application/json', text),
       };
     } catch (error) {
@@ -85,15 +87,6 @@ export class HttpNativeImpl extends BaseHttp implements Http {
         reset: error.headers.get('X-RateLimit-Reset'),
       } as CreateErrorParams);
     }
-  }
-
-  private static toHeaders(headers: globalThis.Headers): Headers {
-    const result: Record<string, unknown> = {};
-    // eslint-disable-next-line unicorn/no-array-for-each
-    headers.forEach((value, key) => {
-      result[key.toLowerCase()] = value;
-    });
-    return result as Headers;
   }
 
   private static hasBlob(formData: FormData): boolean {

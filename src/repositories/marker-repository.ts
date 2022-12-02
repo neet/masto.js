@@ -21,11 +21,7 @@ export type CreateMarkersParams = {
 export class MarkerRepository
   implements Repository<Marker, CreateMarkersParams, never, FetchMarkersParams>
 {
-  constructor(
-    private readonly http: Http,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {}
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   /**
    * Get saved timeline position

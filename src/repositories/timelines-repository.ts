@@ -15,11 +15,7 @@ export interface FetchTimelineParams extends DefaultPaginationParams {
 }
 
 export class TimelinesRepository {
-  constructor(
-    private readonly http: Http,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {}
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   @version({ since: '0.0.0' })
   iterateHome(

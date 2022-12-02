@@ -20,11 +20,7 @@ export interface ReportAccountParams {
 }
 
 export class ReportRepository {
-  constructor(
-    private readonly http: Http,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {}
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   /**
    * File a report

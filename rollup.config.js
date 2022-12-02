@@ -24,22 +24,6 @@ module.exports = [
     plugins: [commonjs(), json(), typescript(), autoExternal()],
   },
   {
-    input: './src/entrypoints/fetch.ts',
-    output: {
-      file: packageJSON.exports['./fetch'].require,
-      format: 'cjs',
-    },
-    plugins: [json(), typescript(), autoExternal()],
-  },
-  {
-    input: './src/entrypoints/fetch.ts',
-    output: {
-      file: packageJSON.exports['./fetch'].import,
-      format: 'esm',
-    },
-    plugins: [commonjs(), json(), typescript(), autoExternal()],
-  },
-  {
     input: './src/entrypoints/nodejs.ts',
     output: {
       file: packageJSON.exports['.'].types,

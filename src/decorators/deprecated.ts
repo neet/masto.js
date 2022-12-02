@@ -28,14 +28,7 @@ export const deprecated =
       this: Target,
       ...args: Parameters<typeof origin>
     ) {
-      if (
-        process.env.NODE_ENV !== 'production' ||
-        !this.config?.disableDeprecatedWarning
-      ) {
-        // eslint-disable-next-line no-console
-        console.warn(`#${name.toString()} is deprecated. ${message}`);
-      }
-
+      this.config.warn(`#${name.toString()} is deprecated. ${message}`);
       return origin.apply(this, args);
     };
   };

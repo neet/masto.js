@@ -14,11 +14,7 @@ export interface FetchReportsParams {
 export class ReportRepository
   implements Repository<Admin.Report, never, never, never, FetchReportsParams>
 {
-  constructor(
-    private readonly http: Http,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {}
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   /**
    * View all reports. Pagination may be done with HTTP Link header in the response.

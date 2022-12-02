@@ -96,11 +96,7 @@ export interface LookupAccountParams {
 export class AccountRepository
   implements Repository<Account, CreateAccountParams>
 {
-  constructor(
-    private readonly http: Http,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {}
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   @version({ since: '0.0.0' })
   iterateFollowers(

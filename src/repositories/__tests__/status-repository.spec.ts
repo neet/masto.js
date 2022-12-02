@@ -1,16 +1,26 @@
+import { SemVer } from 'semver';
+import { MastoConfig } from '../../config';
 import {
   httpDelete,
   httpGet,
   HttpMockImpl,
   httpPost,
 } from '../../http/http-mock-impl';
+import { SerializerNativeImpl } from '../../serializers';
 import { StatusRepository } from '../status-repository';
 
 describe('status', () => {
   const mockHttp = new HttpMockImpl();
-  const status = new StatusRepository(mockHttp, '999.0.0', {
-    url: 'https://example.com',
-  });
+  const config = new MastoConfig(
+    {
+      url: 'https://mastodon.social',
+      streamingApiUrl: 'wss://mastodon.social',
+      version: new SemVer('1.0.0'),
+      accessToken: 'token',
+    },
+    new SerializerNativeImpl(),
+  );
+  const status = new StatusRepository(mockHttp, config);
 
   beforeEach(() => {
     mockHttp.clear();

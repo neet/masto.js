@@ -12,18 +12,15 @@ export class MastoAdminClient {
 
   constructor(
     private readonly http: Http,
-    private readonly version: string,
     private readonly config: MastoConfig,
   ) {
     this.account = new AdminRepositories.AccountRepository(
       this.http,
-      this.version,
       this.config,
     );
 
     this.report = new AdminRepositories.ReportRepository(
       this.http,
-      this.version,
       this.config,
     );
 

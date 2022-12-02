@@ -3,11 +3,7 @@ import { version } from '../decorators';
 import type { Ws, WsEvents } from '../ws';
 
 export class StreamRepository {
-  constructor(
-    private readonly ws: Ws,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {}
+  constructor(private readonly ws: Ws, readonly config: MastoConfig) {}
 
   /**
    * Starting home timeline and notification streaming

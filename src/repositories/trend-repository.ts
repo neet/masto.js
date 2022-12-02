@@ -11,11 +11,7 @@ export interface FetchTrendsParams {
 }
 
 export class TrendRepository {
-  constructor(
-    private readonly http: Http,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {}
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   @version({ since: '3.5.0' })
   iterateStatuses(

@@ -1,17 +1,17 @@
-import type { Http, Response } from './http';
+import type { Http } from './http';
 
 export class Paginator<Params, Result>
   implements AsyncIterableIterator<Result>
 {
-  private nextUrl?: string;
+  private nextPath?: string;
   private nextParams?: Params;
 
   constructor(
     private readonly http: Http,
-    readonly initialUrl: string,
-    readonly initialParams?: Params,
+    private readonly initialPath: string,
+    initialParams?: Params,
   ) {
-    this.nextUrl = initialUrl;
+    this.nextPath = this.initialPath;
     this.nextParams = initialParams;
   }
 
@@ -22,26 +22,26 @@ export class Paginator<Params, Result>
   };
 
   async next(params?: Params): Promise<IteratorResult<Result>> {
-    if (this.nextUrl == undefined) {
+    if (this.nextPath == undefined) {
       return { done: true, value: undefined };
     }
 
-    const response: Response<Result> = await this.http.request({
-      method: 'get',
-      // if no params specified, use link header
-      url: params ? this.initialUrl : this.nextUrl,
-      params: params ?? this.nextParams,
+    const reset = params != undefined;
+    const response = await this.http.request({
+      path: reset ? this.initialPath : this.nextPath,
+      searchParams: (params ?? this.nextParams) as Record<string, unknown>,
+      requestInit: { method: 'get' },
     });
 
-    this.nextUrl =
-      typeof response.headers?.link === 'string'
-        ? this.pluckNext(response.headers.link)
+    this.nextPath =
+      typeof response.headers.get('link') === 'string'
+        ? this.pluckNext(response.headers.get('link') as string)
         : undefined;
     this.nextParams = {} as Params;
 
     return {
       done: false,
-      value: response.data,
+      value: response.data as Result,
     };
   }
 
