@@ -1,13 +1,14 @@
 import type { MastoConfig } from '../../config';
 import { version } from '../../decorators';
 import type { Admin } from '../../entities';
+import type { SeverityDomain } from '../../entities/admin/domain-blocks';
 import type { Http } from '../../http';
 
 export interface AdminDomainBlocksFetchParams {
   /** The domain to block federation required*/
   domain: string;
   /** Whether to apply a silence, suspend, or noop to the domain?*/
-  readonly severity?: string | 'silence';
+  readonly severity?: SeverityDomain;
   /** Whether media attachments should be rejected*/
   readonly reject_media?: boolean | false;
   /** Whether reports from this domain should be rejected*/
