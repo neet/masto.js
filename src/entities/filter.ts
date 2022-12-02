@@ -21,5 +21,5 @@ export interface Filter {
   /** Should matching entities in home and notifications be dropped by the server? */
   irreversible: boolean;
   /** Should the filter consider word boundaries? */
-  wholeWord: string;
+  wholeWord: boolean;
 }
