@@ -39,7 +39,9 @@ export class DomainBlocksRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '2.9.1' })
-  fetchAll(params?: AdminDomainBlocksFetchParams): Promise<Admin.DomainBlocks> {
+  fetchAll(
+    params?: AdminDomainBlocksFetchParams,
+  ): Promise<Admin.DomainBlocks[]> {
     return this.http.get('/api/v1/admin/domain_blocks', params);
   }
 
