@@ -4,11 +4,11 @@ import type {
   Attachment,
   Card,
   Emoji,
+  FilterResult,
   Mention,
   Poll,
   Tag,
 } from '.';
-import { FilterResult } from './filter-result';
 
 export type StatusVisibility = 'public' | 'unlisted' | 'private' | 'direct';
 
