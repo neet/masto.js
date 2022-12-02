@@ -29,7 +29,7 @@ export type MastoErrorProps = {
  * @see https://docs.joinmastodon.org/entities/error/
  */
 export class MastoError extends Error {
-  name = 'MastoError';
+  override name = 'MastoError';
   /** A longer description of the error, mainly provided with the OAuth API. */
   readonly description?: string;
   /** Used by /api/v1/accounts */

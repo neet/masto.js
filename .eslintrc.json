@@ -50,6 +50,15 @@
           { "prefer": "type-imports" }
         ]
       }
+    },
+    {
+      "files": "examples/**",
+      "rules": {
+        "no-console": "off",
+        "import/no-unresolved": "off",
+        "unicorn/prefer-top-level-await": "off",
+        "unicorn/no-process-exit": "off"
+      }
     }
   ]
 }

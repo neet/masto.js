@@ -1,4 +1,5 @@
-import { login, Status, Notification, MastoClient } from 'masto';
+import type { MastoClient, Notification, Status } from 'masto';
+import { login } from 'masto';
 
 class MyBot {
   private masto: MastoClient;
@@ -12,10 +13,10 @@ class MyBot {
       url: process.env.URI as string,
       accessToken: process.env.ACCESS_TOKEN as string,
     });
-    await new MyBot(masto).subscribe();
+    return new MyBot(masto);
   }
 
-  private async subscribe() {
+  async subscribe() {
     const timeline = await this.masto.stream.streamUser();
 
     // Add handlers
@@ -50,6 +51,9 @@ class MyBot {
 }
 
 // main
-MyBot.init().catch((error) => {
-  throw error;
-});
+MyBot.init()
+  .then((myBot) => myBot.subscribe())
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });

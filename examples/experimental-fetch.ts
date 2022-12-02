@@ -1,4 +1,5 @@
-import fs from 'fs';
+import fs from 'node:fs';
+
 import { login } from 'masto/fetch';
 
 const main = async () => {
@@ -13,9 +14,9 @@ const main = async () => {
     description: 'Some image',
   });
 
-  // Toot!
+  // Publish!
   const status = await masto.statuses.create({
-    status: 'Toot from TypeScript',
+    status: 'Post from TypeScript',
     visibility: 'direct',
     mediaIds: [attachment.id],
   });
@@ -24,5 +25,6 @@ const main = async () => {
 };
 
 main().catch((error) => {
-  throw error;
+  console.error(error);
+  process.exit(1);
 });
