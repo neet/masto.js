@@ -10,5 +10,5 @@ export interface FilterResult {
   /** The keyword within the filter that was matched. */
   keywordMatches: string[] | null;
   /** The status ID within the filter that was matched. */
-  status_matches: string[] | null;
+  statusMatches: string[] | null;
 }
