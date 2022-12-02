@@ -21,7 +21,7 @@
   "scripts": {
     "test": "npm-run-all test:*",
     "test:jest": "jest --coverage --runInBand --config=jest.config.js",
-    "test:eslint": "eslint -c .eslintrc.json ./src/**/*.ts",
+    "test:eslint": "eslint -c .eslintrc.json ./src/**/*.ts --cache",
     "test:spellcheck": "cspell '{src,examples}/**/*.{ts,tsx,js,json,md}'",
     "build": "rollup -c rollup.config.js",
     "prepublishOnly": "yarn run test && yarn run build",
