@@ -1,4 +1,4 @@
-import { Filter } from "./filter";
+import type { Filter } from "./filter";
 
 /**
  * Represents a filter whose keywords matched a given status.
