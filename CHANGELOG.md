@@ -1,3 +1,10 @@
+## [4.7.3](https://github.com/neet/masto.js/compare/v4.7.2...v4.7.3) (2022-12-02)
+
+
+### Bug Fixes
+
+* Use builtin Object.fromEntries ([6a64264](https://github.com/neet/masto.js/commit/6a642646ee6f961affa74e6ceff18f3744092b6c))
+
 ## [4.7.2](https://github.com/neet/masto.js/compare/v4.7.1...v4.7.2) (2022-12-01)
 
 ## [4.7.1](https://github.com/neet/masto.js/compare/v4.7.0...v4.7.1) (2022-11-30)
