@@ -1,0 +1,784 @@
+<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>AccountRepository | masto</title><meta name="description" content="Documentation for masto"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script async src="../assets/search.js" id="search-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container">
+<div class="table-cell" id="tsd-search" data-base="..">
+<div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15.7824 13.833L12.6666 10.7177C12.5259 10.5771 12.3353 10.499 12.1353 10.499H11.6259C12.4884 9.39596 13.001 8.00859 13.001 6.49937C13.001 2.90909 10.0914 0 6.50048 0C2.90959 0 0 2.90909 0 6.49937C0 10.0896 2.90959 12.9987 6.50048 12.9987C8.00996 12.9987 9.39756 12.4863 10.5008 11.6239V12.1332C10.5008 12.3332 10.5789 12.5238 10.7195 12.6644L13.8354 15.7797C14.1292 16.0734 14.6042 16.0734 14.8948 15.7797L15.7793 14.8954C16.0731 14.6017 16.0731 14.1267 15.7824 13.833ZM6.50048 10.499C4.29094 10.499 2.50018 8.71165 2.50018 6.49937C2.50018 4.29021 4.28781 2.49976 6.50048 2.49976C8.71001 2.49976 10.5008 4.28708 10.5008 6.49937C10.5008 8.70852 8.71314 10.499 6.50048 10.499Z" fill="var(--color-text)"></path></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div>
+<div class="field">
+<div id="tsd-toolbar-links"></div></div>
+<ul class="results">
+<li class="state loading">Preparing search index...</li>
+<li class="state failure">The search index is not available</li></ul><a href="../index.html" class="title">masto</a></div>
+<div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="7" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="11" width="14" height="2" fill="var(--color-text)"></rect></svg></a></div></div></header>
+<div class="container container-main">
+<div class="col-8 col-content">
+<div class="tsd-page-title">
+<ul class="tsd-breadcrumb">
+<li><a href="../modules.html">masto</a></li>
+<li><a href="../modules/V1.html">V1</a></li>
+<li><a href="V1.AccountRepository.html">AccountRepository</a></li></ul>
+<h1>Class AccountRepository</h1></div>
+<section class="tsd-panel tsd-hierarchy">
+<h4>Hierarchy</h4>
+<ul class="tsd-hierarchy">
+<li><span class="target">AccountRepository</span></li></ul></section>
+<section class="tsd-panel">
+<h4>Implements</h4>
+<ul class="tsd-hierarchy">
+<li><a href="../interfaces/Repository.html" class="tsd-signature-type" data-tsd-kind="Interface">Repository</a><span class="tsd-signature-symbol">&lt;</span><a href="../modules/V1.html" class="tsd-signature-type" data-tsd-kind="Namespace">V1</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/V1.Account.html" class="tsd-signature-type" data-tsd-kind="Interface">Account</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/V1.CreateAccountParams.html" class="tsd-signature-type" data-tsd-kind="Interface">CreateAccountParams</a><span class="tsd-signature-symbol">&gt;</span></li></ul></section><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L96">src/api/v1/repositories/account-repository.ts:96</a></li></ul></aside>
+<section class="tsd-panel-group tsd-index-group">
+<section class="tsd-panel tsd-index-panel">
+<details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
+<h5 class="tsd-index-heading uppercase" role="button" aria-expanded="false" tabIndex=0><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1.5 5.50969L8 11.6609L14.5 5.50969L12.5466 3.66086L8 7.96494L3.45341 3.66086L1.5 5.50969Z" fill="var(--color-text)"></path></svg> Index</h5></summary>
+<div class="tsd-accordion-details">
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading">Constructors</h3>
+<div class="tsd-index-list"><a href="V1.AccountRepository.html#constructor" class="tsd-index-link tsd-kind-constructor tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="#4D7FFF" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12" id="icon-512-path"></rect><path d="M11.898 16.1201C11.098 16.1201 10.466 15.8961 10.002 15.4481C9.53803 15.0001 9.30603 14.3841 9.30603 13.6001V9.64012C9.30603 8.85612 9.53803 8.24012 10.002 7.79212C10.466 7.34412 11.098 7.12012 11.898 7.12012C12.682 7.12012 13.306 7.34812 13.77 7.80412C14.234 8.25212 14.466 8.86412 14.466 9.64012H13.386C13.386 9.14412 13.254 8.76412 12.99 8.50012C12.734 8.22812 12.37 8.09212 11.898 8.09212C11.426 8.09212 11.054 8.22412 10.782 8.48812C10.518 8.75212 10.386 9.13212 10.386 9.62812V13.6001C10.386 14.0961 10.518 14.4801 10.782 14.7521C11.054 15.0161 11.426 15.1481 11.898 15.1481C12.37 15.1481 12.734 15.0161 12.99 14.7521C13.254 14.4801 13.386 14.0961 13.386 13.6001H14.466C14.466 14.3761 14.234 14.9921 13.77 15.4481C13.306 15.8961 12.682 16.1201 11.898 16.1201Z" fill="var(--color-text)" id="icon-512-text"></path></svg><span>constructor</span></a>
+</div></section>
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading">Properties</h3>
+<div class="tsd-index-list"><a href="V1.AccountRepository.html#config" class="tsd-index-link tsd-kind-property tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="#FF984D" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12" id="icon-1024-path"></rect><path d="M9.354 16V7.24H12.174C12.99 7.24 13.638 7.476 14.118 7.948C14.606 8.412 14.85 9.036 14.85 9.82C14.85 10.604 14.606 11.232 14.118 11.704C13.638 12.168 12.99 12.4 12.174 12.4H10.434V16H9.354ZM10.434 11.428H12.174C12.646 11.428 13.022 11.284 13.302 10.996C13.59 10.7 13.734 10.308 13.734 9.82C13.734 9.324 13.59 8.932 13.302 8.644C13.022 8.356 12.646 8.212 12.174 8.212H10.434V11.428Z" fill="var(--color-text)" id="icon-1024-text"></path></svg><span>config</span></a>
+<a href="V1.AccountRepository.html#getFollowersIterable" class="tsd-index-link tsd-kind-property tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>get<wbr/>Followers<wbr/>Iterable</span></a>
+<a href="V1.AccountRepository.html#getFollowingIterable" class="tsd-index-link tsd-kind-property tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>get<wbr/>Following<wbr/>Iterable</span></a>
+<a href="V1.AccountRepository.html#getStatusesIterable" class="tsd-index-link tsd-kind-property tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>get<wbr/>Statuses<wbr/>Iterable</span></a>
+</div></section>
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading">Methods</h3>
+<div class="tsd-index-list"><a href="V1.AccountRepository.html#block" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="#FF4DB8" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12" id="icon-2048-path"></rect><path d="M9.162 16V7.24H10.578L11.514 10.072C11.602 10.328 11.674 10.584 11.73 10.84C11.794 11.088 11.842 11.28 11.874 11.416C11.906 11.28 11.954 11.088 12.018 10.84C12.082 10.584 12.154 10.324 12.234 10.06L13.122 7.24H14.538V16H13.482V12.82C13.482 12.468 13.49 12.068 13.506 11.62C13.53 11.172 13.558 10.716 13.59 10.252C13.622 9.78 13.654 9.332 13.686 8.908C13.726 8.476 13.762 8.1 13.794 7.78L12.366 12.16H11.334L9.894 7.78C9.934 8.092 9.97 8.456 10.002 8.872C10.042 9.28 10.078 9.716 10.11 10.18C10.142 10.636 10.166 11.092 10.182 11.548C10.206 12.004 10.218 12.428 10.218 12.82V16H9.162Z" fill="var(--color-text)" id="icon-2048-text"></path></svg><span>block</span></a>
+<a href="V1.AccountRepository.html#create" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>create</span></a>
+<a href="V1.AccountRepository.html#createNote" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>create<wbr/>Note</span></a>
+<a href="V1.AccountRepository.html#fetch" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>fetch</span></a>
+<a href="V1.AccountRepository.html#fetchFamiliarFollowers" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>fetch<wbr/>Familiar<wbr/>Followers</span></a>
+<a href="V1.AccountRepository.html#fetchFeaturedTags" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>fetch<wbr/>Featured<wbr/>Tags</span></a>
+<a href="V1.AccountRepository.html#fetchFollowers" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>fetch<wbr/>Followers</span></a>
+<a href="V1.AccountRepository.html#fetchFollowing" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>fetch<wbr/>Following</span></a>
+<a href="V1.AccountRepository.html#fetchIdentityProofs" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>fetch<wbr/>Identity<wbr/>Proofs</span></a>
+<a href="V1.AccountRepository.html#fetchLists" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>fetch<wbr/>Lists</span></a>
+<a href="V1.AccountRepository.html#fetchRelationships" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>fetch<wbr/>Relationships</span></a>
+<a href="V1.AccountRepository.html#fetchStatuses" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>fetch<wbr/>Statuses</span></a>
+<a href="V1.AccountRepository.html#follow" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>follow</span></a>
+<a href="V1.AccountRepository.html#iterateFollowers" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>iterate<wbr/>Followers</span></a>
+<a href="V1.AccountRepository.html#iterateFollowing" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>iterate<wbr/>Following</span></a>
+<a href="V1.AccountRepository.html#iterateStatuses" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>iterate<wbr/>Statuses</span></a>
+<a href="V1.AccountRepository.html#lookup" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>lookup</span></a>
+<a href="V1.AccountRepository.html#mute" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>mute</span></a>
+<a href="V1.AccountRepository.html#pin" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>pin</span></a>
+<a href="V1.AccountRepository.html#removeFromFollowers" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>remove<wbr/>From<wbr/>Followers</span></a>
+<a href="V1.AccountRepository.html#search" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>search</span></a>
+<a href="V1.AccountRepository.html#unblock" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>unblock</span></a>
+<a href="V1.AccountRepository.html#unfollow" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>unfollow</span></a>
+<a href="V1.AccountRepository.html#unmute" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>unmute</span></a>
+<a href="V1.AccountRepository.html#unpin" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>unpin</span></a>
+<a href="V1.AccountRepository.html#updateCredentials" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>update<wbr/>Credentials</span></a>
+<a href="V1.AccountRepository.html#verifyCredentials" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>verify<wbr/>Credentials</span></a>
+</div></section></div></details></section></section>
+<section class="tsd-panel-group tsd-member-group">
+<h2>Constructors</h2>
+<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class"><a id="constructor" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>constructor</span><a href="#constructor" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" id="icon-anchor-a"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" id="icon-anchor-b"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" id="icon-anchor-c"></path></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="constructor.new_AccountRepository">new <wbr/>Account<wbr/>Repository<span class="tsd-signature-symbol">(</span>http<span class="tsd-signature-symbol">: </span><a href="../interfaces/Http.html" class="tsd-signature-type" data-tsd-kind="Interface">Http</a>, config<span class="tsd-signature-symbol">: </span><a href="MastoConfig.html" class="tsd-signature-type" data-tsd-kind="Class">MastoConfig</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/V1.html" class="tsd-signature-type" data-tsd-kind="Namespace">V1</a><span class="tsd-signature-symbol">.</span><a href="V1.AccountRepository.html" class="tsd-signature-type" data-tsd-kind="Class">AccountRepository</a><a href="#constructor.new_AccountRepository" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>http: <a href="../interfaces/Http.html" class="tsd-signature-type" data-tsd-kind="Interface">Http</a></h5></li>
+<li>
+<h5>config: <a href="MastoConfig.html" class="tsd-signature-type" data-tsd-kind="Class">MastoConfig</a></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="../modules/V1.html" class="tsd-signature-type" data-tsd-kind="Namespace">V1</a><span class="tsd-signature-symbol">.</span><a href="V1.AccountRepository.html" class="tsd-signature-type" data-tsd-kind="Class">AccountRepository</a></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L99">src/api/v1/repositories/account-repository.ts:99</a></li></ul></aside></li></ul></section></section>
+<section class="tsd-panel-group tsd-member-group">
+<h2>Properties</h2>
+<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="config" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagReadonly">Readonly</code> <span>config</span><a href="#config" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<div class="tsd-signature">config<span class="tsd-signature-symbol">:</span> <a href="MastoConfig.html" class="tsd-signature-type" data-tsd-kind="Class">MastoConfig</a></div><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L99">src/api/v1/repositories/account-repository.ts:99</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="getFollowersIterable" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>get<wbr/>Followers<wbr/>Iterable</span><a href="#getFollowersIterable" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<div class="tsd-signature">get<wbr/>Followers<wbr/>Iterable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">: </span><a href="../interfaces/DefaultPaginationParams.html" class="tsd-signature-type" data-tsd-kind="Interface">DefaultPaginationParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="Paginator.html" class="tsd-signature-type" data-tsd-kind="Class">Paginator</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/DefaultPaginationParams.html" class="tsd-signature-type" data-tsd-kind="Interface">DefaultPaginationParams</a><span class="tsd-signature-symbol">, </span><a href="../modules/V1.html" class="tsd-signature-type" data-tsd-kind="Namespace">V1</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/V1.Account.html" class="tsd-signature-type" data-tsd-kind="Interface">Account</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> = ...</span></div>
+<div class="tsd-type-declaration">
+<h4>Type declaration</h4>
+<ul class="tsd-parameters">
+<li class="tsd-parameter-signature">
+<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-class">
+<li class="tsd-signature" id="__type.__type-1"><span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">: </span><a href="../interfaces/DefaultPaginationParams.html" class="tsd-signature-type" data-tsd-kind="Interface">DefaultPaginationParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Paginator.html" class="tsd-signature-type" data-tsd-kind="Class">Paginator</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/DefaultPaginationParams.html" class="tsd-signature-type" data-tsd-kind="Interface">DefaultPaginationParams</a><span class="tsd-signature-symbol">, </span><a href="../modules/V1.html" class="tsd-signature-type" data-tsd-kind="Namespace">V1</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/V1.Account.html" class="tsd-signature-type" data-tsd-kind="Interface">Account</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography">
+<h3>Deprecated</h3><p>Use <code>iterateFollowers</code></p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>id: <span class="tsd-signature-type">string</span></h5></li>
+<li>
+<h5>params: <a href="../interfaces/DefaultPaginationParams.html" class="tsd-signature-type" data-tsd-kind="Interface">DefaultPaginationParams</a></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="Paginator.html" class="tsd-signature-type" data-tsd-kind="Class">Paginator</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/DefaultPaginationParams.html" class="tsd-signature-type" data-tsd-kind="Interface">DefaultPaginationParams</a><span class="tsd-signature-symbol">, </span><a href="../modules/V1.html" class="tsd-signature-type" data-tsd-kind="Namespace">V1</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/V1.Account.html" class="tsd-signature-type" data-tsd-kind="Interface">Account</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4></li></ul></li></ul></div><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L126">src/api/v1/repositories/account-repository.ts:126</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="getFollowingIterable" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>get<wbr/>Following<wbr/>Iterable</span><a href="#getFollowingIterable" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<div class="tsd-signature">get<wbr/>Following<wbr/>Iterable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">: </span><a href="../interfaces/DefaultPaginationParams.html" class="tsd-signature-type" data-tsd-kind="Interface">DefaultPaginationParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="Paginator.html" class="tsd-signature-type" data-tsd-kind="Class">Paginator</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/DefaultPaginationParams.html" class="tsd-signature-type" data-tsd-kind="Interface">DefaultPaginationParams</a><span class="tsd-signature-symbol">, </span><a href="../modules/V1.html" class="tsd-signature-type" data-tsd-kind="Namespace">V1</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/V1.Account.html" class="tsd-signature-type" data-tsd-kind="Interface">Account</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> = ...</span></div>
+<div class="tsd-type-declaration">
+<h4>Type declaration</h4>
+<ul class="tsd-parameters">
+<li class="tsd-parameter-signature">
+<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-class">
+<li class="tsd-signature" id="__type-2.__type-3"><span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">: </span><a href="../interfaces/DefaultPaginationParams.html" class="tsd-signature-type" data-tsd-kind="Interface">DefaultPaginationParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Paginator.html" class="tsd-signature-type" data-tsd-kind="Class">Paginator</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/DefaultPaginationParams.html" class="tsd-signature-type" data-tsd-kind="Interface">DefaultPaginationParams</a><span class="tsd-signature-symbol">, </span><a href="../modules/V1.html" class="tsd-signature-type" data-tsd-kind="Namespace">V1</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/V1.Account.html" class="tsd-signature-type" data-tsd-kind="Interface">Account</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography">
+<h3>Deprecated</h3><p>Use <code>iterateFollowing</code></p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>id: <span class="tsd-signature-type">string</span></h5></li>
+<li>
+<h5>params: <a href="../interfaces/DefaultPaginationParams.html" class="tsd-signature-type" data-tsd-kind="Interface">DefaultPaginationParams</a></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="Paginator.html" class="tsd-signature-type" data-tsd-kind="Class">Paginator</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/DefaultPaginationParams.html" class="tsd-signature-type" data-tsd-kind="Interface">DefaultPaginationParams</a><span class="tsd-signature-symbol">, </span><a href="../modules/V1.html" class="tsd-signature-type" data-tsd-kind="Namespace">V1</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/V1.Account.html" class="tsd-signature-type" data-tsd-kind="Interface">Account</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4></li></ul></li></ul></div><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L128">src/api/v1/repositories/account-repository.ts:128</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="getStatusesIterable" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>get<wbr/>Statuses<wbr/>Iterable</span><a href="#getStatusesIterable" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<div class="tsd-signature">get<wbr/>Statuses<wbr/>Iterable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">: </span><a href="../interfaces/V1.FetchAccountStatusesParams.html" class="tsd-signature-type" data-tsd-kind="Interface">FetchAccountStatusesParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="Paginator.html" class="tsd-signature-type" data-tsd-kind="Class">Paginator</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.FetchAccountStatusesParams.html" class="tsd-signature-type" data-tsd-kind="Interface">FetchAccountStatusesParams</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/V1.Status.html" class="tsd-signature-type" data-tsd-kind="Interface">Status</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> = ...</span></div>
+<div class="tsd-type-declaration">
+<h4>Type declaration</h4>
+<ul class="tsd-parameters">
+<li class="tsd-parameter-signature">
+<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-class">
+<li class="tsd-signature" id="__type-4.__type-5"><span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">: </span><a href="../interfaces/V1.FetchAccountStatusesParams.html" class="tsd-signature-type" data-tsd-kind="Interface">FetchAccountStatusesParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Paginator.html" class="tsd-signature-type" data-tsd-kind="Class">Paginator</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.FetchAccountStatusesParams.html" class="tsd-signature-type" data-tsd-kind="Interface">FetchAccountStatusesParams</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/V1.Status.html" class="tsd-signature-type" data-tsd-kind="Interface">Status</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography">
+<h3>Deprecated</h3><p>Use <code>iterateStatuses</code></p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>id: <span class="tsd-signature-type">string</span></h5></li>
+<li>
+<h5>params: <a href="../interfaces/V1.FetchAccountStatusesParams.html" class="tsd-signature-type" data-tsd-kind="Interface">FetchAccountStatusesParams</a></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="Paginator.html" class="tsd-signature-type" data-tsd-kind="Class">Paginator</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.FetchAccountStatusesParams.html" class="tsd-signature-type" data-tsd-kind="Interface">FetchAccountStatusesParams</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/V1.Status.html" class="tsd-signature-type" data-tsd-kind="Interface">Status</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4></li></ul></li></ul></div><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L130">src/api/v1/repositories/account-repository.ts:130</a></li></ul></aside></section></section>
+<section class="tsd-panel-group tsd-member-group">
+<h2>Methods</h2>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="block" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>block</span><a href="#block" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="block.block-1">block<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.Relationship.html" class="tsd-signature-type" data-tsd-kind="Interface">Relationship</a><span class="tsd-signature-symbol">&gt;</span><a href="#block.block-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Block the given account. Clients should filter statuses from this account if received (e.g. due to a boost in the Home timeline)</p>
+
+<h3>Returns</h3><p>Relationship</p>
+
+<h3>See</h3><p><a href="https://docs.joinmastodon.org/methods/accounts/">https://docs.joinmastodon.org/methods/accounts/</a></p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>id: <span class="tsd-signature-type">string</span></h5>
+<div class="tsd-comment tsd-typography"><p>The id of the account in the database</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.Relationship.html" class="tsd-signature-type" data-tsd-kind="Interface">Relationship</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L278">src/api/v1/repositories/account-repository.ts:278</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="create" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>create</span><a href="#create" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="create.create-1">create<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="../interfaces/V1.CreateAccountParams.html" class="tsd-signature-type" data-tsd-kind="Interface">CreateAccountParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/V1.html" class="tsd-signature-type" data-tsd-kind="Namespace">V1</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/V1.Account.html" class="tsd-signature-type" data-tsd-kind="Interface">Account</a><span class="tsd-signature-symbol">&gt;</span><a href="#create.create-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Creates a user and account records. Returns an account access token
+for the app that initiated the request. The app should save this token for later,
+and should wait for the user to confirm their account by clicking a link in their email inbox.</p>
+
+<h3>Returns</h3><p>Token</p>
+
+<h3>See</h3><p><a href="https://docs.joinmastodon.org/methods/accounts/">https://docs.joinmastodon.org/methods/accounts/</a></p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>params: <a href="../interfaces/V1.CreateAccountParams.html" class="tsd-signature-type" data-tsd-kind="Interface">CreateAccountParams</a></h5>
+<div class="tsd-comment tsd-typography"><p>Parameters</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/V1.html" class="tsd-signature-type" data-tsd-kind="Namespace">V1</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/V1.Account.html" class="tsd-signature-type" data-tsd-kind="Interface">Account</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<p>Implementation of Repository.create</p>
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L153">src/api/v1/repositories/account-repository.ts:153</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="createNote" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>create<wbr/>Note</span><a href="#createNote" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="createNote.createNote-1">create<wbr/>Note<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">: </span><a href="../interfaces/V1.CreateAccountNoteParams.html" class="tsd-signature-type" data-tsd-kind="Interface">CreateAccountNoteParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.Relationship.html" class="tsd-signature-type" data-tsd-kind="Interface">Relationship</a><span class="tsd-signature-symbol">&gt;</span><a href="#createNote.createNote-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Add personal note to the account</p>
+
+<h3>Returns</h3><p>Relationship</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>id: <span class="tsd-signature-type">string</span></h5>
+<div class="tsd-comment tsd-typography"><p>ID of the account</p>
+</div></li>
+<li>
+<h5>params: <a href="../interfaces/V1.CreateAccountNoteParams.html" class="tsd-signature-type" data-tsd-kind="Interface">CreateAccountNoteParams</a></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.Relationship.html" class="tsd-signature-type" data-tsd-kind="Interface">Relationship</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L356">src/api/v1/repositories/account-repository.ts:356</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="fetch" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>fetch</span><a href="#fetch" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="fetch.fetch-1">fetch<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/V1.html" class="tsd-signature-type" data-tsd-kind="Namespace">V1</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/V1.Account.html" class="tsd-signature-type" data-tsd-kind="Interface">Account</a><span class="tsd-signature-symbol">&gt;</span><a href="#fetch.fetch-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>View information about a profile.</p>
+
+<h3>Returns</h3><p>Account</p>
+
+<h3>See</h3><p><a href="https://docs.joinmastodon.org/methods/accounts/">https://docs.joinmastodon.org/methods/accounts/</a></p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>id: <span class="tsd-signature-type">string</span></h5>
+<div class="tsd-comment tsd-typography"><p>The id of the account in the database</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/V1.html" class="tsd-signature-type" data-tsd-kind="Namespace">V1</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/V1.Account.html" class="tsd-signature-type" data-tsd-kind="Interface">Account</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<p>Implementation of Repository.fetch</p>
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L140">src/api/v1/repositories/account-repository.ts:140</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="fetchFamiliarFollowers" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>fetch<wbr/>Familiar<wbr/>Followers</span><a href="#fetchFamiliarFollowers" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="fetchFamiliarFollowers.fetchFamiliarFollowers-1">fetch<wbr/>Familiar<wbr/>Followers<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/V1.html" class="tsd-signature-type" data-tsd-kind="Namespace">V1</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/V1.Account.html" class="tsd-signature-type" data-tsd-kind="Interface">Account</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><a href="#fetchFamiliarFollowers.fetchFamiliarFollowers-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>TODO: stub</p>
+
+<h3>Returns</h3><p>Accounts</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/V1.html" class="tsd-signature-type" data-tsd-kind="Namespace">V1</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/V1.Account.html" class="tsd-signature-type" data-tsd-kind="Interface">Account</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L399">src/api/v1/repositories/account-repository.ts:399</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="fetchFeaturedTags" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>fetch<wbr/>Featured<wbr/>Tags</span><a href="#fetchFeaturedTags" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="fetchFeaturedTags.fetchFeaturedTags-1">fetch<wbr/>Featured<wbr/>Tags<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.FeaturedTag.html" class="tsd-signature-type" data-tsd-kind="Interface">FeaturedTag</a><span class="tsd-signature-symbol">&gt;</span><a href="#fetchFeaturedTags.fetchFeaturedTags-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Get featured tag of the account</p>
+
+<h3>Returns</h3><p>FeaturedTags</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>id: <span class="tsd-signature-type">string</span></h5>
+<div class="tsd-comment tsd-typography"><p>ID of the account</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.FeaturedTag.html" class="tsd-signature-type" data-tsd-kind="Interface">FeaturedTag</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L369">src/api/v1/repositories/account-repository.ts:369</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="fetchFollowers" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>fetch<wbr/>Followers</span><a href="#fetchFollowers" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="fetchFollowers.fetchFollowers-1">fetch<wbr/>Followers<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">?: </span><a href="../interfaces/DefaultPaginationParams.html" class="tsd-signature-type" data-tsd-kind="Interface">DefaultPaginationParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">IteratorResult</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/V1.html" class="tsd-signature-type" data-tsd-kind="Namespace">V1</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/V1.Account.html" class="tsd-signature-type" data-tsd-kind="Interface">Account</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><a href="#fetchFollowers.fetchFollowers-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Accounts which follow the given account, if network is not hidden by the account owner.</p>
+
+<h3>Returns</h3><p>Array of Account</p>
+
+<h3>See</h3><p><a href="https://docs.joinmastodon.org/methods/accounts/">https://docs.joinmastodon.org/methods/accounts/</a></p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>id: <span class="tsd-signature-type">string</span></h5>
+<div class="tsd-comment tsd-typography"><p>The id of the account in the database</p>
+</div></li>
+<li>
+<h5>params: <a href="../interfaces/DefaultPaginationParams.html" class="tsd-signature-type" data-tsd-kind="Interface">DefaultPaginationParams</a><span class="tsd-signature-symbol"> = {}</span></h5>
+<div class="tsd-comment tsd-typography"><p>Parameters</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">IteratorResult</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/V1.html" class="tsd-signature-type" data-tsd-kind="Namespace">V1</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/V1.Account.html" class="tsd-signature-type" data-tsd-kind="Interface">Account</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L190">src/api/v1/repositories/account-repository.ts:190</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="fetchFollowing" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>fetch<wbr/>Following</span><a href="#fetchFollowing" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="fetchFollowing.fetchFollowing-1">fetch<wbr/>Following<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">?: </span><a href="../interfaces/DefaultPaginationParams.html" class="tsd-signature-type" data-tsd-kind="Interface">DefaultPaginationParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">IteratorResult</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/V1.html" class="tsd-signature-type" data-tsd-kind="Namespace">V1</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/V1.Account.html" class="tsd-signature-type" data-tsd-kind="Interface">Account</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><a href="#fetchFollowing.fetchFollowing-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Accounts which the given account is following, if network is not hidden by the account owner.</p>
+
+<h3>Returns</h3><p>Array of Account</p>
+
+<h3>See</h3><p><a href="https://docs.joinmastodon.org/methods/accounts/">https://docs.joinmastodon.org/methods/accounts/</a></p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>id: <span class="tsd-signature-type">string</span></h5>
+<div class="tsd-comment tsd-typography"><p>The id of the account in the database</p>
+</div></li>
+<li>
+<h5>params: <a href="../interfaces/DefaultPaginationParams.html" class="tsd-signature-type" data-tsd-kind="Interface">DefaultPaginationParams</a><span class="tsd-signature-symbol"> = {}</span></h5>
+<div class="tsd-comment tsd-typography"><p>Parameters</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">IteratorResult</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/V1.html" class="tsd-signature-type" data-tsd-kind="Namespace">V1</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/V1.Account.html" class="tsd-signature-type" data-tsd-kind="Interface">Account</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L204">src/api/v1/repositories/account-repository.ts:204</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="fetchIdentityProofs" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>fetch<wbr/>Identity<wbr/>Proofs</span><a href="#fetchIdentityProofs" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="fetchIdentityProofs.fetchIdentityProofs-1">fetch<wbr/>Identity<wbr/>Proofs<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.IdentityProof.html" class="tsd-signature-type" data-tsd-kind="Interface">IdentityProof</a><span class="tsd-signature-symbol">&gt;</span><a href="#fetchIdentityProofs.fetchIdentityProofs-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Identity proofs</p>
+
+<h3>Returns</h3><p>Array of IdentityProof</p>
+
+<h3>See</h3><p><a href="https://github.com/tootsuite/mastodon/pull/10297">https://github.com/tootsuite/mastodon/pull/10297</a></p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>id: <span class="tsd-signature-type">string</span></h5>
+<div class="tsd-comment tsd-typography"><p>The id of the account in the database</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.IdentityProof.html" class="tsd-signature-type" data-tsd-kind="Interface">IdentityProof</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L380">src/api/v1/repositories/account-repository.ts:380</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="fetchLists" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>fetch<wbr/>Lists</span><a href="#fetchLists" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="fetchLists.fetchLists-1">fetch<wbr/>Lists<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.List.html" class="tsd-signature-type" data-tsd-kind="Interface">List</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><a href="#fetchLists.fetchLists-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Fetch the list with the given ID. Used for verifying the title of a list.</p>
+
+<h3>Returns</h3><p>Array of List</p>
+
+<h3>See</h3><p><a href="https://docs.joinmastodon.org/methods/timelines/lists/">https://docs.joinmastodon.org/methods/timelines/lists/</a></p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>id: <span class="tsd-signature-type">string</span></h5>
+<div class="tsd-comment tsd-typography"><p>ID of the list in the database</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.List.html" class="tsd-signature-type" data-tsd-kind="Interface">List</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L322">src/api/v1/repositories/account-repository.ts:322</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="fetchRelationships" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>fetch<wbr/>Relationships</span><a href="#fetchRelationships" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="fetchRelationships.fetchRelationships-1">fetch<wbr/>Relationships<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.Relationship.html" class="tsd-signature-type" data-tsd-kind="Interface">Relationship</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><a href="#fetchRelationships.fetchRelationships-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Find out whether a given account is followed, blocked, muted, etc.</p>
+
+<h3>Returns</h3><p>Array of Relationship</p>
+
+<h3>See</h3><p><a href="https://docs.joinmastodon.org/methods/accounts/">https://docs.joinmastodon.org/methods/accounts/</a></p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>id: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+<div class="tsd-comment tsd-typography"><p>Array of account IDs to check</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.Relationship.html" class="tsd-signature-type" data-tsd-kind="Interface">Relationship</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L254">src/api/v1/repositories/account-repository.ts:254</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="fetchStatuses" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>fetch<wbr/>Statuses</span><a href="#fetchStatuses" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="fetchStatuses.fetchStatuses-1">fetch<wbr/>Statuses<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">?: </span><a href="../interfaces/DefaultPaginationParams.html" class="tsd-signature-type" data-tsd-kind="Interface">DefaultPaginationParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">IteratorResult</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.Status.html" class="tsd-signature-type" data-tsd-kind="Interface">Status</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><a href="#fetchStatuses.fetchStatuses-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Statuses posted to the given account.</p>
+
+<h3>Returns</h3><p>Array of Status</p>
+
+<h3>See</h3><p><a href="https://docs.joinmastodon.org/methods/accounts/">https://docs.joinmastodon.org/methods/accounts/</a></p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>id: <span class="tsd-signature-type">string</span></h5>
+<div class="tsd-comment tsd-typography"><p>The id of the account in the database</p>
+</div></li>
+<li>
+<h5>params: <a href="../interfaces/DefaultPaginationParams.html" class="tsd-signature-type" data-tsd-kind="Interface">DefaultPaginationParams</a><span class="tsd-signature-symbol"> = {}</span></h5>
+<div class="tsd-comment tsd-typography"><p>Parameters</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">IteratorResult</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.Status.html" class="tsd-signature-type" data-tsd-kind="Interface">Status</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L218">src/api/v1/repositories/account-repository.ts:218</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="follow" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>follow</span><a href="#follow" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="follow.follow-1">follow<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">?: </span><a href="../interfaces/V1.FollowAccountParams.html" class="tsd-signature-type" data-tsd-kind="Interface">FollowAccountParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.Relationship.html" class="tsd-signature-type" data-tsd-kind="Interface">Relationship</a><span class="tsd-signature-symbol">&gt;</span><a href="#follow.follow-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Follow the given account.</p>
+
+<h3>Returns</h3><p>Relationship</p>
+
+<h3>See</h3><p><a href="https://docs.joinmastodon.org/methods/accounts/">https://docs.joinmastodon.org/methods/accounts/</a></p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>id: <span class="tsd-signature-type">string</span></h5>
+<div class="tsd-comment tsd-typography"><p>The id of the account in the database</p>
+</div></li>
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> params: <a href="../interfaces/V1.FollowAccountParams.html" class="tsd-signature-type" data-tsd-kind="Interface">FollowAccountParams</a></h5>
+<div class="tsd-comment tsd-typography"><p>Parameters</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.Relationship.html" class="tsd-signature-type" data-tsd-kind="Interface">Relationship</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L232">src/api/v1/repositories/account-repository.ts:232</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="iterateFollowers" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>iterate<wbr/>Followers</span><a href="#iterateFollowers" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="iterateFollowers.iterateFollowers-1">iterate<wbr/>Followers<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">: </span><a href="../interfaces/DefaultPaginationParams.html" class="tsd-signature-type" data-tsd-kind="Interface">DefaultPaginationParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Paginator.html" class="tsd-signature-type" data-tsd-kind="Class">Paginator</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/DefaultPaginationParams.html" class="tsd-signature-type" data-tsd-kind="Interface">DefaultPaginationParams</a><span class="tsd-signature-symbol">, </span><a href="../modules/V1.html" class="tsd-signature-type" data-tsd-kind="Namespace">V1</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/V1.Account.html" class="tsd-signature-type" data-tsd-kind="Interface">Account</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><a href="#iterateFollowers.iterateFollowers-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>id: <span class="tsd-signature-type">string</span></h5></li>
+<li>
+<h5>params: <a href="../interfaces/DefaultPaginationParams.html" class="tsd-signature-type" data-tsd-kind="Interface">DefaultPaginationParams</a></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="Paginator.html" class="tsd-signature-type" data-tsd-kind="Class">Paginator</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/DefaultPaginationParams.html" class="tsd-signature-type" data-tsd-kind="Interface">DefaultPaginationParams</a><span class="tsd-signature-symbol">, </span><a href="../modules/V1.html" class="tsd-signature-type" data-tsd-kind="Namespace">V1</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/V1.Account.html" class="tsd-signature-type" data-tsd-kind="Interface">Account</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L101">src/api/v1/repositories/account-repository.ts:101</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="iterateFollowing" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>iterate<wbr/>Following</span><a href="#iterateFollowing" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="iterateFollowing.iterateFollowing-1">iterate<wbr/>Following<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">: </span><a href="../interfaces/DefaultPaginationParams.html" class="tsd-signature-type" data-tsd-kind="Interface">DefaultPaginationParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Paginator.html" class="tsd-signature-type" data-tsd-kind="Class">Paginator</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/DefaultPaginationParams.html" class="tsd-signature-type" data-tsd-kind="Interface">DefaultPaginationParams</a><span class="tsd-signature-symbol">, </span><a href="../modules/V1.html" class="tsd-signature-type" data-tsd-kind="Namespace">V1</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/V1.Account.html" class="tsd-signature-type" data-tsd-kind="Interface">Account</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><a href="#iterateFollowing.iterateFollowing-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>id: <span class="tsd-signature-type">string</span></h5></li>
+<li>
+<h5>params: <a href="../interfaces/DefaultPaginationParams.html" class="tsd-signature-type" data-tsd-kind="Interface">DefaultPaginationParams</a></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="Paginator.html" class="tsd-signature-type" data-tsd-kind="Class">Paginator</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/DefaultPaginationParams.html" class="tsd-signature-type" data-tsd-kind="Interface">DefaultPaginationParams</a><span class="tsd-signature-symbol">, </span><a href="../modules/V1.html" class="tsd-signature-type" data-tsd-kind="Namespace">V1</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/V1.Account.html" class="tsd-signature-type" data-tsd-kind="Interface">Account</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L109">src/api/v1/repositories/account-repository.ts:109</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="iterateStatuses" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>iterate<wbr/>Statuses</span><a href="#iterateStatuses" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="iterateStatuses.iterateStatuses-1">iterate<wbr/>Statuses<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">: </span><a href="../interfaces/V1.FetchAccountStatusesParams.html" class="tsd-signature-type" data-tsd-kind="Interface">FetchAccountStatusesParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Paginator.html" class="tsd-signature-type" data-tsd-kind="Class">Paginator</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.FetchAccountStatusesParams.html" class="tsd-signature-type" data-tsd-kind="Interface">FetchAccountStatusesParams</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/V1.Status.html" class="tsd-signature-type" data-tsd-kind="Interface">Status</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><a href="#iterateStatuses.iterateStatuses-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>id: <span class="tsd-signature-type">string</span></h5></li>
+<li>
+<h5>params: <a href="../interfaces/V1.FetchAccountStatusesParams.html" class="tsd-signature-type" data-tsd-kind="Interface">FetchAccountStatusesParams</a></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="Paginator.html" class="tsd-signature-type" data-tsd-kind="Class">Paginator</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.FetchAccountStatusesParams.html" class="tsd-signature-type" data-tsd-kind="Interface">FetchAccountStatusesParams</a><span class="tsd-signature-symbol">, </span><a href="../interfaces/V1.Status.html" class="tsd-signature-type" data-tsd-kind="Interface">Status</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L117">src/api/v1/repositories/account-repository.ts:117</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="lookup" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>lookup</span><a href="#lookup" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="lookup.lookup-1">lookup<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="../interfaces/V1.LookupAccountParams.html" class="tsd-signature-type" data-tsd-kind="Interface">LookupAccountParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/V1.html" class="tsd-signature-type" data-tsd-kind="Namespace">V1</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/V1.Account.html" class="tsd-signature-type" data-tsd-kind="Interface">Account</a><span class="tsd-signature-symbol">&gt;</span><a href="#lookup.lookup-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>This method allows to quickly convert a username of a known account to an ID that can be used with the REST API, or to check if a username is available for sign-up</p>
+
+<h3>Returns</h3><p>Account</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>params: <a href="../interfaces/V1.LookupAccountParams.html" class="tsd-signature-type" data-tsd-kind="Interface">LookupAccountParams</a></h5>
+<div class="tsd-comment tsd-typography"><p>Parameters</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/V1.html" class="tsd-signature-type" data-tsd-kind="Namespace">V1</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/V1.Account.html" class="tsd-signature-type" data-tsd-kind="Interface">Account</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L390">src/api/v1/repositories/account-repository.ts:390</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="mute" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>mute</span><a href="#mute" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="mute.mute-1">mute<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">?: </span><a href="../interfaces/V1.MuteAccountParams.html" class="tsd-signature-type" data-tsd-kind="Interface">MuteAccountParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.Relationship.html" class="tsd-signature-type" data-tsd-kind="Interface">Relationship</a><span class="tsd-signature-symbol">&gt;</span><a href="#mute.mute-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Mute the given account. Clients should filter statuses and notifications from this account, if received (e.g. due to a boost in the Home timeline).</p>
+
+<h3>Returns</h3><p>Relationship</p>
+
+<h3>See</h3><p><a href="https://docs.joinmastodon.org/methods/accounts/">https://docs.joinmastodon.org/methods/accounts/</a></p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>id: <span class="tsd-signature-type">string</span></h5>
+<div class="tsd-comment tsd-typography"><p>The id of the account in the database</p>
+</div></li>
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> params: <a href="../interfaces/V1.MuteAccountParams.html" class="tsd-signature-type" data-tsd-kind="Interface">MuteAccountParams</a></h5>
+<div class="tsd-comment tsd-typography"><p>Parameter</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.Relationship.html" class="tsd-signature-type" data-tsd-kind="Interface">Relationship</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L334">src/api/v1/repositories/account-repository.ts:334</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="pin" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>pin</span><a href="#pin" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="pin.pin-1">pin<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.Relationship.html" class="tsd-signature-type" data-tsd-kind="Interface">Relationship</a><span class="tsd-signature-symbol">&gt;</span><a href="#pin.pin-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Add the given account to the user&#39;s featured profiles. (Featured profiles are currently shown on the user&#39;s own public profile.)</p>
+
+<h3>Returns</h3><p>Relationship</p>
+
+<h3>See</h3><p><a href="https://docs.joinmastodon.org/methods/accounts/">https://docs.joinmastodon.org/methods/accounts/</a></p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>id: <span class="tsd-signature-type">string</span></h5>
+<div class="tsd-comment tsd-typography"><p>The id of the account in the database</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.Relationship.html" class="tsd-signature-type" data-tsd-kind="Interface">Relationship</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L300">src/api/v1/repositories/account-repository.ts:300</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="removeFromFollowers" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>remove<wbr/>From<wbr/>Followers</span><a href="#removeFromFollowers" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="removeFromFollowers.removeFromFollowers-1">remove<wbr/>From<wbr/>Followers<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><a href="#removeFromFollowers.removeFromFollowers-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography">
+<h3>Returns</h3><p>N/A</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>id: <span class="tsd-signature-type">string</span></h5>
+<div class="tsd-comment tsd-typography"><p>ID of the account</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L408">src/api/v1/repositories/account-repository.ts:408</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="search" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>search</span><a href="#search" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="search.search-1">search<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">?: </span><a href="../interfaces/V1.SearchAccountsParams.html" class="tsd-signature-type" data-tsd-kind="Interface">SearchAccountsParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/V1.html" class="tsd-signature-type" data-tsd-kind="Namespace">V1</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/V1.Account.html" class="tsd-signature-type" data-tsd-kind="Interface">Account</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><a href="#search.search-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Search for matching accounts by username or display name.</p>
+
+<h3>Returns</h3><p>Array of Account</p>
+
+<h3>See</h3><p><a href="https://docs.joinmastodon.org/methods/accounts/">https://docs.joinmastodon.org/methods/accounts/</a></p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> params: <a href="../interfaces/V1.SearchAccountsParams.html" class="tsd-signature-type" data-tsd-kind="Interface">SearchAccountsParams</a></h5>
+<div class="tsd-comment tsd-typography"><p>Parameters</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/V1.html" class="tsd-signature-type" data-tsd-kind="Namespace">V1</a><span class="tsd-signature-symbol">.</span><a href="../interfaces/V1.Account.html" class="tsd-signature-type" data-tsd-kind="Interface">Account</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L267">src/api/v1/repositories/account-repository.ts:267</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="unblock" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>unblock</span><a href="#unblock" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="unblock.unblock-1">unblock<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.Relationship.html" class="tsd-signature-type" data-tsd-kind="Interface">Relationship</a><span class="tsd-signature-symbol">&gt;</span><a href="#unblock.unblock-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Unblock the given account.</p>
+
+<h3>Returns</h3><p>Relationship</p>
+
+<h3>See</h3><p><a href="https://docs.joinmastodon.org/methods/accounts/">https://docs.joinmastodon.org/methods/accounts/</a></p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>id: <span class="tsd-signature-type">string</span></h5>
+<div class="tsd-comment tsd-typography"><p>The id of the account in the database</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.Relationship.html" class="tsd-signature-type" data-tsd-kind="Interface">Relationship</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L289">src/api/v1/repositories/account-repository.ts:289</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="unfollow" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>unfollow</span><a href="#unfollow" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="unfollow.unfollow-1">unfollow<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">?: </span><a href="../interfaces/V1.FollowAccountParams.html" class="tsd-signature-type" data-tsd-kind="Interface">FollowAccountParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.Relationship.html" class="tsd-signature-type" data-tsd-kind="Interface">Relationship</a><span class="tsd-signature-symbol">&gt;</span><a href="#unfollow.unfollow-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Unfollow the given account</p>
+
+<h3>Returns</h3><p>Relationship</p>
+
+<h3>See</h3><p><a href="https://docs.joinmastodon.org/methods/accounts/">https://docs.joinmastodon.org/methods/accounts/</a></p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>id: <span class="tsd-signature-type">string</span></h5>
+<div class="tsd-comment tsd-typography"><p>The id of the account in the database</p>
+</div></li>
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> params: <a href="../interfaces/V1.FollowAccountParams.html" class="tsd-signature-type" data-tsd-kind="Interface">FollowAccountParams</a></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.Relationship.html" class="tsd-signature-type" data-tsd-kind="Interface">Relationship</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L243">src/api/v1/repositories/account-repository.ts:243</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="unmute" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>unmute</span><a href="#unmute" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="unmute.unmute-1">unmute<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.Relationship.html" class="tsd-signature-type" data-tsd-kind="Interface">Relationship</a><span class="tsd-signature-symbol">&gt;</span><a href="#unmute.unmute-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Unmute the given account.</p>
+
+<h3>Returns</h3><p>Relationship</p>
+
+<h3>See</h3><p><a href="https://docs.joinmastodon.org/methods/accounts/">https://docs.joinmastodon.org/methods/accounts/</a></p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>id: <span class="tsd-signature-type">string</span></h5>
+<div class="tsd-comment tsd-typography"><p>The id of the account in the database</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.Relationship.html" class="tsd-signature-type" data-tsd-kind="Interface">Relationship</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L345">src/api/v1/repositories/account-repository.ts:345</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="unpin" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>unpin</span><a href="#unpin" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="unpin.unpin-1">unpin<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.Relationship.html" class="tsd-signature-type" data-tsd-kind="Interface">Relationship</a><span class="tsd-signature-symbol">&gt;</span><a href="#unpin.unpin-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Remove the given account from the user&#39;s featured profiles.</p>
+
+<h3>Returns</h3><p>Relationship</p>
+
+<h3>See</h3><p><a href="https://docs.joinmastodon.org/methods/accounts/">https://docs.joinmastodon.org/methods/accounts/</a></p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>id: <span class="tsd-signature-type">string</span></h5>
+<div class="tsd-comment tsd-typography"><p>The id of the account in the database</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.Relationship.html" class="tsd-signature-type" data-tsd-kind="Interface">Relationship</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L311">src/api/v1/repositories/account-repository.ts:311</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="updateCredentials" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>update<wbr/>Credentials</span><a href="#updateCredentials" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="updateCredentials.updateCredentials-1">update<wbr/>Credentials<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">?: </span><a href="../interfaces/V1.UpdateCredentialsParams.html" class="tsd-signature-type" data-tsd-kind="Interface">UpdateCredentialsParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.AccountCredentials.html" class="tsd-signature-type" data-tsd-kind="Interface">AccountCredentials</a><span class="tsd-signature-symbol">&gt;</span><a href="#updateCredentials.updateCredentials-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Update the user&#39;s display and preferences.</p>
+
+<h3>Returns</h3><p>the user&#39;s own Account with Source</p>
+
+<h3>See</h3><p><a href="https://docs.joinmastodon.org/methods/accounts/">https://docs.joinmastodon.org/methods/accounts/</a></p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> params: <a href="../interfaces/V1.UpdateCredentialsParams.html" class="tsd-signature-type" data-tsd-kind="Interface">UpdateCredentialsParams</a></h5>
+<div class="tsd-comment tsd-typography"><p>Parameters</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.AccountCredentials.html" class="tsd-signature-type" data-tsd-kind="Interface">AccountCredentials</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L174">src/api/v1/repositories/account-repository.ts:174</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="verifyCredentials" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>verify<wbr/>Credentials</span><a href="#verifyCredentials" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="verifyCredentials.verifyCredentials-1">verify<wbr/>Credentials<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.AccountCredentials.html" class="tsd-signature-type" data-tsd-kind="Interface">AccountCredentials</a><span class="tsd-signature-symbol">&gt;</span><a href="#verifyCredentials.verifyCredentials-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Test to make sure that the user token works.</p>
+
+<h3>Returns</h3><p>the user&#39;s own Account with Source</p>
+
+<h3>See</h3><p><a href="https://docs.joinmastodon.org/methods/accounts/">https://docs.joinmastodon.org/methods/accounts/</a></p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/V1.AccountCredentials.html" class="tsd-signature-type" data-tsd-kind="Interface">AccountCredentials</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/neet/masto.js/blob/839c976/src/api/v1/repositories/account-repository.ts#L163">src/api/v1/repositories/account-repository.ts:163</a></li></ul></aside></li></ul></section></section></div>
+<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+<div class="tsd-navigation settings">
+<details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg> Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility">
+<h4 class="uppercase">Member Visibility</h4><form>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></form></div>
+<div class="tsd-theme-toggle">
+<h4 class="uppercase">Theme</h4><select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<nav class="tsd-navigation primary">
+<details class="tsd-index-accordion" open><summary class="tsd-accordion-summary">
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg> Modules</h3></summary>
+<div class="tsd-accordion-details">
+<ul>
+<li class="current"><a href="../modules.html">masto</a>
+<ul>
+<li class="current tsd-kind-namespace"><a href="../modules/V1.html">V1</a>
+<ul>
+<li class="tsd-kind-namespace tsd-parent-kind-namespace"><a href="../modules/V1.Admin.html">Admin</a></li>
+<li class="tsd-kind-namespace tsd-parent-kind-namespace"><a href="../modules/V1.AdminRepositories.html">Admin<wbr/>Repositories</a></li></ul></li>
+<li class="tsd-kind-namespace"><a href="../modules/V2.html">V2</a></li></ul></li></ul></div></details></nav>
+<nav class="tsd-navigation secondary menu-sticky">
+<ul>
+<li class="current tsd-kind-class tsd-parent-kind-namespace"><a href="V1.AccountRepository.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-class)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-128-path"></rect><path d="M11.898 16.1201C11.098 16.1201 10.466 15.8961 10.002 15.4481C9.53803 15.0001 9.30603 14.3841 9.30603 13.6001V9.64012C9.30603 8.85612 9.53803 8.24012 10.002 7.79212C10.466 7.34412 11.098 7.12012 11.898 7.12012C12.682 7.12012 13.306 7.34812 13.77 7.80412C14.234 8.25212 14.466 8.86412 14.466 9.64012H13.386C13.386 9.14412 13.254 8.76412 12.99 8.50012C12.734 8.22812 12.37 8.09212 11.898 8.09212C11.426 8.09212 11.054 8.22412 10.782 8.48812C10.518 8.75212 10.386 9.13212 10.386 9.62812V13.6001C10.386 14.0961 10.518 14.4801 10.782 14.7521C11.054 15.0161 11.426 15.1481 11.898 15.1481C12.37 15.1481 12.734 15.0161 12.99 14.7521C13.254 14.4801 13.386 14.0961 13.386 13.6001H14.466C14.466 14.3761 14.234 14.9921 13.77 15.4481C13.306 15.8961 12.682 16.1201 11.898 16.1201Z" fill="var(--color-text)" id="icon-128-text"></path></svg><span>Account<wbr/>Repository</span></a>
+<ul>
+<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="V1.AccountRepository.html#constructor" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-512-path"></use><use href="#icon-512-text"></use></svg>constructor</a></li>
+<li class="tsd-kind-property tsd-parent-kind-class"><a href="V1.AccountRepository.html#config" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg>config</a></li>
+<li class="tsd-kind-property tsd-parent-kind-class"><a href="V1.AccountRepository.html#getFollowersIterable" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg>get<wbr/>Followers<wbr/>Iterable</a></li>
+<li class="tsd-kind-property tsd-parent-kind-class"><a href="V1.AccountRepository.html#getFollowingIterable" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg>get<wbr/>Following<wbr/>Iterable</a></li>
+<li class="tsd-kind-property tsd-parent-kind-class"><a href="V1.AccountRepository.html#getStatusesIterable" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg>get<wbr/>Statuses<wbr/>Iterable</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="V1.AccountRepository.html#block" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>block</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="V1.AccountRepository.html#create" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>create</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="V1.AccountRepository.html#createNote" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>create<wbr/>Note</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="V1.AccountRepository.html#fetch" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>fetch</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="V1.AccountRepository.html#fetchFamiliarFollowers" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>fetch<wbr/>Familiar<wbr/>Followers</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="V1.AccountRepository.html#fetchFeaturedTags" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>fetch<wbr/>Featured<wbr/>Tags</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="V1.AccountRepository.html#fetchFollowers" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>fetch<wbr/>Followers</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="V1.AccountRepository.html#fetchFollowing" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>fetch<wbr/>Following</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="V1.AccountRepository.html#fetchIdentityProofs" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>fetch<wbr/>Identity<wbr/>Proofs</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="V1.AccountRepository.html#fetchLists" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>fetch<wbr/>Lists</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="V1.AccountRepository.html#fetchRelationships" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>fetch<wbr/>Relationships</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="V1.AccountRepository.html#fetchStatuses" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>fetch<wbr/>Statuses</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="V1.AccountRepository.html#follow" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>follow</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="V1.AccountRepository.html#iterateFollowers" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>iterate<wbr/>Followers</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="V1.AccountRepository.html#iterateFollowing" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>iterate<wbr/>Following</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="V1.AccountRepository.html#iterateStatuses" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>iterate<wbr/>Statuses</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="V1.AccountRepository.html#lookup" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>lookup</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="V1.AccountRepository.html#mute" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>mute</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="V1.AccountRepository.html#pin" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>pin</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="V1.AccountRepository.html#removeFromFollowers" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>remove<wbr/>From<wbr/>Followers</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="V1.AccountRepository.html#search" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>search</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="V1.AccountRepository.html#unblock" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>unblock</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="V1.AccountRepository.html#unfollow" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>unfollow</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="V1.AccountRepository.html#unmute" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>unmute</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="V1.AccountRepository.html#unpin" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>unpin</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="V1.AccountRepository.html#updateCredentials" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>update<wbr/>Credentials</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="V1.AccountRepository.html#verifyCredentials" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>verify<wbr/>Credentials</a></li></ul></li></ul></nav></div></div>
+<div class="container tsd-generator">
+<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div>
+<div class="overlay"></div><script src="../assets/main.js"></script></body></html>
