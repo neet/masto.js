@@ -6,17 +6,17 @@ export interface DomainBlock {
   /** The domain of the domain block in the database. */
   domain: string;
   /** The create date of the domain block in the database. */
-  created_at: string;
+  createdAt: string;
   /** The date of the application that created this account. */
   severity: SeverityType;
   /** The reject media of the domain. */
-  reject_media: boolean;
+  rejectMedia: boolean;
   /** The reject report of the domain. */
-  reject_reposts: boolean;
+  rejectReposts: boolean;
   /** The private comment of the domain. */
-  private_comment?: null;
+  privateComment?: null;
   /** The public comment of the domain. */
-  public_comment?: null;
+  publicComment?: null;
   /** The obfuscate of the domain block. */
   obfuscate: boolean;
 }
