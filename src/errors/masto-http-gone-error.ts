@@ -11,8 +11,3 @@ export class MastoHttpGoneError extends MastoHttpError {
     super(message, 410, props);
   }
 }
-
-/**
- * @deprecated Will be removed in v5
- */
-export const MastoGoneError = MastoHttpGoneError;

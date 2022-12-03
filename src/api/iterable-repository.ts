@@ -10,9 +10,6 @@ export abstract class IterableRepository<
 {
   abstract iterate(params?: RMany): AsyncIterableIterator<T[]>;
 
-  /** @deprecated Use `iterate` instead */
-  getIterator = this.iterate.bind(this);
-
   fetchMany(params?: RMany): Promise<IteratorResult<T[]>> {
     return this.iterate(params).next();
   }

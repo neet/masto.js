@@ -28,9 +28,6 @@ export class ListRepository
     return new Paginator(this.http, `/api/v1/lists/${id}/accounts`, params);
   }
 
-  /** @deprecated Use `iterateAccounts` instead */
-  getAccountIterator = this.iterateAccounts.bind(this);
-
   /**
    * Fetch the list with the given ID. Used for verifying the title of a list.
    * @param id ID of the list in the database

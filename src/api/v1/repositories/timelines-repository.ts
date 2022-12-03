@@ -128,23 +128,4 @@ export class TimelinesRepository {
   fetchDirect(params?: FetchTimelineParams): Promise<IteratorResult<Status[]>> {
     return this.iterateDirect(params).next();
   }
-
-  // ====
-
-  /** @deprecated Use `iterateHashtag` instead. */
-  getTagIterable = this.iterateHashtag.bind(this);
-  /** @deprecated Use `iterateList` instead. */
-  getList = this.iterateList.bind(this);
-  /** @deprecated Use `iterateDirect` instead. */
-  getDirect = this.iterateDirect.bind(this);
-  /** @deprecated Use `iterateHome` instead` */
-  getHomeIterable = this.iterateHome.bind(this);
-  /** @deprecated Use `iteratePublic` instead` */
-  getPublicIterable = this.iteratePublic.bind(this);
-  /** @deprecated Use `iterateHashtag` instead` */
-  getHashtagIterable = this.iterateHashtag.bind(this);
-  /** @deprecated Use `iterateList` instead` */
-  getListIterable = this.iterateList.bind(this);
-  /** @deprecated Use `iterateDirect` instead` */
-  getDirectIterable = this.iterateDirect.bind(this);
 }
