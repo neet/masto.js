@@ -1,14 +1,14 @@
 import type { MastoConfig } from '../../config';
 import { version } from '../../decorators';
 import type { Admin } from '../../entities';
-import type { DomainBlock } from '../../entities/admin/domain-blocks';
+import type { SeverityType } from '../../entities/admin/domain-block';
 import type { Http } from '../../http';
 
 export interface AdminBlockDomainParams {
   /** The domain to block federation required*/
   readonly domain: string;
   /** Whether to apply a silence, suspend, or noop to the domain?*/
-  readonly severity?: DomainBlock;
+  readonly severity?: SeverityType;
   /** Whether media attachments should be rejected*/
   readonly reject_media?: boolean;
   /** Whether reports from this domain should be rejected*/
@@ -41,7 +41,7 @@ export class DomainBlocksRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '4.0.0' })
-  fetchAll(params?: AllBlockedDomain): Promise<Admin.DomainBlocks[]> {
+  fetchAll(params?: AllBlockedDomain): Promise<Admin.DomainBlock[]> {
     return this.http.get('/api/v1/admin/domain_blocks', params);
   }
 
@@ -52,7 +52,7 @@ export class DomainBlocksRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '4.0.0' })
-  fetch(id: string): Promise<Admin.DomainBlocks> {
+  fetch(id: string): Promise<Admin.DomainBlock> {
     return this.http.get(`/api/v1/admin/domain_blocks/${id}`);
   }
 
@@ -63,7 +63,7 @@ export class DomainBlocksRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '4.0.0' })
-  block(params: AdminBlockDomainParams): Promise<Admin.DomainBlocks> {
+  block(params: AdminBlockDomainParams): Promise<Admin.DomainBlock> {
     return this.http.post('/api/v1/admin/domain_blocks', params);
   }
 
@@ -78,7 +78,7 @@ export class DomainBlocksRepository {
   update(
     id: string,
     params?: AdminDomainBlockUpdate,
-  ): Promise<Admin.DomainBlocks> {
+  ): Promise<Admin.DomainBlock> {
     return this.http.put(`/api/v1/admin/domain_blocks/${id}`, params);
   }
 
