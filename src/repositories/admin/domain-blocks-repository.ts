@@ -22,7 +22,7 @@ export interface AdminBlockDomainParams {
 }
 
 export type AllBlockedDomain = {
-  limit: number | 100;
+  limit: number;
 };
 
 export type AdminDomainBlockUpdate = Omit<AdminBlockDomainParams, 'domain'>;
@@ -47,7 +47,7 @@ export class DomainBlocksRepository {
 
   /**
    * Show information about a single blocked domain.
-   * @param id ID of the account
+   * @param id ID of the domain
    * @return DomainBlocks
    * @see https://docs.joinmastodon.org/methods/admin/
    */
