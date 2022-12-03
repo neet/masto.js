@@ -9,13 +9,13 @@ const main = async () => {
   });
 
   // Upload the image
-  const attachment = await masto.mediaAttachments.create({
+  const attachment = await masto.v2.mediaAttachments.create({
     file: fs.createReadStream('../some_image.png'),
     description: 'Some image',
   });
 
   // Publish!
-  const status = await masto.statuses.create({
+  const status = await masto.v1.statuses.create({
     status: 'Toot from TypeScript',
     visibility: 'direct',
     mediaIds: [attachment.id],

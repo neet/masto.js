@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 
 import type { MastoClient } from '../src/clients';
 import { login } from '../test-utils/login';
@@ -12,7 +12,7 @@ describe('account', () => {
   });
 
   it('creates a media attachment', async () => {
-    const media = await client.mediaAttachments.create({
+    const media = await client.v1.mediaAttachments.create({
       file: fs.createReadStream(path.join(__dirname, './image.png')),
     });
 

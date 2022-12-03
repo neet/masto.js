@@ -6,7 +6,7 @@ const main = async () => {
     accessToken: 'YOUR TOKEN',
   });
 
-  await masto.statuses.create({
+  await masto.v1.statuses.create({
     status: 'Toot from TypeScript',
     visibility: 'direct',
   });
