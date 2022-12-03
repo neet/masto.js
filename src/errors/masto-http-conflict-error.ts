@@ -11,8 +11,3 @@ export class MastoHttpConflictError extends MastoHttpError {
     super(message, 409, props);
   }
 }
-
-/**
- * @deprecated Will be removed in v5
- */
-export const MastoConflictError = MastoHttpConflictError;

@@ -11,8 +11,3 @@ export class MastoHttpNotFoundError extends MastoHttpError {
     super(message, 404, props);
   }
 }
-
-/**
- * @deprecated Will be removed in v5
- */
-export const MastoNotFoundError = MastoHttpNotFoundError;

@@ -27,8 +27,3 @@ export class MastoHttpRateLimitError extends MastoHttpError {
     this.reset = props?.reset;
   }
 }
-
-/**
- * @deprecated Will be removed in v5
- */
-export const MastoRateLimitError = MastoHttpRateLimitError;

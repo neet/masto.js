@@ -11,8 +11,3 @@ export class MastoHttpForbiddenError extends MastoHttpError {
     super(message, 403, props);
   }
 }
-
-/**
- * @deprecated Will be removed in v5
- */
-export const MastoForbiddenError = MastoHttpForbiddenError;

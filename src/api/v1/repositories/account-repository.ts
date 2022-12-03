@@ -126,15 +126,6 @@ export class AccountRepository
     return new Paginator(this.http, `/api/v1/accounts/${id}/statuses`, params);
   }
 
-  /** @deprecated Use `iterateFollowers` */
-  getFollowersIterable = this.iterateFollowers.bind(this);
-  /** @deprecated Use `iterateFollowing` */
-  getFollowingIterable = this.iterateFollowing.bind(this);
-  /** @deprecated Use `iterateStatuses` */
-  getStatusesIterable = this.iterateStatuses.bind(this);
-
-  // ====
-
   /**
    * View information about a profile.
    * @param id The id of the account in the database

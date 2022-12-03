@@ -11,8 +11,3 @@ export class MastoHttpUnprocessableEntityError extends MastoHttpError {
     super(message, 422, props);
   }
 }
-
-/**
- * @deprecated Will be removed in v5
- */
-export const MastoUnprocessableEntityError = MastoHttpUnprocessableEntityError;

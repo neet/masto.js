@@ -11,8 +11,3 @@ export class MastoHttpUnauthorizedError extends MastoHttpError {
     super(message, 401, props);
   }
 }
-
-/**
- * @deprecated Will be removed in v5
- */
-export const MastoUnauthorizedError = MastoHttpUnauthorizedError;
