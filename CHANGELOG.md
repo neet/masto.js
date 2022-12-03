@@ -1,3 +1,10 @@
+## [4.7.4](https://github.com/neet/masto.js/compare/v4.7.3...v4.7.4) (2022-12-03)
+
+
+### Bug Fixes
+
+* Fix the type of Filter.wholeWorld to boolean ([#726](https://github.com/neet/masto.js/issues/726)) ([525f4e5](https://github.com/neet/masto.js/commit/525f4e5eee0c0c7e4ee84a88ede6b6dc76759ddb))
+
 ## [4.7.3](https://github.com/neet/masto.js/compare/v4.7.2...v4.7.3) (2022-12-02)
 
 

@@ -4,6 +4,7 @@ import type {
   Attachment,
   Card,
   Emoji,
+  FilterResult,
   Mention,
   Poll,
   Tag,
@@ -50,6 +51,8 @@ export interface Status {
   reblogsCount: number;
   /** How many favourites this status has received. */
   favouritesCount: number;
+  /** If the current token has an authorized user: The filter and keywords that matched this status. */
+  filtered?: FilterResult[];
   /** How many replies this status has received. */
   repliesCount: number;
 
