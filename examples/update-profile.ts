@@ -8,7 +8,7 @@ const main = async () => {
     accessToken: 'YOUR TOKEN',
   });
 
-  const newProfile = await masto.accounts.updateCredentials({
+  const newProfile = await masto.v1.accounts.updateCredentials({
     displayName: 'Fluffy elephant friend',
     note: 'Hi fediverse!',
     avatar: fs.createReadStream('../some_image.png'),

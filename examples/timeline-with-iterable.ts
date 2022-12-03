@@ -5,7 +5,7 @@ const main = async () => {
     url: 'https://example.com',
   });
 
-  const result = await masto.timelines.fetchPublic({
+  const result = await masto.v1.timelines.fetchPublic({
     limit: 30,
   });
 
@@ -15,9 +15,9 @@ const main = async () => {
   console.log(result.value);
 
   // You can also use `for-await-of` syntax to iterate over the timeline
-  for await (const statuses of masto.timelines.iteratePublic()) {
+  for await (const statuses of masto.v1.timelines.iteratePublic()) {
     for (const status of statuses) {
-      masto.statuses.favourite(status.id);
+      masto.v1.statuses.favourite(status.id);
     }
   }
 };

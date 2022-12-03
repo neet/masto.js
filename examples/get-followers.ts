@@ -9,9 +9,9 @@ const main = async () => {
   });
 
   // Fetch your own account
-  const me = await masto.accounts.verifyCredentials();
+  const me = await masto.v1.accounts.verifyCredentials();
 
-  const { value: followers, done } = await masto.accounts.fetchFollowers(
+  const { value: followers, done } = await masto.v1.accounts.fetchFollowers(
     me.id,
     { limit: 60, minId: '123123' },
   );

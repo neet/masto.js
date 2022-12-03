@@ -1,4 +1,4 @@
-import type { MastoClient, Notification, Status } from 'masto';
+import type { MastoClient, V1 } from 'masto';
 import { login } from 'masto';
 
 class MyBot {
@@ -17,19 +17,19 @@ class MyBot {
   }
 
   async subscribe() {
-    const timeline = await this.masto.stream.streamUser();
+    const timeline = await this.masto.v1.stream.streamUser();
 
     // Add handlers
     timeline.on('update', this.handleUpdate);
     timeline.on('notification', this.handleNotification);
   }
 
-  private handleUpdate = (status: Status) => {
+  private handleUpdate = (status: V1.Status) => {
     const { content, account } = status;
     console.log(`${account.username} said ${content}`);
   };
 
-  private handleNotification = async (notification: Notification) => {
+  private handleNotification = async (notification: V1.Notification) => {
     // When your status got favourited, log
     if (notification.type === 'favourite') {
       console.log(`${notification.account.username} favourited your status!`);
@@ -37,7 +37,7 @@ class MyBot {
 
     // When you got a mention, reply
     if (notification.type === 'mention' && notification.status) {
-      await this.masto.statuses.create({
+      await this.masto.v1.statuses.create({
         status: 'I received your mention!',
         inReplyToId: notification.status.id,
       });
@@ -45,7 +45,7 @@ class MyBot {
 
     // When you got followed, follow them back
     if (notification.type === 'follow') {
-      await this.masto.accounts.follow(notification.account.id);
+      await this.masto.v1.accounts.follow(notification.account.id);
     }
   };
 }

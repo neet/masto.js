@@ -3,11 +3,11 @@ import 'isomorphic-fetch';
 
 import { SemVer } from 'semver';
 
+import { InstanceRepository } from '../api/v1/repositories';
 import { MastoClient } from '../clients';
 import type { MastoConfigProps } from '../config';
 import { MastoConfig } from '../config';
 import { HttpNativeImpl } from '../http';
-import { InstanceRepository } from '../repositories';
 import { SerializerNativeImpl } from '../serializers';
 import { WsNativeImpl } from '../ws';
 
@@ -42,11 +42,9 @@ export const login = async (
 };
 
 export * from '../decorators';
-export * from '../entities';
+export * from '../api';
 export * from '../errors';
 export * from '../http';
-export * from '../http/http-axios-impl';
-export * from '../repositories';
 export * from '../serializers';
 export * from '../ws';
 export * from '../clients';

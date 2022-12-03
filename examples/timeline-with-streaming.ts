@@ -7,7 +7,7 @@ const main = async () => {
   });
 
   // Connect to the streaming api
-  const stream = await masto.stream.streamPublicTimeline();
+  const stream = await masto.v1.stream.streamPublicTimeline();
 
   // Subscribe to updates
   stream.on('update', (status) => {

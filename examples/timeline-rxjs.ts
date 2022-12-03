@@ -1,14 +1,14 @@
-import type { Notification, Status } from 'masto';
+import type { V1 } from 'masto';
 import { login } from 'masto';
 import { fromEvent } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
 const main = async () => {
   const masto = await login({ url: 'https://example.com' });
-  const timeline = await masto.stream.streamPublicTimeline();
+  const timeline = await masto.v1.stream.streamPublicTimeline();
 
-  const update$ = fromEvent<Status>(timeline, 'update');
-  const notification$ = fromEvent<Notification>(timeline, 'notifications');
+  const update$ = fromEvent<V1.Status>(timeline, 'update');
+  const notification$ = fromEvent<V1.Notification>(timeline, 'notifications');
 
   update$.subscribe((status) => {
     console.log(status.account.username);
