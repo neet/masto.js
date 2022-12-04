@@ -4,11 +4,11 @@ import type { Admin } from '../../entities';
 import type { Http } from '../../http';
 import type { Repository } from '../repository';
 
-type FetchAllDomainAllowsParams = {
-  limit?: number;
+export type FetchAllDomainAllowsParams = {
+  readonly limit?: number;
 };
 
-interface CreateDomainAllowParam {
+export interface CreateDomainAllowParam {
   readonly domain: string;
 }
 
@@ -58,7 +58,7 @@ export class DomainAllowRepository
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '4.0.0' })
-  allow(params: CreateDomainAllowParam): Promise<Admin.DomainAllow> {
+  create(params: CreateDomainAllowParam): Promise<Admin.DomainAllow> {
     return this.http.post('/api/v1/admin/domain_allows', params);
   }
 
