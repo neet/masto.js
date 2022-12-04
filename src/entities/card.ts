@@ -27,9 +27,9 @@ export interface Card {
   /** HTML to be used for generating the preview card. */
   html?: string | null;
   /** Width of preview, in pixels. */
-  width?: string | null;
+  width?: number | null;
   /** Height of preview, in pixels. */
-  height?: string | null;
+  height?: number | null;
   /** Preview thumbnail. */
   image?: string | null;
   /** Used for photo embeds, instead of custom `html`. */
