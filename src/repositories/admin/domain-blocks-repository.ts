@@ -10,19 +10,19 @@ export interface AdminBlockDomainParams {
   /** Whether to apply a silence, suspend, or noop to the domain?*/
   readonly severity?: SeverityType;
   /** Whether media attachments should be rejected*/
-  readonly reject_media?: boolean;
+  readonly rejectMedia?: boolean;
   /** Whether reports from this domain should be rejected*/
-  readonly reject_reports?: boolean;
+  readonly rejectReports?: boolean;
   /**  A private note about this domain block, visible only to admins*/
-  readonly private_comment?: boolean | null;
+  readonly privateComment?: string | null;
   /** A public note about this domain block, optionally shown on the about page*/
-  readonly public_comment?: string | null;
+  readonly publicComment?: string | null;
   /** Whether to partially censor the domain when shown in public*/
   readonly obfuscate?: boolean;
 }
 
-export type AllBlockedDomain = {
-  limit: number | 100;
+export type FetchAllBlockedDomainParams = {
+  limit: number;
 };
 
 export type AdminDomainBlockUpdate = Omit<AdminBlockDomainParams, 'domain'>;
@@ -41,7 +41,7 @@ export class DomainBlocksRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '4.0.0' })
-  fetchAll(params?: AllBlockedDomain): Promise<Admin.DomainBlock[]> {
+  fetchAll(params?: FetchAllBlockedDomainParams): Promise<Admin.DomainBlock[]> {
     return this.http.get('/api/v1/admin/domain_blocks', params);
   }
 
