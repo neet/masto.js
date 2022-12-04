@@ -3,11 +3,11 @@ import { version } from '../../decorators';
 import type { Admin } from '../../entities';
 import type { Http } from '../../http';
 
-type AllDomainAllow = {
+type FetchAllDomainAllowsParams = {
   limit?: number;
 };
 
-interface AllowDomain {
+interface AdminDomainAllowParam {
   readonly domain: string;
 }
 
@@ -25,7 +25,7 @@ export class DomainAllowsRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '4.0.0' })
-  fetchAll(params?: AllDomainAllow): Promise<Admin.DomainAllow[]> {
+  fetchAll(params?: FetchAllDomainAllowsParams): Promise<Admin.DomainAllow[]> {
     return this.http.get('/api/v1/admin/domain_allows', params);
   }
 
@@ -48,7 +48,7 @@ export class DomainAllowsRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '4.0.0' })
-  allow(params: AllowDomain): Promise<Admin.DomainAllow> {
+  allow(params: AdminDomainAllowParam): Promise<Admin.DomainAllow> {
     return this.http.post('/api/v1/admin/domain_allows', params);
   }
 
