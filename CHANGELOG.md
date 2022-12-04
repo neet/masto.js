@@ -1,3 +1,18 @@
+## [4.7.5](https://github.com/neet/masto.js/compare/v4.7.4...v4.7.5) (2022-12-04)
+
+
+### Bug Fixes
+
+* Add FilterResult interface and Status.filtered optional prop ([581d4f9](https://github.com/neet/masto.js/commit/581d4f9a8936c5826afb5f5f82b45869919bd629)), closes [#737](https://github.com/neet/masto.js/issues/737)
+* Add missing filterAction ([021a332](https://github.com/neet/masto.js/commit/021a3324f5bdca9b84036eb311bbe26fba0c6c68))
+
+## [4.7.4](https://github.com/neet/masto.js/compare/v4.7.3...v4.7.4) (2022-12-03)
+
+
+### Bug Fixes
+
+* Fix the type of Filter.wholeWorld to boolean ([#726](https://github.com/neet/masto.js/issues/726)) ([525f4e5](https://github.com/neet/masto.js/commit/525f4e5eee0c0c7e4ee84a88ede6b6dc76759ddb))
+
 ## [4.7.3](https://github.com/neet/masto.js/compare/v4.7.2...v4.7.3) (2022-12-02)
 
 

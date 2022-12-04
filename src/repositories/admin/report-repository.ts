@@ -2,15 +2,18 @@ import type { MastoConfig } from '../../config';
 import { version } from '../../decorators';
 import type { Admin } from '../../entities';
 import type { Http } from '../../http';
+import type { Repository } from '../repository';
 
-export interface AdminFetchReportsParams {
+export interface FetchReportsParams {
   readonly resolved?: boolean | null;
   readonly accountId?: string | null;
   readonly targetAccountId?: string | null;
   readonly byTargetDomain?: string | null;
 }
 
-export class ReportRepository {
+export class ReportRepository
+  implements Repository<Admin.Report, never, never, never, FetchReportsParams>
+{
   constructor(
     private readonly http: Http,
     readonly version: string,
@@ -24,7 +27,7 @@ export class ReportRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '2.9.1' })
-  fetchAll(params?: AdminFetchReportsParams): Promise<Admin.Report[]> {
+  fetchAll(params?: FetchReportsParams): Promise<Admin.Report[]> {
     return this.http.get('/api/v1/admin/reports', params);
   }
 
@@ -83,3 +86,6 @@ export class ReportRepository {
     return this.http.post(`/api/v1/admin/reports/${id}/reopen`);
   }
 }
+
+/** @deprecated Use Admin.FetchReportsParams */
+export type AdminFetchReportsParams = FetchReportsParams;
