@@ -20,8 +20,8 @@ export interface CreatePushSubscriptionParams {
   };
   readonly data?: {
     readonly alerts?: Partial<PushSubscriptionAlerts> | null;
-    readonly policy?: SubscriptionPolicy;
   } | null;
+  readonly policy: SubscriptionPolicy;
 }
 
 export type UpdatePushSubscriptionParams = Pick<
