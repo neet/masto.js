@@ -22,7 +22,7 @@ export interface AdminBlockDomainParams {
 }
 
 export type FetchAllBlockedDomainParams = {
-  limit: number;
+  limit?: number;
 };
 
 export type AdminDomainBlockUpdate = Omit<AdminBlockDomainParams, 'domain'>;
