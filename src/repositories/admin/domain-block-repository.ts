@@ -2,6 +2,7 @@ import type { MastoConfig } from '../../config';
 import { version } from '../../decorators';
 import type { Admin } from '../../entities';
 import type { Http } from '../../http';
+import type { Repository } from '../repository';
 
 export interface CreateDomainBlockParams {
   /** The domain to block federation required*/
@@ -20,13 +21,22 @@ export interface CreateDomainBlockParams {
   readonly obfuscate?: boolean;
 }
 
-export type FetchAllBlockedDomainParams = {
+export type FetchAllDomainBlocksParams = {
   limit?: number;
 };
 
 export type UpdateDomainBlockParams = Omit<CreateDomainBlockParams, 'domain'>;
 
-export class DomainBlockRepository {
+export class DomainBlockRepository
+  implements
+    Repository<
+      Admin.DomainBlock,
+      CreateDomainBlockParams,
+      UpdateDomainBlockParams,
+      never,
+      FetchAllDomainBlocksParams
+    >
+{
   constructor(
     private readonly http: Http,
     readonly version: string,
@@ -40,7 +50,7 @@ export class DomainBlockRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '4.0.0' })
-  fetchAll(params?: FetchAllBlockedDomainParams): Promise<Admin.DomainBlock[]> {
+  fetchAll(params?: FetchAllDomainBlocksParams): Promise<Admin.DomainBlock[]> {
     return this.http.get('/api/v1/admin/domain_blocks', params);
   }
 

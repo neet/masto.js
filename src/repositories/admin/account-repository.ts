@@ -2,8 +2,9 @@ import type { MastoConfig } from '../../config';
 import { version } from '../../decorators';
 import type { Admin } from '../../entities';
 import type { Http } from '../../http';
+import type { Repository } from '../repository';
 
-export interface AdminFetchAccountParams {
+export interface FetchAccountsParams {
   /** Filter for local accounts? */
   readonly local?: boolean | null;
   /** Filter for remote accounts? */
@@ -39,7 +40,7 @@ export type AccountActionType =
   | 'silence'
   | 'suspend';
 
-export interface AdminActionAccountParams {
+export interface CreateActionParams {
   /** Type of action to be taken. Enumerable oneOf: `none` `disable` `silence` `suspend` */
   readonly type?: AccountActionType;
   /** ID of an associated report that caused this action to be taken */
@@ -52,7 +53,10 @@ export interface AdminActionAccountParams {
   readonly sendEmailNotification?: boolean | null;
 }
 
-export class AccountRepository {
+export class AccountRepository
+  implements
+    Repository<Admin.Account, never, never, never, FetchAccountsParams>
+{
   constructor(
     private readonly http: Http,
     readonly version: string,
@@ -67,7 +71,7 @@ export class AccountRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '2.9.1' })
-  fetchAll(params?: AdminFetchAccountParams): Promise<Admin.Account[]> {
+  fetchAll(params?: FetchAccountsParams): Promise<Admin.Account[]> {
     return this.http.get('/api/v1/admin/accounts', params);
   }
 
@@ -90,10 +94,7 @@ export class AccountRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '2.9.1' })
-  createAction(
-    id: string,
-    params: AdminActionAccountParams,
-  ): Promise<Admin.Account> {
+  createAction(id: string, params: CreateActionParams): Promise<Admin.Account> {
     return this.http.post(`/api/v1/admin/accounts/${id}/action`, params);
   }
 
@@ -152,3 +153,8 @@ export class AccountRepository {
     return this.http.post(`/api/v1/admin/accounts/${id}/unsuspend`);
   }
 }
+
+/** @deprecated Use Admin.FetchAccountsParams */
+export type AdminFetchAccountParams = FetchAccountsParams;
+/** @deprecated Use Admin.CreateActionParams */
+export type AdminActionAccountParams = CreateActionParams;
