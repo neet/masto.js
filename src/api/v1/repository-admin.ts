@@ -27,7 +27,6 @@ export class MastoAdminClient {
 
     this.domainBlocks = new AdminRepositories.DomainBlockRepository(
       this.http,
-      this.version,
       this.config,
     );
 
