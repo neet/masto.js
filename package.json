@@ -15,10 +15,10 @@
   },
   "scripts": {
     "test": "npm-run-all test:*",
-    "test:jest": "jest --coverage --runInBand --config=jest.config.js",
+    "test:jest": "jest --coverage --runInBand --config=jest.config.cjs",
     "test:eslint": "eslint -c .eslintrc.json ./src/**/*.ts --cache",
     "test:spellcheck": "cspell '{src,examples}/**/*.{ts,tsx,js,json,md}'",
-    "build": "rollup -c rollup.config.js",
+    "build": "rollup -c rollup.config.cjs",
     "prepublishOnly": "yarn run test && yarn run build",
     "docs:build": "typedoc ./src/entrypoints/nodejs.ts && touch ./docs/.nojekyll"
   },

@@ -1,8 +1,8 @@
-import type { MastoConfig } from '../../config';
-import { version } from '../../decorators';
+import type { MastoConfig } from '../../../../config';
+import { version } from '../../../../decorators';
+import type { Http } from '../../../../http';
+import type { Repository } from '../../../repository';
 import type { Admin } from '../../entities';
-import type { Http } from '../../http';
-import type { Repository } from '../repository';
 
 export interface CreateDomainBlockParams {
   /** The domain to block federation required*/
@@ -37,11 +37,7 @@ export class DomainBlockRepository
       FetchAllDomainBlocksParams
     >
 {
-  constructor(
-    private readonly http: Http,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {}
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   /**
    *
