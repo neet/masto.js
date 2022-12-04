@@ -1,6 +1,3 @@
-import 'isomorphic-form-data';
-import 'isomorphic-fetch';
-
 import { SemVer } from 'semver';
 
 import { InstanceRepository } from '../api/v1/repositories';
