@@ -1,14 +1,13 @@
 import type { MastoConfig } from '../../config';
 import { version } from '../../decorators';
 import type { Admin } from '../../entities';
-import type { SeverityType } from '../../entities/admin/domain-block';
 import type { Http } from '../../http';
 
-export interface AdminBlockDomainParams {
+export interface CreateDomainBlockParams {
   /** The domain to block federation required*/
   readonly domain: string;
   /** Whether to apply a silence, suspend, or noop to the domain?*/
-  readonly severity?: SeverityType;
+  readonly severity?: Admin.DomainBlockSeverity;
   /** Whether media attachments should be rejected*/
   readonly rejectMedia?: boolean;
   /** Whether reports from this domain should be rejected*/
@@ -25,9 +24,9 @@ export type FetchAllBlockedDomainParams = {
   limit?: number;
 };
 
-export type AdminDomainBlockUpdate = Omit<AdminBlockDomainParams, 'domain'>;
+export type UpdateDomainBlockParams = Omit<CreateDomainBlockParams, 'domain'>;
 
-export class DomainBlocksRepository {
+export class DomainBlockRepository {
   constructor(
     private readonly http: Http,
     readonly version: string,
@@ -63,7 +62,7 @@ export class DomainBlocksRepository {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '4.0.0' })
-  block(params: AdminBlockDomainParams): Promise<Admin.DomainBlock> {
+  create(params: CreateDomainBlockParams): Promise<Admin.DomainBlock> {
     return this.http.post('/api/v1/admin/domain_blocks', params);
   }
 
@@ -77,7 +76,7 @@ export class DomainBlocksRepository {
   @version({ since: '4.0.0' })
   update(
     id: string,
-    params?: AdminDomainBlockUpdate,
+    params?: UpdateDomainBlockParams,
   ): Promise<Admin.DomainBlock> {
     return this.http.put(`/api/v1/admin/domain_blocks/${id}`, params);
   }

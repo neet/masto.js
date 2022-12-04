@@ -1,4 +1,4 @@
-export type SeverityType = 'silence' | 'suspend' | 'noop';
+export type DomainBlockSeverity = 'silence' | 'suspend' | 'noop';
 
 export interface DomainBlock {
   /** The ID of the domain block in the database. */
@@ -8,7 +8,7 @@ export interface DomainBlock {
   /** The create date of the domain block in the database. */
   createdAt: string;
   /** The date of the application that created this account. */
-  severity: SeverityType;
+  severity: DomainBlockSeverity;
   /** The reject media of the domain. */
   rejectMedia: boolean;
   /** The reject report of the domain. */

@@ -5,7 +5,7 @@ import { AdminRepositories } from '../repositories';
 export class MastoAdminClient {
   readonly account: AdminRepositories.AccountRepository;
   readonly report: AdminRepositories.ReportRepository;
-  readonly domainBlocks: AdminRepositories.DomainBlocksRepository;
+  readonly domainBlocks: AdminRepositories.DomainBlockRepository;
 
   constructor(
     private readonly http: Http,
@@ -24,7 +24,7 @@ export class MastoAdminClient {
       this.config,
     );
 
-    this.domainBlocks = new AdminRepositories.DomainBlocksRepository(
+    this.domainBlocks = new AdminRepositories.DomainBlockRepository(
       this.http,
       this.version,
       this.config,
