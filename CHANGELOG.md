@@ -1,3 +1,18 @@
+# [4.8.0](https://github.com/neet/masto.js/compare/v4.7.5...v4.8.0) (2022-12-05)
+
+
+### Bug Fixes
+
+* Fix Card.{width,height} to be number ([#745](https://github.com/neet/masto.js/issues/745)) ([8941096](https://github.com/neet/masto.js/commit/8941096fe37fd818f836500628d48e43883d3dad)), closes [#737](https://github.com/neet/masto.js/issues/737)
+* Fix CreatePushSubscriptionParams#policy to be on the root and required ([80ee853](https://github.com/neet/masto.js/commit/80ee85302871e4f4404d0dc277998f055f848c0d))
+* Fix domain blocks to follow the naming convention ([ab8191b](https://github.com/neet/masto.js/commit/ab8191bfa5e6b0f8396f1eb4627fd1f9cb69030d))
+
+
+### Features
+
+* Support /api/v1/admin/domain_allows ([#744](https://github.com/neet/masto.js/issues/744)) ([dbdf59f](https://github.com/neet/masto.js/commit/dbdf59f9e0a823675a5f4064d663740886e69587))
+* Support `/api/v1/admin/domain_blocks` ([#741](https://github.com/neet/masto.js/issues/741)) ([005e749](https://github.com/neet/masto.js/commit/005e749ea62d64ba069ebb2168b9895d3c9e695d))
+
 ## [4.7.5](https://github.com/neet/masto.js/compare/v4.7.4...v4.7.5) (2022-12-04)
 
 
