@@ -1,3 +1,10 @@
+# [4.9.0](https://github.com/neet/masto.js/compare/v4.8.0...v4.9.0) (2022-12-06)
+
+
+### Features
+
+* Support /api/v1/admin/email_domain_blocks ([#746](https://github.com/neet/masto.js/issues/746)) ([785b617](https://github.com/neet/masto.js/commit/785b617f5d97d7da89769345a7fd4851c3079029))
+
 # [4.8.0](https://github.com/neet/masto.js/compare/v4.7.5...v4.8.0) (2022-12-05)
 
 
