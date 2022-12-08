@@ -16,12 +16,14 @@ export interface InstanceMediaAttachmentsConfiguration {
 }
 
 export interface InstancePollsConfiguration {
-  supportedMimeTypes: string[];
-  imageSizeLimit: number;
-  imageMatrixLimit: number;
-  videoSizeLimit: number;
-  videoFrameRateLimit: number;
-  videoMatrixLimit: number;
+  maxOptions: number;
+  maxCharactersPerOption: number;
+  minExpiration: number;
+  maxExpiration: number;
+}
+
+export interface InstanceAccountsConfiguration {
+  maxFeaturedTags: number;
 }
 
 /**
@@ -31,6 +33,7 @@ export interface InstanceConfiguration {
   statuses: InstanceStatusesConfiguration;
   mediaAttachments: InstanceMediaAttachmentsConfiguration;
   polls: InstancePollsConfiguration;
+  accounts: InstanceAccountsConfiguration;
 }
 
 /**
