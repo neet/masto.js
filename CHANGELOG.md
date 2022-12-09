@@ -1,3 +1,10 @@
+## [4.9.1](https://github.com/neet/masto.js/compare/v4.9.0...v4.9.1) (2022-12-09)
+
+
+### Bug Fixes
+
+* Fix wrong types on fetch instance information ([#747](https://github.com/neet/masto.js/issues/747)) ([3657eae](https://github.com/neet/masto.js/commit/3657eaeb6519d64ac0b38f73430cd47231c12eda))
+
 # [4.9.0](https://github.com/neet/masto.js/compare/v4.8.0...v4.9.0) (2022-12-06)
 
 
