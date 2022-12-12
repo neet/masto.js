@@ -6,3 +6,4 @@ export type {
   EmailDomainBlock,
   EmailDomainBlockHistory,
 } from './domain-email-block';
+export type { IpBlock, IpBlockSeverity } from './ip-block';

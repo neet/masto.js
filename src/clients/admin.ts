@@ -8,6 +8,7 @@ export class MastoAdminClient {
   readonly domainBlocks: AdminRepositories.DomainBlockRepository;
   readonly domainAllows: AdminRepositories.DomainAllowRepository;
   readonly domainEmailBlocks: AdminRepositories.EmailDomainBlockRepository;
+  readonly ipBlocks: AdminRepositories.IpBlockRepository;
 
   constructor(
     private readonly http: Http,
@@ -39,6 +40,12 @@ export class MastoAdminClient {
     );
 
     this.domainEmailBlocks = new AdminRepositories.EmailDomainBlockRepository(
+      this.http,
+      this.version,
+      this.config,
+    );
+
+    this.ipBlocks = new AdminRepositories.IpBlockRepository(
       this.http,
       this.version,
       this.config,
