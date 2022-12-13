@@ -78,7 +78,7 @@ export class IpBlockRepository
    */
   @version({ since: '4.0.0' })
   create(params: CreateIpBlockParams): Promise<Admin.IpBlock> {
-    return this.http.post('/api/v1/admin/ip_blocks ', params);
+    return this.http.post('/api/v1/admin/ip_blocks', params);
   }
 
   /**
@@ -89,7 +89,7 @@ export class IpBlockRepository
    */
   @version({ since: '4.0.0' })
   update(params: UpdateIpBlockParams): Promise<Admin.IpBlock> {
-    return this.http.put('/api/v1/admin/ip_blocks ', params);
+    return this.http.put('/api/v1/admin/ip_blocks', params);
   }
 
   /**
