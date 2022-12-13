@@ -1,6 +1,6 @@
 import { MastoClient } from '../clients';
 import type { MastoConfig } from '../config';
-import { HttpNativeImpl } from '../http';
+import { HttpNativeImpl } from '../http/http-native-impl';
 import { InstanceRepository } from '../repositories';
 import { SerializerNativeImpl } from '../serializers';
 import { WsNativeImpl } from '../ws';
@@ -30,6 +30,7 @@ export * from '../decorators';
 export * from '../entities';
 export * from '../errors';
 export * from '../http';
+export * from '../http/http-native-impl';
 export * from '../repositories';
 export * from '../serializers';
 export * from '../ws';
