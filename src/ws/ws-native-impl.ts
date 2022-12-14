@@ -52,17 +52,25 @@ export class WsEventsNativeImpl
    * Parse JSON data and emit it as an event
    * @param message Websocket message
    */
-  private handleMessage = ({ data }: WebSocket.MessageEvent) => {
-    const event = this.serializer.deserialize<Event>('application/json', data);
-    let args: EventTypeMap[EventType] = [];
+  private handleMessage = ({ data }: WebSocket.MessageEvent): void => {
+    const { event, payload } = this.serializer.deserialize<Event>(
+      'application/json',
+      data,
+    );
 
+    // https://github.com/neet/masto.js/issues/750
+    if (event === 'delete') {
+      return void this.emit(event, payload);
+    }
+
+    let args: EventTypeMap[EventType] = [];
     try {
-      args.push(this.serializer.deserialize('application/json', event.payload));
+      args.push(this.serializer.deserialize('application/json', payload));
     } catch {
       args = [];
     }
 
-    this.emit(event.event, ...args);
+    this.emit(event, ...args);
   };
 }
 
