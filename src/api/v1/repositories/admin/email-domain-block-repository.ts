@@ -1,8 +1,8 @@
-import type { MastoConfig } from '../../config';
-import { version } from '../../decorators';
+import type { MastoConfig } from '../../../../config';
+import { version } from '../../../../decorators';
+import type { Http } from '../../../../http';
+import type { Repository } from '../../../repository';
 import type { Admin } from '../../entities';
-import type { Http } from '../../http';
-import type { Repository } from '../repository';
 
 export type FetchEmailDomainBlocksParams = {
   /** Integer. Maximum number of results to return. Defaults to 100. */
@@ -24,11 +24,7 @@ export class EmailDomainBlockRepository
       FetchEmailDomainBlocksParams
     >
 {
-  constructor(
-    private readonly http: Http,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {}
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   /**
    * Show information about all email domains blocked from signing up.

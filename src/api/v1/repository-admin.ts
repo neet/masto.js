@@ -31,19 +31,16 @@ export class MastoAdminClient {
 
     this.domainAllows = new AdminRepositories.DomainAllowRepository(
       this.http,
-      this.version,
       this.config,
     );
 
     this.domainEmailBlocks = new AdminRepositories.EmailDomainBlockRepository(
       this.http,
-      this.version,
       this.config,
     );
 
     this.ipBlocks = new AdminRepositories.IpBlockRepository(
       this.http,
-      this.version,
       this.config,
     );
   }

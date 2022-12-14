@@ -1,9 +1,9 @@
-import type { MastoConfig } from '../../config';
-import { version } from '../../decorators';
+import type { MastoConfig } from '../../../../config';
+import { version } from '../../../../decorators';
+import type { Http } from '../../../../http';
+import type { Repository } from '../../../repository';
 import type { Admin } from '../../entities';
 import type { IpBlockSeverity } from '../../entities/admin';
-import type { Http } from '../../http';
-import type { Repository } from '../repository';
 
 export type FetchIpBlockParams = {
   /** Integer. Maximum number of results to return. Defaults to 100. */
@@ -42,11 +42,7 @@ export class IpBlockRepository
       FetchIpBlockParams
     >
 {
-  constructor(
-    private readonly http: Http,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {}
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   /**
    * Show information about all blocked IP ranges.

@@ -1,8 +1,8 @@
-import type { MastoConfig } from '../../config';
-import { version } from '../../decorators';
+import type { MastoConfig } from '../../../../config';
+import { version } from '../../../../decorators';
+import type { Http } from '../../../../http';
+import type { Repository } from '../../../repository';
 import type { Admin } from '../../entities';
-import type { Http } from '../../http';
-import type { Repository } from '../repository';
 
 export type FetchAllDomainAllowsParams = {
   readonly limit?: number;
@@ -22,11 +22,7 @@ export class DomainAllowRepository
       FetchAllDomainAllowsParams
     >
 {
-  constructor(
-    private readonly http: Http,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {}
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   /**
    * Show information about all allowed domains
