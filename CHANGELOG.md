@@ -1,3 +1,10 @@
+## [4.9.2](https://github.com/neet/masto.js/compare/v4.9.1...v4.9.2) (2022-12-14)
+
+
+### Bug Fixes
+
+* Remove re-exports of HTTP implementations ([#753](https://github.com/neet/masto.js/issues/753)) ([bafb4cb](https://github.com/neet/masto.js/commit/bafb4cbc57a60ef379a1a30e5f1fb184bdc71c7b))
+
 ## [4.9.1](https://github.com/neet/masto.js/compare/v4.9.0...v4.9.1) (2022-12-09)
 
 
