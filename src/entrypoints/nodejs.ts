@@ -8,11 +8,11 @@ import { HttpNativeImpl } from '../http';
 import { SerializerNativeImpl } from '../serializers';
 import { WsNativeImpl } from '../ws';
 
-export const login = async (
-  rawConfig: Omit<MastoConfigProps, 'streamingApiUrl' | 'version'>,
-): Promise<MastoClient> => {
+export type LoginParams = Omit<MastoConfigProps, 'streamingApiUrl' | 'version'>;
+
+export const login = async (params: LoginParams): Promise<MastoClient> => {
   const configProps = {
-    ...rawConfig,
+    ...params,
     version: new SemVer('1.0.0'),
     streamingApiUrl: '',
   };
