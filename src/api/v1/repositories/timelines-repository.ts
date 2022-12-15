@@ -5,7 +5,7 @@ import { Paginator } from '../../../paginator';
 import type { DefaultPaginationParams } from '../../repository';
 import type { Status } from '../entities';
 
-export interface FetchTimelineParams extends DefaultPaginationParams {
+export interface ListTimelineParams extends DefaultPaginationParams {
   /** Show only local statuses? Defaults to false. */
   readonly local?: boolean | null;
   /** Show only statuses with media attached? Defaults to false. */
@@ -17,54 +17,6 @@ export interface FetchTimelineParams extends DefaultPaginationParams {
 export class TimelinesRepository {
   constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
-  @version({ since: '0.0.0' })
-  iterateHome(
-    params?: FetchTimelineParams,
-  ): Paginator<FetchTimelineParams, Status[]> {
-    return new Paginator(this.http, '/api/v1/timelines/home', params);
-  }
-
-  @version({ since: '0.0.0' })
-  iteratePublic(
-    params?: FetchTimelineParams,
-  ): Paginator<FetchTimelineParams, Status[]> {
-    return new Paginator(this.http, '/api/v1/timelines/public', params);
-  }
-
-  @version({ since: '0.0.0' })
-  iterateHashtag(
-    hashtag: string,
-    params?: FetchTimelineParams,
-  ): Paginator<FetchTimelineParams, Status[]> {
-    return new Paginator(this.http, `/api/v1/timelines/tag/${hashtag}`, params);
-  }
-
-  @version({ since: '2.1.0' })
-  iterateList(
-    id: string,
-    params?: FetchTimelineParams,
-  ): Paginator<FetchTimelineParams, Status[]> {
-    return new Paginator(this.http, `/api/v1/timelines/list/${id}`, params);
-  }
-
-  @deprecated('Use conversations API instead')
-  @version({ since: '0.0.0', until: '2.9.3' })
-  iterateDirect(
-    params?: FetchTimelineParams,
-  ): Paginator<FetchTimelineParams, Status[]> {
-    return new Paginator(this.http, '/api/v1/timelines/direct', params);
-  }
-
-  get home(): Paginator<FetchTimelineParams, Status[]> {
-    return this.iterateHome();
-  }
-
-  get public(): Paginator<FetchTimelineParams, Status[]> {
-    return this.iteratePublic();
-  }
-
-  // ====
-
   /**
    * View statuses from followed users.
    * @param params Parameters
@@ -72,8 +24,10 @@ export class TimelinesRepository {
    * @see https://docs.joinmastodon.org/methods/timelines/
    */
   @version({ since: '0.0.0' })
-  fetchHome(params?: FetchTimelineParams): Promise<IteratorResult<Status[]>> {
-    return this.iterateHome(params).next();
+  listHome(
+    params?: ListTimelineParams,
+  ): Paginator<Status[], ListTimelineParams> {
+    return new Paginator(this.http, '/api/v1/timelines/home', params);
   }
 
   /**
@@ -83,8 +37,10 @@ export class TimelinesRepository {
    * @see https://docs.joinmastodon.org/methods/timelines/
    */
   @version({ since: '0.0.0' })
-  fetchPublic(params?: FetchTimelineParams): Promise<IteratorResult<Status[]>> {
-    return this.iteratePublic(params).next();
+  listPublic(
+    params?: ListTimelineParams,
+  ): Paginator<Status[], ListTimelineParams> {
+    return new Paginator(this.http, '/api/v1/timelines/public', params);
   }
 
   /**
@@ -95,11 +51,11 @@ export class TimelinesRepository {
    * @see https://docs.joinmastodon.org/methods/timelines/
    */
   @version({ since: '0.0.0' })
-  fetchHashtag(
+  listHashtag(
     hashtag: string,
-    params?: FetchTimelineParams,
-  ): Promise<IteratorResult<Status[]>> {
-    return this.iterateHashtag(hashtag, params).next();
+    params?: ListTimelineParams,
+  ): Paginator<Status[], ListTimelineParams> {
+    return new Paginator(this.http, `/api/v1/timelines/tag/${hashtag}`, params);
   }
 
   /**
@@ -110,11 +66,11 @@ export class TimelinesRepository {
    * @see https://docs.joinmastodon.org/methods/timelines/
    */
   @version({ since: '2.1.0' })
-  fetchList(
+  listList(
     id: string,
-    params?: FetchTimelineParams,
-  ): Promise<IteratorResult<Status[]>> {
-    return this.iterateList(id, params).next();
+    params?: ListTimelineParams,
+  ): Paginator<Status[], ListTimelineParams> {
+    return new Paginator(this.http, `/api/v1/timelines/list/${id}`, params);
   }
 
   /**
@@ -125,7 +81,9 @@ export class TimelinesRepository {
    */
   @deprecated('Use conversations API instead')
   @version({ since: '0.0.0', until: '2.9.3' })
-  fetchDirect(params?: FetchTimelineParams): Promise<IteratorResult<Status[]>> {
-    return this.iterateDirect(params).next();
+  listDirect(
+    params?: ListTimelineParams,
+  ): Paginator<Status[], ListTimelineParams> {
+    return new Paginator(this.http, '/api/v1/timelines/direct', params);
   }
 }

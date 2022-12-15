@@ -1,7 +1,8 @@
+/* eslint-disable unicorn/no-thenable */
 import type { Http } from './http';
 
-export class Paginator<Params, Result>
-  implements AsyncIterableIterator<Result>
+export class Paginator<Entity extends Array<unknown>, Params = never>
+  implements AsyncIterableIterator<Entity>, PromiseLike<Entity>
 {
   private nextPath?: string;
   private nextParams?: Params;
@@ -21,7 +22,7 @@ export class Paginator<Params, Result>
       .replace(/^https?:\/\/[^/]+/, '');
   };
 
-  async next(params?: Params): Promise<IteratorResult<Result>> {
+  async next(params?: Params): Promise<IteratorResult<Entity>> {
     if (this.nextPath == undefined) {
       return { done: true, value: undefined };
     }
@@ -41,7 +42,7 @@ export class Paginator<Params, Result>
 
     return {
       done: false,
-      value: response.data as Result,
+      value: response.data as Entity,
     };
   }
 
@@ -56,7 +57,18 @@ export class Paginator<Params, Result>
     throw e;
   }
 
-  [Symbol.asyncIterator](): AsyncGenerator<Result, Result, Params | undefined> {
+  then<TResult1 = Entity, TResult2 = never>(
+    onfulfilled: (
+      value: Entity,
+    ) => TResult1 | PromiseLike<TResult1> = Promise.resolve,
+    onrejected: (
+      reason: unknown,
+    ) => TResult2 | PromiseLike<TResult2> = Promise.reject,
+  ): PromiseLike<TResult1 | TResult2> {
+    return this.next().then((value) => onfulfilled(value.value), onrejected);
+  }
+
+  [Symbol.asyncIterator](): AsyncGenerator<Entity, Entity, Params | undefined> {
     return this;
   }
 }

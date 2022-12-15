@@ -5,7 +5,7 @@ import { Paginator } from '../../../paginator';
 import type { DefaultPaginationParams } from '../../repository';
 import type { Link, Status, Tag } from '../entities';
 
-export interface FetchTrendsParams {
+export interface ListTrendsParams {
   /** Maximum number of results to return. Defaults to 10. */
   readonly limit: number;
 }
@@ -19,9 +19,9 @@ export class TrendRepository {
    * @see https://docs.joinmastodon.org/methods/trends/#statuses
    */
   @version({ since: '3.5.0' })
-  fetchStatuses(
+  listStatuses(
     params?: DefaultPaginationParams,
-  ): Paginator<DefaultPaginationParams, Status[]> {
+  ): Paginator<Status[], DefaultPaginationParams> {
     return new Paginator(this.http, '/api/v1/trends/statuses', params);
   }
 
@@ -30,9 +30,9 @@ export class TrendRepository {
    * @see https://docs.joinmastodon.org/methods/trends/#links
    */
   @version({ since: '3.5.0' })
-  fetchLinks(
+  listLinks(
     params?: DefaultPaginationParams,
-  ): Paginator<DefaultPaginationParams, Link[]> {
+  ): Paginator<Link[], DefaultPaginationParams> {
     return new Paginator(this.http, '/api/v1/trends/links', params);
   }
 
@@ -43,7 +43,7 @@ export class TrendRepository {
    * @see https://docs.joinmastodon.org/methods/trends/#tags
    */
   @version({ since: '3.0.0' })
-  fetchTags(params?: FetchTrendsParams): Promise<Tag[]> {
-    return this.http.get<Tag[]>('/api/v1/trends/tags', params);
+  listTags(params?: ListTrendsParams): Paginator<Tag[], ListTrendsParams> {
+    return new Paginator(this.http, '/api/v1/trends/tags', params);
   }
 }

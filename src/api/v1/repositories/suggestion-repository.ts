@@ -1,16 +1,17 @@
 import type { MastoConfig } from '../../../config';
 import { deprecated, version } from '../../../decorators';
 import type { Http } from '../../../http';
+import { Paginator } from '../../../paginator';
 import type { Repository } from '../../repository';
 import type { Account } from '../entities';
 
-export interface FetchSuggestionParams {
+export interface ListSuggestionParams {
   /** Integer. Maximum number of results to return. Defaults to 40. */
-  limit?: number | null;
+  readonly limit?: number | null;
 }
 
 export class SuggestionRepository
-  implements Repository<Account, never, never, FetchSuggestionParams>
+  implements Repository<Account, never, never, never, ListSuggestionParams>
 {
   constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
@@ -20,10 +21,12 @@ export class SuggestionRepository
    * @returns
    * @see https://docs.joinmastodon.org/methods/suggestions/#v1
    */
-  @deprecated('Use MastoClient.v2.suggestions.fetchAll instead')
+  @deprecated('Use MastoClient.v2.suggestions.list instead')
   @version({ since: '2.4.3' })
-  fetchAll(params?: FetchSuggestionParams): Promise<Account[]> {
-    return this.http.get('/api/v1/suggestions', params);
+  list(
+    params?: ListSuggestionParams,
+  ): Paginator<Account[], ListSuggestionParams> {
+    return new Paginator(this.http, '/api/v1/suggestions', params);
   }
 
   /**

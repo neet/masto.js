@@ -1,3 +1,5 @@
+import type { Paginator } from '../paginator';
+
 export interface DefaultPaginationParams {
   /** Return results older than this ID. */
   readonly maxId?: string | null;
@@ -14,23 +16,17 @@ export interface Repository<
   CreateParams = never,
   UpdateParams = never,
   FetchParams = never,
-  PaginationParams = DefaultPaginationParams,
+  ListParams = undefined,
 > {
   readonly [Symbol.asyncIterator]?: () => AsyncIterableIterator<Entity[]>;
-
-  readonly iterate?: (
-    params?: PaginationParams,
-  ) => AsyncIterableIterator<Entity[]>;
 
   readonly fetch?:
     | ((id: string) => Promise<Entity>)
     | ((params?: FetchParams) => Promise<Entity>);
 
-  readonly fetchMany?: (
-    params?: PaginationParams,
-  ) => Promise<IteratorResult<Entity[]>>;
-
-  readonly fetchAll?: (params?: FetchParams) => Promise<Entity[]>;
+  readonly list?: ListParams extends undefined
+    ? () => Paginator<Entity[]>
+    : (params?: ListParams) => Paginator<Entity[], ListParams>;
 
   readonly create?: (params: CreateParams) => Promise<Entity>;
 

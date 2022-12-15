@@ -1,10 +1,11 @@
 import type { MastoConfig } from '../../../../config';
 import { version } from '../../../../decorators';
 import type { Http } from '../../../../http';
+import { Paginator } from '../../../../paginator';
 import type { Repository } from '../../../repository';
 import type { Admin } from '../../entities';
 
-export interface FetchAccountsParams {
+export interface ListAccountsParams {
   /** Filter for local accounts? */
   readonly local?: boolean | null;
   /** Filter for remote accounts? */
@@ -54,8 +55,7 @@ export interface CreateActionParams {
 }
 
 export class AccountRepository
-  implements
-    Repository<Admin.Account, never, never, never, FetchAccountsParams>
+  implements Repository<Admin.Account, never, never, never, ListAccountsParams>
 {
   constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
@@ -67,8 +67,10 @@ export class AccountRepository
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '2.9.1' })
-  fetchAll(params?: FetchAccountsParams): Promise<Admin.Account[]> {
-    return this.http.get('/api/v1/admin/accounts', params);
+  list(
+    params?: ListAccountsParams,
+  ): Paginator<Admin.Account[], ListAccountsParams> {
+    return new Paginator(this.http, '/api/v1/admin/accounts', params);
   }
 
   /**
@@ -149,8 +151,3 @@ export class AccountRepository
     return this.http.post(`/api/v1/admin/accounts/${id}/unsuspend`);
   }
 }
-
-/** @deprecated Use Admin.FetchAccountsParams */
-export type AdminFetchAccountParams = FetchAccountsParams;
-/** @deprecated Use Admin.CreateActionParams */
-export type AdminActionAccountParams = CreateActionParams;

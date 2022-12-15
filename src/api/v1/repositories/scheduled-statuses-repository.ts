@@ -2,8 +2,7 @@ import type { MastoConfig } from '../../../config';
 import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import { Paginator } from '../../../paginator';
-import { IterableRepository } from '../../iterable-repository';
-import type { DefaultPaginationParams } from '../../repository';
+import type { DefaultPaginationParams, Repository } from '../../repository';
 import type { ScheduledStatus } from '../entities';
 
 export interface UpdateScheduledStatusParams {
@@ -11,14 +10,17 @@ export interface UpdateScheduledStatusParams {
   readonly scheduledAt: string;
 }
 
-export class ScheduledStatusesRepository extends IterableRepository<
-  ScheduledStatus,
-  never,
-  UpdateScheduledStatusParams
-> {
-  constructor(private readonly http: Http, readonly config: MastoConfig) {
-    super();
-  }
+export class ScheduledStatusesRepository
+  implements
+    Repository<
+      ScheduledStatus,
+      never,
+      UpdateScheduledStatusParams,
+      never,
+      DefaultPaginationParams
+    >
+{
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   /**
    * View scheduled statuses
@@ -27,9 +29,9 @@ export class ScheduledStatusesRepository extends IterableRepository<
    * @see https://docs.joinmastodon.org/methods/statuses/scheduled_statuses/
    */
   @version({ since: '2.7.0' })
-  iterate(
+  list(
     params?: DefaultPaginationParams,
-  ): Paginator<DefaultPaginationParams, ScheduledStatus[]> {
+  ): Paginator<ScheduledStatus[], DefaultPaginationParams> {
     return new Paginator(this.http, '/api/v1/scheduled_statuses', params);
   }
 

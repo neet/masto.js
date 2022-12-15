@@ -1,10 +1,14 @@
 import type { MastoConfig } from '../../../config';
 import { version } from '../../../decorators';
 import type { Http } from '../../../http';
-import type { Repository } from '../../repository';
+import { Paginator } from '../../../paginator';
+import type { DefaultPaginationParams, Repository } from '../../repository';
 import type { Announcement } from '../entities';
 
-export class AnnouncementRepository implements Repository<Announcement> {
+export class AnnouncementRepository
+  implements
+    Repository<Announcement, never, never, never, DefaultPaginationParams>
+{
   constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   /**
@@ -13,8 +17,8 @@ export class AnnouncementRepository implements Repository<Announcement> {
    * @see https://docs.joinmastodon.org/methods/announcements/
    */
   @version({ since: '3.1.0' })
-  fetchAll(): Promise<Announcement[]> {
-    return this.http.get<Announcement[]>('/api/v1/announcements');
+  list(): Paginator<Announcement[]> {
+    return new Paginator(this.http, '/api/v1/announcements');
   }
 
   /**

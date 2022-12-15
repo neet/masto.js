@@ -1,6 +1,7 @@
 import type { MastoConfig } from '../../../../config';
 import { version } from '../../../../decorators';
 import type { Http } from '../../../../http';
+import { Paginator } from '../../../../paginator';
 import type { Repository } from '../../../repository';
 import type { Admin } from '../../entities';
 
@@ -21,8 +22,8 @@ export interface CreateDomainBlockParams {
   readonly obfuscate?: boolean;
 }
 
-export type FetchAllDomainBlocksParams = {
-  limit?: number;
+export type ListDomainBlocksParams = {
+  readonly limit?: number;
 };
 
 export type UpdateDomainBlockParams = Omit<CreateDomainBlockParams, 'domain'>;
@@ -34,7 +35,7 @@ export class DomainBlockRepository
       CreateDomainBlockParams,
       UpdateDomainBlockParams,
       never,
-      FetchAllDomainBlocksParams
+      ListDomainBlocksParams
     >
 {
   constructor(private readonly http: Http, readonly config: MastoConfig) {}
@@ -46,8 +47,10 @@ export class DomainBlockRepository
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '4.0.0' })
-  fetchAll(params?: FetchAllDomainBlocksParams): Promise<Admin.DomainBlock[]> {
-    return this.http.get('/api/v1/admin/domain_blocks', params);
+  list(
+    params?: ListDomainBlocksParams,
+  ): Paginator<Admin.DomainBlock[], ListDomainBlocksParams> {
+    return new Paginator(this.http, '/api/v1/admin/domain_blocks', params);
   }
 
   /**

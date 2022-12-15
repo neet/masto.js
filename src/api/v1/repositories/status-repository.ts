@@ -1,6 +1,7 @@
 import type { MastoConfig } from '../../../config';
 import { deprecated, version } from '../../../decorators';
 import type { Http } from '../../../http';
+import { Paginator } from '../../../paginator';
 import type { Repository } from '../../repository';
 import type {
   Account,
@@ -213,8 +214,8 @@ export class StatusRepository implements Repository<Status> {
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
   @version({ since: '0.0.0' })
-  fetchRebloggedBy(id: string): Promise<Account[]> {
-    return this.http.get(`/api/v1/statuses/${id}/reblogged_by`);
+  listRebloggedBy(id: string): Paginator<Account[]> {
+    return new Paginator(this.http, `/api/v1/statuses/${id}/reblogged_by`);
   }
 
   /**
@@ -224,8 +225,8 @@ export class StatusRepository implements Repository<Status> {
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
   @version({ since: '0.0.0' })
-  fetchFavouritedBy(id: string): Promise<Account[]> {
-    return this.http.get(`/api/v1/statuses/${id}/favourited_by`);
+  listFavouritedBy(id: string): Paginator<Account[]> {
+    return new Paginator(this.http, `/api/v1/statuses/${id}/favourited_by`);
   }
 
   /**
@@ -301,8 +302,8 @@ export class StatusRepository implements Repository<Status> {
    * @see https://docs.joinmastodon.org/methods/statuses/#history
    */
   @version({ since: '3.5.0' })
-  fetchHistory(id: string): Promise<StatusEdit[]> {
-    return this.http.get(`/api/v1/statuses/${id}/history`);
+  listHistory(id: string): Paginator<StatusEdit[]> {
+    return new Paginator(this.http, `/api/v1/statuses/${id}/history`);
   }
 
   /**

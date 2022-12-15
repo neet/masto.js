@@ -20,6 +20,20 @@ describe('Paginator', () => {
     });
   });
 
+  it('sends a request with await', async () => {
+    const http = new Test();
+    http.request.mockReturnValue({ headers: new Headers({}) });
+    const paginator = new Paginator(http, '/v1/api/timelines', {
+      foo: 'bar',
+    });
+    await paginator;
+    expect(http.request).toBeCalledWith({
+      requestInit: { method: 'get' },
+      path: '/v1/api/timelines',
+      searchParams: { foo: 'bar' },
+    });
+  });
+
   it('parses the next url', async () => {
     http.request.mockReturnValue({
       headers: new Headers({

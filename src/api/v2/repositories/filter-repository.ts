@@ -1,6 +1,7 @@
 import type { MastoConfig } from '../../../config';
 import { version } from '../../../decorators';
 import type { Http } from '../../../http';
+import { Paginator } from '../../../paginator';
 import type { Repository } from '../../repository';
 import type { Filter, FilterContext } from '../entities';
 
@@ -11,7 +12,7 @@ export interface CreateFilterParams {
    * Array of enumerable strings `home`, `notifications`, `public`, `thread`.
    * At least one context must be specified.
    */
-  readonly context: FilterContext[] | null;
+  readonly context?: readonly FilterContext[] | null;
   /** Should the server irreversibly drop matching entities from home and notifications? */
   readonly irreversible?: boolean | null;
   /** Consider word boundaries? */
@@ -33,8 +34,8 @@ export class FilterRepository
    * @see https://docs.joinmastodon.org/methods/accounts/filters/
    */
   @version({ since: '2.4.3' })
-  fetchAll(): Promise<Filter[]> {
-    return this.http.get<Filter[]>(`/api/v2/filters`);
+  list(): Paginator<Filter[]> {
+    return new Paginator(this.http, `/api/v2/filters`);
   }
 
   /**

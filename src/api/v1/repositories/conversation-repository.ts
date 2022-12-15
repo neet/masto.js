@@ -2,14 +2,14 @@ import type { MastoConfig } from '../../../config';
 import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import { Paginator } from '../../../paginator';
-import { IterableRepository } from '../../iterable-repository';
-import type { DefaultPaginationParams } from '../../repository';
+import type { DefaultPaginationParams, Repository } from '../../repository';
 import type { Conversation } from '../entities';
 
-export class ConversationRepository extends IterableRepository<Conversation> {
-  constructor(private readonly http: Http, readonly config: MastoConfig) {
-    super();
-  }
+export class ConversationRepository
+  implements
+    Repository<Conversation, never, never, never, DefaultPaginationParams>
+{
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   /**
    * Show conversation
@@ -18,9 +18,9 @@ export class ConversationRepository extends IterableRepository<Conversation> {
    * @see https://docs.joinmastodon.org/methods/timelines/conversations/
    */
   @version({ since: '2.6.0' })
-  iterate(
-    params?: DefaultPaginationParams,
-  ): Paginator<DefaultPaginationParams, Conversation[]> {
+  list(
+    params: DefaultPaginationParams = {},
+  ): Paginator<Conversation[], DefaultPaginationParams> {
     return new Paginator(this.http, '/api/v1/conversations', params);
   }
 
