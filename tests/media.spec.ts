@@ -12,7 +12,7 @@ describe('account', () => {
   });
 
   it('creates a media attachment', async () => {
-    const media = await client.v1.mediaAttachments.create({
+    const media = await client.v2.mediaAttachments.create({
       file: fs.createReadStream(path.join(__dirname, './image.png')),
     });
 

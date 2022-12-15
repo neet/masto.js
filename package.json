@@ -25,8 +25,6 @@
   "dependencies": {
     "change-case": "^4.1.2",
     "eventemitter3": "^5.0.0",
-    "isomorphic-fetch": "^3.0.0",
-    "isomorphic-form-data": "^2.0.0",
     "isomorphic-ws": "^5.0.0",
     "semver": "^7.3.7",
     "ws": "^8.8.0"
