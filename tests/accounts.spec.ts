@@ -1,5 +1,3 @@
-import assert from 'node:assert';
-
 import type { MastoClient } from '../src/clients';
 import { login } from '../test-utils/login';
 
@@ -73,15 +71,12 @@ describe('account', () => {
   });
 
   it('excludes replies from iterateStatuses', async () => {
-    const statuses = await client.v1.accounts
-      .iterateStatuses(TARGET_ID, {
-        excludeReplies: true,
-      })
-      .next();
-    assert(!statuses.done);
+    const statuses = await client.v1.accounts.listStatuses(TARGET_ID, {
+      excludeReplies: true,
+    });
 
     expect(
-      statuses.value
+      statuses
         // `excludeReplies` won't exclude reblogs
         .filter((status) => !status.reblog)
         // `excludeReplies` won't exclude self-replies
