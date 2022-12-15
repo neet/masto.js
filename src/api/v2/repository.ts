@@ -48,7 +48,7 @@ export class Repository {
    * @see https://docs.joinmastodon.org/methods/search/
    */
   @version({ since: '1.1.0', until: '3.0.0' })
-  search(params: SearchParams): Paginator<SearchParams, Search> {
+  search(params: SearchParams): Paginator<Search, SearchParams> {
     return new Paginator(this.http, `/api/v1/search`, params);
   }
 }

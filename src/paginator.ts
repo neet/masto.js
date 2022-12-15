@@ -1,7 +1,7 @@
 /* eslint-disable unicorn/no-thenable */
 import type { Http } from './http';
 
-export class Paginator<Entity extends Array<unknown>, Params = never>
+export class Paginator<Entity, Params = never>
   implements AsyncIterableIterator<Entity>, PromiseLike<Entity>
 {
   private nextPath?: string;
