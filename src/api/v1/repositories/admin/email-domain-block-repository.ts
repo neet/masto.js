@@ -1,10 +1,11 @@
 import type { MastoConfig } from '../../../../config';
 import { version } from '../../../../decorators';
 import type { Http } from '../../../../http';
+import { Paginator } from '../../../../paginator';
 import type { Repository } from '../../../repository';
 import type { Admin } from '../../entities';
 
-export type FetchEmailDomainBlocksParams = {
+export type ListEmailDomainBlocksParams = {
   /** Integer. Maximum number of results to return. Defaults to 100. */
   readonly limit?: number | null;
 };
@@ -21,7 +22,7 @@ export class EmailDomainBlockRepository
       CreateEmailDomainBlockParams,
       never,
       never,
-      FetchEmailDomainBlocksParams
+      ListEmailDomainBlocksParams
     >
 {
   constructor(private readonly http: Http, readonly config: MastoConfig) {}
@@ -33,10 +34,14 @@ export class EmailDomainBlockRepository
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '4.0.0' })
-  fetchAll(
-    params?: FetchEmailDomainBlocksParams,
-  ): Promise<Admin.EmailDomainBlock[]> {
-    return this.http.get('/api/v1/admin/email_domain_blocks ', params);
+  list(
+    params?: ListEmailDomainBlocksParams,
+  ): Paginator<Admin.EmailDomainBlock[], ListEmailDomainBlocksParams> {
+    return new Paginator(
+      this.http,
+      '/api/v1/admin/email_domain_blocks ',
+      params,
+    );
   }
 
   /**

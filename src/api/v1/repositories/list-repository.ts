@@ -20,14 +20,6 @@ export class ListRepository
 {
   constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
-  @version({ since: '2.1.0' })
-  iterateAccounts(
-    id: string,
-    params?: DefaultPaginationParams,
-  ): Paginator<DefaultPaginationParams, Account[]> {
-    return new Paginator(this.http, `/api/v1/lists/${id}/accounts`, params);
-  }
-
   /**
    * Fetch the list with the given ID. Used for verifying the title of a list.
    * @param id ID of the list in the database
@@ -45,8 +37,8 @@ export class ListRepository
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
   @version({ since: '2.1.0' })
-  fetchAll(): Promise<List[]> {
-    return this.http.get<List[]>('/api/v1/lists');
+  list(): Paginator<List[]> {
+    return new Paginator(this.http, '/api/v1/lists');
   }
 
   /**
@@ -90,11 +82,12 @@ export class ListRepository
    * @return Array of Account
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
-  fetchAccounts(
+  @version({ since: '2.1.0' })
+  listAccounts(
     id: string,
     params?: DefaultPaginationParams,
-  ): Promise<IteratorResult<Account[]>> {
-    return this.iterateAccounts(id, params).next();
+  ): Paginator<Account[], DefaultPaginationParams> {
+    return new Paginator(this.http, `/api/v1/lists/${id}/accounts`, params);
   }
 
   /**

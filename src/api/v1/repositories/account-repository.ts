@@ -64,7 +64,7 @@ export interface CreateAccountNoteParams {
   readonly comment: string;
 }
 
-export interface FetchAccountStatusesParams extends DefaultPaginationParams {
+export interface ListAccountStatusesParams extends DefaultPaginationParams {
   /** Only return statuses that have media attachments */
   readonly onlyMedia?: boolean | null;
   /** Only return statuses that have been pinned */
@@ -97,30 +97,6 @@ export class AccountRepository
   implements Repository<Account, CreateAccountParams>
 {
   constructor(private readonly http: Http, readonly config: MastoConfig) {}
-
-  @version({ since: '0.0.0' })
-  iterateFollowers(
-    id: string,
-    params: DefaultPaginationParams,
-  ): Paginator<DefaultPaginationParams, Account[]> {
-    return new Paginator(this.http, `/api/v1/accounts/${id}/followers`, params);
-  }
-
-  @version({ since: '0.0.0' })
-  iterateFollowing(
-    id: string,
-    params: DefaultPaginationParams,
-  ): Paginator<DefaultPaginationParams, Account[]> {
-    return new Paginator(this.http, `/api/v1/accounts/${id}/following`, params);
-  }
-
-  @version({ since: '0.0.0' })
-  iterateStatuses(
-    id: string,
-    params: FetchAccountStatusesParams,
-  ): Paginator<FetchAccountStatusesParams, Status[]> {
-    return new Paginator(this.http, `/api/v1/accounts/${id}/statuses`, params);
-  }
 
   /**
    * View information about a profile.
@@ -178,11 +154,12 @@ export class AccountRepository
    * @return Array of Account
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  fetchFollowers(
+  @version({ since: '0.0.0' })
+  listFollowers(
     id: string,
     params: DefaultPaginationParams = {},
-  ): Promise<IteratorResult<Account[]>> {
-    return this.iterateFollowers(id, params).next();
+  ): Paginator<Account[], DefaultPaginationParams> {
+    return new Paginator(this.http, `/api/v1/accounts/${id}/followers`, params);
   }
 
   /**
@@ -192,11 +169,12 @@ export class AccountRepository
    * @return Array of Account
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  fetchFollowing(
+  @version({ since: '0.0.0' })
+  listFollowing(
     id: string,
     params: DefaultPaginationParams = {},
-  ): Promise<IteratorResult<Account[]>> {
-    return this.iterateFollowing(id, params).next();
+  ): Paginator<Account[], DefaultPaginationParams> {
+    return new Paginator(this.http, `/api/v1/accounts/${id}/following`, params);
   }
 
   /**
@@ -206,11 +184,12 @@ export class AccountRepository
    * @return Array of Status
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  fetchStatuses(
+  @version({ since: '0.0.0' })
+  listStatuses(
     id: string,
-    params: DefaultPaginationParams = {},
-  ): Promise<IteratorResult<Status[]>> {
-    return this.iterateStatuses(id, params).next();
+    params: ListAccountStatusesParams = {},
+  ): Paginator<Status[], ListAccountStatusesParams> {
+    return new Paginator(this.http, `/api/v1/accounts/${id}/statuses`, params);
   }
 
   /**
@@ -256,8 +235,10 @@ export class AccountRepository
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
   @version({ since: '0.0.0' })
-  search(params?: SearchAccountsParams): Promise<Account[]> {
-    return this.http.get(`/api/v1/accounts/search`, params);
+  search(
+    params?: SearchAccountsParams,
+  ): Paginator<Account[], SearchAccountsParams> {
+    return new Paginator(this.http, `/api/v1/accounts/search`, params);
   }
 
   /**
@@ -311,8 +292,8 @@ export class AccountRepository
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
   @version({ since: '2.1.0' })
-  fetchLists(id: string): Promise<List[]> {
-    return this.http.get(`/api/v1/accounts/${id}/lists`);
+  listLists(id: string): Paginator<List[]> {
+    return new Paginator(this.http, `/api/v1/accounts/${id}/lists`);
   }
 
   /**
@@ -358,8 +339,8 @@ export class AccountRepository
    * @return FeaturedTags
    */
   @version({ since: '3.3.0' })
-  fetchFeaturedTags(id: string): Promise<FeaturedTag> {
-    return this.http.get(`/api/v1/accounts/${id}/featured_tags`);
+  listFeaturedTags(id: string): Paginator<FeaturedTag[]> {
+    return new Paginator(this.http, `/api/v1/accounts/${id}/featured_tags`);
   }
 
   /**
@@ -369,8 +350,8 @@ export class AccountRepository
    * @see https://github.com/tootsuite/mastodon/pull/10297
    */
   @version({ since: '2.8.0' })
-  fetchIdentityProofs(id: string): Promise<IdentityProof> {
-    return this.http.get(`/api/v1/accounts/${id}/identity_proofs`);
+  listIdentityProofs(id: string): Paginator<IdentityProof[]> {
+    return new Paginator(this.http, `/api/v1/accounts/${id}/identity_proofs`);
   }
 
   /**
@@ -388,8 +369,8 @@ export class AccountRepository
    * @returns Accounts
    */
   @version({ since: '3.5.0' })
-  fetchFamiliarFollowers(): Promise<Account[]> {
-    return this.http.get(`/api/v1/accounts/familiar_followers`);
+  listFamiliarFollowers(): Paginator<Account[]> {
+    return new Paginator(this.http, `/api/v1/accounts/familiar_followers`);
   }
 
   /**

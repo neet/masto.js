@@ -2,14 +2,13 @@ import type { MastoConfig } from '../../../config';
 import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import { Paginator } from '../../../paginator';
-import { IterableRepository } from '../../iterable-repository';
-import type { DefaultPaginationParams } from '../../repository';
+import type { DefaultPaginationParams, Repository } from '../../repository';
 import type { Account } from '../entities';
 
-export class MuteRepository extends IterableRepository<Account> {
-  constructor(private readonly http: Http, readonly config: MastoConfig) {
-    super();
-  }
+export class MuteRepository
+  implements Repository<Account, never, never, never, DefaultPaginationParams>
+{
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   /**
    * Accounts the user has muted.
@@ -18,9 +17,9 @@ export class MuteRepository extends IterableRepository<Account> {
    * @see https://docs.joinmastodon.org/methods/accounts/mutes/
    */
   @version({ since: '0.0.0' })
-  iterate(
+  list(
     params?: DefaultPaginationParams,
-  ): Paginator<DefaultPaginationParams, Account[]> {
+  ): Paginator<Account[], DefaultPaginationParams> {
     return new Paginator(this.http, '/api/v1/mutes', params);
   }
 }

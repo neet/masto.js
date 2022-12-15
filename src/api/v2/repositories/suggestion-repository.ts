@@ -1,16 +1,18 @@
 import type { MastoConfig } from '../../../config';
 import { version } from '../../../decorators';
 import type { Http } from '../../../http';
+import { Paginator } from '../../../paginator';
 import type { V1 } from '../..';
 import type { Repository } from '../../repository';
 
-export interface FetchSuggestionParams {
+export interface ListSuggestionsParams {
   /** Integer. Maximum number of results to return. Defaults to 40. */
   limit?: number | null;
 }
 
 export class SuggestionRepository
-  implements Repository<V1.Suggestion, never, never, FetchSuggestionParams>
+  implements
+    Repository<V1.Suggestion, never, never, never, ListSuggestionsParams>
 {
   constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
@@ -21,7 +23,9 @@ export class SuggestionRepository
    * @returns
    */
   @version({ since: '3.4.0' })
-  fetchAll(params?: FetchSuggestionParams): Promise<V1.Suggestion[]> {
-    return this.http.get('/api/v2/suggestions', params);
+  list(
+    params?: ListSuggestionsParams,
+  ): Paginator<V1.Suggestion[], ListSuggestionsParams> {
+    return new Paginator(this.http, '/api/v2/suggestions', params);
   }
 }

@@ -1,6 +1,7 @@
 import type { MastoConfig } from '../../../config';
 import { version } from '../../../decorators';
 import type { Http } from '../../../http';
+import { Paginator } from '../../../paginator';
 import type { Repository } from '../../repository';
 import type { FeaturedTag, Tag } from '../entities';
 
@@ -19,8 +20,8 @@ export class FeaturedTagRepository implements Repository<FeaturedTag> {
    * @done
    */
   @version({ since: '3.0.0' })
-  fetchAll(): Promise<FeaturedTag[]> {
-    return this.http.get<FeaturedTag[]>('/api/v1/featured_tags');
+  list(): Paginator<FeaturedTag[]> {
+    return new Paginator(this.http, '/api/v1/featured_tags');
   }
 
   /**
@@ -40,8 +41,8 @@ export class FeaturedTagRepository implements Repository<FeaturedTag> {
    * @see https://docs.joinmastodon.org/methods/accounts/featured_tags/
    */
   @version({ since: '3.0.0' })
-  fetchSuggestions(): Promise<Tag[]> {
-    return this.http.get<Tag[]>('/api/v1/featured_tags/suggestions');
+  listSuggestions(): Paginator<Tag[]> {
+    return new Paginator(this.http, '/api/v1/featured_tags/suggestions');
   }
 
   /**

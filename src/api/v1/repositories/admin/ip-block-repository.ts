@@ -1,11 +1,12 @@
 import type { MastoConfig } from '../../../../config';
 import { version } from '../../../../decorators';
 import type { Http } from '../../../../http';
+import { Paginator } from '../../../../paginator';
 import type { Repository } from '../../../repository';
 import type { Admin } from '../../entities';
 import type { IpBlockSeverity } from '../../entities/admin';
 
-export type FetchIpBlockParams = {
+export type ListIpBlocksParams = {
   /** Integer. Maximum number of results to return. Defaults to 100. */
   readonly limit?: number | null;
 };
@@ -39,7 +40,7 @@ export class IpBlockRepository
       CreateIpBlockParams,
       UpdateIpBlockParams,
       never,
-      FetchIpBlockParams
+      ListIpBlocksParams
     >
 {
   constructor(private readonly http: Http, readonly config: MastoConfig) {}
@@ -51,8 +52,10 @@ export class IpBlockRepository
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '4.0.0' })
-  fetchAll(params?: FetchIpBlockParams): Promise<Admin.IpBlock[]> {
-    return this.http.get('/api/v1/admin/ip_blocks', params);
+  list(
+    params?: ListIpBlocksParams,
+  ): Paginator<Admin.IpBlock[], ListIpBlocksParams> {
+    return new Paginator(this.http, '/api/v1/admin/ip_blocks', params);
   }
 
   /**

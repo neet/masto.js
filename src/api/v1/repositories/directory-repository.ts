@@ -1,12 +1,13 @@
 import type { MastoConfig } from '../../../config';
 import { version } from '../../../decorators';
 import type { Http } from '../../../http';
+import { Paginator } from '../../../paginator';
 import type { Repository } from '../../repository';
 import type { Account } from '../entities';
 
 export type DirectoryOrderType = 'active' | 'new';
 
-export interface FetchDirectoryParams {
+export interface ListDirectoryParams {
   /** How many accounts to load. Default 40. */
   readonly limit?: number | null;
   /** How many accounts to skip before returning results. Default 0. */
@@ -18,7 +19,7 @@ export interface FetchDirectoryParams {
 }
 
 export class DirectoryRepository
-  implements Repository<Account, never, never, FetchDirectoryParams>
+  implements Repository<Account, never, never, never, ListDirectoryParams>
 {
   constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
@@ -29,7 +30,9 @@ export class DirectoryRepository
    * @see https://docs.joinmastodon.org/methods/instance/directory/
    */
   @version({ since: '3.0.0' })
-  fetchAll(params?: FetchDirectoryParams): Promise<Account[]> {
-    return this.http.get<Account[]>('/api/v1/directory', params);
+  list(
+    params?: ListDirectoryParams,
+  ): Paginator<Account[], ListDirectoryParams> {
+    return new Paginator(this.http, '/api/v1/directory', params);
   }
 }

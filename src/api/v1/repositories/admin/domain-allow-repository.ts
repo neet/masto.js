@@ -1,10 +1,11 @@
 import type { MastoConfig } from '../../../../config';
 import { version } from '../../../../decorators';
 import type { Http } from '../../../../http';
+import { Paginator } from '../../../../paginator';
 import type { Repository } from '../../../repository';
 import type { Admin } from '../../entities';
 
-export type FetchAllDomainAllowsParams = {
+export type ListDomainAllowsParams = {
   readonly limit?: number;
 };
 
@@ -19,7 +20,7 @@ export class DomainAllowRepository
       CreateDomainAllowParams,
       never,
       never,
-      FetchAllDomainAllowsParams
+      ListDomainAllowsParams
     >
 {
   constructor(private readonly http: Http, readonly config: MastoConfig) {}
@@ -31,8 +32,10 @@ export class DomainAllowRepository
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   @version({ since: '4.0.0' })
-  fetchAll(params?: FetchAllDomainAllowsParams): Promise<Admin.DomainAllow[]> {
-    return this.http.get('/api/v1/admin/domain_allows', params);
+  list(
+    params?: ListDomainAllowsParams,
+  ): Paginator<Admin.DomainAllow[], ListDomainAllowsParams> {
+    return new Paginator(this.http, '/api/v1/admin/domain_allows', params);
   }
 
   /**

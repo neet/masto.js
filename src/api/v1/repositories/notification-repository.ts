@@ -2,11 +2,10 @@ import type { MastoConfig } from '../../../config';
 import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import { Paginator } from '../../../paginator';
-import { IterableRepository } from '../../iterable-repository';
-import type { DefaultPaginationParams } from '../../repository';
+import type { DefaultPaginationParams, Repository } from '../../repository';
 import type { Notification, NotificationType } from '../entities';
 
-export interface FetchNotificationsParams extends DefaultPaginationParams {
+export interface ListNotificationsParams extends DefaultPaginationParams {
   /** Instead of specifying every known type to exclude, you can specify only the types you want. */
   readonly types?: NotificationType[] | null;
   /** ID of the account */
@@ -15,10 +14,11 @@ export interface FetchNotificationsParams extends DefaultPaginationParams {
   readonly excludeTypes?: NotificationType[] | null;
 }
 
-export class NotificationsRepository extends IterableRepository<Notification> {
-  constructor(private readonly http: Http, readonly config: MastoConfig) {
-    super();
-  }
+export class NotificationsRepository
+  implements
+    Repository<Notification, never, never, never, ListNotificationsParams>
+{
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   /**
    * Notifications concerning the user.
@@ -29,9 +29,9 @@ export class NotificationsRepository extends IterableRepository<Notification> {
    * @see https://docs.joinmastodon.org/methods/notifications/
    */
   @version({ since: '0.0.0' })
-  iterate(
-    params?: FetchNotificationsParams,
-  ): Paginator<FetchNotificationsParams, Notification[]> {
+  list(
+    params?: ListNotificationsParams,
+  ): Paginator<Notification[], ListNotificationsParams> {
     return new Paginator(this.http, '/api/v1/notifications', params);
   }
 

@@ -2,14 +2,13 @@ import type { MastoConfig } from '../../../config';
 import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import { Paginator } from '../../../paginator';
-import { IterableRepository } from '../../iterable-repository';
-import type { DefaultPaginationParams } from '../../repository';
+import type { DefaultPaginationParams, Repository } from '../../repository';
 import type { Status } from '../entities';
 
-export class FavouriteRepository extends IterableRepository<Status> {
-  constructor(private readonly http: Http, readonly config: MastoConfig) {
-    super();
-  }
+export class FavouriteRepository
+  implements Repository<Status, never, never, never, DefaultPaginationParams>
+{
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   /**
    * Statuses the user has favourited.
@@ -18,9 +17,9 @@ export class FavouriteRepository extends IterableRepository<Status> {
    * @see https://docs.joinmastodon.org/methods/accounts/favourites/
    */
   @version({ since: '0.0.0' })
-  iterate(
+  list(
     params?: DefaultPaginationParams,
-  ): Paginator<DefaultPaginationParams, Status[]> {
+  ): Paginator<Status[], DefaultPaginationParams> {
     return new Paginator(this.http, `/api/v1/favourites`, params);
   }
 }
