@@ -1,7 +1,7 @@
 import type { MastoConfig } from '../config';
 import type { CreateErrorParams } from '../errors';
 import { createError, MastoUnexpectedError } from '../errors';
-import type { MimeType, Serializer } from '../serializers';
+import type { Serializer } from '../serializers';
 import { mergeAbortSignals } from '../utils';
 import { BaseHttp } from './base-http';
 import { getContentType } from './get-content-type';
@@ -19,12 +19,10 @@ export class HttpNativeImpl extends BaseHttp implements Http {
   async request(params: HttpRequestParams): Promise<HttpRequestResult> {
     const { path, searchParams, requestInit } = params;
 
-    const url = this.config.resolveHttpPath(path);
-    url.search = this.serializer.serializeQueryString(searchParams);
-
+    const url = this.config.resolveHttpPath(path, searchParams);
     const headers = this.config.createHeader(requestInit?.headers);
     const reqType = headers.get('Content-Type') ?? 'application/json';
-    const body = this.serializer.serialize(reqType as MimeType, params.body);
+    const body = this.serializer.serialize(reqType, params.body);
 
     if (body instanceof FormData) {
       // As multipart form data should contain an arbitrary boundary,
@@ -63,14 +61,20 @@ export class HttpNativeImpl extends BaseHttp implements Http {
 
       return {
         headers: response.headers,
-        data: this.serializer.deserialize('application/json', text),
+        data: this.serializer.deserialize(
+          response.headers.get('Content-Type') ?? 'application/json',
+          text,
+        ),
       };
     } catch (error) {
       if (!(error instanceof Response)) {
         throw error;
       }
 
-      const data = await error.json();
+      const data = this.serializer.deserialize(
+        error.headers.get('Content-Type') ?? 'application/json',
+        await error.text(),
+      );
 
       throw createError({
         cause: error,

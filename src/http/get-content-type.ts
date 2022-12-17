@@ -1,10 +1,8 @@
-import type { MimeType } from '../serializers';
-
-export const getContentType = (headers: Headers): MimeType | void => {
+export const getContentType = (headers: Headers): string | void => {
   const contentType = headers.get('Content-Type');
   if (typeof contentType !== 'string') {
     return;
   }
 
-  return contentType.replace(/\s*;.*$/, '') as MimeType;
+  return contentType.replace(/\s*;.*$/, '');
 };

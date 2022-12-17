@@ -1,7 +1,5 @@
-export type MimeType = 'application/json' | 'multipart/form-data';
-
 export interface Serializer {
-  serialize(type: MimeType, data: unknown): unknown;
+  serialize(type: string, data: unknown): unknown;
   serializeQueryString(data: unknown): string;
-  deserialize<T = Record<string, unknown>>(type: MimeType, data: unknown): T;
+  deserialize<T = Record<string, unknown>>(type: string, data: unknown): T;
 }

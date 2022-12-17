@@ -3,11 +3,11 @@ import { camelCase, snakeCase } from 'change-case';
 import { MastoDeserializeError } from '../errors';
 import { flattenObject } from './form-data';
 import { railsQueryString } from './rails-querystring';
-import type { MimeType, Serializer } from './serializer';
+import type { Serializer } from './serializer';
 import { transformKeys } from './transform-keys';
 
 export class SerializerNativeImpl implements Serializer {
-  serialize(type: MimeType, rawData: unknown): unknown {
+  serialize(type: string, rawData: unknown): unknown {
     if (rawData == undefined) return;
 
     const data = transformKeys(rawData, snakeCase);
@@ -34,7 +34,7 @@ export class SerializerNativeImpl implements Serializer {
     return railsQueryString.stringify(data);
   }
 
-  deserialize<T = Record<string, unknown>>(type: MimeType, data: string): T {
+  deserialize<T = Record<string, unknown>>(type: string, data: string): T {
     switch (type) {
       case 'application/json': {
         try {
