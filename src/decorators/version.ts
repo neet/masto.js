@@ -1,7 +1,7 @@
 import semver from 'semver';
 
 import type { MastoConfig } from '../config';
-import { MastoError, MastoUnexpectedError, MastoVersionError } from '../errors';
+import { MastoUnexpectedError, MastoVersionError } from '../errors';
 
 interface Target {
   readonly config: MastoConfig;
