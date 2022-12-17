@@ -4,6 +4,7 @@ import type { Http } from '../../http';
 import { Paginator } from '../../paginator';
 import type { Ws } from '../../ws';
 import type { DefaultPaginationParams } from '../repository';
+import { AggregateRepositoryAdmin } from './aggregate-repository-admin';
 import type { Search } from './entities';
 import {
   AccountRepository,
@@ -40,7 +41,6 @@ import {
   TimelinesRepository,
   TrendRepository,
 } from './repositories';
-import { MastoAdminClient } from './repository-admin';
 
 export type SearchType = 'accounts' | 'hashtags' | 'statuses';
 
@@ -55,8 +55,8 @@ export interface SearchParams extends DefaultPaginationParams {
   readonly accountId?: string | null;
 }
 
-export class Repository {
-  readonly admin: MastoAdminClient;
+export class AggregateRepository {
+  readonly admin: AggregateRepositoryAdmin;
   readonly stream: StreamRepository;
   readonly accounts: AccountRepository;
   readonly announcements: AnnouncementRepository;
@@ -96,7 +96,7 @@ export class Repository {
     private readonly ws: Ws,
     readonly config: MastoConfig,
   ) {
-    this.admin = new MastoAdminClient(this.http, this.config);
+    this.admin = new AggregateRepositoryAdmin(this.http, this.config);
     this.stream = new StreamRepository(this.ws, this.config);
     this.accounts = new AccountRepository(this.http, this.config);
     this.announcements = new AnnouncementRepository(this.http, this.config);

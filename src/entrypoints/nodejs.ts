@@ -1,7 +1,7 @@
 import { SemVer } from 'semver';
 
+import { MastoClient } from '../api';
 import { InstanceRepository } from '../api/v1/repositories';
-import { MastoClient } from '../clients';
 import type { MastoConfigProps } from '../config';
 import { MastoConfig } from '../config';
 import { HttpNativeImpl } from '../http';
@@ -44,6 +44,5 @@ export * from '../errors';
 export * from '../http';
 export * from '../serializers';
 export * from '../ws';
-export * from '../clients';
 export * from '../config';
 export * from '../paginator';

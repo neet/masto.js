@@ -2,7 +2,7 @@ import type { MastoConfig } from '../../config';
 import type { Http } from '../../http';
 import { AdminRepositories } from './repositories';
 
-export class MastoAdminClient {
+export class AggregateRepositoryAdmin {
   readonly account: AdminRepositories.AccountRepository;
   readonly report: AdminRepositories.ReportRepository;
   readonly domainBlocks: AdminRepositories.DomainBlockRepository;

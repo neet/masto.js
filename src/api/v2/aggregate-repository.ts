@@ -28,7 +28,7 @@ export interface SearchParams extends DefaultPaginationParams {
   readonly following?: boolean | null;
 }
 
-export class Repository {
+export class AggregateRepository {
   readonly filters: FilterRepository;
   readonly instance: InstanceRepository;
   readonly mediaAttachments: MediaAttachmentRepository;

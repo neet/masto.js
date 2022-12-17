@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import type { MastoClient } from '../src/clients';
+import type { MastoClient } from '../src/api';
 import { login } from '../test-utils/login';
 
 describe('account', () => {
