@@ -1,4 +1,4 @@
-import fs from 'node:fs';
+import fs from 'node:fs/promises';
 import path from 'node:path';
 
 import type { MastoClient } from '../src/clients';
@@ -13,7 +13,7 @@ describe('account', () => {
 
   it('creates a media attachment', async () => {
     const media = await client.v2.mediaAttachments.create({
-      file: fs.createReadStream(path.join(__dirname, './image.png')),
+      file: new Blob([await fs.readFile(path.join(__dirname, './image.png'))]),
     });
 
     expect(media.type).toBe('image');

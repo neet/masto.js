@@ -7,7 +7,7 @@ const main = async () => {
   });
 
   // Fetching reports
-  const reports = await masto.v1.admin.report.fetchAll();
+  const reports = await masto.v1.admin.report.list();
 
   // Disable an account of the 1st report
   await masto.v1.admin.account.createAction(reports[0].account.id, {

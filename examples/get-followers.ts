@@ -1,5 +1,3 @@
-import assert from 'node:assert';
-
 import { login } from 'masto';
 
 const main = async () => {
@@ -11,12 +9,10 @@ const main = async () => {
   // Fetch your own account
   const me = await masto.v1.accounts.verifyCredentials();
 
-  const { value: followers, done } = await masto.v1.accounts.fetchFollowers(
-    me.id,
-    { limit: 60, minId: '123123' },
-  );
-
-  assert(done !== true);
+  const followers = await masto.v1.accounts.listFollowers(me.id, {
+    limit: 60,
+    minId: '123123',
+  });
 
   console.log(followers);
   console.log('Count in 1st page: ' + followers.length);
