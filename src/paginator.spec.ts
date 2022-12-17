@@ -9,6 +9,7 @@ describe('Paginator', () => {
   });
 
   it('sends a request', async () => {
+    http.request.mockReturnValue({ headers: new Headers({}) });
     const paginator = new Paginator(http, '/v1/api/timelines', {
       foo: 'bar',
     });
@@ -21,7 +22,6 @@ describe('Paginator', () => {
   });
 
   it('sends a request with await', async () => {
-    const http = new Test();
     http.request.mockReturnValue({ headers: new Headers({}) });
     const paginator = new Paginator(http, '/v1/api/timelines', {
       foo: 'bar',
