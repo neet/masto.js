@@ -1,7 +1,7 @@
 import semver from 'semver';
 
 import type { MastoConfig } from '../config';
-import { MastoError, MastoVersionError } from '../errors';
+import { MastoError, MastoUnexpectedError, MastoVersionError } from '../errors';
 
 interface Target {
   readonly config: MastoConfig;
@@ -28,7 +28,9 @@ export const version =
   ): void => {
     const origin = descriptor.value;
     if (!origin) {
-      throw new MastoError('version can only apply to a method of a class');
+      throw new MastoUnexpectedError(
+        'version can only apply to a method of a class',
+      );
     }
 
     descriptor.value = function (

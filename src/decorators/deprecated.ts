@@ -1,5 +1,5 @@
 import type { MastoConfig } from '../config';
-import { MastoError } from '../errors';
+import { MastoUnexpectedError } from '../errors/masto-unexpected-error';
 
 interface Target {
   readonly config: MastoConfig;
@@ -21,7 +21,9 @@ export const deprecated =
   ): void => {
     const origin = descriptor.value;
     if (!origin) {
-      throw new MastoError('deprecated can only apply to a method of a class');
+      throw new MastoUnexpectedError(
+        'deprecated can only apply to a method of a class',
+      );
     }
 
     descriptor.value = function (

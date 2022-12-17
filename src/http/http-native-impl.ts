@@ -1,6 +1,6 @@
 import type { MastoConfig } from '../config';
 import type { CreateErrorParams } from '../errors';
-import { createError, MastoError } from '../errors';
+import { createError, MastoUnexpectedError } from '../errors';
 import type { MimeType, Serializer } from '../serializers';
 import { mergeAbortSignals } from '../utils';
 import { BaseHttp } from './base-http';
@@ -58,7 +58,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       const resType = getContentType(response.headers);
 
       if (resType == undefined) {
-        throw new MastoError('Content-Type is not defined');
+        throw new MastoUnexpectedError('Content-Type is not defined');
       }
 
       return {

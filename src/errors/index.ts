@@ -1,5 +1,6 @@
 export * from './factory';
 export * from './masto-error';
+export * from './masto-unexpected-error';
 export * from './masto-deserialize-error';
 export * from './masto-http-conflict-error';
 export * from './masto-http-error';
@@ -9,5 +10,6 @@ export * from './masto-http-not-found-error';
 export * from './masto-http-rate-limit-error';
 export * from './masto-http-unauthorized-error';
 export * from './masto-http-unprocessable-entity-error';
+export * from './masto-http-unexpected-error';
 export * from './masto-version-error';
 export * from './masto-timeout-error';

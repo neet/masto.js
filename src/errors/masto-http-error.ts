@@ -1,7 +1,7 @@
 import type { MastoErrorProps } from './masto-error';
 import { MastoError } from './masto-error';
 
-export class MastoHttpError extends MastoError {
+export abstract class MastoHttpError extends MastoError {
   override name = 'MastoHttpError';
   readonly statusCode: number;
 
