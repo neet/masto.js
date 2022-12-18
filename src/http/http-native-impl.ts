@@ -9,7 +9,6 @@ import type { Http, HttpRequestParams, HttpRequestResult } from './http';
 
 export class HttpNativeImpl extends BaseHttp implements Http {
   constructor(
-    private readonly fetchImpl: typeof fetch,
     private readonly config: MastoConfig,
     private readonly serializer: Serializer,
   ) {
@@ -41,7 +40,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
     }
 
     try {
-      const response = await this.fetchImpl(url, {
+      const response = await fetch(url, {
         ...requestInit,
         headers,
         body: body as string,
