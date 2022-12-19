@@ -1,3 +1,10 @@
+## [4.10.2](https://github.com/neet/masto.js/compare/v4.10.1...v4.10.2) (2022-12-19)
+
+
+### Bug Fixes
+
+* Change Content-Type to undefined when body is a FormData ([6edac35](https://github.com/neet/masto.js/commit/6edac351b981e98cff727a6855cbddd0f310c893))
+
 ## [4.10.1](https://github.com/neet/masto.js/compare/v4.10.0...v4.10.1) (2022-12-18)
 
 # [4.10.0](https://github.com/neet/masto.js/compare/v4.9.2...v4.10.0) (2022-12-15)
