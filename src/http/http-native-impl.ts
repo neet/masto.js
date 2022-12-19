@@ -12,7 +12,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
   }
 
   async request<T>(request: Request): Promise<Response<T>> {
-    const { timeout, proxy } = this.config;
+    const { proxy } = this.config;
     const { method, data, params } = request;
 
     if (proxy != undefined) {
@@ -20,10 +20,9 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       console.warn('Proxies are not supported on HttpNativeImpl');
     }
 
-    if (timeout != undefined) {
-      // eslint-disable-next-line no-console
-      console.warn('Timeouts are not supported on HttpNativeImpl');
-    }
+    // if (timeout != undefined) {
+    //   console.warn('Timeouts are not supported on HttpNativeImpl');
+    // }
 
     const url = this.resolveUrl(request.url, params);
     const headers = new Headers(
@@ -32,11 +31,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
     const reqContentType = headers.get('Content-Type') ?? 'application/json';
     const body = this.serializer.serialize(reqContentType as MimeType, data);
 
-    if (
-      body instanceof FormData &&
-      reqContentType === 'multipart/form-data' &&
-      HttpNativeImpl.hasBlob(body)
-    ) {
+    if (body instanceof FormData) {
       // As multipart form data should contain an arbitrary boundary,
       // leave Content-Type header undefined, so that fetch() API
       // automatically configure Content-Type with an appropriate boundary.
@@ -94,12 +89,5 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       result[key.toLowerCase()] = value;
     });
     return result as Headers;
-  }
-
-  private static hasBlob(formData: FormData): boolean {
-    let hasBlob = false;
-    // eslint-disable-next-line unicorn/no-array-for-each
-    formData.forEach((v: string | Blob) => (hasBlob ||= v instanceof Blob));
-    return hasBlob;
   }
 }
