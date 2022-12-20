@@ -1,10 +1,9 @@
-import type { MastoConfig } from '../../config';
-import { version } from '../../decorators';
+import type { MastoConfig } from '../../../../config';
+import { version } from '../../../../decorators';
+import type { Http } from '../../../../http';
+import { Paginator } from '../../../../paginator';
+import type { DefaultPaginationParams, Repository } from '../../../repository';
 import type { Admin } from '../../entities';
-import type { Http } from '../../http';
-import { Paginator } from '../../paginator';
-import { IterableRepository } from '../iterable-repository';
-import type { DefaultPaginationParams } from '../repository';
 
 export interface TestCanonicalEmailBlockParams {
   /** The email to canonicalize and hash */
@@ -25,17 +24,17 @@ export type CreateCanonicalEmailBlockParams =
   | CreateCanonicalEmailBlockParamsWithEmail
   | CreateCanonicalEmailBlockParamsWithCanonicalEmailHash;
 
-export class CanonicalEmailBlockRepository extends IterableRepository<
-  Admin.CanonicalEmailBlock,
-  CreateCanonicalEmailBlockParams
-> {
-  constructor(
-    private readonly http: Http,
-    readonly version: string,
-    readonly config: MastoConfig,
-  ) {
-    super();
-  }
+export class CanonicalEmailBlockRepository
+  implements
+    Repository<
+      Admin.CanonicalEmailBlock,
+      CreateCanonicalEmailBlockParams,
+      never,
+      never,
+      DefaultPaginationParams
+    >
+{
+  constructor(private readonly http: Http, readonly config: MastoConfig) {}
 
   /**
    * List all canonical email blocks.
@@ -44,9 +43,9 @@ export class CanonicalEmailBlockRepository extends IterableRepository<
    * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks/
    */
   @version({ since: '4.0.0' })
-  iterate(
+  list(
     params?: DefaultPaginationParams,
-  ): Paginator<DefaultPaginationParams, Admin.CanonicalEmailBlock[]> {
+  ): Paginator<Admin.CanonicalEmailBlock[], DefaultPaginationParams> {
     return new Paginator(
       this.http,
       '/api/v1/admin/canonical_email_blocks',

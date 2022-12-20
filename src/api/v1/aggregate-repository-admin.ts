@@ -48,7 +48,6 @@ export class AggregateRepositoryAdmin {
     this.canonicalEmailBlocks =
       new AdminRepositories.CanonicalEmailBlockRepository(
         this.http,
-        this.version,
         this.config,
       );
   }
