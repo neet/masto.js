@@ -1,5 +1,7 @@
 import assert from 'node:assert';
 
+import { FormData } from '@mastojs/isomorphic-web';
+
 import { SerializerNativeImpl } from './serializer-native-impl';
 
 describe('SerializerNativeImpl', () => {
@@ -16,7 +18,11 @@ describe('SerializerNativeImpl', () => {
     );
   });
 
-  it('encodes an object to form-data', () => {
+  it('encodes an object to form-data', (done) => {
+    if (globalThis.FormData === undefined) {
+      return done();
+    }
+
     const data = serializer.serialize('multipart/form-data', {
       keyName: 'value',
       anotherKeyName: ['value1', 'value2'],

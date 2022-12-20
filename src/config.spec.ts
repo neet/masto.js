@@ -134,7 +134,8 @@ describe('Config', () => {
     expect(config.createWebsocketProtocols()).toEqual([]);
   });
 
-  it('creates timeout controller with specific limit', () => {
+  it('creates timeout controller with specific limit', (done) => {
+    jest.useFakeTimers();
     const config = new MastoConfig(
       {
         url: 'https://mastodon.social',
@@ -146,7 +147,10 @@ describe('Config', () => {
       new SerializerNativeImpl(),
     );
 
-    jest.useFakeTimers();
+    if (globalThis.AbortController === undefined) {
+      return done();
+    }
+
     const controller = config.createTimeoutController();
     assert(controller != undefined);
 

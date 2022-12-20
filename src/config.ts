@@ -75,6 +75,10 @@ export class MastoConfig {
     if (this.props.timeout == undefined) {
       return;
     }
+    // FIXME
+    if (globalThis.AbortController === undefined) {
+      return;
+    }
 
     const abortController = new AbortController();
     setTimeout(() => {

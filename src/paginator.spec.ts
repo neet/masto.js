@@ -1,3 +1,5 @@
+import { Headers } from '@mastojs/isomorphic-web';
+
 import { HttpMockImpl } from './http/http-mock-impl';
 import { Paginator } from './paginator';
 

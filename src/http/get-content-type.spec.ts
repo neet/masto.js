@@ -1,3 +1,5 @@
+import { Headers } from '@mastojs/isomorphic-web';
+
 import { getContentType } from './get-content-type';
 
 test.each([
