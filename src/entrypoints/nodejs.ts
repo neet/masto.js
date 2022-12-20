@@ -22,13 +22,8 @@ export const login = async (params: LoginParams): Promise<MastoClient> => {
     const tempConfig = new MastoConfig(configProps, serializer);
     const http = new HttpNativeImpl(tempConfig, serializer);
     const instance = await new InstanceRepository(http, tempConfig).fetch();
-
-    if (configProps.version == undefined) {
-      configProps.version = new SemVer(instance.version);
-    }
-    if (configProps.streamingApiUrl == undefined) {
-      configProps.streamingApiUrl = instance.urls.streamingApi;
-    }
+    configProps.version = new SemVer(instance.version);
+    configProps.streamingApiUrl = instance.urls.streamingApi;
   }
 
   const config = new MastoConfig(configProps, serializer);

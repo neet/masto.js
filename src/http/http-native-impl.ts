@@ -22,7 +22,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
 
     const url = this.config.resolveHttpPath(path, searchParams);
     const headers = this.config.createHeader(requestInit?.headers);
-    const reqType = headers.get('Content-Type') ?? 'application/json';
+    const reqType = getContentType(headers) ?? 'application/json';
     const body = this.serializer.serialize(reqType, params.body);
 
     if (body instanceof FormData) {
@@ -62,10 +62,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
 
       return {
         headers: response.headers,
-        data: this.serializer.deserialize(
-          getContentType(response.headers) ?? 'application/json',
-          text,
-        ),
+        data: this.serializer.deserialize(resType, text),
       };
     } catch (error) {
       if (!(error instanceof Response)) {

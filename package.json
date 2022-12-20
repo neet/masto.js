@@ -2,10 +2,13 @@
   "name": "masto",
   "description": "Mastodon API client for JavaScript, TypeScript, Node.js, browsers",
   "private": false,
-  "version": "4.11.1",
+  "version": "5.0.0-rc7",
   "author": "Ryo Igarashi <n33t5hin@gmail.com>",
   "license": "MIT",
   "type": "module",
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -23,7 +26,7 @@
     "docs:build": "typedoc ./src/entrypoints/nodejs.ts && touch ./docs/.nojekyll"
   },
   "dependencies": {
-    "@mastojs/isomorphic-web": "^1.0.2",
+    "@mastojs/isomorphic-web": "^1.0.3",
     "change-case": "^4.1.2",
     "eventemitter3": "^5.0.0",
     "isomorphic-ws": "^5.0.0",
@@ -66,7 +69,6 @@
   "files": [
     "README.md",
     "dist",
-    "fetch.d.ts",
     "!**/__tests__",
     "!**/__mocks__"
   ],
