@@ -1,3 +1,16 @@
+# [4.11.0](https://github.com/neet/masto.js/compare/v4.10.2...v4.11.0) (2022-12-20)
+
+
+### Bug Fixes
+
+* Add backwards-compatible type declarations ([#761](https://github.com/neet/masto.js/issues/761)) ([e957388](https://github.com/neet/masto.js/commit/e9573884f70013e1598f27dcb65cb181006e5ca6))
+* Add missing exclude_reblogs and tagged to fetching account statuses ([#760](https://github.com/neet/masto.js/issues/760)) ([59cd02a](https://github.com/neet/masto.js/commit/59cd02abd65d0afbda3a3fa3f544ae13e6b2f155))
+
+
+### Features
+
+* Support Canonical email block ([#759](https://github.com/neet/masto.js/issues/759)) ([464f4fe](https://github.com/neet/masto.js/commit/464f4fe5898cfafda9c58c0b26cbbc31a2c24b39))
+
 ## [4.10.2](https://github.com/neet/masto.js/compare/v4.10.1...v4.10.2) (2022-12-19)
 
 
