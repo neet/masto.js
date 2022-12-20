@@ -9,7 +9,7 @@ import type {
   List,
   Relationship,
   Source,
-  Status
+  Status,
 } from '../entities';
 import type { Http } from '../http';
 import { Paginator } from '../paginator';
