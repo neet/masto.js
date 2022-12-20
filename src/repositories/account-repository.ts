@@ -71,6 +71,10 @@ export interface FetchAccountStatusesParams extends DefaultPaginationParams {
   readonly pinned?: boolean | null;
   /** Skip statuses that reply to other statuses */
   readonly excludeReplies?: boolean | null;
+  /** Skip statuses that are boosts of other statuses */
+  readonly excludeReblogs?: boolean | null;
+  /** Only return statuses using a specific hashtag */
+  readonly tagged?: string | null;
 }
 
 export interface FollowAccountParams {
