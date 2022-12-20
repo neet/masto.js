@@ -14,15 +14,11 @@ export interface TestCanonicalEmailBlockParams {
 export interface CreateCanonicalEmailBlockParamsWithEmail {
   /** The email to canonicalize, hash, and block. If this parameter is provided, canonical_email_hash will be ignored. */
   readonly email: string;
-  /** The hash to test against. If email is not provided, this parameter is required. */
-  readonly canonicalEmailHash?: never;
 }
 
 export interface CreateCanonicalEmailBlockParamsWithCanonicalEmailHash {
   /** The hash to test against. If email is not provided, this parameter is required. */
   readonly canonicalEmailHash: string;
-  /** The email to canonicalize, hash, and block. If this parameter is provided, canonical_email_hash will be ignored. */
-  readonly email?: string | null;
 }
 
 export type CreateCanonicalEmailBlockParams =
