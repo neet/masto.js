@@ -7,3 +7,4 @@ export type {
   EmailDomainBlockHistory,
 } from './domain-email-block';
 export type { IpBlock, IpBlockSeverity } from './ip-block';
+export type { CanonicalEmailBlock } from './canonical-email-block';
