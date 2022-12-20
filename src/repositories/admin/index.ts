@@ -4,3 +4,4 @@ export * from './domain-block-repository';
 export * from './domain-allow-repository';
 export * from './email-domain-block-repository';
 export * from './ip-block-repository';
+export * from './canonical-email-block-repository';
