@@ -2,7 +2,7 @@ import 'isomorphic-form-data';
 
 import { MastoClient } from '../clients';
 import type { MastoConfig } from '../config';
-import { HttpAxiosImpl } from '../http';
+import { HttpAxiosImpl } from '../http/http-axios-impl';
 import { InstanceRepository } from '../repositories';
 import { SerializerNativeImpl } from '../serializers';
 import { WsNativeImpl } from '../ws';
@@ -25,6 +25,7 @@ export * from '../decorators';
 export * from '../entities';
 export * from '../errors';
 export * from '../http';
+export * from '../http/http-axios-impl';
 export * from '../repositories';
 export * from '../serializers';
 export * from '../ws';

@@ -1,3 +1,31 @@
+## [4.10.2](https://github.com/neet/masto.js/compare/v4.10.1...v4.10.2) (2022-12-19)
+
+
+### Bug Fixes
+
+* Change Content-Type to undefined when body is a FormData ([6edac35](https://github.com/neet/masto.js/commit/6edac351b981e98cff727a6855cbddd0f310c893))
+
+## [4.10.1](https://github.com/neet/masto.js/compare/v4.10.0...v4.10.1) (2022-12-18)
+
+# [4.10.0](https://github.com/neet/masto.js/compare/v4.9.2...v4.10.0) (2022-12-15)
+
+
+### Bug Fixes
+
+* Remove JSON.parse for delete event type ([#754](https://github.com/neet/masto.js/issues/754)) ([b5cb960](https://github.com/neet/masto.js/commit/b5cb96061786de902788f79a5cea7d0555a32b3e))
+
+
+### Features
+
+* Support /v1/admin/ip_blocks ([#752](https://github.com/neet/masto.js/issues/752)) ([89e0098](https://github.com/neet/masto.js/commit/89e00985885669e663d2d5461bf44e470827a6e9))
+
+## [4.9.2](https://github.com/neet/masto.js/compare/v4.9.1...v4.9.2) (2022-12-14)
+
+
+### Bug Fixes
+
+* Remove re-exports of HTTP implementations ([#753](https://github.com/neet/masto.js/issues/753)) ([bafb4cb](https://github.com/neet/masto.js/commit/bafb4cbc57a60ef379a1a30e5f1fb184bdc71c7b))
+
 ## [4.9.1](https://github.com/neet/masto.js/compare/v4.9.0...v4.9.1) (2022-12-09)
 
 
