@@ -20,7 +20,7 @@ export const login = async (params: LoginParams): Promise<MastoClient> => {
 
   {
     const tempConfig = new MastoConfig(configProps, serializer);
-    const http = new HttpNativeImpl(fetch, tempConfig, serializer);
+    const http = new HttpNativeImpl(tempConfig, serializer);
     const instance = await new InstanceRepository(http, tempConfig).fetch();
 
     if (configProps.version == undefined) {
@@ -33,7 +33,7 @@ export const login = async (params: LoginParams): Promise<MastoClient> => {
 
   const config = new MastoConfig(configProps, serializer);
   const ws = new WsNativeImpl(config, serializer);
-  const http = new HttpNativeImpl(fetch, config, serializer);
+  const http = new HttpNativeImpl(config, serializer);
 
   return new MastoClient(http, ws, config);
 };

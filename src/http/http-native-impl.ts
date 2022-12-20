@@ -1,3 +1,5 @@
+import { fetch, FormData, Response } from '@mastojs/isomorphic-web';
+
 import type { MastoConfig } from '../config';
 import type { CreateErrorParams } from '../errors';
 import { createError, MastoUnexpectedError } from '../errors';

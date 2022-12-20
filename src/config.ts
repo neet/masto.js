@@ -1,3 +1,4 @@
+import { Headers } from '@mastojs/isomorphic-web';
 import type { SemVer } from 'semver';
 import semver from 'semver';
 

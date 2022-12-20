@@ -1,3 +1,5 @@
+import { Headers } from '@mastojs/isomorphic-web';
+
 /* eslint-disable unicorn/no-array-for-each */
 export const mergeHeadersInit = ([
   head,

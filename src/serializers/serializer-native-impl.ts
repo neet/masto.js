@@ -1,3 +1,4 @@
+import { FormData } from '@mastojs/isomorphic-web';
 import { camelCase, snakeCase } from 'change-case';
 
 import { MastoDeserializeError } from '../errors';
