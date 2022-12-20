@@ -72,7 +72,7 @@
   "files": [
     "README.md",
     "dist",
-    "fetch",
+    "fetch.d.ts",
     "!**/__tests__",
     "!**/__mocks__"
   ],
