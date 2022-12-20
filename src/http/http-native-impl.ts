@@ -63,7 +63,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       return {
         headers: response.headers,
         data: this.serializer.deserialize(
-          response.headers.get('Content-Type') ?? 'application/json',
+          getContentType(response.headers) ?? 'application/json',
           text,
         ),
       };
@@ -73,7 +73,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       }
 
       const data = this.serializer.deserialize(
-        error.headers.get('Content-Type') ?? 'application/json',
+        getContentType(error.headers) ?? 'application/json',
         await error.text(),
       );
 
