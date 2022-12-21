@@ -22,16 +22,15 @@ export class Paginator<Entity, Params = never>
       .replace(/^https?:\/\/[^/]+/, '');
   };
 
-  async next(params?: Params): Promise<IteratorResult<Entity>> {
+  async next(): Promise<IteratorResult<Entity>> {
     if (this.nextPath == undefined) {
       return { done: true, value: undefined };
     }
 
-    const reset = params != undefined;
     const response = await this.http.request({
-      path: reset ? this.initialPath : this.nextPath,
-      searchParams: (params ?? this.nextParams) as Record<string, unknown>,
       requestInit: { method: 'GET' },
+      path: this.nextPath,
+      searchParams: this.nextParams as Record<string, unknown>,
     });
 
     this.nextPath =
