@@ -3,7 +3,7 @@ export type Data = unknown;
 
 export type Request = {
   readonly url: string;
-  readonly method: 'get' | 'post' | 'patch' | 'delete' | 'put' | 'options';
+  readonly method: 'GET' | 'POST' | 'PATCH' | 'DELETE' | 'PUT' | 'OPTIONS';
   readonly headers?: Headers;
   readonly params?: Data;
   readonly data?: Data;
