@@ -1,3 +1,10 @@
+## [4.11.1](https://github.com/neet/masto.js/compare/v4.11.0...v4.11.1) (2022-12-22)
+
+
+### Bug Fixes
+
+* Change HTTP methods to uppercase ([873a8e2](https://github.com/neet/masto.js/commit/873a8e2dd53ac8fb104facc651c6ae6c687a8384))
+
 # [4.11.0](https://github.com/neet/masto.js/compare/v4.10.2...v4.11.0) (2022-12-20)
 
 
