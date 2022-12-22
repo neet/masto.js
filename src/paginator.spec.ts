@@ -15,7 +15,7 @@ describe('Paginator', () => {
     });
     await paginator.next();
     expect(http.request).toBeCalledWith({
-      method: 'get',
+      method: 'GET',
       url: '/v1/api/timelines',
       params: { foo: 'bar' },
     });
@@ -31,7 +31,7 @@ describe('Paginator', () => {
     await paginator.next();
     await paginator.next();
     expect(http.request).toBeCalledWith({
-      method: 'get',
+      method: 'GET',
       params: {},
       url: '/api/v1/timelines/home?max_id=109382006402042919',
     });

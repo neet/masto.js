@@ -27,7 +27,7 @@ export class Paginator<Params, Result>
     }
 
     const response: Response<Result> = await this.http.request({
-      method: 'get',
+      method: 'GET',
       // if no params specified, use link header
       url: params ? this.initialUrl : this.nextUrl,
       params: params ?? this.nextParams,

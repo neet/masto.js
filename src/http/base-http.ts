@@ -38,7 +38,7 @@ export abstract class BaseHttp implements Http {
 
   get<T>(url: string, data?: Data, init: Partial<Request> = {}): Promise<T> {
     return this.request({
-      method: 'get',
+      method: 'GET',
       url,
       params: data,
       ...init,
@@ -47,7 +47,7 @@ export abstract class BaseHttp implements Http {
 
   post<T>(url: string, data?: Data, init: Partial<Request> = {}): Promise<T> {
     return this.request({
-      method: 'post',
+      method: 'POST',
       url,
       data,
       ...init,
@@ -56,7 +56,7 @@ export abstract class BaseHttp implements Http {
 
   delete<T>(url: string, data?: Data, init: Partial<Request> = {}): Promise<T> {
     return this.request({
-      method: 'delete',
+      method: 'DELETE',
       url,
       data,
       ...init,
@@ -65,7 +65,7 @@ export abstract class BaseHttp implements Http {
 
   put<T>(url: string, data?: Data, init: Partial<Request> = {}): Promise<T> {
     return this.request({
-      method: 'put',
+      method: 'PUT',
       url,
       data,
       ...init,
@@ -74,7 +74,7 @@ export abstract class BaseHttp implements Http {
 
   patch<T>(url: string, data?: Data, init: Partial<Request> = {}): Promise<T> {
     return this.request({
-      method: 'patch',
+      method: 'PATCH',
       url,
       data,
       ...init,
