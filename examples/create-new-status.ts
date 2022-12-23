@@ -1,3 +1,4 @@
+import type { mastodon } from 'masto';
 import { login } from 'masto';
 
 const masto = await login({
@@ -5,7 +6,9 @@ const masto = await login({
   accessToken: 'YOUR TOKEN',
 });
 
-await masto.v1.statuses.create({
+const s: mastodon.v1.Status = await masto.v1.statuses.create({
   status: 'Hello from #mastojs!',
   visibility: 'public',
 });
+
+console.log(s);

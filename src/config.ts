@@ -7,8 +7,8 @@ import { LogLevel } from './logger';
 import type { Serializer } from './serializers';
 import { mergeAbortSignals, mergeHeadersInit } from './utils';
 
-export type VersionCompat = 'unimplemented' | 'removed' | 'compatible';
-export type SatisfiesVersionRangeResult = {
+type VersionCompat = 'unimplemented' | 'removed' | 'compatible';
+type SatisfiesVersionRangeResult = {
   compat: VersionCompat;
   version?: string;
 };

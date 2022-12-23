@@ -1,8 +1,8 @@
-import type { MastoClient } from '../src/api';
+import type { mastodon } from '../src';
 import { login } from '../test-utils/login';
 
 describe('account', () => {
-  let client: MastoClient;
+  let client: mastodon.Client;
   const TARGET_ID = process.env.TEST_TARGET_ID ?? '200896';
 
   beforeAll(async () => {

@@ -1,4 +1,4 @@
-import type { V1 } from '../..';
+import type { v1 } from '../..';
 
 /**
  * Represents the results of a search.
@@ -6,9 +6,9 @@ import type { V1 } from '../..';
  */
 export interface Search {
   /** Accounts which match the given query */
-  accounts: V1.Account[];
+  accounts: v1.Account[];
   /** Statuses which match the given query */
-  statuses: V1.Status[];
+  statuses: v1.Status[];
   /** Hashtags which match the given query */
-  hashtags: V1.Tag[];
+  hashtags: v1.Tag[];
 }

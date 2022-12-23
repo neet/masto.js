@@ -6,7 +6,7 @@ import type {
   Notification,
   Reaction,
   Status,
-} from '../api/v1/entities';
+} from '../mastodon/v1/entities';
 
 /**
  * Map of event name and callback argument

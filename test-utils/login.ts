@@ -1,11 +1,11 @@
-import type { MastoClient } from '../src';
+import type { mastodon } from '../src';
 import { login as originalLogin } from '../src';
 
 interface Options {
   unauthenticated?: boolean;
 }
 
-export const login = (options?: Options): Promise<MastoClient> => {
+export const login = (options?: Options): Promise<mastodon.Client> => {
   const unauthenticated = options?.unauthenticated;
 
   return originalLogin({

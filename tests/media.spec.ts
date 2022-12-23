@@ -1,11 +1,11 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import type { MastoClient } from '../src/api';
+import type { mastodon } from '../src';
 import { login } from '../test-utils/login';
 
 describe('account', () => {
-  let client: MastoClient;
+  let client: mastodon.Client;
 
   beforeAll(async () => {
     client = await login();

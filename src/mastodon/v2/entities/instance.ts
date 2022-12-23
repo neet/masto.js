@@ -1,4 +1,4 @@
-import type { V1 } from '../..';
+import type { v1 } from '../..';
 
 export interface InstanceUsageUsers {
   /** The number of active users in the past 4 weeks. */
@@ -104,7 +104,7 @@ export interface InstanceContact {
   /** An email address that can be messaged regarding inquiries or issues. */
   email: string;
   /** An account that can be contacted natively over the network regarding inquiries or issues. */
-  account: V1.Account;
+  account: v1.Account;
 }
 
 /**
@@ -135,5 +135,5 @@ export interface Instance {
   /** Hints related to contacting a representative of the website. */
   contact: InstanceContact;
   /** An itemized list of rules for this website. */
-  rules: V1.Rule[];
+  rules: v1.Rule[];
 }

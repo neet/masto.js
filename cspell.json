@@ -30,6 +30,7 @@
     "serializers",
     "shortcode",
     "subprotocol",
+    "subresource",
     "typedoc",
     "unassign",
     "unbookmark",

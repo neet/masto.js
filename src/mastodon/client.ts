@@ -5,7 +5,7 @@ import type { Ws } from '../ws';
 import { AggregateRepository as V1AggregateRepository } from './v1';
 import { AggregateRepository as V2AggregateRepository } from './v2';
 
-export class MastoClient {
+export class Client {
   readonly v1: V1AggregateRepository;
   readonly v2: V2AggregateRepository;
 

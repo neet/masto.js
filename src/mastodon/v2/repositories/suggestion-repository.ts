@@ -3,7 +3,7 @@ import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
-import type { V1 } from '../..';
+import type { v1 } from '../..';
 import type { Repository } from '../../repository';
 
 export interface ListSuggestionsParams {
@@ -13,7 +13,7 @@ export interface ListSuggestionsParams {
 
 export class SuggestionRepository
   implements
-    Repository<V1.Suggestion, never, never, never, ListSuggestionsParams>
+    Repository<v1.Suggestion, never, never, never, ListSuggestionsParams>
 {
   constructor(
     private readonly http: Http,
@@ -30,7 +30,7 @@ export class SuggestionRepository
   @version({ since: '3.4.0' })
   list(
     params?: ListSuggestionsParams,
-  ): Paginator<V1.Suggestion[], ListSuggestionsParams> {
+  ): Paginator<v1.Suggestion[], ListSuggestionsParams> {
     return new Paginator(this.http, '/api/v2/suggestions', params);
   }
 }
