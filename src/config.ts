@@ -3,13 +3,16 @@ import { AbortController, Headers } from '@mastojs/ponyfills';
 import type { SemVer } from 'semver';
 import semver from 'semver';
 
+import type { Logger, LogType } from './logger';
+import { LoggerConsoleImpl, LogLevel } from './logger';
 import type { Serializer } from './serializers';
 import { mergeHeadersInit } from './utils';
 
 export type MastoConfigProps = {
   readonly url: string;
   readonly streamingApiUrl: string;
-  readonly version: SemVer;
+  readonly logLevel?: LogType;
+  readonly version?: SemVer;
   readonly accessToken?: string;
   readonly timeout?: number;
   readonly requestInit?: Omit<RequestInit, 'body' | 'method'>;
@@ -28,7 +31,7 @@ export class MastoConfig {
     return this.props.timeout ?? 3000;
   }
 
-  get version(): SemVer {
+  get version(): SemVer | undefined {
     return this.props.version;
   }
 
@@ -98,7 +101,15 @@ export class MastoConfig {
     }
   }
 
+  createLogger(): Logger {
+    const level = LogLevel.from(this.props.logLevel ?? 'warn');
+    return new LoggerConsoleImpl(level);
+  }
+
   shouldCheckVersion(): boolean {
+    if (this.version == undefined) {
+      return false;
+    }
     if (this.props.disableVersionCheck) {
       return false;
     }

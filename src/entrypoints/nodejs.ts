@@ -5,16 +5,20 @@ import { InstanceRepository } from '../api/v1/repositories';
 import type { MastoConfigProps } from '../config';
 import { MastoConfig } from '../config';
 import { HttpNativeImpl } from '../http';
+import type { LogType } from '../logger';
 import { SerializerNativeImpl } from '../serializers';
+import type { Writable } from '../utils/writable';
 import { WsNativeImpl } from '../ws';
 
-export type LoginParams = Omit<MastoConfigProps, 'streamingApiUrl' | 'version'>;
+export type LoginParams = Omit<
+  MastoConfigProps,
+  'streamingApiUrl' | 'version' | 'logLevel'
+> & { logLevel?: LogType };
 
 export const login = async (params: LoginParams): Promise<MastoClient> => {
-  const configProps = {
-    ...params,
-    version: new SemVer('1.0.0'),
+  const configProps: Writable<MastoConfigProps> = {
     streamingApiUrl: '',
+    ...params,
   };
   const serializer = new SerializerNativeImpl();
 
@@ -27,8 +31,11 @@ export const login = async (params: LoginParams): Promise<MastoClient> => {
   }
 
   const config = new MastoConfig(configProps, serializer);
+  const logger = config.createLogger();
   const ws = new WsNativeImpl(config, serializer);
-  const http = new HttpNativeImpl(config, serializer);
+  const http = new HttpNativeImpl(config, serializer, logger);
+
+  logger.debug('Masto.js initialised', config);
 
   return new MastoClient(http, ws, config);
 };

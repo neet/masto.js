@@ -1,9 +1,10 @@
 import type { AbortSignal } from '@mastojs/ponyfills';
-import { fetch, FormData, Response } from '@mastojs/ponyfills';
+import { fetch, FormData, Request, Response } from '@mastojs/ponyfills';
 
 import type { MastoConfig } from '../config';
 import type { CreateErrorParams } from '../errors';
 import { createError, MastoUnexpectedError } from '../errors';
+import type { Logger } from '../logger';
 import type { Serializer } from '../serializers';
 import { mergeAbortSignals } from '../utils';
 import { BaseHttp } from './base-http';
@@ -14,6 +15,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
   constructor(
     private readonly config: MastoConfig,
     private readonly serializer: Serializer,
+    private readonly logger?: Logger,
   ) {
     super();
   }
@@ -45,12 +47,15 @@ export class HttpNativeImpl extends BaseHttp implements Http {
     }
 
     try {
-      const response = await fetch(url, {
+      const request = new Request(url, {
         ...requestInit,
         headers,
         body: body as string,
         signal: mergeAbortSignals(signals),
       });
+
+      this.logger?.debug(`↑ ${request.method} ${request.url}`, request.body);
+      const response = await fetch(request);
 
       if (!response.ok) {
         throw response;
@@ -63,11 +68,18 @@ export class HttpNativeImpl extends BaseHttp implements Http {
         throw new MastoUnexpectedError('Content-Type is not defined');
       }
 
+      const data = this.serializer.deserialize(resType, text);
+      this.logger?.debug(
+        `↓ ${request.method} ${request.url}`,
+        JSON.stringify(data).slice(0, 200),
+      );
+
       return {
         headers: response.headers,
-        data: this.serializer.deserialize(resType, text),
+        data,
       };
     } catch (error) {
+      this.logger?.debug(`HTTP failed`, error);
       if (!(error instanceof Response)) {
         throw error;
       }
