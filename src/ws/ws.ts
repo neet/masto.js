@@ -1,23 +1,36 @@
 import type EventEmitter from 'eventemitter3';
 
-import type { Conversation, Notification, Status } from '../entities';
+import type {
+  Announcement,
+  Conversation,
+  Notification,
+  Reaction,
+  Status,
+} from '../mastodon/v1/entities';
 
-/** Map of event name and callback argument */
+/**
+ * Map of event name and callback argument
+ * @see https://docs.joinmastodon.org/methods/streaming/#events
+ */
 export interface EventTypeMap {
-  /** Status posted */
+  /** A new Status has appeared. Payload contains a Status cast to a string. Available since v1.0.0 */
   update: [Status];
-  /** Status deleted */
+  /** A status has been deleted. Payload contains the String ID of the deleted Status. Available since v1.0.0 */
   delete: [Status['id']];
-  /** User's notification */
+  /** A new notification has appeared. Payload contains a Notification cast to a string. Available since v1.4.2 */
   notification: [Notification];
-  /** User's filter changed */
+  /** Keyword filters have been changed. Either does not contain a payload (for WebSocket connections), or contains an undefined payload (for HTTP connections). Available since v2.4.3 */
   filters_changed: [];
-  /** Status added to a conversation */
+  /** A direct conversation has been updated. Payload contains a Conversation cast to a string. Available since v2.6.0 */
   conversation: [Conversation];
-  /** Status updated */
+  /** A Status has been edited. Payload contains a Status cast to a string. Available since v3.5.0 */
   'status.update': [Status];
-  /** for RxJS' `fromEvent` compatibility */
-  [K: string]: unknown[];
+  /** An announcement has been published. Payload contains an Announcement cast to a string. Available since v3.1.0 */
+  announcement: [Announcement];
+  /** An announcement has received an emoji reaction. Payload contains a Hash (with name, count, and announcement_id) cast to a string. Available since v3.1.0 */
+  'announcement.reaction': [Reaction];
+  /** An announcement has been deleted. Payload contains the String ID of the deleted Announcement. Available since v3.1.0 */
+  'announcement.delete': [Announcement['id']];
 }
 
 /** Supported event names */

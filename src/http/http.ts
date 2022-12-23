@@ -1,30 +1,28 @@
-export type Headers = Record<string, unknown>;
-export type Data = unknown;
+import type { Headers, RequestInit } from '@mastojs/ponyfills';
 
-export type Request = {
-  readonly url: string;
-  readonly method: 'GET' | 'POST' | 'PATCH' | 'DELETE' | 'PUT' | 'OPTIONS';
-  readonly headers?: Headers;
-  readonly params?: Data;
-  readonly data?: Data;
-};
-
-export type Response<T> = {
-  readonly headers: Headers;
-  readonly data: T;
-};
-
-export type Method = <T>(
+export type HttpMethod = <T>(
   path: string,
-  data?: Data,
-  request?: Partial<Request>,
+  data?: unknown,
+  request?: RequestInit,
 ) => Promise<T>;
 
+export type HttpRequestParams = {
+  readonly path: string;
+  readonly searchParams?: URLSearchParams;
+  readonly body?: Record<string, unknown>;
+  readonly requestInit?: Omit<RequestInit, 'body'>;
+};
+
+export type HttpRequestResult = {
+  headers: Headers;
+  data: unknown;
+};
+
 export interface Http {
-  readonly request: <T>(request: Request) => Promise<Response<T>>;
-  readonly get: Method;
-  readonly post: Method;
-  readonly patch: Method;
-  readonly put: Method;
-  readonly delete: Method;
+  readonly request: (params: HttpRequestParams) => Promise<HttpRequestResult>;
+  readonly get: HttpMethod;
+  readonly post: HttpMethod;
+  readonly patch: HttpMethod;
+  readonly put: HttpMethod;
+  readonly delete: HttpMethod;
 }

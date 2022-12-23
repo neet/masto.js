@@ -9,10 +9,6 @@ export class MastoHttpUnprocessableEntityError extends MastoHttpError {
 
   constructor(message: string, props: MastoErrorProps) {
     super(message, 422, props);
+    Object.setPrototypeOf(this, MastoHttpUnprocessableEntityError.prototype);
   }
 }
-
-/**
- * @deprecated Will be removed in v5
- */
-export const MastoUnprocessableEntityError = MastoHttpUnprocessableEntityError;

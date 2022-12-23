@@ -9,10 +9,6 @@ export class MastoHttpForbiddenError extends MastoHttpError {
 
   constructor(message: string, props?: MastoErrorProps) {
     super(message, 403, props);
+    Object.setPrototypeOf(this, MastoHttpForbiddenError.prototype);
   }
 }
-
-/**
- * @deprecated Will be removed in v5
- */
-export const MastoForbiddenError = MastoHttpForbiddenError;

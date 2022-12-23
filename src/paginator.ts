@@ -1,47 +1,43 @@
-import type { Http, Response } from './http';
+/* eslint-disable unicorn/no-thenable */
+import type { Http } from './http';
 
-export class Paginator<Params, Result>
-  implements AsyncIterableIterator<Result>
+export class Paginator<Entity, Params = never>
+  implements AsyncIterableIterator<Entity>, PromiseLike<Entity>
 {
-  private nextUrl?: string;
+  private nextPath?: string;
   private nextParams?: Params;
 
   constructor(
     private readonly http: Http,
-    readonly initialUrl: string,
-    readonly initialParams?: Params,
+    initialPath: string,
+    initialParams?: Params,
   ) {
-    this.nextUrl = initialUrl;
+    this.nextPath = initialPath;
     this.nextParams = initialParams;
   }
 
-  private pluckNext = (link: string) => {
-    return link
-      .match(/<(.+?)>; rel="next"/)?.[1]
-      .replace(/^https?:\/\/[^/]+/, '');
-  };
-
-  async next(params?: Params): Promise<IteratorResult<Result>> {
-    if (this.nextUrl == undefined) {
+  async next(): Promise<IteratorResult<Entity>> {
+    if (this.nextPath == undefined) {
       return { done: true, value: undefined };
     }
 
-    const response: Response<Result> = await this.http.request({
-      method: 'GET',
-      // if no params specified, use link header
-      url: params ? this.initialUrl : this.nextUrl,
-      params: params ?? this.nextParams,
+    const response = await this.http.request({
+      requestInit: { method: 'GET' },
+      path: this.nextPath,
+      searchParams: new URLSearchParams(
+        this.nextParams as Record<string, string>,
+      ),
     });
 
-    this.nextUrl =
-      typeof response.headers?.link === 'string'
-        ? this.pluckNext(response.headers.link)
-        : undefined;
-    this.nextParams = {} as Params;
+    const next = this.pluckNext(response.headers.get('link'))?.split('?');
+    this.nextPath = next?.[0];
+    this.nextParams = Object.fromEntries(
+      new URLSearchParams(next?.[1]).entries(),
+    ) as Params;
 
     return {
       done: false,
-      value: response.data,
+      value: response.data as Entity,
     };
   }
 
@@ -56,7 +52,30 @@ export class Paginator<Params, Result>
     throw e;
   }
 
-  [Symbol.asyncIterator](): AsyncGenerator<Result, Result, Params | undefined> {
+  then<TResult1 = Entity, TResult2 = never>(
+    onfulfilled: (
+      value: Entity,
+    ) => TResult1 | PromiseLike<TResult1> = Promise.resolve,
+    onrejected: (
+      reason: unknown,
+    ) => TResult2 | PromiseLike<TResult2> = Promise.reject,
+  ): PromiseLike<TResult1 | TResult2> {
+    return this.next().then((value) => onfulfilled(value.value), onrejected);
+  }
+
+  [Symbol.asyncIterator](): AsyncGenerator<Entity, Entity, Params | undefined> {
     return this;
   }
+
+  private pluckNext = (link: string | null): string | undefined => {
+    if (link == undefined) {
+      return undefined;
+    }
+
+    const path = link
+      .match(/<(.+?)>; rel="next"/)?.[1]
+      .replace(/^https?:\/\/[^/]+/, '');
+
+    return path;
+  };
 }

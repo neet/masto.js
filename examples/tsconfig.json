@@ -1,10 +1,10 @@
 {
   "extends": "..",
   "compilerOptions": {
-    "baseUrl": ".",
+    "module": "ESNext",
+    "target": "ESNext",
     "paths": {
-      "masto": ["../src/entrypoints/nodejs.ts"],
-      "masto/fetch": ["../src/entrypoints/fetch.ts"]
+      "masto": ["../src/index.ts"]
     }
   },
   "include": ["./**/*"]

@@ -5,14 +5,10 @@ import { MastoHttpError } from './masto-http-error';
  * Mastodon unauthorized error class
  */
 export class MastoHttpUnauthorizedError extends MastoHttpError {
-  override name = 'MastoUnauthorizedError';
+  override name = 'MastoHttpUnauthorizedError';
 
   constructor(message: string, props: MastoErrorProps) {
     super(message, 401, props);
+    Object.setPrototypeOf(this, MastoHttpUnauthorizedError.prototype);
   }
 }
-
-/**
- * @deprecated Will be removed in v5
- */
-export const MastoUnauthorizedError = MastoHttpUnauthorizedError;

@@ -9,10 +9,6 @@ export class MastoHttpGoneError extends MastoHttpError {
 
   constructor(message: string, props?: MastoErrorProps) {
     super(message, 410, props);
+    Object.setPrototypeOf(this, MastoHttpGoneError.prototype);
   }
 }
-
-/**
- * @deprecated Will be removed in v5
- */
-export const MastoGoneError = MastoHttpGoneError;

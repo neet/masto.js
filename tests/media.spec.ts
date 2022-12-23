@@ -1,19 +1,19 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs/promises';
+import path from 'node:path';
 
-import type { MastoClient } from '../src/clients';
+import type { mastodon } from '../src';
 import { login } from '../test-utils/login';
 
 describe('account', () => {
-  let client: MastoClient;
+  let client: mastodon.Client;
 
   beforeAll(async () => {
     client = await login();
   });
 
   it('creates a media attachment', async () => {
-    const media = await client.mediaAttachments.create({
-      file: fs.createReadStream(path.join(__dirname, './image.png')),
+    const media = await client.v2.mediaAttachments.create({
+      file: new Blob([await fs.readFile(path.join(__dirname, './image.png'))]),
     });
 
     expect(media.type).toBe('image');

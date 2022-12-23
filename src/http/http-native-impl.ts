@@ -1,35 +1,65 @@
+import type { AbortSignal } from '@mastojs/ponyfills';
+import { fetch, FormData, Request, Response } from '@mastojs/ponyfills';
+
 import type { MastoConfig } from '../config';
 import type { CreateErrorParams } from '../errors';
-import { createError, MastoError } from '../errors';
-import type { MimeType, Serializer } from '../serializers';
+import { createHttpError, MastoUnexpectedError } from '../errors';
+import type { Logger } from '../logger';
+import type { Serializer } from '../serializers';
 import { BaseHttp } from './base-http';
-import type { Http, Request } from './http';
-import { Headers, Response } from './http';
+import { getContentType } from './get-content-type';
+import type { Http, HttpRequestParams, HttpRequestResult } from './http';
 
 export class HttpNativeImpl extends BaseHttp implements Http {
-  constructor(readonly config: MastoConfig, readonly serializer: Serializer) {
+  constructor(
+    private readonly serializer: Serializer,
+    private readonly config: MastoConfig,
+    private readonly logger?: Logger,
+  ) {
     super();
   }
 
-  async request<T>(request: Request): Promise<Response<T>> {
-    const { proxy } = this.config;
-    const { method, data, params } = request;
+  async request(params: HttpRequestParams): Promise<HttpRequestResult> {
+    const request = this.createRequest(params);
 
-    if (proxy != undefined) {
-      // eslint-disable-next-line no-console
-      console.warn('Proxies are not supported on HttpNativeImpl');
+    try {
+      this.logger?.debug(`↑ ${request.method} ${request.url}`, request.body);
+      const response = await fetch(request);
+      if (!response.ok) {
+        throw response;
+      }
+
+      const text = await response.text();
+      const contentType = getContentType(response.headers);
+      if (contentType == undefined) {
+        throw new MastoUnexpectedError('Content-Type is not defined');
+      }
+
+      const data = this.serializer.deserialize(contentType, text);
+      this.logger?.debug(`↓ ${request.method} ${request.url}`, text);
+
+      return {
+        headers: response.headers,
+        data,
+      };
+    } catch (error) {
+      this.logger?.debug(`HTTP failed`, error);
+      throw await this.createError(error);
     }
+  }
 
-    // if (timeout != undefined) {
-    //   console.warn('Timeouts are not supported on HttpNativeImpl');
-    // }
+  private createRequest(params: HttpRequestParams): Request {
+    const { path, searchParams, requestInit } = params;
 
-    const url = this.resolveUrl(request.url, params);
-    const headers = new Headers(
-      this.createHeader(request.headers) as unknown as Record<string, string>,
+    const url = this.config.resolveHttpPath(path, searchParams);
+    const headers = this.config.createHeader(requestInit?.headers);
+    const abortSignal = this.config.createAbortController(
+      requestInit?.signal as AbortSignal,
     );
-    const reqContentType = headers.get('Content-Type') ?? 'application/json';
-    const body = this.serializer.serialize(reqContentType as MimeType, data);
+    const body = this.serializer.serialize(
+      getContentType(headers) ?? 'application/json',
+      params.body,
+    );
 
     if (body instanceof FormData) {
       // As multipart form data should contain an arbitrary boundary,
@@ -38,56 +68,33 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       headers.delete('Content-Type');
     }
 
-    try {
-      const response = await fetch(url, {
-        method,
-        headers,
-        body: body as string,
-      });
-
-      if (!response.ok) {
-        throw response;
-      }
-
-      const text = await response.text();
-      const resContentType = this.getContentType(
-        HttpNativeImpl.toHeaders(response.headers),
-      );
-
-      if (resContentType == undefined) {
-        throw new MastoError('Content-Type is not defined');
-      }
-
-      return {
-        headers: HttpNativeImpl.toHeaders(response.headers),
-        data: this.serializer.deserialize('application/json', text),
-      };
-    } catch (error) {
-      if (!(error instanceof Response)) {
-        throw error;
-      }
-
-      const data = await error.json();
-
-      throw createError({
-        cause: error,
-        statusCode: error.status,
-        message: data?.error,
-        details: data?.errorDescription,
-        description: data?.details,
-        limit: error.headers.get('X-RateLimit-Limit'),
-        remaining: error.headers.get('X-RateLimit-Remaining'),
-        reset: error.headers.get('X-RateLimit-Reset'),
-      } as CreateErrorParams);
-    }
+    return new Request(url, {
+      ...requestInit,
+      headers,
+      body,
+      signal: abortSignal,
+    });
   }
 
-  private static toHeaders(headers: globalThis.Headers): Headers {
-    const result: Record<string, unknown> = {};
-    // eslint-disable-next-line unicorn/no-array-for-each
-    headers.forEach((value, key) => {
-      result[key.toLowerCase()] = value;
-    });
-    return result as Headers;
+  private async createError(error: unknown): Promise<unknown> {
+    if (!(error instanceof Response)) {
+      return error;
+    }
+
+    const data = this.serializer.deserialize(
+      getContentType(error.headers) ?? 'application/json',
+      await error.text(),
+    );
+
+    return createHttpError({
+      cause: error,
+      statusCode: error.status,
+      message: data?.error,
+      details: data?.errorDescription,
+      description: data?.details,
+      limit: error.headers.get('X-RateLimit-Limit'),
+      remaining: error.headers.get('X-RateLimit-Remaining'),
+      reset: error.headers.get('X-RateLimit-Reset'),
+    } as CreateErrorParams);
   }
 }

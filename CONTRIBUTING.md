@@ -2,39 +2,48 @@
 
 Thank you for considering contribution. Please check following guideline and please make sure that you satisfy the policy.
 
-## Project setup
+## Setup
 
 1. Install **Node.js**, **Git** and **Yarn**.
 2. Clone this repository by `git clone`
-3. Run `yarn --pure-lockfile` to install dependencies
+3. Run `yarn install` to install dependencies
 
 ## Project Structure
 
+Our project in organized under the following directory structure.
+
 ```
-.
-├── package.json
-├── src
-│   ├── clients          # Client interfaces. these are basically facade classes for the repositories
-│   ├── config.ts        # Configuration interface passed to login()
-│   ├── decorators       # Decorators used in repositories
-│   ├── entities         # Public API response types
-│   │   └── admin        # Admin API response types
-│   ├── entrypoints
-│   │   ├── fetch.ts
-│   │   └── nodejs.ts    # This will be the `index.js` field of `masto` module.
-│   ├── errors           # Custom error classes
-│   ├── http             # HTTP wrappers. Classes here are basically an abstraction of fetch API or axios.
-│   ├── paginator.ts     # An abstraction of pagination
-│   ├── repositories     # API definitions. Used by ./clients/masto.ts
-│   │   └── admin        # Admin API definitions. Used by ./clients/admin.ts
-│   ├── serializers      # Classes that transform requests and responses
-│   ├── utils            # General utilities
-│   └── ws               # WebSocket wrappers.
-├── test-utils
-├── tests
-├── tsconfig.json
-└── yarn.lock
+./src
+├── mastodon   TypeScript representation of Mastodon API.
+│   │          This directory is public under the namespace `mastodon` and does not contain library-specific code
+│   ├── v1
+│   │   ├── entities      V1 response types
+│   │   └── repositories  V1 resource classes
+│   └── v2
+│       ├── entities      V2 response types
+│       └── repositories  V2 resource classes
+├── errors        Error classes
+├── http          HTTP wrapper
+├── logger        Logging service
+├── serializers   Service to encode requests or decode responses
+├── utils         General utilities
+└── ws            Websocket wrapper
 ```
+
+### Repository
+
+_Repository_ is a class for representing REST resources. They have several methods and multiple implementations, all named according to the following convention. Let `x` is the name of a resource.
+
+| URL Pattern                    | Method Name      | Parameter Name    |
+| ------------------------------ | ---------------- | ----------------- |
+| `GET /api/v1/x`                | `v1.x.list`      | `ListXParams`     |
+| `GET /api/v1/x/:id`            | `v1.x.fetch`     | `FetchXParams`    |
+| `POST /api/v1/x`               | `v1.x.create`    | `CreateXParams`   |
+| `POST /api/v1/x/:id/{verb}`    | `v1.x.do` (verb) | `DoXParams`       |
+| `GET /api/v1/x/:id/{sub}`      | `v1.x.listSub`   | `ListXSubParams`  |
+| `GET /api/v1/x/:id/{sub}/:id2` | `v1.x.fetchSub`  | `FetchXSubParams` |
+| `DELETE /api/v1/x/:id`         | `v1.x.remove`    | `RemoveXParams`   |
+| `PUT or PATCH /api/v1/x/:id`   | `v1.x.update`    | `UpdateXParams`   |
 
 ## Scripts
 

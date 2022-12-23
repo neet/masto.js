@@ -28,7 +28,7 @@ export type MastoErrorProps = {
  * Error object
  * @see https://docs.joinmastodon.org/entities/error/
  */
-export class MastoError extends Error {
+export abstract class MastoError extends Error {
   override name = 'MastoError';
   /** A longer description of the error, mainly provided with the OAuth API. */
   readonly description?: string;
@@ -43,6 +43,8 @@ export class MastoError extends Error {
    */
   constructor(message: string, props: MastoErrorProps = {}) {
     super(message, { cause: props.cause });
+    Object.setPrototypeOf(this, MastoError.prototype);
+
     this.description = props.description;
     this.details = props.details;
   }

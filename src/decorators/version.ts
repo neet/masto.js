@@ -1,11 +1,9 @@
-import semver from 'semver';
+import { SemVer } from 'semver';
 
 import type { MastoConfig } from '../config';
-import { MastoError } from '../errors';
-import { MastoVersionError } from '../errors/masto-version-error';
+import { MastoUnexpectedError, MastoVersionError } from '../errors';
 
 interface Target {
-  readonly version: string;
   readonly config: MastoConfig;
 }
 
@@ -22,7 +20,7 @@ type Fn = (...args: any[]) => any;
  * @param parameters Optional params
  */
 export const version =
-  ({ since, until }: VersionParams) =>
+  (params: VersionParams) =>
   (
     _target: Target,
     name: string,
@@ -30,35 +28,39 @@ export const version =
   ): void => {
     const origin = descriptor.value;
     if (!origin) {
-      throw new MastoError('version can only apply to a method of a class');
+      throw new MastoUnexpectedError(
+        'version can only apply to a method of a class',
+      );
     }
 
     descriptor.value = function (
       this: Target,
       ...args: Parameters<typeof origin>
     ) {
-      if (this.config.disableVersionCheck) {
-        return origin.apply(this, args);
-      }
+      const since = params.since && new SemVer(params.since, { loose: true });
+      const until = params.until && new SemVer(params.until, { loose: true });
+      const result = this.config.satisfiesVersion(since, until);
 
-      if (since && semver.lt(this.version, since, { loose: true })) {
-        throw new MastoVersionError(
-          `${String(this.constructor.name)}.${String(name)}` +
-            ` is not available with the current Mastodon version ` +
-            this.version +
-            ` It requires greater than or equal to version ${since}.`,
-        );
+      switch (result.compat) {
+        case 'unimplemented': {
+          throw new MastoVersionError(
+            `${String(this.constructor.name)}.${String(name)}` +
+              ` is not available with the current Mastodon version ` +
+              result.version +
+              ` It requires greater than or equal to version ${since}.`,
+          );
+        }
+        case 'removed': {
+          throw new MastoVersionError(
+            `${String(this.constructor.name)}.${String(name)}` +
+              ` is not available with the current Mastodon version` +
+              result.version +
+              ` It was removed on version ${until}.`,
+          );
+        }
+        case 'compatible': {
+          return origin.apply(this, args);
+        }
       }
-
-      if (until && semver.gt(this.version, until, { loose: true })) {
-        throw new MastoVersionError(
-          `${String(this.constructor.name)}.${String(name)}` +
-            ` is not available with the current Mastodon version` +
-            this.version +
-            ` It was removed on version ${until}.`,
-        );
-      }
-
-      return origin.apply(this, args);
     };
   };

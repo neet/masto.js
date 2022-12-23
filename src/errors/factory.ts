@@ -1,11 +1,11 @@
 import type { MastoError, MastoErrorDetails } from './masto-error';
 import { MastoHttpConflictError } from './masto-http-conflict-error';
-import { MastoHttpError } from './masto-http-error';
 import { MastoHttpForbiddenError } from './masto-http-forbidden-error';
 import { MastoHttpGoneError } from './masto-http-gone-error';
 import { MastoHttpNotFoundError } from './masto-http-not-found-error';
 import { MastoHttpRateLimitError } from './masto-http-rate-limit-error';
 import { MastoHttpUnauthorizedError } from './masto-http-unauthorized-error';
+import { MastoHttpUnexpectedError } from './masto-http-unexpected-error';
 import { MastoHttpUnprocessableEntityError } from './masto-http-unprocessable-entity-error';
 
 export interface BaseCreateErrorParams {
@@ -30,7 +30,7 @@ export type CreateErrorParams =
   | CreateDefaultErrorParams
   | CreateRateLimitErrorParams;
 
-export const createError = (params: CreateErrorParams): MastoError => {
+export const createHttpError = (params: CreateErrorParams): MastoError => {
   const message = params.message ?? 'Unexpected error occurred';
   const props = {
     cause: params.cause,
@@ -67,7 +67,7 @@ export const createError = (params: CreateErrorParams): MastoError => {
       });
     }
     default: {
-      return new MastoHttpError(message, params.statusCode, props);
+      return new MastoHttpUnexpectedError(message, params.statusCode, props);
     }
   }
 };
