@@ -10,7 +10,7 @@ import type {
 
 export type SubscriptionPolicy = 'all' | 'followed' | 'follower' | 'none';
 
-export interface CreatePushSubscriptionParams {
+export interface CreateWebPushSubscriptionParams {
   readonly subscription: {
     /** Endpoint URL that is called when a notification event occurs. */
     readonly endpoint: string;
@@ -28,17 +28,17 @@ export interface CreatePushSubscriptionParams {
   readonly policy: SubscriptionPolicy;
 }
 
-export type UpdatePushSubscriptionParams = Pick<
-  CreatePushSubscriptionParams,
+export type UpdateWebPushSubscriptionParams = Pick<
+  CreateWebPushSubscriptionParams,
   'data'
 >;
 
-export class PushSubscriptionsRepository
+export class WebPushSubscriptionRepository
   implements
     Repository<
       WebPushSubscription,
-      CreatePushSubscriptionParams,
-      UpdatePushSubscriptionParams
+      CreateWebPushSubscriptionParams,
+      UpdateWebPushSubscriptionParams
     >
 {
   constructor(
@@ -56,7 +56,9 @@ export class PushSubscriptionsRepository
    * @see https://docs.joinmastodon.org/methods/notifications/push/
    */
   @version({ since: '2.4.0' })
-  create(params: CreatePushSubscriptionParams): Promise<WebPushSubscription> {
+  create(
+    params: CreateWebPushSubscriptionParams,
+  ): Promise<WebPushSubscription> {
     return this.http.post<WebPushSubscription>(
       '/api/v1/push/subscription',
       params,
@@ -80,7 +82,9 @@ export class PushSubscriptionsRepository
    * @see https://docs.joinmastodon.org/methods/notifications/push/
    */
   @version({ since: '2.4.0' })
-  update(params: UpdatePushSubscriptionParams): Promise<WebPushSubscription> {
+  update(
+    params: UpdateWebPushSubscriptionParams,
+  ): Promise<WebPushSubscription> {
     return this.http.put('/api/v1/push/subscription', params);
   }
 

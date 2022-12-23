@@ -29,18 +29,18 @@ import {
   MarkerRepository,
   MediaAttachmentRepository,
   MuteRepository,
-  NotificationsRepository,
+  NotificationRepository,
   PollRepository,
   PreferenceRepository,
-  PushSubscriptionsRepository,
   ReportRepository,
-  ScheduledStatusesRepository,
+  ScheduledStatusRepository,
   StatusRepository,
   StreamRepository,
   SuggestionRepository,
   TagRepository,
-  TimelinesRepository,
+  TimelineRepository,
   TrendRepository,
+  WebPushSubscriptionRepository,
 } from './repositories';
 
 export type SearchType = 'accounts' | 'hashtags' | 'statuses';
@@ -78,15 +78,15 @@ export class AggregateRepository {
   readonly markers: MarkerRepository;
   readonly mediaAttachments: MediaAttachmentRepository;
   readonly mutes: MuteRepository;
-  readonly notifications: NotificationsRepository;
-  readonly poll: PollRepository;
+  readonly notifications: NotificationRepository;
+  readonly polls: PollRepository;
   readonly preferences: PreferenceRepository;
-  readonly pushSubscriptions: PushSubscriptionsRepository;
+  readonly webPushSubscriptions: WebPushSubscriptionRepository;
   readonly reports: ReportRepository;
-  readonly scheduledStatuses: ScheduledStatusesRepository;
+  readonly scheduledStatuses: ScheduledStatusRepository;
   readonly statuses: StatusRepository;
   readonly suggestions: SuggestionRepository;
-  readonly timelines: TimelinesRepository;
+  readonly timelines: TimelineRepository;
   readonly trends: TrendRepository;
   readonly email: EmailRepository;
   readonly tags: TagRepository;
@@ -119,23 +119,23 @@ export class AggregateRepository {
     this.markers = new MarkerRepository(http, config, logger);
     this.mediaAttachments = new MediaAttachmentRepository(http, config, logger);
     this.mutes = new MuteRepository(http, config, logger);
-    this.notifications = new NotificationsRepository(http, config, logger);
-    this.poll = new PollRepository(http, config, logger);
+    this.notifications = new NotificationRepository(http, config, logger);
+    this.polls = new PollRepository(http, config, logger);
     this.preferences = new PreferenceRepository(http, config, logger);
-    this.pushSubscriptions = new PushSubscriptionsRepository(
+    this.webPushSubscriptions = new WebPushSubscriptionRepository(
       http,
       config,
       logger,
     );
     this.reports = new ReportRepository(http, config, logger);
-    this.scheduledStatuses = new ScheduledStatusesRepository(
+    this.scheduledStatuses = new ScheduledStatusRepository(
       http,
       config,
       logger,
     );
     this.statuses = new StatusRepository(http, config, logger);
     this.suggestions = new SuggestionRepository(http, config, logger);
-    this.timelines = new TimelinesRepository(http, config, logger);
+    this.timelines = new TimelineRepository(http, config, logger);
     this.trends = new TrendRepository(http, config, logger);
     this.email = new EmailRepository(http, config, logger);
     this.tags = new TagRepository(http, config, logger);

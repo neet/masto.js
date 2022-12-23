@@ -6,8 +6,8 @@ import { Paginator } from '../../../paginator';
 import type { Repository } from '../../repository';
 import type {
   Account,
-  Card,
   Context,
+  PreviewCard,
   ScheduledStatus,
   Status,
   StatusEdit,
@@ -164,7 +164,7 @@ export class StatusRepository implements Repository<Status> {
    */
   @deprecated('Use `card` attribute of status instead')
   @version({ since: '0.0.0', until: '2.9.3' })
-  fetchCard(id: string): Promise<Card> {
+  fetchCard(id: string): Promise<PreviewCard> {
     return this.http.get(`/api/v1/statuses/${id}/card`);
   }
 

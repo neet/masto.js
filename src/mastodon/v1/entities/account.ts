@@ -1,4 +1,38 @@
-import type { Emoji, Field, Source } from '.';
+import type { CustomEmoji, StatusVisibility } from '.';
+
+/**
+ * Represents display or publishing preferences of user's own account.
+ * Returned as an additional entity when verifying and updated credentials, as an attribute of Account.
+ * @see https://docs.joinmastodon.org/entities/source/
+ */
+export interface AccountSource {
+  /** Profile bio. */
+  note: string;
+  /** Metadata about the account. */
+  fields: AccountField;
+
+  /** The default post privacy to be used for new statuses. */
+  privacy?: StatusVisibility | null;
+  /** Whether new statuses should be marked sensitive by default. */
+  sensitive?: boolean | null;
+  /** The default posting language for new statuses. */
+  language: string | null;
+  /** The number of pending follow requests. */
+  followRequestsCount?: number | null;
+}
+
+/**
+ * Represents a profile field as a name-value pair with optional verification.
+ */
+export interface AccountField {
+  /** The key of a given field's key-value pair. */
+  name: string;
+  /** The value associated with the `name` key. */
+  value: string;
+
+  /** Timestamp of when the server verified a URL value for a rel="me” link. */
+  verifiedAt?: string | null;
+}
 
 /**
  * Represents a user of Mastodon and their associated profile.
@@ -29,7 +63,7 @@ export interface Account {
   /** Whether the account manually approves follow requests. */
   locked: boolean;
   /** Custom emoji entities to be used when rendering the profile. If none, an empty array will be returned. */
-  emojis: Emoji[];
+  emojis: CustomEmoji[];
   /** Whether the account has opted into discovery features such as the profile directory. */
   discoverable: boolean;
 
@@ -49,16 +83,19 @@ export interface Account {
   /** An extra entity returned when an account is suspended. **/
   suspended?: boolean | null;
   /** Additional metadata attached to a profile as name-value pairs. */
-  fields?: Field[] | null;
+  fields?: AccountField[] | null;
   /** Boolean to indicate that the account performs automated actions */
   bot?: boolean | null;
 }
 
+/**
+ * @see https://docs.joinmastodon.org/entities/Account/#CredentialAccount
+ */
 export interface AccountCredentials extends Account {
   /**
    * Note the extra `source` property, which is not visible on accounts other than your own.
    * Also note that plain-text is used within `source` and HTML is used for their
    * corresponding properties such as `note` and `fields`.
    */
-  source: Source;
+  source: AccountSource;
 }

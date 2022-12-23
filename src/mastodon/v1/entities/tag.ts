@@ -1,4 +1,14 @@
-import type { History } from '.';
+/**
+ * Represents daily usage history of a hashtag.
+ */
+export interface TagHistory {
+  /** UNIX timestamp on midnight of the given day. */
+  day: string;
+  /** the counted usage of the tag within that day. */
+  uses: string;
+  /** the total of accounts using the tag within that day. */
+  accounts: string;
+}
 
 /**
  * Represents a hashtag used within the content of a status.
@@ -11,7 +21,7 @@ export interface Tag {
   url: string;
 
   /** Usage statistics for given days. */
-  history?: History[] | null;
+  history?: TagHistory[] | null;
   /** Whether the current token’s authorized user is following this tag. */
   following?: boolean | null;
 }

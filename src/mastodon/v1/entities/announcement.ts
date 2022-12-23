@@ -1,4 +1,16 @@
-import type { Emoji, Mention, Reaction, Tag } from '.';
+import type { CustomEmoji, Reaction, Tag } from '.';
+
+export interface AnnouncementAccount {
+  id: string;
+  username: string;
+  url: string;
+  acct: string;
+}
+
+export interface AnnouncementStatus {
+  id: string;
+  url: string;
+}
 
 export interface Announcement {
   id: string;
@@ -6,8 +18,11 @@ export interface Announcement {
   startsAt: string;
   endsAt: string;
   allDay: boolean;
-  mentions: Mention[];
+  publishedAt: string;
+  updatedAt: string;
+  mentions: AnnouncementAccount[];
+  statuses: AnnouncementStatus[];
   tags: Tag[];
-  emojis: Emoji[];
+  emojis: CustomEmoji[];
   reactions: Reaction[];
 }

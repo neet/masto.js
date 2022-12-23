@@ -7,14 +7,15 @@ import type { DefaultPaginationParams, Repository } from '../../repository';
 import type {
   Account,
   AccountCredentials,
+  AccountField,
+  AccountSource,
   FeaturedTag,
-  Field,
   IdentityProof,
   List,
   Relationship,
-  Source,
   Status,
 } from '../entities';
+import type { FamiliarFollowers } from '../entities/familiar-followers';
 
 export interface CreateAccountParams {
   /** The desired username for the account */
@@ -47,13 +48,13 @@ export interface UpdateCredentialsParams {
   /** Whether manual approval of follow requests is required. */
   readonly locked?: boolean | null;
   readonly source?: Partial<
-    Pick<Source, 'privacy' | 'sensitive' | 'language'>
+    Pick<AccountSource, 'privacy' | 'sensitive' | 'language'>
   > | null;
   /**
    * Profile metadata `name` and `value`.
    * (By default, max 4 fields and 255 characters per property/value)
    */
-  readonly fieldsAttributes?: Field[] | null;
+  readonly fieldsAttributes?: AccountField[] | null;
 }
 
 export interface MuteAccountParams {
@@ -374,12 +375,12 @@ export class AccountRepository
   }
 
   /**
-   * TODO: stub
-   * @returns Accounts
+   * Obtain a list of all accounts that follow a given account, filtered for accounts you follow.
+   * @returns Array of FamiliarFollowers
    */
   @version({ since: '3.5.0' })
-  listFamiliarFollowers(): Paginator<Account[]> {
-    return new Paginator(this.http, `/api/v1/accounts/familiar_followers`);
+  fetchFamiliarFollowers(id: string[]): Promise<FamiliarFollowers[]> {
+    return this.http.get(`/api/v1/accounts/familiar_followers`, { id });
   }
 
   /**

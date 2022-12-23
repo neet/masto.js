@@ -11,7 +11,7 @@ export interface UpdateScheduledStatusParams {
   readonly scheduledAt: string;
 }
 
-export class ScheduledStatusesRepository
+export class ScheduledStatusRepository
   implements
     Repository<
       ScheduledStatus,

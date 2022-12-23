@@ -4,7 +4,7 @@ import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
 import type { DefaultPaginationParams } from '../../repository';
-import type { Link, Status, Tag } from '../entities';
+import type { Status, Tag, TrendLink } from '../entities';
 
 export interface ListTrendsParams {
   /** Maximum number of results to return. Defaults to 10. */
@@ -37,7 +37,7 @@ export class TrendRepository {
   @version({ since: '3.5.0' })
   listLinks(
     params?: DefaultPaginationParams,
-  ): Paginator<Link[], DefaultPaginationParams> {
+  ): Paginator<TrendLink[], DefaultPaginationParams> {
     return new Paginator(this.http, '/api/v1/trends/links', params);
   }
 

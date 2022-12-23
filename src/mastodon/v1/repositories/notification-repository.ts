@@ -15,7 +15,7 @@ export interface ListNotificationsParams extends DefaultPaginationParams {
   readonly excludeTypes?: NotificationType[] | null;
 }
 
-export class NotificationsRepository
+export class NotificationRepository
   implements
     Repository<Notification, never, never, never, ListNotificationsParams>
 {

@@ -15,7 +15,7 @@ export interface ListTimelineParams extends DefaultPaginationParams {
   readonly remote?: boolean | null;
 }
 
-export class TimelinesRepository {
+export class TimelineRepository {
   constructor(
     private readonly http: Http,
     readonly config: MastoConfig,

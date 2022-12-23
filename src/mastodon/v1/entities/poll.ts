@@ -1,4 +1,4 @@
-import type { Emoji } from './emoji';
+import type { CustomEmoji } from './custom-emoji';
 
 export interface PollOption {
   /** The text value of the poll option. String. */
@@ -6,7 +6,7 @@ export interface PollOption {
   /** The number of received votes for this option. Number, or null if results are not published yet. */
   votesCount?: number;
   /** Custom emoji to be used for rendering poll options. */
-  emojis: Emoji[];
+  emojis: CustomEmoji[];
 }
 
 /**

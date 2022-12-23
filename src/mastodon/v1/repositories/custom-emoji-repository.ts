@@ -4,9 +4,9 @@ import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
 import type { Repository } from '../../repository';
-import type { Emoji } from '../entities';
+import type { CustomEmoji } from '../entities';
 
-export class CustomEmojiRepository implements Repository<Emoji> {
+export class CustomEmojiRepository implements Repository<CustomEmoji> {
   constructor(
     private readonly http: Http,
     readonly config: MastoConfig,
@@ -19,7 +19,7 @@ export class CustomEmojiRepository implements Repository<Emoji> {
    * @see https://docs.joinmastodon.org/methods/instance/custom_emojis/
    */
   @version({ since: '2.0.0' })
-  list(): Paginator<Emoji[]> {
+  list(): Paginator<CustomEmoji[]> {
     return new Paginator(this.http, `/api/v1/custom_emojis`);
   }
 }

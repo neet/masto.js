@@ -4,7 +4,7 @@ import type { Http } from '../../http';
 import type { Logger } from '../../logger';
 import { Paginator } from '../../paginator';
 import type { DefaultPaginationParams } from '../repository';
-import type { Search } from './entities/search';
+import type { Search } from './entities';
 import {
   FilterRepository,
   InstanceRepository,
