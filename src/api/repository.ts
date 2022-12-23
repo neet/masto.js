@@ -18,8 +18,6 @@ export interface Repository<
   FetchParams = never,
   ListParams = undefined,
 > {
-  readonly [Symbol.asyncIterator]?: () => AsyncIterableIterator<Entity[]>;
-
   readonly fetch?:
     | ((id: string) => Promise<Entity>)
     | ((params?: FetchParams) => Promise<Entity>);
@@ -34,5 +32,5 @@ export interface Repository<
     | ((id: string, params: UpdateParams) => Promise<Entity>)
     | ((params: UpdateParams) => Promise<Entity>);
 
-  readonly delete?: (id: string) => Promise<void>;
+  readonly remove?: (id: string) => Promise<void>;
 }
