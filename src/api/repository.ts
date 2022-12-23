@@ -32,5 +32,7 @@ export interface Repository<
     | ((id: string, params: UpdateParams) => Promise<Entity>)
     | ((params: UpdateParams) => Promise<Entity>);
 
-  readonly remove?: (id: string) => Promise<void>;
+  readonly remove?:
+    | ((id: string) => Promise<void>)
+    | ((id: string) => Promise<Entity>);
 }

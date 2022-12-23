@@ -8,7 +8,7 @@ const packageJSON = require('./package.json');
 
 module.exports = [
   {
-    input: './src/entrypoints/nodejs.ts',
+    input: './src/index.ts',
     output: {
       file: packageJSON.exports['.'].require,
       format: 'cjs',
@@ -16,7 +16,7 @@ module.exports = [
     plugins: [json(), typescript(), autoExternal()],
   },
   {
-    input: './src/entrypoints/nodejs.ts',
+    input: './src/index.ts',
     output: {
       file: packageJSON.exports['.'].import,
       format: 'esm',
@@ -24,7 +24,7 @@ module.exports = [
     plugins: [commonjs(), json(), typescript(), autoExternal()],
   },
   {
-    input: './src/entrypoints/nodejs.ts',
+    input: './src/index.ts',
     output: {
       file: packageJSON.exports['.'].types,
       format: 'esm',

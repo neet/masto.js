@@ -8,7 +8,7 @@ import type { Serializer } from './serializers';
 import { mergeAbortSignals, mergeHeadersInit } from './utils';
 
 export type VersionCompat = 'unimplemented' | 'removed' | 'compatible';
-export type SatisfiesVerionRangeResult = {
+export type SatisfiesVersionRangeResult = {
   compat: VersionCompat;
   version?: string;
 };
@@ -102,7 +102,10 @@ export class MastoConfig {
     return !this.props.disableDeprecatedWarning;
   }
 
-  satisfiesVersion(since?: SemVer, until?: SemVer): SatisfiesVerionRangeResult {
+  satisfiesVersion(
+    since?: SemVer,
+    until?: SemVer,
+  ): SatisfiesVersionRangeResult {
     if (this.props.version == undefined || this.props.disableVersionCheck) {
       return {
         compat: 'compatible',

@@ -1,5 +1,5 @@
-import type { MastoClient } from '../src/entrypoints/nodejs';
-import { login as originalLogin } from '../src/entrypoints/nodejs';
+import type { MastoClient } from '../src';
+import { login as originalLogin } from '../src';
 
 interface Options {
   unauthenticated?: boolean;
