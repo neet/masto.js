@@ -33,36 +33,35 @@ export const version =
       );
     }
 
-    descriptor.value = async function (
+    descriptor.value = function (
       this: Target,
       ...args: Parameters<typeof origin>
     ) {
-      if (!this.config.shouldCheckVersion()) {
+      if (
+        this.config.version == undefined ||
+        !this.config.shouldCheckVersion()
+      ) {
         return origin.apply(this, args);
       }
 
-      try {
-        return await origin.apply(this, args);
-      } catch (error) {
-        if (since && semver.lt(this.config.version, since, { loose: true })) {
-          throw new MastoVersionError(
-            `${String(this.constructor.name)}.${String(name)}` +
-              ` is not available with the current Mastodon version ` +
-              this.config.version.version +
-              ` It requires greater than or equal to version ${since}.`,
-          );
-        }
-
-        if (until && semver.gt(this.config.version, until, { loose: true })) {
-          throw new MastoVersionError(
-            `${String(this.constructor.name)}.${String(name)}` +
-              ` is not available with the current Mastodon version` +
-              this.config.version.version +
-              ` It was removed on version ${until}.`,
-          );
-        }
-
-        throw error;
+      if (since && semver.lt(this.config.version, since, { loose: true })) {
+        throw new MastoVersionError(
+          `${String(this.constructor.name)}.${String(name)}` +
+            ` is not available with the current Mastodon version ` +
+            this.config.version.version +
+            ` It requires greater than or equal to version ${since}.`,
+        );
       }
+
+      if (until && semver.gt(this.config.version, until, { loose: true })) {
+        throw new MastoVersionError(
+          `${String(this.constructor.name)}.${String(name)}` +
+            ` is not available with the current Mastodon version` +
+            this.config.version.version +
+            ` It was removed on version ${until}.`,
+        );
+      }
+
+      return origin.apply(this, args);
     };
   };
