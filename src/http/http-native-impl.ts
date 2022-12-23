@@ -36,10 +36,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       }
 
       const data = this.serializer.deserialize(contentType, text);
-      this.logger?.debug(
-        `↓ ${request.method} ${request.url}`,
-        JSON.stringify(data).slice(0, 200),
-      );
+      this.logger?.debug(`↓ ${request.method} ${request.url}`, text);
 
       return {
         headers: response.headers,

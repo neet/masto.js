@@ -1,31 +1,31 @@
 /* eslint-disable no-console */
-import type { LogLevel } from './log-level';
+import { BaseLogger } from './base-logger';
+import type { LogLevel, LogType } from './log-level';
 import type { Logger } from './logger';
 
-export class LoggerConsoleImpl implements Logger {
-  constructor(private readonly logLevel: LogLevel) {}
-
-  debug(message: string, meta: unknown): void {
-    if (this.logLevel.satisfies('debug')) {
-      console.debug(message, meta);
-    }
+export class LoggerConsoleImpl extends BaseLogger implements Logger {
+  constructor(logLevel: LogLevel) {
+    super(logLevel);
   }
 
-  info(message: string, meta: unknown): void {
-    if (this.logLevel.satisfies('info')) {
-      console.info(message, meta);
-    }
-  }
-
-  warn(message: string, meta: unknown): void {
-    if (this.logLevel.satisfies('warn')) {
-      console.warn(message, meta);
-    }
-  }
-
-  error(message: string, meta: unknown): void {
-    if (this.logLevel.satisfies('error')) {
-      console.error(message, meta);
+  log(type: LogType, message: string, meta: unknown): void {
+    switch (type) {
+      case 'debug': {
+        console.debug(message, meta);
+        return;
+      }
+      case 'info': {
+        console.info(message, meta);
+        return;
+      }
+      case 'warn': {
+        console.warn(message, meta);
+        return;
+      }
+      case 'error': {
+        console.error(message, meta);
+        return;
+      }
     }
   }
 }
