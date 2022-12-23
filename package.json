@@ -23,7 +23,7 @@
     "test:spellcheck": "cspell '{src,examples}/**/*.{ts,tsx,js,json,md}'",
     "build": "rollup -c rollup.config.cjs",
     "prepublishOnly": "yarn run test && yarn run build",
-    "docs:build": "typedoc ./src/entrypoints/nodejs.ts && touch ./docs/.nojekyll"
+    "docs:build": "typedoc ./src/index.ts && touch ./docs/.nojekyll"
   },
   "dependencies": {
     "@mastojs/ponyfills": "^1.0.4",
