@@ -53,7 +53,7 @@ const masto = await login({
   accessToken: 'TOKEN',
 });
 
-await masto.statuses.create({
+await masto.v1.statuses.create({
   status: 'Hello from #mastojs!',
   visibility: 'public',
 });
