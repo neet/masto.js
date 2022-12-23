@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://i.imgur.com/z47VXyd.png" width="260px">
+  <img src="https://i.imgur.com/jakvzSd.png" width="260px">
 </p>
 
 <p align="center">Mastodon API client for JavaScript, TypeScript, Node.js, browsers</p>
@@ -21,7 +21,7 @@
 ## Installation
 
 ```
-npm i masto
+npm install masto
 ```
 
 ### Requirements
@@ -32,39 +32,34 @@ npm i masto
 ## Features
 
 - 🌎 **Isomorphic** which means browsers and Node.js are both supported
+- 🌊 **Fetch API** is supported natively
 - ⌨️ **TypeScript** powers static typing. And of course there's no `any`!
 - 💪 **You don't need to type URLs** because each endpoints have their own function
 - 📄 **Detailed docs** and rich hovering menu for IDE, provided by TSDoc
 
-## Basic Usage
+## Usage
 
-First, open `/settings/applications/new` of your instance on your browser and create new application.
+First, go to your settings page, open **Development**, and click the **New Application** button to earn your personal access token.
 
-![Create New App](https://i.imgur.com/lgbt0l5.png)
+![Create New App](https://i.imgur.com/rCwMw3j.png)
 
-Then, here's a simple example that creates a toot. Replace `TOKEN` to your own access token.
+Then you're almost there! here's an example that creates a status. Replace `TOKEN` with your own access token you've created in the previous section.
 
 ```ts
 import { login } from 'masto';
 
-async function main() {
-  const masto = await login({
-    url: 'https://example.com',
-    accessToken: 'TOKEN',
-  });
+const masto = await login({
+  url: 'https://example.com',
+  accessToken: 'TOKEN',
+});
 
-  await masto.statuses.create({
-    status: 'Hello Mastodon!',
-    visibility: 'direct',
-  });
-}
-
-main().catch((error) => {
-  console.error(error);
+await masto.statuses.create({
+  status: 'Hello from #mastojs!',
+  visibility: 'public',
 });
 ```
 
-All of available methods are described in the [documentation](https://neet.github.io/masto.js). You can also refer [examples](https://github.com/neet/masto.js/tree/main/examples) on this repository.
+Other available features are described in the [documentation](https://neet.github.io/masto.js). You may also want to refer [/examples](https://github.com/neet/masto.js/tree/main/examples) directory on this repository.
 
 ## FAQ
 
@@ -76,23 +71,17 @@ Masto.js validates your Mastodon instance's version to provide more helpful erro
 await login({
   url: "https://example.com",
   accessToken: "...",
-+  disableVersionCheck: true
++ disableVersionCheck: true
 });
 ```
 
-### Q. I got an error `Symbol.asyncIterator is not defined`
+### Q. Do I need polyfills?
 
-A. Masto.js is using [AsyncIterator](https://github.com/tc39/proposal-async-iteration) which is very new JS feature and it may not be supported in particular environments. So in browsers, you need to use a polyfill like [Babel's](https://babeljs.io/docs/en/babel-plugin-proposal-async-generator-functions). In Node.js, it is supported on [v10](https://medium.com/@nairihar/async-iteration-in-nodejs-v10-3c17dc00ed9f) so you can update and use it.
+Masto.js automatically handles unsupported features in specific environments, but you will need to install polyfills manually in some cases.
 
-If you're using Masto.js with TypeScript, you need to add the following config to `tsconfig.json` for static typing.
-
-```diff
-{
-  "compilerOptions": {
-    "lib": [
-+      "esnext.asynciterable"
-      ...
-```
+- `Node.js < 18`: We use `node-fetch`, `abort-controller`, and `form-data` as ponyfill. You don't need to install polyfills. However, if you have installed polyfills of these APIs in global, Masto.js chose them as a priority.
+- `Node.js >= 18`: We use native `fetch` API. You don't need to install polyfills.
+- Browsers: **We don't include any ponyfill or polyfill** in the bundle. You need to manually install abort-controller, fetch, and form-data to support legacy browsers.
 
 ## Contribution
 
