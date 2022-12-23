@@ -77,7 +77,7 @@ await login({
 
 ### Q. Do I need polyfills?
 
-Masto.js automatically handles unsupported features in specific environments, but you will need to install polyfills manually in some cases.
+Masto.js uses `fetch` and other Web APIs which may not be supported in specific environments such as the legacy version of Node.js, but we also automatically switch to another module that provides the same functionality ―This is so-called ponyfills. For example, if we detected `fetch` API is not available, we switch to `node-fetch` module. Therefore, you don't need to be aware of polyfill / ponyfill in most cases, but you will need to install them manually in some cases.
 
 - `Node.js < 18`: We use `node-fetch`, `abort-controller`, and `form-data` as ponyfill. You don't need to install polyfills. However, if you have installed polyfills of these APIs in global, Masto.js chose them as a priority.
 - `Node.js >= 18`: We use native `fetch` API. You don't need to install polyfills.
