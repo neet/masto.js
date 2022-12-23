@@ -7,6 +7,8 @@ import { LogLevel } from './logger';
 import type { Serializer } from './serializers';
 import { mergeAbortSignals, mergeHeadersInit } from './utils';
 
+const DEFAULT_TIMEOUT_MS = 1000 * 300;
+
 type VersionCompat = 'unimplemented' | 'removed' | 'compatible';
 type SatisfiesVersionRangeResult = {
   compat: VersionCompat;
@@ -32,7 +34,7 @@ export class MastoConfig {
   ) {}
 
   get timeout(): number {
-    return this.props.timeout ?? 3000;
+    return this.props.timeout ?? DEFAULT_TIMEOUT_MS;
   }
 
   createHeader(override: HeadersInit = {}): Headers {
