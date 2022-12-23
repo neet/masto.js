@@ -49,6 +49,6 @@ export class AggregateRepository {
    */
   @version({ since: '1.1.0', until: '3.0.0' })
   search(params: SearchParams): Paginator<Search, SearchParams> {
-    return new Paginator(this.http, `/api/v1/search`, params);
+    return new Paginator(this.http, `/api/v2/search`, params);
   }
 }
