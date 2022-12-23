@@ -1,5 +1,6 @@
 import type { MastoConfig } from '../../../config';
 import { version } from '../../../decorators';
+import { MastoHttpNotFoundError } from '../../../errors';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import { delay, timeout } from '../../../utils';
@@ -48,10 +49,18 @@ export class MediaAttachmentRepository {
 
         while (media == undefined) {
           await delay(interval);
-          const processing = await this.v1.fetch(id);
+          try {
+            const processing = await this.v1.fetch(id);
 
-          if (processing.url != undefined) {
-            media = processing;
+            if (processing.url != undefined) {
+              media = processing;
+            }
+          } catch (error) {
+            // Some instance caches API response
+            if (error instanceof MastoHttpNotFoundError) {
+              continue;
+            }
+            throw error;
           }
         }
 
