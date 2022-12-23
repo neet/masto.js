@@ -34,16 +34,16 @@ Our project in organized under the following directory structure.
 
 _Repository_ is a class for representing REST resources. They have several methods and multiple implementations, all named according to the following convention. Let `x` is the name of a resource.
 
-| URL Pattern                   | Method Name        | Parameter Name                   |
-| ----------------------------- | ------------------ | -------------------------------- |
-| `GET /`                       | `list`             | `ListResourceParams`             |
-| `GET /:id`                    | `fetch`            | `FetchResourceParams`            |
-| `POST /`                      | `create`           | `CreateResourceParams`           |
-| `POST /:id/{verb}`            | `do` (verb)        | `DoResourceParams`               |
-| `GET /:id/{subresource}`      | `listSubresource`  | `ListResourceSubresourceParams`  |
-| `GET /:id/{subresource}/:id2` | `fetchSubresource` | `FetchResourceSubresourceParams` |
-| `DELETE /:id`                 | `remove`           | `RemoveResourceParams`           |
-| `PUT /:id` or `PATCH /:id`    | `update`           | `UpdateResourceParams`           |
+| URL Pattern                    | Method Name      | Parameter Name    |
+| ------------------------------ | ---------------- | ----------------- |
+| `GET /api/v1/x`                | `v1.x.list`      | `ListXParams`     |
+| `GET /api/v1/x/:id`            | `v1.x.fetch`     | `FetchXParams`    |
+| `POST /api/v1/x`               | `v1.x.create`    | `CreateXParams`   |
+| `POST /api/v1/x/:id/{verb}`    | `v1.x.do` (verb) | `DoXParams`       |
+| `GET /api/v1/x/:id/{sub}`      | `v1.x.listSub`   | `ListXSubParams`  |
+| `GET /api/v1/x/:id/{sub}/:id2` | `v1.x.fetchSub`  | `FetchXSubParams` |
+| `DELETE /api/v1/x/:id`         | `v1.x.remove`    | `RemoveXParams`   |
+| `PUT or PATCH /api/v1/x/:id`   | `v1.x.update`    | `UpdateXParams`   |
 
 ## Scripts
 
