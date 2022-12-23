@@ -134,7 +134,7 @@ describe('Config', () => {
     expect(config.createWebsocketProtocols()).toEqual([]);
   });
 
-  it('creates timeout controller with specific limit', (done) => {
+  it('creates timeout controller with specific limit', () => {
     jest.useFakeTimers();
     const config = new MastoConfig(
       {
@@ -147,10 +147,6 @@ describe('Config', () => {
       new SerializerNativeImpl(),
     );
 
-    if (globalThis.AbortController === undefined) {
-      return done();
-    }
-
     const controller = config.createTimeoutController();
     assert(controller != undefined);
 
@@ -162,7 +158,5 @@ describe('Config', () => {
     jest.advanceTimersByTime(100);
     expect(callback).toBeCalled();
     jest.clearAllTimers();
-
-    return done();
   });
 });
