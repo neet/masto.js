@@ -1,9 +1,14 @@
 import type { MastoConfig } from '../../../config';
 import { version } from '../../../decorators';
+import type { Logger } from '../../../logger';
 import type { Ws, WsEvents } from '../../../ws';
 
 export class StreamRepository {
-  constructor(private readonly ws: Ws, readonly config: MastoConfig) {}
+  constructor(
+    private readonly ws: Ws,
+    readonly config: MastoConfig,
+    readonly logger?: Logger,
+  ) {}
 
   /**
    * Starting home timeline and notification streaming

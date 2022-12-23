@@ -1,6 +1,7 @@
 import type { MastoConfig } from '../../../config';
 import { deprecated, version } from '../../../decorators';
 import type { Http } from '../../../http';
+import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
 import type { DefaultPaginationParams } from '../../repository';
 import type { Status } from '../entities';
@@ -15,7 +16,11 @@ export interface ListTimelineParams extends DefaultPaginationParams {
 }
 
 export class TimelinesRepository {
-  constructor(private readonly http: Http, readonly config: MastoConfig) {}
+  constructor(
+    private readonly http: Http,
+    readonly config: MastoConfig,
+    readonly logger?: Logger,
+  ) {}
 
   /**
    * View statuses from followed users.

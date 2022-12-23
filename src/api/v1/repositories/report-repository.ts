@@ -1,6 +1,7 @@
 import type { MastoConfig } from '../../../config';
 import { version } from '../../../decorators';
 import type { Http } from '../../../http';
+import type { Logger } from '../../../logger';
 
 export type ReportCategory = 'spam' | 'violation' | 'other';
 
@@ -20,7 +21,11 @@ export interface ReportAccountParams {
 }
 
 export class ReportRepository {
-  constructor(private readonly http: Http, readonly config: MastoConfig) {}
+  constructor(
+    private readonly http: Http,
+    readonly config: MastoConfig,
+    readonly logger?: Logger,
+  ) {}
 
   /**
    * File a report

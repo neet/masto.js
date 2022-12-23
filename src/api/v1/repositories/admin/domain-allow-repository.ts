@@ -1,6 +1,7 @@
 import type { MastoConfig } from '../../../../config';
 import { version } from '../../../../decorators';
 import type { Http } from '../../../../http';
+import type { Logger } from '../../../../logger';
 import { Paginator } from '../../../../paginator';
 import type { Repository } from '../../../repository';
 import type { Admin } from '../../entities';
@@ -23,7 +24,11 @@ export class DomainAllowRepository
       ListDomainAllowsParams
     >
 {
-  constructor(private readonly http: Http, readonly config: MastoConfig) {}
+  constructor(
+    private readonly http: Http,
+    readonly config: MastoConfig,
+    readonly logger?: Logger,
+  ) {}
 
   /**
    * Show information about all allowed domains

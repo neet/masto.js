@@ -1,6 +1,7 @@
 import type { MastoConfig } from '../../../config';
 import { version } from '../../../decorators';
 import type { Http } from '../../../http';
+import type { Logger } from '../../../logger';
 import type { Repository } from '../../repository';
 import type {
   WebPushSubscription,
@@ -40,7 +41,11 @@ export class PushSubscriptionsRepository
       UpdatePushSubscriptionParams
     >
 {
-  constructor(private readonly http: Http, readonly config: MastoConfig) {}
+  constructor(
+    private readonly http: Http,
+    readonly config: MastoConfig,
+    readonly logger?: Logger,
+  ) {}
 
   /**
    * Add a Web Push API subscription to receive notifications.

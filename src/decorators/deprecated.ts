@@ -1,8 +1,10 @@
 import type { MastoConfig } from '../config';
 import { MastoUnexpectedError } from '../errors/masto-unexpected-error';
+import type { Logger } from '../logger';
 
 interface Target {
   readonly config: MastoConfig;
+  readonly logger?: Logger;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -20,7 +22,7 @@ export const deprecated =
     descriptor: TypedPropertyDescriptor<Fn>,
   ): void => {
     const origin = descriptor.value;
-    if (!origin) {
+    if (origin == undefined) {
       throw new MastoUnexpectedError(
         'deprecated can only apply to a method of a class',
       );
@@ -30,7 +32,10 @@ export const deprecated =
       this: Target,
       ...args: Parameters<typeof origin>
     ) {
-      this.config.warn(`#${name.toString()} is deprecated. ${message}`);
+      if (this.config?.shouldWarnDeprecated()) {
+        this.logger?.warn(`#${name.toString()} is deprecated. ${message}`);
+      }
+
       return origin.apply(this, args);
     };
   };

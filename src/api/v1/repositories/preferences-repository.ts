@@ -1,11 +1,16 @@
 import type { MastoConfig } from '../../../config';
 import { version } from '../../../decorators';
 import type { Http } from '../../../http';
+import type { Logger } from '../../../logger';
 import type { Repository } from '../../repository';
 import type { Preference } from '../entities';
 
 export class PreferenceRepository implements Repository<Preference> {
-  constructor(private readonly http: Http, readonly config: MastoConfig) {}
+  constructor(
+    private readonly http: Http,
+    readonly config: MastoConfig,
+    readonly logger?: Logger,
+  ) {}
 
   /**
    * Preferences defined by the user in their account settings.

@@ -13,8 +13,8 @@ import type { Http, HttpRequestParams, HttpRequestResult } from './http';
 
 export class HttpNativeImpl extends BaseHttp implements Http {
   constructor(
-    private readonly config: MastoConfig,
     private readonly serializer: Serializer,
+    private readonly config: MastoConfig,
     private readonly logger?: Logger,
   ) {
     super();

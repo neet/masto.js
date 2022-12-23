@@ -1,6 +1,7 @@
 import type { MastoConfig } from '../../../config';
 import { version } from '../../../decorators';
 import type { Http } from '../../../http';
+import type { Logger } from '../../../logger';
 import { delay, timeout } from '../../../utils';
 import type { MediaAttachment } from '../../v1';
 import { MediaAttachmentRepository as MediaAttachmentRepositoryV1 } from '../../v1';
@@ -26,7 +27,11 @@ export interface CreateMediaAttachmentExtraParams {
 export class MediaAttachmentRepository {
   private readonly v1: MediaAttachmentRepositoryV1;
 
-  constructor(private readonly http: Http, readonly config: MastoConfig) {
+  constructor(
+    private readonly http: Http,
+    readonly config: MastoConfig,
+    readonly logger?: Logger,
+  ) {
     this.v1 = new MediaAttachmentRepositoryV1(http, config);
   }
 
@@ -52,7 +57,7 @@ export class MediaAttachmentRepository {
 
         return media;
       })(),
-      this.config.timeout,
+      this.config?.timeout,
     );
   }
 

@@ -1,6 +1,7 @@
 import type { MastoConfig } from '../../../config';
 import { deprecated, version } from '../../../decorators';
 import type { Http } from '../../../http';
+import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
 import type { Repository } from '../../repository';
 import type { Account } from '../entities';
@@ -13,7 +14,11 @@ export interface ListSuggestionParams {
 export class SuggestionRepository
   implements Repository<Account, never, never, never, ListSuggestionParams>
 {
-  constructor(private readonly http: Http, readonly config: MastoConfig) {}
+  constructor(
+    private readonly http: Http,
+    readonly config: MastoConfig,
+    readonly logger?: Logger,
+  ) {}
 
   /**
    * Accounts the user has had past positive interactions with, but is not yet following.

@@ -1,6 +1,7 @@
 import type { MastoConfig } from '../../../config';
 import { deprecated, version } from '../../../decorators';
 import type { Http } from '../../../http';
+import type { Logger } from '../../../logger';
 import type { Repository } from '../../repository';
 import type { MediaAttachment } from '../entities';
 
@@ -25,7 +26,11 @@ export class MediaAttachmentRepository
       UpdateMediaAttachmentParams
     >
 {
-  constructor(private readonly http: Http, readonly config: MastoConfig) {}
+  constructor(
+    private readonly http: Http,
+    readonly config: MastoConfig,
+    readonly logger?: Logger,
+  ) {}
 
   /**
    * Creates an attachment to be used with a new status.

@@ -6,6 +6,7 @@ import type { MastoConfigProps } from '../config';
 import { MastoConfig } from '../config';
 import { HttpNativeImpl } from '../http';
 import type { LogType } from '../logger';
+import { LoggerConsoleImpl } from '../logger';
 import { SerializerNativeImpl } from '../serializers';
 import type { Writable } from '../utils/writable';
 import { WsNativeImpl } from '../ws';
@@ -23,17 +24,17 @@ export const login = async (params: LoginParams): Promise<MastoClient> => {
   const serializer = new SerializerNativeImpl();
 
   {
-    const tempConfig = new MastoConfig(configProps, serializer);
-    const http = new HttpNativeImpl(tempConfig, serializer);
-    const instance = await new InstanceRepository(http, tempConfig).fetch();
+    const config = new MastoConfig(configProps, serializer);
+    const http = new HttpNativeImpl(serializer, config);
+    const instance = await new InstanceRepository(http, config).fetch();
     configProps.version = new SemVer(instance.version);
     configProps.streamingApiUrl = instance.urls.streamingApi;
   }
 
   const config = new MastoConfig(configProps, serializer);
-  const logger = config.createLogger();
+  const logger = new LoggerConsoleImpl(config.getLogLevel());
   const ws = new WsNativeImpl(config, serializer);
-  const http = new HttpNativeImpl(config, serializer, logger);
+  const http = new HttpNativeImpl(serializer, config, logger);
 
   logger.debug('Masto.js initialised', config);
 

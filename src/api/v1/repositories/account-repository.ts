@@ -1,6 +1,7 @@
 import type { MastoConfig } from '../../../config';
 import { version } from '../../../decorators/version';
 import type { Http } from '../../../http';
+import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
 import type { DefaultPaginationParams, Repository } from '../../repository';
 import type {
@@ -100,7 +101,11 @@ export interface LookupAccountParams {
 export class AccountRepository
   implements Repository<Account, CreateAccountParams>
 {
-  constructor(private readonly http: Http, readonly config: MastoConfig) {}
+  constructor(
+    private readonly http: Http,
+    readonly config: MastoConfig,
+    readonly logger?: Logger,
+  ) {}
 
   /**
    * View information about a profile.

@@ -1,6 +1,7 @@
 import type { MastoConfig } from '../../config';
 import { version } from '../../decorators';
 import type { Http } from '../../http';
+import type { Logger } from '../../logger';
 import { Paginator } from '../../paginator';
 import type { Ws } from '../../ws';
 import type { DefaultPaginationParams } from '../repository';
@@ -93,52 +94,52 @@ export class AggregateRepository {
 
   constructor(
     private readonly http: Http,
-    private readonly ws: Ws,
+    ws: Ws,
     readonly config: MastoConfig,
+    readonly logger?: Logger,
   ) {
-    this.admin = new AggregateRepositoryAdmin(this.http, this.config);
-    this.stream = new StreamRepository(this.ws, this.config);
-    this.accounts = new AccountRepository(this.http, this.config);
-    this.announcements = new AnnouncementRepository(this.http, this.config);
-    this.apps = new AppRepository(this.http, this.config);
-    this.blocks = new BlockRepository(this.http, this.config);
-    this.bookmarks = new BookmarkRepository(this.http, this.config);
-    this.conversations = new ConversationRepository(this.http, this.config);
-    this.customEmojis = new CustomEmojiRepository(this.http, this.config);
-    this.directory = new DirectoryRepository(this.http, this.config);
-    this.domainBlocks = new DomainBlockRepository(this.http, this.config);
-    this.endorsements = new EndorsementRepository(this.http, this.config);
-    this.favourites = new FavouriteRepository(this.http, this.config);
-    this.featuredTags = new FeaturedTagRepository(this.http, this.config);
-    this.filters = new FilterRepository(this.http, this.config);
-    this.followRequests = new FollowRequestRepository(this.http, this.config);
-    this.instances = new InstanceRepository(this.http, this.config);
-    this.lists = new ListRepository(this.http, this.config);
-    this.markers = new MarkerRepository(this.http, this.config);
-    this.mediaAttachments = new MediaAttachmentRepository(
-      this.http,
-      this.config,
-    );
-    this.mutes = new MuteRepository(this.http, this.config);
-    this.notifications = new NotificationsRepository(this.http, this.config);
-    this.poll = new PollRepository(this.http, this.config);
-    this.preferences = new PreferenceRepository(this.http, this.config);
+    this.admin = new AggregateRepositoryAdmin(http, config, logger);
+    this.stream = new StreamRepository(ws, config, logger);
+    this.accounts = new AccountRepository(http, config, logger);
+    this.announcements = new AnnouncementRepository(http, config, logger);
+    this.apps = new AppRepository(http, config, logger);
+    this.blocks = new BlockRepository(http, config, logger);
+    this.bookmarks = new BookmarkRepository(http, config, logger);
+    this.conversations = new ConversationRepository(http, config, logger);
+    this.customEmojis = new CustomEmojiRepository(http, config, logger);
+    this.directory = new DirectoryRepository(http, config, logger);
+    this.domainBlocks = new DomainBlockRepository(http, config, logger);
+    this.endorsements = new EndorsementRepository(http, config, logger);
+    this.favourites = new FavouriteRepository(http, config, logger);
+    this.featuredTags = new FeaturedTagRepository(http, config, logger);
+    this.filters = new FilterRepository(http, config, logger);
+    this.followRequests = new FollowRequestRepository(http, config, logger);
+    this.instances = new InstanceRepository(http, config, logger);
+    this.lists = new ListRepository(http, config, logger);
+    this.markers = new MarkerRepository(http, config, logger);
+    this.mediaAttachments = new MediaAttachmentRepository(http, config, logger);
+    this.mutes = new MuteRepository(http, config, logger);
+    this.notifications = new NotificationsRepository(http, config, logger);
+    this.poll = new PollRepository(http, config, logger);
+    this.preferences = new PreferenceRepository(http, config, logger);
     this.pushSubscriptions = new PushSubscriptionsRepository(
-      this.http,
-      this.config,
+      http,
+      config,
+      logger,
     );
-    this.reports = new ReportRepository(this.http, this.config);
+    this.reports = new ReportRepository(http, config, logger);
     this.scheduledStatuses = new ScheduledStatusesRepository(
-      this.http,
-      this.config,
+      http,
+      config,
+      logger,
     );
-    this.statuses = new StatusRepository(this.http, this.config);
-    this.suggestions = new SuggestionRepository(this.http, this.config);
-    this.timelines = new TimelinesRepository(this.http, this.config);
-    this.trends = new TrendRepository(this.http, this.config);
-    this.email = new EmailRepository(this.http, this.config);
-    this.tags = new TagRepository(this.http, this.config);
-    this.followedTags = new FollowedTagRepository(this.http, this.config);
+    this.statuses = new StatusRepository(http, config, logger);
+    this.suggestions = new SuggestionRepository(http, config, logger);
+    this.timelines = new TimelinesRepository(http, config, logger);
+    this.trends = new TrendRepository(http, config, logger);
+    this.email = new EmailRepository(http, config, logger);
+    this.tags = new TagRepository(http, config, logger);
+    this.followedTags = new FollowedTagRepository(http, config, logger);
   }
 
   /**

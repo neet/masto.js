@@ -3,8 +3,8 @@ import { AbortController, Headers } from '@mastojs/ponyfills';
 import type { SemVer } from 'semver';
 import semver from 'semver';
 
-import type { Logger, LogType } from './logger';
-import { LoggerConsoleImpl, LogLevel } from './logger';
+import type { LogType } from './logger';
+import { LogLevel } from './logger';
 import type { Serializer } from './serializers';
 import { mergeHeadersInit } from './utils';
 
@@ -91,19 +91,8 @@ export class MastoConfig {
     return abortController;
   }
 
-  warn(message: string): void {
-    if (
-      process.env.NODE_ENV !== 'production' ||
-      !this.props?.disableDeprecatedWarning
-    ) {
-      // eslint-disable-next-line no-console
-      console.warn(message);
-    }
-  }
-
-  createLogger(): Logger {
-    const level = LogLevel.from(this.props.logLevel ?? 'warn');
-    return new LoggerConsoleImpl(level);
+  getLogLevel(): LogLevel {
+    return LogLevel.from(this.props.logLevel ?? 'warn');
   }
 
   shouldCheckVersion(): boolean {
@@ -114,6 +103,10 @@ export class MastoConfig {
       return false;
     }
     return true;
+  }
+
+  shouldWarnDeprecated(): boolean {
+    return !this.props.disableDeprecatedWarning;
   }
 
   private supportsSecureToken() {

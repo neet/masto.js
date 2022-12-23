@@ -38,7 +38,7 @@ export const version =
       ...args: Parameters<typeof origin>
     ) {
       if (
-        this.config.version == undefined ||
+        this.config?.version == undefined ||
         !this.config.shouldCheckVersion()
       ) {
         return origin.apply(this, args);

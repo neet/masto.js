@@ -1,6 +1,7 @@
 import type { MastoConfig } from '../../config';
 import { version } from '../../decorators';
 import type { Http } from '../../http';
+import type { Logger } from '../../logger';
 import { Paginator } from '../../paginator';
 import type { DefaultPaginationParams } from '../repository';
 import type { Search } from './entities/search';
@@ -34,11 +35,15 @@ export class AggregateRepository {
   readonly mediaAttachments: MediaAttachmentRepository;
   readonly suggestions: SuggestionRepository;
 
-  constructor(readonly http: Http, readonly config: MastoConfig) {
-    this.filters = new FilterRepository(http, config);
-    this.instance = new InstanceRepository(http, config);
-    this.mediaAttachments = new MediaAttachmentRepository(http, config);
-    this.suggestions = new SuggestionRepository(http, config);
+  constructor(
+    private readonly http: Http,
+    readonly config: MastoConfig,
+    readonly logger?: Logger,
+  ) {
+    this.filters = new FilterRepository(http, config, logger);
+    this.instance = new InstanceRepository(http, config, logger);
+    this.mediaAttachments = new MediaAttachmentRepository(http, config, logger);
+    this.suggestions = new SuggestionRepository(http, config, logger);
   }
 
   /**

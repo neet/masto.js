@@ -1,6 +1,7 @@
 import type { MastoConfig } from '../../../config';
 import { deprecated, version } from '../../../decorators';
 import type { Http } from '../../../http';
+import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
 import type { Repository } from '../../repository';
 import type {
@@ -75,7 +76,11 @@ export interface ReblogStatusParams {
 }
 
 export class StatusRepository implements Repository<Status> {
-  constructor(private readonly http: Http, readonly config: MastoConfig) {}
+  constructor(
+    private readonly http: Http,
+    readonly config: MastoConfig,
+    readonly logger?: Logger,
+  ) {}
 
   /**
    * View information about a status.

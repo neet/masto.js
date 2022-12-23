@@ -1,6 +1,7 @@
 import type { MastoConfig } from '../../../config';
 import { version } from '../../../decorators';
 import type { Http } from '../../../http';
+import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
 import type { DefaultPaginationParams, Repository } from '../../repository';
 import type { Account, List } from '../entities';
@@ -18,7 +19,11 @@ export interface ModifyListAccountsParams {
 export class ListRepository
   implements Repository<List, ModifyListParams, ModifyListParams>
 {
-  constructor(private readonly http: Http, readonly config: MastoConfig) {}
+  constructor(
+    private readonly http: Http,
+    readonly config: MastoConfig,
+    readonly logger?: Logger,
+  ) {}
 
   /**
    * Fetch the list with the given ID. Used for verifying the title of a list.
