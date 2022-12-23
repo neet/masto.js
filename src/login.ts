@@ -7,7 +7,7 @@ import { HttpNativeImpl } from './http';
 import type { LogType } from './logger';
 import { LoggerConsoleImpl } from './logger';
 import { Client } from './mastodon';
-import { InstanceRepository } from './mastodon/v2/repositories';
+import { InstanceRepository } from './mastodon/v1/repositories';
 import { SerializerNativeImpl } from './serializers';
 import type { Writable } from './utils';
 import { WsNativeImpl } from './ws';
@@ -44,7 +44,7 @@ export const login = async (params: LoginParams): Promise<Client> => {
     const http = new HttpNativeImpl(serializer, config);
     const instance = await new InstanceRepository(http, config).fetch();
     draft.version = new SemVer(instance.version);
-    draft.streamingApiUrl = instance.configuration.urls.streamingApi;
+    draft.streamingApiUrl = instance.urls.streamingApi;
   }
 
   const config = new MastoConfig(draft, serializer);
