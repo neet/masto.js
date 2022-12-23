@@ -1,3 +1,44 @@
+# [5.0.0](https://github.com/neet/masto.js/compare/v4.11.1...v5.0.0) (2022-12-23)
+
+
+### Bug Fixes
+
+* Fix `instanceof` operator for error classes ([7893b4d](https://github.com/neet/masto.js/commit/7893b4d9d7128295ee81582ab12194085c4dfad9))
+* Fix broken test for paginator ([584d1dc](https://github.com/neet/masto.js/commit/584d1dc77e6a8d6bc5930c4e35fa455538829152))
+* Fix http-native-impl to use getContentType ([875c371](https://github.com/neet/masto.js/commit/875c371d24fad4f0f8ae872153a1b2b4ef080049))
+* Fix setupFilesAfterEnv to include isomorphic-fetch ([2fd41e3](https://github.com/neet/masto.js/commit/2fd41e3c744b7eef9a865d97308306b2f8ce7719))
+* Fix tests ([58ba2c7](https://github.com/neet/masto.js/commit/58ba2c755551028b9544ab470245eb9ac8fd3f5e))
+* Fix tsc errors in domain blocks ([4f8700e](https://github.com/neet/masto.js/commit/4f8700ed4809a904887cb68db866cb801a76da1b))
+* Fix v2 search path ([b3d95f8](https://github.com/neet/masto.js/commit/b3d95f87ed261ddce68d5906bcd67bab2adcfb32))
+* Remove "DOM" from TypeScript lib dependency ([61a9467](https://github.com/neet/masto.js/commit/61a946750ee9c074abce7c29f15b9972bc657456))
+* Remove Array constraint from IRepository ([ced6608](https://github.com/neet/masto.js/commit/ced6608e02cd33e7469c8f60cb13a84f03d37312))
+* Remove MimeType and change it to string ([129a17a](https://github.com/neet/masto.js/commit/129a17af7d860930e270a07bc902d2293b8f0bbf))
+* Rename methods that returns an array to start with `list` ([68e8ff9](https://github.com/neet/masto.js/commit/68e8ff90dd9749d45364e1a30da5d86e0b20a6c7))
+* Repository#delete -> Repository#remove ([b4e06a5](https://github.com/neet/masto.js/commit/b4e06a5ef4ee44a21c21de6cc709c7ec531dbc83))
+* Update resource name to comply with the current Mastodon document ([6a20ad9](https://github.com/neet/masto.js/commit/6a20ad91b5b011d1368bf24cba2513ee08322f30))
+* Use version check as error handling ([d24ab9a](https://github.com/neet/masto.js/commit/d24ab9ae0e18db4b583e0613ab4baf5b18f566ae))
+
+
+### Features
+
+* Add explicit API versions to methods ([d4dd3fa](https://github.com/neet/masto.js/commit/d4dd3fae008ca7335612c7ec3054d8421938bde9))
+* Add logging interface ([bedc623](https://github.com/neet/masto.js/commit/bedc62300cac03d5ebf2a728a5a606629aa26b21))
+* Drop Axios support ([903c09d](https://github.com/neet/masto.js/commit/903c09d82966b278549d0939af5a76ad16c836ef))
+* Move entities and repositories under the namespace ([5da5773](https://github.com/neet/masto.js/commit/5da57738fb56f1c9528799158c628fc0c74bdf3b))
+* Remove deprecated class aliases ([17582c1](https://github.com/neet/masto.js/commit/17582c1d5c60fea922f55bab11363cca9349d9e1))
+* Remove next() argument ([5370e0c](https://github.com/neet/masto.js/commit/5370e0cf12c11fb696d65a8ceb93dd287882ac8a))
+
+
+### BREAKING CHANGES
+
+* Outdated resource names are updated with the current Mastodon document. Including `WebPushSubscription`, `CustomEmoji`, `AccountField`, etc
+* You have to import `mastodon` to use any entity instead of importing single entity directly
+* Paginator#next no longer accepts an argument. Please recreate Paginator if you want to reset the internal state
+* fetchAll, fetchMany and other methods that returns an array is now prefixed with list*
+* Alias for iteration methods and error classes are now removed
+* All API calls now require masto.v1 or masto.v2 as a prefix.
+* headers option for login() now should be a WHATWG object. Proxy support is also dropped.
+
 ## [4.11.1](https://github.com/neet/masto.js/compare/v4.11.0...v4.11.1) (2022-12-22)
 
 
