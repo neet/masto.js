@@ -7,6 +7,7 @@ export abstract class MastoHttpError extends MastoError {
 
   constructor(message: string, statusCode: number, props?: MastoErrorProps) {
     super(message, props);
+    Object.setPrototypeOf(this, MastoHttpError.prototype);
     this.statusCode = statusCode;
   }
 }

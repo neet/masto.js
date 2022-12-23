@@ -6,5 +6,6 @@ export class MastoHttpUnexpectedError extends MastoHttpError {
 
   constructor(message: string, statusCode: number, props?: MastoErrorProps) {
     super(message, statusCode, props);
+    Object.setPrototypeOf(this, MastoHttpUnexpectedError.prototype);
   }
 }

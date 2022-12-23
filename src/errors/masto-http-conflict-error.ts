@@ -9,5 +9,6 @@ export class MastoHttpConflictError extends MastoHttpError {
 
   constructor(message: string, props?: MastoErrorProps) {
     super(message, 409, props);
+    Object.setPrototypeOf(this, MastoHttpConflictError.prototype);
   }
 }

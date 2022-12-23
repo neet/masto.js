@@ -9,5 +9,6 @@ export class MastoTimeoutError extends MastoError {
 
   constructor(message: string, props?: MastoErrorProps) {
     super(message, props);
+    Object.setPrototypeOf(this, MastoTimeoutError.prototype);
   }
 }

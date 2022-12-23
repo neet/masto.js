@@ -14,5 +14,6 @@ export class MastoDeserializeError extends MastoError {
     props?: MastoErrorProps,
   ) {
     super(message, props);
+    Object.setPrototypeOf(this, MastoDeserializeError.prototype);
   }
 }

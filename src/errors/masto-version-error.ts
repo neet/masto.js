@@ -9,5 +9,6 @@ export class MastoVersionError extends MastoError {
 
   constructor(message: string, props?: MastoErrorProps) {
     super(message, props);
+    Object.setPrototypeOf(this, MastoVersionError.prototype);
   }
 }

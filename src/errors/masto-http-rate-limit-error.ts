@@ -11,7 +11,7 @@ export type MastoRateLimitErrorProps = MastoErrorProps & {
  * Mastodon rate limit error class
  */
 export class MastoHttpRateLimitError extends MastoHttpError {
-  override name = 'MastoRateLimitError';
+  override name = 'MastoHttpRateLimitError';
 
   /** Number of requests permitted per time period */
   readonly limit: number;
@@ -22,6 +22,8 @@ export class MastoHttpRateLimitError extends MastoHttpError {
 
   constructor(message: string, props: MastoRateLimitErrorProps) {
     super(message, 429, props);
+    Object.setPrototypeOf(this, MastoHttpRateLimitError.prototype);
+
     this.limit = props?.limit;
     this.remaining = props?.remaining;
     this.reset = props?.reset;
