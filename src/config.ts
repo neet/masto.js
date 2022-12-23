@@ -1,4 +1,4 @@
-import type { HeadersInit, RequestInit } from '@mastojs/ponyfills';
+import type { AbortSignal, HeadersInit, RequestInit } from '@mastojs/ponyfills';
 import { AbortController, Headers } from '@mastojs/ponyfills';
 import type { SemVer } from 'semver';
 import semver from 'semver';
@@ -6,7 +6,7 @@ import semver from 'semver';
 import type { LogType } from './logger';
 import { LogLevel } from './logger';
 import type { Serializer } from './serializers';
-import { mergeHeadersInit } from './utils';
+import { mergeAbortSignals, mergeHeadersInit } from './utils';
 
 export type MastoConfigProps = {
   readonly url: string;
@@ -75,16 +75,23 @@ export class MastoConfig {
     return url.toString();
   }
 
-  createTimeoutController(): AbortController | void {
-    if (this.props.timeout == undefined) {
-      return;
+  createAbortController(signal?: AbortSignal | null): AbortSignal {
+    const timeoutController = new AbortController();
+
+    // FIXME: `abort-controller` and `node-fetch` mismatches
+    const signals: AbortSignal[] = [timeoutController.signal];
+    if (signal != undefined) {
+      signals.push(signal);
+    }
+    if (this.props.requestInit?.signal) {
+      signals.push(this.props.requestInit.signal as AbortSignal);
     }
 
-    const abortController = new AbortController();
     setTimeout(() => {
-      abortController.abort();
-    }, this.props.timeout);
-    return abortController;
+      timeoutController.abort();
+    }, this.timeout);
+
+    return mergeAbortSignals(signals);
   }
 
   getLogLevel(): LogLevel {

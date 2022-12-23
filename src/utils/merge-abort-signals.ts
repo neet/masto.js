@@ -3,7 +3,7 @@ import { AbortController } from '@mastojs/ponyfills';
 
 export const mergeAbortSignals = (
   signals: readonly AbortSignal[],
-): AbortSignal | undefined => {
+): AbortSignal => {
   const abortController = new AbortController();
 
   for (const signal of signals) {
