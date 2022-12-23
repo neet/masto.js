@@ -1,12 +1,17 @@
 import type { AbortSignal, HeadersInit, RequestInit } from '@mastojs/ponyfills';
 import { AbortController, Headers } from '@mastojs/ponyfills';
-import type { SemVer } from 'semver';
-import semver from 'semver';
+import { gt, gte, lt, SemVer } from 'semver';
 
 import type { LogType } from './logger';
 import { LogLevel } from './logger';
 import type { Serializer } from './serializers';
 import { mergeAbortSignals, mergeHeadersInit } from './utils';
+
+export type VersionCompat = 'unimplemented' | 'removed' | 'compatible';
+export type SatisfiesVerionRangeResult = {
+  compat: VersionCompat;
+  version?: string;
+};
 
 export type MastoConfigProps = {
   readonly url: string;
@@ -15,10 +20,9 @@ export type MastoConfigProps = {
   readonly version?: SemVer;
   readonly accessToken?: string;
   readonly timeout?: number;
-  readonly requestInit?: Omit<RequestInit, 'body' | 'method'>;
+  readonly defaultRequestInit?: Omit<RequestInit, 'body' | 'method'>;
   readonly disableVersionCheck?: boolean;
   readonly disableDeprecatedWarning?: boolean;
-  readonly disableExperimentalWarning?: boolean;
 };
 
 export class MastoConfig {
@@ -31,13 +35,9 @@ export class MastoConfig {
     return this.props.timeout ?? 3000;
   }
 
-  get version(): SemVer | undefined {
-    return this.props.version;
-  }
-
   createHeader(override: HeadersInit = {}): Headers {
     const headersInit = mergeHeadersInit([
-      this.props.requestInit?.headers ?? {},
+      this.props.defaultRequestInit?.headers ?? {},
       { 'Content-Type': 'application/json' },
       override,
     ]);
@@ -82,9 +82,9 @@ export class MastoConfig {
     if (signal != undefined) {
       signals.push(signal);
     }
-    if (this.props.requestInit?.signal) {
+    if (this.props.defaultRequestInit?.signal) {
       // FIXME: `abort-controller` and `node-fetch` mismatches
-      signals.push(this.props.requestInit.signal as AbortSignal);
+      signals.push(this.props.defaultRequestInit.signal as AbortSignal);
     }
 
     setTimeout(() => {
@@ -98,31 +98,48 @@ export class MastoConfig {
     return LogLevel.from(this.props.logLevel ?? 'warn');
   }
 
-  shouldCheckVersion(): boolean {
-    if (this.version == undefined) {
-      return false;
-    }
-    if (this.props.disableVersionCheck) {
-      return false;
-    }
-    return true;
-  }
-
   shouldWarnDeprecated(): boolean {
     return !this.props.disableDeprecatedWarning;
   }
 
+  satisfiesVersion(since?: SemVer, until?: SemVer): SatisfiesVerionRangeResult {
+    if (this.props.version == undefined || this.props.disableVersionCheck) {
+      return {
+        compat: 'compatible',
+        version: this.props.version?.version,
+      };
+    }
+
+    if (since && lt(this.props.version, since)) {
+      return {
+        compat: 'unimplemented',
+        version: this.props.version?.version,
+      };
+    }
+
+    if (until && gt(this.props.version, until)) {
+      return {
+        compat: 'removed',
+        version: this.props.version?.version,
+      };
+    }
+
+    return {
+      compat: 'compatible',
+      version: this.props.version?.version,
+    };
+  }
+
   private supportsSecureToken() {
-    if (!this.shouldCheckVersion()) {
+    if (this.props.version == undefined || this.props.disableVersionCheck) {
       return true;
     }
 
     // Since v2.8.4, it is supported to pass access token with`Sec-Websocket-Protocol`
     // https://github.com/tootsuite/mastodon/pull/10818
     return (
-      this.props.version &&
       this.props.streamingApiUrl.startsWith('wss:') &&
-      semver.gte(this.props.version, '2.8.4', { loose: true })
+      gte(this.props.version, new SemVer('2.8.4', { loose: true }))
     );
   }
 }

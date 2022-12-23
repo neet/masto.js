@@ -17,21 +17,21 @@ export type LoginParams = Omit<
 > & { logLevel?: LogType };
 
 export const login = async (params: LoginParams): Promise<MastoClient> => {
-  const configProps: Writable<MastoConfigProps> = {
+  const draft: Writable<MastoConfigProps> = {
     streamingApiUrl: '',
     ...params,
   };
   const serializer = new SerializerNativeImpl();
 
   {
-    const config = new MastoConfig(configProps, serializer);
+    const config = new MastoConfig(draft, serializer);
     const http = new HttpNativeImpl(serializer, config);
     const instance = await new InstanceRepository(http, config).fetch();
-    configProps.version = new SemVer(instance.version);
-    configProps.streamingApiUrl = instance.urls.streamingApi;
+    draft.version = new SemVer(instance.version);
+    draft.streamingApiUrl = instance.urls.streamingApi;
   }
 
-  const config = new MastoConfig(configProps, serializer);
+  const config = new MastoConfig(draft, serializer);
   const logger = new LoggerConsoleImpl(config.getLogLevel());
   const ws = new WsNativeImpl(config, serializer);
   const http = new HttpNativeImpl(serializer, config, logger);

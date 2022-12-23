@@ -1,5 +1,3 @@
-import assert from 'node:assert';
-
 import { SemVer } from 'semver';
 
 import { MastoConfig } from './config';
@@ -147,11 +145,10 @@ describe('Config', () => {
       new SerializerNativeImpl(),
     );
 
-    const controller = config.createTimeoutController();
-    assert(controller != undefined);
+    const signal = config.createAbortController();
 
     const callback = jest.fn();
-    controller.signal.addEventListener('abort', callback);
+    signal.addEventListener('abort', callback);
 
     jest.advanceTimersByTime(2900);
     expect(callback).not.toBeCalled();
