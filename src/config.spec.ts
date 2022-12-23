@@ -67,7 +67,7 @@ describe('Config', () => {
     );
 
     const url = config
-      .resolveHttpPath('/api/v1/yay', { query: 'true' })
+      .resolveHttpPath('/api/v1/yay', new URLSearchParams({ query: 'true' }))
       .toString();
     expect(url).toEqual('https://mastodon.social/api/v1/yay?query=true');
   });
@@ -85,6 +85,41 @@ describe('Config', () => {
 
     const url = config.resolveWebsocketPath('/path/to/somewhere');
     expect(url).toEqual('wss://mastodon.social/path/to/somewhere');
+  });
+
+  it('preserves query parameters in the URL when no query parameters specified', () => {
+    const config = new MastoConfig(
+      {
+        url: 'https://mastodon.social',
+        streamingApiUrl: 'wss://mastodon.social',
+        version: new SemVer('2.8.4'),
+        accessToken: 'token',
+      },
+      new SerializerNativeImpl(),
+    );
+
+    const url = config.resolveHttpPath('/path/to/somewhere?foo=bar').toString();
+    expect(url).toEqual('https://mastodon.social/path/to/somewhere?foo=bar');
+  });
+
+  it('revokes query parameters in the URL when query parameters specified', () => {
+    const config = new MastoConfig(
+      {
+        url: 'https://mastodon.social',
+        streamingApiUrl: 'wss://mastodon.social',
+        version: new SemVer('2.8.4'),
+        accessToken: 'token',
+      },
+      new SerializerNativeImpl(),
+    );
+
+    const url = config
+      .resolveHttpPath(
+        '/path/to/somewhere?foo=bar',
+        new URLSearchParams({ foo2: 'bar2' }),
+      )
+      .toString();
+    expect(url).toEqual('https://mastodon.social/path/to/somewhere?foo2=bar2');
   });
 
   it('resolves WS path with path with token when Sec-Websocket-Protocols is not supported', () => {

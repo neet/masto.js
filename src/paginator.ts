@@ -9,18 +9,12 @@ export class Paginator<Entity, Params = never>
 
   constructor(
     private readonly http: Http,
-    private readonly initialPath: string,
+    initialPath: string,
     initialParams?: Params,
   ) {
-    this.nextPath = this.initialPath;
+    this.nextPath = initialPath;
     this.nextParams = initialParams;
   }
-
-  private pluckNext = (link: string) => {
-    return link
-      .match(/<(.+?)>; rel="next"/)?.[1]
-      .replace(/^https?:\/\/[^/]+/, '');
-  };
 
   async next(): Promise<IteratorResult<Entity>> {
     if (this.nextPath == undefined) {
@@ -30,14 +24,16 @@ export class Paginator<Entity, Params = never>
     const response = await this.http.request({
       requestInit: { method: 'GET' },
       path: this.nextPath,
-      searchParams: this.nextParams as Record<string, unknown>,
+      searchParams: new URLSearchParams(
+        this.nextParams as Record<string, string>,
+      ),
     });
 
-    this.nextPath =
-      typeof response.headers.get('link') === 'string'
-        ? this.pluckNext(response.headers.get('link') as string)
-        : undefined;
-    this.nextParams = {} as Params;
+    const next = this.pluckNext(response.headers.get('link'))?.split('?');
+    this.nextPath = next?.[0];
+    this.nextParams = Object.fromEntries(
+      new URLSearchParams(next?.[1]).entries(),
+    ) as Params;
 
     return {
       done: false,
@@ -70,4 +66,16 @@ export class Paginator<Entity, Params = never>
   [Symbol.asyncIterator](): AsyncGenerator<Entity, Entity, Params | undefined> {
     return this;
   }
+
+  private pluckNext = (link: string | null): string | undefined => {
+    if (link == undefined) {
+      return undefined;
+    }
+
+    const path = link
+      .match(/<(.+?)>; rel="next"/)?.[1]
+      .replace(/^https?:\/\/[^/]+/, '');
+
+    return path;
+  };
 }
