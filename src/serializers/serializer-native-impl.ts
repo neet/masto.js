@@ -1,3 +1,4 @@
+import type { BodyInit } from '@mastojs/ponyfills';
 import { FormData } from '@mastojs/ponyfills';
 import { camelCase, snakeCase } from 'change-case';
 
@@ -8,8 +9,10 @@ import type { Serializer } from './serializer';
 import { transformKeys } from './transform-keys';
 
 export class SerializerNativeImpl implements Serializer {
-  serialize(type: string, rawData: unknown): unknown {
-    if (rawData == undefined) return;
+  serialize(type: string, rawData: unknown): BodyInit | undefined {
+    if (rawData == undefined) {
+      return;
+    }
 
     const data = transformKeys(rawData, snakeCase);
 

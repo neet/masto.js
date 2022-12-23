@@ -74,7 +74,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
     return new Request(url, {
       ...requestInit,
       headers,
-      body: body as string,
+      body,
       signal: abortSignal,
     });
   }

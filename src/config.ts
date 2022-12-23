@@ -78,12 +78,12 @@ export class MastoConfig {
   createAbortController(signal?: AbortSignal | null): AbortSignal {
     const timeoutController = new AbortController();
 
-    // FIXME: `abort-controller` and `node-fetch` mismatches
     const signals: AbortSignal[] = [timeoutController.signal];
     if (signal != undefined) {
       signals.push(signal);
     }
     if (this.props.requestInit?.signal) {
+      // FIXME: `abort-controller` and `node-fetch` mismatches
       signals.push(this.props.requestInit.signal as AbortSignal);
     }
 
