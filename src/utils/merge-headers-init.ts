@@ -1,4 +1,5 @@
-import { Headers } from '@mastojs/isomorphic-web';
+import type { HeadersInit } from '@mastojs/ponyfills';
+import { Headers } from '@mastojs/ponyfills';
 
 /* eslint-disable unicorn/no-array-for-each */
 export const mergeHeadersInit = ([

@@ -162,5 +162,7 @@ describe('Config', () => {
     jest.advanceTimersByTime(100);
     expect(callback).toBeCalled();
     jest.clearAllTimers();
+
+    return done();
   });
 });

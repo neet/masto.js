@@ -1,4 +1,4 @@
-import { Headers } from '@mastojs/isomorphic-web';
+import { Headers } from '@mastojs/ponyfills';
 
 import { HttpMockImpl } from './http/http-mock-impl';
 import { Paginator } from './paginator';
@@ -30,7 +30,7 @@ describe('Paginator', () => {
     });
     await paginator;
     expect(http.request).toBeCalledWith({
-      requestInit: { method: 'get' },
+      requestInit: { method: 'GET' },
       path: '/v1/api/timelines',
       searchParams: { foo: 'bar' },
     });

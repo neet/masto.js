@@ -1,4 +1,5 @@
-import { fetch, FormData, Response } from '@mastojs/isomorphic-web';
+import type { AbortSignal } from '@mastojs/ponyfills';
+import { fetch, FormData, Response } from '@mastojs/ponyfills';
 
 import type { MastoConfig } from '../config';
 import type { CreateErrorParams } from '../errors';
@@ -38,7 +39,9 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       signals.push(timeoutController.signal);
     }
     if (requestInit?.signal != undefined) {
-      signals.push(requestInit.signal);
+      // FIXME: `abort-controller` and `node-fetch` mismatches
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      signals.push(requestInit.signal as any);
     }
 
     try {

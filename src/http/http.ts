@@ -1,3 +1,5 @@
+import type { Headers, RequestInit } from '@mastojs/ponyfills';
+
 export type HttpMethod = <T>(
   path: string,
   data?: unknown,

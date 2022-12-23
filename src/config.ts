@@ -1,4 +1,5 @@
-import { Headers } from '@mastojs/isomorphic-web';
+import type { HeadersInit, RequestInit } from '@mastojs/ponyfills';
+import { AbortController, Headers } from '@mastojs/ponyfills';
 import type { SemVer } from 'semver';
 import semver from 'semver';
 

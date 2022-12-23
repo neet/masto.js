@@ -1,3 +1,5 @@
+import type { Headers } from '@mastojs/ponyfills';
+
 export const getContentType = (headers: Headers): string | void => {
   const contentType = headers.get('Content-Type');
   if (typeof contentType !== 'string') {

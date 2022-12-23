@@ -1,3 +1,5 @@
+import type { RequestInit } from '@mastojs/ponyfills';
+
 import type { Http, HttpRequestParams, HttpRequestResult } from './http';
 
 export abstract class BaseHttp implements Http {

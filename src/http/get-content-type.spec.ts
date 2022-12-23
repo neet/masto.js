@@ -1,4 +1,4 @@
-import { Headers } from '@mastojs/isomorphic-web';
+import { Headers } from '@mastojs/ponyfills';
 
 import { getContentType } from './get-content-type';
 
