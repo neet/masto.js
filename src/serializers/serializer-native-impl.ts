@@ -23,7 +23,13 @@ export class SerializerNativeImpl implements Serializer {
       case 'multipart/form-data': {
         const formData = new FormData();
         for (const [key, value] of Object.entries(flattenObject(data))) {
-          formData.append(key, value as string);
+          // `form-data` module has an issue that they doesn't set filename
+          // https://github.com/neet/masto.js/issues/481
+          // https://github.com/mastodon/mastodon/issues/17622
+
+          // We set `blob` as filename, which is the default for Blob defined by the spec
+          // https://developer.mozilla.org/en-US/docs/Web/API/FormData/append
+          formData.append(key, value as string, 'blob');
         }
         return formData;
       }
