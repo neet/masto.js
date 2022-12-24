@@ -10,7 +10,7 @@ describe('mergeAbortSignals', () => {
     const b = new AbortController();
 
     const merged = mergeAbortSignals([a.signal, b.signal]);
-    const oneOfAB = [a, b][getRandomInt() % 2 === 0 ? 0 : 1];
+    const oneOfAB = [a, b][getRandomInt() % 2];
     oneOfAB.abort();
 
     expect(merged?.aborted).toBe(true);

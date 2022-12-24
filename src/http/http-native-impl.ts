@@ -3,7 +3,11 @@ import { fetch, FormData, Request, Response } from '@mastojs/ponyfills';
 
 import type { MastoConfig } from '../config';
 import type { CreateErrorParams } from '../errors';
-import { createHttpError, MastoUnexpectedError } from '../errors';
+import {
+  createHttpError,
+  MastoTimeoutError,
+  MastoUnexpectedError,
+} from '../errors';
 import type { Logger } from '../logger';
 import type { Serializer } from '../serializers';
 import { BaseHttp } from './base-http';
@@ -53,7 +57,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
 
     const url = this.config.resolveHttpPath(path, searchParams);
     const headers = this.config.createHeader(requestInit?.headers);
-    const abortSignal = this.config.createAbortController(
+    const abortSignal = this.config.createAbortSignal(
       requestInit?.signal as AbortSignal,
     );
     const body = this.serializer.serialize(
@@ -77,24 +81,30 @@ export class HttpNativeImpl extends BaseHttp implements Http {
   }
 
   private async createError(error: unknown): Promise<unknown> {
-    if (!(error instanceof Response)) {
-      return error;
+    if (error instanceof Response) {
+      const data = this.serializer.deserialize(
+        getContentType(error.headers) ?? 'application/json',
+        await error.text(),
+      );
+
+      return createHttpError({
+        cause: error,
+        statusCode: error.status,
+        message: data?.error,
+        details: data?.errorDescription,
+        description: data?.details,
+        limit: error.headers.get('X-RateLimit-Limit'),
+        remaining: error.headers.get('X-RateLimit-Remaining'),
+        reset: error.headers.get('X-RateLimit-Reset'),
+      } as CreateErrorParams);
     }
 
-    const data = this.serializer.deserialize(
-      getContentType(error.headers) ?? 'application/json',
-      await error.text(),
-    );
+    // TODO: Use abort reason
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if (error != undefined && (error as any).name === 'AbortError') {
+      return new MastoTimeoutError(`Request timed out`, { cause: error });
+    }
 
-    return createHttpError({
-      cause: error,
-      statusCode: error.status,
-      message: data?.error,
-      details: data?.errorDescription,
-      description: data?.details,
-      limit: error.headers.get('X-RateLimit-Limit'),
-      remaining: error.headers.get('X-RateLimit-Remaining'),
-      reset: error.headers.get('X-RateLimit-Reset'),
-    } as CreateErrorParams);
+    return error;
   }
 }
