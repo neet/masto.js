@@ -180,7 +180,7 @@ describe('Config', () => {
       new SerializerNativeImpl(),
     );
 
-    const signal = config.createAbortController();
+    const signal = config.createAbortSignal();
 
     const callback = jest.fn();
     signal.addEventListener('abort', callback);

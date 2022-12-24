@@ -1,9 +1,9 @@
 import type { MastoConfig } from '../../../config';
 import { version } from '../../../decorators';
-import { MastoHttpNotFoundError } from '../../../errors';
+import { MastoHttpNotFoundError, MastoTimeoutError } from '../../../errors';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
-import { delay, timeout } from '../../../utils';
+import { delay } from '../../../utils';
 import type { MediaAttachment } from '../../v1';
 import { MediaAttachmentRepository as MediaAttachmentRepositoryV1 } from '../../v1';
 
@@ -42,32 +42,35 @@ export class MediaAttachmentRepository {
    * @param interval interval of polling
    * @returns Media attachment that has done processing
    */
-  waitFor(id: string, interval = 1000): Promise<MediaAttachment> {
-    return timeout(
-      (async () => {
-        let media: MediaAttachment | undefined;
+  async waitFor(id: string, interval = 1000): Promise<MediaAttachment> {
+    const signal = this.config.createTimeoutSignal();
+    let media: MediaAttachment | undefined;
 
-        while (media == undefined) {
-          await delay(interval);
-          try {
-            const processing = await this.v1.fetch(id);
+    while (media == undefined) {
+      if (signal.aborted) {
+        throw new MastoTimeoutError(
+          'The media encoding has been timed out in your instance.',
+        );
+      }
 
-            if (processing.url != undefined) {
-              media = processing;
-            }
-          } catch (error) {
-            // Some instance caches API response
-            if (error instanceof MastoHttpNotFoundError) {
-              continue;
-            }
-            throw error;
-          }
+      await delay(interval);
+
+      try {
+        const processing = await this.v1.fetch(id);
+
+        if (processing.url != undefined) {
+          media = processing;
         }
+      } catch (error) {
+        // Some instance caches API response
+        if (error instanceof MastoHttpNotFoundError) {
+          continue;
+        }
+        throw error;
+      }
+    }
 
-        return media;
-      })(),
-      this.config?.timeout,
-    );
+    return media;
   }
 
   /**

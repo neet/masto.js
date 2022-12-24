@@ -33,10 +33,6 @@ export class MastoConfig {
     private readonly serializer: Serializer,
   ) {}
 
-  get timeout(): number {
-    return this.props.timeout ?? DEFAULT_TIMEOUT_MS;
-  }
-
   createHeader(override: HeadersInit = {}): Headers {
     const headersInit = mergeHeadersInit([
       this.props.defaultRequestInit?.headers ?? {},
@@ -83,21 +79,27 @@ export class MastoConfig {
     return url.toString();
   }
 
-  createAbortController(signal?: AbortSignal | null): AbortSignal {
+  createTimeoutSignal(): AbortSignal {
     const timeoutController = new AbortController();
 
-    const signals: AbortSignal[] = [timeoutController.signal];
-    if (signal != undefined) {
-      signals.push(signal);
-    }
+    setTimeout(() => {
+      timeoutController.abort();
+    }, this.props.timeout ?? DEFAULT_TIMEOUT_MS);
+
+    return timeoutController.signal;
+  }
+
+  createAbortSignal(signal?: AbortSignal | null): AbortSignal {
+    const signals: AbortSignal[] = [this.createTimeoutSignal()];
+
     if (this.props.defaultRequestInit?.signal) {
       // FIXME: `abort-controller` and `node-fetch` mismatches
       signals.push(this.props.defaultRequestInit.signal as AbortSignal);
     }
 
-    setTimeout(() => {
-      timeoutController.abort();
-    }, this.timeout);
+    if (signal != undefined) {
+      signals.push(signal);
+    }
 
     return mergeAbortSignals(signals);
   }
