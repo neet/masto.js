@@ -59,7 +59,7 @@ export class Paginator<Entity, Params = never>
     onrejected: (
       reason: unknown,
     ) => TResult2 | PromiseLike<TResult2> = Promise.reject,
-  ): PromiseLike<TResult1 | TResult2> {
+  ): Promise<TResult1 | TResult2> {
     return this.next().then((value) => onfulfilled(value.value), onrejected);
   }
 
