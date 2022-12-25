@@ -40,7 +40,7 @@ The minimal required version of dependency is as follows
 
 If you could successfully installed _Node.js_ and _npm_, create your first _Masto.js_ project with the following command. Assume you're using POSIX-compatible operating system.
 
-Create your directory and initialise your project.
+Create a directory and initialise your project.
 
 ```sh
 mkdir my-bot
@@ -54,13 +54,13 @@ And install Masto.js using _npm_
 npm install masto
 ```
 
-Now you could initialise your project for developing a Mastodon bot. Next, you need to create an application for obtaining an _[access token](https://docs.joinmastodon.org/client/authorized/)_ to get an access for your account.
+Now you could initialise your project for developing a Mastodon bot. Next, you need to create an application to obtain an _[access token](https://docs.joinmastodon.org/client/authorized/)_ required to get access to your account.
 
 Go to your settings page, open **Development**, and click the **New Application** button to earn your personal access token.
 
 ![Create New App](https://i.imgur.com/rCwMw3j.png)
 
-You need to out _Application name_, but website and redirect URI are fine to be empty for now. What you need to select for _Scopes_ is depending on your bot's ability, but you can access to most of functionality by granting `read` and `write`. See [OAuth Scopes](https://docs.joinmastodon.org/api/oauth-scopes/) documentation for further information.
+You need to fill out _Application name_, but website and redirect URI are fine to be empty for now. What you need to select for _Scopes_ is depending on your bot's ability, but you can access to most of functionality by granting `read` and `write`. See [OAuth Scopes](https://docs.joinmastodon.org/api/oauth-scopes/) documentation for further information.
 
 If you could create an application, save **Your access token** securely. This string is required to access to your account through Masto.js.
 
