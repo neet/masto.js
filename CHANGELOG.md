@@ -1,3 +1,13 @@
+## [5.0.2](https://github.com/neet/masto.js/compare/v5.0.1...v5.0.2) (2022-12-25)
+
+
+### Bug Fixes
+
+* Add default filename for form-data ([9a7489f](https://github.com/neet/masto.js/commit/9a7489fae14e2b8b363600252da8aa4d2a764a0c))
+* Change return type of Paginator#next to Promise ([3399892](https://github.com/neet/masto.js/commit/3399892aa888428db9476730e42489b3f7ba6392))
+* Fix MastoTimeoutError to be thrown instead of AbortError ([8de20a4](https://github.com/neet/masto.js/commit/8de20a4284ee800747c82e1033ea482662b58a22))
+* Update target to ES6 ([3a3acec](https://github.com/neet/masto.js/commit/3a3acecb0ad258569d07f78e8e3ff432c61030a1))
+
 ## [5.0.1](https://github.com/neet/masto.js/compare/v5.0.0...v5.0.1) (2022-12-24)
 
 # [5.0.0](https://github.com/neet/masto.js/compare/v4.11.1...v5.0.0) (2022-12-23)
