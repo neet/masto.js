@@ -1,3 +1,11 @@
+## [5.0.3](https://github.com/neet/masto.js/compare/v5.0.2...v5.0.3) (2022-12-25)
+
+
+### Bug Fixes
+
+* Add default filename only when field value is a blob ([fd6d3fb](https://github.com/neet/masto.js/commit/fd6d3fb5f18667048afa708ca2ec684308a8f89f))
+* Clear timeout when request completed ([f6b2f9c](https://github.com/neet/masto.js/commit/f6b2f9ce9cd406bc9f90fad57c7d86fbbe2243c8))
+
 ## [5.0.2](https://github.com/neet/masto.js/compare/v5.0.1...v5.0.2) (2022-12-25)
 
 
