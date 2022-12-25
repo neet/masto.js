@@ -64,7 +64,7 @@ You need to fill out _Application name_, but website and redirect URI are fine t
 
 If you could create an application, save **Your access token** securely. This string is required to access to your account through Masto.js.
 
-Then you're almost there! Create a file named `index.js` inside your project directory and add the code. This is an example which will post a status from your account.
+Then you're almost there! Create a file named `index.js` inside your project directory and add the following code. This is an example which will post a status from your account.
 
 ```ts
 import { login } from 'masto';
