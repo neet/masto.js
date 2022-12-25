@@ -60,7 +60,7 @@ Go to your settings page, open **Development**, and click the **New Application*
 
 ![Create New App](https://i.imgur.com/rCwMw3j.png)
 
-You need to fill out _Application name_, but website and redirect URI are fine to be empty for now. What you need to select for _Scopes_ is depending on your bot's ability, but you can access to most of functionality by granting `read` and `write`. See [OAuth Scopes](https://docs.joinmastodon.org/api/oauth-scopes/) documentation for further information.
+You need to fill out _Application name_, but website and redirect URI are fine to be the default for now. What you need to select for _Scopes_ is depending on your bot's ability, but you can access to most of functionality by granting `read` and `write`. See [OAuth Scopes](https://docs.joinmastodon.org/api/oauth-scopes/) documentation for further information.
 
 If you could create an application, save **Your access token** securely. This string is required to access to your account through Masto.js.
 
