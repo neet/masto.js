@@ -1,25 +1,22 @@
-import { MastoTimeoutError } from '../errors';
+import type { AbortSignal } from '@mastojs/ponyfills';
+import { AbortController } from '@mastojs/ponyfills';
 
-export const timeout = async <T>(task: Promise<T>, ms?: number): Promise<T> => {
-  // It actually is depending on the runtime...
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let cancellationToken: any | undefined;
+export class Timeout {
+  private readonly abortController: AbortController;
+  private readonly timeout: NodeJS.Timeout;
 
-  if (ms == undefined) {
-    return task;
+  constructor(millisecond: number) {
+    this.abortController = new AbortController();
+    this.timeout = setTimeout(() => {
+      this.abortController.abort();
+    }, millisecond);
   }
 
-  const timeoutPromise = new Promise<never>((_, reject) => {
-    cancellationToken = setTimeout(
-      () => void reject(new MastoTimeoutError(`Timeout of ${ms}ms exceeded`)),
-      ms,
-    ) as unknown as number;
-  });
+  get signal(): AbortSignal {
+    return this.abortController.signal;
+  }
 
-  const mainPromise = task.then((value) => {
-    clearTimeout(cancellationToken as NodeJS.Timeout);
-    return value;
-  });
-
-  return Promise.race([timeoutPromise, mainPromise]);
-};
+  clear(): void {
+    clearTimeout(this.timeout);
+  }
+}

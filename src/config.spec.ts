@@ -166,29 +166,4 @@ describe('Config', () => {
 
     expect(config.createWebsocketProtocols()).toEqual([]);
   });
-
-  it('creates timeout controller with specific limit', () => {
-    jest.useFakeTimers();
-    const config = new MastoConfig(
-      {
-        url: 'https://mastodon.social',
-        streamingApiUrl: 'wss://mastodon.social',
-        version: new SemVer('0.0.1'),
-        accessToken: 'token',
-        timeout: 3000,
-      },
-      new SerializerNativeImpl(),
-    );
-
-    const signal = config.createAbortSignal();
-
-    const callback = jest.fn();
-    signal.addEventListener('abort', callback);
-
-    jest.advanceTimersByTime(2900);
-    expect(callback).not.toBeCalled();
-    jest.advanceTimersByTime(100);
-    expect(callback).toBeCalled();
-    jest.clearAllTimers();
-  });
 });
