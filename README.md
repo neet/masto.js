@@ -18,17 +18,6 @@
   <a href="https://github.com/neet/masto.js/issues">Issues</a>
 </p>
 
-## Installation
-
-```
-npm install masto
-```
-
-### Requirements
-
-- **Node.js**: `>= 14.x`
-- **TypeScript** (optional peer dependency): `>= 3.6.0`
-
 ## Features
 
 - 🌎 **Isomorphic** which means browsers and Node.js are both supported
@@ -37,26 +26,66 @@ npm install masto
 - 💪 **You don't need to type URLs** because each endpoints have their own function
 - 📄 **Detailed docs** and rich hovering menu for IDE, provided by TSDoc
 
-## Usage
+## Quick start
 
-First, go to your settings page, open **Development**, and click the **New Application** button to earn your personal access token.
+In this quick start, we'll take a look at how to create a simple Mastodon bot that publishes a post using _Masto.js_.
+
+Firstly, you need to install _Node.js_ and _npm_ in your environment. Follow [the npm official guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) for the setup, and proceed to the next step when it's ready. Alternatively, you can use _yarn_, _pnpm_ or other package managers to install Masto.js, but this guide below uses _npm_.
+
+The minimal required version of dependency is as follows
+
+- **Node.js**: `>= 14.x`
+- **npm**: `>= 6.x`
+- **TypeScript** (optional peer dependency): `>= 3.6.0`
+
+If you could successfully installed _Node.js_ and _npm_, create your first _Masto.js_ project with the following command. Assume you're using POSIX-compatible operating system.
+
+Create your directory and initialise your project.
+
+```sh
+mkdir my-bot
+cd my-bot
+npm init es6 --yes
+```
+
+And install Masto.js using _npm_
+
+```
+npm install masto
+```
+
+Now you could initialise your project for developing a Mastodon bot. Next, you need to create an application for obtaining an _[access token](https://docs.joinmastodon.org/client/authorized/)_ to get an access for your account.
+
+Go to your settings page, open **Development**, and click the **New Application** button to earn your personal access token.
 
 ![Create New App](https://i.imgur.com/rCwMw3j.png)
 
-Then you're almost there! here's an example that creates a status. Replace `TOKEN` with your own access token you've created in the previous section.
+You need to out _Application name_, but website and redirect URI are fine to be empty for now. What you need to select for _Scopes_ is depending on your bot's ability, but you can access to most of functionality by granting `read` and `write`. See [OAuth Scopes](https://docs.joinmastodon.org/api/oauth-scopes/) documentation for further information.
+
+If you could create an application, save **Your access token** securely. This string is required to access to your account through Masto.js.
+
+Then you're almost there! Create a file named `index.js` inside your project directory and add the code. This is an example which will post a status from your account.
 
 ```ts
 import { login } from 'masto';
 
 const masto = await login({
-  url: 'https://example.com',
-  accessToken: 'TOKEN',
+  url: process.env.URL,
+  accessToken: process.env.TOKEN,
 });
 
-await masto.v1.statuses.create({
+const status = await masto.v1.statuses.create({
   status: 'Hello from #mastojs!',
   visibility: 'public',
 });
+
+console.log(status.url);
+```
+
+Finally, run the program with the following command. Replace `{URL}` to your instance's URL such as `https://mastodon.social`, and `{TOKEN}` to your access token that you obtained in the previous section.
+
+```
+URL={URL} TOKEN={TOKEN} node ./index.js
 ```
 
 Other available features are described in the [documentation](https://neet.github.io/masto.js). You may also want to refer [/examples](https://github.com/neet/masto.js/tree/main/examples) directory on this repository.
