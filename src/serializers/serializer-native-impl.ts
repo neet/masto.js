@@ -1,5 +1,5 @@
 import type { BodyInit } from '@mastojs/ponyfills';
-import { FormData } from '@mastojs/ponyfills';
+import { Blob, FormData } from '@mastojs/ponyfills';
 import { camelCase, snakeCase } from 'change-case';
 
 import { MastoDeserializeError } from '../errors';
@@ -23,13 +23,17 @@ export class SerializerNativeImpl implements Serializer {
       case 'multipart/form-data': {
         const formData = new FormData();
         for (const [key, value] of Object.entries(flattenObject(data))) {
-          // `form-data` module has an issue that they doesn't set filename
-          // https://github.com/neet/masto.js/issues/481
-          // https://github.com/mastodon/mastodon/issues/17622
+          if (value instanceof Blob) {
+            // `form-data` module has an issue that they doesn't set filename
+            // https://github.com/neet/masto.js/issues/481
+            // https://github.com/mastodon/mastodon/issues/17622
 
-          // We set `blob` as filename, which is the default for Blob defined by the spec
-          // https://developer.mozilla.org/en-US/docs/Web/API/FormData/append
-          formData.append(key, value as string, 'blob');
+            // We set `blob` as filename, which is the default for Blob defined by the spec
+            // https://developer.mozilla.org/en-US/docs/Web/API/FormData/append
+            formData.append(key, value, 'blob');
+          } else {
+            formData.append(key, value);
+          }
         }
         return formData;
       }
