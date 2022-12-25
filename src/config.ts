@@ -1,11 +1,11 @@
 import type { AbortSignal, HeadersInit, RequestInit } from '@mastojs/ponyfills';
-import { AbortController, Headers } from '@mastojs/ponyfills';
+import { Headers } from '@mastojs/ponyfills';
 import { gt, gte, lt, SemVer } from 'semver';
 
 import type { LogType } from './logger';
 import { LogLevel } from './logger';
 import type { Serializer } from './serializers';
-import { mergeAbortSignals, mergeHeadersInit } from './utils';
+import { mergeAbortSignals, mergeHeadersInit, Timeout } from './utils';
 
 const DEFAULT_TIMEOUT_MS = 1000 * 300;
 
@@ -79,18 +79,13 @@ export class MastoConfig {
     return url.toString();
   }
 
-  createTimeoutSignal(): AbortSignal {
-    const timeoutController = new AbortController();
-
-    setTimeout(() => {
-      timeoutController.abort();
-    }, this.props.timeout ?? DEFAULT_TIMEOUT_MS);
-
-    return timeoutController.signal;
+  createTimeout(): Timeout {
+    return new Timeout(this.props.timeout ?? DEFAULT_TIMEOUT_MS);
   }
 
-  createAbortSignal(signal?: AbortSignal | null): AbortSignal {
-    const signals: AbortSignal[] = [this.createTimeoutSignal()];
+  createAbortSignal(signal?: AbortSignal | null): [AbortSignal, Timeout] {
+    const timeout = this.createTimeout();
+    const signals: AbortSignal[] = [timeout.signal];
 
     if (this.props.defaultRequestInit?.signal) {
       // FIXME: `abort-controller` and `node-fetch` mismatches
@@ -101,7 +96,7 @@ export class MastoConfig {
       signals.push(signal);
     }
 
-    return mergeAbortSignals(signals);
+    return [mergeAbortSignals(signals), timeout];
   }
 
   getLogLevel(): LogLevel {

@@ -43,11 +43,11 @@ export class MediaAttachmentRepository {
    * @returns Media attachment that has done processing
    */
   async waitFor(id: string, interval = 1000): Promise<MediaAttachment> {
-    const signal = this.config.createTimeoutSignal();
+    const timeout = this.config.createTimeout();
     let media: MediaAttachment | undefined;
 
     while (media == undefined) {
-      if (signal.aborted) {
+      if (timeout.signal.aborted) {
         throw new MastoTimeoutError(
           'The media encoding has been timed out in your instance.',
         );
@@ -60,6 +60,7 @@ export class MediaAttachmentRepository {
 
         if (processing.url != undefined) {
           media = processing;
+          timeout.clear();
         }
       } catch (error) {
         // Some instance caches API response

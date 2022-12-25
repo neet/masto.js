@@ -10,6 +10,7 @@ import {
 } from '../errors';
 import type { Logger } from '../logger';
 import type { Serializer } from '../serializers';
+import type { Timeout } from '../utils';
 import { BaseHttp } from './base-http';
 import { getContentType } from './get-content-type';
 import type { Http, HttpRequestParams, HttpRequestResult } from './http';
@@ -24,7 +25,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
   }
 
   async request(params: HttpRequestParams): Promise<HttpRequestResult> {
-    const request = this.createRequest(params);
+    const [request, timeout] = this.createRequest(params);
 
     try {
       this.logger?.debug(`↑ ${request.method} ${request.url}`, request.body);
@@ -33,6 +34,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
         throw response;
       }
 
+      timeout.clear();
       const text = await response.text();
       const contentType = getContentType(response.headers);
       if (contentType == undefined) {
@@ -52,12 +54,12 @@ export class HttpNativeImpl extends BaseHttp implements Http {
     }
   }
 
-  private createRequest(params: HttpRequestParams): Request {
+  private createRequest(params: HttpRequestParams): [Request, Timeout] {
     const { path, searchParams, requestInit } = params;
 
     const url = this.config.resolveHttpPath(path, searchParams);
     const headers = this.config.createHeader(requestInit?.headers);
-    const abortSignal = this.config.createAbortSignal(
+    const [abortSignal, timeout] = this.config.createAbortSignal(
       requestInit?.signal as AbortSignal,
     );
     const body = this.serializer.serialize(
@@ -72,12 +74,14 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       headers.delete('Content-Type');
     }
 
-    return new Request(url, {
+    const request = new Request(url, {
       ...requestInit,
       headers,
       body,
       signal: abortSignal,
     });
+
+    return [request, timeout];
   }
 
   private async createError(error: unknown): Promise<unknown> {
