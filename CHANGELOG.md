@@ -1,3 +1,10 @@
+## [5.0.4](https://github.com/neet/masto.js/compare/v5.0.3...v5.0.4) (2022-12-25)
+
+
+### Bug Fixes
+
+* Node.js < 18 media uploading ([987dac7](https://github.com/neet/masto.js/commit/987dac729e6bda7dee942773f9a34ca4da835800))
+
 ## [5.0.3](https://github.com/neet/masto.js/compare/v5.0.2...v5.0.3) (2022-12-25)
 
 
