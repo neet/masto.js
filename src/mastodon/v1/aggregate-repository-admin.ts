@@ -4,60 +4,93 @@ import type { Logger } from '../../logger';
 import { AdminRepositories } from './repositories';
 
 export class AggregateRepositoryAdmin {
-  readonly account: AdminRepositories.AccountRepository;
-  readonly report: AdminRepositories.ReportRepository;
-  readonly domainBlocks: AdminRepositories.DomainBlockRepository;
-  readonly domainAllows: AdminRepositories.DomainAllowRepository;
-  readonly domainEmailBlocks: AdminRepositories.EmailDomainBlockRepository;
-  readonly ipBlocks: AdminRepositories.IpBlockRepository;
+  readonly accounts: AdminRepositories.AccountRepository;
   readonly canonicalEmailBlocks: AdminRepositories.CanonicalEmailBlockRepository;
+  readonly dimensions: AdminRepositories.DimensionRepository;
+  readonly domainAllows: AdminRepositories.DomainAllowRepository;
+  readonly domainBlocks: AdminRepositories.DomainBlockRepository;
+  readonly emailDomainBlocks: AdminRepositories.EmailDomainBlockRepository;
+  readonly ipBlocks: AdminRepositories.IpBlockRepository;
+  readonly measures: AdminRepositories.MeasureRepository;
+  readonly reports: AdminRepositories.ReportRepository;
+  readonly retention: AdminRepositories.RetentionRepository;
+  readonly trends: AdminRepositories.TrendRepository;
+
+  /** @deprecated Use `accounts` instead */
+  get account(): AdminRepositories.AccountRepository {
+    return this.accounts;
+  }
+
+  /** @deprecated Use `reports` instead */
+  get report(): AdminRepositories.ReportRepository {
+    return this.reports;
+  }
+
+  /** @deprecated Use `emailDomainBlocks` instead */
+  get domainEmailBlocks(): AdminRepositories.EmailDomainBlockRepository {
+    return this.emailDomainBlocks;
+  }
 
   constructor(
     private readonly http: Http,
     private readonly config: MastoConfig,
     private readonly logger?: Logger,
   ) {
-    this.account = new AdminRepositories.AccountRepository(
+    this.accounts = new AdminRepositories.AccountRepository(
       this.http,
       this.config,
       this.logger,
     );
-
-    this.report = new AdminRepositories.ReportRepository(
-      this.http,
-      this.config,
-      this.logger,
-    );
-
-    this.domainBlocks = new AdminRepositories.DomainBlockRepository(
-      this.http,
-      this.config,
-      this.logger,
-    );
-
-    this.domainAllows = new AdminRepositories.DomainAllowRepository(
-      this.http,
-      this.config,
-      this.logger,
-    );
-
-    this.domainEmailBlocks = new AdminRepositories.EmailDomainBlockRepository(
-      this.http,
-      this.config,
-      this.logger,
-    );
-
-    this.ipBlocks = new AdminRepositories.IpBlockRepository(
-      this.http,
-      this.config,
-      this.logger,
-    );
-
     this.canonicalEmailBlocks =
       new AdminRepositories.CanonicalEmailBlockRepository(
         this.http,
         this.config,
         this.logger,
       );
+    this.dimensions = new AdminRepositories.DimensionRepository(
+      this.http,
+      this.config,
+      this.logger,
+    );
+    this.domainBlocks = new AdminRepositories.DomainBlockRepository(
+      this.http,
+      this.config,
+      this.logger,
+    );
+    this.domainAllows = new AdminRepositories.DomainAllowRepository(
+      this.http,
+      this.config,
+      this.logger,
+    );
+    this.emailDomainBlocks = new AdminRepositories.EmailDomainBlockRepository(
+      this.http,
+      this.config,
+      this.logger,
+    );
+    this.ipBlocks = new AdminRepositories.IpBlockRepository(
+      this.http,
+      this.config,
+      this.logger,
+    );
+    this.measures = new AdminRepositories.MeasureRepository(
+      this.http,
+      this.config,
+      this.logger,
+    );
+    this.reports = new AdminRepositories.ReportRepository(
+      this.http,
+      this.config,
+      this.logger,
+    );
+    this.retention = new AdminRepositories.RetentionRepository(
+      this.http,
+      this.config,
+      this.logger,
+    );
+    this.trends = new AdminRepositories.TrendRepository(
+      this.http,
+      this.config,
+      this.logger,
+    );
   }
 }
