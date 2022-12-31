@@ -1,3 +1,7 @@
+/**
+ * Represents a custom user role that grants permissions.
+ * @see https://docs.joinmastodon.org/entities/Role/
+ */
 export interface Role {
   /** The ID of the Role in the database. */
   id: number;
