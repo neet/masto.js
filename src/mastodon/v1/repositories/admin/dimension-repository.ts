@@ -28,27 +28,27 @@ export interface FetchDimensionParams {
    */
   readonly keys: DimensionKey[];
   /** String (ISO 8601 Datetime). The start date for the time period. If a time is provided, it will be ignored. */
-  readonly startAt: string;
+  readonly startAt?: string | null;
   /** String (ISO 8601 Datetime). The end date for the time period. If a time is provided, it will be ignored. */
-  readonly endAt: string;
+  readonly endAt?: string | null;
   /** Integer. The maximum number of results to return for sources, servers, languages, tag or instance dimensions. */
-  readonly limit: string;
-  readonly tag_servers: {
+  readonly limit?: string | null;
+  readonly tag_servers?: {
     /** String. When `tag_servers` is one of the requested keys, you must provide a trending tag ID to obtain information about which servers are posting the tag. */
-    readonly id: string;
-  };
-  readonly tag_languages: {
+    readonly id?: string | null;
+  } | null;
+  readonly tag_languages?: {
     /** String. When `tag_languages` is one of the requested keys, you must provide a trending tag ID to obtain information about which languages are posting the tag. */
-    readonly id: string;
-  };
-  readonly instance_accounts: {
+    readonly id?: string | null;
+  } | null;
+  readonly instance_accounts?: {
     /** String. When `instance_accounts` is one of the requested keys, you must provide a domain to obtain information about popular accounts from that server. */
-    readonly domain: string;
-  };
-  readonly instance_languages: {
+    readonly domain?: string | null;
+  } | null;
+  readonly instance_languages?: {
     /** String. When `instance_accounts` is one of the requested keys, you must provide a domain to obtain information about popular languages from that server. */
-    readonly domain: string;
-  };
+    readonly domain?: string | null;
+  } | null;
 }
 
 export class DimensionRepository {
@@ -62,8 +62,8 @@ export class DimensionRepository {
    * Obtain information about popularity of certain accounts, servers, languages, etc.
    * @see https://docs.joinmastodon.org/methods/admin/dimensions/#get
    */
-  fetch(): Promise<Admin.Dimension[]> {
-    return this.http.post('/api/v1/admin/dimensions', undefined, {
+  fetch(params: FetchDimensionParams): Promise<Admin.Dimension[]> {
+    return this.http.post('/api/v1/admin/dimensions', params, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
   }

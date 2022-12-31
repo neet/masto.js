@@ -42,42 +42,42 @@ export interface FetchMeasureParams {
   readonly startAt: string;
   /** String (ISO 8601 Datetime). The end date for the time period. If a time is provided, it will be ignored. */
   readonly endAt: string;
-  readonly tagAccounts: {
+  readonly tagAccounts?: {
     /** String. When `tag_accounts` is one of the requested keys, you must provide a tag ID to obtain the measure of how many accounts used that hashtag in at least one status within the given time period. */
-    readonly id: string;
-  };
-  readonly tagUses: {
+    readonly id?: string | null;
+  } | null;
+  readonly tagUses?: {
     /** String. When `tag_uses` is one of the requested keys, you must provide a tag ID to obtain the measure of how many statuses used that hashtag within the given time period. */
-    readonly id: string;
-  };
-  readonly tagServers: {
+    readonly id?: string | null;
+  } | null;
+  readonly tagServers?: {
     /** String. When `tag_servers` is one of the requested keys, you must provide a tag ID to obtain the measure of how many servers used that hashtag in at least one status within the given time period. */
-    readonly id: string;
-  };
-  readonly instanceAccounts: {
+    readonly id?: string | null;
+  } | null;
+  readonly instanceAccounts?: {
     /** String. When `instance_accounts` is one of the requested keys, you must provide a remote domain to obtain the measure of how many accounts have been discovered from that server within the given time period. */
-    readonly domain: string;
-  };
-  readonly instanceMediaAttachments: {
+    readonly domain?: string | null;
+  } | null;
+  readonly instanceMediaAttachments?: {
     /** String. When `instance_media_attachments` is one of the requested keys, you must provide a remote domain to obtain the measure of how much space is used by media attachments from that server within the given time period. */
-    readonly domain: string;
-  };
-  readonly instanceReports: {
+    readonly domain?: string | null;
+  } | null;
+  readonly instanceReports?: {
     /** String. When `instance_reports` is one of the requested keys, you must provide a remote domain to obtain the measure of how many reports have been filed against accounts from that server within the given time period. */
-    readonly domain: string;
-  };
-  readonly instanceStatuses: {
+    readonly domain?: string | null;
+  } | null;
+  readonly instanceStatuses?: {
     /** String. When `instance_statuses` is one of the requested keys, you must provide a remote domain to obtain the measure of how many statuses originate from that server within the given time period. */
-    readonly domain: string;
-  };
-  readonly instanceFollows: {
+    readonly domain?: string | null;
+  } | null;
+  readonly instanceFollows?: {
     /** String. When `instance_follows` is one of the requested keys, you must provide a remote domain to obtain the measure of how many follows were performed on accounts from that server by local accounts within the given time period */
-    readonly domain: string;
-  };
-  readonly instanceFollowers: {
+    readonly domain?: string | null;
+  } | null;
+  readonly instanceFollowers?: {
     /** String. When `instance_followers` is one of the requested keys, you must provide a remote domain to obtain the measure of how many follows were performed by accounts from that server on local accounts within the given time period. */
-    readonly domain: string;
-  };
+    readonly domain?: string | null;
+  } | null;
 }
 
 export class MeasureRepository {
@@ -92,8 +92,8 @@ export class MeasureRepository {
    * @see https://docs.joinmastodon.org/methods/admin/measures/#get
    */
   @version({ since: '3.5.0' })
-  fetch(): Promise<Admin.Measure[]> {
-    return this.http.post('/api/v1/admin/measures', undefined, {
+  fetch(params: FetchMeasureParams): Promise<Admin.Measure[]> {
+    return this.http.post('/api/v1/admin/measures', params, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
   }

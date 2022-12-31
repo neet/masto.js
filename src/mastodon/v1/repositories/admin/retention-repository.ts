@@ -4,7 +4,7 @@ import type { Logger } from '../../../../logger';
 import type { Admin } from '../../entities';
 import type { CohortFrequency } from '../../entities/admin/cohort';
 
-export interface CalculateRetentionParams {
+export interface CreateRetentionParams {
   /** String (ISO 8601 Datetime). The start date for the time period. If a time is provided, it will be ignored. */
   readonly startAt: string;
   /** String (ISO 8601 Datetime). The end date for the time period. If a time is provided, it will be ignored. */
@@ -24,8 +24,8 @@ export class RetentionRepository {
    * Generate a retention data report for a given time period and bucket.
    * @see https://docs.joinmastodon.org/methods/admin/retention/#create
    */
-  create(): Promise<Admin.Cohort[]> {
-    return this.http.get('/api/v1/admin/retention', undefined, {
+  create(params: CreateRetentionParams): Promise<Admin.Cohort[]> {
+    return this.http.get('/api/v1/admin/retention', params, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
   }
