@@ -1,4 +1,4 @@
-import type { CustomEmoji, StatusVisibility } from '.';
+import type { CustomEmoji, Role, StatusVisibility } from '.';
 
 /**
  * Represents display or publishing preferences of user's own account.
@@ -98,4 +98,6 @@ export interface AccountCredentials extends Account {
    * corresponding properties such as `note` and `fields`.
    */
   source: AccountSource;
+  /** The role assigned to the currently authorized user. */
+  role: Role;
 }
