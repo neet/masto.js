@@ -33,19 +33,19 @@ export interface FetchDimensionParams {
   readonly endAt?: string | null;
   /** Integer. The maximum number of results to return for sources, servers, languages, tag or instance dimensions. */
   readonly limit?: string | null;
-  readonly tag_servers?: {
+  readonly tagServers?: {
     /** String. When `tag_servers` is one of the requested keys, you must provide a trending tag ID to obtain information about which servers are posting the tag. */
     readonly id?: string | null;
   } | null;
-  readonly tag_languages?: {
+  readonly tagLanguages?: {
     /** String. When `tag_languages` is one of the requested keys, you must provide a trending tag ID to obtain information about which languages are posting the tag. */
     readonly id?: string | null;
   } | null;
-  readonly instance_accounts?: {
+  readonly instanceAccounts?: {
     /** String. When `instance_accounts` is one of the requested keys, you must provide a domain to obtain information about popular accounts from that server. */
     readonly domain?: string | null;
   } | null;
-  readonly instance_languages?: {
+  readonly instanceLanguages?: {
     /** String. When `instance_accounts` is one of the requested keys, you must provide a domain to obtain information about popular languages from that server. */
     readonly domain?: string | null;
   } | null;
