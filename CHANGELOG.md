@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/neet/masto.js/compare/v5.0.5...v5.1.0) (2023-01-01)
+
+
+### Features
+
+* Support admin dashboard API ([#778](https://github.com/neet/masto.js/issues/778)) ([c1f2dfa](https://github.com/neet/masto.js/commit/c1f2dfa555a60ed423194b2b09ff944311d72b9c))
+
 ## [5.0.5](https://github.com/neet/masto.js/compare/v5.0.4...v5.0.5) (2022-12-26)
 
 ## [5.0.4](https://github.com/neet/masto.js/compare/v5.0.3...v5.0.4) (2022-12-25)
