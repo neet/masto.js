@@ -1,4 +1,5 @@
 export * from './delay';
+export * from './link';
 export * from './timeout';
 export * from './merge-abort-signals';
 export * from './merge-headers-init';

@@ -1,5 +1,6 @@
 /* eslint-disable unicorn/no-thenable */
 import type { Http } from './http';
+import { parseLink } from './utils/link';
 
 export class Paginator<Entity, Params = never>
   implements AsyncIterableIterator<Entity>, PromiseLike<Entity>
@@ -29,11 +30,14 @@ export class Paginator<Entity, Params = never>
       ),
     });
 
-    const next = this.pluckNext(response.headers.get('link'))?.split('?');
-    this.nextPath = next?.[0];
-    this.nextParams = Object.fromEntries(
-      new URLSearchParams(next?.[1]).entries(),
-    ) as Params;
+    const { next } = parseLink(response.headers.get('link'));
+    if (next != undefined) {
+      const url = new URL(next);
+      this.nextPath = url.pathname;
+      this.nextParams = Object.fromEntries(
+        url.searchParams.entries(),
+      ) as Params;
+    }
 
     return {
       done: false,
@@ -66,16 +70,4 @@ export class Paginator<Entity, Params = never>
   [Symbol.asyncIterator](): AsyncGenerator<Entity, Entity, Params | undefined> {
     return this;
   }
-
-  private pluckNext = (link: string | null): string | undefined => {
-    if (link == undefined) {
-      return undefined;
-    }
-
-    const path = link
-      .match(/<(.+?)>; rel="next"/)?.[1]
-      .replace(/^https?:\/\/[^/]+/, '');
-
-    return path;
-  };
 }
