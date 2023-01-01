@@ -2,20 +2,17 @@
 import type { Http } from './http';
 import { parseLink } from './utils/link';
 
+type Direction = 'forward' | 'backward';
+
 export class Paginator<Entity, Params = never>
   implements AsyncIterableIterator<Entity>, PromiseLike<Entity>
 {
-  private nextPath?: string;
-  private nextParams?: Params;
-
   constructor(
     private readonly http: Http,
-    initialPath: string,
-    initialParams?: Params,
-  ) {
-    this.nextPath = initialPath;
-    this.nextParams = initialParams;
-  }
+    private nextPath?: string,
+    private nextParams?: Params,
+    private readonly direction: Direction = 'backward',
+  ) {}
 
   async next(): Promise<IteratorResult<Entity>> {
     if (this.nextPath == undefined) {
@@ -30,8 +27,9 @@ export class Paginator<Entity, Params = never>
       ),
     });
 
-    const { next } = parseLink(response.headers.get('link'));
-    if (next != undefined) {
+    const { next, prev } = parseLink(response.headers.get('link'));
+
+    if (this.direction === 'backward' && next != undefined) {
       const url = new URL(next);
       this.nextPath = url.pathname;
       this.nextParams = Object.fromEntries(
@@ -39,9 +37,31 @@ export class Paginator<Entity, Params = never>
       ) as Params;
     }
 
+    if (this.direction === 'forward' && prev != undefined) {
+      const url = new URL(prev);
+      this.nextPath = url.pathname;
+      this.nextParams = Object.fromEntries(
+        url.searchParams.entries(),
+      ) as Params;
+    }
+
+    if (
+      (this.direction === 'backward' && next == undefined) ||
+      (this.direction === 'forward' && prev == undefined)
+    ) {
+      this.nextPath = undefined;
+      this.nextParams = undefined;
+    }
+
+    const value = (
+      this.direction === 'backward'
+        ? response.data
+        : (response.data as Array<unknown>).reverse()
+    ) as Entity;
+
     return {
       done: false,
-      value: response.data as Entity,
+      value,
     };
   }
 
@@ -65,6 +85,10 @@ export class Paginator<Entity, Params = never>
     ) => TResult2 | PromiseLike<TResult2> = Promise.reject,
   ): Promise<TResult1 | TResult2> {
     return this.next().then((value) => onfulfilled(value.value), onrejected);
+  }
+
+  reverse(): Paginator<Entity, Params> {
+    return new Paginator(this.http, this.nextPath, this.nextParams, 'forward');
   }
 
   [Symbol.asyncIterator](): AsyncGenerator<Entity, Entity, Params | undefined> {
