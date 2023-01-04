@@ -8,7 +8,7 @@ export abstract class BaseHttp implements Http {
   get<T>(path: string, data?: unknown, init: RequestInit = {}): Promise<T> {
     return this.request({
       path,
-      searchParams: new URLSearchParams(data as Record<string, string>),
+      searchParams: data as Record<string, unknown>,
       requestInit: {
         method: 'GET',
         ...init,

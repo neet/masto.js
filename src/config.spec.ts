@@ -67,9 +67,11 @@ describe('Config', () => {
     );
 
     const url = config
-      .resolveHttpPath('/api/v1/yay', new URLSearchParams({ query: 'true' }))
+      .resolveHttpPath('/api/v1/yay', { query: 'true', list: ['1', '2', '3'] })
       .toString();
-    expect(url).toEqual('https://mastodon.social/api/v1/yay?query=true');
+    expect(url).toEqual(
+      'https://mastodon.social/api/v1/yay?query=true&list[]=1&list[]=2&list[]=3',
+    );
   });
 
   it('resolves WS path with path', () => {
@@ -114,10 +116,7 @@ describe('Config', () => {
     );
 
     const url = config
-      .resolveHttpPath(
-        '/path/to/somewhere?foo=bar',
-        new URLSearchParams({ foo2: 'bar2' }),
-      )
+      .resolveHttpPath('/path/to/somewhere?foo=bar', { foo2: 'bar2' })
       .toString();
     expect(url).toEqual('https://mastodon.social/path/to/somewhere?foo2=bar2');
   });

@@ -54,13 +54,11 @@ export class MastoConfig {
       : protocols;
   }
 
-  resolveHttpPath(path: string, params?: URLSearchParams): URL {
+  resolveHttpPath(path: string, params?: Record<string, unknown>): URL {
     const url = new URL(path, this.props.url);
 
     if (params) {
-      url.search = this.serializer.serializeQueryString(
-        Object.fromEntries(params.entries()),
-      );
+      url.search = this.serializer.serializeQueryString(params);
     }
 
     return url;

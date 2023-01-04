@@ -24,9 +24,7 @@ export class Paginator<Entity, Params = never>
     const response = await this.http.request({
       requestInit: { method: 'GET' },
       path: this.nextPath,
-      searchParams: new URLSearchParams(
-        this.nextParams as Record<string, string>,
-      ),
+      searchParams: this.nextParams as Record<string, unknown>,
     });
 
     const next = this.pluckNext(response.headers.get('link'))?.split('?');

@@ -232,7 +232,7 @@ export class AccountRepository
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
   @version({ since: '0.0.0' })
-  fetchRelationships(id: string[]): Promise<Relationship[]> {
+  fetchRelationships(id: readonly string[]): Promise<Relationship[]> {
     return this.http.get('/api/v1/accounts/relationships', {
       id,
     });

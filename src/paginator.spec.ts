@@ -19,7 +19,7 @@ describe('Paginator', () => {
     expect(http.request).toBeCalledWith({
       requestInit: { method: 'GET' },
       path: '/v1/api/timelines',
-      searchParams: new URLSearchParams({ foo: 'bar' }),
+      searchParams: { foo: 'bar' },
     });
   });
 
@@ -32,7 +32,7 @@ describe('Paginator', () => {
     expect(http.request).toBeCalledWith({
       requestInit: { method: 'GET' },
       path: '/v1/api/timelines',
-      searchParams: new URLSearchParams({ foo: 'bar' }),
+      searchParams: { foo: 'bar' },
     });
   });
 
@@ -47,7 +47,7 @@ describe('Paginator', () => {
     await paginator.next();
     expect(http.request).toBeCalledWith({
       requestInit: { method: 'GET' },
-      searchParams: new URLSearchParams({ max_id: '109382006402042919' }),
+      searchParams: { max_id: '109382006402042919' },
       path: '/api/v1/timelines/home',
     });
   });
