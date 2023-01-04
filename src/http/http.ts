@@ -8,7 +8,7 @@ export type HttpMethod = <T>(
 
 export type HttpRequestParams = {
   readonly path: string;
-  readonly searchParams?: URLSearchParams;
+  readonly searchParams?: Record<string, unknown>;
   readonly body?: Record<string, unknown>;
   readonly requestInit?: Omit<RequestInit, 'body'>;
 };

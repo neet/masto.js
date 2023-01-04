@@ -84,4 +84,13 @@ describe('account', () => {
         .every((status) => status.inReplyToId == undefined),
     ).toBe(true);
   });
+
+  it('fetches relationships', async () => {
+    const accountIds = await client.v1.timelines
+      .listPublic()
+      .then((ar) => [ar[0], ar[1], ar[2]].map((s) => s.account.id));
+
+    const res = await client.v1.accounts.fetchRelationships(accountIds);
+    expect(res).toHaveLength(accountIds.length);
+  });
 });
