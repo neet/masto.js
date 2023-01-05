@@ -1,3 +1,10 @@
+## [5.1.1](https://github.com/neet/masto.js/compare/v5.1.0...v5.1.1) (2023-01-05)
+
+
+### Bug Fixes
+
+* Change searchParams type to Record ([2ae64ed](https://github.com/neet/masto.js/commit/2ae64ed14044cb08eb69e5ec5f9e52e54c7d7f62)), closes [#672](https://github.com/neet/masto.js/issues/672)
+
 # [5.1.0](https://github.com/neet/masto.js/compare/v5.0.5...v5.1.0) (2023-01-01)
 
 
