@@ -79,7 +79,7 @@ export interface Account {
   lastStatusAt: string;
 
   /** Indicates that the profile is currently inactive and that its user has moved to a new account. */
-  moved?: boolean | null;
+  moved?: Account | null;
   /** An extra entity returned when an account is suspended. **/
   suspended?: boolean | null;
   /** Additional metadata attached to a profile as name-value pairs. */
