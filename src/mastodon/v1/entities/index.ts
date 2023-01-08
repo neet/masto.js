@@ -9,7 +9,6 @@ export * from './custom-emoji';
 export * from './familiar-followers';
 export * from './featured-tags';
 export * from './filter';
-export * from './filter-result';
 export * from './identity-proof';
 export * from './instance';
 export * from './list';

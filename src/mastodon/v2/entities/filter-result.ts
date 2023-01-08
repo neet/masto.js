@@ -2,7 +2,7 @@ import type { Filter } from '.';
 
 /**
  * Represents a filter whose keywords matched a given status.
- * @see https://docs.joinmastodon.org/entities/filter-result/
+ * @see https://docs.joinmastodon.org/entities/FilterResult/
  */
 export interface FilterResult {
   /** The filter that was matched. */

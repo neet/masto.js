@@ -1,8 +1,8 @@
+import type { v2 } from '../..';
 import type {
   Account,
   Application,
   CustomEmoji,
-  FilterResult,
   MediaAttachment,
   Poll,
   PreviewCard,
@@ -69,7 +69,7 @@ export interface Status {
   /** How many favourites this status has received. */
   favouritesCount: number;
   /** If the current token has an authorized user: The filter and keywords that matched this status. */
-  filtered?: FilterResult[];
+  filtered?: v2.FilterResult[];
   /** How many replies this status has received. */
   repliesCount: number;
 
