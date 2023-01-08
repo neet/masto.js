@@ -1,3 +1,10 @@
+## [5.1.2](https://github.com/neet/masto.js/compare/v5.1.1...v5.1.2) (2023-01-08)
+
+
+### Bug Fixes
+
+* update `moved` field type of Account ([1fa6546](https://github.com/neet/masto.js/commit/1fa6546cad14519cfbe251a5c8687e5845e5bfc3))
+
 ## [5.1.1](https://github.com/neet/masto.js/compare/v5.1.0...v5.1.1) (2023-01-05)
 
 
