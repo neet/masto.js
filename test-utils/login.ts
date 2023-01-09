@@ -11,8 +11,9 @@ export const login = (options?: Options): Promise<mastodon.Client> => {
   return originalLogin({
     timeout: 1000 * 30,
     url: process.env.MASTODON_URL as string,
-    accessToken: !unauthenticated
-      ? (process.env.MASTODON_TOKEN as string)
-      : undefined,
+    logLevel: 'debug',
+    accessToken: unauthenticated
+      ? undefined
+      : (process.env.MASTODON_TOKEN as string),
   });
 };
