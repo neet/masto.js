@@ -1,12 +1,12 @@
-import type { Filter } from '.';
+import type { v2 } from '../..';
 
 /**
  * Represents a filter whose keywords matched a given status.
- * @see https://docs.joinmastodon.org/entities/filter-result/
+ * @see https://docs.joinmastodon.org/entities/FilterResult/
  */
 export interface FilterResult {
   /** The filter that was matched. */
-  filter: Filter;
+  filter: v2.Filter;
   /** The keyword within the filter that was matched. */
   keywordMatches: string[] | null;
   /** The status ID within the filter that was matched. */
