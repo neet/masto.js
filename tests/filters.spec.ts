@@ -20,6 +20,11 @@ describe('filters', () => {
       ],
     });
 
+    const [status] = await client.v1.timelines.listPublic();
+    await client.v2.filters.createStatus(filter.id, {
+      statusId: status.id,
+    });
+
     await delay(3000);
     const filters = await client.v2.filters.list();
     expect(filters).toContainEqual(
@@ -28,6 +33,9 @@ describe('filters', () => {
         title: 'some group',
         keywords: expect.arrayContaining([
           expect.objectContaining({ keyword: 'I hate masto.js' }),
+        ]),
+        statuses: expect.arrayContaining([
+          expect.objectContaining({ statusId: status.id }),
         ]),
       }),
     );
