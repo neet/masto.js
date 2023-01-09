@@ -40,6 +40,9 @@ export class SerializerNativeImpl implements Serializer {
         }
         return formData;
       }
+      case 'application/x-www-form-urlencoded': {
+        return railsQueryString.stringify(data);
+      }
       default: {
         return;
       }

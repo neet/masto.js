@@ -61,4 +61,20 @@ describe('railsQueryString', () => {
 
     expect(result).toBe('bar=baz');
   });
+
+  it('encodes tested object', () => {
+    expect(
+      railsQueryString.stringify({
+        title: 'some group',
+        context: ['notifications'],
+        keywordsAttributes: [
+          {
+            keyword: 'my keyword',
+          },
+        ],
+      }),
+    ).toMatchInlineSnapshot(
+      `"title=some%20group&context[]=notifications&keywordsAttributes[][keyword]=my%20keyword"`,
+    );
+  });
 });

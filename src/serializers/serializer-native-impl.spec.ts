@@ -25,6 +25,17 @@ describe('SerializerNativeImpl', () => {
   //   expect(data.get('another_key_name[1]')).toEqual('value2');
   // });
 
+  it('encodes an object to a url form-data', () => {
+    const data = serializer.serialize('application/x-www-form-urlencoded', {
+      keyName: 'value',
+      anotherKeyName: ['value1', 'value2'],
+    });
+
+    expect(data).toBe(
+      'key_name=value&another_key_name[]=value1&another_key_name[]=value2',
+    );
+  });
+
   it('encodes an object to a querystring', () => {
     const data = serializer.serializeQueryString({
       keyName: 'value',

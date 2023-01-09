@@ -1,34 +1,26 @@
 import { isObject } from './is-object';
 
-/**
- * Encodes URI in Rails format
- */
-const stringify = (object?: unknown): string => {
-  if (!isObject(object)) {
-    return '';
+const flatten = (object: unknown, parent = ''): [string, unknown][] => {
+  if (Array.isArray(object)) {
+    return object.flatMap((value, i) =>
+      flatten(value, parent == '' ? i.toString() : `${parent}[]`),
+    );
   }
 
-  const values = Object.entries(object)
-    .reduce<string[]>((prev, [k, v]) => {
-      if (Array.isArray(v)) {
-        const xs = v.map((x) => `${k}[]=${encodeURIComponent(x)}`);
-        return [...prev, ...xs];
-      }
-      if (v == undefined) {
-        return prev;
-      }
-      if (
-        typeof v === 'string' ||
-        typeof v === 'number' ||
-        typeof v === 'boolean'
-      ) {
-        return [...prev, `${k}=${encodeURIComponent(v)}`];
-      }
-      throw new TypeError('Encoding nested object is not supported');
-    }, [])
-    .join('&');
+  if (isObject(object)) {
+    return Object.entries(object).flatMap(([key, value]) =>
+      flatten(value, parent === '' ? key : `${parent}[${key}]`),
+    );
+  }
 
-  return values;
+  return [[parent, object]];
+};
+
+const stringify = (object: unknown): string => {
+  return flatten(object)
+    .filter(([, v]) => v != undefined)
+    .map(([k, v]) => `${k}=${encodeURIComponent(v as string)}`)
+    .join('&');
 };
 
 export const railsQueryString = { stringify };
