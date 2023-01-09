@@ -76,4 +76,9 @@ export class Paginator<Entity, Params = never>
 
     return path;
   };
+
+  clone(): Paginator<Entity, Params> {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return new Paginator(this.http, this.nextPath!, this.nextParams);
+  }
 }
