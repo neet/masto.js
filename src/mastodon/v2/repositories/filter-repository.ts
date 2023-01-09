@@ -133,7 +133,7 @@ export class FilterRepository
    * @see https://docs.joinmastodon.org/methods/filters/#keywords-get
    */
   @version({ since: '4.0.0' })
-  listKeyword(id: string): Paginator<FilterKeyword[]> {
+  listKeywords(id: string): Paginator<FilterKeyword[]> {
     return new Paginator(this.http, `/api/v2/filters/${id}/keywords`);
   }
 
