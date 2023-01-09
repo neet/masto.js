@@ -56,6 +56,10 @@ export interface CreateFilterKeywordParams {
 
 export type UpdateFilterKeywordParams = CreateFilterKeywordParams;
 
+export interface CreateFilterStatusParams {
+  readonly statusId: string;
+}
+
 export class FilterRepository
   implements Repository<Filter, CreateFilterParams, UpdateFilterParams>
 {
@@ -163,7 +167,7 @@ export class FilterRepository
 
   /**
    * Update the given filter keyword.
-   * @param id String. The ID of the Filter in the database.
+   * @param id String. The ID of the FilterKeyword in the database.
    * @param params Parameters
    * @return FilterKeywords
    * @see https://docs.joinmastodon.org/methods/filters/#keywords-update
@@ -173,7 +177,7 @@ export class FilterRepository
     id: string,
     params: CreateFilterKeywordParams,
   ): Promise<FilterKeyword> {
-    return this.http.put(`/api/v2/filters/${id}/keywords`, params, {
+    return this.http.put(`/api/v2/filters/keywords/${id}`, params, {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     });
   }
@@ -200,8 +204,22 @@ export class FilterRepository
     return new Paginator(this.http, `/api/v2/filters/${id}/statuses`);
   }
 
-  // addStatus
-  // https://docs.joinmastodon.org/methods/filters/#statuses-add
+  /**
+   * Add a status filter to the current filter group.
+   * @param id String. The ID of the Filter in the database.
+   * @param params
+   * @returns FilterStatus
+   * @see https://docs.joinmastodon.org/methods/filters/#statuses-add
+   */
+  createStatus(
+    id: string,
+    params: CreateFilterStatusParams,
+  ): Promise<FilterStatus> {
+    return this.http.post<FilterStatus>(
+      `/api/v2/filters/${id}/statuses`,
+      params,
+    );
+  }
 
   /**
    * Obtain a single status filter.
