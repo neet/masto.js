@@ -163,7 +163,7 @@ export class FilterRepository
 
   /**
    * Update the given filter keyword.
-   * @param id String. The ID of the Filter in the database.
+   * @param id String. The ID of the FilterKeyword in the database.
    * @param params Parameters
    * @return FilterKeywords
    * @see https://docs.joinmastodon.org/methods/filters/#keywords-update
@@ -173,7 +173,7 @@ export class FilterRepository
     id: string,
     params: CreateFilterKeywordParams,
   ): Promise<FilterKeyword> {
-    return this.http.put(`/api/v2/filters/${id}/keywords`, params, {
+    return this.http.put(`/api/v2/filters/keywords/${id}`, params, {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     });
   }
