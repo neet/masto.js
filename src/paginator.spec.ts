@@ -6,12 +6,15 @@ import { Paginator } from './paginator';
 describe('Paginator', () => {
   const http = new HttpMockImpl();
 
+  beforeEach(() => {
+    http.request.mockReturnValue({ headers: new Headers({}) });
+  });
+
   afterEach(() => {
     http.clear();
   });
 
   it('sends a request', async () => {
-    http.request.mockReturnValue({ headers: new Headers({}) });
     const paginator = new Paginator(http, '/v1/api/timelines', {
       foo: 'bar',
     });
@@ -24,7 +27,6 @@ describe('Paginator', () => {
   });
 
   it('sends a request with await', async () => {
-    http.request.mockReturnValue({ headers: new Headers({}) });
     const paginator = new Paginator(http, '/v1/api/timelines', {
       foo: 'bar',
     });
@@ -53,14 +55,33 @@ describe('Paginator', () => {
   });
 
   it('returns done when next link does not exist', async () => {
-    http.request.mockReturnValue({
-      headers: new Headers({}),
-    });
     const paginator = new Paginator(http, '/v1/api/timelines');
     await paginator.next();
     const result = await paginator.next();
     expect(result).toEqual({
       done: true,
     });
+  });
+
+  it('clones itself', async () => {
+    const paginator1 = new Paginator(http, '/some/api', { query: 'value' });
+    const paginator2 = paginator1.clone();
+
+    await paginator1.next();
+    await paginator2.next();
+
+    expect(http.request).toBeCalledTimes(2);
+    expect(http.request).nthCalledWith(1, {
+      requestInit: { method: 'GET' },
+      searchParams: { query: 'value' },
+      path: '/some/api',
+    });
+    expect(http.request).nthCalledWith(2, {
+      requestInit: { method: 'GET' },
+      searchParams: { query: 'value' },
+      path: '/some/api',
+    });
+
+    expect(paginator1).not.toEqual(paginator2);
   });
 });
