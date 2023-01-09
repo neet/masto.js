@@ -30,11 +30,12 @@ export class HttpNativeImpl extends BaseHttp implements Http {
     try {
       this.logger?.debug(`↑ ${request.method} ${request.url}`, request.body);
       const response = await fetch(request);
+      timeout.clear();
+
       if (!response.ok) {
         throw response;
       }
 
-      timeout.clear();
       const text = await response.text();
       const contentType = getContentType(response.headers);
       if (contentType == undefined) {
