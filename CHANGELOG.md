@@ -1,3 +1,10 @@
+## [5.1.3](https://github.com/neet/masto.js/compare/v5.1.2...v5.1.3) (2023-01-09)
+
+
+### Bug Fixes
+
+* allow omitting one timeline when creating marker ([ca1070c](https://github.com/neet/masto.js/commit/ca1070c4dfd291585e3ba37275061ab069f0d211))
+
 ## [5.1.2](https://github.com/neet/masto.js/compare/v5.1.1...v5.1.2) (2023-01-08)
 
 
