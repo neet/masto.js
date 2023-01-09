@@ -4,17 +4,11 @@ import type { Http } from './http';
 export class Paginator<Entity, Params = never>
   implements AsyncIterableIterator<Entity>, PromiseLike<Entity>
 {
-  private nextPath?: string;
-  private nextParams?: Params;
-
   constructor(
     private readonly http: Http,
-    initialPath: string,
-    initialParams?: Params,
-  ) {
-    this.nextPath = initialPath;
-    this.nextParams = initialParams;
-  }
+    private nextPath?: string,
+    private nextParams?: Params,
+  ) {}
 
   async next(): Promise<IteratorResult<Entity>> {
     if (this.nextPath == undefined) {
@@ -78,7 +72,6 @@ export class Paginator<Entity, Params = never>
   };
 
   clone(): Paginator<Entity, Params> {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    return new Paginator(this.http, this.nextPath!, this.nextParams);
+    return new Paginator(this.http, this.nextPath, this.nextParams);
   }
 }
