@@ -7,7 +7,7 @@ export const flattenObject = (
   if (Array.isArray(object)) {
     return object
       .map((value, i) =>
-        flattenObject(value, parent !== '' ? `${parent}[${i}]` : i.toString()),
+        flattenObject(value, parent == '' ? i.toString() : `${parent}[${i}]`),
       )
       .reduce((prev, curr) => Object.assign(prev, curr), {});
   }
@@ -15,13 +15,13 @@ export const flattenObject = (
   if (isObject(object)) {
     return Object.entries(object)
       .map(([key, value]) =>
-        flattenObject(value, parent !== '' ? `${parent}[${key}]` : key),
+        flattenObject(value, parent === '' ? key : `${parent}[${key}]`),
       )
       .reduce((prev, curr) => Object.assign(prev, curr), {});
   }
 
   // Unit of the monoid is always an object
-  return parent !== ''
-    ? { [parent]: object }
-    : (object as Record<string, unknown>);
+  return parent === ''
+    ? (object as Record<string, unknown>)
+    : { [parent]: object };
 };
