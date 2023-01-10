@@ -10,7 +10,7 @@ export class Paginator<Entity, Params = never>
     private nextParams?: Params,
   ) {}
 
-  async next(): Promise<IteratorResult<Entity>> {
+  async next(): Promise<IteratorResult<Entity, undefined>> {
     if (this.nextPath == undefined) {
       return { done: true, value: undefined };
     }
@@ -33,14 +33,16 @@ export class Paginator<Entity, Params = never>
     };
   }
 
-  async return<T, U>(value: U | Promise<U>): Promise<IteratorResult<T, U>> {
+  async return(
+    value: undefined | Promise<undefined>,
+  ): Promise<IteratorResult<Entity, undefined>> {
     return {
       done: true,
       value: await value,
     };
   }
 
-  async throw<T, U>(e: unknown): Promise<IteratorResult<T, U>> {
+  async throw(e: unknown): Promise<IteratorResult<Entity, undefined>> {
     throw e;
   }
 
@@ -52,10 +54,16 @@ export class Paginator<Entity, Params = never>
       reason: unknown,
     ) => TResult2 | PromiseLike<TResult2> = Promise.reject,
   ): Promise<TResult1 | TResult2> {
-    return this.next().then((value) => onfulfilled(value.value), onrejected);
+    // we assume the first item won't be undefined
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return this.next().then((value) => onfulfilled(value.value!), onrejected);
   }
 
-  [Symbol.asyncIterator](): AsyncGenerator<Entity, Entity, Params | undefined> {
+  [Symbol.asyncIterator](): AsyncGenerator<
+    Entity,
+    undefined,
+    Params | undefined
+  > {
     return this;
   }
 
