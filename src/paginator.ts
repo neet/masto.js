@@ -34,8 +34,9 @@ export class Paginator<Entity, Params = never>
   }
 
   async return(
-    value: undefined | Promise<undefined>,
+    value?: undefined | Promise<undefined>,
   ): Promise<IteratorResult<Entity, undefined>> {
+    this.clear();
     return {
       done: true,
       value: await value,
@@ -43,6 +44,7 @@ export class Paginator<Entity, Params = never>
   }
 
   async throw(e: unknown): Promise<IteratorResult<Entity, undefined>> {
+    this.clear();
     throw e;
   }
 
@@ -65,6 +67,11 @@ export class Paginator<Entity, Params = never>
     Params | undefined
   > {
     return this;
+  }
+
+  private clear() {
+    this.nextPath = undefined;
+    this.nextParams = undefined;
   }
 
   private pluckNext = (link: string | null): string | undefined => {
