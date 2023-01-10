@@ -1,3 +1,21 @@
+# [5.2.0](https://github.com/neet/masto.js/compare/v5.1.3...v5.2.0) (2023-01-10)
+
+
+### Bug Fixes
+
+* Add missing filters.createStatus ([6a0586a](https://github.com/neet/masto.js/commit/6a0586a473eac0ab23925759ed9b3d4db569c539))
+* Clear timeout regardless response status ([7b4e170](https://github.com/neet/masto.js/commit/7b4e1709352f60592ed74e4138cd3b4afa2461b5))
+* FilterResult type ([d85a8e5](https://github.com/neet/masto.js/commit/d85a8e5f83ba203d74a7d044d1cea613dc64dcdb))
+* Fix typo on listKeywords ([eb82682](https://github.com/neet/masto.js/commit/eb82682a1bf5cfb08fdcdc6fff92cc180094e6dc))
+* Fix v2.filters.updateKeyword URL ([144435c](https://github.com/neet/masto.js/commit/144435c959745853f9c648340c0a6c8e9e0fa7bc))
+* v2 instance api version ([3a491e4](https://github.com/neet/masto.js/commit/3a491e486a525a0eaaca457774ba5ded2f2b8e56))
+
+
+### Features
+
+* add clone for Paginator ([0c74998](https://github.com/neet/masto.js/commit/0c749983f5d4664582981fbe18d633f861b1e314))
+* Add missing filter features ([a839b03](https://github.com/neet/masto.js/commit/a839b030f358fe401e8b376e5d253b4cd0f1b3fd))
+
 ## [5.1.3](https://github.com/neet/masto.js/compare/v5.1.2...v5.1.3) (2023-01-09)
 
 
