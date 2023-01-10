@@ -84,4 +84,26 @@ describe('Paginator', () => {
 
     expect(paginator1).not.toEqual(paginator2);
   });
+
+  it('terminates pagination by return', async () => {
+    const paginator = new Paginator(http, '/v1/api/timelines');
+    await paginator.return();
+    const result = await paginator.next();
+    expect(result).toEqual({
+      done: true,
+      value: undefined,
+    });
+  });
+
+  it('terminates pagination by throw', async () => {
+    const paginator = new Paginator(http, '/v1/api/timelines');
+    await expect(() => paginator.throw('some error')).rejects.toBe(
+      'some error',
+    );
+    const result = await paginator.next();
+    expect(result).toEqual({
+      done: true,
+      value: undefined,
+    });
+  });
 });
