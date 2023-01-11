@@ -1,3 +1,10 @@
+## [5.2.1](https://github.com/neet/masto.js/compare/v5.2.0...v5.2.1) (2023-01-11)
+
+
+### Bug Fixes
+
+* add value type of done result ([f809cbd](https://github.com/neet/masto.js/commit/f809cbd425b6a713135087f0fdd89b8ada8bf868))
+
 # [5.2.0](https://github.com/neet/masto.js/compare/v5.1.3...v5.2.0) (2023-01-10)
 
 
