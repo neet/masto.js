@@ -1,57 +1,93 @@
-import type { RequestInit } from '@mastojs/ponyfills';
 import { SemVer } from 'semver';
 
 import type { MastoConfigProps } from './config';
 import { MastoConfig } from './config';
 import { HttpNativeImpl } from './http';
-import type { LogType } from './logger';
+import type { Logger } from './logger';
 import { LoggerConsoleImpl } from './logger';
+import type { v1, v2 } from './mastodon';
 import { Client } from './mastodon';
-import { InstanceRepository } from './mastodon/v1/repositories';
+import { InstanceRepository as V1InstanceRepository } from './mastodon/v1/repositories';
+import { InstanceRepository as V2InstanceRepository } from './mastodon/v2/repositories';
 import { SerializerNativeImpl } from './serializers';
 import type { Writable } from './utils';
 import { WsNativeImpl } from './ws';
 
-export type LoginParams = {
-  /** URL of your instance */
-  readonly url: string;
-  /** Log level to print to your console */
-  readonly logLevel?: LogType;
-  /** Access token of your account */
-  readonly accessToken?: string;
-  /** Timeout in milliseconds */
-  readonly timeout?: number;
-  readonly defaultRequestInit?: Omit<RequestInit, 'body' | 'method'>;
-  readonly disableVersionCheck?: boolean;
-  readonly disableDeprecatedWarning?: boolean;
-};
+export type RequestParams = Pick<
+  MastoConfigProps,
+  | 'url'
+  | 'logLevel'
+  | 'timeout'
+  | 'defaultRequestInit'
+  | 'disableDeprecatedWarning'
+>;
 
-export const login = async (params: LoginParams): Promise<Client> => {
-  const draft: Writable<MastoConfigProps> = {
-    url: params.url,
+const buildHttpContext = (
+  params: RequestParams,
+): {
+  serializer: SerializerNativeImpl;
+  config: MastoConfig;
+  logger: Logger;
+  http: HttpNativeImpl;
+} => {
+  const props = {
     streamingApiUrl: '',
-    logLevel: params.logLevel,
-    accessToken: params.accessToken,
-    timeout: params.timeout,
-    defaultRequestInit: params.defaultRequestInit,
-    disableVersionCheck: params.disableVersionCheck,
-    disableDeprecatedWarning: params.disableDeprecatedWarning,
+    ...params,
   };
   const serializer = new SerializerNativeImpl();
-
-  {
-    const config = new MastoConfig(draft, serializer);
-    const http = new HttpNativeImpl(serializer, config);
-    const instance = await new InstanceRepository(http, config).fetch();
-    draft.version = new SemVer(instance.version);
-    draft.streamingApiUrl = instance.urls.streamingApi;
-  }
-
-  const config = new MastoConfig(draft, serializer);
+  const config = new MastoConfig(props, serializer);
   const logger = new LoggerConsoleImpl(config.getLogLevel());
-  const ws = new WsNativeImpl(config, serializer);
   const http = new HttpNativeImpl(serializer, config, logger);
+  return { serializer, config, logger, http };
+};
+
+export const fetchV1Instance = (
+  params: RequestParams,
+): Promise<v1.Instance> => {
+  const { http, config } = buildHttpContext(params);
+  return new V1InstanceRepository(http, config).fetch();
+};
+
+export const fetchV2Instance = (
+  params: RequestParams,
+): Promise<v2.Instance> => {
+  const { http, config } = buildHttpContext(params);
+  return new V2InstanceRepository(http, config).fetch();
+};
+
+export type CreateClientParams = Omit<MastoConfigProps, 'version'> & {
+  readonly version?: string;
+};
+
+export const createClient = (params: CreateClientParams): Client => {
+  const props: Writable<MastoConfigProps> = {
+    ...params,
+    version: params.version ? new SemVer(params.version) : undefined,
+  };
+  const { serializer, config, logger, http } = buildHttpContext(props);
+  const ws = new WsNativeImpl(config, serializer);
 
   logger.debug('Masto.js initialised', config);
   return new Client(http, ws, config);
+};
+
+export type LoginParams = Omit<
+  CreateClientParams,
+  'streamingApiUrl' | 'version'
+>;
+
+/**
+ * Fetching instance information and create a client
+ *
+ * Shortcut of `fetchV1Instance` and `createClient`
+ */
+export const login = async (params: LoginParams): Promise<Client> => {
+  const instance = await fetchV1Instance(params);
+  return createClient({
+    ...params,
+    version: instance.version,
+    streamingApiUrl: instance.urls.streamingApi,
+    accessToken: params.accessToken,
+    disableVersionCheck: params.disableVersionCheck,
+  });
 };
