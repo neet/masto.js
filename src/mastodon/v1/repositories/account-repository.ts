@@ -14,6 +14,7 @@ import type {
   List,
   Relationship,
   Status,
+  Token,
 } from '../entities';
 import type { FamiliarFollowers } from '../entities/familiar-followers';
 
@@ -99,9 +100,9 @@ export interface LookupAccountParams {
   readonly acct: string;
 }
 
-export class AccountRepository
-  implements Repository<Account, CreateAccountParams>
-{
+// implements Repository<Account, CreateAccountParams>
+
+export class AccountRepository {
   constructor(
     private readonly http: Http,
     readonly config: MastoConfig,
@@ -125,11 +126,13 @@ export class AccountRepository
    * and should wait for the user to confirm their account by clicking a link in their email inbox.
    * @param params Parameters
    * @return Token
-   * @see https://docs.joinmastodon.org/methods/accounts/
+   * @see https://docs.joinmastodon.org/methods/accounts/#create
    */
   @version({ since: '2.7.0' })
-  create(params: CreateAccountParams): Promise<Account> {
-    return this.http.post(`/api/v1/accounts`, params);
+  create(params: CreateAccountParams): Promise<Token> {
+    return this.http.post(`/api/v1/accounts`, params, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
   }
 
   /**
