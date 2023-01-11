@@ -1,3 +1,10 @@
+## [5.2.2](https://github.com/neet/masto.js/compare/v5.2.1...v5.2.2) (2023-01-11)
+
+
+### Bug Fixes
+
+* Fix v1.accounts.create content-type and return type ([3d083f5](https://github.com/neet/masto.js/commit/3d083f583a078358c2845130db8aa0f4ae38a2cc))
+
 ## [5.2.1](https://github.com/neet/masto.js/compare/v5.2.0...v5.2.1) (2023-01-11)
 
 
