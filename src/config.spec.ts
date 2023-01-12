@@ -1,6 +1,7 @@
 import { SemVer } from 'semver';
 
 import { MastoConfig } from './config';
+import { MastoInvalidArgumentError } from './errors';
 import { SerializerNativeImpl } from './serializers';
 
 describe('Config', () => {
@@ -164,5 +165,16 @@ describe('Config', () => {
     );
 
     expect(config.createWebsocketProtocols()).toEqual([]);
+  });
+
+  it('throws an error when users try to use WebSocket without passing streamingApiUrl', () => {
+    const config = new MastoConfig(
+      { url: 'https://mastodon.social' },
+      new SerializerNativeImpl(),
+    );
+
+    expect(() => config.resolveWebsocketPath('/')).toThrowError(
+      MastoInvalidArgumentError,
+    );
   });
 });

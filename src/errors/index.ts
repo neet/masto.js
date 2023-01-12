@@ -12,4 +12,5 @@ export * from './masto-http-unauthorized-error';
 export * from './masto-http-unprocessable-entity-error';
 export * from './masto-http-unexpected-error';
 export * from './masto-version-error';
+export * from './masto-invalid-argument-error';
 export * from './masto-timeout-error';

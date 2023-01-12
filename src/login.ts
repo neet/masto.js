@@ -10,7 +10,6 @@ import { Client } from './mastodon';
 import { InstanceRepository as V1InstanceRepository } from './mastodon/v1/repositories';
 import { InstanceRepository as V2InstanceRepository } from './mastodon/v2/repositories';
 import { SerializerNativeImpl } from './serializers';
-import type { Writable } from './utils';
 import { WsNativeImpl } from './ws';
 
 export type RequestParams = Pick<
@@ -22,18 +21,22 @@ export type RequestParams = Pick<
   | 'disableDeprecatedWarning'
 >;
 
-const buildHttpContext = (
-  params: RequestParams,
-): {
+type HttpContext = {
   serializer: SerializerNativeImpl;
   config: MastoConfig;
   logger: Logger;
   http: HttpNativeImpl;
-} => {
+};
+
+const buildHttpContext = (params: CreateClientParams): HttpContext => {
   const props = {
-    streamingApiUrl: '',
     ...params,
+    version:
+      params.version == undefined
+        ? undefined
+        : new SemVer(params.version, true),
   };
+
   const serializer = new SerializerNativeImpl();
   const config = new MastoConfig(props, serializer);
   const logger = new LoggerConsoleImpl(config.getLogLevel());
@@ -60,11 +63,7 @@ export type CreateClientParams = Omit<MastoConfigProps, 'version'> & {
 };
 
 export const createClient = (params: CreateClientParams): Client => {
-  const props: Writable<MastoConfigProps> = {
-    ...params,
-    version: params.version ? new SemVer(params.version) : undefined,
-  };
-  const { serializer, config, logger, http } = buildHttpContext(props);
+  const { serializer, config, logger, http } = buildHttpContext(params);
   const ws = new WsNativeImpl(config, serializer);
 
   logger.debug('Masto.js initialised', config);
@@ -87,7 +86,5 @@ export const login = async (params: LoginParams): Promise<Client> => {
     ...params,
     version: instance.version,
     streamingApiUrl: instance.urls.streamingApi,
-    accessToken: params.accessToken,
-    disableVersionCheck: params.disableVersionCheck,
   });
 };
