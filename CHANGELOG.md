@@ -1,3 +1,10 @@
+# [5.3.0](https://github.com/neet/masto.js/compare/v5.2.2...v5.3.0) (2023-01-12)
+
+
+### Features
+
+* create client from known instance ([3e89eaa](https://github.com/neet/masto.js/commit/3e89eaaf2d9aed83038fac29cfb7a19aaee70a88))
+
 ## [5.2.2](https://github.com/neet/masto.js/compare/v5.2.1...v5.2.2) (2023-01-11)
 
 
