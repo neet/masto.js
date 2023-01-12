@@ -2,6 +2,7 @@ import type { AbortSignal, HeadersInit, RequestInit } from '@mastojs/ponyfills';
 import { Headers } from '@mastojs/ponyfills';
 import { gt, gte, lt, SemVer } from 'semver';
 
+import { MastoInvalidArgumentError } from './errors';
 import type { LogType } from './logger';
 import { LogLevel } from './logger';
 import type { Serializer } from './serializers';
@@ -17,7 +18,7 @@ type SatisfiesVersionRangeResult = {
 
 export type MastoConfigProps = {
   readonly url: string;
-  readonly streamingApiUrl: string;
+  readonly streamingApiUrl?: string;
   readonly logLevel?: LogType;
   readonly version?: SemVer;
   readonly accessToken?: string;
@@ -68,6 +69,12 @@ export class MastoConfig {
     path: string,
     params: Record<string, unknown> = {},
   ): string {
+    if (this.props.streamingApiUrl == undefined) {
+      throw new MastoInvalidArgumentError(
+        'You need to specify `streamingApiUrl` to use this feature',
+      );
+    }
+
     const url = new URL(this.props.streamingApiUrl.replace(/\/$/, '') + path);
     if (!this.supportsSecureToken()) {
       params.accessToken = this.props.accessToken;
@@ -119,20 +126,20 @@ export class MastoConfig {
     if (since && lt(this.props.version, since)) {
       return {
         compat: 'unimplemented',
-        version: this.props.version?.version,
+        version: this.props.version.version,
       };
     }
 
     if (until && gt(this.props.version, until)) {
       return {
         compat: 'removed',
-        version: this.props.version?.version,
+        version: this.props.version.version,
       };
     }
 
     return {
       compat: 'compatible',
-      version: this.props.version?.version,
+      version: this.props.version.version,
     };
   }
 
@@ -144,7 +151,7 @@ export class MastoConfig {
     // Since v2.8.4, it is supported to pass access token with`Sec-Websocket-Protocol`
     // https://github.com/tootsuite/mastodon/pull/10818
     return (
-      this.props.streamingApiUrl.startsWith('wss:') &&
+      this.props.streamingApiUrl?.startsWith('wss:') &&
       gte(this.props.version, new SemVer('2.8.4', { loose: true }))
     );
   }
