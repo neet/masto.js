@@ -81,8 +81,12 @@ export interface ListAccountStatusesParams extends DefaultPaginationParams {
 }
 
 export interface FollowAccountParams {
-  /** Whether the followed account’s reblogs will show up in the home timeline */
+  /** Receive this account's reblogs in home timeline? Defaults to true */
   readonly reblogs?: boolean | null;
+  /** Receive notifications when this account posts a status? Defaults to false */
+  readonly notify?: boolean | null;
+  /** Array of String (ISO 639-1 language two-letter code). Filter received statuses for these languages. If not provided, you will receive this account's posts in all languages */
+  readonly languages?: string[] | null;
 }
 
 export interface SearchAccountsParams {
