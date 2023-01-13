@@ -18,9 +18,10 @@
   },
   "scripts": {
     "test": "npm-run-all test:*",
-    "test:jest": "jest --coverage --runInBand --config=jest.config.cjs",
+    "test:jest:unit": "jest --coverage --config=jest.config.cjs --selectProjects unit",
     "test:eslint": "eslint -c .eslintrc.json ./src/**/*.ts --cache",
     "test:spellcheck": "cspell '{src,examples}/**/*.{ts,tsx,js,json,md}'",
+    "e2e": "jest --coverage --runInBand --config=jest.config.cjs --selectProjects e2e",
     "build": "rollup -c rollup.config.cjs",
     "prepublishOnly": "yarn run test && yarn run build",
     "docs:build": "typedoc ./src/index.ts && touch ./docs/.nojekyll"
@@ -46,7 +47,6 @@
     "@types/ws": "^8.5.4",
     "@typescript-eslint/eslint-plugin": "^5.48.0",
     "@typescript-eslint/parser": "^5.48.0",
-    "codecov": "^3.8.3",
     "cspell": "^6.18.1",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.6.0",

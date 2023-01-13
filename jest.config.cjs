@@ -1,20 +1,21 @@
+/** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
-  transform: {
-    '^.+\\.tsx?$': 'ts-jest',
-  },
-  testMatch: [
-    '<rootDir>/src/**/*.spec.ts',
-    // '<rootDir>/tests/**/*.spec.ts'
+  projects: [
+    {
+      displayName: 'unit',
+      testEnvironment: 'node',
+      testMatch: ['<rootDir>/src/**/*.spec.ts'],
+      transform: { '^.+\\.tsx?$': 'ts-jest' },
+    },
+    {
+      displayName: 'e2e',
+      testEnvironment: 'node',
+      testMatch: ['<rootDir>/tests/**/*.spec.ts'],
+      transform: { '^.+\\.tsx?$': 'ts-jest' },
+      setupFilesAfterEnv: ['<rootDir>/test-utils/setup.ts'],
+    },
   ],
-  testEnvironment: 'node',
-  testPathIgnorePatterns: ['/node_modules/', '<rootDir>/dist/'],
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  collectCoverageFrom: [
-    'src/**/*.{ts,tsx}',
-    // entry point has no functions
-    '!src/index.ts',
-  ],
-  coveragePathIgnorePatterns: ['.*\\.d\\.ts'],
-  coverageDirectory: '<rootDir>/coverage',
-  setupFilesAfterEnv: ['<rootDir>/test-utils/setup.ts'],
+  collectCoverageFrom: ['src/**/*.{ts,tsx}'],
+  // coveragePathIgnorePatterns: ['.*\\.d\\.ts'],
+  // coverageDirectory: '<rootDir>/coverage',
 };

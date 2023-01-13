@@ -1,4 +1,4 @@
-name: CI
+name: 'CI: Unit'
 
 on:
   push:
@@ -15,10 +15,6 @@ jobs:
     strategy:
       matrix:
         node-version: [18]
-    env:
-      NPM_TOKEN: ${{secrets.NPM_TOKEN}}
-      MASTODON_URL: ${{secrets.MASTODON_URL}}
-      MASTODON_TOKEN: ${{secrets.MASTODON_TOKEN}}
 
     steps:
       - uses: actions/checkout@v3
@@ -40,7 +36,8 @@ jobs:
       - name: Run tests
         run: yarn run test
 
-      - name: Send codecov to Codecov.io
-        run: yarn run codecov
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      - name: Codecov
+        uses: codecov/codecov-action@v1.0.15
+        with:
+          flags: unit
+          token: ${{ secrets.CODECOV_TOKEN }}

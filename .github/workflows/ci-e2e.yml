@@ -1,0 +1,78 @@
+name: 'CI: E2E'
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '*'
+  workflow_dispatch:
+
+env:
+  MASTODON_URL: http://mastodon.local
+  MASTODON_EMAIL: admin@mastodon.local
+  MASTODON_PASSWORD: mastodonadmin
+
+jobs:
+  test:
+    name: End-to-end Testing
+    runs-on: macos-10.15
+    strategy:
+      matrix:
+        node-version: [18]
+
+    steps:
+      - name: Checkout of Masto.js
+        uses: actions/checkout@v3
+        with:
+          path: ./masto
+          fetch-depth: 2
+
+      - name: Checkout of Mastodon
+        uses: actions/checkout@v3
+        with:
+          repository: mastodon/mastodon
+          path: ./mastodon
+          fetch-depth: 1
+          # ref: 'v4.0.2'
+
+      # Borrowed from
+      # https://github.com/jonashackt/vagrant-github-actions
+      - name: Cache Vagrant boxes
+        uses: actions/cache@v3
+        with:
+          path: ~/.vagrant.d/boxes
+          key: ${{ runner.os }}-vagrant-${{ hashFiles('./mastodon/Vagrantfile') }}
+          restore-keys: |
+            ${{ runner.os }}-vagrant-
+
+      - run: vagrant plugin install vagrant-hostsupdater
+      - run: vagrant up
+        working-directory: ./mastodon
+
+      - name: Create Test Users
+        working-directory: ./mastodon
+        run: |
+          vagrant ssh -c "tootcli accounts create alice --email alice@example.com --confirmed --role Owner"
+          vagrant ssh -c "tootcli accounts create bob --email bob@example.com --confirmed --role Owner"
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+        working-directory: ./masto
+
+      - name: Run tests
+        run: yarn run e2e
+        working-directory: ./masto
+
+      - name: Codecov
+        uses: codecov/codecov-action@v1.0.15
+        with:
+          flags: unit
+          token: ${{ secrets.CODECOV_TOKEN }}
