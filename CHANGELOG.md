@@ -1,3 +1,15 @@
+# [5.4.0](https://github.com/neet/masto.js/compare/v5.3.0...v5.4.0) (2023-01-13)
+
+
+### Bug Fixes
+
+* add missing fields for entity ([c90871f](https://github.com/neet/masto.js/commit/c90871f7d21c157dcf31d1b5b2b2d97491f271e7))
+
+
+### Features
+
+* Change streamingApiUrl to optional ([1c53e0b](https://github.com/neet/masto.js/commit/1c53e0b51e5ed93aad1e353e0e5133467dfe4e95))
+
 # [5.3.0](https://github.com/neet/masto.js/compare/v5.2.2...v5.3.0) (2023-01-12)
 
 
