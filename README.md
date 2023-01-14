@@ -18,6 +18,8 @@
   <a href="https://github.com/neet/masto.js/issues">Issues</a>
 </p>
 
+> [_Migration Guide From v4_](https://github.com/neet/masto.js/releases/tag/v5.0.0)
+
 ## Features
 
 - 🌎 **Isomorphic** which means browsers and Node.js are both supported
