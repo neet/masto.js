@@ -67,7 +67,7 @@ export const createClient = (params: CreateClientParams): Client => {
   const ws = new WsNativeImpl(config, serializer);
 
   logger.debug('Masto.js initialised', config);
-  return new Client(http, ws, config);
+  return new Client(http, ws, config, logger);
 };
 
 export type LoginParams = Omit<
