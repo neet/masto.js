@@ -10,5 +10,5 @@ export interface Token {
   /** The OAuth scopes granted by this token, space-separated. */
   scope: string;
   /** When the token was generated. */
-  createdAt: string;
+  createdAt: number;
 }
