@@ -28,7 +28,8 @@ export class HttpNativeImpl extends BaseHttp implements Http {
     const [request, timeout] = this.createRequest(params);
 
     try {
-      this.logger?.debug(`↑ ${request.method} ${request.url}`, request.body);
+      this.logger?.info(`↑ ${request.method} ${request.url}`);
+      this.logger?.debug('\tbody', request.body);
       const response = await fetch(request);
       timeout.clear();
 
@@ -43,7 +44,8 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       }
 
       const data = this.serializer.deserialize(contentType, text);
-      this.logger?.debug(`↓ ${request.method} ${request.url}`, text);
+      this.logger?.info(`↓ ${request.method} ${request.url}`);
+      this.logger?.debug('\tbody', text);
 
       return {
         headers: response.headers,
