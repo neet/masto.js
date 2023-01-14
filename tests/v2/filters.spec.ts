@@ -1,16 +1,6 @@
-import type { mastodon } from '../src';
-import { delay } from '../src/utils';
-import { login } from '../test-utils/login';
-
 describe('filters', () => {
-  let client: mastodon.Client;
-
-  beforeAll(async () => {
-    client = await login();
-  });
-
   it('creates a filter', async () => {
-    const filter = await client.v2.filters.create({
+    const filter = await admin.v2.filters.create({
       title: 'some group',
       context: ['notifications'],
       keywordsAttributes: [
@@ -20,13 +10,12 @@ describe('filters', () => {
       ],
     });
 
-    const [status] = await client.v1.timelines.listPublic();
-    await client.v2.filters.createStatus(filter.id, {
+    const status = await admin.v1.statuses.create({ status: 'foo' });
+    await admin.v2.filters.createStatus(filter.id, {
       statusId: status.id,
     });
 
-    await delay(3000);
-    const filters = await client.v2.filters.list();
+    const filters = await admin.v2.filters.list();
     expect(filters).toContainEqual(
       expect.objectContaining({
         id: filter.id,
@@ -40,7 +29,6 @@ describe('filters', () => {
       }),
     );
 
-    await delay(3000);
-    await client.v2.filters.remove(filter.id);
+    await admin.v2.filters.remove(filter.id);
   });
 });
