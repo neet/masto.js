@@ -30,6 +30,7 @@
     "change-case": "^4.1.2",
     "eventemitter3": "^5.0.0",
     "isomorphic-ws": "^5.0.0",
+    "qs": "^6.11.0",
     "semver": "^7.3.7",
     "ws": "^8.12.0"
   },
@@ -40,6 +41,7 @@
     "@semantic-release/git": "^10.0.1",
     "@types/jest": "^29.2.5",
     "@types/node": "^18.11.18",
+    "@types/qs": "^6.9.7",
     "@types/semver": "^7.3.10",
     "@types/ws": "^8.5.4",
     "@typescript-eslint/eslint-plugin": "^5.48.0",
