@@ -1,7 +1,7 @@
 import type { BodyInit } from '@mastojs/ponyfills';
 import { FormData } from '@mastojs/ponyfills';
 import { camelCase, snakeCase } from 'change-case';
-import querystring from 'query-string';
+import qs from 'qs';
 
 import { MastoDeserializeError } from '../errors';
 import { flattenObject } from './form-data';
@@ -41,8 +41,9 @@ export class SerializerNativeImpl implements Serializer {
         return formData;
       }
       case 'application/x-www-form-urlencoded': {
-        return querystring.stringify(data as Record<string, any>, {
-          arrayFormat: 'bracket',
+        return qs.stringify(data as Record<string, any>, {
+          encode: false,
+          arrayFormat: 'brackets',
         });
       }
       default: {
@@ -53,8 +54,9 @@ export class SerializerNativeImpl implements Serializer {
 
   serializeQueryString(rawData: unknown): string {
     const data = transformKeys(rawData, snakeCase);
-    return querystring.stringify(data as Record<string, any>, {
-      arrayFormat: 'bracket',
+    return qs.stringify(data as Record<string, any>, {
+      encode: false,
+      arrayFormat: 'brackets',
     });
   }
 

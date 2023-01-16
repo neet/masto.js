@@ -1,5 +1,5 @@
 /* eslint-disable unicorn/no-thenable */
-import querystring from 'query-string';
+import qs from 'qs';
 
 import type { Http } from './http';
 
@@ -25,9 +25,7 @@ export class Paginator<Entity, Params = never>
 
     const next = this.pluckNext(response.headers.get('link'))?.split('?');
     this.nextPath = next?.[0];
-    this.nextParams = querystring.parse(next?.[1] ?? '', {
-      arrayFormat: 'bracket',
-    }) as Params;
+    this.nextParams = qs.parse(next?.[1] ?? '') as Params;
 
     return {
       done: false,
