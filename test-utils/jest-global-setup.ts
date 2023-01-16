@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import type { mastodon } from '../src';
-import { login } from '../src';
+import { fetchV1Instance, login } from '../src';
 
-const BASE_URL = 'http://127.0.0.1:3000';
+const BASE_URL = 'http://localhost:3000';
 
 const createApp = async (): Promise<mastodon.v1.Application> => {
   const masto = await login({ url: BASE_URL });
@@ -31,11 +31,7 @@ const createToken = async (
 
 export default async (): Promise<void> => {
   const app = await createApp();
-  const token = await createToken(app);
-
-  globalThis.admin = await login({
-    url: BASE_URL,
-    accessToken: token.accessToken,
-    logLevel: 'info',
-  });
+  globalThis.url = BASE_URL;
+  globalThis.token = await createToken(app);
+  globalThis.instance = await fetchV1Instance({ url: BASE_URL });
 };
