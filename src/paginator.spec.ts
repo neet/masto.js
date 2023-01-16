@@ -110,13 +110,18 @@ describe('Paginator', () => {
   it('parse array in url query string correctly', async () => {
     http.request.mockReturnValue({
       headers: new Headers({
-        link: '<https://mastodon.social/api/v1/notifications?types[]=mention>; rel="next", <https://mastodon.social/api/v1/notifications?types[]=mention>; rel="prev"',
+        link: '<https://mastodon.social/api/v1/notifications?types[]=mention&max_id=123456>; rel="next", <https://mastodon.social/api/v1/notifications?types[]=mention>; rel="prev"',
       }),
     });
     const paginator = new Paginator(http, '/v1/api/notifications', {
       types: ['mention'],
     });
     await paginator.next();
-    expect((paginator as any).nextParams).toEqual({ types: ['mention'] });
+    await paginator.next();
+    expect(http.request).toBeCalledWith({
+      path: '/api/v1/notifications',
+      requestInit: { method: 'GET' },
+      searchParams: { types: ['mention'], max_id: '123456' },
+    });
   });
 });

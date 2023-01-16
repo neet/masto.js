@@ -71,7 +71,7 @@ describe('Config', () => {
       .resolveHttpPath('/api/v1/yay', { query: 'true', list: ['1', '2', '3'] })
       .toString();
     expect(url).toEqual(
-      'https://mastodon.social/api/v1/yay?query=true&list[]=1&list[]=2&list[]=3',
+      'https://mastodon.social/api/v1/yay?list[]=1&list[]=2&list[]=3&query=true',
     );
   });
 

@@ -32,7 +32,7 @@ describe('SerializerNativeImpl', () => {
     });
 
     expect(data).toBe(
-      'key_name=value&another_key_name[]=value1&another_key_name[]=value2',
+      'another_key_name[]=value1&another_key_name[]=value2&key_name=value',
     );
   });
 
@@ -43,7 +43,7 @@ describe('SerializerNativeImpl', () => {
     });
 
     expect(data).toBe(
-      'key_name=value&another_key_name[]=value1&another_key_name[]=value2',
+      'another_key_name[]=value1&another_key_name[]=value2&key_name=value',
     );
   });
 
