@@ -41,7 +41,7 @@ export class SerializerNativeImpl implements Serializer {
         return formData;
       }
       case 'application/x-www-form-urlencoded': {
-        return qs.stringify(data as Record<string, any>, {
+        return qs.stringify(data as Record<string, unknown>, {
           encode: false,
           arrayFormat: 'brackets',
         });
@@ -54,7 +54,7 @@ export class SerializerNativeImpl implements Serializer {
 
   serializeQueryString(rawData: unknown): string {
     const data = transformKeys(rawData, snakeCase);
-    return qs.stringify(data as Record<string, any>, {
+    return qs.stringify(data as Record<string, unknown>, {
       encode: false,
       arrayFormat: 'brackets',
     });
