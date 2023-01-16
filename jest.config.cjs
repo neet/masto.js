@@ -16,7 +16,5 @@ module.exports = {
       setupFilesAfterEnv: ['<rootDir>/test-utils/jest-setup-after-env.ts'],
     },
   ],
-  collectCoverageFrom: ['src/**/*.{ts,tsx}'],
-  // coveragePathIgnorePatterns: ['.*\\.d\\.ts'],
-  // coverageDirectory: '<rootDir>/coverage',
+  collectCoverageFrom: ['src/**/*.ts', '!src/**/*.spec.ts'],
 };
