@@ -1,4 +1,6 @@
 /* eslint-disable unicorn/no-thenable */
+import querystring from 'query-string';
+
 import type { Http } from './http';
 
 export class Paginator<Entity, Params = never>
@@ -8,7 +10,7 @@ export class Paginator<Entity, Params = never>
     private readonly http: Http,
     private nextPath?: string,
     private nextParams?: Params,
-  ) {}
+  ) { }
 
   async next(): Promise<IteratorResult<Entity, undefined>> {
     if (this.nextPath == undefined) {
@@ -23,9 +25,9 @@ export class Paginator<Entity, Params = never>
 
     const next = this.pluckNext(response.headers.get('link'))?.split('?');
     this.nextPath = next?.[0];
-    this.nextParams = Object.fromEntries(
-      new URLSearchParams(next?.[1]).entries(),
-    ) as Params;
+    this.nextParams = querystring.parse(next?.[1] ?? '', {
+      arrayFormat: 'bracket',
+    }) as Params;
 
     return {
       done: false,
