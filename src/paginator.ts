@@ -10,7 +10,7 @@ export class Paginator<Entity, Params = never>
     private readonly http: Http,
     private nextPath?: string,
     private nextParams?: Params,
-  ) { }
+  ) {}
 
   async next(): Promise<IteratorResult<Entity, undefined>> {
     if (this.nextPath == undefined) {
