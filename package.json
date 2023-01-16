@@ -18,10 +18,11 @@
   },
   "scripts": {
     "test": "npm-run-all test:*",
-    "test:jest:unit": "jest --coverage --config=jest.config.cjs --selectProjects unit",
-    "test:eslint": "eslint -c .eslintrc.json ./src/**/*.ts --cache",
-    "test:spellcheck": "cspell '{src,examples}/**/*.{ts,tsx,js,json,md}'",
-    "e2e": "jest --coverage --runInBand --config=jest.config.cjs --selectProjects e2e",
+    "test:unit": "jest --coverage --config=jest.config.cjs --selectProjects unit",
+    "test:e2e": "jest --coverage --runInBand --config=jest.config.cjs --selectProjects e2e",
+    "lint": "npm-run-all lint:*",
+    "lint:eslint": "eslint -c .eslintrc.json ./src/**/*.ts --cache",
+    "lint:spellcheck": "cspell '{src,examples}/**/*.{ts,tsx,js,json,md}'",
     "build": "rollup -c rollup.config.cjs",
     "prepublishOnly": "yarn run test && yarn run build",
     "docs:build": "typedoc ./src/index.ts && touch ./docs/.nojekyll"
