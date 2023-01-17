@@ -2,6 +2,7 @@ import EventEmitter from 'eventemitter3';
 import WebSocket from 'isomorphic-ws';
 
 import type { MastoConfig } from '../config';
+import type { Logger } from '../logger';
 import type { Serializer } from '../serializers';
 import type { Event, EventType, EventTypeMap, Ws, WsEvents } from './ws';
 
@@ -15,6 +16,7 @@ export class WsEventsNativeImpl
   constructor(
     private readonly ws: WebSocket,
     private readonly serializer: Serializer,
+    private readonly logger: Logger,
   ) {
     super();
   }
@@ -28,11 +30,12 @@ export class WsEventsNativeImpl
   static connect(
     url: string,
     serializer: Serializer,
+    logger: Logger,
     protocols?: string | string[],
   ): Promise<WsEvents> {
     return new Promise<WsEvents>((resolve, reject) => {
       const ws = new WebSocket(url, protocols);
-      const instance = new WsEventsNativeImpl(ws, serializer);
+      const instance = new WsEventsNativeImpl(ws, serializer, logger);
       ws.addEventListener('message', instance.handleMessage);
       ws.addEventListener('error', reject);
       ws.addEventListener('open', () => resolve(instance));
@@ -57,6 +60,9 @@ export class WsEventsNativeImpl
       data,
     );
 
+    this.logger.info(`↓ WEBSOCKET ${event}`);
+    this.logger.debug('\tbody', payload);
+
     // https://github.com/neet/masto.js/issues/750
     if (event === 'delete') {
       return void this.emit(event, payload);
@@ -77,6 +83,7 @@ export class WsNativeImpl implements Ws {
   constructor(
     private readonly config: MastoConfig,
     private readonly serializer: Serializer,
+    private readonly logger: Logger,
   ) {}
 
   stream(
@@ -86,6 +93,7 @@ export class WsNativeImpl implements Ws {
     return WsEventsNativeImpl.connect(
       this.config.resolveWebsocketPath(path, params),
       this.serializer,
+      this.logger,
       this.config.createWebsocketProtocols(),
     );
   }
