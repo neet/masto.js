@@ -24,7 +24,7 @@
     "lint:eslint": "eslint -c .eslintrc.json ./src/**/*.ts --cache",
     "lint:spellcheck": "cspell '{src,examples}/**/*.{ts,tsx,js,json,md}'",
     "build": "rollup -c rollup.config.cjs",
-    "prepublishOnly": "yarn run test && yarn run build",
+    "prepublishOnly": "yarn run build",
     "docs:build": "typedoc ./src/index.ts && touch ./docs/.nojekyll"
   },
   "dependencies": {

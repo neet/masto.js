@@ -6,6 +6,14 @@ on:
     - cron: '0 0 * * *'
 
 jobs:
+  test-unit:
+    uses: ./.github/workflows/ci-unit.yml
+    secrets: inherit
+
+  test-e2e:
+    uses: ./.github/workflows/ci-e2e.yml
+    secrets: inherit
+
   build:
     runs-on: ubuntu-latest
     env:
@@ -24,6 +32,4 @@ jobs:
           cache: yarn
 
       - run: yarn install --frozen-lockfiles
-      - run: yarn test
-      - run: yarn build
       - run: yarn run semantic-release
