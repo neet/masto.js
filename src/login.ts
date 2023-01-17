@@ -29,13 +29,9 @@ type HttpContext = {
 };
 
 const buildHttpContext = (params: CreateClientParams): HttpContext => {
-  const props = {
-    ...params,
-    version:
-      params.version == undefined
-        ? undefined
-        : new SemVer(params.version, true),
-  };
+  const version =
+    params.version == undefined ? undefined : new SemVer(params.version, true);
+  const props = { ...params, version };
 
   const serializer = new SerializerNativeImpl();
   const config = new MastoConfig(props, serializer);
@@ -64,7 +60,7 @@ export type CreateClientParams = Omit<MastoConfigProps, 'version'> & {
 
 export const createClient = (params: CreateClientParams): Client => {
   const { serializer, config, logger, http } = buildHttpContext(params);
-  const ws = new WsNativeImpl(config, serializer);
+  const ws = new WsNativeImpl(config, serializer, logger);
 
   logger.debug('Masto.js initialised', config);
   return new Client(http, ws, config, logger);
