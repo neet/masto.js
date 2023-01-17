@@ -1,3 +1,19 @@
+# [5.5.0](https://github.com/neet/masto.js/compare/v5.4.0...v5.5.0) (2023-01-17)
+
+
+### Bug Fixes
+
+* Add logger to Client argument ([cc9c848](https://github.com/neet/masto.js/commit/cc9c84862411f44ffc30c679a9a0c1b61060325f))
+* Exclude spec.ts from coverage ([9d0ef17](https://github.com/neet/masto.js/commit/9d0ef17ceaeb4c2031f8908f0f80137c81e677e7))
+* Fix isObject to work with Jest ([469e79f](https://github.com/neet/masto.js/commit/469e79f5477a1fd25d4035ab105e0d74d93c5724))
+* Fix Token.createdAt ([00839b2](https://github.com/neet/masto.js/commit/00839b2639b58dc8c16bcfad3e1aef86cd2bff74))
+* **paginator:** parse array in url query string correctly ([e3b629e](https://github.com/neet/masto.js/commit/e3b629e13f72168f2a537cdc98ccca3cf629d3ce))
+
+
+### Features
+
+* Add experimental oauth repository ([7257f22](https://github.com/neet/masto.js/commit/7257f224d25d94b490532b1f7b9aed80df1870a6))
+
 # [5.4.0](https://github.com/neet/masto.js/compare/v5.3.0...v5.4.0) (2023-01-13)
 
 
