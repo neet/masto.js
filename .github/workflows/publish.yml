@@ -15,6 +15,9 @@ jobs:
     secrets: inherit
 
   build:
+    needs:
+      - test-unit
+      - test-e2e
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
