@@ -11,6 +11,7 @@
     "blurhash",
     "builtins",
     "codecov",
+    "conventionalcommits",
     "Datetime",
     "entrypoints",
     "favourited",
