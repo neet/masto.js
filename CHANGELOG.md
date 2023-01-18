@@ -1,3 +1,15 @@
+## [5.5.1](https://github.com/neet/masto.js/compare/v5.5.0...v5.5.1) (2023-01-18)
+
+
+### Bug Fixes
+
+* Fix chore to be included in release note ([5230d25](https://github.com/neet/masto.js/commit/5230d2527586e3fabc9d28f5395c3ca3738a16c3))
+
+
+### Chores
+
+* Add tests for streaming API ([65e992f](https://github.com/neet/masto.js/commit/65e992ffb618a559f9d42db17f4d02d383b12d80))
+
 # [5.5.0](https://github.com/neet/masto.js/compare/v5.4.0...v5.5.0) (2023-01-17)
 
 
