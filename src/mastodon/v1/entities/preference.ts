@@ -17,4 +17,6 @@ export interface Preference {
   'reading:expand:media': PreferenceReadingExpandMedia;
   /** Whether CWs should be expanded by default. */
   'reading:expand:spoilers': boolean;
+  /** Whether GIFs should be automatically played */
+  'reading:autoplay:gifs': boolean;
 }

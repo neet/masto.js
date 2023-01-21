@@ -3,7 +3,7 @@ import { version } from '../../../decorators/version';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
-import type { DefaultPaginationParams, Repository } from '../../repository';
+import type { DefaultPaginationParams } from '../../repository';
 import type {
   Account,
   AccountCredentials,
@@ -51,6 +51,8 @@ export interface UpdateCredentialsParams {
   readonly source?: Partial<
     Pick<AccountSource, 'privacy' | 'sensitive' | 'language'>
   > | null;
+  /** Whether you want to hide followers and followings on your profile  */
+  readonly hideCollections?: boolean | null;
   /**
    * Profile metadata `name` and `value`.
    * (By default, max 4 fields and 255 characters per property/value)
