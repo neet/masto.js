@@ -1,3 +1,11 @@
+## [5.6.0](https://github.com/neet/masto.js/compare/v5.5.1...v5.6.0) (2023-01-22)
+
+
+### Features
+
+* Add `hideCollections` to v1.account.updateCredentials parameters ([a0b6167](https://github.com/neet/masto.js/commit/a0b61674eb92ffddab38b49e3cc9316a055ba9cf))
+* Add `reading:autoplay:gifs` to Preference ([82f7402](https://github.com/neet/masto.js/commit/82f7402ab3ce2af3c4ed473fbf8243a8dbcbfc76))
+
 ## [5.5.1](https://github.com/neet/masto.js/compare/v5.5.0...v5.5.1) (2023-01-18)
 
 
