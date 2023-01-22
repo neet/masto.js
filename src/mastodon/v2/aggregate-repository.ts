@@ -52,7 +52,7 @@ export class AggregateRepository {
    * @return Results
    * @see https://docs.joinmastodon.org/methods/search/
    */
-  @version({ since: '1.1.0', until: '3.0.0' })
+  @version({ since: '2.4.1' })
   search(params: SearchParams): Paginator<Search, SearchParams> {
     return new Paginator(this.http, `/api/v2/search`, params);
   }
