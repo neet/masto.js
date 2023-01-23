@@ -1,3 +1,11 @@
+## [5.6.1](https://github.com/neet/masto.js/compare/v5.6.0...v5.6.1) (2023-01-23)
+
+
+### Bug Fixes
+
+* Add missing repliesPolicy to List ([25dc358](https://github.com/neet/masto.js/commit/25dc358b9e3e728f4d8a71c34dd91ca1322d20ce))
+* Correct version range of /api/v2/search ([5d5cae7](https://github.com/neet/masto.js/commit/5d5cae70fc6a7c48c293c848ee3912700bbaa9b7))
+
 ## [5.6.0](https://github.com/neet/masto.js/compare/v5.5.1...v5.6.0) (2023-01-22)
 
 
