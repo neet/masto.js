@@ -6,9 +6,8 @@ import type { Repository } from '../../repository';
 import type {
   WebPushSubscription,
   WebPushSubscriptionAlerts,
+  WebPushSubscriptionPolicy,
 } from '../entities';
-
-export type SubscriptionPolicy = 'all' | 'followed' | 'follower' | 'none';
 
 export interface CreateWebPushSubscriptionParams {
   readonly subscription: {
@@ -25,7 +24,7 @@ export interface CreateWebPushSubscriptionParams {
   readonly data?: {
     readonly alerts?: Partial<WebPushSubscriptionAlerts> | null;
   } | null;
-  readonly policy: SubscriptionPolicy;
+  readonly policy: WebPushSubscriptionPolicy;
 }
 
 export type UpdateWebPushSubscriptionParams = Pick<

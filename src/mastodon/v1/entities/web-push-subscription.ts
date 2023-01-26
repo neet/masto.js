@@ -1,3 +1,12 @@
+export type WebPushSubscriptionPolicy =
+  | 'all'
+  | 'followed'
+  | 'follower'
+  | 'none';
+
+/** @deprecated Use WebPushSubscriptionPolicy */
+export type SubscriptionPolicy = WebPushSubscriptionPolicy;
+
 /**
  * Represents a subscription to the push streaming server.
  * @see https://docs.joinmastodon.org/entities/WebPushSubscription/
@@ -11,6 +20,8 @@ export interface WebPushSubscription {
   serverKey: string;
   /** Which alerts should be delivered to the `endpoint`. */
   alerts: WebPushSubscriptionAlerts;
+  /* Which type of notification should be included  */
+  policy: WebPushSubscriptionPolicy;
 }
 
 export interface WebPushSubscriptionAlerts {
