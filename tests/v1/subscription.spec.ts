@@ -4,7 +4,7 @@ describe('subscription', () => {
   it('can subscribe', async () => {
     const ecdh = crypto.createECDH('prime256v1');
     const auth = crypto.randomBytes(16).toString('base64');
-    const p256dh = ecdh.getPublicKey().toString('base64');
+    const p256dh = ecdh.generateKeys().toString('base64');
 
     const { id } = await admin.v1.webPushSubscriptions.create({
       subscription: {
