@@ -1,3 +1,15 @@
+## [5.7.0](https://github.com/neet/masto.js/compare/v5.6.1...v5.7.0) (2023-01-27)
+
+
+### Features
+
+* Add `policy` field to WebPushSubscription ([20ccc90](https://github.com/neet/masto.js/commit/20ccc90e209823547acb27bd685057e2bbe73821))
+
+
+### Chores
+
+* Fix test for subscription ([2e5dff2](https://github.com/neet/masto.js/commit/2e5dff288f58a7c0e6a94361f46d19ba0b7d92a6))
+
 ## [5.6.1](https://github.com/neet/masto.js/compare/v5.6.0...v5.6.1) (2023-01-23)
 
 
