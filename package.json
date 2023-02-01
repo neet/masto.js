@@ -50,7 +50,7 @@
     "@typescript-eslint/parser": "^5.48.0",
     "conventional-changelog-conventionalcommits": "^5.0.0",
     "cspell": "^6.18.1",
-    "eslint": "^8.31.0",
+    "eslint": "^8.33.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.0.0",
