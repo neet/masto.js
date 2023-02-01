@@ -15,10 +15,28 @@ describe('Config', () => {
       },
       new SerializerNativeImpl(),
     );
-    const headers = config.createHeader({ extra: 'header' });
+    const headers = config.createHeader('POST', { extra: 'header' });
 
     expect(headers.get('Authorization')).toBe('Bearer token');
     expect(headers.get('Content-Type')).toBe('application/json');
+    expect(headers.get('extra')).toBe('header');
+  });
+
+  it('creates headers without content-type for GET request', () => {
+    const config = new MastoConfig(
+      {
+        url: 'https://mastodon.social',
+        streamingApiUrl: 'wss://mastodon.social',
+        version: new SemVer('1.0.0'),
+        accessToken: 'token',
+      },
+      new SerializerNativeImpl(),
+    );
+    const headers = config.createHeader('GET', { extra: 'header' });
+
+    expect(headers.get('Authorization')).toBe('Bearer token');
+    // eslint-disable-next-line unicorn/no-null
+    expect(headers.get('Content-Type')).toBe(null);
     expect(headers.get('extra')).toBe('header');
   });
 
@@ -33,7 +51,7 @@ describe('Config', () => {
       new SerializerNativeImpl(),
     );
 
-    const headers = config.createHeader({
+    const headers = config.createHeader('POST', {
       'Content-Type': 'multipart/form-data',
     });
 

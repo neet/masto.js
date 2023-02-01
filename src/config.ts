@@ -34,10 +34,15 @@ export class MastoConfig {
     private readonly serializer: Serializer,
   ) {}
 
-  createHeader(override: HeadersInit = {}): Headers {
+  createHeader(method?: string, override: HeadersInit = {}): Headers {
+    const defaultContentType: Record<string, string> = {};
+    if (method !== 'GET' && method !== 'HEAD') {
+      defaultContentType['Content-Type'] = 'application/json';
+    }
+
     const headersInit = mergeHeadersInit([
       this.props.defaultRequestInit?.headers ?? {},
-      { 'Content-Type': 'application/json' },
+      defaultContentType,
       override,
     ]);
     const headers: HeadersInit = new Headers(headersInit);
