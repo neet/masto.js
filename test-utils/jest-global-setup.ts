@@ -9,7 +9,7 @@ const createApp = async (): Promise<mastodon.v1.Application> => {
   const app = await masto.v1.apps.create({
     clientName: 'Masto.js',
     redirectUris: 'urn:ietf:wg:oauth:2.0:oob',
-    scopes: `read write follow push`,
+    scopes: 'read write follow push admin:read admin:write',
   });
   return app;
 };
@@ -24,7 +24,7 @@ const createToken = async (
     clientSecret: app.clientSecret!,
     username: 'admin@localhost:3000',
     password: 'mastodonadmin',
-    scope: 'read write follow push',
+    scope: 'read write follow push admin:read admin:write',
   });
   return token;
 };
