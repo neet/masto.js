@@ -86,6 +86,8 @@ export interface Account {
   fields?: AccountField[] | null;
   /** Boolean to indicate that the account performs automated actions */
   bot?: boolean | null;
+  /** Roles that have been granted to this account. */
+  roles: Pick<Role, 'id' | 'name' | 'color'>[]; // TODO: Create an entity when documentation is updated
 }
 
 /**
