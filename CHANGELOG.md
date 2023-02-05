@@ -1,3 +1,10 @@
+## [5.8.0](https://github.com/neet/masto.js/compare/v5.7.0...v5.8.0) (2023-02-05)
+
+
+### Features
+
+* Add `roles` attribute to `Account` ([7e04944](https://github.com/neet/masto.js/commit/7e049446c5f3cfc75524931492b3cf621926aa00))
+
 ## [5.7.0](https://github.com/neet/masto.js/compare/v5.6.1...v5.7.0) (2023-01-27)
 
 
