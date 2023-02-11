@@ -31,4 +31,6 @@ export interface Relationship {
   endorsed: boolean;
   /** Personal note for this account */
   note?: string | null;
+  /** Whether the represented user has requested to follow you */
+  requestedBy: boolean;
 }

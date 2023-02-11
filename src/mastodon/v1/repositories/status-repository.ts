@@ -68,7 +68,21 @@ export type CreateScheduledStatusParams = CreateStatusParams & {
   readonly scheduledAt?: string | null;
 };
 
-export type UpdateStatusParams = CreateStatusParams;
+type UpdateStatusMediaAttribute = {
+  /** The ID of the media attachment to be modified */
+  readonly id: string;
+  /** A plain-text description of the media, for accessibility purposes. */
+  readonly description?: string | null;
+  /** Two floating points (x,y), comma-delimited, ranging from -1.0 to 1.0 */
+  readonly focus?: string | null;
+  /** Custom thumbnail */
+  readonly thumbnail?: unknown | null;
+};
+
+export type UpdateStatusParams = CreateStatusParams & {
+  /** https://github.com/mastodon/mastodon/pull/20878 */
+  readonly mediaAttributes?: readonly UpdateStatusMediaAttribute[];
+};
 
 export interface ReblogStatusParams {
   /** any visibility except limited or direct (i.e. public, unlisted, private). Defaults to public. Currently unused in UI. */
