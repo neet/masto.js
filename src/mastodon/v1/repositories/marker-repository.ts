@@ -15,8 +15,8 @@ export interface FetchMarkersParams {
 }
 
 export type CreateMarkersParams = {
-  readonly /** ID of the last status read in the timeline. */
-  [key in MarkerTimeline]?: Pick<MarkerItem, 'lastReadId'>;
+  /** ID of the last status read in the timeline. */
+  readonly [key in MarkerTimeline]?: Pick<MarkerItem, 'lastReadId'>;
 };
 
 export class MarkerRepository
