@@ -29,6 +29,8 @@ export interface InstanceThumbnail {
 export interface InstanceUrls {
   /** The WebSockets URL for connecting to the streaming API. */
   streamingApi: string;
+  /** Instance status URL */
+  status?: string;
 }
 
 export interface InstanceAccountsConfiguration {
