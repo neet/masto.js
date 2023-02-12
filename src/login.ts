@@ -30,7 +30,10 @@ type HttpContext = {
 
 const buildHttpContext = (params: CreateClientParams): HttpContext => {
   const version =
-    params.version == undefined ? undefined : new SemVer(params.version, true);
+    params.version && !params.disableVersionCheck
+      ? new SemVer(params.version, true)
+      : undefined;
+
   const props = { ...params, version };
 
   const serializer = new SerializerNativeImpl();
