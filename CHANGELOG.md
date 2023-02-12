@@ -1,3 +1,10 @@
+## [5.9.1](https://github.com/neet/masto.js/compare/v5.9.0...v5.9.1) (2023-02-12)
+
+
+### Bug Fixes
+
+* Fix `disableVersionCheck` being ignored ([196fa8f](https://github.com/neet/masto.js/commit/196fa8f1208adcb86a9e61301009cb6437582dd9))
+
 ## [5.9.0](https://github.com/neet/masto.js/compare/v5.8.0...v5.9.0) (2023-02-12)
 
 
