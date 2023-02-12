@@ -1,3 +1,17 @@
+## [5.9.0](https://github.com/neet/masto.js/compare/v5.8.0...v5.9.0) (2023-02-12)
+
+
+### Features
+
+* Add `mediaAttributes` to statuses.update ([e34c47e](https://github.com/neet/masto.js/commit/e34c47e35c3b3ac1744aea87a63faf5627410048))
+* Add `requestedBy` to Relationship entity ([af6198b](https://github.com/neet/masto.js/commit/af6198b09aaca05b58632bdbab2cb86602d02c04))
+* Add Instance.configuration.urls.status ([0e98d51](https://github.com/neet/masto.js/commit/0e98d51270d8402df0fd09330bf9c4ac90c93bcf))
+
+
+### Chores
+
+* Update dependencies ([b2e58df](https://github.com/neet/masto.js/commit/b2e58dffa58726fb7ae5ae6bf9ee167ccb26462a))
+
 ## [5.8.0](https://github.com/neet/masto.js/compare/v5.7.0...v5.8.0) (2023-02-05)
 
 
