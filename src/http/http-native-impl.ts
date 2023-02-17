@@ -77,6 +77,13 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       headers.delete('Content-Type');
     }
 
+    if (body == undefined && getContentType(headers) == 'application/json') {
+      // Since an empty string is not a valid JSON,
+      // if the body is empty and the content type is set to JSON,
+      // remove 'content-type:application/json' from headers
+      headers.delete('Content-Type');
+    }
+
     const request = new Request(url, {
       ...requestInit,
       headers,
