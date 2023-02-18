@@ -13,6 +13,7 @@ import type {
   StatusEdit,
   StatusSource,
   StatusVisibility,
+  Translation,
 } from '../entities';
 
 export interface CreateStatusParamsBase {
@@ -87,6 +88,11 @@ export type UpdateStatusParams = CreateStatusParams & {
 export interface ReblogStatusParams {
   /** any visibility except limited or direct (i.e. public, unlisted, private). Defaults to public. Currently unused in UI. */
   readonly visibility: StatusVisibility;
+}
+
+export interface TranslateStatusParams {
+  /** String (ISO 639 language code). The status content will be translated into this language. Defaults to the user’s current locale. */
+  readonly lang?: string;
 }
 
 export class StatusRepository implements Repository<Status> {
@@ -334,5 +340,18 @@ export class StatusRepository implements Repository<Status> {
   @version({ since: '3.5.0' })
   fetchSource(id: string): Promise<StatusSource> {
     return this.http.get(`/api/v1/statuses/${id}/source`);
+  }
+
+  /**
+   * Translate the status content into some language.
+   * @param id String. The ID of the Status in the database.
+   * @param params Form data parameters
+   * @returns Translation
+   */
+  @version({ since: '4.0.0' })
+  translate(id: string, params: TranslateStatusParams): Promise<Translation> {
+    return this.http.post(`/api/v1/statuses/${id}/translate`, params, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
   }
 }
