@@ -33,4 +33,5 @@ export * from './status-source';
 export * from './suggestion';
 export * from './tag';
 export * from './token';
+export * from './translation';
 export * from './web-push-subscription';
