@@ -1,3 +1,10 @@
+## [5.9.2](https://github.com/neet/masto.js/compare/v5.9.1...v5.9.2) (2023-02-18)
+
+
+### Bug Fixes
+
+* Remove JSON content type when body is empty ([8bff0fb](https://github.com/neet/masto.js/commit/8bff0fbad51a5c591984f338dda7d6bb1e387d9f))
+
 ## [5.9.1](https://github.com/neet/masto.js/compare/v5.9.0...v5.9.1) (2023-02-12)
 
 
