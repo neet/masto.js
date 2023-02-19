@@ -1,3 +1,10 @@
+## [5.10.0](https://github.com/neet/masto.js/compare/v5.9.2...v5.10.0) (2023-02-19)
+
+
+### Features
+
+* Add translate API ([02cecf1](https://github.com/neet/masto.js/commit/02cecf1e8140749af6c71316fb6ef1586b452d70))
+
 ## [5.9.2](https://github.com/neet/masto.js/compare/v5.9.1...v5.9.2) (2023-02-18)
 
 
