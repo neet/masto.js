@@ -25,6 +25,7 @@
     "lint:spellcheck": "cspell '{src,examples}/**/*.{ts,tsx,js,json,md}'",
     "build": "rollup -c rollup.config.cjs",
     "prepublishOnly": "yarn run build",
+    "prepare": "yarn run build",
     "docs:build": "typedoc ./src/index.ts && touch ./docs/.nojekyll"
   },
   "dependencies": {
@@ -70,21 +71,15 @@
     "typedoc": "^0.23.24",
     "typescript": "^4.9.5"
   },
-  "files": [
-    "README.md",
-    "dist",
-    "!**/__tests__",
-    "!**/__mocks__"
-  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/neet/masto.js.git"
+    "url": "git+https://github.com/kjfeng/masto.js.git"
   },
   "keywords": [
     "mastodon"
   ],
   "bugs": {
-    "url": "https://github.com/neet/masto.js/issues"
+    "url": "https://github.com/kjfeng/masto.js/issues"
   },
-  "homepage": "https://github.com/neet/masto.js#readme"
+  "homepage": "https://github.com/kjfeng/masto.js#readme"
 }
