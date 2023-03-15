@@ -36,6 +36,19 @@ export class TimelineRepository {
   }
 
   /**
+   * View statuses from followed users, using custom backend.
+   * @param params Parameters
+   * @return Array of Status
+   * @see https://docs.joinmastodon.org/methods/timelines/
+   */
+  @version({ since: '0.0.0' })
+  listHomeCustom(
+    params?: ListTimelineParams,
+  ): Paginator<Status[], ListTimelineParams> {
+    return new Paginator(this.http, '/api/v1/timelines/home', params, true);
+  }
+
+  /**
    * Public timeline
    * @param params Parameters
    * @return Array of Status

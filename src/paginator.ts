@@ -10,6 +10,7 @@ export class Paginator<Entity, Params = never>
     private readonly http: Http,
     private nextPath?: string,
     private nextParams?: Params,
+    private useCustomBackend = false,
   ) {}
 
   async next(): Promise<IteratorResult<Entity, undefined>> {
@@ -21,6 +22,7 @@ export class Paginator<Entity, Params = never>
       requestInit: { method: 'GET' },
       path: this.nextPath,
       searchParams: this.nextParams as Record<string, unknown>,
+      useCustomBackend: this.useCustomBackend,
     });
 
     const next = this.pluckNext(response.headers.get('link'))?.split('?');
