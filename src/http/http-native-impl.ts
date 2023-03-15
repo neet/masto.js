@@ -58,10 +58,17 @@ export class HttpNativeImpl extends BaseHttp implements Http {
   }
 
   private createRequest(params: HttpRequestParams): [Request, Timeout] {
-    const { path, searchParams, requestInit } = params;
+    const { path, searchParams, requestInit, useCustomBackend } = params;
 
-    const url = this.config.resolveHttpPath(path, searchParams);
-    const headers = this.config.createHeader(requestInit?.headers);
+    const url = this.config.resolveHttpPath(
+      path,
+      searchParams,
+      useCustomBackend,
+    );
+    const headers = this.config.createHeader(
+      requestInit?.headers,
+      useCustomBackend,
+    );
     const [abortSignal, timeout] = this.config.createAbortSignal(
       requestInit?.signal as AbortSignal,
     );

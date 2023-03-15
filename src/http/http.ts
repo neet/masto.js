@@ -11,6 +11,7 @@ export type HttpRequestParams = {
   readonly searchParams?: Record<string, unknown>;
   readonly body?: Record<string, unknown>;
   readonly requestInit?: Omit<RequestInit, 'body'>;
+  readonly useCustomBackend?: boolean;
 };
 
 export type HttpRequestResult = {

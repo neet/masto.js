@@ -19,6 +19,7 @@ type SatisfiesVersionRangeResult = {
 export type MastoConfigProps = {
   readonly url: string;
   readonly streamingApiUrl?: string;
+  readonly customBackendUrl?: string;
   readonly logLevel?: LogType;
   readonly version?: SemVer;
   readonly accessToken?: string;
@@ -34,7 +35,7 @@ export class MastoConfig {
     private readonly serializer: Serializer,
   ) {}
 
-  createHeader(override: HeadersInit = {}): Headers {
+  createHeader(override: HeadersInit = {}, useCustomBackend = false): Headers {
     const headersInit = mergeHeadersInit([
       this.props.defaultRequestInit?.headers ?? {},
       { 'Content-Type': 'application/json' },
@@ -46,6 +47,10 @@ export class MastoConfig {
       headers.set('Authorization', `Bearer ${this.props.accessToken}`);
     }
 
+    if (this.props.customBackendUrl && useCustomBackend) {
+      headers.set('instance-url', this.props.url);
+    }
+
     return new Headers(headers);
   }
 
@@ -55,8 +60,17 @@ export class MastoConfig {
       : protocols;
   }
 
-  resolveHttpPath(path: string, params?: Record<string, unknown>): URL {
-    const url = new URL(path, this.props.url);
+  resolveHttpPath(
+    path: string,
+    params?: Record<string, unknown>,
+    useCustomBackend = false,
+  ): URL {
+    const url = new URL(
+      path,
+      this.props.customBackendUrl && useCustomBackend
+        ? this.props.customBackendUrl
+        : this.props.url,
+    );
 
     if (params) {
       url.search = this.serializer.serializeQueryString(params);
