@@ -1,24 +1,26 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import type { mastodon } from '../src';
 import { fetchV1Instance, login } from '../src';
+import { TokenPoolImpl } from './pools';
 
-const BASE_URL = 'http://localhost:3000';
+export default async (): Promise<void> => {
+  const url = 'http://localhost:3000';
+  const instance = await fetchV1Instance({ url });
+  const masto = await login({ url });
 
-const createApp = async (): Promise<mastodon.v1.Application> => {
-  const masto = await login({ url: BASE_URL });
   const app = await masto.v1.apps.create({
     clientName: 'Masto.js',
     redirectUris: 'urn:ietf:wg:oauth:2.0:oob',
     scopes: 'read write follow push admin:read admin:write',
   });
-  return app;
-};
 
-const createToken = async (
-  app: mastodon.v1.Client,
-): Promise<mastodon.v1.Token> => {
-  const masto = await login({ url: BASE_URL });
-  const token = await masto.oauth.createToken({
+  const container = process.env.MASTODON_CONTAINER;
+  if (container == undefined) {
+    throw new Error('MASTODON_CONTAINER is not defined');
+  }
+
+  const tokenPool = new TokenPoolImpl(container, masto, app);
+
+  const adminToken = await masto.oauth.createToken({
     grantType: 'password',
     clientId: app.clientId!,
     clientSecret: app.clientSecret!,
@@ -26,12 +28,11 @@ const createToken = async (
     password: 'mastodonadmin',
     scope: 'read write follow push admin:read admin:write',
   });
-  return token;
-};
 
-export default async (): Promise<void> => {
-  const app = await createApp();
-  globalThis.url = BASE_URL;
-  globalThis.token = await createToken(app);
-  globalThis.instance = await fetchV1Instance({ url: BASE_URL });
+  globalThis.__misc__ = {
+    url,
+    instance,
+    tokens: tokenPool,
+    adminToken,
+  };
 };

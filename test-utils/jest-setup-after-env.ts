@@ -1,13 +1,14 @@
 import { createClient } from '../src';
+import { ClientPoolImpl } from './pools';
 
 jest.setTimeout(1000 * 60);
 
-const { url, instance, token } = globalThis;
-
 globalThis.admin = createClient({
-  url: url,
-  version: instance.version,
-  streamingApiUrl: instance.urls.streamingApi,
-  accessToken: token.accessToken,
+  url: __misc__.url,
+  version: __misc__.instance.version,
+  streamingApiUrl: __misc__.instance.urls.streamingApi,
+  accessToken: __misc__.adminToken.accessToken,
   logLevel: 'info',
 });
+
+globalThis.clients = new ClientPoolImpl();

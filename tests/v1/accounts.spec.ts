@@ -1,64 +1,100 @@
 describe('account', () => {
-  it('verifies credential', async () => {
-    const me = await admin.v1.accounts.verifyCredentials();
-    expect(me.username).not.toBeNull();
+  it('verifies credential', () => {
+    return clients.use(async (alice) => {
+      const me = await alice.v1.accounts.verifyCredentials();
+      expect(me.username).not.toBeNull();
+    });
   });
 
-  // it('updates credential', async () => {
-  //   const random = Math.random().toString();
-  //   const me = await admin.v1.accounts.updateCredentials({
-  //     displayName: random,
-  //   });
-  //   expect(me.displayName).toBe(random);
-  // });
-
-  it('fetches an account with ID', async () => {
-    const me = await admin.v1.accounts.verifyCredentials();
-    const someone = await admin.v1.accounts.fetch(me.id);
-    expect(me.id).toBe(someone.id);
+  it('updates credential', () => {
+    return clients.use(async (alice) => {
+      const random = Math.random().toString();
+      const me = await alice.v1.accounts.updateCredentials({
+        displayName: random,
+      });
+      expect(me.displayName).toBe(random);
+    });
   });
 
-  // it('follows / unfollow by ID', async () => {
-  //   let relationship = await client.v1.accounts.follow(TARGET_ID);
-  //   expect(relationship.following).toBe(true);
+  it('fetches an account with ID', () => {
+    return clients.use(async (alice) => {
+      const me = await alice.v1.accounts.verifyCredentials();
+      const someone = await admin.v1.accounts.fetch(me.id);
+      expect(me.id).toBe(someone.id);
+    });
+  });
 
-  //   relationship = await client.v1.accounts.unfollow(TARGET_ID);
-  //   expect(relationship.following).toBe(false);
-  // });
+  it('follows / unfollow by ID', () => {
+    return clients.use(2, async ([alice, bob]) => {
+      const bobId = await bob.v1.accounts
+        .verifyCredentials()
+        .then((me) => me.id);
 
-  // it('blocks / unblock by ID', async () => {
-  //   let relationship = await client.v1.accounts.block(TARGET_ID);
-  //   expect(relationship.blocking).toBe(true);
+      let relationship = await alice.v1.accounts.follow(bobId);
+      expect(relationship.following).toBe(true);
 
-  //   relationship = await client.v1.accounts.unblock(TARGET_ID);
-  //   expect(relationship.blocking).toBe(false);
-  // });
+      relationship = await alice.v1.accounts.unfollow(bobId);
+      expect(relationship.following).toBe(false);
+    });
+  });
 
-  // it('can pin / unpin by ID', async () => {
-  //   await client.accounts.follow(TARGET_ID);
-  //   let relationship = await client.accounts.pin(TARGET_ID);
-  //   expect(relationship.endorsed).toBe(true);
+  it('blocks / unblock by ID', () => {
+    return clients.use(2, async ([alice, bob]) => {
+      const bobId = await bob.v1.accounts
+        .verifyCredentials()
+        .then((me) => me.id);
 
-  //   relationship = await client.accounts.unpin(TARGET_ID);
-  //   await client.accounts.unfollow(TARGET_ID);
-  //   expect(relationship.endorsed).toBe(false);
-  // });
+      let relationship = await alice.v1.accounts.block(bobId);
+      expect(relationship.blocking).toBe(true);
 
-  // it('mutes / unmute by ID', async () => {
-  //   let relationship = await client.v1.accounts.mute(TARGET_ID);
-  //   expect(relationship.muting).toBe(true);
+      relationship = await alice.v1.accounts.unblock(bobId);
+      expect(relationship.blocking).toBe(false);
+    });
+  });
 
-  //   relationship = await client.v1.accounts.unmute(TARGET_ID);
-  //   expect(relationship.muting).toBe(false);
-  // });
+  it('can pin / unpin by ID', () => {
+    return clients.use(2, async ([alice, bob]) => {
+      const bobId = await bob.v1.accounts
+        .verifyCredentials()
+        .then((me) => me.id);
 
-  // it('creates a note', async () => {
-  //   const comment = Math.random().toString();
-  //   const relationship = await client.v1.accounts.createNote(TARGET_ID, {
-  //     comment,
-  //   });
-  //   expect(relationship.note).toBe(comment);
-  // });
+      await alice.v1.accounts.follow(bobId);
+      let relationship = await alice.v1.accounts.pin(bobId);
+      expect(relationship.endorsed).toBe(true);
+
+      relationship = await alice.v1.accounts.unpin(bobId);
+      await alice.v1.accounts.unfollow(bobId);
+      expect(relationship.endorsed).toBe(false);
+    });
+  });
+
+  it('mutes / unmute by ID', () => {
+    return clients.use(2, async ([alice, bob]) => {
+      const bobId = await bob.v1.accounts
+        .verifyCredentials()
+        .then((me) => me.id);
+
+      let relationship = await alice.v1.accounts.mute(bobId);
+      expect(relationship.muting).toBe(true);
+
+      relationship = await alice.v1.accounts.unmute(bobId);
+      expect(relationship.muting).toBe(false);
+    });
+  });
+
+  it('creates a note', () => {
+    return clients.use(2, async ([alice, bob]) => {
+      const bobId = await bob.v1.accounts
+        .verifyCredentials()
+        .then((me) => me.id);
+
+      const comment = Math.random().toString();
+      const relationship = await alice.v1.accounts.createNote(bobId, {
+        comment,
+      });
+      expect(relationship.note).toBe(comment);
+    });
+  });
 
   // it('excludes replies from iterateStatuses', async () => {
   //   const statuses = await client.v1.accounts.listStatuses(TARGET_ID, {
@@ -75,12 +111,17 @@ describe('account', () => {
   //   ).toBe(true);
   // });
 
-  // it('fetches relationships', async () => {
-  //   const accountIds = await client.v1.timelines
-  //     .listPublic()
-  //     .then((ar) => [ar[0], ar[1], ar[2]].map((s) => s.account.id));
+  it('fetches relationships', () => {
+    return clients.use(3, async ([alice, bob, carol]) => {
+      const bobId = await bob.v1.accounts
+        .verifyCredentials()
+        .then((me) => me.id);
+      const carolId = await carol.v1.accounts
+        .verifyCredentials()
+        .then((me) => me.id);
 
-  //   const res = await client.v1.accounts.fetchRelationships(accountIds);
-  //   expect(res).toHaveLength(accountIds.length);
-  // });
+      const res = await alice.v1.accounts.fetchRelationships([bobId, carolId]);
+      expect(res).toHaveLength(2);
+    });
+  });
 });
