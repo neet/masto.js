@@ -46,7 +46,7 @@
     "@types/qs": "^6.9.7",
     "@types/semver": "^7.3.10",
     "@types/ws": "^8.5.4",
-    "@typescript-eslint/eslint-plugin": "^5.51.0",
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
     "@typescript-eslint/parser": "^5.51.0",
     "conventional-changelog-conventionalcommits": "^5.0.0",
     "cspell": "^6.22.0",
