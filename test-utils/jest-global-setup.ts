@@ -13,10 +13,10 @@ export default async (): Promise<void> => {
     scopes: 'read write follow push admin:read admin:write',
   });
 
-  const container = process.env.MASTODON_CONTAINER;
-  if (container == undefined) {
-    throw new Error('MASTODON_CONTAINER is not defined');
-  }
+  const container = process.env.MASTODON_CONTAINER ?? 'mastodon';
+  // if (container == undefined) {
+  //   throw new Error('MASTODON_CONTAINER is not defined');
+  // }
 
   const tokenPool = new TokenPoolImpl(container, masto, app);
 

@@ -7,7 +7,7 @@ export type CreateAccountResult = {
   password: string;
 };
 
-export interface Tootcli {
+export interface Tootctl {
   accounts: {
     create: (
       username: string,

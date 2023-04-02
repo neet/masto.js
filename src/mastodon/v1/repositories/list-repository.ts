@@ -107,7 +107,9 @@ export class ListRepository
    */
   @version({ since: '2.1.0' })
   addAccount(id: string, params: AddListAccountsParams): Promise<void> {
-    return this.http.post<void>(`/api/v1/lists/${id}/accounts`, params);
+    return this.http.post<void>(`/api/v1/lists/${id}/accounts`, params, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
   }
 
   /**
@@ -119,6 +121,8 @@ export class ListRepository
    */
   @version({ since: '2.1.0' })
   removeAccount(id: string, params: RemoveListAccountsParams): Promise<void> {
-    return this.http.delete<void>(`/api/v1/lists/${id}/accounts`, params);
+    return this.http.delete<void>(`/api/v1/lists/${id}/accounts`, params, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
   }
 }

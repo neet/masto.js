@@ -4,8 +4,8 @@ import util from 'node:util';
 import type {
   CreateAccountParams,
   CreateAccountResult,
-  Tootcli,
-} from './tootcli';
+  Tootctl,
+} from './tootctl';
 
 const exec = util.promisify(childProcess.exec);
 
@@ -21,11 +21,11 @@ const stringifyArguments = (
     .join(' ');
 };
 
-export type CreateTootcliParams = {
+export type CreateTootctlParams = {
   readonly container: string;
 };
 
-export const createTootcli = (params: CreateTootcliParams): Tootcli => {
+export const createTootctl = (params: CreateTootctlParams): Tootctl => {
   const { container } = params;
 
   return {

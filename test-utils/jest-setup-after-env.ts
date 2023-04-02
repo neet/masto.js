@@ -8,7 +8,6 @@ globalThis.admin = createClient({
   version: __misc__.instance.version,
   streamingApiUrl: __misc__.instance.urls.streamingApi,
   accessToken: __misc__.adminToken.accessToken,
-  logLevel: 'info',
 });
 
 globalThis.clients = new ClientPoolImpl();

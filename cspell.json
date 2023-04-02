@@ -37,7 +37,7 @@
     "shortcode",
     "subprotocol",
     "subresource",
-    "Tootcli",
+    "tootctl",
     "trendable",
     "typedoc",
     "unassign",
@@ -48,6 +48,7 @@
     "unprocessable",
     "unreblog",
     "unreviewed",
-    "unsilence"
+    "unsilence",
+    "unstorage"
   ]
 }

@@ -96,21 +96,6 @@ describe('account', () => {
     });
   });
 
-  // it('excludes replies from iterateStatuses', async () => {
-  //   const statuses = await client.v1.accounts.listStatuses(TARGET_ID, {
-  //     excludeReplies: true,
-  //   });
-
-  //   expect(
-  //     statuses
-  //       // `excludeReplies` won't exclude reblogs
-  //       .filter((status) => !status.reblog)
-  //       // `excludeReplies` won't exclude self-replies
-  //       .filter((status) => status.inReplyToAccountId !== status.account.id)
-  //       .every((status) => status.inReplyToId == undefined),
-  //   ).toBe(true);
-  // });
-
   it('fetches relationships', () => {
     return clients.use(3, async ([alice, bob, carol]) => {
       const bobId = await bob.v1.accounts
@@ -122,6 +107,123 @@ describe('account', () => {
 
       const res = await alice.v1.accounts.fetchRelationships([bobId, carolId]);
       expect(res).toHaveLength(2);
+    });
+  });
+
+  it('lists followers', () => {
+    return clients.use(2, async ([alice, bob]) => {
+      const aliceId = await alice.v1.accounts
+        .verifyCredentials()
+        .then((me) => me.id);
+      const bobId = await bob.v1.accounts
+        .verifyCredentials()
+        .then((me) => me.id);
+
+      await alice.v1.accounts.follow(bobId);
+      const followers = await alice.v1.accounts.listFollowers(bobId);
+
+      expect(followers).toEqual(
+        expect.arrayContaining([expect.objectContaining({ id: aliceId })]),
+      );
+      await alice.v1.accounts.unfollow(bobId);
+    });
+  });
+
+  it('lists following', () => {
+    return clients.use(2, async ([alice, bob]) => {
+      const bobId = await bob.v1.accounts
+        .verifyCredentials()
+        .then((me) => me.id);
+      await alice.v1.accounts.follow(bobId);
+
+      const aliceId = await alice.v1.accounts
+        .verifyCredentials()
+        .then((me) => me.id);
+      const accounts = await alice.v1.accounts.listFollowing(aliceId);
+
+      expect(accounts).toEqual(
+        expect.arrayContaining([expect.objectContaining({ id: bobId })]),
+      );
+      await alice.v1.accounts.unfollow(bobId);
+    });
+  });
+
+  it('lists statuses', () => {
+    return clients.use(async (client) => {
+      const status = await client.v1.statuses.create({ status: 'Hello' });
+      const statuses = await client.v1.accounts.listStatuses(status.account.id);
+
+      expect(statuses).toEqual(
+        expect.arrayContaining([expect.objectContaining({ id: status.id })]),
+      );
+    });
+  });
+
+  it('searches', () => {
+    return clients.use(async (client) => {
+      const me = await client.v1.accounts.verifyCredentials();
+      const accounts = await client.v1.accounts.search({ q: me.username });
+
+      expect(accounts).toEqual(
+        expect.arrayContaining([expect.objectContaining({ id: me.id })]),
+      );
+    });
+  });
+
+  test.todo('list lists');
+
+  it('lists featured tags', () => {
+    return clients.use(async (client) => {
+      const me = await client.v1.accounts.verifyCredentials();
+      const featuredTag = await client.v1.featuredTags.create({
+        name: 'masto',
+      });
+
+      const tags = await client.v1.accounts.listFeaturedTags(me.id);
+      expect(tags).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ id: featuredTag.id }),
+        ]),
+      );
+
+      await client.v1.featuredTags.remove(featuredTag.id);
+    });
+  });
+
+  it('lists Identity proofs', () => {
+    return clients.use(async (client) => {
+      const me = await client.v1.accounts.verifyCredentials();
+      const identityProofs = await client.v1.accounts.listIdentityProofs(me.id);
+      expect(identityProofs).toEqual(expect.any(Array));
+    });
+  });
+
+  it('fetches familiar followers', () => {
+    return clients.use(async (client) => {
+      const me = await client.v1.accounts.verifyCredentials();
+      const identityProofs = await client.v1.accounts.fetchFamiliarFollowers([
+        me.id,
+      ]);
+      expect(identityProofs).toEqual(expect.any(Array));
+    });
+  });
+
+  test.todo('lookup');
+
+  it('removes from followers', () => {
+    return clients.use(2, async ([alice, bob]) => {
+      const aliceId = await alice.v1.accounts
+        .verifyCredentials()
+        .then((me) => me.id);
+      const bobId = await bob.v1.accounts
+        .verifyCredentials()
+        .then((me) => me.id);
+
+      await bob.v1.accounts.follow(aliceId);
+      await alice.v1.accounts.removeFromFollowers(bobId);
+
+      const [rel] = await alice.v1.accounts.fetchRelationships([bobId]);
+      expect(rel.followedBy).toBe(false);
     });
   });
 });
