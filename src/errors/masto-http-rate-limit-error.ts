@@ -24,8 +24,8 @@ export class MastoHttpRateLimitError extends MastoHttpError {
     super(message, 429, props);
     Object.setPrototypeOf(this, MastoHttpRateLimitError.prototype);
 
-    this.limit = props?.limit;
-    this.remaining = props?.remaining;
-    this.reset = props?.reset;
+    this.limit = props.limit;
+    this.remaining = props.remaining;
+    this.reset = props.reset;
   }
 }

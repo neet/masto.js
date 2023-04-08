@@ -55,3 +55,8 @@ test('nested object', () => {
     'e[e2][e22][2][value]': 3,
   });
 });
+
+test('returns input when it is neither an array nor an object', () => {
+  const value = flattenObject('hello');
+  expect(value).toBe('hello');
+});

@@ -78,7 +78,7 @@ export class IpBlockRepository
    * Add an IP address range to the list of IP blocks.
    * @param params Parameters
    * @return object of Ip Block
-   * @see https://docs.joinmastodon.org/methods/admin/
+   * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#create
    */
   @version({ since: '4.0.0' })
   create(params: CreateIpBlockParams): Promise<Admin.IpBlock> {
@@ -89,11 +89,11 @@ export class IpBlockRepository
    * Change parameters for an existing IP block.
    * @param params Parameters
    * @return object of Ip Block
-   * @see https://docs.joinmastodon.org/methods/admin/
+   * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#update
    */
   @version({ since: '4.0.0' })
-  update(params: UpdateIpBlockParams): Promise<Admin.IpBlock> {
-    return this.http.put('/api/v1/admin/ip_blocks', params);
+  update(id: string, params: UpdateIpBlockParams): Promise<Admin.IpBlock> {
+    return this.http.put(`/api/v1/admin/ip_blocks/${id}`, params);
   }
 
   /**

@@ -86,6 +86,7 @@ export class TimelineRepository {
    */
   @deprecated('Use conversations API instead')
   @version({ since: '0.0.0', until: '2.9.3' })
+  /* istanbul ignore next */
   listDirect(
     params?: ListTimelineParams,
   ): Paginator<Status[], ListTimelineParams> {

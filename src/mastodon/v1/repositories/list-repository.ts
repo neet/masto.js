@@ -88,7 +88,7 @@ export class ListRepository
    * @param id ID of the list in the database
    * @param params Parameters
    * @return Array of Account
-   * @see https://docs.joinmastodon.org/methods/timelines/lists/
+   * @see https://docs.joinmastodon.org/methods/timelines/lists#accounts
    */
   @version({ since: '2.1.0' })
   listAccounts(
@@ -103,7 +103,7 @@ export class ListRepository
    * @param id ID of the list in the database
    * @param params Parameters
    * @return N/A
-   * @see https://docs.joinmastodon.org/methods/timelines/lists/
+   * @see https://docs.joinmastodon.org/methods/timelines/lists#accounts-add
    */
   @version({ since: '2.1.0' })
   addAccount(id: string, params: AddListAccountsParams): Promise<void> {
@@ -115,7 +115,7 @@ export class ListRepository
    * @param id ID of the list in the database
    * @param params Parameters
    * @return N/A
-   * @see https://docs.joinmastodon.org/methods/timelines/lists/
+   * @see https://docs.joinmastodon.org/methods/timelines/lists#accounts-remove
    */
   @version({ since: '2.1.0' })
   removeAccount(id: string, params: RemoveListAccountsParams): Promise<void> {

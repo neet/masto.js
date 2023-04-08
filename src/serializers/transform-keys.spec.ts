@@ -61,4 +61,21 @@ describe('transformKeys', () => {
       keyOne: [{ valueOne: 'value' }],
     });
   });
+
+  it('does not transform special characters', () => {
+    expect(
+      transformKeys(
+        {
+          key: 'value',
+          'key:key': 'value',
+          _key: 3,
+        },
+        camelCase,
+      ),
+    ).toEqual({
+      key: 'value',
+      'key:key': 'value',
+      _key: 3,
+    });
+  });
 });

@@ -93,8 +93,6 @@ export class MeasureRepository {
    */
   @version({ since: '3.5.0' })
   fetch(params: FetchMeasureParams): Promise<Admin.Measure[]> {
-    return this.http.post('/api/v1/admin/measures', params, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
+    return this.http.post('/api/v1/admin/measures', params);
   }
 }

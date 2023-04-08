@@ -26,7 +26,7 @@ export interface FetchDimensionParams {
    *
    * - `instance_languages` = Most-used languages from a remote server
    */
-  readonly keys: DimensionKey[];
+  readonly keys: readonly DimensionKey[];
   /** String (ISO 8601 Datetime). The start date for the time period. If a time is provided, it will be ignored. */
   readonly startAt?: string | null;
   /** String (ISO 8601 Datetime). The end date for the time period. If a time is provided, it will be ignored. */
@@ -63,8 +63,6 @@ export class DimensionRepository {
    * @see https://docs.joinmastodon.org/methods/admin/dimensions/#get
    */
   fetch(params: FetchDimensionParams): Promise<Admin.Dimension[]> {
-    return this.http.post('/api/v1/admin/dimensions', params, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
+    return this.http.post('/api/v1/admin/dimensions', params);
   }
 }

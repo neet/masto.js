@@ -88,7 +88,7 @@ export class AggregateRepository {
   readonly suggestions: SuggestionRepository;
   readonly timelines: TimelineRepository;
   readonly trends: TrendRepository;
-  readonly email: EmailRepository;
+  readonly emails: EmailRepository;
   readonly tags: TagRepository;
   readonly followedTags: FollowedTagRepository;
 
@@ -137,7 +137,7 @@ export class AggregateRepository {
     this.suggestions = new SuggestionRepository(http, config, logger);
     this.timelines = new TimelineRepository(http, config, logger);
     this.trends = new TrendRepository(http, config, logger);
-    this.email = new EmailRepository(http, config, logger);
+    this.emails = new EmailRepository(http, config, logger);
     this.tags = new TagRepository(http, config, logger);
     this.followedTags = new FollowedTagRepository(http, config, logger);
   }
@@ -148,6 +148,7 @@ export class AggregateRepository {
    * @return Results
    * @see https://docs.joinmastodon.org/methods/search/
    */
+  /* istanbul ignore next */
   @version({ since: '1.1.0', until: '3.0.0' })
   search(params: SearchParams): Paginator<Search, SearchParams> {
     return new Paginator(this.http, `/api/v1/search`, params);

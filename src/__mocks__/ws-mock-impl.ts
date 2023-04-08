@@ -1,6 +1,6 @@
 import EventEmitter from 'eventemitter3';
 
-import type { EventTypeMap, Ws, WsEvents } from './ws';
+import type { EventTypeMap, Ws, WsEvents } from '../ws';
 
 export const wsDisconnect = jest.fn();
 export const wsOn = jest.fn();

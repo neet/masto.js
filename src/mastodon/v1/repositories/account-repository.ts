@@ -286,7 +286,7 @@ export class AccountRepository {
    * Add the given account to the user's featured profiles. (Featured profiles are currently shown on the user's own public profile.)
    * @param id The id of the account in the database
    * @return Relationship
-   * @see https://docs.joinmastodon.org/methods/accounts/
+   * @see https://docs.joinmastodon.org/methods/accounts#pin
    */
   @version({ since: '2.5.0' })
   pin(id: string): Promise<Relationship> {

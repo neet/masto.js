@@ -229,7 +229,7 @@ export class FilterRepository
    */
   @version({ since: '4.0.0' })
   fetchStatus(id: string): Promise<FilterStatus> {
-    return this.http.get(`/api/v2/filters/${id}/statuses`);
+    return this.http.get(`/api/v2/filters/statuses/${id}`);
   }
 
   /**

@@ -37,7 +37,9 @@ export class FeaturedTagRepository implements Repository<FeaturedTag> {
    */
   @version({ since: '3.0.0' })
   create(params: CreateFeaturedTagParams): Promise<FeaturedTag> {
-    return this.http.post<FeaturedTag>('/api/v1/featured_tags', params);
+    return this.http.post<FeaturedTag>('/api/v1/featured_tags', params, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
   }
 
   /**
