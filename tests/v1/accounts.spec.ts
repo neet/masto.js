@@ -17,6 +17,7 @@ describe('account', () => {
       expect(token.accessToken).toEqual(expect.any(String));
     });
   });
+
   it('verifies credential', () => {
     return clients.use(async (alice) => {
       const me = await alice.v1.accounts.verifyCredentials();
@@ -179,7 +180,23 @@ describe('account', () => {
     });
   });
 
-  test.todo('list lists');
+  it('lists lists', () => {
+    return clients.use(2, async ([alice, bob]) => {
+      const bobAccount = await bob.v1.accounts.verifyCredentials();
+      const list = await alice.v1.lists.create({ title: 'title' });
+      await alice.v1.accounts.follow(bobAccount.id);
+
+      try {
+        await alice.v1.lists.addAccount(list.id, {
+          accountIds: [bobAccount.id],
+        });
+        const accounts = await alice.v1.accounts.listLists(bobAccount.id);
+        expect(accounts).toContainId(list.id);
+      } finally {
+        await alice.v1.lists.remove(list.id);
+      }
+    });
+  });
 
   it('lists featured tags', () => {
     return clients.use(async (client) => {
@@ -213,7 +230,13 @@ describe('account', () => {
     });
   });
 
-  test.todo('lookup');
+  it('lookup', () => {
+    return clients.use(async (client) => {
+      const me = await client.v1.accounts.verifyCredentials();
+      const account = await client.v1.accounts.lookup({ acct: me.acct });
+      expect(account.id).toBe(me.id);
+    });
+  });
 
   it('removes from followers', () => {
     return clients.use(2, async ([alice, bob]) => {

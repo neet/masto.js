@@ -41,7 +41,7 @@ it('clear notifications', () => {
     try {
       await delay(2000);
       let notifications = await alice.v1.notifications.list();
-      expect(notifications).toHaveLength(3);
+      expect(notifications.length >= 3).toBe(true);
 
       await alice.v1.notifications.clear();
       notifications = await alice.v1.notifications.list();

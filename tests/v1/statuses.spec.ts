@@ -1,4 +1,6 @@
-describe('account', () => {
+import crypto from 'node:crypto';
+
+describe('status', () => {
   it('creates, updates, and removes a status', () => {
     return clients.use(async (client) => {
       const random = Math.random().toString();
@@ -29,22 +31,85 @@ describe('account', () => {
     });
   });
 
-  test.todo('translate');
-
-  it('favourites and unfavourites a status', () => {
+  it('creates a status with an Idempotency-Key', () => {
     return clients.use(async (client) => {
-      let status = await client.v1.statuses.create({
-        status: 'status',
-        visibility: 'direct',
+      const idempotencyKey = crypto.randomUUID();
+
+      const s1 = await client.v1.statuses.create(
+        { status: 'hello' },
+        { idempotencyKey },
+      );
+      const s2 = await client.v1.statuses.create(
+        { status: 'hello' },
+        { idempotencyKey },
+      );
+
+      expect(s1.id).toBe(s2.id);
+    });
+  });
+
+  it('fetches a status context', () => {
+    return clients.use(async (client) => {
+      const s1 = await client.v1.statuses.create({
+        status: 'Hello',
+      });
+      const s2 = await client.v1.statuses.create({
+        status: 'Hello 2',
+        inReplyToId: s1.id,
+      });
+      const s3 = await client.v1.statuses.create({
+        status: 'Hello 3',
+        inReplyToId: s2.id,
       });
 
-      status = await client.v1.statuses.favourite(status.id);
-      expect(status.favourited).toBe(true);
+      try {
+        const context = await client.v1.statuses.fetchContext(s2.id);
+        expect(context.ancestors).toContainId(s1.id);
+        expect(context.descendants).toContainId(s3.id);
+      } finally {
+        await client.v1.statuses.remove(s1.id);
+        await client.v1.statuses.remove(s2.id);
+        await client.v1.statuses.remove(s3.id);
+      }
+    });
+  });
 
-      status = await client.v1.statuses.unfavourite(status.id);
-      expect(status.favourited).toBe(false);
+  it('translates a status', () => {
+    return clients.use(async (client) => {
+      const { id } = await client.v1.statuses.create({
+        status: 'Hello',
+      });
 
-      await client.v1.statuses.remove(status.id);
+      try {
+        const translation = await client.v1.statuses.translate(id, {
+          lang: 'ja',
+        });
+        expect(translation.content).toEqual(expect.any(String));
+      } finally {
+        await client.v1.statuses.remove(id);
+      }
+    });
+  });
+
+  it('favourites and unfavourites a status', () => {
+    return clients.use(2, async ([alice, bob]) => {
+      const bobAccount = await bob.v1.accounts.verifyCredentials();
+      const { id: statusId } = await alice.v1.statuses.create({
+        status: 'status',
+      });
+
+      try {
+        let status = await bob.v1.statuses.favourite(statusId);
+        expect(status.favourited).toBe(true);
+
+        const favourites = await bob.v1.statuses.listFavouritedBy(statusId);
+        expect(favourites).toContainId(bobAccount.id);
+
+        status = await bob.v1.statuses.unfavourite(statusId);
+        expect(status.favourited).toBe(false);
+      } finally {
+        await alice.v1.statuses.remove(statusId);
+      }
     });
   });
 
@@ -55,30 +120,37 @@ describe('account', () => {
         visibility: 'direct',
       });
 
-      status = await client.v1.statuses.mute(status.id);
-      expect(status.muted).toBe(true);
+      try {
+        status = await client.v1.statuses.mute(status.id);
+        expect(status.muted).toBe(true);
 
-      status = await client.v1.statuses.unmute(status.id);
-      expect(status.muted).toBe(false);
-
-      await client.v1.statuses.remove(status.id);
+        status = await client.v1.statuses.unmute(status.id);
+        expect(status.muted).toBe(false);
+      } finally {
+        await client.v1.statuses.remove(status.id);
+      }
     });
   });
 
   it('reblogs and unreblog a status', () => {
-    return clients.use(async (client) => {
-      let status = await client.v1.statuses.create({
+    return clients.use(2, async ([alice, bob]) => {
+      const bobAccount = await bob.v1.accounts.verifyCredentials();
+      const { id: statusId } = await alice.v1.statuses.create({
         status: 'status',
-        visibility: 'private',
       });
 
-      status = await client.v1.statuses.reblog(status.id);
-      expect(status.reblogged).toBe(true);
+      try {
+        let status = await bob.v1.statuses.reblog(statusId);
+        expect(status.reblogged).toBe(true);
 
-      status = await client.v1.statuses.unreblog(status.id);
-      expect(status.reblogged).toBe(false);
+        const reblogs = await alice.v1.statuses.listRebloggedBy(statusId);
+        expect(reblogs).toContainId(bobAccount.id);
 
-      await client.v1.statuses.remove(status.id);
+        status = await bob.v1.statuses.unreblog(statusId);
+        expect(status.reblogged).toBe(false);
+      } finally {
+        await alice.v1.statuses.remove(statusId);
+      }
     });
   });
 

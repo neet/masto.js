@@ -1,5 +1,3 @@
-import { delay } from '../../src/utils';
-
 it('mutates a list', () => {
   return clients.use(2, async ([alice, bob]) => {
     const bobAccount = await bob.v1.accounts.verifyCredentials();
@@ -18,7 +16,6 @@ it('mutates a list', () => {
       expect(lists).toContainId(list.id);
 
       await alice.v1.lists.addAccount(list.id, { accountIds: [bobAccount.id] });
-      await delay(3000);
       const accounts = await alice.v1.lists.listAccounts(list.id);
       expect(accounts).toContainId(bobAccount.id);
     } finally {

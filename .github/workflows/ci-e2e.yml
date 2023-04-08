@@ -71,6 +71,8 @@ jobs:
           -p 3000:3000
           -p 4000:4000
           --name ${{ env.MASTODON_CONTAINER }} 
+          -e DEEPL_PLAN=${{ secrets.DEEPL_PLAN }}
+          -e DEEPL_API_KEY=${{ secrets.DEEPL_API_KEY }}
           --env-file ./.github/.env.test
           docker.io/neetshin/mastodon-dev:latest
           bash -c "foreman start"

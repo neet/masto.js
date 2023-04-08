@@ -63,6 +63,23 @@ describe('Paginator', () => {
     });
   });
 
+  it('is AsyncIterable', async () => {
+    const paginator = new Paginator(http, '/v1/api/timelines', {
+      foo: 'bar',
+    });
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    for await (const _ of paginator) {
+      break;
+    }
+
+    expect(http.request).toBeCalledWith({
+      requestInit: { method: 'GET' },
+      path: '/v1/api/timelines',
+      searchParams: { foo: 'bar' },
+    });
+  });
+
   it('clones itself', async () => {
     const paginator1 = new Paginator(http, '/some/api', { query: 'value' });
     const paginator2 = paginator1.clone();
@@ -123,5 +140,25 @@ describe('Paginator', () => {
       requestInit: { method: 'GET' },
       searchParams: { types: ['mention'], max_id: '123456' },
     });
+  });
+
+  it('is thenable', () => {
+    const paginator = new Paginator(http, '/v1/api/timelines');
+    const onFulfilled = jest.fn();
+    paginator.then(onFulfilled);
+    expect(onFulfilled).toBeCalledTimes(0);
+  });
+
+  it('is thenable (error)', () => {
+    const paginator = new Paginator(http, '/v1/api/timelines');
+    http.request.mockImplementation(() => {
+      throw new Error('mock error');
+    });
+
+    const onFulfilled = jest.fn();
+    const onRejected = jest.fn();
+    paginator.then(onFulfilled, onRejected);
+    expect(onFulfilled).not.toBeCalled();
+    expect(onRejected).toBeCalledTimes(0);
   });
 });

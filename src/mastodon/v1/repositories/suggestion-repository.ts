@@ -41,6 +41,7 @@ export class SuggestionRepository
    * @see https://docs.joinmastodon.org/methods/accounts/suggestions/
    */
   @version({ since: '2.4.3' })
+  /* istanbul ignore next */
   remove(id: string): Promise<void> {
     return this.http.delete(`/api/v1/suggestions/${id}`);
   }

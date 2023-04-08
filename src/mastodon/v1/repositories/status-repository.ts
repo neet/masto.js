@@ -184,6 +184,7 @@ export class StatusRepository implements Repository<Status> {
    */
   @deprecated('Use `card` attribute of status instead')
   @version({ since: '0.0.0', until: '2.9.3' })
+  /* istanbul ignore next */
   fetchCard(id: string): Promise<PreviewCard> {
     return this.http.get(`/api/v1/statuses/${id}/card`);
   }

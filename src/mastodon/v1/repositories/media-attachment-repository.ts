@@ -40,8 +40,8 @@ export class MediaAttachmentRepository
    */
   @deprecated('Use MastoClient.v2.media.create instead')
   @version({ since: '0.0.0', until: '3.1.3' })
+  /* istanbul ignore next */
   create(params: CreateMediaAttachmentParams): Promise<MediaAttachment> {
-    /* istanbul-ignore-next */
     return this.http.post<MediaAttachment>(`/api/v1/media`, params, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
