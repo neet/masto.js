@@ -3,10 +3,10 @@ import { version } from '../../../../decorators';
 import type { Http } from '../../../../http';
 import type { Logger } from '../../../../logger';
 import { Paginator } from '../../../../paginator';
-import type { Repository } from '../../../repository';
+import type { DefaultPaginationParams, Repository } from '../../../repository';
 import type { Admin } from '../../entities';
 
-export interface ListAccountsParams {
+export interface ListAccountsParams extends DefaultPaginationParams {
   /** Filter for local accounts? */
   readonly local?: boolean | null;
   /** Filter for remote accounts? */
@@ -23,6 +23,8 @@ export interface ListAccountsParams {
   readonly silenced?: boolean | null;
   /** Filter for currently suspended accounts? */
   readonly suspended?: boolean | null;
+  /** Boolean. Filter for accounts force-marked as sensitive? */
+  readonly sensitized?: boolean | null;
   /** Username to search for */
   readonly username?: string | null;
   /** Display name to search for */
@@ -40,6 +42,7 @@ export type AccountActionType =
   | 'none'
   | 'disable'
   | 'silence'
+  | 'sensitive'
   | 'suspend';
 
 export interface CreateActionParams {
@@ -94,10 +97,10 @@ export class AccountRepository
    * @param id g ID of the account
    * @param params Params
    * @return Account
-   * @see https://docs.joinmastodon.org/methods/admin/
+   * @see https://docs.joinmastodon.org/methods/admin/accounts/#action
    */
   @version({ since: '2.9.1' })
-  createAction(id: string, params: CreateActionParams): Promise<Admin.Account> {
+  createAction(id: string, params: CreateActionParams): Promise<void> {
     return this.http.post(`/api/v1/admin/accounts/${id}/action`, params);
   }
 
@@ -154,5 +157,16 @@ export class AccountRepository
   @version({ since: '2.9.1' })
   unsuspend(id: string): Promise<Admin.Account> {
     return this.http.post(`/api/v1/admin/accounts/${id}/unsuspend`);
+  }
+
+  /**
+   * Unmark an account as sensitive
+   * @param id ID of the account
+   * @return AdminAccount
+   * @see https://docs.joinmastodon.org/methods/admin/accounts/#unsensitive
+   */
+  @version({ since: '2.9.1' })
+  unsensitive(id: string): Promise<Admin.Account> {
+    return this.http.post(`/api/v1/admin/accounts/${id}/unsensitive`);
   }
 }

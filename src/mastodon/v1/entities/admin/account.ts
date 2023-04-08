@@ -36,6 +36,8 @@ export interface Account {
   silenced: boolean;
   /** Whether the account is currently suspended. */
   suspended: boolean;
+  /** Boolean. Filter for accounts force-marked as sensitive? */
+  sensitized: boolean;
   /** User-level information about the account. */
   account: PublicAccount;
   /** The ID of the application that created this account. */
