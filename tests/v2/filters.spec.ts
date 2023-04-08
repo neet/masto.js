@@ -74,4 +74,24 @@ describe('filters', () => {
       }
     });
   });
+
+  it('removes a filter with _destroy', () => {
+    return clients.use(async (client) => {
+      let filter = await client.v2.filters.create({
+        title: 'Filter',
+        context: ['notifications'],
+        keywordsAttributes: [{ keyword: 'test' }, { keyword: 'test2' }],
+      });
+      expect(filter.keywords).toHaveLength(2);
+
+      try {
+        filter = await client.v2.filters.update(filter.id, {
+          keywordsAttributes: [{ id: filter.keywords[0].id, _destroy: true }],
+        });
+        expect(filter.keywords).toHaveLength(1);
+      } finally {
+        await client.v2.filters.remove(filter.id);
+      }
+    });
+  });
 });
