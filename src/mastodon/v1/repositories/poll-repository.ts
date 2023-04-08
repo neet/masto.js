@@ -7,7 +7,7 @@ import type { Poll } from '../entities';
 
 export interface VotePollParams {
   /** Array of own votes containing index for each option (starting from 0) */
-  readonly choices: string[];
+  readonly choices: number[];
 }
 
 export class PollRepository implements Repository<Poll> {
@@ -21,7 +21,7 @@ export class PollRepository implements Repository<Poll> {
    * View a poll
    * @param id ID of the poll in the database
    * @return Poll
-   * @see https://docs.joinmastodon.org/methods/statuses/polls/
+   * @see https://docs.joinmastodon.org/methods/statuses/polls#get
    */
   @version({ since: '2.8.0' })
   fetch(id: string): Promise<Poll> {
@@ -33,7 +33,7 @@ export class PollRepository implements Repository<Poll> {
    * @param id ID of the poll in the database
    * @param params Parameters
    * @return Poll
-   * @see https://docs.joinmastodon.org/methods/statuses/polls/
+   * @see https://docs.joinmastodon.org/methods/statuses/polls#vote
    */
   @version({ since: '2.8.0' })
   vote(id: string, params: VotePollParams): Promise<Poll> {
