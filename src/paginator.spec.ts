@@ -1,6 +1,6 @@
 import { Headers } from '@mastojs/ponyfills';
 
-import { HttpMockImpl } from './http/http-mock-impl';
+import { HttpMockImpl } from './__mocks__';
 import { Paginator } from './paginator';
 
 describe('Paginator', () => {

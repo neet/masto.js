@@ -1,6 +1,6 @@
 /* eslint-disable unicorn/no-useless-undefined */
+import { log, LoggerMockImpl } from '../__mocks__';
 import { LogLevel } from './log-level';
-import { log, LoggerMockImpl } from './logger-mock-impl';
 
 describe('debug', () => {
   const level = LogLevel.from('debug');

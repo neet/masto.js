@@ -73,13 +73,15 @@ export class CanonicalEmailBlockRepository
    * Canonicalize and hash an email address.
    * @param params Parameters
    * @return Array of CanonicalEmailBlock
-   * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks
+   * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks/#test
    */
   @version({ since: '4.0.0' })
   test(
     params: TestCanonicalEmailBlockParams,
-  ): Promise<Admin.CanonicalEmailBlock> {
-    return this.http.post('/api/v1/admin/canonical_email_blocks/test', params);
+  ): Promise<Admin.CanonicalEmailBlock[]> {
+    return this.http.post('/api/v1/admin/canonical_email_blocks/test', params, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
   }
 
   /**
@@ -92,7 +94,9 @@ export class CanonicalEmailBlockRepository
   create(
     params: CreateCanonicalEmailBlockParams,
   ): Promise<Admin.CanonicalEmailBlock> {
-    return this.http.post('/api/v1/admin/canonical_email_blocks', params);
+    return this.http.post('/api/v1/admin/canonical_email_blocks', params, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
   }
 
   /**

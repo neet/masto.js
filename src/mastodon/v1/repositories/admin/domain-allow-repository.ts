@@ -3,12 +3,8 @@ import { version } from '../../../../decorators';
 import type { Http } from '../../../../http';
 import type { Logger } from '../../../../logger';
 import { Paginator } from '../../../../paginator';
-import type { Repository } from '../../../repository';
+import type { DefaultPaginationParams, Repository } from '../../../repository';
 import type { Admin } from '../../entities';
-
-export type ListDomainAllowsParams = {
-  readonly limit?: number;
-};
 
 export interface CreateDomainAllowParams {
   readonly domain: string;
@@ -21,7 +17,7 @@ export class DomainAllowRepository
       CreateDomainAllowParams,
       never,
       never,
-      ListDomainAllowsParams
+      DefaultPaginationParams
     >
 {
   constructor(
@@ -34,12 +30,12 @@ export class DomainAllowRepository
    * Show information about all allowed domains
    * @param params Parameters
    * @return Array of DomainAllow
-   * @see https://docs.joinmastodon.org/methods/admin/
+   * @see https://docs.joinmastodon.org/methods/admin/domain_allows/#get
    */
   @version({ since: '4.0.0' })
   list(
-    params?: ListDomainAllowsParams,
-  ): Paginator<Admin.DomainAllow[], ListDomainAllowsParams> {
+    params?: DefaultPaginationParams,
+  ): Paginator<Admin.DomainAllow[], DefaultPaginationParams> {
     return new Paginator(this.http, '/api/v1/admin/domain_allows', params);
   }
 
@@ -47,7 +43,7 @@ export class DomainAllowRepository
    * Show information about a single allowed domain
    * @param id id of the domain
    * @return DomainAllow
-   * @see https://docs.joinmastodon.org/methods/admin/
+   * @see https://docs.joinmastodon.org/methods/admin/domain_allows/#get-one
    */
   @version({ since: '4.0.0' })
   fetch(id: string): Promise<Admin.DomainAllow> {
@@ -59,7 +55,7 @@ export class DomainAllowRepository
    * to be used when the instance is in allow-list federation mode.
    * @param params parameters
    * @return DomainAllow
-   * @see https://docs.joinmastodon.org/methods/admin/
+   * @see https://docs.joinmastodon.org/methods/admin/domain_allows/#get-one
    */
   @version({ since: '4.0.0' })
   create(params: CreateDomainAllowParams): Promise<Admin.DomainAllow> {

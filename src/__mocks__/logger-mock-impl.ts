@@ -1,4 +1,4 @@
-import { BaseLogger } from './base-logger';
+import { BaseLogger } from '../logger';
 
 export const log = jest.fn();
 

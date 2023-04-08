@@ -22,4 +22,15 @@ describe('media', () => {
     });
     expect(media.description).toBe('test');
   });
+
+  it('creates media attachment without polling', () => {
+    return clients.use(async (client) => {
+      const file = await createFile();
+      const media = await client.v2.mediaAttachments.create(
+        { file },
+        { skipPolling: true },
+      );
+      expect(media.type).toBe('image');
+    });
+  });
 });

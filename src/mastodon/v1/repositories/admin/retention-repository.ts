@@ -25,8 +25,6 @@ export class RetentionRepository {
    * @see https://docs.joinmastodon.org/methods/admin/retention/#create
    */
   create(params: CreateRetentionParams): Promise<Admin.Cohort[]> {
-    return this.http.get('/api/v1/admin/retention', params, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
+    return this.http.post('/api/v1/admin/retention', params);
   }
 }
