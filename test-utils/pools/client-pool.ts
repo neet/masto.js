@@ -81,7 +81,6 @@ export class ClientPoolImpl implements ClientPool {
       version: __misc__.instance.version,
       streamingApiUrl: __misc__.instance.urls.streamingApi,
       accessToken: token.accessToken,
-      logLevel: 'debug',
     });
 
     this.clientToToken.set(client, token);
