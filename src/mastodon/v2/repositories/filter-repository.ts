@@ -20,8 +20,8 @@ export interface CreateFilterParams {
   readonly keywordsAttributes?: readonly {
     /** String. A keyword to be added to the newly-created filter group. */
     readonly keyword?: string | null;
-    /** String. Whether the keyword should consider word boundaries. */
-    readonly wholeWord?: string | null;
+    /** Boolean. Whether the keyword should consider word boundaries. */
+    readonly wholeWord?: boolean | null;
   }[];
 }
 
@@ -40,8 +40,8 @@ export interface UpdateFilterParams {
     readonly id?: string | null;
     /** String. A keyword to be added to the newly-created filter group. */
     readonly keyword?: string | null;
-    /** String. Whether the keyword should consider word boundaries. */
-    readonly wholeWord?: string | null;
+    /** Boolean. Whether the keyword should consider word boundaries. */
+    readonly wholeWord?: boolean | null;
     /** Boolean. If true, will remove the keyword with the given ID */
     readonly _destroy?: boolean | null;
   }[];
