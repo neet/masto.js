@@ -5,18 +5,13 @@ describe('blocks', () => {
         .verifyCredentials()
         .then((account) => account.id);
 
-      await alice.v1.accounts.block(bobId);
-      const blocks = await alice.v1.blocks.list();
-
-      expect(blocks).toEqual(
-        expect.arrayContaining([
-          expect.objectContaining({
-            id: bobId,
-          }),
-        ]),
-      );
-
-      await alice.v1.accounts.unblock(bobId);
+      try {
+        await alice.v1.accounts.block(bobId);
+        const blocks = await alice.v1.blocks.list();
+        expect(blocks).toContainId(bobId);
+      } finally {
+        await alice.v1.accounts.unblock(bobId);
+      }
     });
   });
 });

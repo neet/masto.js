@@ -38,6 +38,7 @@ export class MediaAttachmentRepository
    * @return Attachment
    * @see https://docs.joinmastodon.org/methods/statuses/media/
    */
+  /* istanbul-ignore-next */
   @deprecated('Use MastoClient.v2.media.create instead')
   @version({ since: '0.0.0', until: '3.1.3' })
   create(params: CreateMediaAttachmentParams): Promise<MediaAttachment> {

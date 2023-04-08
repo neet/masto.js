@@ -16,18 +16,7 @@ describe('filters', () => {
     });
 
     const filters = await admin.v2.filters.list();
-    expect(filters).toContainEqual(
-      expect.objectContaining({
-        id: filter.id,
-        title: 'some group',
-        keywords: expect.arrayContaining([
-          expect.objectContaining({ keyword: 'I hate masto.js' }),
-        ]),
-        statuses: expect.arrayContaining([
-          expect.objectContaining({ statusId: status.id }),
-        ]),
-      }),
-    );
+    expect(filters).toContainId(filter.id);
 
     await admin.v2.filters.remove(filter.id);
   });

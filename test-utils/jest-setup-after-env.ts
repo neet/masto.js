@@ -1,3 +1,5 @@
+import './jest-extend-expect';
+
 import { createClient } from '../src';
 import { ClientPoolImpl } from './pools';
 
@@ -8,6 +10,7 @@ globalThis.admin = createClient({
   version: __misc__.instance.version,
   streamingApiUrl: __misc__.instance.urls.streamingApi,
   accessToken: __misc__.adminToken.accessToken,
+  logLevel: 'debug',
 });
 
 globalThis.clients = new ClientPoolImpl();

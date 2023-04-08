@@ -1,4 +1,22 @@
+import crypto from 'node:crypto';
+
 describe('account', () => {
+  it('creates an account', () => {
+    return clients.use(async (client) => {
+      const username = crypto.randomBytes(8).toString('hex');
+      const email = `${username}@example.com`;
+
+      const token = await client.v1.accounts.create({
+        username,
+        email,
+        password: 'password',
+        agreement: true,
+        locale: 'en',
+      });
+
+      expect(token.accessToken).toEqual(expect.any(String));
+    });
+  });
   it('verifies credential', () => {
     return clients.use(async (alice) => {
       const me = await alice.v1.accounts.verifyCredentials();
@@ -122,9 +140,7 @@ describe('account', () => {
       await alice.v1.accounts.follow(bobId);
       const followers = await alice.v1.accounts.listFollowers(bobId);
 
-      expect(followers).toEqual(
-        expect.arrayContaining([expect.objectContaining({ id: aliceId })]),
-      );
+      expect(followers).toContainId(aliceId);
       await alice.v1.accounts.unfollow(bobId);
     });
   });
@@ -141,9 +157,7 @@ describe('account', () => {
         .then((me) => me.id);
       const accounts = await alice.v1.accounts.listFollowing(aliceId);
 
-      expect(accounts).toEqual(
-        expect.arrayContaining([expect.objectContaining({ id: bobId })]),
-      );
+      expect(accounts).toContainId(bobId);
       await alice.v1.accounts.unfollow(bobId);
     });
   });
@@ -153,9 +167,7 @@ describe('account', () => {
       const status = await client.v1.statuses.create({ status: 'Hello' });
       const statuses = await client.v1.accounts.listStatuses(status.account.id);
 
-      expect(statuses).toEqual(
-        expect.arrayContaining([expect.objectContaining({ id: status.id })]),
-      );
+      expect(statuses).toContainId(status.id);
     });
   });
 
@@ -163,10 +175,7 @@ describe('account', () => {
     return clients.use(async (client) => {
       const me = await client.v1.accounts.verifyCredentials();
       const accounts = await client.v1.accounts.search({ q: me.username });
-
-      expect(accounts).toEqual(
-        expect.arrayContaining([expect.objectContaining({ id: me.id })]),
-      );
+      expect(accounts).toContainId(me.id);
     });
   });
 
@@ -180,11 +189,7 @@ describe('account', () => {
       });
 
       const tags = await client.v1.accounts.listFeaturedTags(me.id);
-      expect(tags).toEqual(
-        expect.arrayContaining([
-          expect.objectContaining({ id: featuredTag.id }),
-        ]),
-      );
+      expect(tags).toContainId(featuredTag.id);
 
       await client.v1.featuredTags.remove(featuredTag.id);
     });

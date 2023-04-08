@@ -6,10 +6,7 @@ describe('timeline', () => {
       const status = await client.v1.statuses.create({ status: 'own post' });
       await delay(3000);
       const statuses = await client.v1.timelines.listHome();
-
-      expect(statuses).toEqual(
-        expect.arrayContaining([expect.objectContaining({ id: status.id })]),
-      );
+      expect(statuses).toContainId(status.id);
     });
   });
 
@@ -17,10 +14,7 @@ describe('timeline', () => {
     return clients.use(2, async ([alice, bob]) => {
       const status = await bob.v1.statuses.create({ status: 'public post' });
       const statuses = await alice.v1.timelines.listPublic();
-
-      expect(statuses).toEqual(
-        expect.arrayContaining([expect.objectContaining({ id: status.id })]),
-      );
+      expect(statuses).toContainId(status.id);
     });
   });
 
@@ -28,10 +22,7 @@ describe('timeline', () => {
     return clients.use(async (client) => {
       const status = await client.v1.statuses.create({ status: '#mastodon' });
       const statuses = await client.v1.timelines.listHashtag('mastodon');
-
-      expect(statuses).toEqual(
-        expect.arrayContaining([expect.objectContaining({ id: status.id })]),
-      );
+      expect(statuses).toContainId(status.id);
     });
   });
 
