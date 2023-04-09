@@ -1,6 +1,4 @@
-import type { MastoConfig } from '../../../../config';
-import type { Http } from '../../../../http';
-import type { Logger } from '../../../../logger';
+import type { HttpMetaParams } from '../../../../http';
 import type { Admin } from '../../entities';
 import type { CohortFrequency } from '../../entities/admin/cohort';
 
@@ -13,18 +11,13 @@ export interface CreateRetentionParams {
   readonly frequency: CohortFrequency;
 }
 
-export class RetentionRepository {
-  constructor(
-    private readonly http: Http,
-    readonly config: MastoConfig,
-    readonly logger?: Logger,
-  ) {}
-
+export interface RetentionRepository {
   /**
    * Generate a retention data report for a given time period and bucket.
    * @see https://docs.joinmastodon.org/methods/admin/retention/#create
    */
-  create(params: CreateRetentionParams): Promise<Admin.Cohort[]> {
-    return this.http.post('/api/v1/admin/retention', params);
-  }
+  create(
+    params: CreateRetentionParams,
+    meta?: HttpMetaParams<'json'>,
+  ): Promise<Admin.Cohort[]>;
 }

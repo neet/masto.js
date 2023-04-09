@@ -1,5 +1,5 @@
-import type { AbortSignal } from '@mastojs/ponyfills';
-import { fetch, FormData, Request, Response } from '@mastojs/ponyfills';
+import type { RequestInit } from '@mastojs/ponyfills';
+import { fetch, Request, Response } from '@mastojs/ponyfills';
 
 import type { MastoConfig } from '../config';
 import type { CreateErrorParams } from '../errors';
@@ -12,7 +12,7 @@ import type { Logger } from '../logger';
 import type { Serializer } from '../serializers';
 import type { Timeout } from '../utils';
 import { BaseHttp } from './base-http';
-import { getContentType } from './get-content-type';
+import { getEncoding } from './get-encoding';
 import type { Http, HttpRequestParams, HttpRequestResult } from './http';
 
 export class HttpNativeImpl extends BaseHttp implements Http {
@@ -31,19 +31,19 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       this.logger?.info(`↑ ${request.method} ${request.url}`);
       this.logger?.debug('\tbody', request.body);
       const response = await fetch(request);
-      timeout.clear();
-
       if (!response.ok) {
         throw response;
       }
 
       const text = await response.text();
-      const contentType = getContentType(response.headers);
-      if (contentType == undefined) {
-        throw new MastoUnexpectedError('Content-Type is not defined');
+      const encoding = getEncoding(response.headers);
+      if (encoding == undefined) {
+        throw new MastoUnexpectedError(
+          'Unknown encoding is returned from the server',
+        );
       }
 
-      const data = this.serializer.deserialize(contentType, text);
+      const data = this.serializer.deserialize(encoding, text);
       this.logger?.info(`↓ ${request.method} ${request.url}`);
       this.logger?.debug('\tbody', text);
 
@@ -54,50 +54,42 @@ export class HttpNativeImpl extends BaseHttp implements Http {
     } catch (error) {
       this.logger?.debug(`HTTP failed`, error);
       throw await this.createError(error);
+    } finally {
+      timeout.clear();
     }
   }
 
   private createRequest(params: HttpRequestParams): [Request, Timeout] {
-    const { path, searchParams, requestInit } = params;
+    const { method, path, searchParams, encoding = 'json' } = params;
 
     const url = this.config.resolveHttpPath(path, searchParams);
-    const headers = this.config.createHeader(requestInit?.headers);
-    const [abortSignal, timeout] = this.config.createAbortSignal(
-      requestInit?.signal as AbortSignal,
-    );
-    const body = this.serializer.serialize(
-      getContentType(headers) ?? 'application/json',
-      params.body,
-    );
+    const headers = this.config.createHeader(params.headers);
+    const [signal, timeout] = this.config.createAbortSignal(params?.signal);
+    const body = this.serializer.serialize(encoding, params.body);
 
-    if (body instanceof FormData) {
-      // As multipart form data should contain an arbitrary boundary,
-      // leave Content-Type header undefined, so that fetch() API
-      // automatically configure Content-Type with an appropriate boundary.
-      headers.delete('Content-Type');
-    }
-
-    if (body == undefined && getContentType(headers) == 'application/json') {
-      // Since an empty string is not a valid JSON,
-      // if the body is empty and the content type is set to JSON,
-      // remove 'content-type:application/json' from headers
-      headers.delete('Content-Type');
-    }
-
-    const request = new Request(url, {
-      ...requestInit,
+    const requestInit: RequestInit = {
+      method,
       headers,
       body,
-      signal: abortSignal,
-    });
+      signal,
+    };
 
+    if (typeof body === 'string' && encoding === 'json') {
+      headers.set('Content-Type', 'application/json');
+    }
+
+    if (typeof body === 'string' && encoding === 'form-url-encoded') {
+      headers.set('Content-Type', 'application/x-www-form-urlencoded');
+    }
+
+    const request = new Request(url, requestInit);
     return [request, timeout];
   }
 
   private async createError(error: unknown): Promise<unknown> {
     if (error instanceof Response) {
       const data = this.serializer.deserialize(
-        getContentType(error.headers) ?? 'application/json',
+        getEncoding(error.headers) ?? 'json',
         await error.text(),
       );
 

@@ -5,11 +5,11 @@ import qs from 'qs';
 
 import { MastoDeserializeError } from '../errors';
 import { flattenObject } from './form-data';
-import type { Serializer } from './serializer';
+import type { Encoding, Serializer } from './serializer';
 import { transformKeys } from './transform-keys';
 
 export class SerializerNativeImpl implements Serializer {
-  serialize(type: string, rawData: unknown): BodyInit | undefined {
+  serialize(type: Encoding, rawData: unknown): BodyInit | undefined {
     if (rawData == undefined) {
       return;
     }
@@ -17,10 +17,10 @@ export class SerializerNativeImpl implements Serializer {
     const data = transformKeys(rawData, snakeCase);
 
     switch (type) {
-      case 'application/json': {
+      case 'json': {
         return JSON.stringify(data);
       }
-      case 'multipart/form-data': {
+      case 'multipart-form': {
         const formData = new FormData();
         for (const [key, value] of Object.entries(flattenObject(data))) {
           // `form-data` module has an issue that they doesn't set filename
@@ -40,7 +40,7 @@ export class SerializerNativeImpl implements Serializer {
         }
         return formData;
       }
-      case 'application/x-www-form-urlencoded': {
+      case 'form-url-encoded': {
         return qs.stringify(data as Record<string, unknown>, {
           encode: false,
           arrayFormat: 'brackets',
@@ -60,9 +60,9 @@ export class SerializerNativeImpl implements Serializer {
     });
   }
 
-  deserialize<T = Record<string, unknown>>(type: string, data: string): T {
+  deserialize<T = Record<string, unknown>>(type: Encoding, data: string): T {
     switch (type) {
-      case 'application/json': {
+      case 'json': {
         try {
           return transformKeys(JSON.parse(data), camelCase);
         } catch {

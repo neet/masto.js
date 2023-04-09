@@ -1,8 +1,5 @@
-import type { MastoConfig } from '../../../../config';
-import type { Http } from '../../../../http';
-import type { Logger } from '../../../../logger';
-import { Paginator } from '../../../../paginator';
-import type { Repository } from '../../../repository';
+import type { HttpMetaParams } from '../../../../http';
+import type { Paginator } from '../../../../paginator';
 import type { Admin } from '../../entities';
 
 export interface CreateDomainBlockParams {
@@ -28,75 +25,53 @@ export type ListDomainBlocksParams = {
 
 export type UpdateDomainBlockParams = Omit<CreateDomainBlockParams, 'domain'>;
 
-export class DomainBlockRepository
-  implements
-    Repository<
-      Admin.DomainBlock,
-      CreateDomainBlockParams,
-      UpdateDomainBlockParams,
-      never,
-      ListDomainBlocksParams
-    >
-{
-  constructor(
-    private readonly http: Http,
-    readonly config: MastoConfig,
-    readonly logger?: Logger,
-  ) {}
-
+export interface DomainBlockRepository {
   /**
-   *
+   * Show information about all blocked domains
    * @param params Parameters
-   * @return Array of DomainBlocks
-   * @see https://docs.joinmastodon.org/methods/admin/
+   * @return Array of DomainBlock
+   * @see https://docs.joinmastodon.org/methods/admin/domain_blocks/#get
    */
   list(
     params?: ListDomainBlocksParams,
-  ): Paginator<Admin.DomainBlock[], ListDomainBlocksParams> {
-    return new Paginator(this.http, '/api/v1/admin/domain_blocks', params);
-  }
-
-  /**
-   * Show information about a single blocked domain.
-   * @param id ID of the account
-   * @return DomainBlocks
-   * @see https://docs.joinmastodon.org/methods/admin/
-   */
-  fetch(id: string): Promise<Admin.DomainBlock> {
-    return this.http.get(`/api/v1/admin/domain_blocks/${id}`);
-  }
+    meta?: HttpMetaParams,
+  ): Paginator<Admin.DomainBlock[], ListDomainBlocksParams>;
 
   /**
    * Add a domain to the list of domains blocked from federating.
    * @param params Parameters
-   * @return DomainBlocks
-   * @see https://docs.joinmastodon.org/methods/admin/
+   * @return DomainBlock
+   * @see https://docs.joinmastodon.org/methods/admin/domain_blocks/#post
    */
-  create(params: CreateDomainBlockParams): Promise<Admin.DomainBlock> {
-    return this.http.post('/api/v1/admin/domain_blocks', params);
-  }
+  create(
+    params: CreateDomainBlockParams,
+    meta?: HttpMetaParams<'json'>,
+  ): Promise<Admin.DomainBlock>;
 
-  /**
-   * Change parameters for an existing domain block.
-   * @param id id of domain
-   * @param params Parameters
-   * @return DomainBlocks
-   * @see https://docs.joinmastodon.org/methods/admin/
-   */
-  update(
-    id: string,
-    params?: UpdateDomainBlockParams,
-  ): Promise<Admin.DomainBlock> {
-    return this.http.put(`/api/v1/admin/domain_blocks/${id}`, params);
-  }
+  select(id: string): {
+    /**
+     * Show information about a single blocked domain.
+     * @return DomainBlock
+     * @see https://docs.joinmastodon.org/methods/admin/domain_blocks/#get-one
+     */
+    fetch(meta?: HttpMetaParams): Promise<Admin.DomainBlock>;
 
-  /**
-   * Lift a block against a domain.
-   * @param id id of domain
-   * @return DomainBlocks
-   * @see https://docs.joinmastodon.org/methods/admin/
-   */
-  remove(id: string): Promise<void> {
-    return this.http.delete(`/api/v1/admin/domain_blocks/${id}`);
-  }
+    /**
+     * Change parameters for an existing domain block.
+     * @param params Parameters
+     * @return DomainBlock
+     * @see https://docs.joinmastodon.org/methods/admin/domain_blocks/#update
+     */
+    update(
+      params?: UpdateDomainBlockParams,
+      meta?: HttpMetaParams<'json'>,
+    ): Promise<Admin.DomainBlock>;
+
+    /**
+     * Lift a block against a domain.
+     * @return DomainBlock
+     * @see https://docs.joinmastodon.org/methods/admin/domain_blocks/#delete
+     */
+    remove(meta?: HttpMetaParams): Promise<void>;
+  };
 }

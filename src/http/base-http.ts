@@ -1,62 +1,76 @@
-import type { RequestInit } from '@mastojs/ponyfills';
-
-import type { Http, HttpRequestParams, HttpRequestResult } from './http';
+import type { Encoding } from '../serializers';
+import type {
+  Http,
+  HttpMetaParams,
+  HttpRequestParams,
+  HttpRequestResult,
+} from './http';
 
 export abstract class BaseHttp implements Http {
   abstract request(params: HttpRequestParams): Promise<HttpRequestResult>;
 
-  get<T>(path: string, data?: unknown, init: RequestInit = {}): Promise<T> {
+  get<T>(
+    path: string,
+    data?: unknown,
+    meta: HttpMetaParams<Encoding> = {},
+  ): Promise<T> {
     return this.request({
+      method: 'GET',
       path,
       searchParams: data as Record<string, unknown>,
-      requestInit: {
-        method: 'GET',
-        ...init,
-      },
+      ...meta,
     }).then((response) => response.data as T);
   }
 
-  post<T>(path: string, data?: unknown, init: RequestInit = {}): Promise<T> {
+  post<T>(
+    path: string,
+    data?: unknown,
+    meta: HttpMetaParams<Encoding> = {},
+  ): Promise<T> {
     return this.request({
+      method: 'POST',
       path,
       body: data as Record<string, unknown>,
-      requestInit: {
-        method: 'POST',
-        ...init,
-      },
+      ...meta,
     }).then((response) => response.data as T);
   }
 
-  delete<T>(path: string, data?: unknown, init: RequestInit = {}): Promise<T> {
+  delete<T>(
+    path: string,
+    data?: unknown,
+    meta: HttpMetaParams<Encoding> = {},
+  ): Promise<T> {
     return this.request({
+      method: 'DELETE',
       path,
       body: data as Record<string, unknown>,
-      requestInit: {
-        method: 'DELETE',
-        ...init,
-      },
+      ...meta,
     }).then((response) => response.data as T);
   }
 
-  put<T>(path: string, data?: unknown, init: RequestInit = {}): Promise<T> {
+  put<T>(
+    path: string,
+    data?: unknown,
+    meta: HttpMetaParams<Encoding> = {},
+  ): Promise<T> {
     return this.request({
+      method: 'PUT',
       path,
       body: data as Record<string, unknown>,
-      requestInit: {
-        method: 'PUT',
-        ...init,
-      },
+      ...meta,
     }).then((response) => response.data as T);
   }
 
-  patch<T>(path: string, data?: unknown, init: RequestInit = {}): Promise<T> {
+  patch<T>(
+    path: string,
+    data?: unknown,
+    meta: HttpMetaParams<Encoding> = {},
+  ): Promise<T> {
     return this.request({
+      method: 'PATCH',
       path,
       body: data as Record<string, unknown>,
-      requestInit: {
-        method: 'PATCH',
-        ...init,
-      },
+      ...meta,
     }).then((response) => response.data as T);
   }
 }

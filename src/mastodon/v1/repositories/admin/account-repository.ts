@@ -1,8 +1,6 @@
-import type { MastoConfig } from '../../../../config';
-import type { Http } from '../../../../http';
-import type { Logger } from '../../../../logger';
-import { Paginator } from '../../../../paginator';
-import type { DefaultPaginationParams, Repository } from '../../../repository';
+import type { HttpMetaParams } from '../../../../http';
+import type { Paginator } from '../../../../paginator';
+import type { DefaultPaginationParams } from '../../../repository';
 import type { Admin } from '../../entities';
 
 export interface ListAccountsParams extends DefaultPaginationParams {
@@ -57,15 +55,7 @@ export interface CreateActionParams {
   readonly sendEmailNotification?: boolean | null;
 }
 
-export class AccountRepository
-  implements Repository<Admin.Account, never, never, never, ListAccountsParams>
-{
-  constructor(
-    private readonly http: Http,
-    readonly config: MastoConfig,
-    readonly logger?: Logger,
-  ) {}
-
+export interface AccountRepository {
   /**
    * View accounts matching certain criteria for filtering, up to 100 at a time.
    * Pagination may be done with the HTTP Link header in the response.
@@ -75,88 +65,70 @@ export class AccountRepository
    */
   list(
     params?: ListAccountsParams,
-  ): Paginator<Admin.Account[], ListAccountsParams> {
-    return new Paginator(this.http, '/api/v1/admin/accounts', params);
-  }
+    meta?: HttpMetaParams,
+  ): Paginator<Admin.Account[], ListAccountsParams>;
 
-  /**
-   * View admin-level information about the given account.
-   * @param id ID of the account
-   * @return AdminAccount
-   * @see https://docs.joinmastodon.org/methods/admin/
-   */
-  fetch(id: string): Promise<Admin.Account> {
-    return this.http.get(`/api/v1/admin/accounts/${id}`);
-  }
+  select(id: string): {
+    /**
+     * View admin-level information about the given account.
+     * @return AdminAccount
+     * @see https://docs.joinmastodon.org/methods/admin/
+     */
+    fetch(meta?: HttpMetaParams): Promise<Admin.Account>;
 
-  /**
-   * Perform an action against an account and log this action in the moderation history.
-   * @param id g ID of the account
-   * @param params Params
-   * @return Account
-   * @see https://docs.joinmastodon.org/methods/admin/accounts/#action
-   */
-  createAction(id: string, params: CreateActionParams): Promise<void> {
-    return this.http.post(`/api/v1/admin/accounts/${id}/action`, params);
-  }
+    action: {
+      /**
+       * Perform an action against an account and log this action in the moderation history.
+       * @param params Params
+       * @return Account
+       * @see https://docs.joinmastodon.org/methods/admin/accounts/#action
+       */
+      create(
+        params: CreateActionParams,
+        meta?: HttpMetaParams<'json'>,
+      ): Promise<void>;
+    };
 
-  /**
-   * Approve the given local account if it is currently pending approval.
-   * @param id ID of the account
-   * @return AdminAccount
-   * @see https://docs.joinmastodon.org/methods/admin/
-   */
-  approve(id: string): Promise<Admin.Account> {
-    return this.http.post(`/api/v1/admin/accounts/${id}/approve`);
-  }
+    /**
+     * Approve the given local account if it is currently pending approval.
+     * @return AdminAccount
+     * @see https://docs.joinmastodon.org/methods/admin/
+     */
+    approve(meta?: HttpMetaParams): Promise<Admin.Account>;
 
-  /**
-   * Reject the given local account if it is currently pending approval.
-   * @param id ID of the account
-   * @return AdminAccount
-   * @see https://docs.joinmastodon.org/methods/admin/
-   */
-  reject(id: string): Promise<Admin.Account> {
-    return this.http.post(`/api/v1/admin/accounts/${id}/reject`);
-  }
+    /**
+     * Reject the given local account if it is currently pending approval.
+     * @return AdminAccount
+     * @see https://docs.joinmastodon.org/methods/admin/
+     */
+    reject(meta?: HttpMetaParams): Promise<Admin.Account>;
 
-  /**
-   * Re-enable a local account whose login is currently disabled.
-   * @param id ID of the account
-   * @return AdminAccount
-   * @see https://docs.joinmastodon.org/methods/admin/
-   */
-  enable(id: string): Promise<Admin.Account> {
-    return this.http.post(`/api/v1/admin/accounts/${id}/enable`);
-  }
+    /**
+     * Re-enable a local account whose login is currently disabled.
+     * @return AdminAccount
+     * @see https://docs.joinmastodon.org/methods/admin/
+     */
+    enable(meta?: HttpMetaParams): Promise<Admin.Account>;
 
-  /**
-   * Unsilence a currently silenced account.
-   * @param id ID of the account
-   * @return AdminAccount
-   * @see https://docs.joinmastodon.org/methods/admin/
-   */
-  unsilence(id: string): Promise<Admin.Account> {
-    return this.http.post(`/api/v1/admin/accounts/${id}/unsilence`);
-  }
+    /**
+     * Unsilence a currently silenced account.
+     * @return AdminAccount
+     * @see https://docs.joinmastodon.org/methods/admin/
+     */
+    unsilence(meta?: HttpMetaParams): Promise<Admin.Account>;
 
-  /**
-   * Unsuspend a currently suspended account.
-   * @param id ID of the account
-   * @return AdminAccount
-   * @see https://docs.joinmastodon.org/methods/admin/
-   */
-  unsuspend(id: string): Promise<Admin.Account> {
-    return this.http.post(`/api/v1/admin/accounts/${id}/unsuspend`);
-  }
+    /**
+     * Unsuspend a currently suspended account.
+     * @return AdminAccount
+     * @see https://docs.joinmastodon.org/methods/admin/
+     */
+    unsuspend(meta?: HttpMetaParams): Promise<Admin.Account>;
 
-  /**
-   * Unmark an account as sensitive
-   * @param id ID of the account
-   * @return AdminAccount
-   * @see https://docs.joinmastodon.org/methods/admin/accounts/#unsensitive
-   */
-  unsensitive(id: string): Promise<Admin.Account> {
-    return this.http.post(`/api/v1/admin/accounts/${id}/unsensitive`);
-  }
+    /**
+     * Unmark an account as sensitive
+     * @return AdminAccount
+     * @see https://docs.joinmastodon.org/methods/admin/accounts/#unsensitive
+     */
+    unsensitive(meta?: HttpMetaParams): Promise<Admin.Account>;
+  };
 }

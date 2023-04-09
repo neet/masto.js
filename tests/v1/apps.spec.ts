@@ -13,7 +13,7 @@ describe('apps', () => {
 
   it('verifies an app', () => {
     return clients.use(async (client) => {
-      const app = await client.v1.apps.verifyCredentials();
+      const app = await client.v1.apps.verifyCredentials.fetch();
       expect(app.name).toEqual(expect.any(String));
     });
   });
