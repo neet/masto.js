@@ -1,5 +1,7 @@
 import crypto from 'node:crypto';
 
+import { delay } from '../../src/utils';
+
 describe('status', () => {
   it('creates, updates, and removes a status', () => {
     return clients.use(async (client) => {
@@ -81,6 +83,7 @@ describe('status', () => {
       });
 
       try {
+        await delay(2000);
         const translation = await client.v1.statuses.translate(id, {
           lang: 'ja',
         });
