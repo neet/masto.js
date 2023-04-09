@@ -16,24 +16,6 @@ export class AggregateRepositoryAdmin {
   readonly retention: AdminRepositories.RetentionRepository;
   readonly trends: AdminRepositories.TrendRepository;
 
-  /** @deprecated Use `accounts` instead */
-  /* istanbul ignore next */
-  get account(): AdminRepositories.AccountRepository {
-    return this.accounts;
-  }
-
-  /** @deprecated Use `reports` instead */
-  /* istanbul ignore next */
-  get report(): AdminRepositories.ReportRepository {
-    return this.reports;
-  }
-
-  /** @deprecated Use `emailDomainBlocks` instead */
-  /* istanbul ignore next */
-  get domainEmailBlocks(): AdminRepositories.EmailDomainBlockRepository {
-    return this.emailDomainBlocks;
-  }
-
   constructor(
     private readonly http: Http,
     private readonly config: MastoConfig,
