@@ -1,13 +1,12 @@
-import type { MastoConfig } from '../../../config';
-import type { Http } from '../../../http';
-import type { Logger } from '../../../logger';
-import { Paginator } from '../../../paginator';
+import type { HttpMetaParams } from '../../../http';
+import type { Paginator } from '../../../paginator';
 import type { DefaultPaginationParams } from '../../repository';
 import type {
   Account,
   AccountCredentials,
   AccountField,
   AccountSource,
+  FamiliarFollowers,
   FeaturedTag,
   IdentityProof,
   List,
@@ -15,7 +14,6 @@ import type {
   Status,
   Token,
 } from '../entities';
-import type { FamiliarFollowers } from '../entities/familiar-followers';
 
 export interface CreateAccountParams {
   /** The desired username for the account */
@@ -105,24 +103,181 @@ export interface LookupAccountParams {
   readonly acct: string;
 }
 
-// implements Repository<Account, CreateAccountParams>
+export interface FetchRelationshipsParams {
+  /** Array of account IDs to check */
+  readonly id: readonly string[];
+}
 
-export class AccountRepository {
-  constructor(
-    private readonly http: Http,
-    readonly config: MastoConfig,
-    readonly logger?: Logger,
-  ) {}
+export interface AccountRepository {
+  select(id: string): {
+    /**
+     * View information about a profile.
+     * @return Account
+     * @see https://docs.joinmastodon.org/methods/accounts/
+     */
+    fetch(meta?: HttpMetaParams): Promise<Account>;
 
-  /**
-   * View information about a profile.
-   * @param id The id of the account in the database
-   * @return Account
-   * @see https://docs.joinmastodon.org/methods/accounts/
-   */
-  fetch(id: string): Promise<Account> {
-    return this.http.get(`/api/v1/accounts/${id}`);
-  }
+    /**
+     * Follow the given account.
+     * @param id The id of the account in the database
+     * @param params Parameters
+     * @return Relationship
+     * @see https://docs.joinmastodon.org/methods/accounts/
+     */
+    follow(
+      params?: FollowAccountParams,
+      meta?: HttpMetaParams<'json'>,
+    ): Promise<Relationship>;
+
+    /**
+     * Unfollow the given account
+     * @param id The id of the account in the database
+     * @return Relationship
+     * @see https://docs.joinmastodon.org/methods/accounts/
+     */
+    unfollow(
+      params?: FollowAccountParams,
+      meta?: HttpMetaParams<'json'>,
+    ): Promise<Relationship>;
+
+    /**
+     * Block the given account. Clients should filter statuses from this account if received (e.g. due to a boost in the Home timeline)
+     * @return Relationship
+     * @see https://docs.joinmastodon.org/methods/accounts/
+     */
+    block(meta?: HttpMetaParams): Promise<Relationship>;
+
+    /**
+     * Unblock the given account.
+     * @return Relationship
+     * @see https://docs.joinmastodon.org/methods/accounts/
+     */
+    unblock(meta?: HttpMetaParams): Promise<Relationship>;
+
+    /**
+     * Add the given account to the user's featured profiles. (Featured profiles are currently shown on the user's own public profile.)
+     * @return Relationship
+     * @see https://docs.joinmastodon.org/methods/accounts#pin
+     */
+    pin(meta?: HttpMetaParams): Promise<Relationship>;
+
+    /**
+     * Remove the given account from the user's featured profiles.
+     * @return Relationship
+     * @see https://docs.joinmastodon.org/methods/accounts/
+     */
+    unpin(meta?: HttpMetaParams): Promise<Relationship>;
+
+    /**
+     * Mute the given account. Clients should filter statuses and notifications from this account, if received (e.g. due to a boost in the Home timeline).
+     * @param params Parameter
+     * @return Relationship
+     * @see https://docs.joinmastodon.org/methods/accounts/
+     */
+    mute(
+      params?: MuteAccountParams,
+      meta?: HttpMetaParams<'json'>,
+    ): Promise<Relationship>;
+
+    /**
+     * Unmute the given account.
+     * @return Relationship
+     * @see https://docs.joinmastodon.org/methods/accounts/
+     */
+    unmute(meta?: HttpMetaParams): Promise<Relationship>;
+
+    /**
+     * @returns N/A
+     */
+    removeFromFollowers(meta?: HttpMetaParams): Promise<void>;
+
+    featuredTags: {
+      /**
+       * Get featured tag of the account
+       * @return FeaturedTags
+       */
+      list(meta?: HttpMetaParams): Paginator<FeaturedTag[]>;
+    };
+
+    note: {
+      /**
+       * Add personal note to the account
+       * @param id ID of the account
+       * @param param Parameters
+       * @return Relationship
+       */
+      create(
+        params: CreateAccountNoteParams,
+        meta?: HttpMetaParams<'json'>,
+      ): Promise<Relationship>;
+    };
+
+    identityProofs: {
+      /**
+       * Identity proofs
+       * @return Array of IdentityProof
+       * @see https://github.com/tootsuite/mastodon/pull/10297
+       */
+      list(meta?: HttpMetaParams): Paginator<IdentityProof[]>;
+    };
+
+    lists: {
+      /**
+       * Fetch the list with the given ID. Used for verifying the title of a list.
+       * @return Array of List
+       * @see https://docs.joinmastodon.org/methods/timelines/lists/
+       */
+      list(meta?: HttpMetaParams): Paginator<List[]>;
+    };
+
+    followers: {
+      /**
+       * Accounts which follow the given account, if network is not hidden by the account owner.
+       * @param params Parameters
+       * @return Array of Account
+       * @see https://docs.joinmastodon.org/methods/accounts/
+       */
+      list(
+        params?: DefaultPaginationParams,
+        meta?: HttpMetaParams,
+      ): Paginator<Account[], DefaultPaginationParams>;
+    };
+
+    following: {
+      /**
+       * Accounts which the given account is following, if network is not hidden by the account owner.
+       * @param params Parameters
+       * @return Array of Account
+       * @see https://docs.joinmastodon.org/methods/accounts/
+       */
+      list(
+        params?: DefaultPaginationParams,
+        meta?: HttpMetaParams,
+      ): Paginator<Account[], DefaultPaginationParams>;
+    };
+
+    statuses: {
+      /**
+       * Statuses posted to the given account.
+       * @param params Parameters
+       * @return Array of Status
+       * @see https://docs.joinmastodon.org/methods/accounts/
+       */
+      list(
+        params?: ListAccountStatusesParams,
+        meta?: HttpMetaParams,
+      ): Paginator<Status[], ListAccountStatusesParams>;
+    };
+  };
+
+  lookup: {
+    /**
+     * This method allows to quickly convert a username of a known account to an ID that can be used with the REST API, or to check if a username is available for sign-up
+     * @param params Parameters
+     * @return Account
+     */
+    fetch(params: LookupAccountParams, meta?: HttpMetaParams): Promise<Account>;
+  };
 
   /**
    * Creates a user and account records. Returns an account access token
@@ -132,247 +287,63 @@ export class AccountRepository {
    * @return Token
    * @see https://docs.joinmastodon.org/methods/accounts/#create
    */
-  create(params: CreateAccountParams): Promise<Token> {
-    return this.http.post(`/api/v1/accounts`, params, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
-  }
+  create(
+    params: CreateAccountParams,
+    meta: HttpMetaParams<'multipart-form'>,
+  ): Promise<Token>;
 
-  /**
-   * Test to make sure that the user token works.
-   * @return the user's own Account with Source
-   * @see https://docs.joinmastodon.org/methods/accounts/
-   */
-  verifyCredentials(): Promise<AccountCredentials> {
-    return this.http.get('/api/v1/accounts/verify_credentials');
-  }
+  verifyCredentials: {
+    /**
+     * Test to make sure that the user token works.
+     * @return the user's own Account with Source
+     * @see https://docs.joinmastodon.org/methods/accounts/
+     */
+    fetch(meta?: HttpMetaParams): Promise<AccountCredentials>;
+  };
 
-  /**
-   *  Update the user's display and preferences.
-   * @param params Parameters
-   * @return the user's own Account with Source
-   * @see https://docs.joinmastodon.org/methods/accounts/
-   */
-  updateCredentials(
-    params?: UpdateCredentialsParams,
-  ): Promise<AccountCredentials> {
-    return this.http.patch('/api/v1/accounts/update_credentials', params, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
-  }
+  updateCredentials: {
+    /**
+     *  Update the user's display and preferences.
+     * @param params Parameters
+     * @return the user's own Account with Source
+     * @see https://docs.joinmastodon.org/methods/accounts/
+     */
+    update(
+      params: UpdateCredentialsParams,
+      meta: HttpMetaParams<'multipart-form'>,
+    ): Promise<AccountCredentials>;
+  };
 
-  /**
-   * Accounts which follow the given account, if network is not hidden by the account owner.
-   * @param id The id of the account in the database
-   * @param params Parameters
-   * @return Array of Account
-   * @see https://docs.joinmastodon.org/methods/accounts/
-   */
-  listFollowers(
-    id: string,
-    params: DefaultPaginationParams = {},
-  ): Paginator<Account[], DefaultPaginationParams> {
-    return new Paginator(this.http, `/api/v1/accounts/${id}/followers`, params);
-  }
+  relationships: {
+    /**
+     * Find out whether a given account is followed, blocked, muted, etc.
+     * @return Array of Relationship
+     * @see https://docs.joinmastodon.org/methods/accounts/
+     */
+    fetch(
+      params: FetchRelationshipsParams,
+      meta?: HttpMetaParams,
+    ): Promise<Relationship[]>;
+  };
 
-  /**
-   * Accounts which the given account is following, if network is not hidden by the account owner.
-   * @param id The id of the account in the database
-   * @param params Parameters
-   * @return Array of Account
-   * @see https://docs.joinmastodon.org/methods/accounts/
-   */
-  listFollowing(
-    id: string,
-    params: DefaultPaginationParams = {},
-  ): Paginator<Account[], DefaultPaginationParams> {
-    return new Paginator(this.http, `/api/v1/accounts/${id}/following`, params);
-  }
+  search: {
+    /**
+     * Search for matching accounts by username or display name.
+     * @param params Parameters
+     * @return Array of Account
+     * @see https://docs.joinmastodon.org/methods/accounts/
+     */
+    list(
+      params?: SearchAccountsParams,
+      meta?: HttpMetaParams,
+    ): Paginator<Account[], SearchAccountsParams>;
+  };
 
-  /**
-   * Statuses posted to the given account.
-   * @param id The id of the account in the database
-   * @param params Parameters
-   * @return Array of Status
-   * @see https://docs.joinmastodon.org/methods/accounts/
-   */
-  listStatuses(
-    id: string,
-    params: ListAccountStatusesParams = {},
-  ): Paginator<Status[], ListAccountStatusesParams> {
-    return new Paginator(this.http, `/api/v1/accounts/${id}/statuses`, params);
-  }
-
-  /**
-   * Follow the given account.
-   * @param id The id of the account in the database
-   * @param params Parameters
-   * @return Relationship
-   * @see https://docs.joinmastodon.org/methods/accounts/
-   */
-  follow(id: string, params?: FollowAccountParams): Promise<Relationship> {
-    return this.http.post(`/api/v1/accounts/${id}/follow`, params);
-  }
-
-  /**
-   * Unfollow the given account
-   * @param id The id of the account in the database
-   * @return Relationship
-   * @see https://docs.joinmastodon.org/methods/accounts/
-   */
-  unfollow(id: string, params?: FollowAccountParams): Promise<Relationship> {
-    return this.http.post(`/api/v1/accounts/${id}/unfollow`, params);
-  }
-
-  /**
-   * Find out whether a given account is followed, blocked, muted, etc.
-   * @param id Array of account IDs to check
-   * @return Array of Relationship
-   * @see https://docs.joinmastodon.org/methods/accounts/
-   */
-  fetchRelationships(id: readonly string[]): Promise<Relationship[]> {
-    return this.http.get('/api/v1/accounts/relationships', {
-      id,
-    });
-  }
-
-  /**
-   * Search for matching accounts by username or display name.
-   * @param params Parameters
-   * @return Array of Account
-   * @see https://docs.joinmastodon.org/methods/accounts/
-   */
-  search(
-    params?: SearchAccountsParams,
-  ): Paginator<Account[], SearchAccountsParams> {
-    return new Paginator(this.http, `/api/v1/accounts/search`, params);
-  }
-
-  /**
-   * Block the given account. Clients should filter statuses from this account if received (e.g. due to a boost in the Home timeline)
-   * @param id The id of the account in the database
-   * @return Relationship
-   * @see https://docs.joinmastodon.org/methods/accounts/
-   */
-  block(id: string): Promise<Relationship> {
-    return this.http.post(`/api/v1/accounts/${id}/block`);
-  }
-
-  /**
-   * Unblock the given account.
-   * @param id The id of the account in the database
-   * @return Relationship
-   * @see https://docs.joinmastodon.org/methods/accounts/
-   */
-  unblock(id: string): Promise<Relationship> {
-    return this.http.post(`/api/v1/accounts/${id}/unblock`);
-  }
-
-  /**
-   * Add the given account to the user's featured profiles. (Featured profiles are currently shown on the user's own public profile.)
-   * @param id The id of the account in the database
-   * @return Relationship
-   * @see https://docs.joinmastodon.org/methods/accounts#pin
-   */
-  pin(id: string): Promise<Relationship> {
-    return this.http.post(`/api/v1/accounts/${id}/pin`);
-  }
-
-  /**
-   * Remove the given account from the user's featured profiles.
-   * @param id The id of the account in the database
-   * @return Relationship
-   * @see https://docs.joinmastodon.org/methods/accounts/
-   */
-  unpin(id: string): Promise<Relationship> {
-    return this.http.post(`/api/v1/accounts/${id}/unpin`);
-  }
-
-  /**
-   * Fetch the list with the given ID. Used for verifying the title of a list.
-   * @param id ID of the list in the database
-   * @return Array of List
-   * @see https://docs.joinmastodon.org/methods/timelines/lists/
-   */
-  listLists(id: string): Paginator<List[]> {
-    return new Paginator(this.http, `/api/v1/accounts/${id}/lists`);
-  }
-
-  /**
-   * Mute the given account. Clients should filter statuses and notifications from this account, if received (e.g. due to a boost in the Home timeline).
-   * @param id The id of the account in the database
-   * @param params Parameter
-   * @return Relationship
-   * @see https://docs.joinmastodon.org/methods/accounts/
-   */
-  mute(id: string, params?: MuteAccountParams): Promise<Relationship> {
-    return this.http.post(`/api/v1/accounts/${id}/mute`, params);
-  }
-
-  /**
-   * Unmute the given account.
-   * @param id The id of the account in the database
-   * @return Relationship
-   * @see https://docs.joinmastodon.org/methods/accounts/
-   */
-  unmute(id: string): Promise<Relationship> {
-    return this.http.post(`/api/v1/accounts/${id}/unmute`);
-  }
-
-  /**
-   * Add personal note to the account
-   * @param id ID of the account
-   * @param param Parameters
-   * @return Relationship
-   */
-  createNote(
-    id: string,
-    params: CreateAccountNoteParams,
-  ): Promise<Relationship> {
-    return this.http.post(`/api/v1/accounts/${id}/note`, params);
-  }
-
-  /**
-   * Get featured tag of the account
-   * @param id ID of the account
-   * @return FeaturedTags
-   */
-  listFeaturedTags(id: string): Paginator<FeaturedTag[]> {
-    return new Paginator(this.http, `/api/v1/accounts/${id}/featured_tags`);
-  }
-
-  /**
-   * Identity proofs
-   * @param id The id of the account in the database
-   * @return Array of IdentityProof
-   * @see https://github.com/tootsuite/mastodon/pull/10297
-   */
-  listIdentityProofs(id: string): Paginator<IdentityProof[]> {
-    return new Paginator(this.http, `/api/v1/accounts/${id}/identity_proofs`);
-  }
-
-  /**
-   * This method allows to quickly convert a username of a known account to an ID that can be used with the REST API, or to check if a username is available for sign-up
-   * @param params Parameters
-   * @return Account
-   */
-  lookup(params: LookupAccountParams): Promise<Account> {
-    return this.http.get('/api/v1/accounts/lookup', params);
-  }
-
-  /**
-   * Obtain a list of all accounts that follow a given account, filtered for accounts you follow.
-   * @returns Array of FamiliarFollowers
-   */
-  fetchFamiliarFollowers(id: string[]): Promise<FamiliarFollowers[]> {
-    return this.http.get(`/api/v1/accounts/familiar_followers`, { id });
-  }
-
-  /**
-   * @param id ID of the account
-   * @returns N/A
-   */
-  removeFromFollowers(id: string): Promise<void> {
-    return this.http.post(`/api/v1/accounts/${id}/remove_from_followers`);
-  }
+  familiarFollowers: {
+    /**
+     * Obtain a list of all accounts that follow a given account, filtered for accounts you follow.
+     * @returns Array of FamiliarFollowers
+     */
+    fetch(id: string[], meta?: HttpMetaParams): Promise<FamiliarFollowers[]>;
+  };
 }

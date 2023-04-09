@@ -1,6 +1,4 @@
-import type { MastoConfig } from '../../../config';
-import type { Http } from '../../../http';
-import type { Logger } from '../../../logger';
+import type { HttpMetaParams } from '../../../http';
 import type { Report, ReportCategory } from '../entities';
 
 export interface ReportAccountParams {
@@ -18,20 +16,15 @@ export interface ReportAccountParams {
   readonly ruleIds?: readonly string[] | null;
 }
 
-export class ReportRepository {
-  constructor(
-    private readonly http: Http,
-    readonly config: MastoConfig,
-    readonly logger?: Logger,
-  ) {}
-
+export interface ReportRepository {
   /**
    * File a report
    * @param params Parameters
    * @return Report
    * @see https://docs.joinmastodon.org/methods/accounts/reports/
    */
-  create(params: ReportAccountParams): Promise<Report> {
-    return this.http.post<Report>('/api/v1/reports', params);
-  }
+  create(
+    params: ReportAccountParams,
+    meta?: HttpMetaParams<'json'>,
+  ): Promise<Report>;
 }

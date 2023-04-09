@@ -1,7 +1,4 @@
-import type { MastoConfig } from '../../../config';
-import type { Http } from '../../../http';
-import type { Logger } from '../../../logger';
-import type { Repository } from '../../repository';
+import type { HttpMetaParams } from '../../../http';
 import type { Marker, MarkerItem, MarkerTimeline } from '../entities';
 
 export interface FetchMarkersParams {
@@ -18,24 +15,14 @@ export type CreateMarkersParams = {
   readonly [key in MarkerTimeline]?: Pick<MarkerItem, 'lastReadId'>;
 };
 
-export class MarkerRepository
-  implements Repository<Marker, CreateMarkersParams, never, FetchMarkersParams>
-{
-  constructor(
-    private readonly http: Http,
-    readonly config: MastoConfig,
-    readonly logger?: Logger,
-  ) {}
-
+export interface MarkerRepository {
   /**
    * Get saved timeline position
    * @param params Parameters
    * @return Markers
    * @see https://docs.joinmastodon.org/methods/timelines/markers/
    */
-  fetch(params?: FetchMarkersParams): Promise<Marker> {
-    return this.http.get('/api/v1/markers', params);
-  }
+  fetch(params?: FetchMarkersParams, meta?: HttpMetaParams): Promise<Marker>;
 
   /**
    * Save position in timeline
@@ -43,7 +30,8 @@ export class MarkerRepository
    * @return Markers
    * @see https://github.com/tootsuite/mastodon/pull/11762
    */
-  create(params: CreateMarkersParams): Promise<Marker> {
-    return this.http.post<Marker>('/api/v1/markers', params);
-  }
+  create(
+    params: CreateMarkersParams,
+    meta?: HttpMetaParams<'json'>,
+  ): Promise<Marker>;
 }

@@ -18,7 +18,7 @@ export class Paginator<Entity, Params = never>
     }
 
     const response = await this.http.request({
-      requestInit: { method: 'GET' },
+      method: 'GET',
       path: this.nextPath,
       searchParams: this.nextParams as Record<string, unknown>,
     });

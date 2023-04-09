@@ -1,6 +1,4 @@
-import type { MastoConfig } from '../../../../config';
-import type { Http } from '../../../../http';
-import type { Logger } from '../../../../logger';
+import type { HttpMetaParams } from '../../../../http';
 import type { Admin } from '../../entities';
 import type { MeasureKey } from '../../entities/admin';
 
@@ -79,18 +77,13 @@ export interface FetchMeasureParams {
   } | null;
 }
 
-export class MeasureRepository {
-  constructor(
-    private readonly http: Http,
-    readonly config: MastoConfig,
-    readonly logger?: Logger,
-  ) {}
-
+export interface MeasureRepository {
   /**
    * Obtain quantitative metrics about the server.
    * @see https://docs.joinmastodon.org/methods/admin/measures/#get
    */
-  fetch(params: FetchMeasureParams): Promise<Admin.Measure[]> {
-    return this.http.post('/api/v1/admin/measures', params);
-  }
+  create(
+    params: FetchMeasureParams,
+    meta?: HttpMetaParams<'json'>,
+  ): Promise<Admin.Measure[]>;
 }

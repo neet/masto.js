@@ -1,12 +1,9 @@
-import type { MastoConfig } from '../../../config';
-import type { Http } from '../../../http';
-import type { Logger } from '../../../logger';
-import type { Repository } from '../../repository';
+import type { HttpMetaParams } from '../../../../http';
 import type {
   WebPushSubscription,
   WebPushSubscriptionAlerts,
   WebPushSubscriptionPolicy,
-} from '../entities';
+} from '../../entities';
 
 export interface CreateWebPushSubscriptionParams {
   readonly subscription: {
@@ -31,64 +28,42 @@ export type UpdateWebPushSubscriptionParams = Pick<
   'data'
 >;
 
-export class WebPushSubscriptionRepository
-  implements
-    Repository<
-      WebPushSubscription,
-      CreateWebPushSubscriptionParams,
-      UpdateWebPushSubscriptionParams
-    >
-{
-  constructor(
-    private readonly http: Http,
-    readonly config: MastoConfig,
-    readonly logger?: Logger,
-  ) {}
-
+export interface WebPushSubscriptionRepository {
   /**
    * Add a Web Push API subscription to receive notifications.
    * Each access token can have one push subscription.
    * If you create a new subscription, the old subscription is deleted.
    * @param params Parameters
    * @return Returns Push Subscription
-   * @see https://docs.joinmastodon.org/methods/notifications/push/
+   * @see https://docs.joinmastodon.org/methods/push
    */
   create(
     params: CreateWebPushSubscriptionParams,
-  ): Promise<WebPushSubscription> {
-    return this.http.post<WebPushSubscription>(
-      '/api/v1/push/subscription',
-      params,
-    );
-  }
+    meta?: HttpMetaParams<'json'>,
+  ): Promise<WebPushSubscription>;
 
   /**
    * View the PushSubscription currently associated with this access token.
    * @return PushSubscription
-   * @see https://docs.joinmastodon.org/methods/notifications/push/
+   * @see https://docs.joinmastodon.org/methods/push/#get
    */
-  fetch(): Promise<WebPushSubscription> {
-    return this.http.get('/api/v1/push/subscription');
-  }
+  fetch(meta?: HttpMetaParams): Promise<WebPushSubscription>;
 
   /**
    * Updates the current push subscription. Only the data part can be updated. To change fundamentals, a new subscription must be created instead.
    * @param params Parameters
    * @return PushSubscription
-   * @see https://docs.joinmastodon.org/methods/notifications/push/
+   * @see https://docs.joinmastodon.org/methods/push/#update
    */
   update(
     params: UpdateWebPushSubscriptionParams,
-  ): Promise<WebPushSubscription> {
-    return this.http.put('/api/v1/push/subscription', params);
-  }
+    meta?: HttpMetaParams<'json'>,
+  ): Promise<WebPushSubscription>;
 
   /**
    * Removes the current Web Push API subscription.
    * @return N/A
-   * @see https://docs.joinmastodon.org/methods/notifications/push/
+   * @see https://docs.joinmastodon.org/methods/push/#delete
    */
-  remove(): Promise<void> {
-    return this.http.delete<void>('/api/v1/push/subscription');
-  }
+  remove(meta?: HttpMetaParams): Promise<void>;
 }

@@ -1,8 +1,5 @@
-import type { MastoConfig } from '../../../../config';
-import type { Http } from '../../../../http';
-import type { Logger } from '../../../../logger';
-import { Paginator } from '../../../../paginator';
-import type { Repository } from '../../../repository';
+import type { HttpMetaParams } from '../../../../http';
+import type { Paginator } from '../../../../paginator';
 import type { Admin } from '../../entities';
 
 export interface ListReportsParams {
@@ -12,15 +9,7 @@ export interface ListReportsParams {
   readonly byTargetDomain?: string | null;
 }
 
-export class ReportRepository
-  implements Repository<Admin.Report, never, never, never, ListReportsParams>
-{
-  constructor(
-    private readonly http: Http,
-    readonly config: MastoConfig,
-    readonly logger?: Logger,
-  ) {}
-
+export interface ReportRepository {
   /**
    * View all reports. Pagination may be done with HTTP Link header in the response.
    * @param params Parameters
@@ -29,57 +18,43 @@ export class ReportRepository
    */
   list(
     params?: ListReportsParams,
-  ): Paginator<Admin.Report[], ListReportsParams> {
-    return new Paginator(this.http, '/api/v1/admin/reports', params);
-  }
+    meta?: HttpMetaParams,
+  ): Paginator<Admin.Report[], ListReportsParams>;
 
-  /**
-   * View information about the report with the given ID.
-   * @param id ID of the report
-   * @return AdminReport
-   * @see https://docs.joinmastodon.org/methods/admin/
-   */
-  fetch(id: string): Promise<Admin.Report> {
-    return this.http.get(`/api/v1/admin/reports/${id}`);
-  }
+  select(id: string): {
+    /**
+     * View information about the report with the given ID.
+     * @return AdminReport
+     * @see https://docs.joinmastodon.org/methods/admin/
+     */
+    fetch(meta?: HttpMetaParams): Promise<Admin.Report>;
 
-  /**
-   * Claim the handling of this report to yourself.
-   * @param id ID of the report
-   * @return AdminReport
-   * @see https://docs.joinmastodon.org/methods/admin/
-   */
-  assignToSelf(id: string): Promise<Admin.Report> {
-    return this.http.post(`/api/v1/admin/reports/${id}/assign_to_self`);
-  }
+    /**
+     * Claim the handling of this report to yourself.
+     * @return AdminReport
+     * @see https://docs.joinmastodon.org/methods/admin/
+     */
+    assignToSelf(meta?: HttpMetaParams): Promise<Admin.Report>;
 
-  /**
-   * Unassign a report so that someone else can claim it.
-   * @param id ID of the report
-   * @return AdminReport
-   * @see https://docs.joinmastodon.org/methods/admin/
-   */
-  unassign(id: string): Promise<Admin.Report> {
-    return this.http.post(`/api/v1/admin/reports/${id}/unassign`);
-  }
+    /**
+     * Unassign a report so that someone else can claim it.
+     * @return AdminReport
+     * @see https://docs.joinmastodon.org/methods/admin/
+     */
+    unassign(meta?: HttpMetaParams): Promise<Admin.Report>;
 
-  /**
-   * Mark a report as resolved with no further action taken.
-   * @param id ID of the report
-   * @return AdminReport
-   * @see https://docs.joinmastodon.org/methods/admin/
-   */
-  resolve(id: string): Promise<Admin.Report> {
-    return this.http.post(`/api/v1/admin/reports/${id}/resolve`);
-  }
+    /**
+     * Mark a report as resolved with no further action taken.
+     * @return AdminReport
+     * @see https://docs.joinmastodon.org/methods/admin/
+     */
+    resolve(meta?: HttpMetaParams): Promise<Admin.Report>;
 
-  /**
-   * Reopen a currently closed report.
-   * @param id ID of the report
-   * @return AdminReport
-   * @see https://docs.joinmastodon.org/methods/admin/
-   */
-  reopen(id: string): Promise<Admin.Report> {
-    return this.http.post(`/api/v1/admin/reports/${id}/reopen`);
-  }
+    /**
+     * Reopen a currently closed report.
+     * @return AdminReport
+     * @see https://docs.joinmastodon.org/methods/admin/
+     */
+    reopen(meta?: HttpMetaParams): Promise<Admin.Report>;
+  };
 }

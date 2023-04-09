@@ -5,10 +5,10 @@ it('handles ip blocks', async () => {
   });
 
   try {
-    ipBlock = await admin.v1.admin.ipBlocks.fetch(ipBlock.id);
+    ipBlock = await admin.v1.admin.ipBlocks.select(ipBlock.id).fetch();
     expect(ipBlock.ip).toBe('65.10.51.60/32');
 
-    ipBlock = await admin.v1.admin.ipBlocks.update(ipBlock.id, {
+    ipBlock = await admin.v1.admin.ipBlocks.select(ipBlock.id).update({
       severity: 'sign_up_requires_approval',
     });
     expect(ipBlock.severity).toBe('sign_up_requires_approval');
@@ -16,6 +16,6 @@ it('handles ip blocks', async () => {
     const list = await admin.v1.admin.ipBlocks.list();
     expect(list).toContainId(ipBlock.id);
   } finally {
-    await admin.v1.admin.ipBlocks.remove(ipBlock.id);
+    await admin.v1.admin.ipBlocks.select(ipBlock.id).remove();
   }
 });

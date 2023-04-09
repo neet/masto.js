@@ -5,14 +5,16 @@ const _transformKeys = <T>(
   transform: (key: string) => string,
 ): T => {
   if (Array.isArray(data)) {
-    return data.map((value) => transformKeys(value, transform)) as unknown as T;
+    return data.map((value) =>
+      _transformKeys(value, transform),
+    ) as unknown as T;
   }
 
   if (isObject(data)) {
     return Object.fromEntries(
       Object.entries(data).map(([key, value]) => [
         transform(key),
-        transformKeys(value, transform),
+        _transformKeys(value, transform),
       ]),
     ) as T;
   }

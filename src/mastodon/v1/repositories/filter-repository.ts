@@ -1,8 +1,5 @@
-import type { MastoConfig } from '../../../config';
-import type { Http } from '../../../http';
-import type { Logger } from '../../../logger';
-import { Paginator } from '../../../paginator';
-import type { Repository } from '../../repository';
+import type { HttpMetaParams } from '../../../http';
+import type { Paginator } from '../../../paginator';
 import type { Filter, FilterContext } from '../entities';
 
 export interface CreateFilterParams {
@@ -12,7 +9,7 @@ export interface CreateFilterParams {
    * Array of enumerable strings `home`, `notifications`, `public`, `thread`.
    * At least one context must be specified.
    */
-  readonly context: FilterContext[] | null;
+  readonly context: readonly FilterContext[] | null;
   /** Should the server irreversibly drop matching entities from home and notifications? */
   readonly irreversible?: boolean | null;
   /** Consider word boundaries? */
@@ -23,33 +20,40 @@ export interface CreateFilterParams {
 
 export type UpdateFilterParams = CreateFilterParams;
 
-export class FilterRepository
-  implements Repository<Filter, CreateFilterParams, UpdateFilterParams>
-{
-  constructor(
-    private readonly http: Http,
-    readonly config: MastoConfig,
-    readonly logger?: Logger,
-  ) {}
-
+export interface FilterRepository {
   /**
    * View all filters
    * @return Filter
    * @see https://docs.joinmastodon.org/methods/accounts/filters/
    */
-  list(): Paginator<Filter[]> {
-    return new Paginator(this.http, `/api/v1/filters`);
-  }
+  list(meta?: HttpMetaParams): Paginator<Filter[]>;
 
-  /**
-   * View a single filter
-   * @param id ID of the filter
-   * @return Returns Filter
-   * @see https://docs.joinmastodon.org/methods/accounts/filters/
-   */
-  fetch(id: string): Promise<Filter> {
-    return this.http.get<Filter>(`/api/v1/filters/${id}`);
-  }
+  select(id: string): {
+    /**
+     * View a single filter
+     * @return Returns Filter
+     * @see https://docs.joinmastodon.org/methods/accounts/filters/
+     */
+    fetch(meta?: HttpMetaParams): Promise<Filter>;
+
+    /**
+     * Update a filter
+     * @param params Parameters
+     * @return Filter
+     * @see https://docs.joinmastodon.org/methods/accounts/filters/
+     */
+    update(
+      params?: UpdateFilterParams,
+      meta?: HttpMetaParams<'json'>,
+    ): Promise<Filter>;
+
+    /**
+     * Remove a filter
+     * @return N/A
+     * @see https://docs.joinmastodon.org/methods/accounts/filters/
+     */
+    remove(meta?: HttpMetaParams): Promise<void>;
+  };
 
   /**
    * Create a filter
@@ -57,28 +61,8 @@ export class FilterRepository
    * @return Filter
    * @see https://docs.joinmastodon.org/methods/accounts/filters/
    */
-  create(params?: CreateFilterParams): Promise<Filter> {
-    return this.http.post<Filter>(`/api/v1/filters`, params);
-  }
-
-  /**
-   * Update a filter
-   * @param id ID of the filter in the database
-   * @param params Parameters
-   * @return Filter
-   * @see https://docs.joinmastodon.org/methods/accounts/filters/
-   */
-  update(id: string, params?: UpdateFilterParams): Promise<Filter> {
-    return this.http.put<Filter>(`/api/v1/filters/${id}`, params);
-  }
-
-  /**
-   * Remove a filter
-   * @param id ID of the filter in the database
-   * @return N/A
-   * @see https://docs.joinmastodon.org/methods/accounts/filters/
-   */
-  remove(id: string): Promise<void> {
-    return this.http.delete<void>(`/api/v1/filters/${id}`);
-  }
+  create(
+    params?: CreateFilterParams,
+    meta?: HttpMetaParams<'json'>,
+  ): Promise<Filter>;
 }

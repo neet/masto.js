@@ -15,7 +15,6 @@ describe('Config', () => {
     const headers = config.createHeader({ extra: 'header' });
 
     expect(headers.get('Authorization')).toBe('Bearer token');
-    expect(headers.get('Content-Type')).toBe('application/json');
     expect(headers.get('extra')).toBe('header');
   });
 
@@ -119,6 +118,7 @@ describe('Config', () => {
         url: 'https://mastodon.social',
         streamingApiUrl: 'wss://mastodon.social',
         accessToken: 'token',
+        useInsecureWebSocketToken: true,
       },
       new SerializerNativeImpl(),
     );
@@ -148,6 +148,7 @@ describe('Config', () => {
         url: 'https://mastodon.social',
         streamingApiUrl: 'wss://mastodon.social',
         accessToken: 'token',
+        useInsecureWebSocketToken: true,
       },
       new SerializerNativeImpl(),
     );

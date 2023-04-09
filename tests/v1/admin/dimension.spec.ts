@@ -1,5 +1,5 @@
 it('fetches dimension', async () => {
-  const dimension = await admin.v1.admin.dimensions.fetch({
+  const dimension = await admin.v1.admin.dimensions.create({
     keys: ['languages', 'sources'],
   });
   expect(dimension).toEqual(

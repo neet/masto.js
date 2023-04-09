@@ -1,8 +1,6 @@
-import type { MastoConfig } from '../../../config';
-import type { Http } from '../../../http';
-import type { Logger } from '../../../logger';
-import { Paginator } from '../../../paginator';
-import type { DefaultPaginationParams, Repository } from '../../repository';
+import type { HttpMetaParams } from '../../../http';
+import type { Paginator } from '../../../paginator';
+import type { DefaultPaginationParams } from '../../repository';
 import type { ScheduledStatus } from '../entities';
 
 export interface UpdateScheduledStatusParams {
@@ -10,22 +8,7 @@ export interface UpdateScheduledStatusParams {
   readonly scheduledAt: string;
 }
 
-export class ScheduledStatusRepository
-  implements
-    Repository<
-      ScheduledStatus,
-      never,
-      UpdateScheduledStatusParams,
-      never,
-      DefaultPaginationParams
-    >
-{
-  constructor(
-    private readonly http: Http,
-    readonly config: MastoConfig,
-    readonly logger?: Logger,
-  ) {}
-
+export interface ScheduledStatusRepository {
   /**
    * View scheduled statuses
    * @param params Parameters
@@ -34,41 +17,33 @@ export class ScheduledStatusRepository
    */
   list(
     params?: DefaultPaginationParams,
-  ): Paginator<ScheduledStatus[], DefaultPaginationParams> {
-    return new Paginator(this.http, '/api/v1/scheduled_statuses', params);
-  }
+    meta?: HttpMetaParams,
+  ): Paginator<ScheduledStatus[], DefaultPaginationParams>;
 
-  /**
-   * View a single scheduled status
-   * @param id ID of the scheduled status in the database.
-   * @return ScheduledStatus
-   * @see https://docs.joinmastodon.org/methods/statuses/scheduled_statuses/
-   */
-  fetch(id: string): Promise<ScheduledStatus> {
-    return this.http.get(`/api/v1/scheduled_statuses/${id}`);
-  }
+  select(id: string): {
+    /**
+     * View a single scheduled status
+     * @return ScheduledStatus
+     * @see https://docs.joinmastodon.org/methods/statuses/scheduled_statuses/
+     */
+    fetch(meta?: HttpMetaParams): Promise<ScheduledStatus>;
 
-  /**
-   * Update Scheduled status
-   * @param id ID of the Status to be scheduled
-   * @param params Parameters
-   * @return ScheduledStatus
-   * @see https://docs.joinmastodon.org/api/rest/scheduled-statuses/#put-api-v1-scheduled-statuses-id
-   */
-  update(
-    id: string,
-    params: UpdateScheduledStatusParams,
-  ): Promise<ScheduledStatus> {
-    return this.http.put(`/api/v1/scheduled_statuses/${id}`, params);
-  }
+    /**
+     * Update Scheduled status
+     * @param params Parameters
+     * @return ScheduledStatus
+     * @see https://docs.joinmastodon.org/api/rest/scheduled-statuses/#put-api-v1-scheduled-statuses-id
+     */
+    update(
+      params: UpdateScheduledStatusParams,
+      meta?: HttpMetaParams<'json'>,
+    ): Promise<ScheduledStatus>;
 
-  /**
-   * Cancel a scheduled status
-   * @param id ID of the scheduled status in the database.
-   * @return N/A
-   * @see https://docs.joinmastodon.org/methods/statuses/scheduled_statuses/
-   */
-  remove(id: string): Promise<void> {
-    return this.http.delete(`/api/v1/scheduled_statuses/${id}`);
-  }
+    /**
+     * Cancel a scheduled status
+     * @return N/A
+     * @see https://docs.joinmastodon.org/methods/statuses/scheduled_statuses/
+     */
+    remove(meta?: HttpMetaParams): Promise<void>;
+  };
 }

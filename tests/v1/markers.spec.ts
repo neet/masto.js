@@ -9,7 +9,7 @@ it('creates a marker', () => {
       marker = await client.v1.markers.fetch({ timeline: ['home'] });
       expect(marker.home.lastReadId).toBe(status.id);
     } finally {
-      await client.v1.statuses.remove(status.id);
+      await client.v1.statuses.select(status.id).remove();
     }
   });
 });

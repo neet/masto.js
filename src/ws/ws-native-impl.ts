@@ -55,10 +55,7 @@ export class WsEventsNativeImpl
    * @param message Websocket message
    */
   private handleMessage = ({ data }: WebSocket.MessageEvent): void => {
-    const { event, payload } = this.serializer.deserialize<Event>(
-      'application/json',
-      data,
-    );
+    const { event, payload } = this.serializer.deserialize<Event>('json', data);
 
     this.logger.info(`↓ WEBSOCKET ${event}`);
     this.logger.debug('\tbody', payload);
@@ -70,7 +67,7 @@ export class WsEventsNativeImpl
 
     let args: EventTypeMap[EventType] = [];
     try {
-      args.push(this.serializer.deserialize('application/json', payload));
+      args.push(this.serializer.deserialize('json', payload));
     } catch {
       args = [];
     }
