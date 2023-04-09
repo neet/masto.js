@@ -1,3 +1,31 @@
+## [5.11.0](https://github.com/neet/masto.js/compare/v5.10.0...v5.11.0) (2023-04-09)
+
+
+### Features
+
+* Add `sensitized` flag to AdminAccount ([18e2221](https://github.com/neet/masto.js/commit/18e222147dcd6e1106977c0ed7e50d6b7f96e339))
+
+
+### Bug Fixes
+
+* Enable carry forward ([d68c2c6](https://github.com/neet/masto.js/commit/d68c2c67e702d1f639b64d13263e5a7e159f9101))
+* Fix email confirmation endpoint ([fb23044](https://github.com/neet/masto.js/commit/fb2304486ca7e100b6de94c7b9ed4478e12ed6b6))
+* Fix filter.fetchStatus URL ([75a310b](https://github.com/neet/masto.js/commit/75a310b00a036d9612c9830ed6e4c55b3db303b9))
+* Fix keys of v1.preferences.fetch ([436b72e](https://github.com/neet/masto.js/commit/436b72e18d08a5f353fabbb7ce202b6ff116f9a0))
+* Fix poll.vote parameters ([1a7114e](https://github.com/neet/masto.js/commit/1a7114e4f415df5b849d436c5f58048200dd201c))
+* wholeWord is a boolean, not a string ([1fc082a](https://github.com/neet/masto.js/commit/1fc082a458378bb3bb8c7ab8942673e6e7939e9c))
+
+
+### Chores
+
+* **test:** Add cache layer to test tokens ([df5a307](https://github.com/neet/masto.js/commit/df5a307e277253b3ce3c9bd2e2d332094537c659))
+* **test:** Add E2E tests with multiple accounts ([8b4b46f](https://github.com/neet/masto.js/commit/8b4b46ff6337906149223ee9365f56965b281143))
+* **test:** Add test for _destroy parameter for filters.update ([0381091](https://github.com/neet/masto.js/commit/03810918819e617cb065f65de5b871d8c77fd373))
+* **tests:** Add tests for accounts, bookmarks, etc ([71e11ca](https://github.com/neet/masto.js/commit/71e11caf6765fd1d6b98914d46ad32c3e308775b))
+* **tests:** Add tests for admin APIs ([7efa306](https://github.com/neet/masto.js/commit/7efa3068beab769364505f702d3230b194e18443))
+* **tests:** Add tests for lists, notifications, etc ([8494316](https://github.com/neet/masto.js/commit/84943169621bd4c3af0787bfb9b2f139c872e2e9))
+* **tests:** Suppress verbose logs ([767675f](https://github.com/neet/masto.js/commit/767675f691e8f8fadf97cb1e8fc67fde4b37e06a))
+
 ## [5.10.0](https://github.com/neet/masto.js/compare/v5.9.2...v5.10.0) (2023-02-19)
 
 
