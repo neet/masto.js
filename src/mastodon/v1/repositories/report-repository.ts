@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 
@@ -33,7 +32,6 @@ export class ReportRepository {
    * @return Report
    * @see https://docs.joinmastodon.org/methods/accounts/reports/
    */
-  @version({ since: '1.1.0' })
   create(params: ReportAccountParams): Promise<void> {
     return this.http.post<void>('/api/v1/reports', params);
   }

@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
@@ -33,7 +32,6 @@ export class ScheduledStatusRepository
    * @return Array of ScheduledStatus
    * @see https://docs.joinmastodon.org/methods/statuses/scheduled_statuses/
    */
-  @version({ since: '2.7.0' })
   list(
     params?: DefaultPaginationParams,
   ): Paginator<ScheduledStatus[], DefaultPaginationParams> {
@@ -46,7 +44,6 @@ export class ScheduledStatusRepository
    * @return ScheduledStatus
    * @see https://docs.joinmastodon.org/methods/statuses/scheduled_statuses/
    */
-  @version({ since: '2.7.0' })
   fetch(id: string): Promise<ScheduledStatus> {
     return this.http.get(`/api/v1/scheduled_statuses/${id}`);
   }
@@ -58,7 +55,6 @@ export class ScheduledStatusRepository
    * @return ScheduledStatus
    * @see https://docs.joinmastodon.org/api/rest/scheduled-statuses/#put-api-v1-scheduled-statuses-id
    */
-  @version({ since: '2.7.0' })
   update(
     id: string,
     params: UpdateScheduledStatusParams,
@@ -72,7 +68,6 @@ export class ScheduledStatusRepository
    * @return N/A
    * @see https://docs.joinmastodon.org/methods/statuses/scheduled_statuses/
    */
-  @version({ since: '2.7.0' })
   remove(id: string): Promise<void> {
     return this.http.delete(`/api/v1/scheduled_statuses/${id}`);
   }

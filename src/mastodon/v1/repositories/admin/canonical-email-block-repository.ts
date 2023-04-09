@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../../config';
-import { version } from '../../../../decorators';
 import type { Http } from '../../../../http';
 import type { Logger } from '../../../../logger';
 import { Paginator } from '../../../../paginator';
@@ -47,7 +46,6 @@ export class CanonicalEmailBlockRepository
    * @return Array of CanonicalEmailBlock
    * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks/
    */
-  @version({ since: '4.0.0' })
   list(
     params?: DefaultPaginationParams,
   ): Paginator<Admin.CanonicalEmailBlock[], DefaultPaginationParams> {
@@ -64,7 +62,6 @@ export class CanonicalEmailBlockRepository
    * @return CanonicalEmailBlock
    * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks
    */
-  @version({ since: '4.0.0' })
   fetch(id: string): Promise<Admin.CanonicalEmailBlock> {
     return this.http.get(`/api/v1/admin/canonical_email_blocks/${id}`);
   }
@@ -75,7 +72,6 @@ export class CanonicalEmailBlockRepository
    * @return Array of CanonicalEmailBlock
    * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks/#test
    */
-  @version({ since: '4.0.0' })
   test(
     params: TestCanonicalEmailBlockParams,
   ): Promise<Admin.CanonicalEmailBlock[]> {
@@ -90,7 +86,6 @@ export class CanonicalEmailBlockRepository
    * @return CanonicalEmailBlock
    * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks
    */
-  @version({ since: '4.0.0' })
   create(
     params: CreateCanonicalEmailBlockParams,
   ): Promise<Admin.CanonicalEmailBlock> {
@@ -105,7 +100,6 @@ export class CanonicalEmailBlockRepository
    * @return null
    * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks
    */
-  @version({ since: '4.0.0' })
   remove(id: string): Promise<void> {
     return this.http.delete(`/api/v1/admin/canonical_email_blocks/${id}`);
   }

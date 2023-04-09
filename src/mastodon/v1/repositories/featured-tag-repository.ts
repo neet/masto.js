@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
@@ -24,7 +23,6 @@ export class FeaturedTagRepository implements Repository<FeaturedTag> {
    * @see https://docs.joinmastodon.org/methods/accounts/featured_tags/
    * @done
    */
-  @version({ since: '3.0.0' })
   list(): Paginator<FeaturedTag[]> {
     return new Paginator(this.http, '/api/v1/featured_tags');
   }
@@ -35,7 +33,6 @@ export class FeaturedTagRepository implements Repository<FeaturedTag> {
    * @return FeaturedTag
    * @see https://docs.joinmastodon.org/methods/accounts/featured_tags/
    */
-  @version({ since: '3.0.0' })
   create(params: CreateFeaturedTagParams): Promise<FeaturedTag> {
     return this.http.post<FeaturedTag>('/api/v1/featured_tags', params, {
       headers: { 'Content-Type': 'multipart/form-data' },
@@ -47,7 +44,6 @@ export class FeaturedTagRepository implements Repository<FeaturedTag> {
    * @return Array of Tag with History
    * @see https://docs.joinmastodon.org/methods/accounts/featured_tags/
    */
-  @version({ since: '3.0.0' })
   listSuggestions(): Paginator<Tag[]> {
     return new Paginator(this.http, '/api/v1/featured_tags/suggestions');
   }
@@ -58,7 +54,6 @@ export class FeaturedTagRepository implements Repository<FeaturedTag> {
    * @return N/A
    * @see https://docs.joinmastodon.org/methods/accounts/featured_tags/
    */
-  @version({ since: '3.0.0' })
   remove(id: string): Promise<void> {
     return this.http.delete<void>(`/api/v1/featured_tags/${id}`);
   }

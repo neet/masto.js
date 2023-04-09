@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../config';
-import { version } from '../../decorators';
 import type { Http } from '../../http';
 import type { Logger } from '../../logger';
 import { Paginator } from '../../paginator';
@@ -52,7 +51,6 @@ export class AggregateRepository {
    * @return Results
    * @see https://docs.joinmastodon.org/methods/search/
    */
-  @version({ since: '2.4.1' })
   search(params: SearchParams): Paginator<Search, SearchParams> {
     return new Paginator(this.http, `/api/v2/search`, params);
   }

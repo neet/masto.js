@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
@@ -20,7 +19,6 @@ export class DomainBlockRepository
    * @return Array of strings
    * @see https://docs.joinmastodon.org/methods/accounts/domain_blocks/
    */
-  @version({ since: '1.4.0' })
   list(
     params?: DefaultPaginationParams,
   ): Paginator<string[], DefaultPaginationParams> {
@@ -37,7 +35,6 @@ export class DomainBlockRepository
    * @return N/A
    * @see https://docs.joinmastodon.org/methods/accounts/domain_blocks/
    */
-  @version({ since: '1.4.0' })
   block(domain: string): Promise<void> {
     return this.http.post<void>(`/api/v1/domain_blocks`, {
       domain,
@@ -50,7 +47,6 @@ export class DomainBlockRepository
    * @return N/A
    * @see https://docs.joinmastodon.org/methods/accounts/domain_blocks/
    */
-  @version({ since: '1.4.0' })
   unblock(domain: string): Promise<void> {
     return this.http.delete<void>(`/api/v1/domain_blocks`, {
       domain,

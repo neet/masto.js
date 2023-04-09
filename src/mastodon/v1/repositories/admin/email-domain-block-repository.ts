@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../../config';
-import { version } from '../../../../decorators';
 import type { Http } from '../../../../http';
 import type { Logger } from '../../../../logger';
 import { Paginator } from '../../../../paginator';
@@ -38,7 +37,6 @@ export class EmailDomainBlockRepository
    * @return Array of EmailDomainBlock
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  @version({ since: '4.0.0' })
   list(
     params?: ListEmailDomainBlocksParams,
   ): Paginator<Admin.EmailDomainBlock[], ListEmailDomainBlocksParams> {
@@ -55,7 +53,6 @@ export class EmailDomainBlockRepository
    * @return Array of EmailDomainBlock
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  @version({ since: '4.0.0' })
   fetch(id: string): Promise<Admin.EmailDomainBlock> {
     return this.http.get(`/api/v1/admin/email_domain_blocks/${id}`);
   }
@@ -66,7 +63,6 @@ export class EmailDomainBlockRepository
    * @return Array of EmailDomainBlock
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  @version({ since: '4.0.0' })
   create(
     params: CreateEmailDomainBlockParams,
   ): Promise<Admin.EmailDomainBlock> {
@@ -79,7 +75,6 @@ export class EmailDomainBlockRepository
    * @return null
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  @version({ since: '4.0.0' })
   remove(id: string): Promise<void> {
     return this.http.delete(`/api/v1/admin/email_domain_blocks/${id}`);
   }

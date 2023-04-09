@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
@@ -15,7 +14,6 @@ export class FollowedTagRepository
     readonly logger?: Logger,
   ) {}
 
-  @version({ since: '4.0.0' })
   list(
     params?: DefaultPaginationParams,
   ): Paginator<Tag[], DefaultPaginationParams> {

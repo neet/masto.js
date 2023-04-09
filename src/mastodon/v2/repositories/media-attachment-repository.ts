@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { version } from '../../../decorators';
 import { MastoHttpNotFoundError, MastoTimeoutError } from '../../../errors';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
@@ -80,7 +79,6 @@ export class MediaAttachmentRepository {
    * @return Attachment
    * @see https://docs.joinmastodon.org/methods/statuses/media/
    */
-  @version({ since: '3.1.3' })
   async create(
     params: CreateMediaAttachmentParams,
     extra: CreateMediaAttachmentExtraParams = {},

@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
@@ -18,7 +17,6 @@ export class InstanceRepository implements Repository<Instance> {
    * @return Instance
    * @see https://docs.joinmastodon.org/methods/instance/
    */
-  @version({ since: '1.0.0' })
   fetch(): Promise<Instance> {
     return this.http.get<Instance>('/api/v1/instance');
   }
@@ -28,7 +26,6 @@ export class InstanceRepository implements Repository<Instance> {
    * @return Array of Activity
    * @see https://docs.joinmastodon.org/methods/instance/
    */
-  @version({ since: '2.1.2' })
   listPeers(): Paginator<string[]> {
     return new Paginator(this.http, '/api/v1/instance/peers');
   }
@@ -38,7 +35,6 @@ export class InstanceRepository implements Repository<Instance> {
    * @return Array of Activity
    * @see https://docs.joinmastodon.org/methods/instance/
    */
-  @version({ since: '2.1.2' })
   listActivities(): Paginator<Activity[]> {
     return new Paginator(this.http, '/api/v1/instance/activity');
   }

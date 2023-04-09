@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import type { Repository } from '../../repository';
@@ -23,7 +22,6 @@ export class PollRepository implements Repository<Poll> {
    * @return Poll
    * @see https://docs.joinmastodon.org/methods/statuses/polls#get
    */
-  @version({ since: '2.8.0' })
   fetch(id: string): Promise<Poll> {
     return this.http.get<Poll>(`/api/v1/polls/${id}`);
   }
@@ -35,7 +33,6 @@ export class PollRepository implements Repository<Poll> {
    * @return Poll
    * @see https://docs.joinmastodon.org/methods/statuses/polls#vote
    */
-  @version({ since: '2.8.0' })
   vote(id: string, params: VotePollParams): Promise<Poll> {
     return this.http.post<Poll>(`/api/v1/polls/${id}/votes`, params);
   }
