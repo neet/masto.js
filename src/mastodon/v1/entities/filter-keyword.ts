@@ -8,5 +8,5 @@ export interface FilterKeyword {
   /** The phrase to be matched against. */
   keyword: string;
   /** Should the filter consider word boundaries? See [implementation guidelines](https://docs.joinmastodon.org/api/guidelines/#filters) for filters. */
-  wholeWord: string;
+  wholeWord: boolean;
 }
