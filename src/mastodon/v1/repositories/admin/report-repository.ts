@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../../config';
-import { version } from '../../../../decorators';
 import type { Http } from '../../../../http';
 import type { Logger } from '../../../../logger';
 import { Paginator } from '../../../../paginator';
@@ -28,7 +27,6 @@ export class ReportRepository
    * @return Array of AdminReport
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  @version({ since: '2.9.1' })
   list(
     params?: ListReportsParams,
   ): Paginator<Admin.Report[], ListReportsParams> {
@@ -41,7 +39,6 @@ export class ReportRepository
    * @return AdminReport
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  @version({ since: '2.9.1' })
   fetch(id: string): Promise<Admin.Report> {
     return this.http.get(`/api/v1/admin/reports/${id}`);
   }
@@ -52,7 +49,6 @@ export class ReportRepository
    * @return AdminReport
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  @version({ since: '2.9.1' })
   assignToSelf(id: string): Promise<Admin.Report> {
     return this.http.post(`/api/v1/admin/reports/${id}/assign_to_self`);
   }
@@ -63,7 +59,6 @@ export class ReportRepository
    * @return AdminReport
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  @version({ since: '2.9.1' })
   unassign(id: string): Promise<Admin.Report> {
     return this.http.post(`/api/v1/admin/reports/${id}/unassign`);
   }
@@ -74,7 +69,6 @@ export class ReportRepository
    * @return AdminReport
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  @version({ since: '2.9.1' })
   resolve(id: string): Promise<Admin.Report> {
     return this.http.post(`/api/v1/admin/reports/${id}/resolve`);
   }
@@ -85,7 +79,6 @@ export class ReportRepository
    * @return AdminReport
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  @version({ since: '2.9.1' })
   reopen(id: string): Promise<Admin.Report> {
     return this.http.post(`/api/v1/admin/reports/${id}/reopen`);
   }

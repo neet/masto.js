@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import type { Repository } from '../../repository';
@@ -54,7 +53,6 @@ export class WebPushSubscriptionRepository
    * @return Returns Push Subscription
    * @see https://docs.joinmastodon.org/methods/notifications/push/
    */
-  @version({ since: '2.4.0' })
   create(
     params: CreateWebPushSubscriptionParams,
   ): Promise<WebPushSubscription> {
@@ -69,7 +67,6 @@ export class WebPushSubscriptionRepository
    * @return PushSubscription
    * @see https://docs.joinmastodon.org/methods/notifications/push/
    */
-  @version({ since: '2.4.0' })
   fetch(): Promise<WebPushSubscription> {
     return this.http.get('/api/v1/push/subscription');
   }
@@ -80,7 +77,6 @@ export class WebPushSubscriptionRepository
    * @return PushSubscription
    * @see https://docs.joinmastodon.org/methods/notifications/push/
    */
-  @version({ since: '2.4.0' })
   update(
     params: UpdateWebPushSubscriptionParams,
   ): Promise<WebPushSubscription> {
@@ -92,7 +88,6 @@ export class WebPushSubscriptionRepository
    * @return N/A
    * @see https://docs.joinmastodon.org/methods/notifications/push/
    */
-  @version({ since: '2.4.0' })
   remove(): Promise<void> {
     return this.http.delete<void>('/api/v1/push/subscription');
   }

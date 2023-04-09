@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
@@ -74,7 +73,6 @@ export class FilterRepository
    * @return Array of Filter
    * @see https://docs.joinmastodon.org/methods/filters/#get
    */
-  @version({ since: '4.0.0' })
   list(): Paginator<Filter[]> {
     return new Paginator(this.http, `/api/v2/filters`);
   }
@@ -85,7 +83,6 @@ export class FilterRepository
    * @return Filter
    * @see https://docs.joinmastodon.org/methods/filters/#get-one
    */
-  @version({ since: '4.0.0' })
   fetch(id: string): Promise<Filter> {
     return this.http.get<Filter>(`/api/v2/filters/${id}`);
   }
@@ -96,7 +93,6 @@ export class FilterRepository
    * @return Filter
    * @see https://docs.joinmastodon.org/methods/filters/#create
    */
-  @version({ since: '4.0.0' })
   create(params?: CreateFilterParams): Promise<Filter> {
     return this.http.post<Filter>(`/api/v2/filters`, params, {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -110,7 +106,6 @@ export class FilterRepository
    * @return Filter
    * @see https://docs.joinmastodon.org/methods/filters/#update
    */
-  @version({ since: '4.0.0' })
   update(id: string, params?: UpdateFilterParams): Promise<Filter> {
     return this.http.put<Filter>(`/api/v2/filters/${id}`, params);
   }
@@ -121,7 +116,6 @@ export class FilterRepository
    * @return N/A
    * @see https://docs.joinmastodon.org/methods/filters/#delete
    */
-  @version({ since: '4.0.0' })
   remove(id: string): Promise<void> {
     return this.http.delete<void>(`/api/v2/filters/${id}`);
   }
@@ -132,7 +126,6 @@ export class FilterRepository
    * @returns Array of FilterKeyword
    * @see https://docs.joinmastodon.org/methods/filters/#keywords-get
    */
-  @version({ since: '4.0.0' })
   listKeywords(id: string): Paginator<FilterKeyword[]> {
     return new Paginator(this.http, `/api/v2/filters/${id}/keywords`);
   }
@@ -144,7 +137,6 @@ export class FilterRepository
    * @return FilterKeywords
    * @see https://docs.joinmastodon.org/methods/filters/#keywords-create
    */
-  @version({ since: '4.0.0' })
   createKeyword(
     id: string,
     params: CreateFilterKeywordParams,
@@ -160,7 +152,6 @@ export class FilterRepository
    * @returns FilterKeyword
    * @see https://docs.joinmastodon.org/methods/filters/#keywords-get-one
    */
-  @version({ since: '4.0.0' })
   fetchKeyword(id: string): Paginator<FilterKeyword> {
     return new Paginator(this.http, `/api/v2/filters/keywords/${id}`);
   }
@@ -172,7 +163,6 @@ export class FilterRepository
    * @return FilterKeywords
    * @see https://docs.joinmastodon.org/methods/filters/#keywords-update
    */
-  @version({ since: '4.0.0' })
   updateKeyword(
     id: string,
     params: CreateFilterKeywordParams,
@@ -188,7 +178,6 @@ export class FilterRepository
    * @returns empty object
    * @see https://docs.joinmastodon.org/methods/filters/#keywords-delete
    */
-  @version({ since: '4.0.0' })
   removeKeyword(id: string): Promise<void> {
     return this.http.delete(`/api/v2/filters/keywords/${id}`);
   }
@@ -199,7 +188,6 @@ export class FilterRepository
    * @returns Array of FilterStatus
    * @see https://docs.joinmastodon.org/methods/filters/#statuses-get
    */
-  @version({ since: '4.0.0' })
   listStatuses(id: string): Paginator<FilterStatus[]> {
     return new Paginator(this.http, `/api/v2/filters/${id}/statuses`);
   }
@@ -227,7 +215,6 @@ export class FilterRepository
    * @returns FilterStatus
    * @see https://docs.joinmastodon.org/methods/filters/#statuses-get-one
    */
-  @version({ since: '4.0.0' })
   fetchStatus(id: string): Promise<FilterStatus> {
     return this.http.get(`/api/v2/filters/statuses/${id}`);
   }
@@ -237,7 +224,6 @@ export class FilterRepository
    * @returns FilterStatus
    * @see https://docs.joinmastodon.org/methods/filters/#statuses-get-one
    */
-  @version({ since: '4.0.0' })
   removeStatus(id: string): Promise<FilterStatus> {
     return this.http.get(`/api/v2/filters/statuses/${id}`);
   }

@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { version } from '../../../decorators';
 import type { Logger } from '../../../logger';
 import type { Ws, WsEvents } from '../../../ws';
 
@@ -15,7 +14,6 @@ export class StreamRepository {
    * @return Instance of EventEmitter
    * @see https://docs.joinmastodon.org/methods/timelines/streaming/
    */
-  @version({ since: '0.0.0' })
   streamUser(): Promise<WsEvents> {
     return this.ws.stream('/api/v1/streaming', {
       stream: 'user',
@@ -27,7 +25,6 @@ export class StreamRepository {
    * @return Instance of EventEmitter
    * @see https://docs.joinmastodon.org/methods/timelines/streaming/
    */
-  @version({ since: '0.0.0' })
   streamPublicTimeline(): Promise<WsEvents> {
     return this.ws.stream('/api/v1/streaming', {
       stream: 'public',
@@ -39,7 +36,6 @@ export class StreamRepository {
    * @return Instance of EventEmitter
    * @see https://docs.joinmastodon.org/methods/timelines/streaming/
    */
-  @version({ since: '0.0.0' })
   streamCommunityTimeline(): Promise<WsEvents> {
     return this.ws.stream('/api/v1/streaming', {
       stream: 'public:local',
@@ -51,7 +47,6 @@ export class StreamRepository {
    * @return Instance of EventEmitter
    * @see https://docs.joinmastodon.org/methods/timelines/streaming/
    */
-  @version({ since: '0.0.0' })
   streamRemotePublicTimeline(): Promise<WsEvents> {
     return this.ws.stream('/api/v1/streaming', {
       stream: 'public:remote',
@@ -64,7 +59,6 @@ export class StreamRepository {
    * @return Instance of EventEmitter
    * @see https://docs.joinmastodon.org/methods/timelines/streaming/
    */
-  @version({ since: '0.0.0' })
   streamTagTimeline(id: string): Promise<WsEvents> {
     return this.ws.stream('/api/v1/streaming', {
       stream: 'hashtag',
@@ -78,7 +72,6 @@ export class StreamRepository {
    * @return Instance of EventEmitter
    * @see https://docs.joinmastodon.org/methods/timelines/streaming/
    */
-  @version({ since: '0.0.0' })
   streamLocalTagTimeline(id: string): Promise<WsEvents> {
     return this.ws.stream('/api/v1/streaming', {
       stream: 'hashtag:local',
@@ -92,7 +85,6 @@ export class StreamRepository {
    * @return Instance of EventEmitter
    * @see https://docs.joinmastodon.org/methods/timelines/streaming/
    */
-  @version({ since: '0.0.0' })
   streamListTimeline(id: string): Promise<WsEvents> {
     return this.ws.stream('/api/v1/streaming', {
       stream: 'list',
@@ -105,7 +97,6 @@ export class StreamRepository {
    * @return Instance of EventEmitter
    * @see https://docs.joinmastodon.org/methods/timelines/streaming/
    */
-  @version({ since: '0.0.0' })
   streamDirectTimeline(): Promise<WsEvents> {
     return this.ws.stream('/api/v1/streaming', {
       stream: 'direct',

@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
@@ -23,7 +22,6 @@ export class TrendRepository {
    * @returns Array of Status
    * @see https://docs.joinmastodon.org/methods/trends/#statuses
    */
-  @version({ since: '3.5.0' })
   listStatuses(
     params?: DefaultPaginationParams,
   ): Paginator<Status[], DefaultPaginationParams> {
@@ -34,7 +32,6 @@ export class TrendRepository {
    * Links that have been shared more than others.
    * @see https://docs.joinmastodon.org/methods/trends/#links
    */
-  @version({ since: '3.5.0' })
   listLinks(
     params?: DefaultPaginationParams,
   ): Paginator<TrendLink[], DefaultPaginationParams> {
@@ -47,7 +44,6 @@ export class TrendRepository {
    * @return Array of Tag with History
    * @see https://docs.joinmastodon.org/methods/trends/#tags
    */
-  @version({ since: '3.0.0' })
   listTags(params?: ListTrendsParams): Paginator<Tag[], ListTrendsParams> {
     return new Paginator(this.http, '/api/v1/trends/tags', params);
   }

@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
@@ -21,7 +20,6 @@ export class FollowRequestRepository
    * @return Array of Account
    * @see https://docs.joinmastodon.org/methods/accounts/follow_requests/
    */
-  @version({ since: '0.0.0' })
   list(
     params?: DefaultPaginationParams,
   ): Paginator<Account[], DefaultPaginationParams> {
@@ -34,7 +32,6 @@ export class FollowRequestRepository
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/follow_requests/
    */
-  @version({ since: '0.0.0' })
   authorize(id: string): Promise<Relationship> {
     return this.http.post<Relationship>(
       `/api/v1/follow_requests/${id}/authorize`,
@@ -47,7 +44,6 @@ export class FollowRequestRepository
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/follow_requests/
    */
-  @version({ since: '0.0.0' })
   reject(id: string): Promise<Relationship> {
     return this.http.post<Relationship>(`/api/v1/follow_requests/${id}/reject`);
   }

@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { deprecated, version } from '../../../decorators';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
@@ -108,7 +107,6 @@ export class StatusRepository implements Repository<Status> {
    * @return Status
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  @version({ since: '0.0.0' })
   fetch(id: string): Promise<Status> {
     return this.http.get(`/api/v1/statuses/${id}`);
   }
@@ -128,7 +126,6 @@ export class StatusRepository implements Repository<Status> {
     params: CreateScheduledStatusParams,
     extra?: CreateStatusExtraParams,
   ): Promise<ScheduledStatus>;
-  @version({ since: '0.0.0' })
   create(
     params: CreateStatusParams | CreateScheduledStatusParams,
     extra: CreateStatusExtraParams = {},
@@ -148,7 +145,6 @@ export class StatusRepository implements Repository<Status> {
    * @return Status. When scheduled_at is present, ScheduledStatus is returned instead.
    * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses
    */
-  @version({ since: '3.5.0' })
   update(id: string, params: UpdateStatusParams): Promise<Status> {
     return this.http.put(`/api/v1/statuses/${id}`, params);
   }
@@ -159,7 +155,6 @@ export class StatusRepository implements Repository<Status> {
    * @return Status with source text and `media_attachments` or `poll`
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  @version({ since: '0.0.0' })
   remove(id: string): Promise<Status> {
     return this.http.delete(`/api/v1/statuses/${id}`);
   }
@@ -170,20 +165,16 @@ export class StatusRepository implements Repository<Status> {
    * @return Context
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  @version({ since: '0.0.0' })
   fetchContext(id: string): Promise<Context> {
     return this.http.get(`/api/v1/statuses/${id}/context`);
   }
 
   /**
    * Preview card
-   * @deprecated Use `card` attribute of status instead
-   * @param id ID of the status in the database
+   *    * @param id ID of the status in the database
    * @return Card
    * @see https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-card
    */
-  @deprecated('Use `card` attribute of status instead')
-  @version({ since: '0.0.0', until: '2.9.3' })
   /* istanbul ignore next */
   fetchCard(id: string): Promise<PreviewCard> {
     return this.http.get(`/api/v1/statuses/${id}/card`);
@@ -195,7 +186,6 @@ export class StatusRepository implements Repository<Status> {
    * @return Status
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  @version({ since: '0.0.0' })
   favourite(id: string): Promise<Status> {
     return this.http.post(`/api/v1/statuses/${id}/favourite`);
   }
@@ -206,7 +196,6 @@ export class StatusRepository implements Repository<Status> {
    * @return Status
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  @version({ since: '0.0.0' })
   unfavourite(id: string): Promise<Status> {
     return this.http.post(`/api/v1/statuses/${id}/unfavourite`);
   }
@@ -217,7 +206,6 @@ export class StatusRepository implements Repository<Status> {
    * @return Status
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  @version({ since: '1.4.2' })
   mute(id: string): Promise<Status> {
     return this.http.post(`/api/v1/statuses/${id}/mute`);
   }
@@ -228,7 +216,6 @@ export class StatusRepository implements Repository<Status> {
    * @return Status
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  @version({ since: '1.4.2' })
   unmute(id: string): Promise<Status> {
     return this.http.post(`/api/v1/statuses/${id}/unmute`);
   }
@@ -239,7 +226,6 @@ export class StatusRepository implements Repository<Status> {
    * @return Array of Account
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  @version({ since: '0.0.0' })
   listRebloggedBy(id: string): Paginator<Account[]> {
     return new Paginator(this.http, `/api/v1/statuses/${id}/reblogged_by`);
   }
@@ -250,7 +236,6 @@ export class StatusRepository implements Repository<Status> {
    * @return Array of Account
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  @version({ since: '0.0.0' })
   listFavouritedBy(id: string): Paginator<Account[]> {
     return new Paginator(this.http, `/api/v1/statuses/${id}/favourited_by`);
   }
@@ -261,7 +246,6 @@ export class StatusRepository implements Repository<Status> {
    * @return Status
    * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-reblog
    */
-  @version({ since: '0.0.0' })
   reblog(id: string, params?: ReblogStatusParams): Promise<Status> {
     return this.http.post(`/api/v1/statuses/${id}/reblog`, params);
   }
@@ -272,7 +256,6 @@ export class StatusRepository implements Repository<Status> {
    * @return Status
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  @version({ since: '0.0.0' })
   unreblog(id: string): Promise<Status> {
     return this.http.post(`/api/v1/statuses/${id}/unreblog`);
   }
@@ -283,7 +266,6 @@ export class StatusRepository implements Repository<Status> {
    * @return Status
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  @version({ since: '1.6.0' })
   pin(id: string): Promise<Status> {
     return this.http.post(`/api/v1/statuses/${id}/pin`);
   }
@@ -294,7 +276,6 @@ export class StatusRepository implements Repository<Status> {
    * @return Status
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  @version({ since: '1.6.0' })
   unpin(id: string): Promise<Status> {
     return this.http.post(`/api/v1/statuses/${id}/unpin`);
   }
@@ -305,7 +286,6 @@ export class StatusRepository implements Repository<Status> {
    * @return Status
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  @version({ since: '3.1.0' })
   bookmark(id: string): Promise<Status> {
     return this.http.post(`/api/v1/statuses/${id}/bookmark`);
   }
@@ -316,7 +296,6 @@ export class StatusRepository implements Repository<Status> {
    * @return Status
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  @version({ since: '3.1.0' })
   unbookmark(id: string): Promise<Status> {
     return this.http.post(`/api/v1/statuses/${id}/unbookmark`);
   }
@@ -327,7 +306,6 @@ export class StatusRepository implements Repository<Status> {
    * @returns StatusEdit
    * @see https://docs.joinmastodon.org/methods/statuses/#history
    */
-  @version({ since: '3.5.0' })
   listHistory(id: string): Paginator<StatusEdit[]> {
     return new Paginator(this.http, `/api/v1/statuses/${id}/history`);
   }
@@ -338,7 +316,6 @@ export class StatusRepository implements Repository<Status> {
    * @returns StatusSource
    * @see https://docs.joinmastodon.org/methods/statuses/#source
    */
-  @version({ since: '3.5.0' })
   fetchSource(id: string): Promise<StatusSource> {
     return this.http.get(`/api/v1/statuses/${id}/source`);
   }
@@ -349,7 +326,6 @@ export class StatusRepository implements Repository<Status> {
    * @param params Form data parameters
    * @returns Translation
    */
-  @version({ since: '4.0.0' })
   translate(id: string, params: TranslateStatusParams): Promise<Translation> {
     return this.http.post(`/api/v1/statuses/${id}/translate`, params, {
       headers: { 'Content-Type': 'multipart/form-data' },
