@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { fetchV1Instance, login } from '../src';
+import { createClient, createOAuthClient } from '../src';
 import { TokenPoolImpl } from './pools';
 
 export default async (): Promise<void> => {
   const url = 'http://localhost:3000';
-  const instance = await fetchV1Instance({ url });
-  const masto = await login({ url });
+  const instance = await createClient({ url }).v1.instance.fetch();
+  const masto = createClient({ url });
+  const oauth = createOAuthClient({ url });
 
   const app = await masto.v1.apps.create({
     clientName: 'Masto.js',
@@ -18,16 +19,19 @@ export default async (): Promise<void> => {
   //   throw new Error('MASTODON_CONTAINER is not defined');
   // }
 
-  const tokenPool = new TokenPoolImpl(container, masto, app);
+  const tokenPool = new TokenPoolImpl(container, oauth, app);
 
-  const adminToken = await masto.oauth.createToken({
-    grantType: 'password',
-    clientId: app.clientId!,
-    clientSecret: app.clientSecret!,
-    username: 'admin@localhost:3000',
-    password: 'mastodonadmin',
-    scope: 'read write follow push admin:read admin:write',
-  });
+  const adminToken = await oauth.token.create(
+    {
+      grantType: 'password',
+      clientId: app.clientId!,
+      clientSecret: app.clientSecret!,
+      username: 'admin@localhost:3000',
+      password: 'mastodonadmin',
+      scope: 'read write follow push admin:read admin:write',
+    },
+    { encoding: 'multipart-form' },
+  );
 
   globalThis.__misc__ = {
     url,

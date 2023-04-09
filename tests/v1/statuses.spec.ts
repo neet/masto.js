@@ -1,5 +1,7 @@
 import crypto from 'node:crypto';
 
+import { Headers } from '@mastojs/ponyfills';
+
 describe('status', () => {
   it('creates, updates, and removes a status', () => {
     return clients.use(async (client) => {
@@ -9,25 +11,25 @@ describe('status', () => {
         visibility: 'direct',
       });
 
-      let status = await client.v1.statuses.fetch(id);
+      let status = await client.v1.statuses.select(id).fetch();
       expect(status.content).toBe(`<p>${random}</p>`);
 
-      const source = await client.v1.statuses.fetchSource(id);
+      const source = await client.v1.statuses.select(id).source.fetch();
       expect(source.text).toBe(random);
 
       const random2 = Math.random().toString();
-      status = await client.v1.statuses.update(id, { status: random2 });
+      status = await client.v1.statuses.select(id).update({ status: random2 });
       expect(status.content).toBe(`<p>${random2}</p>`);
 
-      const history = await client.v1.statuses.listHistory(status.id);
+      const history = await client.v1.statuses.select(status.id).history.list();
       expect(history[0]).toEqual(
         expect.objectContaining({
           content: `<p>${random}</p>`,
         }),
       );
 
-      await client.v1.statuses.remove(id);
-      await expect(client.v1.statuses.fetch(id)).rejects.toThrow();
+      await client.v1.statuses.select(id).remove();
+      await expect(client.v1.statuses.select(id).fetch()).rejects.toThrow();
     });
   });
 
@@ -37,11 +39,11 @@ describe('status', () => {
 
       const s1 = await client.v1.statuses.create(
         { status: 'hello' },
-        { idempotencyKey },
+        { headers: new Headers({ 'Idempotency-Key': idempotencyKey }) },
       );
       const s2 = await client.v1.statuses.create(
         { status: 'hello' },
-        { idempotencyKey },
+        { headers: new Headers({ 'Idempotency-Key': idempotencyKey }) },
       );
 
       expect(s1.id).toBe(s2.id);
@@ -63,13 +65,13 @@ describe('status', () => {
       });
 
       try {
-        const context = await client.v1.statuses.fetchContext(s2.id);
+        const context = await client.v1.statuses.select(s2.id).context.fetch();
         expect(context.ancestors).toContainId(s1.id);
         expect(context.descendants).toContainId(s3.id);
       } finally {
-        await client.v1.statuses.remove(s1.id);
-        await client.v1.statuses.remove(s2.id);
-        await client.v1.statuses.remove(s3.id);
+        await client.v1.statuses.select(s1.id).remove();
+        await client.v1.statuses.select(s2.id).remove();
+        await client.v1.statuses.select(s3.id).remove();
       }
     });
   });
@@ -81,34 +83,36 @@ describe('status', () => {
       });
 
       try {
-        const translation = await client.v1.statuses.translate(id, {
+        const translation = await client.v1.statuses.select(id).translate({
           lang: 'ja',
         });
         expect(translation.content).toEqual(expect.any(String));
       } finally {
-        await client.v1.statuses.remove(id);
+        await client.v1.statuses.select(id).remove();
       }
     });
   });
 
   it('favourites and unfavourites a status', () => {
     return clients.use(2, async ([alice, bob]) => {
-      const bobAccount = await bob.v1.accounts.verifyCredentials();
+      const bobAccount = await bob.v1.accounts.verifyCredentials.fetch();
       const { id: statusId } = await alice.v1.statuses.create({
         status: 'status',
       });
 
       try {
-        let status = await bob.v1.statuses.favourite(statusId);
+        let status = await bob.v1.statuses.select(statusId).favourite();
         expect(status.favourited).toBe(true);
 
-        const favourites = await bob.v1.statuses.listFavouritedBy(statusId);
+        const favourites = await bob.v1.statuses
+          .select(statusId)
+          .favouritedBy.list();
         expect(favourites).toContainId(bobAccount.id);
 
-        status = await bob.v1.statuses.unfavourite(statusId);
+        status = await bob.v1.statuses.select(statusId).unfavourite();
         expect(status.favourited).toBe(false);
       } finally {
-        await alice.v1.statuses.remove(statusId);
+        await alice.v1.statuses.select(statusId).remove();
       }
     });
   });
@@ -121,35 +125,37 @@ describe('status', () => {
       });
 
       try {
-        status = await client.v1.statuses.mute(status.id);
+        status = await client.v1.statuses.select(status.id).mute();
         expect(status.muted).toBe(true);
 
-        status = await client.v1.statuses.unmute(status.id);
+        status = await client.v1.statuses.select(status.id).unmute();
         expect(status.muted).toBe(false);
       } finally {
-        await client.v1.statuses.remove(status.id);
+        await client.v1.statuses.select(status.id).remove();
       }
     });
   });
 
   it('reblogs and unreblog a status', () => {
     return clients.use(2, async ([alice, bob]) => {
-      const bobAccount = await bob.v1.accounts.verifyCredentials();
+      const bobAccount = await bob.v1.accounts.verifyCredentials.fetch();
       const { id: statusId } = await alice.v1.statuses.create({
         status: 'status',
       });
 
       try {
-        let status = await bob.v1.statuses.reblog(statusId);
+        let status = await bob.v1.statuses.select(statusId).reblog();
         expect(status.reblogged).toBe(true);
 
-        const reblogs = await alice.v1.statuses.listRebloggedBy(statusId);
+        const reblogs = await alice.v1.statuses
+          .select(statusId)
+          .rebloggedBy.list();
         expect(reblogs).toContainId(bobAccount.id);
 
-        status = await bob.v1.statuses.unreblog(statusId);
+        status = await bob.v1.statuses.select(statusId).unreblog();
         expect(status.reblogged).toBe(false);
       } finally {
-        await alice.v1.statuses.remove(statusId);
+        await alice.v1.statuses.select(statusId).remove();
       }
     });
   });
@@ -161,13 +167,13 @@ describe('status', () => {
         visibility: 'private',
       });
 
-      status = await client.v1.statuses.pin(status.id);
+      status = await client.v1.statuses.select(status.id).pin();
       expect(status.pinned).toBe(true);
 
-      status = await client.v1.statuses.unpin(status.id);
+      status = await client.v1.statuses.select(status.id).unpin();
       expect(status.pinned).toBe(false);
 
-      await client.v1.statuses.remove(status.id);
+      await client.v1.statuses.select(status.id).remove();
     });
   });
 
@@ -178,13 +184,13 @@ describe('status', () => {
         visibility: 'direct',
       });
 
-      status = await client.v1.statuses.bookmark(status.id);
+      status = await client.v1.statuses.select(status.id).bookmark();
       expect(status.bookmarked).toBe(true);
 
-      status = await client.v1.statuses.unbookmark(status.id);
+      status = await client.v1.statuses.select(status.id).unbookmark();
       expect(status.bookmarked).toBe(false);
 
-      await client.v1.statuses.remove(status.id);
+      await client.v1.statuses.select(status.id).remove();
     });
   });
 });

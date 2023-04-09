@@ -1,19 +1,9 @@
-import type { MastoConfig } from '../../../config';
-import type { Http } from '../../../http';
-import type { Logger } from '../../../logger';
-import { Paginator } from '../../../paginator';
-import type { DefaultPaginationParams, Repository } from '../../repository';
+import type { HttpMetaParams } from '../../../http';
+import type { Paginator } from '../../../paginator';
+import type { DefaultPaginationParams } from '../../repository';
 import type { Account, Relationship } from '../entities';
 
-export class FollowRequestRepository
-  implements Repository<Account, never, never, never, DefaultPaginationParams>
-{
-  constructor(
-    private readonly http: Http,
-    readonly config: MastoConfig,
-    readonly logger?: Logger,
-  ) {}
-
+export interface FollowRequestRepository {
   /**
    * Pending Follows
    * @param params Parameters
@@ -22,29 +12,22 @@ export class FollowRequestRepository
    */
   list(
     params?: DefaultPaginationParams,
-  ): Paginator<Account[], DefaultPaginationParams> {
-    return new Paginator(this.http, `/api/v1/follow_requests`, params);
-  }
+    meta?: HttpMetaParams,
+  ): Paginator<Account[], DefaultPaginationParams>;
 
-  /**
-   * Accept Follow
-   * @param id ID of the account in the database
-   * @return Relationship
-   * @see https://docs.joinmastodon.org/methods/accounts/follow_requests/
-   */
-  authorize(id: string): Promise<Relationship> {
-    return this.http.post<Relationship>(
-      `/api/v1/follow_requests/${id}/authorize`,
-    );
-  }
+  select(id: string): {
+    /**
+     * Accept Follow
+     * @return Relationship
+     * @see https://docs.joinmastodon.org/methods/accounts/follow_requests/#post-authorize
+     */
+    authorize(meta?: HttpMetaParams): Promise<Relationship>;
 
-  /**
-   * Reject Follow
-   * @param id ID of the account in the database
-   * @return Relationship
-   * @see https://docs.joinmastodon.org/methods/accounts/follow_requests/
-   */
-  reject(id: string): Promise<Relationship> {
-    return this.http.post<Relationship>(`/api/v1/follow_requests/${id}/reject`);
-  }
+    /**
+     * Reject Follow
+     * @return Relationship
+     * @see https://docs.joinmastodon.org/methods/accounts/follow_requests/#post-reject
+     */
+    reject(meta?: HttpMetaParams): Promise<Relationship>;
+  };
 }

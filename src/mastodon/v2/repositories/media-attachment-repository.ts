@@ -1,10 +1,5 @@
-import type { MastoConfig } from '../../../config';
-import { MastoHttpNotFoundError, MastoTimeoutError } from '../../../errors';
-import type { Http } from '../../../http';
-import type { Logger } from '../../../logger';
-import { delay } from '../../../utils';
+import type { HttpMetaParams } from '../../../http';
 import type { MediaAttachment } from '../../v1';
-import { MediaAttachmentRepository as MediaAttachmentRepositoryV1 } from '../../v1';
 
 export interface CreateMediaAttachmentParams {
   /** The file to be attached, using multipart form data. */
@@ -22,77 +17,15 @@ export interface CreateMediaAttachmentExtraParams {
   readonly skipPolling?: boolean;
 }
 
-// Repository<V1.MediaAttachment, CreateMediaAttachmentParams>;
-
-export class MediaAttachmentRepository {
-  private readonly v1: MediaAttachmentRepositoryV1;
-
-  constructor(
-    private readonly http: Http,
-    readonly config: MastoConfig,
-    readonly logger?: Logger,
-  ) {
-    this.v1 = new MediaAttachmentRepositoryV1(http, config);
-  }
-
-  /**
-   * @experimental
-   * @param id ID of the media
-   * @param interval interval of polling
-   * @returns Media attachment that has done processing
-   */
-  async waitFor(id: string, interval = 1000): Promise<MediaAttachment> {
-    const timeout = this.config.createTimeout();
-    let media: MediaAttachment | undefined;
-
-    while (media == undefined) {
-      if (timeout.signal.aborted) {
-        throw new MastoTimeoutError(
-          'The media encoding has been timed out in your instance.',
-        );
-      }
-
-      await delay(interval);
-
-      try {
-        const processing = await this.v1.fetch(id);
-
-        if (processing.url != undefined) {
-          media = processing;
-          timeout.clear();
-        }
-      } catch (error) {
-        // Some instance caches API response
-        if (error instanceof MastoHttpNotFoundError) {
-          continue;
-        }
-        throw error;
-      }
-    }
-
-    return media;
-  }
-
+export interface MediaAttachmentRepository {
   /**
    * Creates an attachment to be used with a new status.
    * @param params Parameters
    * @return Attachment
    * @see https://docs.joinmastodon.org/methods/statuses/media/
    */
-  async create(
+  create(
     params: CreateMediaAttachmentParams,
-    extra: CreateMediaAttachmentExtraParams = {},
-  ): Promise<MediaAttachment> {
-    const media = await this.http.post<MediaAttachment>(
-      `/api/v2/media`,
-      params,
-      { headers: { 'Content-Type': 'multipart/form-data' } },
-    );
-
-    if (extra.skipPolling) {
-      return media;
-    }
-
-    return this.waitFor(media.id);
-  }
+    meta: HttpMetaParams<'multipart-form'>,
+  ): Promise<MediaAttachment>;
 }

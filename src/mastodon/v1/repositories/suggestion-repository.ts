@@ -1,8 +1,5 @@
-import type { MastoConfig } from '../../../config';
-import type { Http } from '../../../http';
-import type { Logger } from '../../../logger';
-import { Paginator } from '../../../paginator';
-import type { Repository } from '../../repository';
+import type { HttpMetaParams } from '../../../http';
+import type { Paginator } from '../../../paginator';
 import type { Account } from '../entities';
 
 export interface ListSuggestionParams {
@@ -10,35 +7,24 @@ export interface ListSuggestionParams {
   readonly limit?: number | null;
 }
 
-export class SuggestionRepository
-  implements Repository<Account, never, never, never, ListSuggestionParams>
-{
-  constructor(
-    private readonly http: Http,
-    readonly config: MastoConfig,
-    readonly logger?: Logger,
-  ) {}
-
+export interface SuggestionRepository {
   /**
    * Accounts the user has had past positive interactions with, but is not yet following.
-   * @param params
-   * @returns
+   * @param params Parameters
+   * @return Array of Accounts
    * @see https://docs.joinmastodon.org/methods/suggestions/#v1
    */
   list(
     params?: ListSuggestionParams,
-  ): Paginator<Account[], ListSuggestionParams> {
-    return new Paginator(this.http, '/api/v1/suggestions', params);
-  }
+    meta?: HttpMetaParams,
+  ): Paginator<Account[], ListSuggestionParams>;
 
-  /**
-   * Remove an account from follow suggestions.
-   * @param id id of the account in the database to be removed from suggestions
-   * @return N/A
-   * @see https://docs.joinmastodon.org/methods/accounts/suggestions/
-   */
-  /* istanbul ignore next */
-  remove(id: string): Promise<void> {
-    return this.http.delete(`/api/v1/suggestions/${id}`);
-  }
+  select(id: string): {
+    /**
+     * Remove an account from follow suggestions.
+     * @return N/A
+     * @see https://docs.joinmastodon.org/methods/accounts/suggestions/
+     */
+    remove(id: string, meta?: HttpMetaParams): Promise<void>;
+  };
 }

@@ -1,4 +1,4 @@
-import type { Http } from '../../http';
+import type { HttpMetaParams } from '../../http';
 import type { Token } from '../v1';
 
 export interface CreateTokenParamsWithPassword {
@@ -12,15 +12,9 @@ export interface CreateTokenParamsWithPassword {
 
 export type CreateTokenParams = CreateTokenParamsWithPassword;
 
-/**
- * @experimental
- */
-export class OAuthRepository {
-  constructor(private readonly http: Http) {}
-
-  createToken(params: CreateTokenParams): Promise<Token> {
-    return this.http.post('/oauth/token', params, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
-  }
+export interface OAuthRepository {
+  create(
+    params: CreateTokenParams,
+    meta: HttpMetaParams<'multipart-form'>,
+  ): Promise<Token>;
 }

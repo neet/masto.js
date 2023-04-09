@@ -20,7 +20,7 @@ describe('Paginator', () => {
     });
     await paginator.next();
     expect(http.request).toBeCalledWith({
-      requestInit: { method: 'GET' },
+      method: 'GET',
       path: '/v1/api/timelines',
       searchParams: { foo: 'bar' },
     });
@@ -32,7 +32,7 @@ describe('Paginator', () => {
     });
     await paginator;
     expect(http.request).toBeCalledWith({
-      requestInit: { method: 'GET' },
+      method: 'GET',
       path: '/v1/api/timelines',
       searchParams: { foo: 'bar' },
     });
@@ -48,7 +48,7 @@ describe('Paginator', () => {
     await paginator.next();
     await paginator.next();
     expect(http.request).toBeCalledWith({
-      requestInit: { method: 'GET' },
+      method: 'GET',
       searchParams: { max_id: '109382006402042919' },
       path: '/api/v1/timelines/home',
     });
@@ -74,7 +74,7 @@ describe('Paginator', () => {
     }
 
     expect(http.request).toBeCalledWith({
-      requestInit: { method: 'GET' },
+      method: 'GET',
       path: '/v1/api/timelines',
       searchParams: { foo: 'bar' },
     });
@@ -89,12 +89,12 @@ describe('Paginator', () => {
 
     expect(http.request).toBeCalledTimes(2);
     expect(http.request).nthCalledWith(1, {
-      requestInit: { method: 'GET' },
+      method: 'GET',
       searchParams: { query: 'value' },
       path: '/some/api',
     });
     expect(http.request).nthCalledWith(2, {
-      requestInit: { method: 'GET' },
+      method: 'GET',
       searchParams: { query: 'value' },
       path: '/some/api',
     });
@@ -136,8 +136,8 @@ describe('Paginator', () => {
     await paginator.next();
     await paginator.next();
     expect(http.request).toBeCalledWith({
+      method: 'GET',
       path: '/api/v1/notifications',
-      requestInit: { method: 'GET' },
       searchParams: { types: ['mention'], max_id: '123456' },
     });
   });

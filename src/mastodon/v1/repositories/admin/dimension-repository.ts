@@ -1,6 +1,4 @@
-import type { MastoConfig } from '../../../../config';
-import type { Http } from '../../../../http';
-import type { Logger } from '../../../../logger';
+import type { HttpMetaParams } from '../../../../http';
 import type { Admin } from '../../entities';
 import type { DimensionKey } from '../../entities/admin';
 
@@ -51,18 +49,13 @@ export interface FetchDimensionParams {
   } | null;
 }
 
-export class DimensionRepository {
-  constructor(
-    private readonly http: Http,
-    readonly config: MastoConfig,
-    readonly logger?: Logger,
-  ) {}
-
+export interface DimensionRepository {
   /**
    * Obtain information about popularity of certain accounts, servers, languages, etc.
    * @see https://docs.joinmastodon.org/methods/admin/dimensions/#get
    */
-  fetch(params: FetchDimensionParams): Promise<Admin.Dimension[]> {
-    return this.http.post('/api/v1/admin/dimensions', params);
-  }
+  create(
+    params: FetchDimensionParams,
+    meta?: HttpMetaParams<'json'>,
+  ): Promise<Admin.Dimension[]>;
 }

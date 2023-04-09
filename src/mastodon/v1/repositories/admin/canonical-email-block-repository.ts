@@ -1,8 +1,6 @@
-import type { MastoConfig } from '../../../../config';
-import type { Http } from '../../../../http';
-import type { Logger } from '../../../../logger';
-import { Paginator } from '../../../../paginator';
-import type { DefaultPaginationParams, Repository } from '../../../repository';
+import type { HttpMetaParams } from '../../../../http';
+import type { Paginator } from '../../../../paginator';
+import type { DefaultPaginationParams } from '../../../repository';
 import type { Admin } from '../../entities';
 
 export interface TestCanonicalEmailBlockParams {
@@ -24,22 +22,7 @@ export type CreateCanonicalEmailBlockParams =
   | CreateCanonicalEmailBlockParamsWithEmail
   | CreateCanonicalEmailBlockParamsWithCanonicalEmailHash;
 
-export class CanonicalEmailBlockRepository
-  implements
-    Repository<
-      Admin.CanonicalEmailBlock,
-      CreateCanonicalEmailBlockParams,
-      never,
-      never,
-      DefaultPaginationParams
-    >
-{
-  constructor(
-    private readonly http: Http,
-    readonly config: MastoConfig,
-    readonly logger?: Logger,
-  ) {}
-
+export interface CanonicalEmailBlockRepository {
   /**
    * List all canonical email blocks.
    * @param params Parameters
@@ -48,23 +31,8 @@ export class CanonicalEmailBlockRepository
    */
   list(
     params?: DefaultPaginationParams,
-  ): Paginator<Admin.CanonicalEmailBlock[], DefaultPaginationParams> {
-    return new Paginator(
-      this.http,
-      '/api/v1/admin/canonical_email_blocks',
-      params,
-    );
-  }
-
-  /**
-   * Show a single canonical email block
-   * @param id id of the canonical email
-   * @return CanonicalEmailBlock
-   * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks
-   */
-  fetch(id: string): Promise<Admin.CanonicalEmailBlock> {
-    return this.http.get(`/api/v1/admin/canonical_email_blocks/${id}`);
-  }
+    meta?: HttpMetaParams,
+  ): Paginator<Admin.CanonicalEmailBlock[], DefaultPaginationParams>;
 
   /**
    * Canonicalize and hash an email address.
@@ -74,11 +42,8 @@ export class CanonicalEmailBlockRepository
    */
   test(
     params: TestCanonicalEmailBlockParams,
-  ): Promise<Admin.CanonicalEmailBlock[]> {
-    return this.http.post('/api/v1/admin/canonical_email_blocks/test', params, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
-  }
+    meta?: HttpMetaParams<'json'>,
+  ): Promise<Admin.CanonicalEmailBlock[]>;
 
   /**
    * Block a canonical email.
@@ -88,19 +53,22 @@ export class CanonicalEmailBlockRepository
    */
   create(
     params: CreateCanonicalEmailBlockParams,
-  ): Promise<Admin.CanonicalEmailBlock> {
-    return this.http.post('/api/v1/admin/canonical_email_blocks', params, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
-  }
+    meta?: HttpMetaParams<'json'>,
+  ): Promise<Admin.CanonicalEmailBlock>;
 
-  /**
-   * Lift a block a canonical email.
-   * @param id id of canonical email
-   * @return null
-   * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks
-   */
-  remove(id: string): Promise<void> {
-    return this.http.delete(`/api/v1/admin/canonical_email_blocks/${id}`);
-  }
+  select(id: string): {
+    /**
+     * Show a single canonical email block
+     * @return CanonicalEmailBlock
+     * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks
+     */
+    fetch(meta?: HttpMetaParams): Promise<Admin.CanonicalEmailBlock>;
+
+    /**
+     * Lift a block a canonical email.
+     * @return null
+     * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks
+     */
+    remove(meta?: HttpMetaParams): Promise<void>;
+  };
 }

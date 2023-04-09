@@ -1,39 +1,31 @@
-import type { MastoConfig } from '../../../config';
-import type { Http } from '../../../http';
-import type { Logger } from '../../../logger';
-import type { Repository } from '../../repository';
+import type { HttpMetaParams } from '../../../http';
 import type { Poll } from '../entities';
 
 export interface VotePollParams {
   /** Array of own votes containing index for each option (starting from 0) */
-  readonly choices: number[];
+  readonly choices: readonly number[];
 }
 
-export class PollRepository implements Repository<Poll> {
-  constructor(
-    private readonly http: Http,
-    readonly config: MastoConfig,
-    readonly logger?: Logger,
-  ) {}
+export interface PollRepository {
+  select(id: string): {
+    /**
+     * View a poll
+     * @return Poll
+     * @see https://docs.joinmastodon.org/methods/statuses/polls#get
+     */
+    fetch(meta?: HttpMetaParams): Promise<Poll>;
 
-  /**
-   * View a poll
-   * @param id ID of the poll in the database
-   * @return Poll
-   * @see https://docs.joinmastodon.org/methods/statuses/polls#get
-   */
-  fetch(id: string): Promise<Poll> {
-    return this.http.get<Poll>(`/api/v1/polls/${id}`);
-  }
-
-  /**
-   * Vote on a poll
-   * @param id ID of the poll in the database
-   * @param params Parameters
-   * @return Poll
-   * @see https://docs.joinmastodon.org/methods/statuses/polls#vote
-   */
-  vote(id: string, params: VotePollParams): Promise<Poll> {
-    return this.http.post<Poll>(`/api/v1/polls/${id}/votes`, params);
-  }
+    votes: {
+      /**
+       * Vote on a poll
+       * @param params Parameters
+       * @return Poll
+       * @see https://docs.joinmastodon.org/methods/statuses/polls#vote
+       */
+      create(
+        params: VotePollParams,
+        meta?: HttpMetaParams<'json'>,
+      ): Promise<Poll>;
+    };
+  };
 }

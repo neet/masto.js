@@ -9,21 +9,22 @@ export class LoggerConsoleImpl extends BaseLogger implements Logger {
   }
 
   log(type: LogType, message: string, meta: unknown): void {
+    const args = meta == undefined ? [message] : [message, meta];
     switch (type) {
       case 'debug': {
-        console.debug(message, meta);
+        console.debug(...args);
         return;
       }
       case 'info': {
-        console.info(message, meta);
+        console.info(...args);
         return;
       }
       case 'warn': {
-        console.warn(message, meta);
+        console.warn(...args);
         return;
       }
       case 'error': {
-        console.error(message, meta);
+        console.error(...args);
         return;
       }
     }

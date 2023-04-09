@@ -1,19 +1,9 @@
-import type { MastoConfig } from '../../../config';
-import type { Http } from '../../../http';
-import type { Logger } from '../../../logger';
-import { Paginator } from '../../../paginator';
-import type { DefaultPaginationParams, Repository } from '../../repository';
+import type { HttpMetaParams } from '../../../http';
+import type { Paginator } from '../../../paginator';
+import type { DefaultPaginationParams } from '../../repository';
 import type { Account } from '../entities';
 
-export class EndorsementRepository
-  implements Repository<Account, never, never, never, DefaultPaginationParams>
-{
-  constructor(
-    private readonly http: Http,
-    readonly config: MastoConfig,
-    readonly logger?: Logger,
-  ) {}
-
+export interface EndorsementRepository {
   /**
    * Accounts that the user is currently featuring on their profile.
    * @return Array of Account
@@ -21,7 +11,6 @@ export class EndorsementRepository
    */
   list(
     params?: DefaultPaginationParams,
-  ): Paginator<Account[], DefaultPaginationParams> {
-    return new Paginator(this.http, `/api/v1/endorsements`, params);
-  }
+    meta?: HttpMetaParams,
+  ): Paginator<Account[], DefaultPaginationParams>;
 }

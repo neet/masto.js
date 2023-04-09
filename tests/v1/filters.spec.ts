@@ -6,19 +6,19 @@ it('lists filters', () => {
     });
 
     try {
-      await client.v1.filters.update(filter.id, {
+      await client.v1.filters.select(filter.id).update({
         phrase: 'test1',
         context: ['home', 'notifications'],
       });
 
-      filter = await client.v1.filters.fetch(filter.id);
+      filter = await client.v1.filters.select(filter.id).fetch();
       expect(filter.phrase).toBe('test1');
       expect(filter.context).toEqual(['home', 'notifications']);
 
       const filters = await client.v1.filters.list();
       expect(filters).toContainId(filter.id);
     } finally {
-      await client.v1.filters.remove(filter.id);
+      await client.v1.filters.select(filter.id).remove();
     }
   });
 });

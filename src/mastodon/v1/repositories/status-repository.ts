@@ -1,8 +1,5 @@
-import type { MastoConfig } from '../../../config';
-import type { Http } from '../../../http';
-import type { Logger } from '../../../logger';
-import { Paginator } from '../../../paginator';
-import type { Repository } from '../../repository';
+import type { HttpMetaParams } from '../../../http';
+import type { Paginator } from '../../../paginator';
 import type {
   Account,
   Context,
@@ -28,13 +25,9 @@ export interface CreateStatusParamsBase {
   readonly language?: string | null;
 }
 
-export interface CreateStatusExtraParams {
-  readonly idempotencyKey?: string | null;
-}
-
 export interface CreateStatusPollParam {
   /** Array of possible answers. If provided, `media_ids` cannot be used, and `poll[expires_in]` must be provided. */
-  readonly options: string[];
+  readonly options: readonly string[];
   /** Duration the poll should be open, in seconds. If provided, media_ids cannot be used, and poll[options] must be provided. */
   readonly expiresIn: number;
   /** Allow multiple choices? */
@@ -94,241 +87,184 @@ export interface TranslateStatusParams {
   readonly lang?: string;
 }
 
-export class StatusRepository implements Repository<Status> {
-  constructor(
-    private readonly http: Http,
-    readonly config: MastoConfig,
-    readonly logger?: Logger,
-  ) {}
-
-  /**
-   * View information about a status.
-   * @param id Local ID of a status in the database.
-   * @return Status
-   * @see https://docs.joinmastodon.org/methods/statuses/
-   */
-  fetch(id: string): Promise<Status> {
-    return this.http.get(`/api/v1/statuses/${id}`);
-  }
-
+export interface StatusRepository {
   /**
    * Post a new status.
    * @param params Parameters
-   * @param idempotencyKey Prevent duplicate submissions of the same status. Idempotency keys are stored for up to 1 hour, and can be any arbitrary string. Consider using a hash or UUID generated client-side.
    * @return Status. When scheduled_at is present, ScheduledStatus is returned instead.
    * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses
    */
   create(
     params: CreateStatusParams,
-    extra?: CreateStatusExtraParams,
+    meta?: HttpMetaParams<'json'>,
   ): Promise<Status>;
   create(
     params: CreateScheduledStatusParams,
-    extra?: CreateStatusExtraParams,
+    meta?: HttpMetaParams<'json'>,
   ): Promise<ScheduledStatus>;
-  create(
-    params: CreateStatusParams | CreateScheduledStatusParams,
-    extra: CreateStatusExtraParams = {},
-  ): Promise<Status | ScheduledStatus> {
-    if (extra.idempotencyKey) {
-      return this.http.post('/api/v1/statuses', params, {
-        headers: { 'Idempotency-Key': extra.idempotencyKey },
-      });
-    }
 
-    return this.http.post('/api/v1/statuses', params);
-  }
+  select(id: string): {
+    /**
+     * View information about a status.
+     * @return Status
+     * @see https://docs.joinmastodon.org/methods/statuses/
+     */
+    fetch(meta?: HttpMetaParams): Promise<Status>;
 
-  /**
-   * Update a status
-   * @param params Parameters
-   * @return Status. When scheduled_at is present, ScheduledStatus is returned instead.
-   * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses
-   */
-  update(id: string, params: UpdateStatusParams): Promise<Status> {
-    return this.http.put(`/api/v1/statuses/${id}`, params);
-  }
+    /**
+     * Update a status
+     * @param params Parameters
+     * @return Status. When scheduled_at is present, ScheduledStatus is returned instead.
+     * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses
+     */
+    update(
+      params: UpdateStatusParams,
+      meta?: HttpMetaParams<'json'>,
+    ): Promise<Status>;
 
-  /**
-   * Delete one of your own statuses.
-   * @param id Local ID of a status in the database. Must be owned by authenticated account.
-   * @return Status with source text and `media_attachments` or `poll`
-   * @see https://docs.joinmastodon.org/methods/statuses/
-   */
-  remove(id: string): Promise<Status> {
-    return this.http.delete(`/api/v1/statuses/${id}`);
-  }
+    /**
+     * Delete one of your own statuses.
+     * @return Status with source text and `media_attachments` or `poll`
+     * @see https://docs.joinmastodon.org/methods/statuses/
+     */
+    remove(meta?: HttpMetaParams): Promise<Status>;
 
-  /**
-   * View statuses above and below this status in the thread.
-   * @param id Local ID of a status in the database.
-   * @return Context
-   * @see https://docs.joinmastodon.org/methods/statuses/
-   */
-  fetchContext(id: string): Promise<Context> {
-    return this.http.get(`/api/v1/statuses/${id}/context`);
-  }
+    context: {
+      /**
+       * View statuses above and below this status in the thread.
+       * @return Context
+       * @see https://docs.joinmastodon.org/methods/statuses/
+       */
+      fetch(meta?: HttpMetaParams): Promise<Context>;
+    };
 
-  /**
-   * Preview card
-   *    * @param id ID of the status in the database
-   * @return Card
-   * @see https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-card
-   */
-  /* istanbul ignore next */
-  fetchCard(id: string): Promise<PreviewCard> {
-    return this.http.get(`/api/v1/statuses/${id}/card`);
-  }
+    card: {
+      /**
+       * Preview card
+       * @return Card
+       * @see https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-card
+       * @deprecated
+       */
+      fetch(meta?: HttpMetaParams): Promise<PreviewCard>;
+    };
 
-  /**
-   * Add a status to your favourites list.
-   * @param id Local ID of a status in the database.
-   * @return Status
-   * @see https://docs.joinmastodon.org/methods/statuses/
-   */
-  favourite(id: string): Promise<Status> {
-    return this.http.post(`/api/v1/statuses/${id}/favourite`);
-  }
+    /**
+     * Add a status to your favourites list.
+     * @return Status
+     * @see https://docs.joinmastodon.org/methods/statuses/
+     */
+    favourite(meta?: HttpMetaParams): Promise<Status>;
 
-  /**
-   * Remove a status from your favourites list.
-   * @param id Local ID of a status in the database.
-   * @return Status
-   * @see https://docs.joinmastodon.org/methods/statuses/
-   */
-  unfavourite(id: string): Promise<Status> {
-    return this.http.post(`/api/v1/statuses/${id}/unfavourite`);
-  }
+    /**
+     * Remove a status from your favourites list.
+     * @return Status
+     * @see https://docs.joinmastodon.org/methods/statuses/
+     */
+    unfavourite(meta?: HttpMetaParams): Promise<Status>;
 
-  /**
-   * Do not receive notifications for the thread that this status is part of. Must be a thread in which you are a participant.
-   * @param id Local ID of a status in the database.
-   * @return Status
-   * @see https://docs.joinmastodon.org/methods/statuses/
-   */
-  mute(id: string): Promise<Status> {
-    return this.http.post(`/api/v1/statuses/${id}/mute`);
-  }
+    /**
+     * Do not receive notifications for the thread that this status is part of. Must be a thread in which you are a participant.
+     * @return Status
+     * @see https://docs.joinmastodon.org/methods/statuses/
+     */
+    mute(meta?: HttpMetaParams): Promise<Status>;
 
-  /**
-   * Start receiving notifications again for the thread that this status is part of.
-   * @param id Local ID of a status in the database.
-   * @return Status
-   * @see https://docs.joinmastodon.org/methods/statuses/
-   */
-  unmute(id: string): Promise<Status> {
-    return this.http.post(`/api/v1/statuses/${id}/unmute`);
-  }
+    /**
+     * Start receiving notifications again for the thread that this status is part of.
+     * @return Status
+     * @see https://docs.joinmastodon.org/methods/statuses/
+     */
+    unmute(meta?: HttpMetaParams): Promise<Status>;
 
-  /**
-   * View who boosted a given status.
-   * @param id Local ID of a status in the database.
-   * @return Array of Account
-   * @see https://docs.joinmastodon.org/methods/statuses/
-   */
-  listRebloggedBy(id: string): Paginator<Account[]> {
-    return new Paginator(this.http, `/api/v1/statuses/${id}/reblogged_by`);
-  }
+    rebloggedBy: {
+      /**
+       * View who boosted a given status.
+       * @return Array of Account
+       * @see https://docs.joinmastodon.org/methods/statuses/
+       */
+      list(meta?: HttpMetaParams): Paginator<Account[]>;
+    };
 
-  /**
-   * View who favourited a given status.
-   * @param id Local ID of a status in the database.
-   * @return Array of Account
-   * @see https://docs.joinmastodon.org/methods/statuses/
-   */
-  listFavouritedBy(id: string): Paginator<Account[]> {
-    return new Paginator(this.http, `/api/v1/statuses/${id}/favourited_by`);
-  }
+    favouritedBy: {
+      /**
+       * View who favourited a given status.
+       * @return Array of Account
+       * @see https://docs.joinmastodon.org/methods/statuses/
+       */
+      list(meta?: HttpMetaParams): Paginator<Account[]>;
+    };
 
-  /**
-   * Re-share a status.
-   * @param id Local ID of a status in the database.
-   * @return Status
-   * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-reblog
-   */
-  reblog(id: string, params?: ReblogStatusParams): Promise<Status> {
-    return this.http.post(`/api/v1/statuses/${id}/reblog`, params);
-  }
+    /**
+     * Re-share a status.
+     * @return Status
+     * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-reblog
+     */
+    reblog(
+      params?: ReblogStatusParams,
+      meta?: HttpMetaParams<'json'>,
+    ): Promise<Status>;
 
-  /**
-   * Undo a re-share of a status.
-   * @param id Local ID of a status in the database.
-   * @return Status
-   * @see https://docs.joinmastodon.org/methods/statuses/
-   */
-  unreblog(id: string): Promise<Status> {
-    return this.http.post(`/api/v1/statuses/${id}/unreblog`);
-  }
+    /**
+     * Undo a re-share of a status.
+     * @return Status
+     * @see https://docs.joinmastodon.org/methods/statuses/
+     */
+    unreblog(meta?: HttpMetaParams): Promise<Status>;
 
-  /**
-   * Feature one of your own public statuses at the top of your profile.
-   * @param id Local ID of a status in the database. The status should be public and authored by the authorized account.
-   * @return Status
-   * @see https://docs.joinmastodon.org/methods/statuses/
-   */
-  pin(id: string): Promise<Status> {
-    return this.http.post(`/api/v1/statuses/${id}/pin`);
-  }
+    /**
+     * Feature one of your own public statuses at the top of your profile.
+     * @return Status
+     * @see https://docs.joinmastodon.org/methods/statuses/
+     */
+    pin(meta?: HttpMetaParams): Promise<Status>;
 
-  /**
-   * Un-feature a status from the top of your profile.
-   * @param id Local ID of a status in the database.
-   * @return Status
-   * @see https://docs.joinmastodon.org/methods/statuses/
-   */
-  unpin(id: string): Promise<Status> {
-    return this.http.post(`/api/v1/statuses/${id}/unpin`);
-  }
+    /**
+     * Un-feature a status from the top of your profile.
+     * @return Status
+     * @see https://docs.joinmastodon.org/methods/statuses/
+     */
+    unpin(meta?: HttpMetaParams): Promise<Status>;
 
-  /**
-   * Privately bookmark a status.
-   * @param id ID of the status in the database
-   * @return Status
-   * @see https://docs.joinmastodon.org/methods/statuses/
-   */
-  bookmark(id: string): Promise<Status> {
-    return this.http.post(`/api/v1/statuses/${id}/bookmark`);
-  }
+    /**
+     * Privately bookmark a status.
+     * @return Status
+     * @see https://docs.joinmastodon.org/methods/statuses/
+     */
+    bookmark(meta?: HttpMetaParams): Promise<Status>;
 
-  /**
-   * Remove a status from your private bookmarks.
-   * @param id ID of the status in the database
-   * @return Status
-   * @see https://docs.joinmastodon.org/methods/statuses/
-   */
-  unbookmark(id: string): Promise<Status> {
-    return this.http.post(`/api/v1/statuses/${id}/unbookmark`);
-  }
+    /**
+     * Remove a status from your private bookmarks.
+     * @return Status
+     * @see https://docs.joinmastodon.org/methods/statuses/
+     */
+    unbookmark(meta?: HttpMetaParams): Promise<Status>;
 
-  /**
-   * Get all known versions of a status, including the initial and current states.
-   * @param id The local id of the status in the database
-   * @returns StatusEdit
-   * @see https://docs.joinmastodon.org/methods/statuses/#history
-   */
-  listHistory(id: string): Paginator<StatusEdit[]> {
-    return new Paginator(this.http, `/api/v1/statuses/${id}/history`);
-  }
+    history: {
+      /**
+       * Get all known versions of a status, including the initial and current states.
+       * @returns StatusEdit
+       * @see https://docs.joinmastodon.org/methods/statuses/#history
+       */
+      list(meta?: HttpMetaParams): Paginator<StatusEdit[]>;
+    };
 
-  /**
-   * Obtain the source properties for a status so that it can be edited.
-   * @param id The local ID of the Status in the database
-   * @returns StatusSource
-   * @see https://docs.joinmastodon.org/methods/statuses/#source
-   */
-  fetchSource(id: string): Promise<StatusSource> {
-    return this.http.get(`/api/v1/statuses/${id}/source`);
-  }
+    source: {
+      /**
+       * Obtain the source properties for a status so that it can be edited.
+       * @returns StatusSource
+       * @see https://docs.joinmastodon.org/methods/statuses/#source
+       */
+      fetch(meta?: HttpMetaParams): Promise<StatusSource>;
+    };
 
-  /**
-   * Translate the status content into some language.
-   * @param id String. The ID of the Status in the database.
-   * @param params Form data parameters
-   * @returns Translation
-   */
-  translate(id: string, params: TranslateStatusParams): Promise<Translation> {
-    return this.http.post(`/api/v1/statuses/${id}/translate`, params, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
-  }
+    /**
+     * Translate the status content into some language.
+     * @param params Form data parameters
+     * @returns Translation
+     */
+    translate(
+      params: TranslateStatusParams,
+      meta?: HttpMetaParams,
+    ): Promise<Translation>;
+  };
 }

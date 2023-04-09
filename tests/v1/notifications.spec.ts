@@ -2,7 +2,7 @@ import { delay } from '../../src/utils';
 
 it('handles notifications', () => {
   return clients.use(2, async ([alice, bob]) => {
-    const aliceAccount = await alice.v1.accounts.verifyCredentials();
+    const aliceAccount = await alice.v1.accounts.verifyCredentials.fetch();
     const status = await bob.v1.statuses.create({
       status: `@${aliceAccount.acct} Hello`,
     });
@@ -12,21 +12,24 @@ it('handles notifications', () => {
       let notifications = await alice.v1.notifications.list();
       let notification = notifications[0];
 
-      notification = await alice.v1.notifications.fetch(notification.id);
+      notification = await alice.v1.notifications
+        .select(notification.id)
+        .fetch();
+
       expect(notification.status?.id).toBe(status.id);
-      await alice.v1.notifications.dismiss(notification.id);
+      await alice.v1.notifications.select(notification.id).dismiss();
 
       notifications = await alice.v1.notifications.list();
       expect(notifications).not.toContainId(notification.id);
     } finally {
-      await bob.v1.statuses.remove(status.id);
+      await bob.v1.statuses.select(status.id).remove();
     }
   });
 });
 
 it('clear notifications', () => {
   return clients.use(2, async ([alice, bob]) => {
-    const aliceAccount = await alice.v1.accounts.verifyCredentials();
+    const aliceAccount = await alice.v1.accounts.verifyCredentials.fetch();
 
     const s1 = await bob.v1.statuses.create({
       status: `@${aliceAccount.acct} Hello 1`,
@@ -47,9 +50,9 @@ it('clear notifications', () => {
       notifications = await alice.v1.notifications.list();
       expect(notifications).toHaveLength(0);
     } finally {
-      await bob.v1.statuses.remove(s1.id);
-      await bob.v1.statuses.remove(s2.id);
-      await bob.v1.statuses.remove(s3.id);
+      await bob.v1.statuses.select(s1.id).remove();
+      await bob.v1.statuses.select(s2.id).remove();
+      await bob.v1.statuses.select(s3.id).remove();
     }
   });
 });
