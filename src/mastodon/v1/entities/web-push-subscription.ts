@@ -4,9 +4,6 @@ export type WebPushSubscriptionPolicy =
   | 'follower'
   | 'none';
 
-/** @deprecated Use WebPushSubscriptionPolicy */
-export type SubscriptionPolicy = WebPushSubscriptionPolicy;
-
 /**
  * Represents a subscription to the push streaming server.
  * @see https://docs.joinmastodon.org/entities/WebPushSubscription/
