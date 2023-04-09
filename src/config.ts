@@ -28,7 +28,6 @@ export class MastoConfig {
   createHeader(override: HeadersInit = {}): Headers {
     const headersInit = mergeHeadersInit([
       this.props.defaultRequestInit?.headers ?? {},
-      { 'Content-Type': 'application/json' },
       override,
     ]);
     const headers: HeadersInit = new Headers(headersInit);

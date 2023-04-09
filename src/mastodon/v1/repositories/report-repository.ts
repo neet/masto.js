@@ -1,14 +1,11 @@
-import type { MastoConfig } from '../../../config';
-import type { Http } from '../../../http';
-import type { Logger } from '../../../logger';
-
-export type ReportCategory = 'spam' | 'violation' | 'other';
+import type { HttpMetaParams } from '../../../http';
+import type { ReportCategory } from '../entities/admin';
 
 export interface ReportAccountParams {
   /** ID of the account to report */
   readonly accountId: string;
   /** Array of Statuses to attach to the report, for context */
-  readonly statusIds?: string[] | null;
+  readonly statusIds?: readonly string[] | null;
   /** Reason for the report (default max 1000 characters) */
   readonly comment?: string | null;
   /** If the account is remote, should the report be forwarded to the remote admin? */
@@ -16,23 +13,18 @@ export interface ReportAccountParams {
   /** category can be one of: spam, violation, other (default) */
   readonly category?: ReportCategory | null;
   /** must reference rules returned in GET /api/v1/instance */
-  readonly ruleIds?: string[] | null;
+  readonly ruleIds?: readonly string[] | null;
 }
 
-export class ReportRepository {
-  constructor(
-    private readonly http: Http,
-    readonly config: MastoConfig,
-    readonly logger?: Logger,
-  ) {}
-
+export interface ReportRepository {
   /**
    * File a report
    * @param params Parameters
    * @return Report
    * @see https://docs.joinmastodon.org/methods/accounts/reports/
    */
-  create(params: ReportAccountParams): Promise<void> {
-    return this.http.post<void>('/api/v1/reports', params);
-  }
+  create(
+    params: ReportAccountParams,
+    meta?: HttpMetaParams<'json'>,
+  ): Promise<void>;
 }

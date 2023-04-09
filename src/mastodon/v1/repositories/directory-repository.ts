@@ -1,8 +1,5 @@
-import type { MastoConfig } from '../../../config';
-import type { Http } from '../../../http';
-import type { Logger } from '../../../logger';
-import { Paginator } from '../../../paginator';
-import type { Repository } from '../../repository';
+import type { HttpMetaParams } from '../../../http';
+import type { Paginator } from '../../../paginator';
 import type { Account } from '../entities';
 
 export type DirectoryOrderType = 'active' | 'new';
@@ -18,15 +15,7 @@ export interface ListDirectoryParams {
   readonly local?: boolean | null;
 }
 
-export class DirectoryRepository
-  implements Repository<Account, never, never, never, ListDirectoryParams>
-{
-  constructor(
-    private readonly http: Http,
-    readonly config: MastoConfig,
-    readonly logger?: Logger,
-  ) {}
-
+export interface DirectoryRepository {
   /**
    * List accounts visible in the directory.
    * @param params Parameters
@@ -35,7 +24,6 @@ export class DirectoryRepository
    */
   list(
     params?: ListDirectoryParams,
-  ): Paginator<Account[], ListDirectoryParams> {
-    return new Paginator(this.http, '/api/v1/directory', params);
-  }
+    meta?: HttpMetaParams<'json'>,
+  ): Paginator<Account[], ListDirectoryParams>;
 }

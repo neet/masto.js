@@ -8,16 +8,16 @@ describe('filters', () => {
       });
 
       try {
-        await client.v2.filters.update(filter.id, {
+        await client.v2.filters.select(filter.id).update({
           title: 'Filter Updated',
         });
-        filter = await client.v2.filters.fetch(filter.id);
+        filter = await client.v2.filters.select(filter.id).fetch();
         expect(filter.title).toBe('Filter Updated');
 
         const filters = await client.v2.filters.list();
         expect(filters).toContainId(filter.id);
       } finally {
-        await client.v2.filters.remove(filter.id);
+        await client.v2.filters.select(filter.id).remove();
       }
     });
   });
@@ -30,22 +30,26 @@ describe('filters', () => {
       });
 
       try {
-        let keyword = await client.v2.filters.createKeyword(filter.id, {
-          keyword: 'test',
-        });
+        let keyword = await client.v2.filters
+          .select(filter.id)
+          .keywords.create({
+            keyword: 'test',
+          });
 
-        await client.v2.filters.updateKeyword(keyword.id, {
+        await client.v2.filters.keywords.select(keyword.id).update({
           keyword: 'test2',
         });
 
-        keyword = await client.v2.filters.fetchKeyword(keyword.id);
+        keyword = await client.v2.filters.keywords.select(keyword.id).fetch();
         expect(keyword.keyword).toBe('test2');
 
-        const keywords = await client.v2.filters.listKeywords(filter.id);
+        const keywords = await client.v2.filters
+          .select(filter.id)
+          .keywords.list();
         expect(keywords).toContainId(keyword.id);
-        await client.v2.filters.removeKeyword(keyword.id);
+        await client.v2.filters.keywords.select(keyword.id).remove();
       } finally {
-        await client.v2.filters.remove(filter.id);
+        await client.v2.filters.select(filter.id).remove();
       }
     });
   });
@@ -59,18 +63,24 @@ describe('filters', () => {
 
       try {
         const status = await client.v1.statuses.create({ status: 'test' });
-        let statusFilter = await client.v2.filters.createStatus(filter.id, {
-          statusId: status.id,
-        });
+        let statusFilter = await client.v2.filters
+          .select(filter.id)
+          .statuses.create({
+            statusId: status.id,
+          });
 
-        statusFilter = await client.v2.filters.fetchStatus(statusFilter.id);
+        statusFilter = await client.v2.filters.statuses
+          .select(statusFilter.id)
+          .fetch();
         expect(statusFilter.statusId).toBe(status.id);
 
-        const statusFilters = await client.v2.filters.listStatuses(filter.id);
+        const statusFilters = await client.v2.filters
+          .select(filter.id)
+          .statuses.list();
         expect(statusFilters).toContainId(statusFilter.id);
-        await client.v2.filters.removeStatus(statusFilter.id);
+        await client.v2.filters.statuses.select(statusFilter.id).remove();
       } finally {
-        await client.v2.filters.remove(filter.id);
+        await client.v2.filters.select(filter.id).remove();
       }
     });
   });
@@ -85,12 +95,12 @@ describe('filters', () => {
       expect(filter.keywords).toHaveLength(2);
 
       try {
-        filter = await client.v2.filters.update(filter.id, {
+        filter = await client.v2.filters.select(filter.id).update({
           keywordsAttributes: [{ id: filter.keywords[0].id, _destroy: true }],
         });
         expect(filter.keywords).toHaveLength(1);
       } finally {
-        await client.v2.filters.remove(filter.id);
+        await client.v2.filters.select(filter.id).remove();
       }
     });
   });

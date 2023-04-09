@@ -23,7 +23,7 @@ export class TokenPoolImpl implements TokenPool {
 
   constructor(
     container: string,
-    private readonly client: mastodon.Client,
+    private readonly oauth: mastodon.OAuthAPIClient,
     private readonly app: mastodon.v1.Client,
   ) {
     this.tootctl = createTootctl({ container });
@@ -61,14 +61,17 @@ export class TokenPoolImpl implements TokenPool {
       confirmed: true,
     });
 
-    const token = await this.client.oauth.createToken({
-      grantType: 'password',
-      clientId: this.app.clientId!,
-      clientSecret: this.app.clientSecret!,
-      username: email,
-      password,
-      scope: 'read write follow push admin:read admin:write',
-    });
+    const token = await this.oauth.token.create(
+      {
+        grantType: 'password',
+        clientId: this.app.clientId!,
+        clientSecret: this.app.clientSecret!,
+        username: email,
+        password,
+        scope: 'read write follow push admin:read admin:write',
+      },
+      { encoding: 'multipart-form' },
+    );
 
     this.cache.set(token);
 

@@ -1,7 +1,4 @@
-import type { MastoConfig } from '../../../config';
-import type { Http } from '../../../http';
-import type { Logger } from '../../../logger';
-import type { Repository } from '../../repository';
+import type { HttpMetaParams } from '../../../http';
 import type { Client } from '../entities';
 
 export interface CreateAppParams {
@@ -19,29 +16,24 @@ export interface CreateAppParams {
   readonly website?: string | null;
 }
 
-export class AppRepository implements Repository<Client, CreateAppParams> {
-  constructor(
-    private readonly http: Http,
-    readonly config: MastoConfig,
-    readonly logger?: Logger,
-  ) {}
-
+export interface AppRepository {
   /**
    * Create a new application to obtain OAuth2 credentials.
    * @param params Parameters
    * @return Returns App with `client_id` and `client_secret`
    * @see https://docs.joinmastodon.org/methods/apps/
    */
-  create(params: CreateAppParams): Promise<Client> {
-    return this.http.post<Client>(`/api/v1/apps`, params);
-  }
+  create(
+    params: CreateAppParams,
+    meta?: HttpMetaParams<'json'>,
+  ): Promise<Client>;
 
-  /**
-   * Confirm that the app's OAuth2 credentials work.
-   * @return Application
-   * @see https://docs.joinmastodon.org/methods/apps/
-   */
-  verifyCredentials(): Promise<Client> {
-    return this.http.get<Client>(`/api/v1/apps/verify_credentials`);
-  }
+  verifyCredentials: {
+    /**
+     * Confirm that the app's OAuth2 credentials work.
+     * @return Application
+     * @see https://docs.joinmastodon.org/methods/apps/
+     */
+    fetch(meta?: HttpMetaParams): Promise<Client>;
+  };
 }

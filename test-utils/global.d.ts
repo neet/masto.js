@@ -3,7 +3,7 @@ import type { mastodon } from '../src';
 import type { ClientPool, TokenPool } from './pools';
 
 declare global {
-  var admin: mastodon.Client;
+  var admin: mastodon.RestAPIClient;
   var clients: ClientPool;
 
   /** Should only be used inside /test-utils */

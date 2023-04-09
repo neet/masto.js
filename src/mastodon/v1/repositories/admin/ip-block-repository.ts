@@ -1,103 +1,82 @@
-import type { MastoConfig } from '../../../../config';
-import type { Http } from '../../../../http';
-import type { Logger } from '../../../../logger';
-import { Paginator } from '../../../../paginator';
-import type { Repository } from '../../../repository';
+import type { HttpMetaParams } from '../../../../http';
+import type { Paginator } from '../../../../paginator';
 import type { Admin } from '../../entities';
 import type { IpBlockSeverity } from '../../entities/admin';
 
-export type ListIpBlocksParams = {
+export interface ListIpBlocksParams {
   /** Integer. Maximum number of results to return. Defaults to 100. */
   readonly limit?: number | null;
-};
+}
 
 export interface CreateIpBlockParams {
   /** The IP address and prefix to block. */
-  readonly ip?: string;
+  readonly ip?: string | null;
   /** The policy to apply to this IP range. */
   readonly severity: IpBlockSeverity;
   /** The reason for this IP block. */
-  readonly comment?: string;
+  readonly comment?: string | null;
   /** The number of seconds in which this IP block will expire. */
   readonly expiresIn?: number | null;
 }
 
 export interface UpdateIpBlockParams {
   /** The IP address and prefix to block. */
-  readonly ip?: string;
+  readonly ip?: string | null;
   /** The policy to apply to this IP range. */
-  readonly severity?: IpBlockSeverity;
+  readonly severity?: IpBlockSeverity | null;
   /** The reason for this IP block. */
-  readonly comment?: string;
+  readonly comment?: string | null;
   /** The number of seconds in which this IP block will expire. */
   readonly expiresIn?: number | null;
 }
 
-export class IpBlockRepository
-  implements
-    Repository<
-      Admin.IpBlock,
-      CreateIpBlockParams,
-      UpdateIpBlockParams,
-      never,
-      ListIpBlocksParams
-    >
-{
-  constructor(
-    private readonly http: Http,
-    readonly config: MastoConfig,
-    readonly logger?: Logger,
-  ) {}
-
+export interface IpBlockRepository {
   /**
    * Show information about all blocked IP ranges.
    * @param params Parameters
-   * @return Array of Ip Block
-   * @see https://docs.joinmastodon.org/methods/admin/
+   * @return Array of IpBlock
+   * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#get
    */
   list(
     params?: ListIpBlocksParams,
-  ): Paginator<Admin.IpBlock[], ListIpBlocksParams> {
-    return new Paginator(this.http, '/api/v1/admin/ip_blocks', params);
-  }
+    meta?: HttpMetaParams,
+  ): Paginator<Admin.IpBlock[], ListIpBlocksParams>;
 
-  /**
-   * Show information about all blocked IP ranges.
-   * @param id id of the Ip blocked
-   * @return object of Ip Block
-   * @see https://docs.joinmastodon.org/methods/admin/
-   */
-  fetch(id: string): Promise<Admin.IpBlock> {
-    return this.http.get(`/api/v1/admin/ip_blocks/${id}`);
-  }
+  select(id: string): {
+    /**
+     * Show information about a single IP block.
+     * @return IpBlock
+     * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#get-one
+     */
+    fetch(meta?: HttpMetaParams): Promise<Admin.IpBlock>;
+
+    /**
+     * Change parameters for an existing IP block.
+     * @param params Parameters
+     * @return IpBlock
+     * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#update
+     */
+    update(
+      params: UpdateIpBlockParams,
+      meta?: HttpMetaParams<'json'>,
+    ): Promise<Admin.IpBlock>;
+
+    /**
+     * Lift a block against an IP range.
+     * @return null
+     * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#delete
+     */
+    remove(meta?: HttpMetaParams): Promise<void>;
+  };
 
   /**
    * Add an IP address range to the list of IP blocks.
    * @param params Parameters
-   * @return object of Ip Block
-   * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#create
+   * @return IpBlock
+   * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#post
    */
-  create(params: CreateIpBlockParams): Promise<Admin.IpBlock> {
-    return this.http.post('/api/v1/admin/ip_blocks', params);
-  }
-
-  /**
-   * Change parameters for an existing IP block.
-   * @param params Parameters
-   * @return object of Ip Block
-   * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#update
-   */
-  update(id: string, params: UpdateIpBlockParams): Promise<Admin.IpBlock> {
-    return this.http.put(`/api/v1/admin/ip_blocks/${id}`, params);
-  }
-
-  /**
-   * Lift a block against an IP range.
-   * @param id id of ip block
-   * @return null
-   * @see https://docs.joinmastodon.org/methods/admin/
-   */
-  remove(id: string): Promise<void> {
-    return this.http.delete(`/api/v1/admin/ip_blocks/${id}`);
-  }
+  create(
+    params: CreateIpBlockParams,
+    meta?: HttpMetaParams<'json'>,
+  ): Promise<Admin.IpBlock>;
 }

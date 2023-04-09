@@ -1,8 +1,5 @@
-import type { MastoConfig } from '../../../config';
-import type { Http } from '../../../http';
-import type { Logger } from '../../../logger';
-import { Paginator } from '../../../paginator';
-import type { Repository } from '../../repository';
+import type { HttpMetaParams } from '../../../http';
+import type { Paginator } from '../../../paginator';
 import type { FilterKeyword, FilterStatus } from '../../v1';
 import type { Filter, FilterAction, FilterContext } from '../entities';
 
@@ -59,33 +56,13 @@ export interface CreateFilterStatusParams {
   readonly statusId: string;
 }
 
-export class FilterRepository
-  implements Repository<Filter, CreateFilterParams, UpdateFilterParams>
-{
-  constructor(
-    private readonly http: Http,
-    readonly config: MastoConfig,
-    readonly logger?: Logger,
-  ) {}
-
+export interface FilterRepository {
   /**
    * View all filters
    * @return Array of Filter
    * @see https://docs.joinmastodon.org/methods/filters/#get
    */
-  list(): Paginator<Filter[]> {
-    return new Paginator(this.http, `/api/v2/filters`);
-  }
-
-  /**
-   * Obtain a single filter group owned by the current user.
-   * @param id ID of the filter
-   * @return Filter
-   * @see https://docs.joinmastodon.org/methods/filters/#get-one
-   */
-  fetch(id: string): Promise<Filter> {
-    return this.http.get<Filter>(`/api/v2/filters/${id}`);
-  }
+  list(meta?: HttpMetaParams): Paginator<Filter[]>;
 
   /**
    * Create a filter group with the given parameters.
@@ -93,138 +70,122 @@ export class FilterRepository
    * @return Filter
    * @see https://docs.joinmastodon.org/methods/filters/#create
    */
-  create(params?: CreateFilterParams): Promise<Filter> {
-    return this.http.post<Filter>(`/api/v2/filters`, params, {
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    });
-  }
+  create(
+    params?: CreateFilterParams,
+    meta?: HttpMetaParams<'json'>,
+  ): Promise<Filter>;
 
-  /**
-   * Update a filter group with the given parameters.
-   * @param id ID of the filter in the database
-   * @param params Parameters
-   * @return Filter
-   * @see https://docs.joinmastodon.org/methods/filters/#update
-   */
-  update(id: string, params?: UpdateFilterParams): Promise<Filter> {
-    return this.http.put<Filter>(`/api/v2/filters/${id}`, params);
-  }
+  select(id: string): {
+    /**
+     * Obtain a single filter group owned by the current user.
+     * @return Filter
+     * @see https://docs.joinmastodon.org/methods/filters/#get-one
+     */
+    fetch(meta?: HttpMetaParams): Promise<Filter>;
 
-  /**
-   * Delete a filter group with the given id.
-   * @param id ID of the filter in the database
-   * @return N/A
-   * @see https://docs.joinmastodon.org/methods/filters/#delete
-   */
-  remove(id: string): Promise<void> {
-    return this.http.delete<void>(`/api/v2/filters/${id}`);
-  }
+    /**
+     * Update a filter group with the given parameters.
+     * @param params Parameters
+     * @return Filter
+     * @see https://docs.joinmastodon.org/methods/filters/#update
+     */
+    update(
+      params?: UpdateFilterParams,
+      meta?: HttpMetaParams<'json'>,
+    ): Promise<Filter>;
 
-  /**
-   * List all keywords attached to the current filter group.
-   * @param id String. The ID of the Filter in the database.
-   * @returns Array of FilterKeyword
-   * @see https://docs.joinmastodon.org/methods/filters/#keywords-get
-   */
-  listKeywords(id: string): Paginator<FilterKeyword[]> {
-    return new Paginator(this.http, `/api/v2/filters/${id}/keywords`);
-  }
+    /**
+     * Delete a filter group with the given id.
+     * @return N/A
+     * @see https://docs.joinmastodon.org/methods/filters/#delete
+     */
+    remove(meta?: HttpMetaParams): Promise<void>;
 
-  /**
-   * Add the given keyword to the specified filter group
-   * @param id String. The ID of the Filter in the database.
-   * @param params Parameters
-   * @return FilterKeywords
-   * @see https://docs.joinmastodon.org/methods/filters/#keywords-create
-   */
-  createKeyword(
-    id: string,
-    params: CreateFilterKeywordParams,
-  ): Promise<FilterKeyword> {
-    return this.http.post(`/api/v2/filters/${id}/keywords`, params, {
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    });
-  }
+    keywords: {
+      /**
+       * Add the given keyword to the specified filter group
+       * @param id String. The ID of the Filter in the database.
+       * @param params Parameters
+       * @return FilterKeywords
+       * @see https://docs.joinmastodon.org/methods/filters/#keywords-create
+       */
+      create(
+        params: CreateFilterKeywordParams,
+        meta?: HttpMetaParams<'json'>,
+      ): Promise<FilterKeyword>;
 
-  /**
-   * Get one filter keyword by the given id.
-   * @param id String. The ID of the FilterKeyword in the database.
-   * @returns FilterKeyword
-   * @see https://docs.joinmastodon.org/methods/filters/#keywords-get-one
-   */
-  fetchKeyword(id: string): Paginator<FilterKeyword> {
-    return new Paginator(this.http, `/api/v2/filters/keywords/${id}`);
-  }
+      /**
+       * List all keywords attached to the current filter group.
+       * @returns Array of FilterKeyword
+       * @see https://docs.joinmastodon.org/methods/filters/#keywords-get
+       */
+      list(meta?: HttpMetaParams): Paginator<FilterKeyword[]>;
+    };
 
-  /**
-   * Update the given filter keyword.
-   * @param id String. The ID of the FilterKeyword in the database.
-   * @param params Parameters
-   * @return FilterKeywords
-   * @see https://docs.joinmastodon.org/methods/filters/#keywords-update
-   */
-  updateKeyword(
-    id: string,
-    params: CreateFilterKeywordParams,
-  ): Promise<FilterKeyword> {
-    return this.http.put(`/api/v2/filters/keywords/${id}`, params, {
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    });
-  }
+    statuses: {
+      /**
+       * Obtain a list of all status filters within this filter group.
+       * @returns Array of FilterStatus
+       * @see https://docs.joinmastodon.org/methods/filters/#statuses-get
+       */
+      list(meta?: HttpMetaParams): Paginator<FilterStatus[]>;
 
-  /**
-   * Deletes the given filter keyword.
-   * @param id String. The ID of the FilterKeyword in the database.
-   * @returns empty object
-   * @see https://docs.joinmastodon.org/methods/filters/#keywords-delete
-   */
-  removeKeyword(id: string): Promise<void> {
-    return this.http.delete(`/api/v2/filters/keywords/${id}`);
-  }
+      /**
+       * Add a status filter to the current filter group.
+       * @param params
+       * @returns FilterStatus
+       * @see https://docs.joinmastodon.org/methods/filters/#statuses-add
+       */
+      create(
+        params: CreateFilterStatusParams,
+        meta?: HttpMetaParams<'json'>,
+      ): Promise<FilterStatus>;
+    };
+  };
 
-  /**
-   * Obtain a list of all status filters within this filter group.
-   * @param id String. The ID of the Filter in the database.
-   * @returns Array of FilterStatus
-   * @see https://docs.joinmastodon.org/methods/filters/#statuses-get
-   */
-  listStatuses(id: string): Paginator<FilterStatus[]> {
-    return new Paginator(this.http, `/api/v2/filters/${id}/statuses`);
-  }
+  keywords: {
+    select(id: string): {
+      /**
+       * Get one filter keyword by the given id.
+       * @returns FilterKeyword
+       * @see https://docs.joinmastodon.org/methods/filters/#keywords-get-one
+       */
+      fetch(meta?: HttpMetaParams): Paginator<FilterKeyword>;
 
-  /**
-   * Add a status filter to the current filter group.
-   * @param id String. The ID of the Filter in the database.
-   * @param params
-   * @returns FilterStatus
-   * @see https://docs.joinmastodon.org/methods/filters/#statuses-add
-   */
-  createStatus(
-    id: string,
-    params: CreateFilterStatusParams,
-  ): Promise<FilterStatus> {
-    return this.http.post<FilterStatus>(
-      `/api/v2/filters/${id}/statuses`,
-      params,
-    );
-  }
+      /**
+       * Update the given filter keyword.
+       * @param params Parameters
+       * @return FilterKeywords
+       * @see https://docs.joinmastodon.org/methods/filters/#keywords-update
+       */
+      update(
+        params: CreateFilterKeywordParams,
+        meta?: HttpMetaParams<'json'>,
+      ): Promise<FilterKeyword>;
 
-  /**
-   * Obtain a single status filter.
-   * @param id String. The ID of the FilterStatus in the database.
-   * @returns FilterStatus
-   * @see https://docs.joinmastodon.org/methods/filters/#statuses-get-one
-   */
-  fetchStatus(id: string): Promise<FilterStatus> {
-    return this.http.get(`/api/v2/filters/statuses/${id}`);
-  }
+      /**
+       * Deletes the given filter keyword.
+       * @returns empty object
+       * @see https://docs.joinmastodon.org/methods/filters/#keywords-delete
+       */
+      remove(meta?: HttpMetaParams): Promise<void>;
+    };
+  };
 
-  /**
-   * @param id String. The ID of the FilterStatus in the database.
-   * @returns FilterStatus
-   * @see https://docs.joinmastodon.org/methods/filters/#statuses-get-one
-   */
-  removeStatus(id: string): Promise<FilterStatus> {
-    return this.http.get(`/api/v2/filters/statuses/${id}`);
-  }
+  statuses: {
+    select(id: string): {
+      /**
+       * Obtain a single status filter.
+       * @returns FilterStatus
+       * @see https://docs.joinmastodon.org/methods/filters/#statuses-get-one
+       */
+      fetch(): Promise<FilterStatus>;
+
+      /**
+       * @returns FilterStatus
+       * @see https://docs.joinmastodon.org/methods/filters/#statuses-get-one
+       */
+      remove(): Promise<FilterStatus>;
+    };
+  };
 }

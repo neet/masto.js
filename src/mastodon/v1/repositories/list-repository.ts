@@ -1,8 +1,6 @@
-import type { MastoConfig } from '../../../config';
-import type { Http } from '../../../http';
-import type { Logger } from '../../../logger';
-import { Paginator } from '../../../paginator';
-import type { DefaultPaginationParams, Repository } from '../../repository';
+import type { HttpMetaParams } from '../../../http';
+import type { Paginator } from '../../../paginator';
+import type { DefaultPaginationParams } from '../../repository';
 import type { Account, List } from '../entities';
 
 export interface CreateListParams {
@@ -14,37 +12,84 @@ export type UpdateListParams = CreateListParams;
 
 export interface AddListAccountsParams {
   /** Array of account IDs */
-  readonly accountIds: string[];
+  readonly accountIds: readonly string[];
 }
+
 export type RemoveListAccountsParams = AddListAccountsParams;
 
-export class ListRepository
-  implements Repository<List, CreateListParams, UpdateListParams>
-{
-  constructor(
-    private readonly http: Http,
-    readonly config: MastoConfig,
-    readonly logger?: Logger,
-  ) {}
+export interface ListRepository {
+  select(id: string): {
+    /**
+     * Fetch the list with the given ID. Used for verifying the title of a list.
+     * @return List
+     * @see https://docs.joinmastodon.org/methods/timelines/lists/
+     */
+    fetch(meta?: HttpMetaParams): Promise<List>;
 
-  /**
-   * Fetch the list with the given ID. Used for verifying the title of a list.
-   * @param id ID of the list in the database
-   * @return List
-   * @see https://docs.joinmastodon.org/methods/timelines/lists/
-   */
-  fetch(id: string): Promise<List> {
-    return this.http.get<List>(`/api/v1/lists/${id}`);
-  }
+    /**
+     * Change the title of a list.
+     * @param params Parameters
+     * @return List
+     * @see https://docs.joinmastodon.org/methods/timelines/lists/
+     */
+    update(
+      params: UpdateListParams,
+      meta?: HttpMetaParams<'json'>,
+    ): Promise<List>;
+
+    /**
+     * Delete a list
+     * @param id ID of the list in the database
+     * @return N/A
+     * @see https://docs.joinmastodon.org/methods/timelines/lists/
+     */
+    remove(meta?: HttpMetaParams): Promise<void>;
+
+    accounts: {
+      /**
+       * View accounts in list
+       * @param id ID of the list in the database
+       * @param params Parameters
+       * @return Array of Account
+       * @see https://docs.joinmastodon.org/methods/timelines/lists#accounts
+       */
+      list(
+        params?: DefaultPaginationParams,
+        meta?: HttpMetaParams,
+      ): Paginator<Account[], DefaultPaginationParams>;
+
+      /**
+       * Add accounts to the given list. Note that the user must be following these accounts.
+       * @param id ID of the list in the database
+       * @param params Parameters
+       * @return N/A
+       * @see https://docs.joinmastodon.org/methods/timelines/lists#accounts-add
+       */
+      create(
+        params: AddListAccountsParams,
+        meta?: HttpMetaParams<'json'>,
+      ): Promise<void>;
+
+      /**
+       * Remove accounts from the given list.
+       * @param id ID of the list in the database
+       * @param params Parameters
+       * @return N/A
+       * @see https://docs.joinmastodon.org/methods/timelines/lists#accounts-remove
+       */
+      remove(
+        params: RemoveListAccountsParams,
+        meta?: HttpMetaParams<'json'>,
+      ): Promise<void>;
+    };
+  };
 
   /**
    * Fetch all lists that the user owns.
    * @return Array of List
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
-  list(): Paginator<List[]> {
-    return new Paginator(this.http, '/api/v1/lists');
-  }
+  list(meta?: HttpMetaParams): Paginator<List[]>;
 
   /**
    * Create a new list.
@@ -52,64 +97,8 @@ export class ListRepository
    * @return List
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
-  create(params: CreateListParams): Promise<List> {
-    return this.http.post<List>('/api/v1/lists', params);
-  }
-
-  /**
-   * Change the title of a list.
-   * @param id ID of the list in the database
-   * @param params Parameters
-   * @return List
-   * @see https://docs.joinmastodon.org/methods/timelines/lists/
-   */
-  update(id: string, params: UpdateListParams): Promise<List> {
-    return this.http.put<List>(`/api/v1/lists/${id}`, params);
-  }
-
-  /**
-   * Delete a list
-   * @param id ID of the list in the database
-   * @return N/A
-   * @see https://docs.joinmastodon.org/methods/timelines/lists/
-   */
-  remove(id: string): Promise<void> {
-    return this.http.delete<void>(`/api/v1/lists/${id}`);
-  }
-
-  /**
-   * View accounts in list
-   * @param id ID of the list in the database
-   * @param params Parameters
-   * @return Array of Account
-   * @see https://docs.joinmastodon.org/methods/timelines/lists#accounts
-   */
-  listAccounts(
-    id: string,
-    params?: DefaultPaginationParams,
-  ): Paginator<Account[], DefaultPaginationParams> {
-    return new Paginator(this.http, `/api/v1/lists/${id}/accounts`, params);
-  }
-
-  /**
-   * Add accounts to the given list. Note that the user must be following these accounts.
-   * @param id ID of the list in the database
-   * @param params Parameters
-   * @return N/A
-   * @see https://docs.joinmastodon.org/methods/timelines/lists#accounts-add
-   */
-  addAccount(id: string, params: AddListAccountsParams): Promise<void> {
-    return this.http.post<void>(`/api/v1/lists/${id}/accounts`, params);
-  }
-
-  /**
-   * Remove accounts from the given list.
-   * @param id ID of the list in the database
-   * @param params Parameters
-   * @return N/A
-   * @see https://docs.joinmastodon.org/methods/timelines/lists#accounts-remove
-   */
-  removeAccount(id: string, params: RemoveListAccountsParams): Promise<void> {
-    return this.http.delete<void>(`/api/v1/lists/${id}/accounts`, params);
-  }
+  create(
+    params: CreateListParams,
+    meta?: HttpMetaParams<'json'>,
+  ): Promise<List>;
 }

@@ -3,7 +3,7 @@ import { delay } from '../../src/utils';
 describe('conversations', () => {
   it('interacts with conversations', () => {
     return clients.use(2, async ([alice, bob]) => {
-      const { acct } = await alice.v1.accounts.verifyCredentials();
+      const { acct } = await alice.v1.accounts.verifyCredentials.fetch();
 
       const status = await bob.v1.statuses.create({
         status: `@${acct} Hi alice`,
@@ -22,8 +22,8 @@ describe('conversations', () => {
 
       expect(conversation).toBeDefined();
 
-      await alice.v1.conversations.read(conversation.id);
-      await alice.v1.conversations.remove(conversation.id);
+      await alice.v1.conversations.select(conversation.id).read();
+      await alice.v1.conversations.select(conversation.id).remove();
     });
   });
 });

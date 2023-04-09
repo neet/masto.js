@@ -1,36 +1,18 @@
-import type { MastoConfig } from '../../../../config';
-import type { Http } from '../../../../http';
-import type { Logger } from '../../../../logger';
-import { Paginator } from '../../../../paginator';
-import type { Repository } from '../../../repository';
+import type { HttpMetaParams } from '../../../../http';
+import type { Paginator } from '../../../../paginator';
 import type { Admin } from '../../entities';
 
-export type ListEmailDomainBlocksParams = {
+export interface ListEmailDomainBlocksParams {
   /** Integer. Maximum number of results to return. Defaults to 100. */
   readonly limit?: number | null;
-};
+}
 
 export interface CreateEmailDomainBlockParams {
   /** The domain to block federation with. */
   readonly domain: string;
 }
 
-export class EmailDomainBlockRepository
-  implements
-    Repository<
-      Admin.EmailDomainBlock,
-      CreateEmailDomainBlockParams,
-      never,
-      never,
-      ListEmailDomainBlocksParams
-    >
-{
-  constructor(
-    private readonly http: Http,
-    readonly config: MastoConfig,
-    readonly logger?: Logger,
-  ) {}
-
+export interface EmailDomainBlockRepository {
   /**
    * Show information about all email domains blocked from signing up.
    * @param params Parameters
@@ -39,43 +21,33 @@ export class EmailDomainBlockRepository
    */
   list(
     params?: ListEmailDomainBlocksParams,
-  ): Paginator<Admin.EmailDomainBlock[], ListEmailDomainBlocksParams> {
-    return new Paginator(
-      this.http,
-      '/api/v1/admin/email_domain_blocks ',
-      params,
-    );
-  }
+    meta?: HttpMetaParams,
+  ): Paginator<Admin.EmailDomainBlock[], ListEmailDomainBlocksParams>;
 
-  /**
-   * Show information about a single email domain that is blocked from sign-ups.
-   * @param id id of the DomainBlock
-   * @return Array of EmailDomainBlock
-   * @see https://docs.joinmastodon.org/methods/admin/
-   */
-  fetch(id: string): Promise<Admin.EmailDomainBlock> {
-    return this.http.get(`/api/v1/admin/email_domain_blocks/${id}`);
-  }
+  select(id: string): {
+    /**
+     * Show information about a single email domain that is blocked from sign-ups.
+     * @return EmailDomainBlock
+     * @see https://docs.joinmastodon.org/methods/admin/
+     */
+    fetch(meta?: HttpMetaParams): Promise<Admin.EmailDomainBlock>;
+
+    /**
+     * Lift a block against an email domain.
+     * @return null
+     * @see https://docs.joinmastodon.org/methods/admin/
+     */
+    remove(meta?: HttpMetaParams): Promise<void>;
+  };
 
   /**
    * Add a domain to the list of email domains blocked from sign-ups.
    * @param params Parameters
-   * @return Array of EmailDomainBlock
+   * @return EmailDomainBlock
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   create(
     params: CreateEmailDomainBlockParams,
-  ): Promise<Admin.EmailDomainBlock> {
-    return this.http.post('/api/v1/admin/email_domain_blocks ', params);
-  }
-
-  /**
-   * Lift a block against an email domain.
-   * @param id id of domain
-   * @return null
-   * @see https://docs.joinmastodon.org/methods/admin/
-   */
-  remove(id: string): Promise<void> {
-    return this.http.delete(`/api/v1/admin/email_domain_blocks/${id}`);
-  }
+    meta?: HttpMetaParams<'json'>,
+  ): Promise<Admin.EmailDomainBlock>;
 }
