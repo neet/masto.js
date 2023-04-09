@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import type { Repository } from '../../repository';
@@ -33,7 +32,6 @@ export class AppRepository implements Repository<Client, CreateAppParams> {
    * @return Returns App with `client_id` and `client_secret`
    * @see https://docs.joinmastodon.org/methods/apps/
    */
-  @version({ since: '0.0.0' })
   create(params: CreateAppParams): Promise<Client> {
     return this.http.post<Client>(`/api/v1/apps`, params);
   }
@@ -43,7 +41,6 @@ export class AppRepository implements Repository<Client, CreateAppParams> {
    * @return Application
    * @see https://docs.joinmastodon.org/methods/apps/
    */
-  @version({ since: '2.0.0' })
   verifyCredentials(): Promise<Client> {
     return this.http.get<Client>(`/api/v1/apps/verify_credentials`);
   }

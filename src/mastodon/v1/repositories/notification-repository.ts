@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
@@ -33,7 +32,6 @@ export class NotificationRepository
    * @return Array of Notification
    * @see https://docs.joinmastodon.org/methods/notifications/
    */
-  @version({ since: '0.0.0' })
   list(
     params?: ListNotificationsParams,
   ): Paginator<Notification[], ListNotificationsParams> {
@@ -46,7 +44,6 @@ export class NotificationRepository
    * @return Notification
    * @see https://docs.joinmastodon.org/methods/notifications/
    */
-  @version({ since: '0.0.0' })
   fetch(id: string): Promise<Notification> {
     return this.http.get<Notification>(`/api/v1/notifications/${id}`);
   }
@@ -56,7 +53,6 @@ export class NotificationRepository
    * @return N/A
    * @see https://docs.joinmastodon.org/methods/notifications/
    */
-  @version({ since: '0.0.0' })
   clear(): Promise<void> {
     return this.http.post<void>('/api/v1/notifications/clear');
   }
@@ -67,7 +63,6 @@ export class NotificationRepository
    * @return N/A
    * @see https://docs.joinmastodon.org/methods/notifications/
    */
-  @version({ since: '2.6.0' })
   dismiss(id: string): Promise<void> {
     return this.http.post<void>(`/api/v1/notifications/${id}/dismiss`);
   }

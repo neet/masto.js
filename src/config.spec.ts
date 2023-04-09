@@ -1,5 +1,3 @@
-import { SemVer } from 'semver';
-
 import { MastoConfig } from './config';
 import { MastoInvalidArgumentError } from './errors';
 import { SerializerNativeImpl } from './serializers';
@@ -10,7 +8,6 @@ describe('Config', () => {
       {
         url: 'https://mastodon.social',
         streamingApiUrl: 'wss://mastodon.social',
-        version: new SemVer('1.0.0'),
         accessToken: 'token',
       },
       new SerializerNativeImpl(),
@@ -27,7 +24,6 @@ describe('Config', () => {
       {
         url: 'https://mastodon.social',
         streamingApiUrl: 'wss://mastodon.social',
-        version: new SemVer('1.0.0'),
         accessToken: 'token',
       },
       new SerializerNativeImpl(),
@@ -46,7 +42,6 @@ describe('Config', () => {
       {
         url: 'https://mastodon.social',
         streamingApiUrl: 'wss://mastodon.social',
-        version: new SemVer('1.0.0'),
         accessToken: 'token',
       },
       new SerializerNativeImpl(),
@@ -61,7 +56,6 @@ describe('Config', () => {
       {
         url: 'https://mastodon.social',
         streamingApiUrl: 'wss://mastodon.social',
-        version: new SemVer('1.0.0'),
         accessToken: 'token',
       },
       new SerializerNativeImpl(),
@@ -80,7 +74,6 @@ describe('Config', () => {
       {
         url: 'https://mastodon.social',
         streamingApiUrl: 'wss://mastodon.social',
-        version: new SemVer('2.8.4'),
         accessToken: 'token',
       },
       new SerializerNativeImpl(),
@@ -95,7 +88,6 @@ describe('Config', () => {
       {
         url: 'https://mastodon.social',
         streamingApiUrl: 'wss://mastodon.social',
-        version: new SemVer('2.8.4'),
         accessToken: 'token',
       },
       new SerializerNativeImpl(),
@@ -110,7 +102,6 @@ describe('Config', () => {
       {
         url: 'https://mastodon.social',
         streamingApiUrl: 'wss://mastodon.social',
-        version: new SemVer('2.8.4'),
         accessToken: 'token',
       },
       new SerializerNativeImpl(),
@@ -127,7 +118,6 @@ describe('Config', () => {
       {
         url: 'https://mastodon.social',
         streamingApiUrl: 'wss://mastodon.social',
-        version: new SemVer('0.0.1'),
         accessToken: 'token',
       },
       new SerializerNativeImpl(),
@@ -144,7 +134,6 @@ describe('Config', () => {
       {
         url: 'https://mastodon.social',
         streamingApiUrl: 'wss://mastodon.social',
-        version: new SemVer('2.8.4'),
         accessToken: 'token',
       },
       new SerializerNativeImpl(),
@@ -158,7 +147,6 @@ describe('Config', () => {
       {
         url: 'https://mastodon.social',
         streamingApiUrl: 'wss://mastodon.social',
-        version: new SemVer('0.0.1'),
         accessToken: 'token',
       },
       new SerializerNativeImpl(),

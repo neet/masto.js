@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { deprecated, version } from '../../../decorators';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import type { Repository } from '../../repository';
@@ -38,8 +37,6 @@ export class MediaAttachmentRepository
    * @return Attachment
    * @see https://docs.joinmastodon.org/methods/statuses/media/
    */
-  @deprecated('Use MastoClient.v2.media.create instead')
-  @version({ since: '0.0.0', until: '3.1.3' })
   /* istanbul ignore next */
   create(params: CreateMediaAttachmentParams): Promise<MediaAttachment> {
     return this.http.post<MediaAttachment>(`/api/v1/media`, params, {
@@ -52,7 +49,6 @@ export class MediaAttachmentRepository
    * @param id ID of the attachment
    * @see https://github.com/tootsuite/mastodon/pull/13210
    */
-  @version({ since: '3.1.3' })
   fetch(id: string): Promise<MediaAttachment> {
     return this.http.get<MediaAttachment>(`/api/v1/media/${id}`);
   }
@@ -64,7 +60,6 @@ export class MediaAttachmentRepository
    * @return Attachment
    * @see https://docs.joinmastodon.org/methods/statuses/media/
    */
-  @version({ since: '0.0.0' })
   update(
     id: string,
     params: UpdateMediaAttachmentParams,

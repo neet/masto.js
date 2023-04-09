@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../../config';
-import { version } from '../../../../decorators';
 import type { Http } from '../../../../http';
 import type { Logger } from '../../../../logger';
 import type { Admin } from '../../entities';
@@ -91,7 +90,6 @@ export class MeasureRepository {
    * Obtain quantitative metrics about the server.
    * @see https://docs.joinmastodon.org/methods/admin/measures/#get
    */
-  @version({ since: '3.5.0' })
   fetch(params: FetchMeasureParams): Promise<Admin.Measure[]> {
     return this.http.post('/api/v1/admin/measures', params);
   }

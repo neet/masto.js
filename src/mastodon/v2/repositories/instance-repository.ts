@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import type { Repository } from '../../repository';
@@ -17,7 +16,6 @@ export class InstanceRepository implements Repository<Instance> {
    * @return Instance
    * @see https://docs.joinmastodon.org/methods/instance/
    */
-  @version({ since: '4.0.0' })
   fetch(): Promise<Instance> {
     return this.http.get<Instance>('/api/v2/instance');
   }

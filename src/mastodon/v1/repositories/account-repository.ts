@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { version } from '../../../decorators/version';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
@@ -121,7 +120,6 @@ export class AccountRepository {
    * @return Account
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  @version({ since: '0.0.0' })
   fetch(id: string): Promise<Account> {
     return this.http.get(`/api/v1/accounts/${id}`);
   }
@@ -134,7 +132,6 @@ export class AccountRepository {
    * @return Token
    * @see https://docs.joinmastodon.org/methods/accounts/#create
    */
-  @version({ since: '2.7.0' })
   create(params: CreateAccountParams): Promise<Token> {
     return this.http.post(`/api/v1/accounts`, params, {
       headers: { 'Content-Type': 'multipart/form-data' },
@@ -146,7 +143,6 @@ export class AccountRepository {
    * @return the user's own Account with Source
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  @version({ since: '0.0.0' })
   verifyCredentials(): Promise<AccountCredentials> {
     return this.http.get('/api/v1/accounts/verify_credentials');
   }
@@ -157,7 +153,6 @@ export class AccountRepository {
    * @return the user's own Account with Source
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  @version({ since: '0.0.0' })
   updateCredentials(
     params?: UpdateCredentialsParams,
   ): Promise<AccountCredentials> {
@@ -173,7 +168,6 @@ export class AccountRepository {
    * @return Array of Account
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  @version({ since: '0.0.0' })
   listFollowers(
     id: string,
     params: DefaultPaginationParams = {},
@@ -188,7 +182,6 @@ export class AccountRepository {
    * @return Array of Account
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  @version({ since: '0.0.0' })
   listFollowing(
     id: string,
     params: DefaultPaginationParams = {},
@@ -203,7 +196,6 @@ export class AccountRepository {
    * @return Array of Status
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  @version({ since: '0.0.0' })
   listStatuses(
     id: string,
     params: ListAccountStatusesParams = {},
@@ -218,7 +210,6 @@ export class AccountRepository {
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  @version({ since: '0.0.0' })
   follow(id: string, params?: FollowAccountParams): Promise<Relationship> {
     return this.http.post(`/api/v1/accounts/${id}/follow`, params);
   }
@@ -229,7 +220,6 @@ export class AccountRepository {
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  @version({ since: '0.0.0' })
   unfollow(id: string, params?: FollowAccountParams): Promise<Relationship> {
     return this.http.post(`/api/v1/accounts/${id}/unfollow`, params);
   }
@@ -240,7 +230,6 @@ export class AccountRepository {
    * @return Array of Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  @version({ since: '0.0.0' })
   fetchRelationships(id: readonly string[]): Promise<Relationship[]> {
     return this.http.get('/api/v1/accounts/relationships', {
       id,
@@ -253,7 +242,6 @@ export class AccountRepository {
    * @return Array of Account
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  @version({ since: '0.0.0' })
   search(
     params?: SearchAccountsParams,
   ): Paginator<Account[], SearchAccountsParams> {
@@ -266,7 +254,6 @@ export class AccountRepository {
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  @version({ since: '0.0.0' })
   block(id: string): Promise<Relationship> {
     return this.http.post(`/api/v1/accounts/${id}/block`);
   }
@@ -277,7 +264,6 @@ export class AccountRepository {
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  @version({ since: '0.0.0' })
   unblock(id: string): Promise<Relationship> {
     return this.http.post(`/api/v1/accounts/${id}/unblock`);
   }
@@ -288,7 +274,6 @@ export class AccountRepository {
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts#pin
    */
-  @version({ since: '2.5.0' })
   pin(id: string): Promise<Relationship> {
     return this.http.post(`/api/v1/accounts/${id}/pin`);
   }
@@ -299,7 +284,6 @@ export class AccountRepository {
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  @version({ since: '2.5.0' })
   unpin(id: string): Promise<Relationship> {
     return this.http.post(`/api/v1/accounts/${id}/unpin`);
   }
@@ -310,7 +294,6 @@ export class AccountRepository {
    * @return Array of List
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
-  @version({ since: '2.1.0' })
   listLists(id: string): Paginator<List[]> {
     return new Paginator(this.http, `/api/v1/accounts/${id}/lists`);
   }
@@ -322,7 +305,6 @@ export class AccountRepository {
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  @version({ since: '0.0.0' })
   mute(id: string, params?: MuteAccountParams): Promise<Relationship> {
     return this.http.post(`/api/v1/accounts/${id}/mute`, params);
   }
@@ -333,7 +315,6 @@ export class AccountRepository {
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  @version({ since: '0.0.0' })
   unmute(id: string): Promise<Relationship> {
     return this.http.post(`/api/v1/accounts/${id}/unmute`);
   }
@@ -344,7 +325,6 @@ export class AccountRepository {
    * @param param Parameters
    * @return Relationship
    */
-  @version({ since: '3.2.0' })
   createNote(
     id: string,
     params: CreateAccountNoteParams,
@@ -357,7 +337,6 @@ export class AccountRepository {
    * @param id ID of the account
    * @return FeaturedTags
    */
-  @version({ since: '3.3.0' })
   listFeaturedTags(id: string): Paginator<FeaturedTag[]> {
     return new Paginator(this.http, `/api/v1/accounts/${id}/featured_tags`);
   }
@@ -368,7 +347,6 @@ export class AccountRepository {
    * @return Array of IdentityProof
    * @see https://github.com/tootsuite/mastodon/pull/10297
    */
-  @version({ since: '2.8.0' })
   listIdentityProofs(id: string): Paginator<IdentityProof[]> {
     return new Paginator(this.http, `/api/v1/accounts/${id}/identity_proofs`);
   }
@@ -378,7 +356,6 @@ export class AccountRepository {
    * @param params Parameters
    * @return Account
    */
-  @version({ since: '3.4.0' })
   lookup(params: LookupAccountParams): Promise<Account> {
     return this.http.get('/api/v1/accounts/lookup', params);
   }
@@ -387,7 +364,6 @@ export class AccountRepository {
    * Obtain a list of all accounts that follow a given account, filtered for accounts you follow.
    * @returns Array of FamiliarFollowers
    */
-  @version({ since: '3.5.0' })
   fetchFamiliarFollowers(id: string[]): Promise<FamiliarFollowers[]> {
     return this.http.get(`/api/v1/accounts/familiar_followers`, { id });
   }
@@ -396,7 +372,6 @@ export class AccountRepository {
    * @param id ID of the account
    * @returns N/A
    */
-  @version({ since: '3.5.0' })
   removeFromFollowers(id: string): Promise<void> {
     return this.http.post(`/api/v1/accounts/${id}/remove_from_followers`);
   }

@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { deprecated, version } from '../../../decorators';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
@@ -28,7 +27,6 @@ export class TimelineRepository {
    * @return Array of Status
    * @see https://docs.joinmastodon.org/methods/timelines/
    */
-  @version({ since: '0.0.0' })
   listHome(
     params?: ListTimelineParams,
   ): Paginator<Status[], ListTimelineParams> {
@@ -41,7 +39,6 @@ export class TimelineRepository {
    * @return Array of Status
    * @see https://docs.joinmastodon.org/methods/timelines/
    */
-  @version({ since: '0.0.0' })
   listPublic(
     params?: ListTimelineParams,
   ): Paginator<Status[], ListTimelineParams> {
@@ -55,7 +52,6 @@ export class TimelineRepository {
    * @return Array of Status
    * @see https://docs.joinmastodon.org/methods/timelines/
    */
-  @version({ since: '0.0.0' })
   listHashtag(
     hashtag: string,
     params?: ListTimelineParams,
@@ -70,7 +66,6 @@ export class TimelineRepository {
    * @return Array of Status
    * @see https://docs.joinmastodon.org/methods/timelines/
    */
-  @version({ since: '2.1.0' })
   listList(
     id: string,
     params?: ListTimelineParams,
@@ -80,12 +75,9 @@ export class TimelineRepository {
 
   /**
    * View statuses with a “direct” privacy, from your account or in your notifications.
-   * @deprecated Use conversations API instead
-   * @return Array of Status
+   *    * @return Array of Status
    * @see https://docs.joinmastodon.org/methods/timelines/
    */
-  @deprecated('Use conversations API instead')
-  @version({ since: '0.0.0', until: '2.9.3' })
   /* istanbul ignore next */
   listDirect(
     params?: ListTimelineParams,

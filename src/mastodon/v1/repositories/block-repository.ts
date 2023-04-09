@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
@@ -21,7 +20,6 @@ export class BlockRepository
    * @return Query parameter
    * @see https://docs.joinmastodon.org/methods/accounts/blocks/
    */
-  @version({ since: '0.0.0' })
   list(
     params: DefaultPaginationParams = {},
   ): Paginator<Account[], DefaultPaginationParams> {

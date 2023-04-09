@@ -78,7 +78,6 @@ export class ClientPoolImpl implements ClientPool {
 
     const client = createClient({
       url: __misc__.url,
-      version: __misc__.instance.version,
       streamingApiUrl: __misc__.instance.urls.streamingApi,
       accessToken: token.accessToken,
     });

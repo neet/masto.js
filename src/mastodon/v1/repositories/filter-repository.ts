@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
@@ -38,7 +37,6 @@ export class FilterRepository
    * @return Filter
    * @see https://docs.joinmastodon.org/methods/accounts/filters/
    */
-  @version({ since: '2.4.3' })
   list(): Paginator<Filter[]> {
     return new Paginator(this.http, `/api/v1/filters`);
   }
@@ -49,7 +47,6 @@ export class FilterRepository
    * @return Returns Filter
    * @see https://docs.joinmastodon.org/methods/accounts/filters/
    */
-  @version({ since: '2.4.3' })
   fetch(id: string): Promise<Filter> {
     return this.http.get<Filter>(`/api/v1/filters/${id}`);
   }
@@ -60,7 +57,6 @@ export class FilterRepository
    * @return Filter
    * @see https://docs.joinmastodon.org/methods/accounts/filters/
    */
-  @version({ since: '2.4.3' })
   create(params?: CreateFilterParams): Promise<Filter> {
     return this.http.post<Filter>(`/api/v1/filters`, params);
   }
@@ -72,7 +68,6 @@ export class FilterRepository
    * @return Filter
    * @see https://docs.joinmastodon.org/methods/accounts/filters/
    */
-  @version({ since: '2.4.3' })
   update(id: string, params?: UpdateFilterParams): Promise<Filter> {
     return this.http.put<Filter>(`/api/v1/filters/${id}`, params);
   }
@@ -83,7 +78,6 @@ export class FilterRepository
    * @return N/A
    * @see https://docs.joinmastodon.org/methods/accounts/filters/
    */
-  @version({ since: '2.4.3' })
   remove(id: string): Promise<void> {
     return this.http.delete<void>(`/api/v1/filters/${id}`);
   }

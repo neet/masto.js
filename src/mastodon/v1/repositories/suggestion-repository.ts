@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { deprecated, version } from '../../../decorators';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
@@ -26,8 +25,6 @@ export class SuggestionRepository
    * @returns
    * @see https://docs.joinmastodon.org/methods/suggestions/#v1
    */
-  @deprecated('Use MastoClient.v2.suggestions.list instead')
-  @version({ since: '2.4.3' })
   list(
     params?: ListSuggestionParams,
   ): Paginator<Account[], ListSuggestionParams> {
@@ -40,7 +37,6 @@ export class SuggestionRepository
    * @return N/A
    * @see https://docs.joinmastodon.org/methods/accounts/suggestions/
    */
-  @version({ since: '2.4.3' })
   /* istanbul ignore next */
   remove(id: string): Promise<void> {
     return this.http.delete(`/api/v1/suggestions/${id}`);
