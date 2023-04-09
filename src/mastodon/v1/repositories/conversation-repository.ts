@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
@@ -22,7 +21,6 @@ export class ConversationRepository
    * @return Array of Conversation
    * @see https://docs.joinmastodon.org/methods/timelines/conversations/
    */
-  @version({ since: '2.6.0' })
   list(
     params: DefaultPaginationParams = {},
   ): Paginator<Conversation[], DefaultPaginationParams> {
@@ -35,7 +33,6 @@ export class ConversationRepository
    * @return N/A
    * @see https://docs.joinmastodon.org/methods/timelines/conversations/
    */
-  @version({ since: '2.6.0' })
   remove(id: string): Promise<void> {
     return this.http.delete<void>(`/api/v1/conversations/${id}`);
   }
@@ -46,7 +43,6 @@ export class ConversationRepository
    * @return Conversation
    * @see https://docs.joinmastodon.org/methods/timelines/conversations/
    */
-  @version({ since: '2.6.0' })
   read(id: string): Promise<Conversation> {
     return this.http.post<Conversation>(`/api/v1/conversations/${id}/read`);
   }

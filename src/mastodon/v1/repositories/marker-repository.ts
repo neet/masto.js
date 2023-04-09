@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import type { Repository } from '../../repository';
@@ -34,7 +33,6 @@ export class MarkerRepository
    * @return Markers
    * @see https://docs.joinmastodon.org/methods/timelines/markers/
    */
-  @version({ since: '3.0.0' })
   fetch(params?: FetchMarkersParams): Promise<Marker> {
     return this.http.get('/api/v1/markers', params);
   }
@@ -45,7 +43,6 @@ export class MarkerRepository
    * @return Markers
    * @see https://github.com/tootsuite/mastodon/pull/11762
    */
-  @version({ since: '3.0.0' })
   create(params: CreateMarkersParams): Promise<Marker> {
     return this.http.post<Marker>('/api/v1/markers', params);
   }

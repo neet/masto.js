@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import type { Repository } from '../../repository';
@@ -17,7 +16,6 @@ export class TagRepository implements Repository<Tag> {
    * @param id The name of the hashtag
    * @return Tag
    */
-  @version({ since: '4.0.0' })
   fetch(id: string): Promise<Tag> {
     return this.http.get(`/api/v1/tags/${id}`);
   }
@@ -27,7 +25,6 @@ export class TagRepository implements Repository<Tag> {
    * @param id The name of the hashtag
    * @return Tag
    */
-  @version({ since: '4.0.0' })
   follow(id: string): Promise<Tag> {
     return this.http.post(`/api/v1/tags/${id}/follow`);
   }
@@ -37,7 +34,6 @@ export class TagRepository implements Repository<Tag> {
    * @param id The name of the hashtag
    * @return Tag
    */
-  @version({ since: '4.0.0' })
   unfollow(id: string): Promise<Tag> {
     return this.http.post(`/api/v1/tags/${id}/unfollow`);
   }

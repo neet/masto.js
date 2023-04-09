@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../../config';
-import { version } from '../../../../decorators';
 import type { Http } from '../../../../http';
 import type { Logger } from '../../../../logger';
 import { Paginator } from '../../../../paginator';
@@ -32,7 +31,6 @@ export class DomainAllowRepository
    * @return Array of DomainAllow
    * @see https://docs.joinmastodon.org/methods/admin/domain_allows/#get
    */
-  @version({ since: '4.0.0' })
   list(
     params?: DefaultPaginationParams,
   ): Paginator<Admin.DomainAllow[], DefaultPaginationParams> {
@@ -45,7 +43,6 @@ export class DomainAllowRepository
    * @return DomainAllow
    * @see https://docs.joinmastodon.org/methods/admin/domain_allows/#get-one
    */
-  @version({ since: '4.0.0' })
   fetch(id: string): Promise<Admin.DomainAllow> {
     return this.http.get(`/api/v1/admin/domain_allows/${id}`);
   }
@@ -57,7 +54,6 @@ export class DomainAllowRepository
    * @return DomainAllow
    * @see https://docs.joinmastodon.org/methods/admin/domain_allows/#get-one
    */
-  @version({ since: '4.0.0' })
   create(params: CreateDomainAllowParams): Promise<Admin.DomainAllow> {
     return this.http.post('/api/v1/admin/domain_allows', params);
   }
@@ -68,7 +64,6 @@ export class DomainAllowRepository
    * @return DomainAllow
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  @version({ since: '4.0.0' })
   remove(id: string): Promise<Admin.DomainAllow> {
     return this.http.delete(`/api/v1/admin/domain_allows/${id}`);
   }

@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
@@ -34,7 +33,6 @@ export class DirectoryRepository
    * @return Array of Account
    * @see https://docs.joinmastodon.org/methods/instance/directory/
    */
-  @version({ since: '3.0.0' })
   list(
     params?: ListDirectoryParams,
   ): Paginator<Account[], ListDirectoryParams> {

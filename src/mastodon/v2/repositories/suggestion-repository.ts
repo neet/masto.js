@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
@@ -27,7 +26,6 @@ export class SuggestionRepository
    * @param params
    * @returns
    */
-  @version({ since: '3.4.0' })
   list(
     params?: ListSuggestionsParams,
   ): Paginator<v1.Suggestion[], ListSuggestionsParams> {

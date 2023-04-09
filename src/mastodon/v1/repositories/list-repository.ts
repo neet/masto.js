@@ -1,5 +1,4 @@
 import type { MastoConfig } from '../../../config';
-import { version } from '../../../decorators';
 import type { Http } from '../../../http';
 import type { Logger } from '../../../logger';
 import { Paginator } from '../../../paginator';
@@ -34,7 +33,6 @@ export class ListRepository
    * @return List
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
-  @version({ since: '2.1.0' })
   fetch(id: string): Promise<List> {
     return this.http.get<List>(`/api/v1/lists/${id}`);
   }
@@ -44,7 +42,6 @@ export class ListRepository
    * @return Array of List
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
-  @version({ since: '2.1.0' })
   list(): Paginator<List[]> {
     return new Paginator(this.http, '/api/v1/lists');
   }
@@ -55,7 +52,6 @@ export class ListRepository
    * @return List
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
-  @version({ since: '2.1.0' })
   create(params: CreateListParams): Promise<List> {
     return this.http.post<List>('/api/v1/lists', params);
   }
@@ -67,7 +63,6 @@ export class ListRepository
    * @return List
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
-  @version({ since: '2.1.0' })
   update(id: string, params: UpdateListParams): Promise<List> {
     return this.http.put<List>(`/api/v1/lists/${id}`, params);
   }
@@ -78,7 +73,6 @@ export class ListRepository
    * @return N/A
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
-  @version({ since: '2.1.0' })
   remove(id: string): Promise<void> {
     return this.http.delete<void>(`/api/v1/lists/${id}`);
   }
@@ -90,7 +84,6 @@ export class ListRepository
    * @return Array of Account
    * @see https://docs.joinmastodon.org/methods/timelines/lists#accounts
    */
-  @version({ since: '2.1.0' })
   listAccounts(
     id: string,
     params?: DefaultPaginationParams,
@@ -105,7 +98,6 @@ export class ListRepository
    * @return N/A
    * @see https://docs.joinmastodon.org/methods/timelines/lists#accounts-add
    */
-  @version({ since: '2.1.0' })
   addAccount(id: string, params: AddListAccountsParams): Promise<void> {
     return this.http.post<void>(`/api/v1/lists/${id}/accounts`, params);
   }
@@ -117,7 +109,6 @@ export class ListRepository
    * @return N/A
    * @see https://docs.joinmastodon.org/methods/timelines/lists#accounts-remove
    */
-  @version({ since: '2.1.0' })
   removeAccount(id: string, params: RemoveListAccountsParams): Promise<void> {
     return this.http.delete<void>(`/api/v1/lists/${id}/accounts`, params);
   }
