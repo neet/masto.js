@@ -1,3 +1,11 @@
+## [5.11.1](https://github.com/neet/masto.js/compare/v5.11.0...v5.11.1) (2023-04-10)
+
+
+### Bug Fixes
+
+* **tests:** Add delay before translate API test ([9789f8d](https://github.com/neet/masto.js/commit/9789f8d7eaa7655105aab5c1c351ff8968b05c39))
+* wholeWord is a boolean ([c625a20](https://github.com/neet/masto.js/commit/c625a20b9c9927c948c39591b05728952739434f))
+
 ## [5.11.0](https://github.com/neet/masto.js/compare/v5.10.0...v5.11.0) (2023-04-09)
 
 
