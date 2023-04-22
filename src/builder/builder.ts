@@ -49,7 +49,7 @@ const apply =
         return http.delete(path, data, meta);
       }
       case 'list': {
-        return new Paginator(http, path, data);
+        return new Paginator(http, path, data, meta);
       }
       default: {
         const customAction = [path, snakeCase(action)].join('/');

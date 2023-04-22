@@ -60,12 +60,16 @@ export class HttpNativeImpl extends BaseHttp implements Http {
   }
 
   private createRequest(params: HttpRequestParams): [Request, Timeout] {
-    const { method, path, searchParams, encoding = 'json' } = params;
+    const { method, path, search, meta = {} } = params;
 
-    const url = this.config.resolveHttpPath(path, searchParams);
-    const headers = this.config.createHeader(params.headers);
-    const [signal, timeout] = this.config.createAbortSignal(params?.signal);
-    const body = this.serializer.serialize(encoding, params.body);
+    const url = this.config.resolveHttpPath(path, search);
+    const headers = this.config.createHeader(meta.headers);
+    const [signal, timeout] = this.config.createAbortSignal(meta?.signal);
+
+    const body =
+      meta.encoding == undefined
+        ? undefined
+        : this.serializer.serialize(meta.encoding ?? 'json', params.body);
 
     const requestInit: RequestInit = {
       method,
@@ -74,11 +78,11 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       signal,
     };
 
-    if (typeof body === 'string' && encoding === 'json') {
+    if (typeof body === 'string' && meta.encoding === 'json') {
       headers.set('Content-Type', 'application/json');
     }
 
-    if (typeof body === 'string' && encoding === 'form-url-encoded') {
+    if (typeof body === 'string' && meta.encoding === 'form-url-encoded') {
       headers.set('Content-Type', 'application/x-www-form-urlencoded');
     }
 

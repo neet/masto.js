@@ -17,8 +17,8 @@ export abstract class BaseHttp implements Http {
     return this.request({
       method: 'GET',
       path,
-      searchParams: data as Record<string, unknown>,
-      ...meta,
+      search: data as Record<string, unknown>,
+      meta,
     }).then((response) => response.data as T);
   }
 
@@ -31,7 +31,7 @@ export abstract class BaseHttp implements Http {
       method: 'POST',
       path,
       body: data as Record<string, unknown>,
-      ...meta,
+      meta,
     }).then((response) => response.data as T);
   }
 
@@ -44,7 +44,7 @@ export abstract class BaseHttp implements Http {
       method: 'DELETE',
       path,
       body: data as Record<string, unknown>,
-      ...meta,
+      meta,
     }).then((response) => response.data as T);
   }
 
@@ -57,7 +57,7 @@ export abstract class BaseHttp implements Http {
       method: 'PUT',
       path,
       body: data as Record<string, unknown>,
-      ...meta,
+      meta,
     }).then((response) => response.data as T);
   }
 
@@ -70,7 +70,7 @@ export abstract class BaseHttp implements Http {
       method: 'PATCH',
       path,
       body: data as Record<string, unknown>,
-      ...meta,
+      meta,
     }).then((response) => response.data as T);
   }
 }

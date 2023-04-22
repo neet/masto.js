@@ -1,15 +1,14 @@
 /* eslint-disable unicorn/no-thenable */
-import qs from 'qs';
+import type { Http, HttpMetaParams } from './http';
 
-import type { Http } from './http';
-
-export class Paginator<Entity, Params = never>
+export class Paginator<Entity, Params = undefined>
   implements AsyncIterableIterator<Entity>, PromiseLike<Entity>
 {
   constructor(
     private readonly http: Http,
     private nextPath?: string,
-    private nextParams?: Params,
+    private nextParams?: string | Params,
+    private readonly meta: HttpMetaParams = {},
   ) {}
 
   async next(): Promise<IteratorResult<Entity, undefined>> {
@@ -20,12 +19,13 @@ export class Paginator<Entity, Params = never>
     const response = await this.http.request({
       method: 'GET',
       path: this.nextPath,
-      searchParams: this.nextParams as Record<string, unknown>,
+      search: this.nextParams as Record<string, string>,
+      meta: this.meta,
     });
 
     const next = this.pluckNext(response.headers.get('link'))?.split('?');
     this.nextPath = next?.[0];
-    this.nextParams = qs.parse(next?.[1] ?? '') as Params;
+    this.nextParams = next?.[1];
 
     return {
       done: false,
@@ -64,7 +64,7 @@ export class Paginator<Entity, Params = never>
   [Symbol.asyncIterator](): AsyncGenerator<
     Entity,
     undefined,
-    Params | undefined
+    string | undefined
   > {
     return this;
   }
@@ -87,6 +87,6 @@ export class Paginator<Entity, Params = never>
   };
 
   clone(): Paginator<Entity, Params> {
-    return new Paginator(this.http, this.nextPath, this.nextParams);
+    return new Paginator(this.http, this.nextPath, this.nextParams, this.meta);
   }
 }

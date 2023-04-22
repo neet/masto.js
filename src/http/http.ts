@@ -4,7 +4,7 @@ import type { Encoding } from '../serializers';
 
 // prettier-ignore
 type HttpEncodingParam<T extends Encoding>
-  = T extends 'none' ? { readonly encoding: never }
+  = T extends 'none' ? { readonly encoding?: never }
   : T extends 'json' ? { readonly encoding?: 'json' }
   : { readonly encoding: T };
 
@@ -21,11 +21,12 @@ export type HttpMethod = <T>(
   meta?: HttpMetaParams<Encoding>,
 ) => Promise<T>;
 
-export type HttpRequestParams = HttpMetaParams<Encoding> & {
+export type HttpRequestParams = {
   readonly method: string;
   readonly path: string;
-  readonly searchParams?: Record<string, unknown>;
   readonly body?: Record<string, unknown>;
+  readonly meta?: HttpMetaParams<Encoding>;
+  readonly search?: string | Record<string, unknown>;
 };
 
 export type HttpRequestResult = {
