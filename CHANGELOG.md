@@ -1,3 +1,10 @@
+## [5.11.2](https://github.com/neet/masto.js/compare/v5.11.1...v5.11.2) (2023-04-23)
+
+
+### Chores
+
+* Generate docs on GitHub Actions ([81e4d52](https://github.com/neet/masto.js/commit/81e4d527212f0117c5a335bdad396117be402569))
+
 ## [5.11.1](https://github.com/neet/masto.js/compare/v5.11.0...v5.11.1) (2023-04-10)
 
 
