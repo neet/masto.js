@@ -36,8 +36,8 @@ export class TokenPoolImpl implements TokenPool {
           }
           return this.create();
         },
-        destroy: async () => {
-          return;
+        destroy: async (token) => {
+          this.tokens.push(token);
         },
       },
       { max: 10 },

@@ -1,6 +1,6 @@
 it('searches', () => {
-  return clients.use(async (client) => {
-    const results = await client.v2.search.fetch({
+  return sessions.use(async (session) => {
+    const results = await session.rest.v2.search.fetch({
       q: 'mastodon',
     });
 

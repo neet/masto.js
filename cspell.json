@@ -8,6 +8,7 @@
   "words": [
     "AGPL",
     "asynckit",
+    "Backoff",
     "blurhash",
     "builtins",
     "carryforward",

@@ -1,7 +1,7 @@
 describe('apps', () => {
   it('creates an app', () => {
-    return clients.use(async (client) => {
-      const app = await client.v1.apps.create({
+    return sessions.use(async (client) => {
+      const app = await client.rest.v1.apps.create({
         clientName: 'My App',
         redirectUris: 'https://example.com/oauth/callback',
         scopes: 'read write',
@@ -12,8 +12,8 @@ describe('apps', () => {
   });
 
   it('verifies an app', () => {
-    return clients.use(async (client) => {
-      const app = await client.v1.apps.verifyCredentials.fetch();
+    return sessions.use(async (client) => {
+      const app = await client.rest.v1.apps.verifyCredentials.fetch();
       expect(app.name).toEqual(expect.any(String));
     });
   });

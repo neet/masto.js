@@ -63,20 +63,20 @@ export class MastoConfig {
   resolveWebsocketPath(
     path: string,
     params: Record<string, unknown> = {},
-  ): string {
+  ): URL {
     if (this.props.streamingApiUrl == undefined) {
       throw new MastoInvalidArgumentError(
         'You need to specify `streamingApiUrl` to use this feature',
       );
     }
 
-    const url = new URL(this.props.streamingApiUrl.replace(/\/$/, '') + path);
+    const url = new URL(path, this.props.streamingApiUrl);
     if (this.props.useInsecureWebSocketToken) {
       params.accessToken = this.props.accessToken;
     }
 
     url.search = this.serializer.serializeQueryString(params);
-    return url.toString();
+    return url;
   }
 
   createTimeout(): Timeout {

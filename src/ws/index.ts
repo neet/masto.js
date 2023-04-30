@@ -1,2 +1,2 @@
-export * from './ws';
-export * from './ws-native-impl';
+export * from './websocket-api-connection';
+export * from './websocket-api-connector';
