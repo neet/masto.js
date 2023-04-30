@@ -2,16 +2,14 @@ import { delay } from '../../src/utils';
 
 describe('conversations', () => {
   it('interacts with conversations', () => {
-    return clients.use(2, async ([alice, bob]) => {
-      const { acct } = await alice.v1.accounts.verifyCredentials.fetch();
-
-      const status = await bob.v1.statuses.create({
-        status: `@${acct} Hi alice`,
+    return sessions.use(2, async ([alice, bob]) => {
+      const status = await bob.rest.v1.statuses.create({
+        status: `@${alice.acct} Hi alice`,
         visibility: 'direct',
       });
 
       await delay(3000);
-      const conversations = await alice.v1.conversations.list();
+      const conversations = await alice.rest.v1.conversations.list();
       const conversation = conversations.find(
         (c) => c.lastStatus?.id === status.id,
       );
@@ -22,8 +20,8 @@ describe('conversations', () => {
 
       expect(conversation).toBeDefined();
 
-      await alice.v1.conversations.select(conversation.id).read();
-      await alice.v1.conversations.select(conversation.id).remove();
+      await alice.rest.v1.conversations.select(conversation.id).read();
+      await alice.rest.v1.conversations.select(conversation.id).remove();
     });
   });
 });

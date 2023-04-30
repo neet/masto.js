@@ -2,11 +2,11 @@ import crypto from 'node:crypto';
 
 describe('account', () => {
   it('creates an account', () => {
-    return clients.use(async (client) => {
+    return sessions.use(async (session) => {
       const username = crypto.randomBytes(8).toString('hex');
       const email = `${username}@example.com`;
 
-      const token = await client.v1.accounts.create(
+      const token = await session.rest.v1.accounts.create(
         {
           username,
           email,
@@ -22,16 +22,16 @@ describe('account', () => {
   });
 
   it('verifies credential', () => {
-    return clients.use(async (alice) => {
-      const me = await alice.v1.accounts.verifyCredentials.fetch();
+    return sessions.use(async (session) => {
+      const me = await session.rest.v1.accounts.verifyCredentials.fetch();
       expect(me.username).not.toBeNull();
     });
   });
 
   it('updates credential', () => {
-    return clients.use(async (alice) => {
+    return sessions.use(async (session) => {
       const random = Math.random().toString();
-      const me = await alice.v1.accounts.updateCredentials.update(
+      const me = await session.rest.v1.accounts.updateCredentials.update(
         { displayName: random },
         { encoding: 'multipart-form' },
       );
@@ -40,80 +40,59 @@ describe('account', () => {
   });
 
   it('fetches an account with ID', () => {
-    return clients.use(async (alice) => {
-      const me = await alice.v1.accounts.verifyCredentials.fetch();
-      const someone = await admin.v1.accounts.select(me.id).fetch();
-      expect(me.id).toBe(someone.id);
+    return sessions.use(async (session) => {
+      const someone = await admin.v1.accounts.select(session.id).fetch();
+      expect(session.id).toBe(someone.id);
     });
   });
 
   it('follows / unfollow by ID', () => {
-    return clients.use(2, async ([alice, bob]) => {
-      const bobId = await bob.v1.accounts.verifyCredentials
-        .fetch()
-        .then((me) => me.id);
-
-      let relationship = await alice.v1.accounts.select(bobId).follow();
+    return sessions.use(2, async ([alice, bob]) => {
+      let relationship = await alice.rest.v1.accounts.select(bob.id).follow();
       expect(relationship.following).toBe(true);
 
-      relationship = await alice.v1.accounts.select(bobId).unfollow();
+      relationship = await alice.rest.v1.accounts.select(bob.id).unfollow();
       expect(relationship.following).toBe(false);
     });
   });
 
   it('blocks / unblock by ID', () => {
-    return clients.use(2, async ([alice, bob]) => {
-      const bobId = await bob.v1.accounts.verifyCredentials
-        .fetch()
-        .then((me) => me.id);
-
-      let relationship = await alice.v1.accounts.select(bobId).block();
+    return sessions.use(2, async ([alice, bob]) => {
+      let relationship = await alice.rest.v1.accounts.select(bob.id).block();
       expect(relationship.blocking).toBe(true);
 
-      relationship = await alice.v1.accounts.select(bobId).unblock();
+      relationship = await alice.rest.v1.accounts.select(bob.id).unblock();
       expect(relationship.blocking).toBe(false);
     });
   });
 
   it('can pin / unpin by ID', () => {
-    return clients.use(2, async ([alice, bob]) => {
-      const bobId = await bob.v1.accounts.verifyCredentials
-        .fetch()
-        .then((me) => me.id);
-
-      await alice.v1.accounts.select(bobId).follow();
-      let relationship = await alice.v1.accounts.select(bobId).pin();
+    return sessions.use(2, async ([alice, bob]) => {
+      await alice.rest.v1.accounts.select(bob.id).follow();
+      let relationship = await alice.rest.v1.accounts.select(bob.id).pin();
       expect(relationship.endorsed).toBe(true);
 
-      relationship = await alice.v1.accounts.select(bobId).unpin();
-      await alice.v1.accounts.select(bobId).unfollow();
+      relationship = await alice.rest.v1.accounts.select(bob.id).unpin();
+      await alice.rest.v1.accounts.select(bob.id).unfollow();
       expect(relationship.endorsed).toBe(false);
     });
   });
 
   it('mutes / unmute by ID', () => {
-    return clients.use(2, async ([alice, bob]) => {
-      const bobId = await bob.v1.accounts.verifyCredentials
-        .fetch()
-        .then((me) => me.id);
-
-      let relationship = await alice.v1.accounts.select(bobId).mute();
+    return sessions.use(2, async ([alice, bob]) => {
+      let relationship = await alice.rest.v1.accounts.select(bob.id).mute();
       expect(relationship.muting).toBe(true);
 
-      relationship = await alice.v1.accounts.select(bobId).unmute();
+      relationship = await alice.rest.v1.accounts.select(bob.id).unmute();
       expect(relationship.muting).toBe(false);
     });
   });
 
   it('creates a note', () => {
-    return clients.use(2, async ([alice, bob]) => {
-      const bobId = await bob.v1.accounts.verifyCredentials
-        .fetch()
-        .then((me) => me.id);
-
+    return sessions.use(2, async ([alice, bob]) => {
       const comment = Math.random().toString();
-      const relationship = await alice.v1.accounts
-        .select(bobId)
+      const relationship = await alice.rest.v1.accounts
+        .select(bob.id)
         .note.create({ comment });
 
       expect(relationship.note).toBe(comment);
@@ -121,59 +100,42 @@ describe('account', () => {
   });
 
   it('fetches relationships', () => {
-    return clients.use(3, async ([alice, bob, carol]) => {
-      const bobId = await bob.v1.accounts.verifyCredentials
-        .fetch()
-        .then((me) => me.id);
-      const carolId = await carol.v1.accounts.verifyCredentials
-        .fetch()
-        .then((me) => me.id);
-
-      const res = await alice.v1.accounts.relationships.fetch({
-        id: [bobId, carolId],
+    return sessions.use(3, async ([alice, bob, carol]) => {
+      const res = await alice.rest.v1.accounts.relationships.fetch({
+        id: [bob.id, carol.id],
       });
       expect(res).toHaveLength(2);
     });
   });
 
   it('lists followers', () => {
-    return clients.use(2, async ([alice, bob]) => {
-      const aliceId = await alice.v1.accounts.verifyCredentials
-        .fetch()
-        .then((me) => me.id);
-      const bobId = await bob.v1.accounts.verifyCredentials
-        .fetch()
-        .then((me) => me.id);
+    return sessions.use(2, async ([alice, bob]) => {
+      await alice.rest.v1.accounts.select(bob.id).follow();
+      const followers = await alice.rest.v1.accounts
+        .select(bob.id)
+        .followers.list();
 
-      await alice.v1.accounts.select(bobId).follow();
-      const followers = await alice.v1.accounts.select(bobId).followers.list();
-
-      expect(followers).toContainId(aliceId);
-      await alice.v1.accounts.select(bobId).unfollow();
+      expect(followers).toContainId(alice.id);
+      await alice.rest.v1.accounts.select(bob.id).unfollow();
     });
   });
 
   it('lists following', () => {
-    return clients.use(2, async ([alice, bob]) => {
-      const bobId = await bob.v1.accounts.verifyCredentials
-        .fetch()
-        .then((me) => me.id);
-      await alice.v1.accounts.select(bobId).follow();
+    return sessions.use(2, async ([alice, bob]) => {
+      await alice.rest.v1.accounts.select(bob.id).follow();
+      const accounts = await alice.rest.v1.accounts
+        .select(alice.id)
+        .following.list();
 
-      const aliceId = await alice.v1.accounts.verifyCredentials
-        .fetch()
-        .then((me) => me.id);
-      const accounts = await alice.v1.accounts.select(aliceId).following.list();
-
-      expect(accounts).toContainId(bobId);
-      await alice.v1.accounts.select(bobId).unfollow();
+      expect(accounts).toContainId(bob.id);
+      await alice.rest.v1.accounts.select(bob.id).unfollow();
     });
   });
 
   it('lists statuses', () => {
-    return clients.use(async (client) => {
-      const status = await client.v1.statuses.create({ status: 'Hello' });
-      const statuses = await client.v1.accounts
+    return sessions.use(async (client) => {
+      const status = await client.rest.v1.statuses.create({ status: 'Hello' });
+      const statuses = await client.rest.v1.accounts
         .select(status.account.id)
         .statuses.list();
 
@@ -182,53 +144,54 @@ describe('account', () => {
   });
 
   it('searches', () => {
-    return clients.use(async (client) => {
-      const me = await client.v1.accounts.verifyCredentials.fetch();
-      const accounts = await client.v1.accounts.search.list({ q: me.username });
+    return sessions.use(async (client) => {
+      const me = await client.rest.v1.accounts.verifyCredentials.fetch();
+      const accounts = await client.rest.v1.accounts.search.list({
+        q: me.username,
+      });
       expect(accounts).toContainId(me.id);
     });
   });
 
   it('lists lists', () => {
-    return clients.use(2, async ([alice, bob]) => {
-      const bobAccount = await bob.v1.accounts.verifyCredentials.fetch();
-      const list = await alice.v1.lists.create({ title: 'title' });
-      await alice.v1.accounts.select(bobAccount.id).follow();
+    return sessions.use(2, async ([alice, bob]) => {
+      const list = await alice.rest.v1.lists.create({ title: 'title' });
+      await alice.rest.v1.accounts.select(bob.id).follow();
 
       try {
-        await alice.v1.lists.select(list.id).accounts.create({
-          accountIds: [bobAccount.id],
+        await alice.rest.v1.lists.select(list.id).accounts.create({
+          accountIds: [bob.id],
         });
-        const accounts = await alice.v1.accounts
-          .select(bobAccount.id)
+        const accounts = await alice.rest.v1.accounts
+          .select(bob.id)
           .lists.list();
         expect(accounts).toContainId(list.id);
       } finally {
-        await alice.v1.lists.select(list.id).remove();
+        await alice.rest.v1.lists.select(list.id).remove();
       }
     });
   });
 
   it('lists featured tags', () => {
-    return clients.use(async (client) => {
-      const me = await client.v1.accounts.verifyCredentials.fetch();
-      const featuredTag = await client.v1.featuredTags.create(
+    return sessions.use(async (client) => {
+      const featuredTag = await client.rest.v1.featuredTags.create(
         { name: 'mastodon' },
         { encoding: 'multipart-form' },
       );
 
-      const tags = await client.v1.accounts.select(me.id).featuredTags.list();
+      const tags = await client.rest.v1.accounts
+        .select(client.id)
+        .featuredTags.list();
       expect(tags).toContainId(featuredTag.id);
 
-      await client.v1.featuredTags.select(featuredTag.id).remove();
+      await client.rest.v1.featuredTags.select(featuredTag.id).remove();
     });
   });
 
   it('lists Identity proofs', () => {
-    return clients.use(async (client) => {
-      const me = await client.v1.accounts.verifyCredentials.fetch();
-      const identityProofs = await client.v1.accounts
-        .select(me.id)
+    return sessions.use(async (client) => {
+      const identityProofs = await client.rest.v1.accounts
+        .select(client.id)
         .identityProofs.list();
 
       expect(identityProofs).toEqual(expect.any(Array));
@@ -236,36 +199,28 @@ describe('account', () => {
   });
 
   it('fetches familiar followers', () => {
-    return clients.use(async (client) => {
-      const me = await client.v1.accounts.verifyCredentials.fetch();
-      const identityProofs = await client.v1.accounts.familiarFollowers.fetch([
-        me.id,
-      ]);
+    return sessions.use(async (client) => {
+      const identityProofs =
+        await client.rest.v1.accounts.familiarFollowers.fetch([client.id]);
       expect(identityProofs).toEqual(expect.any(Array));
     });
   });
 
   it('lookup', () => {
-    return clients.use(async (client) => {
-      const me = await client.v1.accounts.verifyCredentials.fetch();
-      const account = await client.v1.accounts.lookup.fetch({ acct: me.acct });
-      expect(account.id).toBe(me.id);
+    return sessions.use(async (client) => {
+      const account = await client.rest.v1.accounts.lookup.fetch({
+        acct: client.acct,
+      });
+      expect(account.id).toBe(client.id);
     });
   });
 
   it('removes from followers', () => {
-    return clients.use(2, async ([alice, bob]) => {
-      const aliceId = await alice.v1.accounts.verifyCredentials
-        .fetch()
-        .then((me) => me.id);
-      const bobId = await bob.v1.accounts.verifyCredentials
-        .fetch()
-        .then((me) => me.id);
-
-      await bob.v1.accounts.select(aliceId).follow();
-      await alice.v1.accounts.select(bobId).removeFromFollowers();
-      const [rel] = await alice.v1.accounts.relationships.fetch({
-        id: [bobId],
+    return sessions.use(2, async ([alice, bob]) => {
+      await bob.rest.v1.accounts.select(alice.id).follow();
+      await alice.rest.v1.accounts.select(bob.id).removeFromFollowers();
+      const [rel] = await alice.rest.v1.accounts.relationships.fetch({
+        id: [bob.id],
       });
       expect(rel.followedBy).toBe(false);
     });

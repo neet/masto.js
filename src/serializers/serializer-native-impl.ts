@@ -9,6 +9,7 @@ import type { Encoding, Serializer } from './serializer';
 import { transformKeys } from './transform-keys';
 
 export class SerializerNativeImpl implements Serializer {
+  serialize(type: 'json', rawData: unknown): string | undefined;
   serialize(type: Encoding, rawData: unknown): BodyInit | undefined {
     if (rawData == undefined) {
       return;
