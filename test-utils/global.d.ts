@@ -1,10 +1,10 @@
 /* eslint-disable no-var */
 import type { mastodon } from '../src';
-import type { ClientPool, TokenPool } from './pools';
+import type { SessionPoolImpl, TokenPool } from './pools';
 
 declare global {
   var admin: mastodon.RestAPIClient;
-  var clients: ClientPool;
+  var sessions: SessionPoolImpl;
 
   /** Should only be used inside /test-utils */
   var __misc__: {

@@ -3,14 +3,24 @@ import qs from 'qs';
 
 import type { Http } from './http';
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+const mixins =
+  (globalThis as any).AsyncIterator == undefined
+    ? class {}
+    : (globalThis as any).AsyncIterator;
+/* eslint-enable @typescript-eslint/no-explicit-any */
+
 export class Paginator<Entity, Params = never>
-  implements AsyncIterableIterator<Entity>, PromiseLike<Entity>
+  extends mixins
+  implements PromiseLike<Entity>
 {
   constructor(
     private readonly http: Http,
     private nextPath?: string,
     private nextParams?: Params,
-  ) {}
+  ) {
+    super();
+  }
 
   async next(): Promise<IteratorResult<Entity, undefined>> {
     if (this.nextPath == undefined) {
@@ -61,12 +71,14 @@ export class Paginator<Entity, Params = never>
     return this.next().then((value) => onfulfilled(value.value!), onrejected);
   }
 
-  [Symbol.asyncIterator](): AsyncGenerator<
+  [Symbol.asyncIterator](): AsyncIterator<
     Entity,
     undefined,
     Params | undefined
   > {
-    return this;
+    // TODO: Use polyfill on demand
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return this as any as AsyncIterator<Entity, undefined, Params | undefined>;
   }
 
   private clear() {

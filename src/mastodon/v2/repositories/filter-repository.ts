@@ -13,7 +13,7 @@ export interface CreateFilterParams {
   /** Integer. How many seconds from now should the filter expire? */
   readonly expiresIn?: number | null;
 
-  readonly keywordsAttributes?: readonly {
+  readonly keywordsAttributes?: {
     /** String. A keyword to be added to the newly-created filter group. */
     readonly keyword?: string | null;
     /** Boolean. Whether the keyword should consider word boundaries. */

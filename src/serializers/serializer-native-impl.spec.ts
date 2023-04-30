@@ -1,7 +1,8 @@
+import type { Serializer } from './serializer';
 import { SerializerNativeImpl } from './serializer-native-impl';
 
 describe('SerializerNativeImpl', () => {
-  const serializer = new SerializerNativeImpl();
+  const serializer: Serializer = new SerializerNativeImpl();
 
   it('encodes an object to JSON', () => {
     const data = serializer.serialize('json', {

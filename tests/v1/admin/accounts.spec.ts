@@ -1,8 +1,9 @@
 describe('account', () => {
   it('fetches an account', async () => {
-    const me = await admin.v1.accounts.verifyCredentials.fetch();
-    const account = await admin.v1.admin.accounts.select(me.id).fetch();
-    expect(account.id).toBe(me.id);
+    return sessions.use(async (session) => {
+      const account = await admin.v1.admin.accounts.select(session.id).fetch();
+      expect(account.id).toBe(session.id);
+    });
   });
 
   it('lists accounts', async () => {
@@ -15,61 +16,53 @@ describe('account', () => {
   test.todo('rejects an account');
 
   it('disables an account', async () => {
-    return clients.use(async (client) => {
-      const user = await client.v1.accounts.verifyCredentials.fetch();
-
-      await admin.v1.admin.accounts.select(user.id).action.create({
+    return sessions.use(async (client) => {
+      await admin.v1.admin.accounts.select(client.id).action.create({
         type: 'disable',
       });
-      let account = await admin.v1.admin.accounts.select(user.id).fetch();
+      let account = await admin.v1.admin.accounts.select(client.id).fetch();
       expect(account.disabled).toBe(true);
 
-      account = await admin.v1.admin.accounts.select(user.id).enable();
+      account = await admin.v1.admin.accounts.select(client.id).enable();
       expect(account.disabled).toBe(false);
     });
   });
 
   it('suspends an account', async () => {
-    return clients.use(async (client) => {
-      const user = await client.v1.accounts.verifyCredentials.fetch();
-
-      await admin.v1.admin.accounts.select(user.id).action.create({
+    return sessions.use(async (session) => {
+      await admin.v1.admin.accounts.select(session.id).action.create({
         type: 'suspend',
       });
-      let account = await admin.v1.admin.accounts.select(user.id).fetch();
+      let account = await admin.v1.admin.accounts.select(session.id).fetch();
       expect(account.suspended).toBe(true);
 
-      account = await admin.v1.admin.accounts.select(user.id).unsuspend();
+      account = await admin.v1.admin.accounts.select(session.id).unsuspend();
       expect(account.suspended).toBe(false);
     });
   });
 
   it('silences an account', async () => {
-    return clients.use(async (client) => {
-      const user = await client.v1.accounts.verifyCredentials.fetch();
-
-      await admin.v1.admin.accounts.select(user.id).action.create({
+    return sessions.use(async (session) => {
+      await admin.v1.admin.accounts.select(session.id).action.create({
         type: 'silence',
       });
-      let account = await admin.v1.admin.accounts.select(user.id).fetch();
+      let account = await admin.v1.admin.accounts.select(session.id).fetch();
       expect(account.silenced).toBe(true);
 
-      account = await admin.v1.admin.accounts.select(user.id).unsilence();
+      account = await admin.v1.admin.accounts.select(session.id).unsilence();
       expect(account.silenced).toBe(false);
     });
   });
 
   it('marks account as sensitive', async () => {
-    return clients.use(async (client) => {
-      const user = await client.v1.accounts.verifyCredentials.fetch();
-
-      await admin.v1.admin.accounts.select(user.id).action.create({
+    return sessions.use(async (session) => {
+      await admin.v1.admin.accounts.select(session.id).action.create({
         type: 'sensitive',
       });
-      let account = await admin.v1.admin.accounts.select(user.id).fetch();
+      let account = await admin.v1.admin.accounts.select(session.id).fetch();
       expect(account.sensitized).toBe(true);
 
-      account = await admin.v1.admin.accounts.select(user.id).unsensitive();
+      account = await admin.v1.admin.accounts.select(session.id).unsensitive();
       expect(account.sensitized).toBe(false);
     });
   });

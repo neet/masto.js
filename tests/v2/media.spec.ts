@@ -30,13 +30,13 @@ describe('media', () => {
   });
 
   it('creates media attachment without polling', () => {
-    return clients.use(async (client) => {
+    return sessions.use(async (session) => {
       const file = await createFile();
-      let media = await client.v2.media.create(
+      let media = await session.rest.v2.media.create(
         { file },
         { encoding: 'multipart-form' },
       );
-      media = await waitForMediaAttachment(client, media.id);
+      media = await waitForMediaAttachment(session.rest, media.id);
       expect(media.type).toBe('image');
     });
   });

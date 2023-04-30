@@ -78,7 +78,7 @@ describe('Config', () => {
       new SerializerNativeImpl(),
     );
 
-    const url = config.resolveWebsocketPath('/path/to/somewhere');
+    const url = config.resolveWebsocketPath('/path/to/somewhere').toString();
     expect(url).toEqual('wss://mastodon.social/path/to/somewhere');
   });
 
@@ -123,7 +123,7 @@ describe('Config', () => {
       new SerializerNativeImpl(),
     );
 
-    const url = config.resolveWebsocketPath('/path/to/somewhere');
+    const url = config.resolveWebsocketPath('/path/to/somewhere').toString();
     expect(url).toEqual(
       'wss://mastodon.social/path/to/somewhere?access_token=token',
     );
