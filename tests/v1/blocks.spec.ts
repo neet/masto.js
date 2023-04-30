@@ -1,16 +1,12 @@
 describe('blocks', () => {
   it('lists blocks', () => {
-    return clients.use(2, async ([alice, bob]) => {
-      const bobId = await bob.v1.accounts.verifyCredentials
-        .fetch()
-        .then((account) => account.id);
-
+    return sessions.use(2, async ([alice, bob]) => {
       try {
-        await alice.v1.accounts.select(bobId).block();
-        const blocks = await alice.v1.blocks.list();
-        expect(blocks).toContainId(bobId);
+        await alice.rest.v1.accounts.select(bob.id).block();
+        const blocks = await alice.rest.v1.blocks.list();
+        expect(blocks).toContainId(bob.id);
       } finally {
-        await alice.v1.accounts.select(bobId).unblock();
+        await alice.rest.v1.accounts.select(bob.id).unblock();
       }
     });
   });

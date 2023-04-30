@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import './jest-polyfills';
+
 import { createClient, createOAuthClient } from '../src';
 import { TokenPoolImpl } from './pools';
 
@@ -15,10 +17,6 @@ export default async (): Promise<void> => {
   });
 
   const container = process.env.MASTODON_CONTAINER ?? 'mastodon';
-  // if (container == undefined) {
-  //   throw new Error('MASTODON_CONTAINER is not defined');
-  // }
-
   const tokenPool = new TokenPoolImpl(container, oauth, app);
 
   const adminToken = await oauth.token.create(
