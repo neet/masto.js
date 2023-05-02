@@ -78,6 +78,11 @@ describe('status', () => {
 
   it('translates a status', () => {
     return clients.use(async (client) => {
+      const instance = await client.v2.instance.fetch();
+      if (!instance.configuration.translation.enabled) {
+        return;
+      }
+
       const { id } = await client.v1.statuses.create({
         status: 'Hello',
       });
