@@ -80,7 +80,7 @@ export class Paginator<Entity, Params = never>
     }
 
     const path = link
-      .match(/<(.+?)>; rel="next"/)?.[1]
+      .match(/<([^>]+?)>; rel="next"/)?.[1]
       .replace(/^https?:\/\/[^/]+/, '');
 
     return path;
