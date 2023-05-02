@@ -23,6 +23,7 @@ export * from './preference';
 export * from './preview-card';
 export * from './reaction';
 export * from './relationship';
+export * from './report';
 export * from './role';
 export * from './rule';
 export * from './scheduled-status';
