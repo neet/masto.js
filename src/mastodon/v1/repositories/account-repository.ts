@@ -289,7 +289,7 @@ export interface AccountRepository {
    */
   create(
     params: CreateAccountParams,
-    meta: HttpMetaParams<'multipart-form'>,
+    meta?: HttpMetaParams<'multipart-form'>,
   ): Promise<Token>;
 
   verifyCredentials: {
@@ -310,7 +310,7 @@ export interface AccountRepository {
      */
     update(
       params: UpdateCredentialsParams,
-      meta: HttpMetaParams<'multipart-form'>,
+      meta?: HttpMetaParams<'multipart-form'>,
     ): Promise<AccountCredentials>;
   };
 

@@ -61,17 +61,14 @@ export class TokenPoolImpl implements TokenPool {
       confirmed: true,
     });
 
-    const token = await this.oauth.token.create(
-      {
-        grantType: 'password',
-        clientId: this.app.clientId!,
-        clientSecret: this.app.clientSecret!,
-        username: email,
-        password,
-        scope: 'read write follow push admin:read admin:write',
-      },
-      { encoding: 'multipart-form' },
-    );
+    const token = await this.oauth.token.create({
+      grantType: 'password',
+      clientId: this.app.clientId!,
+      clientSecret: this.app.clientSecret!,
+      username: email,
+      password,
+      scope: 'read write follow push admin:read admin:write',
+    });
 
     this.cache.set(token);
 

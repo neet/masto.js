@@ -1,9 +1,6 @@
 it('authorize follow requests', () => {
   return sessions.use(2, async ([alice, bob]) => {
-    await alice.rest.v1.accounts.updateCredentials.update(
-      { locked: true },
-      { encoding: 'multipart-form' },
-    );
+    await alice.rest.v1.accounts.updateCredentials.update({ locked: true });
 
     try {
       let relationship = await bob.rest.v1.accounts.select(alice.id).follow();
@@ -18,10 +15,7 @@ it('authorize follow requests', () => {
       });
       expect(relationship.following).toBe(true);
     } finally {
-      await alice.rest.v1.accounts.updateCredentials.update(
-        { locked: false },
-        { encoding: 'multipart-form' },
-      );
+      await alice.rest.v1.accounts.updateCredentials.update({ locked: false });
       await bob.rest.v1.accounts.select(alice.id).unfollow();
     }
   });
@@ -29,10 +23,7 @@ it('authorize follow requests', () => {
 
 it('reject follow requests', () => {
   return sessions.use(2, async ([alice, bob]) => {
-    await alice.rest.v1.accounts.updateCredentials.update(
-      { locked: true },
-      { encoding: 'multipart-form' },
-    );
+    await alice.rest.v1.accounts.updateCredentials.update({ locked: true });
 
     try {
       let relationship = await bob.rest.v1.accounts.select(alice.id).follow();
@@ -47,10 +38,7 @@ it('reject follow requests', () => {
       });
       expect(relationship.following).toBe(false);
     } finally {
-      await alice.rest.v1.accounts.updateCredentials.update(
-        { locked: false },
-        { encoding: 'multipart-form' },
-      );
+      await alice.rest.v1.accounts.updateCredentials.update({ locked: false });
     }
   });
 });

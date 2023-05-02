@@ -37,41 +37,37 @@ describe('websocket', () => {
     });
   });
 
-  /*
-  it('streams public:media', () => {
-    return sessions.use(async (session) => {
-      let id!: string;
-
-      try {
-        const events = session.ws.subscribe('public:media');
-        setImmediate(async () => {
-          const media = await session.rest.v2.media.create(
-            { file: TRANSPARENT_1X1_PNG },
-            { encoding: 'multipart-form' },
-          );
-          await waitForMediaAttachment(session.rest, media.id);
-          const status = await session.rest.v1.statuses.create({
-            status: 'test',
-            mediaIds: [media.id],
-            visibility: 'public',
-          });
-          id = status.id;
-        });
-        const [event] = await events
-          .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
-          .filter((e) => e.payload.id === id)
-          .take(1)
-          .toArray();
-        assert(event?.event === 'update');
-        expect(event?.payload?.id).toBe(id);
-      } finally {
-        session.ws.unsubscribe('public:media');
-        session.ws.close();
-        await session.rest.v1.statuses.select(id).remove();
-      }
-    });
-  });
-  */
+  // it('streams public:media', () => {
+  //   return sessions.use(async (session) => {
+  //     let id!: string;
+  //     try {
+  //       const events = session.ws.subscribe('public:media');
+  //       setImmediate(async () => {
+  //         const media = await session.rest.v2.media.create(
+  //           { file: TRANSPARENT_1X1_PNG },
+  //         );
+  //         await waitForMediaAttachment(session.rest, media.id);
+  //         const status = await session.rest.v1.statuses.create({
+  //           status: 'test',
+  //           mediaIds: [media.id],
+  //           visibility: 'public',
+  //         });
+  //         id = status.id;
+  //       });
+  //       const [event] = await events
+  //         .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
+  //         .filter((e) => e.payload.id === id)
+  //         .take(1)
+  //         .toArray();
+  //       assert(event?.event === 'update');
+  //       expect(event?.payload?.id).toBe(id);
+  //     } finally {
+  //       session.ws.unsubscribe('public:media');
+  //       session.ws.close();
+  //       await session.rest.v1.statuses.select(id).remove();
+  //     }
+  //   });
+  // });
 
   it('streams public:local', () => {
     return sessions.use(async (session) => {
@@ -112,10 +108,9 @@ describe('websocket', () => {
         const events = session.ws.subscribe('public:local:media');
 
         setImmediate(async () => {
-          const media = await session.rest.v2.media.create(
-            { file: TRANSPARENT_1X1_PNG },
-            { encoding: 'multipart-form' },
-          );
+          const media = await session.rest.v2.media.create({
+            file: TRANSPARENT_1X1_PNG,
+          });
 
           await waitForMediaAttachment(session.rest, media.id);
 

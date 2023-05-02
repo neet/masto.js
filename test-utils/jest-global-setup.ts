@@ -19,17 +19,14 @@ export default async (): Promise<void> => {
   const container = process.env.MASTODON_CONTAINER ?? 'mastodon';
   const tokenPool = new TokenPoolImpl(container, oauth, app);
 
-  const adminToken = await oauth.token.create(
-    {
-      grantType: 'password',
-      clientId: app.clientId!,
-      clientSecret: app.clientSecret!,
-      username: 'admin@localhost:3000',
-      password: 'mastodonadmin',
-      scope: 'read write follow push admin:read admin:write',
-    },
-    { encoding: 'multipart-form' },
-  );
+  const adminToken = await oauth.token.create({
+    grantType: 'password',
+    clientId: app.clientId!,
+    clientSecret: app.clientSecret!,
+    username: 'admin@localhost:3000',
+    password: 'mastodonadmin',
+    scope: 'read write follow push admin:read admin:write',
+  });
 
   globalThis.__misc__ = {
     url,
