@@ -1,4 +1,5 @@
 import type { Account } from './account';
+import type { Report } from './report';
 import type { Status } from './status';
 
 export type NotificationType =
@@ -29,4 +30,7 @@ export interface Notification {
 
   /** Status that was the object of the notification, e.g. in mentions, reblogs, favourites, or polls. */
   status?: Status | null;
+
+  /** Report that was the object of the notification. Attached when type of the notification is admin.report. */
+  report?: Report | null;
 }
