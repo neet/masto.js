@@ -14,10 +14,7 @@ const createFile = async () => {
 describe('media', () => {
   it('creates a media attachment', async () => {
     const file = await createFile();
-    let media = await admin.v2.media.create(
-      { file },
-      { encoding: 'multipart-form' },
-    );
+    let media = await admin.v2.media.create({ file });
     media = await waitForMediaAttachment(admin, media.id);
 
     media = await admin.v1.media.select(media.id).fetch();
@@ -32,10 +29,7 @@ describe('media', () => {
   it('creates media attachment without polling', () => {
     return sessions.use(async (session) => {
       const file = await createFile();
-      let media = await session.rest.v2.media.create(
-        { file },
-        { encoding: 'multipart-form' },
-      );
+      let media = await session.rest.v2.media.create({ file });
       media = await waitForMediaAttachment(session.rest, media.id);
       expect(media.type).toBe('image');
     });

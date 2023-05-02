@@ -15,6 +15,6 @@ export type CreateTokenParams = CreateTokenParamsWithPassword;
 export interface OAuthRepository {
   create(
     params: CreateTokenParams,
-    meta: HttpMetaParams<'multipart-form'>,
+    meta?: HttpMetaParams<'multipart-form'>,
   ): Promise<Token>;
 }
