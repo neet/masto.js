@@ -1,6 +1,4 @@
-import type { Account, Rule, Status } from '..';
-
-export type ReportCategory = 'spam' | 'violation' | 'other';
+import type { Account, ReportCategory, Rule, Status } from '..';
 
 /**
  * Admin-level information about a filed report.
