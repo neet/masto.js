@@ -2,10 +2,8 @@ import { snakeCase } from 'change-case';
 
 import type { Http, HttpMetaParams } from '../http';
 import { Paginator } from '../paginator';
-
-function noop(): void {
-  //
-}
+import { noop } from '../utils/noop';
+import { inferEncoding } from './encoding';
 
 const get =
   <T>(http: Http, context: string[]) =>
@@ -32,8 +30,11 @@ const apply =
     }
 
     const data = args[0];
-    const meta = args[1] as HttpMetaParams;
     const path = '/' + context.map((name) => snakeCase(name)).join('/');
+    const meta = {
+      encoding: inferEncoding(action, path),
+      ...(args[1] as HttpMetaParams),
+    } as HttpMetaParams;
 
     switch (action) {
       case 'fetch': {

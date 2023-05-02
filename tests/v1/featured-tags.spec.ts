@@ -8,10 +8,7 @@ it('lists suggestions', () => {
 it('lists featured tags', () => {
   return sessions.use(async (client) => {
     const name = 'mastodon';
-    const featuredTag = await client.rest.v1.featuredTags.create(
-      { name },
-      { encoding: 'multipart-form' },
-    );
+    const featuredTag = await client.rest.v1.featuredTags.create({ name });
 
     try {
       const featuredTags = await client.rest.v1.featuredTags.list();

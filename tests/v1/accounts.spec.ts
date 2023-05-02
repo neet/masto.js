@@ -6,16 +6,13 @@ describe('account', () => {
       const username = crypto.randomBytes(8).toString('hex');
       const email = `${username}@example.com`;
 
-      const token = await session.rest.v1.accounts.create(
-        {
-          username,
-          email,
-          password: 'password',
-          agreement: true,
-          locale: 'en',
-        },
-        { encoding: 'multipart-form' },
-      );
+      const token = await session.rest.v1.accounts.create({
+        username,
+        email,
+        password: 'password',
+        agreement: true,
+        locale: 'en',
+      });
 
       expect(token.accessToken).toEqual(expect.any(String));
     });
@@ -31,10 +28,9 @@ describe('account', () => {
   it('updates credential', () => {
     return sessions.use(async (session) => {
       const random = Math.random().toString();
-      const me = await session.rest.v1.accounts.updateCredentials.update(
-        { displayName: random },
-        { encoding: 'multipart-form' },
-      );
+      const me = await session.rest.v1.accounts.updateCredentials.update({
+        displayName: random,
+      });
       expect(me.displayName).toBe(random);
     });
   });
@@ -174,10 +170,9 @@ describe('account', () => {
 
   it('lists featured tags', () => {
     return sessions.use(async (client) => {
-      const featuredTag = await client.rest.v1.featuredTags.create(
-        { name: 'mastodon' },
-        { encoding: 'multipart-form' },
-      );
+      const featuredTag = await client.rest.v1.featuredTags.create({
+        name: 'mastodon',
+      });
 
       const tags = await client.rest.v1.accounts
         .select(client.id)

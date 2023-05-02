@@ -15,7 +15,7 @@ export interface EmailRepository {
      */
     create(
       params: CreateConfirmationParams,
-      meta: HttpMetaParams<'multipart-form'>,
+      meta?: HttpMetaParams<'multipart-form'>,
     ): Promise<void>;
   };
 }

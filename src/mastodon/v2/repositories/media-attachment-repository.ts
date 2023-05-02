@@ -26,6 +26,6 @@ export interface MediaAttachmentRepository {
    */
   create(
     params: CreateMediaAttachmentParams,
-    meta: HttpMetaParams<'multipart-form'>,
+    meta?: HttpMetaParams<'multipart-form'>,
   ): Promise<MediaAttachment>;
 }

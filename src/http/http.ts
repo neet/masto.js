@@ -2,18 +2,12 @@ import type { AbortSignal, Headers } from '@mastojs/ponyfills';
 
 import type { Encoding } from '../serializers';
 
-// prettier-ignore
-type HttpEncodingParam<T extends Encoding>
-  = T extends 'none' ? { readonly encoding: never }
-  : T extends 'json' ? { readonly encoding?: 'json' }
-  : { readonly encoding: T };
-
-export type HttpMetaParams<T extends Encoding = 'none'> =
-  HttpEncodingParam<T> & {
-    readonly headers?: Headers;
-    readonly signal?: AbortSignal;
-    readonly timeout?: number;
-  };
+export type HttpMetaParams<T extends Encoding = 'none'> = {
+  readonly headers?: Headers;
+  readonly encoding?: T;
+  readonly signal?: AbortSignal;
+  readonly timeout?: number;
+};
 
 export type HttpMethod = <T>(
   path: string,

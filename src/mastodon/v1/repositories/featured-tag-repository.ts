@@ -24,7 +24,7 @@ export interface FeaturedTagRepository {
    */
   create(
     params: CreateFeaturedTagParams,
-    meta: HttpMetaParams<'multipart-form'>,
+    meta?: HttpMetaParams<'multipart-form'>,
   ): Promise<FeaturedTag>;
 
   suggestions: {
