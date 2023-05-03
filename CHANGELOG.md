@@ -1,3 +1,27 @@
+## [5.11.3](https://github.com/neet/masto.js/compare/v5.11.2...v5.11.3) (2023-05-03)
+
+
+### Bug Fixes
+
+* Add 'report' attribute to the Notification entity ([#900](https://github.com/neet/masto.js/issues/900)) ([bab715f](https://github.com/neet/masto.js/commit/bab715fb4205f0ef6b82d6c11cf4ea9a6e2b5e95))
+* Add public Report entity ([946288c](https://github.com/neet/masto.js/commit/946288cf14e50215c484885d12f95dcb9cb13364))
+* Link header parsing when order is first prev and then next link ([853da99](https://github.com/neet/masto.js/commit/853da993787d81f75022e007d8518251cd713e3f))
+* Skip /v1/statuses/:id/translate test on PRs from forks ([67470d1](https://github.com/neet/masto.js/commit/67470d1efd25afc4c5d060fa9b82c2d45a242d75))
+
+
+### Chores
+
+* **deps-dev:** bump @typescript-eslint/eslint-plugin ([aa424fb](https://github.com/neet/masto.js/commit/aa424fb2d396897706b53d41346a86f3f5a14b4d))
+* **deps-dev:** bump @typescript-eslint/parser from 5.51.0 to 5.59.2 ([3baba6e](https://github.com/neet/masto.js/commit/3baba6e4564833a6d085af31ad8cb3774423fda9))
+* **deps-dev:** bump cspell from 6.22.0 to 6.31.1 ([639bea1](https://github.com/neet/masto.js/commit/639bea10ee75dd5ae55d8df0db4ce06623af1445))
+* **deps-dev:** bump eslint from 8.34.0 to 8.39.0 ([3a0ca0c](https://github.com/neet/masto.js/commit/3a0ca0c21a6e36600912b0d3e85bc00ffc460fb7))
+* **deps-dev:** bump jest and @types/jest ([70d634c](https://github.com/neet/masto.js/commit/70d634ccf62d399788c7654f3d36ccf4c1cf52b5))
+* **deps-dev:** bump rollup-plugin-dts from 5.1.1 to 5.3.0 ([6fc2406](https://github.com/neet/masto.js/commit/6fc24065954c9d5186a070f42bf45fafef81edcd))
+* **deps-dev:** bump semantic-release from 20.1.0 to 21.0.2 ([a7990da](https://github.com/neet/masto.js/commit/a7990da75ab04391dc83e95903f63a4bde165b66))
+* **deps-dev:** bump typedoc from 0.23.24 to 0.24.6 ([742b33c](https://github.com/neet/masto.js/commit/742b33cb0ddef0143be00b2356801cdd6cd8b63a))
+* **deps:** bump http-cache-semantics from 4.1.0 to 4.1.1 ([6e21135](https://github.com/neet/masto.js/commit/6e2113575232f33297edd412962b495ce391c050))
+* **deps:** bump ws from 8.12.0 to 8.13.0 ([6230497](https://github.com/neet/masto.js/commit/623049777cb43bf4b039ed932cc2528110ddd16f))
+
 ## [5.11.2](https://github.com/neet/masto.js/compare/v5.11.1...v5.11.2) (2023-04-23)
 
 
