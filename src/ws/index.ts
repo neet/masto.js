@@ -1,2 +1,2 @@
-export * from './websocket-api-connection';
-export * from './websocket-api-connector';
+export * from './web-socket-connector';
+export * from './web-socket-client';
