@@ -1,9 +1,9 @@
 import { on } from 'events-to-async';
 import type WebSocket from 'isomorphic-ws';
 
-export async function* createWebSocketAsyncIterator(
+export async function* toAsyncIterable(
   ws: WebSocket,
-): AsyncGenerator<WebSocket.MessageEvent> {
+): AsyncIterable<WebSocket.MessageEvent> {
   const handleClose = (e: WebSocket.CloseEvent) => {
     events.return?.(e);
   };

@@ -6,10 +6,9 @@ describe('events', () => {
   it('streams update, status.update, and delete event', () => {
     return sessions.use(async (session) => {
       let id!: string;
-      const connection = await session.ws.connect();
 
       try {
-        const events = connection.subscribe('public:local');
+        const events = session.ws.subscribe('public:local');
 
         setImmediate(async () => {
           const status = await session.rest.v1.statuses.create({
@@ -33,18 +32,16 @@ describe('events', () => {
         assert(e3?.event === 'delete');
         expect(e3.payload).toBe(id);
       } finally {
-        connection.unsubscribe('public:local');
-        connection.close();
+        session.ws.unsubscribe('public:local');
+        session.ws.close();
       }
     });
   });
 
   it('streams filters_changed event', () => {
     return sessions.use(async (session) => {
-      const connection = await session.ws.connect();
-
       try {
-        const events = connection.subscribe('user');
+        const events = session.ws.subscribe('user');
 
         setImmediate(async () => {
           const filter = await session.rest.v2.filters.create({
@@ -60,8 +57,8 @@ describe('events', () => {
         assert(e?.event === 'filters_changed');
         expect(e.payload).toBeUndefined();
       } finally {
-        connection.unsubscribe('user');
-        connection.close();
+        session.ws.unsubscribe('user');
+        session.ws.close();
       }
     });
   });
@@ -69,10 +66,9 @@ describe('events', () => {
   it('streams notification', () => {
     return sessions.use(2, async ([alice, bob]) => {
       let id!: string;
-      const connection = await alice.ws.connect();
 
       try {
-        const events = connection.subscribe('user:notification');
+        const events = alice.ws.subscribe('user:notification');
 
         setImmediate(async () => {
           await bob.rest.v1.accounts.select(alice.id).follow();
@@ -84,8 +80,8 @@ describe('events', () => {
         expect(e.payload.status?.id).toBe(id);
       } finally {
         await bob.rest.v1.accounts.select(alice.id).unfollow();
-        connection.unsubscribe('user:notification');
-        connection.close();
+        alice.ws.unsubscribe('user:notification');
+        alice.ws.close();
       }
     });
   });
@@ -93,7 +89,6 @@ describe('events', () => {
   it('streams conversation', () => {
     return sessions.use(2, async ([alice, bob]) => {
       let id!: string;
-      const connection = await alice.ws.connect();
 
       try {
         setImmediate(async () => {
@@ -105,15 +100,15 @@ describe('events', () => {
           await delay(1000);
         });
 
-        const events = connection.subscribe('direct');
+        const events = alice.ws.subscribe('direct');
         const [e] = await events.take(1).toArray();
 
         assert(e?.event === 'conversation');
         expect(e.payload.lastStatus?.id).toBe(id);
       } finally {
         await bob.rest.v1.statuses.select(id).remove();
-        connection.unsubscribe('direct');
-        connection.close();
+        alice.ws.unsubscribe('direct');
+        alice.ws.close();
       }
     });
   });
