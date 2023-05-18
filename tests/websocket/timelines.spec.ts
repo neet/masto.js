@@ -10,10 +10,9 @@ describe('websocket', () => {
   it('streams public', () => {
     return sessions.use(async (session) => {
       let id!: string;
-      const connection = await session.ws.connect();
 
       try {
-        const events = connection.subscribe('public');
+        const events = session.ws.subscribe('public');
 
         setImmediate(async () => {
           const status = await session.rest.v1.statuses.create({
@@ -31,54 +30,55 @@ describe('websocket', () => {
         assert(event?.event === 'update');
         expect(event?.payload?.id).toBe(id);
       } finally {
-        connection.unsubscribe('public');
-        connection.close();
+        session.ws.unsubscribe('public');
+        session.ws.close();
         await session.rest.v1.statuses.select(id).remove();
       }
     });
   });
 
-  // it('streams public:media', () => {
-  //   return sessions.use(async (session) => {
-  //     let id!: string;
-  //     const connection = await session.ws.connect();
-  //     try {
-  //       const events = connection.subscribe('public:media');
-  //       setImmediate(async () => {
-  //         const media = await session.rest.v2.media.create(
-  //           { file: TRANSPARENT_1X1_PNG },
-  //           { encoding: 'multipart-form' },
-  //         );
-  //         await waitForMediaAttachment(session.rest, media.id);
-  //         const status = await session.rest.v1.statuses.create({
-  //           status: 'test',
-  //           mediaIds: [media.id],
-  //           visibility: 'public',
-  //         });
-  //         id = status.id;
-  //       });
-  //       const [event] = await events
-  //         .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
-  //         .filter((e) => e.payload.id === id)
-  //         .take(1)
-  //         .toArray();
-  //       assert(event?.event === 'update');
-  //       expect(event?.payload?.id).toBe(id);
-  //     } finally {
-  //       connection.unsubscribe('public:media');
-  //       connection.close();
-  //       await session.rest.v1.statuses.select(id).remove();
-  //     }
-  //   });
-  // });
+  /*
+  it('streams public:media', () => {
+    return sessions.use(async (session) => {
+      let id!: string;
+
+      try {
+        const events = session.ws.subscribe('public:media');
+        setImmediate(async () => {
+          const media = await session.rest.v2.media.create(
+            { file: TRANSPARENT_1X1_PNG },
+            { encoding: 'multipart-form' },
+          );
+          await waitForMediaAttachment(session.rest, media.id);
+          const status = await session.rest.v1.statuses.create({
+            status: 'test',
+            mediaIds: [media.id],
+            visibility: 'public',
+          });
+          id = status.id;
+        });
+        const [event] = await events
+          .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
+          .filter((e) => e.payload.id === id)
+          .take(1)
+          .toArray();
+        assert(event?.event === 'update');
+        expect(event?.payload?.id).toBe(id);
+      } finally {
+        session.ws.unsubscribe('public:media');
+        session.ws.close();
+        await session.rest.v1.statuses.select(id).remove();
+      }
+    });
+  });
+  */
 
   it('streams public:local', () => {
     return sessions.use(async (session) => {
       let id!: string;
-      const connection = await session.ws.connect();
 
       try {
-        const events = connection.subscribe('public:local');
+        const events = session.ws.subscribe('public:local');
 
         setImmediate(async () => {
           const status = await session.rest.v1.statuses.create({
@@ -97,8 +97,8 @@ describe('websocket', () => {
         assert(event?.event === 'update');
         expect(event?.payload?.id).toBe(id);
       } finally {
-        connection.unsubscribe('public:local');
-        connection.close();
+        session.ws.unsubscribe('public:local');
+        session.ws.close();
         await session.rest.v1.statuses.select(id).remove();
       }
     });
@@ -107,10 +107,9 @@ describe('websocket', () => {
   it('streams public:local:media', () => {
     return sessions.use(async (session) => {
       let id!: string;
-      const connection = await session.ws.connect();
 
       try {
-        const events = connection.subscribe('public:local:media');
+        const events = session.ws.subscribe('public:local:media');
 
         setImmediate(async () => {
           const media = await session.rest.v2.media.create(
@@ -138,8 +137,8 @@ describe('websocket', () => {
         assert(event?.event === 'update');
         expect(event?.payload?.id).toBe(id);
       } finally {
-        connection.unsubscribe('public:local:media');
-        connection.close();
+        session.ws.unsubscribe('public:local:media');
+        session.ws.close();
         await session.rest.v1.statuses.select(id).remove();
       }
     });
@@ -148,10 +147,9 @@ describe('websocket', () => {
   it('streams hashtag', () => {
     return sessions.use(async (session) => {
       let id!: string;
-      const connection = await session.ws.connect();
 
       try {
-        const events = connection.subscribe('hashtag', { tag: 'test' });
+        const events = session.ws.subscribe('hashtag', { tag: 'test' });
 
         setImmediate(async () => {
           const status = await session.rest.v1.statuses.create({
@@ -169,8 +167,8 @@ describe('websocket', () => {
         assert(event?.event === 'update');
         expect(event?.payload?.id).toBe(id);
       } finally {
-        connection.close();
-        connection.unsubscribe('hashtag', { tag: 'test' });
+        session.ws.close();
+        session.ws.unsubscribe('hashtag', { tag: 'test' });
         await session.rest.v1.statuses.select(id).remove();
       }
     });
@@ -179,10 +177,9 @@ describe('websocket', () => {
   it('streams hashtag:local', () => {
     return sessions.use(async (session) => {
       let id!: string;
-      const connection = await session.ws.connect();
 
       try {
-        const events = connection.subscribe('hashtag:local', { tag: 'test' });
+        const events = session.ws.subscribe('hashtag:local', { tag: 'test' });
 
         setImmediate(async () => {
           const status = await session.rest.v1.statuses.create({
@@ -200,8 +197,8 @@ describe('websocket', () => {
         assert(event?.event === 'update');
         expect(event?.payload?.id).toBe(id);
       } finally {
-        connection.unsubscribe('hashtag:local', { tag: 'test' });
-        connection.close();
+        session.ws.unsubscribe('hashtag:local', { tag: 'test' });
+        session.ws.close();
         await session.rest.v1.statuses.select(id).remove();
       }
     });
@@ -209,10 +206,8 @@ describe('websocket', () => {
 
   it('streams user', () => {
     return sessions.use(2, async ([alice, bob]) => {
-      const connection = await alice.ws.connect();
-
       try {
-        const events = connection.subscribe('user');
+        const events = alice.ws.subscribe('user');
         setImmediate(async () => {
           await bob.rest.v1.accounts.select(alice.id).follow();
         });
@@ -228,8 +223,8 @@ describe('websocket', () => {
         expect(e1?.payload?.type).toBe('follow');
         expect(e1?.payload?.account.id).toBe(bob.id);
       } finally {
-        connection.unsubscribe('user');
-        connection.close();
+        alice.ws.unsubscribe('user');
+        alice.ws.close();
         await bob.rest.v1.accounts.select(alice.id).unfollow();
       }
     });
@@ -237,10 +232,8 @@ describe('websocket', () => {
 
   it('streams user:notification', () => {
     return sessions.use(2, async ([alice, bob]) => {
-      const connection = await alice.ws.connect();
-
       try {
-        const events = connection.subscribe('user:notification');
+        const events = alice.ws.subscribe('user:notification');
 
         setImmediate(async () => {
           await bob.rest.v1.accounts.select(alice.id).follow();
@@ -257,8 +250,8 @@ describe('websocket', () => {
         expect(e1?.payload?.type).toBe('follow');
         expect(e1?.payload?.account.id).toBe(bob.id);
       } finally {
-        connection.unsubscribe('user:notification');
-        connection.close();
+        alice.ws.unsubscribe('user:notification');
+        alice.ws.close();
         await bob.rest.v1.accounts.select(alice.id).unfollow();
       }
     });
@@ -266,12 +259,11 @@ describe('websocket', () => {
 
   it('streams list', () => {
     return sessions.use(2, async ([alice, bob]) => {
-      const connection = await alice.ws.connect();
       const list = await alice.rest.v1.lists.create({ title: 'test' });
 
       try {
         await alice.rest.v1.accounts.select(bob.id).follow();
-        const events = connection.subscribe('list', { list: list.id });
+        const events = alice.ws.subscribe('list', { list: list.id });
 
         await alice.rest.v1.lists.select(list.id).accounts.create({
           accountIds: [bob.id],
@@ -291,8 +283,8 @@ describe('websocket', () => {
         assert(e1?.event === 'update');
         expect(e1?.payload?.account?.id).toBe(bob.id);
       } finally {
-        connection.unsubscribe('list', { list: list.id });
-        connection.close();
+        alice.ws.unsubscribe('list', { list: list.id });
+        alice.ws.close();
         await alice.rest.v1.lists.select(list.id).remove();
         await alice.rest.v1.accounts.select(bob.id).unfollow();
       }

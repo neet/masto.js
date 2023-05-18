@@ -1,11 +1,11 @@
-import type { mastodon, WebSocketAPIConnector } from '../src';
+import type { mastodon } from '../src';
 import { createClient, createWebSocketClient } from '../src';
 
 export interface Session {
   readonly id: string;
   readonly acct: string;
   readonly rest: mastodon.RestAPIClient;
-  readonly ws: WebSocketAPIConnector;
+  readonly ws: mastodon.WebSocketAPIClient;
 }
 
 export const createSession = async (
