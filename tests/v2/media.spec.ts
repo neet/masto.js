@@ -1,7 +1,5 @@
 import { fetch } from '@mastojs/ponyfills';
 
-import { waitForMediaAttachment } from '../../src/utils';
-
 const TRANSPARENT_1X1_PNG =
   'data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==';
 
@@ -15,7 +13,6 @@ describe('media', () => {
   it('creates a media attachment', async () => {
     const file = await createFile();
     let media = await admin.v2.media.create({ file });
-    media = await waitForMediaAttachment(admin, media.id);
 
     media = await admin.v1.media.select(media.id).fetch();
     expect(media.type).toBe('image');
@@ -29,8 +26,7 @@ describe('media', () => {
   it('creates media attachment without polling', () => {
     return sessions.use(async (session) => {
       const file = await createFile();
-      let media = await session.rest.v2.media.create({ file });
-      media = await waitForMediaAttachment(session.rest, media.id);
+      const media = await session.rest.v2.media.create({ file });
       expect(media.type).toBe('image');
     });
   });
