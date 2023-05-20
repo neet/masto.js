@@ -1,7 +1,7 @@
 /* eslint-disable unicorn/no-thenable */
-import qs from 'qs';
+import parseLinkHeader from 'parse-link-header';
 
-import type { Http } from './http';
+import type { Http, HttpMetaParams } from './http';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const mixins =
@@ -10,14 +10,15 @@ const mixins =
     : (globalThis as any).AsyncIterator;
 /* eslint-enable @typescript-eslint/no-explicit-any */
 
-export class Paginator<Entity, Params = never>
+export class Paginator<Entity, Params = undefined>
   extends mixins
   implements PromiseLike<Entity>
 {
   constructor(
     private readonly http: Http,
     private nextPath?: string,
-    private nextParams?: Params,
+    private nextParams?: Params | string,
+    private readonly meta?: HttpMetaParams,
   ) {
     super();
   }
@@ -30,12 +31,13 @@ export class Paginator<Entity, Params = never>
     const response = await this.http.request({
       method: 'GET',
       path: this.nextPath,
-      searchParams: this.nextParams as Record<string, unknown>,
+      search: this.nextParams as Record<string, unknown>,
+      ...this.meta,
     });
 
-    const next = this.pluckNext(response.headers.get('link'))?.split('?');
-    this.nextPath = next?.[0];
-    this.nextParams = qs.parse(next?.[1] ?? '') as Params;
+    const nextUrl = this.getLink(response.headers.get('link'));
+    this.nextPath = nextUrl?.pathname;
+    this.nextParams = nextUrl?.search?.replace(/^\?/, '');
 
     return {
       done: false,
@@ -74,11 +76,28 @@ export class Paginator<Entity, Params = never>
   [Symbol.asyncIterator](): AsyncIterator<
     Entity,
     undefined,
-    Params | undefined
+    Params | string | undefined
   > {
     // TODO: Use polyfill on demand
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return this as any as AsyncIterator<Entity, undefined, Params | undefined>;
+    return this as any as AsyncIterator<
+      Entity,
+      undefined,
+      Params | string | undefined
+    >;
+  }
+
+  private getLink(value?: string | null): URL | undefined {
+    if (value == undefined) {
+      return;
+    }
+
+    const parsed = parseLinkHeader(value)?.next?.url;
+    if (parsed == undefined) {
+      return;
+    }
+
+    return new URL(parsed);
   }
 
   private clear() {
@@ -86,19 +105,7 @@ export class Paginator<Entity, Params = never>
     this.nextParams = undefined;
   }
 
-  private pluckNext = (link: string | null): string | undefined => {
-    if (link == undefined) {
-      return undefined;
-    }
-
-    const path = link
-      .match(/<([^>]+?)>; rel="next"/)?.[1]
-      .replace(/^https?:\/\/[^/]+/, '');
-
-    return path;
-  };
-
   clone(): Paginator<Entity, Params> {
-    return new Paginator(this.http, this.nextPath, this.nextParams);
+    return new Paginator(this.http, this.nextPath, this.nextParams, this.meta);
   }
 }

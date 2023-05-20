@@ -50,11 +50,17 @@ export class MastoConfig {
     return [this.props.accessToken, ...protocols];
   }
 
-  resolveHttpPath(path: string, params?: Record<string, unknown>): URL {
+  resolveHttpPath(
+    path: string,
+    params?: string | Record<string, unknown>,
+  ): URL {
     const url = new URL(path, this.props.url);
 
-    if (params) {
-      url.search = this.serializer.serializeQueryString(params);
+    if (params != undefined) {
+      url.search =
+        typeof params === 'string'
+          ? params
+          : this.serializer.serializeQueryString(params);
     }
 
     return url;

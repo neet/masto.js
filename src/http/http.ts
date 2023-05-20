@@ -18,7 +18,7 @@ export type HttpMethod = <T>(
 export type HttpRequestParams = HttpMetaParams<Encoding> & {
   readonly method: string;
   readonly path: string;
-  readonly searchParams?: Record<string, unknown>;
+  readonly search?: string | Record<string, unknown>;
   readonly body?: Record<string, unknown>;
 };
 
