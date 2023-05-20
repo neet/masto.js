@@ -5,7 +5,8 @@ import { HttpNativeImpl } from './http';
 import { LoggerConsoleImpl } from './logger';
 import type { OAuthAPIClient, RestAPIClient } from './mastodon';
 import { SerializerNativeImpl } from './serializers';
-import { WebSocketAPIConnector } from './ws';
+import { WebSocketClient } from './ws';
+import { WebSocketConnector } from './ws/web-socket-connector';
 
 export const createClient = (props: MastoConfigProps): RestAPIClient => {
   const serializer = new SerializerNativeImpl();
@@ -27,10 +28,21 @@ export const createOAuthClient = (props: MastoConfigProps): OAuthAPIClient => {
 
 export function createWebSocketClient(
   props: MastoConfigProps,
-): WebSocketAPIConnector {
+): WebSocketClient {
   const serializer = new SerializerNativeImpl();
   const config = new MastoConfig(props, serializer);
-  const logger = new LoggerConsoleImpl(config.getLogLevel());
-  const connector = new WebSocketAPIConnector(config, serializer, logger);
-  return connector;
+  const connector = new WebSocketConnector(
+    [
+      config.resolveWebsocketPath('/api/v1/streaming').toString(),
+      config.createWebsocketProtocols(),
+    ],
+    new LoggerConsoleImpl(config.getLogLevel()),
+  );
+  const connections = connector.getConnections();
+
+  return new WebSocketClient(
+    connections,
+    serializer,
+    connector.close.bind(connector),
+  );
 }
