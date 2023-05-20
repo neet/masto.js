@@ -3,6 +3,8 @@ import parseLinkHeader from 'parse-link-header';
 
 import type { Http, HttpMetaParams } from './http';
 
+type Rel = 'next' | 'prev';
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const mixins =
   (globalThis as any).AsyncIterator == undefined
@@ -14,6 +16,8 @@ export class Paginator<Entity, Params = undefined>
   extends mixins
   implements PromiseLike<Entity>
 {
+  private readonly rel: Rel;
+
   constructor(
     private readonly http: Http,
     private nextPath?: string,
@@ -21,6 +25,10 @@ export class Paginator<Entity, Params = undefined>
     private readonly meta?: HttpMetaParams,
   ) {
     super();
+
+    const hasMinId =
+      nextParams && typeof nextParams === 'object' && 'minId' in nextParams;
+    this.rel = hasMinId ? 'prev' : 'next';
   }
 
   async next(): Promise<IteratorResult<Entity, undefined>> {
@@ -39,9 +47,15 @@ export class Paginator<Entity, Params = undefined>
     this.nextPath = nextUrl?.pathname;
     this.nextParams = nextUrl?.search?.replace(/^\?/, '');
 
+    const data = response.data as Entity | undefined;
+    const value =
+      this.rel === 'prev' && Array.isArray(data)
+        ? data?.reverse()
+        : response.data;
+
     return {
       done: false,
-      value: response.data as Entity,
+      value: value as Entity,
     };
   }
 
@@ -92,7 +106,7 @@ export class Paginator<Entity, Params = undefined>
       return;
     }
 
-    const parsed = parseLinkHeader(value)?.next?.url;
+    const parsed = parseLinkHeader(value)?.[this.rel]?.url;
     if (parsed == undefined) {
       return;
     }
