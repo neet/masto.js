@@ -2,7 +2,7 @@
   "name": "masto",
   "description": "Mastodon API client for JavaScript, TypeScript, Node.js, browsers",
   "private": false,
-  "version": "5.11.4",
+  "version": "6.0.0-alpha.0",
   "author": "Ryo Igarashi <n33t5hin@gmail.com>",
   "license": "MIT",
   "type": "module",
