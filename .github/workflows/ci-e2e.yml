@@ -12,7 +12,7 @@ on:
 
 jobs:
   test:
-    name: End-to-end Testing
+    name: Test
     runs-on: ubuntu-latest
     env:
       DB_USER: mastodon

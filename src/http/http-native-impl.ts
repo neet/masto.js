@@ -60,9 +60,9 @@ export class HttpNativeImpl extends BaseHttp implements Http {
   }
 
   private createRequest(params: HttpRequestParams): [Request, Timeout] {
-    const { method, path, searchParams, encoding = 'json' } = params;
+    const { method, path, search, encoding = 'json' } = params;
 
-    const url = this.config.resolveHttpPath(path, searchParams);
+    const url = this.config.resolveHttpPath(path, search);
     const headers = this.config.createHeader(params.headers);
     const [signal, timeout] = this.config.createAbortSignal(params?.signal);
     const body = this.serializer.serialize(encoding, params.body);

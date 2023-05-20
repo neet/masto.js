@@ -23,7 +23,7 @@ describe('Paginator', () => {
     expect(http.request).toBeCalledWith({
       method: 'GET',
       path: '/v1/api/timelines',
-      searchParams: { foo: 'bar' },
+      search: { foo: 'bar' },
     });
   });
 
@@ -35,7 +35,7 @@ describe('Paginator', () => {
     expect(http.request).toBeCalledWith({
       method: 'GET',
       path: '/v1/api/timelines',
-      searchParams: { foo: 'bar' },
+      search: { foo: 'bar' },
     });
   });
 
@@ -50,7 +50,7 @@ describe('Paginator', () => {
     await paginator.next();
     expect(http.request).toBeCalledWith({
       method: 'GET',
-      searchParams: { max_id: '109382006402042919' },
+      search: 'max_id=109382006402042919',
       path: '/api/v1/timelines/home',
     });
   });
@@ -66,7 +66,7 @@ describe('Paginator', () => {
     await paginator.next();
     expect(http.request).toBeCalledWith({
       method: 'GET',
-      searchParams: { max_id: '109382006402042919' },
+      search: 'max_id=109382006402042919',
       path: '/api/v1/timelines/home',
     } satisfies HttpRequestParams);
   });
@@ -93,7 +93,7 @@ describe('Paginator', () => {
     expect(http.request).toBeCalledWith({
       method: 'GET',
       path: '/v1/api/timelines',
-      searchParams: { foo: 'bar' },
+      search: { foo: 'bar' },
     });
   });
 
@@ -107,16 +107,16 @@ describe('Paginator', () => {
     expect(http.request).toBeCalledTimes(2);
     expect(http.request).nthCalledWith(1, {
       method: 'GET',
-      searchParams: { query: 'value' },
+      search: { query: 'value' },
       path: '/some/api',
     });
     expect(http.request).nthCalledWith(2, {
       method: 'GET',
-      searchParams: { query: 'value' },
+      search: { query: 'value' },
       path: '/some/api',
     });
 
-    expect(paginator1).not.toEqual(paginator2);
+    expect(paginator1).not.toBe(paginator2);
   });
 
   it('terminates pagination by return', async () => {
@@ -155,7 +155,7 @@ describe('Paginator', () => {
     expect(http.request).toBeCalledWith({
       method: 'GET',
       path: '/api/v1/notifications',
-      searchParams: { types: ['mention'], max_id: '123456' },
+      search: 'types[]=mention&max_id=123456',
     });
   });
 
