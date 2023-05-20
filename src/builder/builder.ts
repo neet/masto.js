@@ -1,9 +1,11 @@
 import { snakeCase } from 'change-case';
 
+import type { mastodon } from '..';
 import type { Http, HttpMetaParams } from '../http';
 import { Paginator } from '../paginator';
 import { noop } from '../utils/noop';
 import { inferEncoding } from './encoding';
+import { waitForMediaAttachment } from './wait-for';
 
 const get =
   <T>(http: Http, context: string[]) =>
@@ -41,6 +43,14 @@ const apply =
         return http.get(path, data, meta);
       }
       case 'create': {
+        if (path === '/api/v2/media') {
+          return http
+            .post<mastodon.v1.MediaAttachment>(path, data, meta)
+            .then((media) => {
+              return waitForMediaAttachment(http, media.id);
+            });
+        }
+
         return http.post(path, data, meta);
       }
       case 'update': {

@@ -1,6 +1,7 @@
 import { Headers } from '@mastojs/ponyfills';
 
 import { HttpMockImpl } from './__mocks__';
+import type { HttpRequestParams } from './http';
 import { Paginator } from './paginator';
 
 describe('Paginator', () => {
@@ -64,10 +65,10 @@ describe('Paginator', () => {
     await paginator.next();
     await paginator.next();
     expect(http.request).toBeCalledWith({
-      requestInit: { method: 'GET' },
+      method: 'GET',
       searchParams: { max_id: '109382006402042919' },
       path: '/api/v1/timelines/home',
-    });
+    } satisfies HttpRequestParams);
   });
 
   it('returns done when next link does not exist', async () => {

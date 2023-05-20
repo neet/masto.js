@@ -1,15 +1,15 @@
-import type { mastodon } from '..';
+import type { Http, mastodon } from '..';
 import { MastoHttpNotFoundError, MastoTimeoutError } from '../errors';
-import { delay } from './delay';
-import { Timeout } from './timeout';
+import { delay } from '../utils/delay';
+import { Timeout } from '../utils/timeout';
 
 export const waitForMediaAttachment = async (
-  client: mastodon.RestAPIClient,
+  http: Http,
   id: string,
-  ms = 60 * 1000,
+  timeoutMs = 60 * 1000,
 ): Promise<mastodon.v1.MediaAttachment> => {
   let media: mastodon.v1.MediaAttachment | undefined;
-  const timeout = new Timeout(ms);
+  const timeout = new Timeout(timeoutMs);
 
   while (media == undefined) {
     if (timeout.signal.aborted) {
@@ -21,7 +21,9 @@ export const waitForMediaAttachment = async (
     await delay(1000);
 
     try {
-      const processing = await client.v1.media.select(id).fetch();
+      const processing = await http.get<mastodon.v1.MediaAttachment>(
+        `/api/v1/media/${id}`,
+      );
 
       if (processing.url != undefined) {
         media = processing;
