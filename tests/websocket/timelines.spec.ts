@@ -13,12 +13,12 @@ describe('websocket', () => {
       try {
         const events = session.ws.subscribe('public');
 
-        setImmediate(async () => {
+        setTimeout(async () => {
           const status = await session.rest.v1.statuses.create({
             status: 'test',
           });
           id = status.id;
-        });
+        }, 500);
 
         const [event] = await events
           .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
@@ -36,7 +36,6 @@ describe('websocket', () => {
     });
   });
 
-  /*
   it('streams public:media', () => {
     return sessions.use(async (session) => {
       let id!: string;
@@ -44,7 +43,7 @@ describe('websocket', () => {
       try {
         const events = session.ws.subscribe('public:media');
 
-        setImmediate(async () => {
+        setTimeout(async () => {
           const media = await session.rest.v2.media.create({
             file: TRANSPARENT_1X1_PNG,
           });
@@ -54,7 +53,7 @@ describe('websocket', () => {
             visibility: 'public',
           });
           id = status.id;
-        });
+        }, 500);
 
         const [event] = await events
           .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
@@ -71,7 +70,6 @@ describe('websocket', () => {
       }
     });
   });
-  */
 
   it('streams public:local', () => {
     return sessions.use(async (session) => {
@@ -80,13 +78,13 @@ describe('websocket', () => {
       try {
         const events = session.ws.subscribe('public:local');
 
-        setImmediate(async () => {
+        setTimeout(async () => {
           const status = await session.rest.v1.statuses.create({
             status: 'test',
             visibility: 'public',
           });
           id = status.id;
-        });
+        }, 500);
 
         const [event] = await events
           .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
@@ -111,7 +109,7 @@ describe('websocket', () => {
       try {
         const events = session.ws.subscribe('public:local:media');
 
-        setImmediate(async () => {
+        setTimeout(async () => {
           const media = await session.rest.v2.media.create({
             file: TRANSPARENT_1X1_PNG,
           });
@@ -123,7 +121,7 @@ describe('websocket', () => {
           });
 
           id = status.id;
-        });
+        }, 500);
 
         const [event] = await events
           .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
@@ -148,12 +146,12 @@ describe('websocket', () => {
       try {
         const events = session.ws.subscribe('hashtag', { tag: 'test' });
 
-        setImmediate(async () => {
+        setTimeout(async () => {
           const status = await session.rest.v1.statuses.create({
             status: '#test',
           });
           id = status.id;
-        });
+        }, 500);
 
         const [event] = await events
           .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
@@ -178,12 +176,12 @@ describe('websocket', () => {
       try {
         const events = session.ws.subscribe('hashtag:local', { tag: 'test' });
 
-        setImmediate(async () => {
+        setTimeout(async () => {
           const status = await session.rest.v1.statuses.create({
             status: '#test',
           });
           id = status.id;
-        });
+        }, 500);
 
         const [event] = await events
           .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
@@ -205,9 +203,9 @@ describe('websocket', () => {
     return sessions.use(2, async ([alice, bob]) => {
       try {
         const events = alice.ws.subscribe('user');
-        setImmediate(async () => {
+        setTimeout(async () => {
           await bob.rest.v1.accounts.select(alice.id).follow();
-        });
+        }, 500);
 
         const [e1] = await events
           .filter(
@@ -232,9 +230,9 @@ describe('websocket', () => {
       try {
         const events = alice.ws.subscribe('user:notification');
 
-        setImmediate(async () => {
+        setTimeout(async () => {
           await bob.rest.v1.accounts.select(alice.id).follow();
-        });
+        }, 500);
 
         const [e1] = await events
           .filter(
@@ -266,11 +264,11 @@ describe('websocket', () => {
           accountIds: [bob.id],
         });
 
-        setImmediate(async () => {
+        setTimeout(async () => {
           await bob.rest.v1.statuses.create({
             status: 'a post from bob',
           });
-        });
+        }, 500);
 
         const [e1] = await events
           .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
