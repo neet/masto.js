@@ -55,6 +55,23 @@ describe('Paginator', () => {
     });
   });
 
+  it('paginates with opposite direction when minId is specified', async () => {
+    http.request.mockReturnValue({
+      headers: new Headers({
+        link: '<https://mastodon.social/api/v1/timelines/home?max_id=109382006402042919>; rel="next", <https://mastodon.social/api/v1/timelines/home?min_id=109382039876197520>; rel="prev"',
+      }),
+      data: [],
+    });
+    const paginator = new Paginator(http, '/v1/api/timelines', { minId: 1 });
+    await paginator.next();
+    await paginator.next();
+    expect(http.request).toBeCalledWith({
+      method: 'GET',
+      search: 'min_id=109382039876197520',
+      path: '/api/v1/timelines/home',
+    });
+  });
+
   it('parses the next url regardless of order', async () => {
     http.request.mockReturnValue({
       headers: new Headers({

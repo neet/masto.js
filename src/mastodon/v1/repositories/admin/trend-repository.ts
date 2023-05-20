@@ -8,7 +8,7 @@ export interface TrendRepository {
      * Links that have been shared more than others, including unapproved and unreviewed links.
      * @see https://docs.joinmastodon.org/methods/admin/trends/#links
      */
-    list(meta?: HttpMetaParams): Paginator<TrendLink, undefined>;
+    list(meta?: HttpMetaParams): Paginator<TrendLink[], undefined>;
   };
 
   statuses: {
@@ -16,7 +16,7 @@ export interface TrendRepository {
      * Statuses that have been interacted with more than others, including unapproved and unreviewed statuses.
      * @see https://docs.joinmastodon.org/methods/admin/trends/#statuses
      */
-    list(meta?: HttpMetaParams): Paginator<Status, undefined>;
+    list(meta?: HttpMetaParams): Paginator<Status[], undefined>;
   };
 
   tags: {
@@ -24,6 +24,6 @@ export interface TrendRepository {
      * Tags that are being used more frequently within the past week, including unapproved and unreviewed tags.
      * @see https://docs.joinmastodon.org/methods/admin/trends/#tags
      */
-    list(meta?: HttpMetaParams): Paginator<Admin.Tag, undefined>;
+    list(meta?: HttpMetaParams): Paginator<Admin.Tag[], undefined>;
   };
 }
