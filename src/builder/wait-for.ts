@@ -1,4 +1,4 @@
-import { MastoHttpNotFoundError, MastoTimeoutError } from '../errors';
+import { MastoHttpError, MastoTimeoutError } from '../errors';
 import type { Http } from '../http';
 import type { mastodon } from '../mastodon';
 import { delay } from '../utils/delay';
@@ -31,7 +31,7 @@ export const waitForMediaAttachment = async (
         timeout.clear();
       }
     } catch (error) {
-      if (error instanceof MastoHttpNotFoundError) {
+      if (error instanceof MastoHttpError && error.statusCode === 404) {
         continue;
       }
       throw error;

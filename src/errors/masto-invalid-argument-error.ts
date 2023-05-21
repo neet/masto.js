@@ -1,14 +1,7 @@
-import type { MastoErrorProps } from './masto-error';
-import { MastoError } from './masto-error';
+import { CustomError } from 'ts-custom-error';
 
-/**
- * Mastodon invalid argument error
- */
-export class MastoInvalidArgumentError extends MastoError {
-  override name = 'MastoInvalidArgumentError';
-
-  constructor(message: string, props?: MastoErrorProps) {
-    super(message, props);
-    Object.setPrototypeOf(this, MastoInvalidArgumentError.prototype);
+export class MastoInvalidArgumentError extends CustomError {
+  constructor(message: string, options?: ErrorOptions) {
+    super(message, options);
   }
 }
