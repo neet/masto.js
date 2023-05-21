@@ -1,4 +1,4 @@
-import { MastoConfig } from '../config';
+import { MastoHttpConfig, MastoLogConfig } from '../config';
 import { MastoTimeoutError } from '../errors';
 import { SerializerNativeImpl } from '../serializers';
 import { HttpNativeImpl } from './http-native-impl';
@@ -7,13 +7,13 @@ it('timeouts', async () => {
   const serializer = new SerializerNativeImpl();
   const http = new HttpNativeImpl(
     serializer,
-    new MastoConfig(
+    new MastoHttpConfig(
       {
         url: 'https://example.com',
-        streamingApiUrl: 'wss://example.com',
         timeout: 0,
       },
       serializer,
+      new MastoLogConfig(),
     ),
   );
 

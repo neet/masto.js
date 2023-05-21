@@ -1,4 +1,4 @@
-import type { v1 } from '../..';
+import type { v1 } from '../../mastodon';
 
 export interface InstanceUsageUsers {
   /** The number of active users in the past 4 weeks. */

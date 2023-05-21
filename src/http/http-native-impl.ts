@@ -1,7 +1,7 @@
 import type { RequestInit } from '@mastojs/ponyfills';
 import { fetch, Request, Response } from '@mastojs/ponyfills';
 
-import type { MastoConfig } from '../config';
+import type { MastoHttpConfig } from '../config';
 import type { CreateErrorParams } from '../errors';
 import {
   createHttpError,
@@ -18,7 +18,7 @@ import type { Http, HttpRequestParams, HttpRequestResult } from './http';
 export class HttpNativeImpl extends BaseHttp implements Http {
   constructor(
     private readonly serializer: Serializer,
-    private readonly config: MastoConfig,
+    private readonly config: MastoHttpConfig,
     private readonly logger?: Logger,
   ) {
     super();
@@ -62,7 +62,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
   private createRequest(params: HttpRequestParams): [Request, Timeout] {
     const { method, path, search, encoding = 'json' } = params;
 
-    const url = this.config.resolveHttpPath(path, search);
+    const url = this.config.resolvePath(path, search);
     const headers = this.config.createHeader(params.headers);
     const [signal, timeout] = this.config.createAbortSignal(params?.signal);
     const body = this.serializer.serialize(encoding, params.body);

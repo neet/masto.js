@@ -1,6 +1,6 @@
-import { login } from 'masto';
+import { createRestClient } from 'masto';
 
-const masto = await login({
+const masto = createRestClient({
   url: 'https://example.com',
 });
 

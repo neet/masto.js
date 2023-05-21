@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import './jest-polyfills';
 
-import { createClient, createOAuthClient } from '../src';
+import { createOAuthClient, createRestClient } from '../src';
 import { TokenPoolImpl } from './pools';
 
 export default async (): Promise<void> => {
   const url = 'http://localhost:3000';
-  const instance = await createClient({ url }).v1.instance.fetch();
-  const masto = createClient({ url });
+  const instance = await createRestClient({ url }).v1.instance.fetch();
+  const masto = createRestClient({ url });
   const oauth = createOAuthClient({ url });
 
   const app = await masto.v1.apps.create({

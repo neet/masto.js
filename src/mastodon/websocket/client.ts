@@ -22,7 +22,7 @@ export type SubscribeHashtagParams = {
   readonly tag: string;
 };
 
-export interface WebSocketAPIClient {
+export interface WebSocketClient {
   subscribe(
     stream: 'list',
     params: SubscribeListParams,
