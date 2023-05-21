@@ -1,28 +1,24 @@
 import type { AbortSignal, HeadersInit, RequestInit } from '@mastojs/ponyfills';
 import { Headers } from '@mastojs/ponyfills';
 
-import { MastoInvalidArgumentError } from './errors';
-import type { LogType } from './logger';
-import { LogLevel } from './logger';
-import type { Serializer } from './serializers';
-import { mergeAbortSignals, mergeHeadersInit, Timeout } from './utils';
+import type { Serializer } from '../serializers';
+import { mergeAbortSignals, mergeHeadersInit, Timeout } from '../utils';
+import type { MastoLogConfig } from './log-config';
 
 const DEFAULT_TIMEOUT_MS = 1000 * 300;
 
-export type MastoConfigProps = {
+export interface MastoHttpConfigProps {
   readonly url: string;
-  readonly streamingApiUrl?: string;
-  readonly logLevel?: LogType;
   readonly accessToken?: string;
   readonly timeout?: number;
   readonly defaultRequestInit?: Omit<RequestInit, 'body' | 'method'>;
-  readonly useInsecureWebSocketToken?: boolean;
-};
+}
 
-export class MastoConfig {
+export class MastoHttpConfig {
   constructor(
-    private readonly props: MastoConfigProps,
+    private readonly props: MastoHttpConfigProps,
     private readonly serializer: Serializer,
+    readonly log: MastoLogConfig,
   ) {}
 
   createHeader(override: HeadersInit = {}): Headers {
@@ -39,21 +35,7 @@ export class MastoConfig {
     return new Headers(headers);
   }
 
-  createWebsocketProtocols(protocols = []): string[] {
-    if (
-      this.props.useInsecureWebSocketToken ||
-      this.props.accessToken == undefined
-    ) {
-      return protocols;
-    }
-
-    return [this.props.accessToken, ...protocols];
-  }
-
-  resolveHttpPath(
-    path: string,
-    params?: string | Record<string, unknown>,
-  ): URL {
+  resolvePath(path: string, params?: string | Record<string, unknown>): URL {
     const url = new URL(path, this.props.url);
 
     if (params != undefined) {
@@ -66,26 +48,7 @@ export class MastoConfig {
     return url;
   }
 
-  resolveWebsocketPath(
-    path: string,
-    params: Record<string, unknown> = {},
-  ): URL {
-    if (this.props.streamingApiUrl == undefined) {
-      throw new MastoInvalidArgumentError(
-        'You need to specify `streamingApiUrl` to use this feature',
-      );
-    }
-
-    const url = new URL(path, this.props.streamingApiUrl);
-    if (this.props.useInsecureWebSocketToken) {
-      params.accessToken = this.props.accessToken;
-    }
-
-    url.search = this.serializer.serializeQueryString(params);
-    return url;
-  }
-
-  createTimeout(): Timeout {
+  private createTimeout(): Timeout {
     return new Timeout(this.props.timeout ?? DEFAULT_TIMEOUT_MS);
   }
 
@@ -103,13 +66,5 @@ export class MastoConfig {
     }
 
     return [mergeAbortSignals(signals), timeout];
-  }
-
-  getLogLevel(): LogLevel {
-    return LogLevel.from(this.props.logLevel ?? 'warn');
-  }
-
-  shouldWarnDeprecated(): boolean {
-    return this.getLogLevel().satisfies('warn');
   }
 }

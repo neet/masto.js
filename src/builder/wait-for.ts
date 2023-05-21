@@ -1,5 +1,6 @@
-import type { Http, mastodon } from '..';
 import { MastoHttpNotFoundError, MastoTimeoutError } from '../errors';
+import type { Http } from '../http';
+import type { mastodon } from '../mastodon';
 import { delay } from '../utils/delay';
 import { Timeout } from '../utils/timeout';
 

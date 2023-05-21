@@ -1,7 +1,7 @@
 import type { mastodon } from 'masto';
-import { login } from 'masto';
+import { createRestClient } from 'masto';
 
-const masto = await login({
+const masto = await createRestClient({
   url: 'https://example.com',
   accessToken: 'YOUR TOKEN',
 });

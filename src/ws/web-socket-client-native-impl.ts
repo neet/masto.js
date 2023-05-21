@@ -1,18 +1,11 @@
 import WebSocket from 'ws';
 
 import { MastoUnexpectedError } from '../errors';
-import type {
-  Event,
-  RawEvent,
-  Stream,
-  SubscribeHashtagParams,
-  SubscribeListParams,
-  WebSocketAPIClient,
-} from '../mastodon';
+import type { mastodon } from '../mastodon';
 import type { Serializer } from '../serializers';
 import type { WebSocketConnection } from './web-socket-connector';
 
-export class WebSocketClient implements WebSocketAPIClient {
+export class WebSocketClientNativeImpl implements mastodon.WebSocketClient {
   private connection?: WebSocketConnection;
 
   constructor(
@@ -27,17 +20,17 @@ export class WebSocketClient implements WebSocketAPIClient {
 
   subscribe(
     stream: 'list',
-    params: SubscribeListParams,
-  ): AsyncIterableIterator<Event>;
+    params: mastodon.SubscribeListParams,
+  ): AsyncIterableIterator<mastodon.Event>;
   subscribe(
     stream: 'hashtag' | 'hashtag:local',
-    params: SubscribeHashtagParams,
-  ): AsyncIterableIterator<Event>;
-  subscribe(stream: Stream): AsyncIterableIterator<Event>;
+    params: mastodon.SubscribeHashtagParams,
+  ): AsyncIterableIterator<mastodon.Event>;
+  subscribe(stream: mastodon.Stream): AsyncIterableIterator<mastodon.Event>;
   async *subscribe(
     stream: unknown,
     params?: Record<string, unknown>,
-  ): AsyncIterableIterator<Event> {
+  ): AsyncIterableIterator<mastodon.Event> {
     for await (this.connection of this.connections) {
       const data = this.serializer.serialize('json', {
         type: 'subscribe',
@@ -61,12 +54,12 @@ export class WebSocketClient implements WebSocketAPIClient {
     }
   }
 
-  unsubscribe(stream: 'list', params: SubscribeListParams): void;
+  unsubscribe(stream: 'list', params: mastodon.SubscribeListParams): void;
   unsubscribe(
     stream: 'hashtag' | 'hashtag:local',
-    params: SubscribeHashtagParams,
+    params: mastodon.SubscribeHashtagParams,
   ): void;
-  unsubscribe(stream: Stream): void;
+  unsubscribe(stream: mastodon.Stream): void;
   unsubscribe(stream: unknown, params?: Record<string, unknown>): void {
     const data = this.serializer.serialize('json', {
       type: 'unsubscribe',
@@ -96,8 +89,11 @@ export class WebSocketClient implements WebSocketAPIClient {
     }
   }
 
-  private async parseMessage(rawEvent: string): Promise<Event> {
-    const data = this.serializer.deserialize<RawEvent>('json', rawEvent);
+  private async parseMessage(rawEvent: string): Promise<mastodon.Event> {
+    const data = this.serializer.deserialize<mastodon.RawEvent>(
+      'json',
+      rawEvent,
+    );
 
     if ('error' in data) {
       throw new MastoUnexpectedError(data.error);
@@ -112,6 +108,6 @@ export class WebSocketClient implements WebSocketAPIClient {
       stream: data.stream,
       event: data.event,
       payload: payload,
-    } as Event;
+    } as mastodon.Event;
   }
 }

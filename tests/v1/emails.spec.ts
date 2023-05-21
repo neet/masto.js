@@ -1,6 +1,6 @@
 import crypto from 'node:crypto';
 
-import { createClient } from '../../src';
+import { createRestClient } from '../../src';
 
 it('can create a confirmation', async () => {
   const username = crypto.randomBytes(8).toString('hex');
@@ -14,7 +14,7 @@ it('can create a confirmation', async () => {
     locale: 'en',
   });
 
-  const client = createClient({
+  const client = createRestClient({
     url: __misc__.url,
     accessToken: token.accessToken,
   });
