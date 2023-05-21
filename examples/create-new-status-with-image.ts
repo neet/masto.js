@@ -1,21 +1,21 @@
 import fs from 'node:fs';
 
-import { login } from 'masto';
+import { createRestClient } from 'masto';
 
-const masto = await login({
+const masto = createRestClient({
   url: 'https://example.com',
   accessToken: 'YOUR TOKEN',
 });
 
 // What you need to specify as `file` argument depends on your runtime.
 // If you're on Node.js >= 18 or other platforms that supports `fetch` natively...
-const attachment = await masto.v2.mediaAttachments.create({
+const attachment = await masto.v2.media.create({
   file: new Blob([fs.readFileSync('../some_image.png')]),
   description: 'Some image',
 });
 
 // If you're on Node.js < 18, Use `fs.readFileSync` directly.
-await masto.v2.mediaAttachments.create({
+await masto.v2.media.create({
   file: fs.readFileSync('../some_image.png'),
   description: 'Some image',
 });

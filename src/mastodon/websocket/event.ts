@@ -1,4 +1,4 @@
-import type { mastodon } from '../..';
+import type { mastodon } from '../';
 
 export type RawEventOk = {
   stream: string[];

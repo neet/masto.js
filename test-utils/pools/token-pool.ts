@@ -23,7 +23,7 @@ export class TokenPoolImpl implements TokenPool {
 
   constructor(
     container: string,
-    private readonly oauth: mastodon.OAuthAPIClient,
+    private readonly oauth: mastodon.OAuthClient,
     private readonly app: mastodon.v1.Client,
   ) {
     this.tootctl = createTootctl({ container });
