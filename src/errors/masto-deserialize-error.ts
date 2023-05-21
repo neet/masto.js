@@ -1,19 +1,17 @@
-import type { MastoErrorProps } from './masto-error';
-import { MastoError } from './masto-error';
+import { CustomError } from 'ts-custom-error';
 
-/**
- * Mastodon Deserialize error
- */
-export class MastoDeserializeError extends MastoError {
-  override name = 'MastoDeserializeError';
+export class MastoDeserializeError extends CustomError {
+  readonly contentType: string;
+  readonly data: unknown;
 
   constructor(
     message: string,
-    readonly contentType: string,
-    readonly data: unknown,
-    props?: MastoErrorProps,
+    contentType: string,
+    data: unknown,
+    options?: ErrorOptions,
   ) {
-    super(message, props);
-    Object.setPrototypeOf(this, MastoDeserializeError.prototype);
+    super(message, options);
+    this.contentType = contentType;
+    this.data = data;
   }
 }

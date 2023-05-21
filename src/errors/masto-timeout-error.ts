@@ -1,14 +1,7 @@
-import type { MastoErrorProps } from './masto-error';
-import { MastoError } from './masto-error';
+import { CustomError } from 'ts-custom-error';
 
-/**
- * Mastodon Timeout error
- */
-export class MastoTimeoutError extends MastoError {
-  override name = 'MastoTimeoutError';
-
-  constructor(message: string, props?: MastoErrorProps) {
-    super(message, props);
-    Object.setPrototypeOf(this, MastoTimeoutError.prototype);
+export class MastoTimeoutError extends CustomError {
+  constructor(message: string, options?: ErrorOptions) {
+    super(message, options);
   }
 }

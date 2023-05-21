@@ -2,9 +2,9 @@ import type { RequestInit } from '@mastojs/ponyfills';
 import { fetch, Request, Response } from '@mastojs/ponyfills';
 
 import type { MastoHttpConfig } from '../config';
-import type { CreateErrorParams } from '../errors';
+import type { MastoHttpErrorDetails } from '../errors';
 import {
-  createHttpError,
+  MastoHttpError,
   MastoTimeoutError,
   MastoUnexpectedError,
 } from '../errors';
@@ -93,16 +93,13 @@ export class HttpNativeImpl extends BaseHttp implements Http {
         await error.text(),
       );
 
-      return createHttpError({
-        cause: error,
-        statusCode: error.status,
-        message: data?.error,
-        details: data?.errorDescription,
-        description: data?.details,
-        limit: error.headers.get('X-RateLimit-Limit'),
-        remaining: error.headers.get('X-RateLimit-Remaining'),
-        reset: error.headers.get('X-RateLimit-Reset'),
-      } as CreateErrorParams);
+      return new MastoHttpError(
+        error.status,
+        data?.error as string,
+        data?.description as string,
+        data?.details as MastoHttpErrorDetails,
+        { cause: error },
+      );
     }
 
     // TODO: Use abort reason

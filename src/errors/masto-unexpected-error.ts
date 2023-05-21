@@ -1,11 +1,7 @@
-import type { MastoErrorProps } from './masto-error';
-import { MastoError } from './masto-error';
+import { CustomError } from 'ts-custom-error';
 
-export class MastoUnexpectedError extends MastoError {
-  override name = 'MastoUnexpectedError';
-
-  constructor(message: string, props: MastoErrorProps = {}) {
-    super(message, { cause: props.cause });
-    Object.setPrototypeOf(this, MastoUnexpectedError.prototype);
+export class MastoUnexpectedError extends CustomError {
+  constructor(message: string, options?: ErrorOptions) {
+    super(message, options);
   }
 }
