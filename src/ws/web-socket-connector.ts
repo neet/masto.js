@@ -1,5 +1,6 @@
 import type WebSocket from 'ws';
 
+import type { MastoWebSocketConfig } from '../config';
 import { MastoInvalidArgumentError } from '../errors';
 import type { Logger } from '../logger';
 import { ExponentialBackoff } from '../utils';
@@ -20,13 +21,13 @@ export class WebSocketConnector {
   constructor(
     private readonly params: ConstructorParameters<typeof WebSocket>,
     private readonly logger: Logger,
-    private readonly maxAttempts = Number.POSITIVE_INFINITY,
+    private readonly config: MastoWebSocketConfig,
   ) {}
 
   async *getConnections(): AsyncGenerator<WebSocketConnection> {
     const backoff = new ExponentialBackoff(2);
 
-    while (backoff.attempts < this.maxAttempts && !this.isClosed) {
+    while (backoff.attempts < this.config.maxAttempts && !this.isClosed) {
       try {
         this.ws = await webSocket.promises.connect(this.params);
         this.logger.debug('WebSocket connection established');

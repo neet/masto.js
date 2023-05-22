@@ -57,6 +57,7 @@ export function createWebSocketClient(
   const connector = new WebSocketConnector(
     [config.resolvePath('/api/v1/streaming').toString(), config.getProtocols()],
     new LoggerConsoleImpl(config.log.getLevel()),
+    config,
   );
   const connections = connector.getConnections();
 
