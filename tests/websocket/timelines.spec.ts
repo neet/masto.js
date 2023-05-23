@@ -11,26 +11,25 @@ describe('websocket', () => {
       let id!: string;
 
       try {
-        const events = session.ws.subscribe('public');
+        const events = session.ws
+          .subscribe('public')
+          .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
+          .filter((e) => e.payload.id === id)
+          .take(1);
 
-        setTimeout(async () => {
+        const dispatch = async () => {
           const status = await session.rest.v1.statuses.create({
             status: 'test',
           });
           id = status.id;
-        }, 500);
+        };
 
-        const [event] = await events
-          .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
-          .filter((e) => e.payload.id === id)
-          .take(1)
-          .toArray();
+        const [[event]] = await Promise.all([events.toArray(), dispatch()]);
 
         assert(event?.event === 'update');
         expect(event?.payload?.id).toBe(id);
       } finally {
         session.ws.unsubscribe('public');
-        session.ws.close();
         await session.rest.v1.statuses.select(id).remove();
       }
     });
@@ -41,9 +40,13 @@ describe('websocket', () => {
       let id!: string;
 
       try {
-        const events = session.ws.subscribe('public:media');
+        const events = session.ws
+          .subscribe('public:media')
+          .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
+          .filter((e) => e.payload.id === id)
+          .take(1);
 
-        setTimeout(async () => {
+        const dispatch = async () => {
           const media = await session.rest.v2.media.create({
             file: TRANSPARENT_1X1_PNG,
           });
@@ -53,19 +56,14 @@ describe('websocket', () => {
             visibility: 'public',
           });
           id = status.id;
-        }, 500);
+        };
 
-        const [event] = await events
-          .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
-          .filter((e) => e.payload.id === id)
-          .take(1)
-          .toArray();
+        const [[event]] = await Promise.all([events.toArray(), dispatch()]);
 
         assert(event?.event === 'update');
         expect(event?.payload?.id).toBe(id);
       } finally {
         session.ws.unsubscribe('public:media');
-        session.ws.close();
         await session.rest.v1.statuses.select(id).remove();
       }
     });
@@ -76,27 +74,26 @@ describe('websocket', () => {
       let id!: string;
 
       try {
-        const events = session.ws.subscribe('public:local');
+        const events = session.ws
+          .subscribe('public:local')
+          .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
+          .filter((e) => e.payload.id === id)
+          .take(1);
 
-        setTimeout(async () => {
+        const dispatch = async () => {
           const status = await session.rest.v1.statuses.create({
             status: 'test',
             visibility: 'public',
           });
           id = status.id;
-        }, 500);
+        };
 
-        const [event] = await events
-          .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
-          .filter((e) => e.payload.id === id)
-          .take(1)
-          .toArray();
+        const [[event]] = await Promise.all([events.toArray(), dispatch()]);
 
         assert(event?.event === 'update');
         expect(event?.payload?.id).toBe(id);
       } finally {
         session.ws.unsubscribe('public:local');
-        session.ws.close();
         await session.rest.v1.statuses.select(id).remove();
       }
     });
@@ -107,9 +104,13 @@ describe('websocket', () => {
       let id!: string;
 
       try {
-        const events = session.ws.subscribe('public:local:media');
+        const events = session.ws
+          .subscribe('public:local:media')
+          .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
+          .filter((e) => e.payload.id === id)
+          .take(1);
 
-        setTimeout(async () => {
+        const dispatch = async () => {
           const media = await session.rest.v2.media.create({
             file: TRANSPARENT_1X1_PNG,
           });
@@ -121,19 +122,14 @@ describe('websocket', () => {
           });
 
           id = status.id;
-        }, 500);
+        };
 
-        const [event] = await events
-          .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
-          .filter((e) => e.payload.id === id)
-          .take(1)
-          .toArray();
+        const [[event]] = await Promise.all([events.toArray(), dispatch()]);
 
         assert(event?.event === 'update');
         expect(event?.payload?.id).toBe(id);
       } finally {
         session.ws.unsubscribe('public:local:media');
-        session.ws.close();
         await session.rest.v1.statuses.select(id).remove();
       }
     });
@@ -144,25 +140,24 @@ describe('websocket', () => {
       let id!: string;
 
       try {
-        const events = session.ws.subscribe('hashtag', { tag: 'test' });
+        const events = session.ws
+          .subscribe('hashtag', { tag: 'test' })
+          .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
+          .filter((e) => e.payload.id === id)
+          .take(1);
 
-        setTimeout(async () => {
+        const dispatch = async () => {
           const status = await session.rest.v1.statuses.create({
             status: '#test',
           });
           id = status.id;
-        }, 500);
+        };
 
-        const [event] = await events
-          .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
-          .filter((e) => e.payload.id === id)
-          .take(1)
-          .toArray();
+        const [[event]] = await Promise.all([events.toArray(), dispatch()]);
 
         assert(event?.event === 'update');
         expect(event?.payload?.id).toBe(id);
       } finally {
-        session.ws.close();
         session.ws.unsubscribe('hashtag', { tag: 'test' });
         await session.rest.v1.statuses.select(id).remove();
       }
@@ -174,26 +169,25 @@ describe('websocket', () => {
       let id!: string;
 
       try {
-        const events = session.ws.subscribe('hashtag:local', { tag: 'test' });
+        const events = session.ws
+          .subscribe('hashtag:local', { tag: 'test' })
+          .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
+          .filter((e) => e.payload.id === id)
+          .take(1);
 
-        setTimeout(async () => {
+        const dispatch = async () => {
           const status = await session.rest.v1.statuses.create({
             status: '#test',
           });
           id = status.id;
-        }, 500);
+        };
 
-        const [event] = await events
-          .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
-          .filter((e) => e.payload.id === id)
-          .take(1)
-          .toArray();
+        const [[event]] = await Promise.all([events.toArray(), dispatch()]);
 
         assert(event?.event === 'update');
         expect(event?.payload?.id).toBe(id);
       } finally {
         session.ws.unsubscribe('hashtag:local', { tag: 'test' });
-        session.ws.close();
         await session.rest.v1.statuses.select(id).remove();
       }
     });
@@ -202,24 +196,24 @@ describe('websocket', () => {
   it('streams user', () => {
     return sessions.use(2, async ([alice, bob]) => {
       try {
-        const events = alice.ws.subscribe('user');
-        setTimeout(async () => {
-          await bob.rest.v1.accounts.select(alice.id).follow();
-        }, 500);
-
-        const [e1] = await events
+        const events = alice.ws
+          .subscribe('user')
           .filter(
             (e): e is mastodon.NotificationEvent => e.event === 'notification',
           )
-          .take(1)
-          .toArray();
+          .take(1);
+
+        const dispatch = async () => {
+          await bob.rest.v1.accounts.select(alice.id).follow();
+        };
+
+        const [[e1]] = await Promise.all([events.toArray(), dispatch()]);
 
         assert(e1?.event === 'notification');
         expect(e1?.payload?.type).toBe('follow');
         expect(e1?.payload?.account.id).toBe(bob.id);
       } finally {
         alice.ws.unsubscribe('user');
-        alice.ws.close();
         await bob.rest.v1.accounts.select(alice.id).unfollow();
       }
     });
@@ -228,25 +222,24 @@ describe('websocket', () => {
   it('streams user:notification', () => {
     return sessions.use(2, async ([alice, bob]) => {
       try {
-        const events = alice.ws.subscribe('user:notification');
-
-        setTimeout(async () => {
-          await bob.rest.v1.accounts.select(alice.id).follow();
-        }, 500);
-
-        const [e1] = await events
+        const events = alice.ws
+          .subscribe('user:notification')
           .filter(
             (e): e is mastodon.NotificationEvent => e.event === 'notification',
           )
-          .take(1)
-          .toArray();
+          .take(1);
+
+        const dispatch = async () => {
+          await bob.rest.v1.accounts.select(alice.id).follow();
+        };
+
+        const [[e1]] = await Promise.all([events.toArray(), dispatch()]);
 
         assert(e1?.event === 'notification');
         expect(e1?.payload?.type).toBe('follow');
         expect(e1?.payload?.account.id).toBe(bob.id);
       } finally {
         alice.ws.unsubscribe('user:notification');
-        alice.ws.close();
         await bob.rest.v1.accounts.select(alice.id).unfollow();
       }
     });
@@ -258,28 +251,27 @@ describe('websocket', () => {
 
       try {
         await alice.rest.v1.accounts.select(bob.id).follow();
-        const events = alice.ws.subscribe('list', { list: list.id });
+        const events = alice.ws
+          .subscribe('list', { list: list.id })
+          .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
+          .take(1);
 
         await alice.rest.v1.lists.select(list.id).accounts.create({
           accountIds: [bob.id],
         });
 
-        setTimeout(async () => {
+        const dispatch = async () => {
           await bob.rest.v1.statuses.create({
             status: 'a post from bob',
           });
-        }, 500);
+        };
 
-        const [e1] = await events
-          .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
-          .take(1)
-          .toArray();
+        const [[e1]] = await Promise.all([events.toArray(), dispatch()]);
 
         assert(e1?.event === 'update');
         expect(e1?.payload?.account?.id).toBe(bob.id);
       } finally {
         alice.ws.unsubscribe('list', { list: list.id });
-        alice.ws.close();
         await alice.rest.v1.lists.select(list.id).remove();
         await alice.rest.v1.accounts.select(bob.id).unfollow();
       }

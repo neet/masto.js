@@ -19,7 +19,7 @@
   "scripts": {
     "test": "npm-run-all test:*",
     "test:unit": "jest --coverage --config=jest.config.cjs --selectProjects unit",
-    "test:e2e": "jest --coverage --runInBand --config=jest.config.cjs --selectProjects e2e",
+    "test:e2e": "jest --coverage --runInBand --detectOpenHandles --config=jest.config.cjs --selectProjects e2e",
     "lint": "npm-run-all lint:*",
     "lint:eslint": "eslint -c .eslintrc.json ./src/**/*.ts --cache",
     "lint:spellcheck": "cspell '{src,examples}/**/*.{ts,tsx,js,json,md}'",
