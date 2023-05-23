@@ -1,15 +1,23 @@
 import { on } from 'events-to-async';
 import type WebSocket from 'isomorphic-ws';
 
+import { MastoUnexpectedError } from '../../errors';
+
 export async function* toAsyncIterable(
   ws: WebSocket,
 ): AsyncIterable<WebSocket.MessageEvent> {
   const handleClose = (e: WebSocket.CloseEvent) => {
-    events.return?.(e);
+    if (events.return == undefined) {
+      throw new MastoUnexpectedError('events.return is undefined');
+    }
+    events.return(e);
   };
 
   const handleError = (e: WebSocket.ErrorEvent) => {
-    events.throw?.(e);
+    if (events.throw == undefined) {
+      throw new MastoUnexpectedError('events.return is undefined');
+    }
+    events.throw(e);
   };
 
   const events = on<[WebSocket.MessageEvent]>((handler) => {

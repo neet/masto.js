@@ -1,7 +1,6 @@
 import type WebSocket from 'ws';
 
 import type { MastoWebSocketConfig } from '../config';
-import { MastoInvalidArgumentError } from '../errors';
 import type { Logger } from '../logger';
 import { ExponentialBackoff } from '../utils';
 import { waitForAsyncIterableToEnd } from '../utils/wait-for-async-iterable-to-end';
@@ -16,7 +15,7 @@ export type WebSocketConnection = {
 
 export class WebSocketConnector {
   private ws?: WebSocket;
-  private isClosed = false;
+  private disableRetry = false;
 
   constructor(
     private readonly params: ConstructorParameters<typeof WebSocket>,
@@ -27,10 +26,10 @@ export class WebSocketConnector {
   async *getConnections(): AsyncGenerator<WebSocketConnection> {
     const backoff = new ExponentialBackoff(2);
 
-    while (backoff.attempts < this.config.maxAttempts && !this.isClosed) {
+    while (this.shouldRetry(backoff)) {
       try {
         this.ws = await webSocket.promises.connect(this.params);
-        this.logger.debug('WebSocket connection established');
+        this.logger.info('WebSocket connection established');
         const messages = webSocket.toAsyncIterable(this.ws);
 
         yield {
@@ -41,23 +40,32 @@ export class WebSocketConnector {
         };
 
         await waitForAsyncIterableToEnd(messages);
-        this.logger.debug('WebSocket connection closed');
+        this.logger.info('WebSocket connection closed');
         backoff.clear();
       } catch (error) {
         this.logger.warn('WebSocket error occurred', error);
       } finally {
-        this.logger.debug(`Reconnecting in ${backoff.timeout}ms...`);
+        this.logger.info(`Reconnecting in ${backoff.timeout}ms...`);
         await backoff.sleep();
       }
     }
   }
 
   close(): void {
+    // It can be undefined if client is closed before connection is established
     if (this.ws == undefined) {
-      throw new MastoInvalidArgumentError('WebSocket is not connected');
+      return;
     }
 
-    this.isClosed = true;
+    this.disableRetry = true;
     this.ws.close();
+  }
+
+  private shouldRetry(backoff: ExponentialBackoff): boolean {
+    if (this.disableRetry) {
+      return false;
+    }
+
+    return backoff.attempts < this.config.maxAttempts;
   }
 }

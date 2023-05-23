@@ -14,6 +14,7 @@ export class SessionPoolImpl extends BasePool<Session> {
   };
 
   protected releaseOne = async (session: Session): Promise<void> => {
+    session.ws.close();
     const token = this.sessionToToken.get(session);
     if (token == undefined) {
       return;
