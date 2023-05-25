@@ -142,7 +142,7 @@ describe('websocket', () => {
 
   it('streams hashtag', () => {
     return sessions.use(async (session) => {
-      const hashtag = crypto.randomBytes(8).toString('hex');
+      const hashtag = `tag_${crypto.randomBytes(4).toString('hex')}`;
       let id!: string;
 
       try {
@@ -172,7 +172,7 @@ describe('websocket', () => {
 
   it('streams hashtag:local', () => {
     return sessions.use(async (session) => {
-      const hashtag = crypto.randomBytes(8).toString('hex');
+      const hashtag = `tag_${crypto.randomBytes(4).toString('hex')}`;
       let id!: string;
 
       try {
@@ -211,6 +211,7 @@ describe('websocket', () => {
           .take(1);
 
         const dispatch = async () => {
+          await bob.rest.v1.accounts.select(alice.id).unfollow();
           await bob.rest.v1.accounts.select(alice.id).follow();
         };
 

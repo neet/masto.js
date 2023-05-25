@@ -1,16 +1,20 @@
-import { ExponentialBackoff } from '../src/utils';
+import { delay } from '../src/utils';
 
 export const waitForCondition = async (
   condition: () => Promise<boolean>,
-  MAX_ATTEMPTS = 10,
+  MAX_ATTEMPTS = 100,
 ): Promise<void> => {
-  const backoff = new ExponentialBackoff(2, 1000);
+  let attempts = 0;
 
-  while (backoff.attempts < MAX_ATTEMPTS) {
+  while (attempts < MAX_ATTEMPTS) {
     const result = await condition();
     if (result) {
       return;
     }
-    await backoff.sleep();
+
+    attempts += 1;
+    await delay(1000);
   }
+
+  throw new Error('waitForCondition: timeout');
 };

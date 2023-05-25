@@ -7,7 +7,7 @@ describe('events', () => {
   it('streams update, status.update, and delete event', () => {
     return sessions.use(async (session) => {
       let id!: string;
-      const tag = crypto.randomBytes(8).toString('hex');
+      const tag = `tag_${crypto.randomBytes(4).toString('hex')}`;
 
       try {
         const events = session.ws.subscribe('hashtag:local', { tag });
