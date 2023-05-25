@@ -4,10 +4,13 @@ import { delay } from './delay';
 export class ExponentialBackoff {
   private _attempts = 0;
 
-  constructor(private readonly baseSeconds: number) {}
+  constructor(
+    private readonly base: number = 2,
+    private readonly factor = 1000,
+  ) {}
 
   get timeout(): number {
-    return this.baseSeconds ** this._attempts * 1000;
+    return this.factor * this.base ** this._attempts;
   }
 
   get attempts(): number {

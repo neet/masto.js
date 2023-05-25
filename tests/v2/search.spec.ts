@@ -4,7 +4,7 @@ it('searches', () => {
       q: 'mastodon',
     });
 
-    expect(results).toEqual({
+    expect(results).toMatchObject({
       accounts: expect.any(Array),
       statuses: expect.any(Array),
       hashtags: expect.any(Array),

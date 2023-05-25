@@ -1,4 +1,5 @@
-import { delay } from '../../src/utils';
+import type { mastodon } from '../../src';
+import { waitForCondition } from '../../test-utils/wait-for-condition';
 
 describe('timeline', () => {
   it('returns home', () => {
@@ -6,8 +7,14 @@ describe('timeline', () => {
       const status = await client.rest.v1.statuses.create({
         status: 'own post',
       });
-      await delay(3000);
-      const statuses = await client.rest.v1.timelines.home.list();
+
+      let statuses: mastodon.v1.Status[] | undefined;
+
+      await waitForCondition(async () => {
+        statuses = await client.rest.v1.timelines.home.list();
+        return statuses.some((s) => s.id === status.id);
+      });
+
       expect(statuses).toContainId(status.id);
     });
   });
