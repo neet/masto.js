@@ -9,7 +9,7 @@ module.exports = {
     },
     {
       displayName: 'e2e',
-      testEnvironment: 'node',
+      testEnvironment: './test-utils/jest-environment.ts',
       testMatch: ['<rootDir>/tests/**/*.spec.ts'],
       transform: { '^.+\\.tsx?$': 'ts-jest' },
       globalSetup: '<rootDir>/test-utils/jest-global-setup.ts',

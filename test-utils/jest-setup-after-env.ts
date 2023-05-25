@@ -7,8 +7,12 @@ import { SessionPoolImpl } from './pools';
 jest.setTimeout(1000 * 60);
 
 globalThis.admin = createRestClient({
-  url: __misc__.url,
-  accessToken: __misc__.adminToken.accessToken,
+  url: globalThis.__misc__.url,
+  accessToken: globalThis.__misc__.adminToken.accessToken,
 });
 
-globalThis.sessions = new SessionPoolImpl();
+globalThis.sessions = new SessionPoolImpl(
+  globalThis.__misc__.tokens,
+  globalThis.__misc__.url,
+  globalThis.__misc__.instance,
+);

@@ -1,4 +1,7 @@
-import { delay } from '../../src/utils';
+import assert from 'node:assert';
+
+import type { mastodon } from '../../src';
+import { waitForCondition } from '../../test-utils/wait-for-condition';
 
 it('handles notifications', () => {
   return sessions.use(2, async ([alice, bob]) => {
@@ -7,10 +10,15 @@ it('handles notifications', () => {
     });
 
     try {
-      await delay(2000);
-      let notifications = await alice.rest.v1.notifications.list();
-      let notification = notifications[0];
+      let notification: mastodon.v1.Notification | undefined;
 
+      await waitForCondition(async () => {
+        const notifications = await alice.rest.v1.notifications.list();
+        notification = notifications.find((n) => n.status?.id === status.id);
+        return notification?.status != undefined;
+      });
+
+      assert(notification != undefined);
       notification = await alice.rest.v1.notifications
         .select(notification.id)
         .fetch();
@@ -18,7 +26,7 @@ it('handles notifications', () => {
       expect(notification.status?.id).toBe(status.id);
       await alice.rest.v1.notifications.select(notification.id).dismiss();
 
-      notifications = await alice.rest.v1.notifications.list();
+      const notifications = await alice.rest.v1.notifications.list();
       expect(notifications).not.toContainId(notification.id);
     } finally {
       await bob.rest.v1.statuses.select(status.id).remove();
@@ -39,8 +47,16 @@ it('clear notifications', () => {
     });
 
     try {
-      await delay(2000);
       let notifications = await alice.rest.v1.notifications.list();
+
+      await waitForCondition(async () => {
+        notifications = await alice.rest.v1.notifications.list();
+        const hasS1 = notifications.some((n) => n.status?.id === s1.id);
+        const hasS2 = notifications.some((n) => n.status?.id === s2.id);
+        const hasS3 = notifications.some((n) => n.status?.id === s3.id);
+        return hasS1 && hasS2 && hasS3;
+      });
+
       expect(notifications.length >= 3).toBe(true);
 
       await alice.rest.v1.notifications.clear();

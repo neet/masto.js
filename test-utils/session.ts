@@ -10,14 +10,16 @@ export interface Session {
 
 export const createSession = async (
   token: mastodon.v1.Token,
+  url: string,
+  streamingApiUrl: string,
 ): Promise<Session> => {
   const rest = createRestClient({
-    url: __misc__.url,
+    url: url,
     accessToken: token.accessToken,
   });
 
   const ws = createWebSocketClient({
-    url: __misc__.instance.urls.streamingApi,
+    url: streamingApiUrl,
     accessToken: token.accessToken,
   });
 

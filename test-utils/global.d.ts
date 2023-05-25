@@ -1,16 +1,15 @@
 /* eslint-disable no-var */
 import type { mastodon } from '../src';
-import type { SessionPoolImpl, TokenPool } from './pools';
+import type { SessionPoolImpl } from './pools';
 
 declare global {
   var admin: mastodon.RestClient;
   var sessions: SessionPoolImpl;
 
-  /** Should only be used inside /test-utils */
   var __misc__: {
     url: string;
+    tokens: TokenPool;
     instance: mastodon.v1.Instance;
     adminToken: mastodon.v1.Token;
-    tokens: TokenPool;
   };
 }

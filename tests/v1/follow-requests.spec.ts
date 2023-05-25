@@ -1,6 +1,13 @@
+import { waitForCondition } from '../../test-utils/wait-for-condition';
+
 it('authorize follow requests', () => {
   return sessions.use(2, async ([alice, bob]) => {
     await alice.rest.v1.accounts.updateCredentials.update({ locked: true });
+
+    await waitForCondition(async () => {
+      const me = await alice.rest.v1.accounts.verifyCredentials.fetch();
+      return me.locked;
+    });
 
     try {
       let relationship = await bob.rest.v1.accounts.select(alice.id).follow();
@@ -24,6 +31,11 @@ it('authorize follow requests', () => {
 it('reject follow requests', () => {
   return sessions.use(2, async ([alice, bob]) => {
     await alice.rest.v1.accounts.updateCredentials.update({ locked: true });
+
+    await waitForCondition(async () => {
+      const me = await alice.rest.v1.accounts.verifyCredentials.fetch();
+      return me.locked;
+    });
 
     try {
       let relationship = await bob.rest.v1.accounts.select(alice.id).follow();
