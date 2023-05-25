@@ -1,4 +1,3 @@
-import { existsSync } from 'node:fs';
 import fs from 'node:fs/promises';
 
 import { ExponentialBackoff } from '../../src/utils';
@@ -15,10 +14,6 @@ export class TokenRepositoryFs implements TokenRepository {
   }
 
   async getAll(): Promise<Entry[]> {
-    if (!existsSync(this.path)) {
-      await fs.writeFile(this.path, '[]', 'utf8');
-    }
-
     const backoff = new ExponentialBackoff(2, 10);
 
     while (backoff.attempts < 10) {
@@ -35,6 +30,8 @@ export class TokenRepositoryFs implements TokenRepository {
   }
 
   async add(token: Entry): Promise<void> {
+    // eslint-disable-next-line no-console
+    console.log(`Adding token ${token.token.accessToken}`);
     const entries = await this.getAll();
     const newEntries = [...entries, token];
     await this.save(newEntries);
