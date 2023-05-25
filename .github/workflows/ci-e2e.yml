@@ -84,7 +84,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Run tests
-        run: yarn run test:e2e
+        run: yarn run test:e2e --max-workers 15
 
       - name: Codecov
         uses: codecov/codecov-action@v3
