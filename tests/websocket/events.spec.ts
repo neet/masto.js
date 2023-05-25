@@ -1,4 +1,5 @@
 import assert from 'node:assert';
+import crypto from 'node:crypto';
 
 import { delay } from '../../src/utils';
 
@@ -6,18 +7,19 @@ describe('events', () => {
   it('streams update, status.update, and delete event', () => {
     return sessions.use(async (session) => {
       let id!: string;
+      const tag = `tag_${crypto.randomBytes(4).toString('hex')}`;
 
       try {
-        const events = session.ws.subscribe('public:local');
+        const events = session.ws.subscribe('hashtag:local', { tag });
 
         const dispatch = async () => {
           const status = await session.rest.v1.statuses.create({
-            status: 'test',
+            status: `test1 #${tag}`,
           });
           id = status.id;
           await delay(1000);
           await session.rest.v1.statuses.select(status.id).update({
-            status: 'test2',
+            status: `test2 #${tag}`,
           });
           await delay(1000);
           await session.rest.v1.statuses.select(status.id).remove();
@@ -29,9 +31,9 @@ describe('events', () => {
         ]);
 
         assert(e1?.event === 'update');
-        expect(e1.payload.content).toBe('<p>test</p>');
+        expect(e1.payload.content).toMatch(/test1/);
         assert(e2?.event === 'status.update');
-        expect(e2.payload.content).toBe('<p>test2</p>');
+        expect(e2.payload.content).toMatch(/test2/);
         assert(e3?.event === 'delete');
         expect(e3.payload).toBe(id);
       } finally {

@@ -2,8 +2,6 @@ import crypto from 'node:crypto';
 
 import { Headers } from '@mastojs/ponyfills';
 
-import { delay } from '../../src/utils';
-
 describe('status', () => {
   it('creates, updates, and removes a status', () => {
     return sessions.use(async (client) => {
@@ -98,7 +96,6 @@ describe('status', () => {
       });
 
       try {
-        await delay(2000);
         const translation = await session.rest.v1.statuses
           .select(id)
           .translate({ lang: 'ja' });

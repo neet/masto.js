@@ -1,4 +1,7 @@
-import { delay } from '../../src/utils';
+import assert from 'node:assert';
+
+import type { mastodon } from '../../src';
+import { waitForCondition } from '../../test-utils/wait-for-condition';
 
 describe('conversations', () => {
   it('interacts with conversations', () => {
@@ -8,18 +11,17 @@ describe('conversations', () => {
         visibility: 'direct',
       });
 
-      await delay(3000);
-      const conversations = await alice.rest.v1.conversations.list();
-      const conversation = conversations.find(
-        (c) => c.lastStatus?.id === status.id,
-      );
+      let conversation: mastodon.v1.Conversation | undefined;
 
-      if (conversation == undefined) {
-        throw new Error("Couldn't find conversation");
-      }
+      await waitForCondition(async () => {
+        const conversations = await alice.rest.v1.conversations.list();
+        conversation = conversations.find(
+          (c) => c.lastStatus?.id === status.id,
+        );
+        return conversation != undefined;
+      });
 
-      expect(conversation).toBeDefined();
-
+      assert(conversation != undefined);
       await alice.rest.v1.conversations.select(conversation.id).read();
       await alice.rest.v1.conversations.select(conversation.id).remove();
     });
