@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-
 import assert from 'node:assert';
 
 it('handles reports', async () => {

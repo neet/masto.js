@@ -1,5 +1,5 @@
-import type { mastodon } from '../../src';
-import { waitForCondition } from '../../test-utils/wait-for-condition';
+import type { mastodon } from '../../../src';
+import { waitForCondition } from '../../../test-utils/wait-for-condition';
 
 describe('timeline', () => {
   it('returns home', () => {

@@ -1,6 +1,5 @@
 import assert from 'node:assert';
 
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 it('creates a report', () => {
   return sessions.use(2, async ([alice, bob]) => {
     await alice.rest.v1.reports.create({

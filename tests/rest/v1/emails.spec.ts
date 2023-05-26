@@ -1,6 +1,6 @@
 import crypto from 'node:crypto';
 
-import { createRestClient } from '../../src';
+import { createRestClient } from '../../../src';
 
 it('can create a confirmation', async () => {
   const username = crypto.randomBytes(8).toString('hex');

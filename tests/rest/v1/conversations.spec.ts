@@ -1,7 +1,7 @@
 import assert from 'node:assert';
 
-import type { mastodon } from '../../src';
-import { waitForCondition } from '../../test-utils/wait-for-condition';
+import type { mastodon } from '../../../src';
+import { waitForCondition } from '../../../test-utils/wait-for-condition';
 
 describe('conversations', () => {
   it('interacts with conversations', () => {

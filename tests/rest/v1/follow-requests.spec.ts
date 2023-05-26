@@ -1,4 +1,4 @@
-import { waitForCondition } from '../../test-utils/wait-for-condition';
+import { waitForCondition } from '../../../test-utils/wait-for-condition';
 
 it('authorize follow requests', () => {
   return sessions.use(2, async ([alice, bob]) => {
