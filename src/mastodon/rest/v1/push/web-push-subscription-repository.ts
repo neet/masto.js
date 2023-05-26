@@ -1,4 +1,4 @@
-import type { HttpMetaParams } from '../../../../http';
+import type { HttpMetaParams } from '../../../../interfaces';
 import type {
   WebPushSubscription,
   WebPushSubscriptionAlerts,

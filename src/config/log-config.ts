@@ -1,5 +1,5 @@
-import type { LogType } from '../logger';
-import { LogLevel } from '../logger';
+import type { LogType } from '../adapters/logger';
+import { LogLevel } from '../adapters/logger';
 
 export interface MastoLogConfigProps {
   readonly logLevel?: LogType;

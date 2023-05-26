@@ -1,10 +1,10 @@
 import type WebSocket from 'ws';
 
-import type { MastoWebSocketConfig } from '../config';
-import type { Logger } from '../logger';
-import { ExponentialBackoff } from '../utils';
-import { waitForAsyncIterableToEnd } from '../utils/wait-for-async-iterable-to-end';
-import { webSocket } from '../utils/web-socket';
+import type { MastoWebSocketConfig } from '../../config';
+import type { Logger } from '../../interfaces';
+import { ExponentialBackoff } from '../../utils';
+import { waitForAsyncIterableToEnd } from '../../utils/wait-for-async-iterable-to-end';
+import { webSocket } from '../../utils/web-socket';
 
 export type WebSocketConnection = {
   readonly messages: AsyncIterable<WebSocket.MessageEvent>;

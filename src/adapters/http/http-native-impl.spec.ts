@@ -1,5 +1,5 @@
-import { MastoHttpConfig, MastoLogConfig } from '../config';
-import { MastoTimeoutError } from '../errors';
+import { MastoHttpConfig, MastoLogConfig } from '../../config';
+import { MastoTimeoutError } from '../../errors';
 import { SerializerNativeImpl } from '../serializers';
 import { HttpNativeImpl } from './http-native-impl';
 

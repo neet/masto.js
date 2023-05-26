@@ -1,10 +1,10 @@
-import type { Encoding } from '../serializers';
 import type {
+  Encoding,
   Http,
   HttpMetaParams,
   HttpRequestParams,
   HttpRequestResult,
-} from './http';
+} from '../../interfaces';
 
 export abstract class BaseHttp implements Http {
   abstract request(params: HttpRequestParams): Promise<HttpRequestResult>;

@@ -1,5 +1,5 @@
 /* eslint-disable unicorn/no-useless-undefined */
-import { log, LoggerMockImpl } from '../__mocks__';
+import { log, LoggerMockImpl } from '../../__mocks__';
 import { LogLevel } from './log-level';
 
 describe('debug', () => {

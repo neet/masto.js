@@ -1,7 +1,7 @@
 import type { AbortSignal, HeadersInit, RequestInit } from '@mastojs/ponyfills';
 import { Headers } from '@mastojs/ponyfills';
 
-import type { Serializer } from '../serializers';
+import type { Serializer } from '../interfaces';
 import { mergeAbortSignals, mergeHeadersInit, Timeout } from '../utils';
 import type { MastoLogConfig } from './log-config';
 
@@ -42,7 +42,7 @@ export class MastoHttpConfig {
       url.search =
         typeof params === 'string'
           ? params
-          : this.serializer.serializeQueryString(params);
+          : this.serializer.serialize('querystring', params);
     }
 
     return url;

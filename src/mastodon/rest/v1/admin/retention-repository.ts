@@ -1,4 +1,4 @@
-import type { HttpMetaParams } from '../../../../http';
+import type { HttpMetaParams } from '../../../../interfaces';
 import type { Admin } from '../../../entities/v1';
 import type { CohortFrequency } from '../../../entities/v1/admin/cohort';
 

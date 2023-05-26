@@ -1,4 +1,4 @@
-import type { HttpMetaParams } from '../../../http';
+import type { HttpMetaParams } from '../../../interfaces';
 import type { Paginator } from '../../../paginator';
 import type { Conversation } from '../../entities/v1';
 import type { DefaultPaginationParams } from '../../repository';

@@ -1,19 +1,23 @@
 import type { RequestInit } from '@mastojs/ponyfills';
 import { fetch, Request, Response } from '@mastojs/ponyfills';
 
-import type { MastoHttpConfig } from '../config';
-import type { MastoHttpErrorDetails } from '../errors';
+import type { MastoHttpConfig } from '../../config';
+import type { MastoHttpErrorDetails } from '../../errors';
 import {
   MastoHttpError,
   MastoTimeoutError,
   MastoUnexpectedError,
-} from '../errors';
-import type { Logger } from '../logger';
-import type { Serializer } from '../serializers';
-import type { Timeout } from '../utils';
+} from '../../errors';
+import type {
+  Http,
+  HttpRequestParams,
+  HttpRequestResult,
+  Logger,
+  Serializer,
+} from '../../interfaces';
+import type { Timeout } from '../../utils';
 import { BaseHttp } from './base-http';
 import { getEncoding } from './get-encoding';
-import type { Http, HttpRequestParams, HttpRequestResult } from './http';
 
 export class HttpNativeImpl extends BaseHttp implements Http {
   constructor(

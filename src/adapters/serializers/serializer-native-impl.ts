@@ -2,14 +2,15 @@ import type { BodyInit } from '@mastojs/ponyfills';
 import { FormData } from '@mastojs/ponyfills';
 import { camelCase, snakeCase } from 'change-case';
 
-import { MastoDeserializeError } from '../errors';
+import { MastoDeserializeError } from '../../errors';
+import type { Encoding, Serializer } from '../../interfaces';
 import { flattenObject } from './form-data';
 import { railsQueryString } from './rails-query-string';
-import type { Encoding, Serializer } from './serializer';
 import { transformKeys } from './transform-keys';
 
 export class SerializerNativeImpl implements Serializer {
-  serialize(type: 'json', rawData: unknown): string | undefined;
+  serialize(type: 'json', rawData: unknown): string;
+  serialize(type: 'querystring', rawData: unknown): string;
   serialize(type: Encoding, rawData: unknown): BodyInit | undefined {
     if (rawData == undefined) {
       return;
@@ -41,18 +42,14 @@ export class SerializerNativeImpl implements Serializer {
         }
         return formData;
       }
-      case 'form-url-encoded': {
+      case 'form-url-encoded':
+      case 'querystring': {
         return railsQueryString.stringify(data);
       }
       default: {
         return;
       }
     }
-  }
-
-  serializeQueryString(rawData: unknown): string {
-    const data = transformKeys(rawData, snakeCase);
-    return railsQueryString.stringify(data);
   }
 
   deserialize<T = Record<string, unknown>>(type: Encoding, data: string): T {

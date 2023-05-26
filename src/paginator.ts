@@ -1,7 +1,7 @@
 /* eslint-disable unicorn/no-thenable */
 import parseLinkHeader from 'parse-link-header';
 
-import type { Http, HttpMetaParams } from './http';
+import type { Http, HttpMetaParams } from './interfaces';
 
 type Rel = 'next' | 'prev';
 

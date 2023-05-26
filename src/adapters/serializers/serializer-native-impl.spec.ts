@@ -1,4 +1,4 @@
-import type { Serializer } from './serializer';
+import type { Serializer } from '../../interfaces';
 import { SerializerNativeImpl } from './serializer-native-impl';
 
 describe('SerializerNativeImpl', () => {
@@ -46,7 +46,7 @@ describe('SerializerNativeImpl', () => {
   // });
 
   it('encodes an object to a querystring', () => {
-    const data = serializer.serializeQueryString({
+    const data = serializer.serialize('querystring', {
       keyName: 'value',
       anotherKeyName: ['value1', 'value2'],
     });

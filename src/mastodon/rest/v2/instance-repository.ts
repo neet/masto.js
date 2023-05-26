@@ -1,4 +1,4 @@
-import type { HttpMetaParams } from '../../../http';
+import type { HttpMetaParams } from '../../../interfaces';
 import type { Instance } from '../../entities/v2';
 
 export interface InstanceRepository {

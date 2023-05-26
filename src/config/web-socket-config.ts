@@ -1,4 +1,4 @@
-import type { Serializer } from '../serializers';
+import type { Serializer } from '../interfaces';
 import type { MastoLogConfig } from './log-config';
 
 export type MastoWebSocketConfigProps = {
@@ -32,7 +32,7 @@ export class MastoWebSocketConfig {
       params.accessToken = this.props.accessToken;
     }
 
-    url.search = this.serializer.serializeQueryString(params);
+    url.search = this.serializer.serialize('querystring', params);
     return url;
   }
 

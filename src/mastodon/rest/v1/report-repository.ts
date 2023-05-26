@@ -1,4 +1,4 @@
-import type { HttpMetaParams } from '../../../http';
+import type { HttpMetaParams } from '../../../interfaces';
 import type { Report, ReportCategory } from '../../entities/v1';
 
 export interface ReportAccountParams {

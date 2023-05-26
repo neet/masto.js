@@ -1,4 +1,4 @@
-import { SerializerNativeImpl } from '../serializers';
+import { SerializerNativeImpl } from '../adapters/serializers';
 import { MastoHttpConfig } from './http-config';
 import { MastoLogConfig } from './log-config';
 

@@ -1,4 +1,4 @@
-import type { HttpMetaParams } from '../../../http';
+import type { HttpMetaParams } from '../../../interfaces';
 
 export interface CreateConfirmationParams {
   /** If provided, updates the unconfirmed user’s email before resending the confirmation email. */

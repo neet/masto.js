@@ -1,3 +1,7 @@
+import { HttpNativeImpl } from './adapters/http';
+import { LoggerConsoleImpl } from './adapters/logger';
+import { SerializerNativeImpl } from './adapters/serializers';
+import { WebSocketClientNativeImpl, WebSocketConnector } from './adapters/ws';
 import { createBuilder } from './builder';
 import type {
   MastoHttpConfigProps,
@@ -9,11 +13,7 @@ import {
   MastoLogConfig,
   MastoWebSocketConfig,
 } from './config';
-import { HttpNativeImpl } from './http';
-import { LoggerConsoleImpl } from './logger';
 import type { mastodon } from './mastodon';
-import { SerializerNativeImpl } from './serializers';
-import { WebSocketClientNativeImpl, WebSocketConnector } from './ws';
 
 export const createRestClient = (
   props: MastoHttpConfigProps & MastoLogConfigProps,

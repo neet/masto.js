@@ -1,6 +1,6 @@
 import { snakeCase } from 'change-case';
 
-import type { Http, HttpMetaParams } from '../http';
+import type { Http, HttpMetaParams } from '../interfaces';
 import type { mastodon } from '../mastodon';
 import { Paginator } from '../paginator';
 import { noop } from '../utils/noop';

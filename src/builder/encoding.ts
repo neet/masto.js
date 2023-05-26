@@ -1,4 +1,4 @@
-import type { Encoding } from '../serializers';
+import type { Encoding } from '../interfaces';
 
 export const inferEncoding = (action: string, path: string): Encoding => {
   if (
