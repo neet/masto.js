@@ -9,7 +9,7 @@ import { createOAuthClient, createRestClient } from '../src';
 
 const readOrCreateApp = async (
   baseCacheDir: string,
-  masto: mastodon.RestClient,
+  masto: mastodon.rest.Client,
 ): Promise<mastodon.v1.Client> => {
   const appFilePath = path.join(baseCacheDir, 'app.json');
 
@@ -30,7 +30,7 @@ const readOrCreateApp = async (
 
 const readOrCreateAdminToken = async (
   baseCacheDir: string,
-  oauth: mastodon.OAuthClient,
+  oauth: mastodon.oauth.Client,
   app: mastodon.v1.Client,
 ): Promise<mastodon.v1.Token> => {
   const tokenFilePath = path.join(baseCacheDir, 'admin_token.json');

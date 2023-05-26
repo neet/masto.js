@@ -1,18 +1,17 @@
 import crypto from 'node:crypto';
 
 import type { mastodon } from '../../src';
-import type { Token } from '../../src/mastodon/v1';
 import type { Tootctl } from '../tootctl';
 import type { TokenFactory } from './token-factory';
 
 export class TokenFactoryDocker implements TokenFactory {
   constructor(
     private readonly tootctl: Tootctl,
-    private readonly oauth: mastodon.OAuthClient,
+    private readonly oauth: mastodon.oauth.Client,
     private readonly app: mastodon.v1.Client,
   ) {}
 
-  async obtain(): Promise<Token> {
+  async obtain(): Promise<mastodon.v1.Token> {
     const username = crypto.randomBytes(8).toString('hex');
     const email = crypto.randomBytes(8).toString('hex') + '@example.com';
 

@@ -17,7 +17,7 @@ import { WebSocketClientNativeImpl, WebSocketConnector } from './ws';
 
 export const createRestClient = (
   props: MastoHttpConfigProps & MastoLogConfigProps,
-): mastodon.RestClient => {
+): mastodon.rest.Client => {
   const serializer = new SerializerNativeImpl();
   const config = new MastoHttpConfig(
     props,
@@ -26,13 +26,13 @@ export const createRestClient = (
   );
   const logger = new LoggerConsoleImpl(config.log.getLevel());
   const http = new HttpNativeImpl(serializer, config, logger);
-  const builder = createBuilder(http, ['api']) as mastodon.RestClient;
+  const builder = createBuilder(http, ['api']) as mastodon.rest.Client;
   return builder;
 };
 
 export const createOAuthClient = (
   props: MastoHttpConfigProps & MastoLogConfigProps,
-): mastodon.OAuthClient => {
+): mastodon.oauth.Client => {
   const serializer = new SerializerNativeImpl();
   const config = new MastoHttpConfig(
     props,
@@ -41,13 +41,13 @@ export const createOAuthClient = (
   );
   const logger = new LoggerConsoleImpl(config.log.getLevel());
   const http = new HttpNativeImpl(serializer, config, logger);
-  const builder = createBuilder(http, ['oauth']) as mastodon.OAuthClient;
+  const builder = createBuilder(http, ['oauth']) as mastodon.oauth.Client;
   return builder;
 };
 
-export function createWebSocketClient(
+export function createStreamingClient(
   props: MastoWebSocketConfigProps & MastoLogConfigProps,
-): mastodon.WebSocketClient {
+): mastodon.streaming.Client {
   const serializer = new SerializerNativeImpl();
   const config = new MastoWebSocketConfig(
     props,

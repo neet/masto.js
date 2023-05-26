@@ -5,7 +5,7 @@ import type { mastodon } from '../mastodon';
 import type { Serializer } from '../serializers';
 import type { WebSocketConnection } from './web-socket-connector';
 
-export class WebSocketClientNativeImpl implements mastodon.WebSocketClient {
+export class WebSocketClientNativeImpl implements mastodon.streaming.Client {
   private connection?: WebSocketConnection;
 
   constructor(
@@ -20,17 +20,19 @@ export class WebSocketClientNativeImpl implements mastodon.WebSocketClient {
 
   subscribe(
     stream: 'list',
-    params: mastodon.SubscribeListParams,
-  ): AsyncIterableIterator<mastodon.Event>;
+    params: mastodon.streaming.SubscribeListParams,
+  ): AsyncIterableIterator<mastodon.streaming.Event>;
   subscribe(
     stream: 'hashtag' | 'hashtag:local',
-    params: mastodon.SubscribeHashtagParams,
-  ): AsyncIterableIterator<mastodon.Event>;
-  subscribe(stream: mastodon.Stream): AsyncIterableIterator<mastodon.Event>;
+    params: mastodon.streaming.SubscribeHashtagParams,
+  ): AsyncIterableIterator<mastodon.streaming.Event>;
+  subscribe(
+    stream: mastodon.streaming.Stream,
+  ): AsyncIterableIterator<mastodon.streaming.Event>;
   async *subscribe(
     stream: unknown,
     params?: Record<string, unknown>,
-  ): AsyncIterableIterator<mastodon.Event> {
+  ): AsyncIterableIterator<mastodon.streaming.Event> {
     for await (this.connection of this.connections) {
       const data = this.serializer.serialize('json', {
         type: 'subscribe',
@@ -54,12 +56,15 @@ export class WebSocketClientNativeImpl implements mastodon.WebSocketClient {
     }
   }
 
-  unsubscribe(stream: 'list', params: mastodon.SubscribeListParams): void;
+  unsubscribe(
+    stream: 'list',
+    params: mastodon.streaming.SubscribeListParams,
+  ): void;
   unsubscribe(
     stream: 'hashtag' | 'hashtag:local',
-    params: mastodon.SubscribeHashtagParams,
+    params: mastodon.streaming.SubscribeHashtagParams,
   ): void;
-  unsubscribe(stream: mastodon.Stream): void;
+  unsubscribe(stream: mastodon.streaming.Stream): void;
   unsubscribe(stream: unknown, params?: Record<string, unknown>): void {
     const data = this.serializer.serialize('json', {
       type: 'unsubscribe',
@@ -89,8 +94,10 @@ export class WebSocketClientNativeImpl implements mastodon.WebSocketClient {
     }
   }
 
-  private async parseMessage(rawEvent: string): Promise<mastodon.Event> {
-    const data = this.serializer.deserialize<mastodon.RawEvent>(
+  private async parseMessage(
+    rawEvent: string,
+  ): Promise<mastodon.streaming.Event> {
+    const data = this.serializer.deserialize<mastodon.streaming.RawEvent>(
       'json',
       rawEvent,
     );
@@ -108,6 +115,6 @@ export class WebSocketClientNativeImpl implements mastodon.WebSocketClient {
       stream: data.stream,
       event: data.event,
       payload: payload,
-    } as mastodon.Event;
+    } as mastodon.streaming.Event;
   }
 }

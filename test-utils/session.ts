@@ -1,11 +1,11 @@
 import type { mastodon } from '../src';
-import { createRestClient, createWebSocketClient } from '../src';
+import { createRestClient, createStreamingClient } from '../src';
 
 export interface Session {
   readonly id: string;
   readonly acct: string;
-  readonly rest: mastodon.RestClient;
-  readonly ws: mastodon.WebSocketClient;
+  readonly rest: mastodon.rest.Client;
+  readonly ws: mastodon.streaming.Client;
 }
 
 export const createSession = async (
@@ -18,7 +18,7 @@ export const createSession = async (
     accessToken: token.accessToken,
   });
 
-  const ws = createWebSocketClient({
+  const ws = createStreamingClient({
     url: streamingApiUrl,
     accessToken: token.accessToken,
   });

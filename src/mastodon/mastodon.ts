@@ -1,5 +1,4 @@
-export * as v1 from './v1';
-export * as v2 from './v2';
-export * from './client';
-export * from './repository';
-export * from './websocket';
+export * from './entities';
+export * as rest from './rest';
+export * as streaming from './streaming';
+export * as oauth from './oauth';

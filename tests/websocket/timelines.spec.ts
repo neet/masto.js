@@ -15,7 +15,9 @@ describe('websocket', () => {
       try {
         const events = session.ws
           .subscribe('public')
-          .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
+          .filter(
+            (e): e is mastodon.streaming.UpdateEvent => e.event === 'update',
+          )
           .filter((e) => e.payload.content.includes(random))
           .take(1);
 
@@ -45,7 +47,9 @@ describe('websocket', () => {
       try {
         const events = session.ws
           .subscribe('public:media')
-          .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
+          .filter(
+            (e): e is mastodon.streaming.UpdateEvent => e.event === 'update',
+          )
           .filter((e) => e.payload.content.includes(random))
           .take(1);
 
@@ -80,7 +84,9 @@ describe('websocket', () => {
       try {
         const events = session.ws
           .subscribe('public:local')
-          .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
+          .filter(
+            (e): e is mastodon.streaming.UpdateEvent => e.event === 'update',
+          )
           .filter((e) => e.payload.content.includes(random))
           .take(1);
 
@@ -111,7 +117,9 @@ describe('websocket', () => {
       try {
         const events = session.ws
           .subscribe('public:local:media')
-          .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
+          .filter(
+            (e): e is mastodon.streaming.UpdateEvent => e.event === 'update',
+          )
           .filter((e) => e.payload.content.includes(random))
           .take(1);
 
@@ -148,7 +156,9 @@ describe('websocket', () => {
       try {
         const events = session.ws
           .subscribe('hashtag', { tag: hashtag })
-          .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
+          .filter(
+            (e): e is mastodon.streaming.UpdateEvent => e.event === 'update',
+          )
           .filter((e) => e.payload.content.includes(hashtag))
           .take(1);
 
@@ -178,7 +188,9 @@ describe('websocket', () => {
       try {
         const events = session.ws
           .subscribe('hashtag:local', { tag: hashtag })
-          .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
+          .filter(
+            (e): e is mastodon.streaming.UpdateEvent => e.event === 'update',
+          )
           .filter((e) => e.payload.content.includes(hashtag))
           .take(1);
 
@@ -206,7 +218,8 @@ describe('websocket', () => {
         const events = alice.ws
           .subscribe('user')
           .filter(
-            (e): e is mastodon.NotificationEvent => e.event === 'notification',
+            (e): e is mastodon.streaming.NotificationEvent =>
+              e.event === 'notification',
           )
           .take(1);
 
@@ -233,7 +246,8 @@ describe('websocket', () => {
         const events = alice.ws
           .subscribe('user:notification')
           .filter(
-            (e): e is mastodon.NotificationEvent => e.event === 'notification',
+            (e): e is mastodon.streaming.NotificationEvent =>
+              e.event === 'notification',
           )
           .filter((e) => e.payload.type === 'follow')
           .take(1);
@@ -262,7 +276,9 @@ describe('websocket', () => {
         await alice.rest.v1.accounts.select(bob.id).follow();
         const events = alice.ws
           .subscribe('list', { list: list.id })
-          .filter((e): e is mastodon.UpdateEvent => e.event === 'update')
+          .filter(
+            (e): e is mastodon.streaming.UpdateEvent => e.event === 'update',
+          )
           .take(1);
 
         await alice.rest.v1.lists.select(list.id).accounts.create({

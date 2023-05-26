@@ -18,6 +18,7 @@
   },
   "rules": {
     "no-console": "error",
+    "import/no-cycle": "error",
     "simple-import-sort/imports": "error",
     "unicorn/prevent-abbreviations": "off",
     "unicorn/no-array-reduce": "off"

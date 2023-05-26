@@ -3,7 +3,7 @@ import type { mastodon } from '../src';
 import type { SessionPoolImpl } from './pools';
 
 declare global {
-  var admin: mastodon.RestClient;
+  var admin: mastodon.rest.Client;
   var sessions: SessionPoolImpl;
 
   var __misc__: {
