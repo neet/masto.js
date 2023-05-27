@@ -1,4 +1,4 @@
-import type { Account } from '.';
+import { type Account } from '.';
 
 /**
  * Represents a subset of your follows who also follow some other user.

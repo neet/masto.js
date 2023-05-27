@@ -1,4 +1,4 @@
-import type { v2 } from '../../mastodon';
+import { type v2 } from '../../mastodon';
 
 /**
  * Represents a filter whose keywords matched a given status.

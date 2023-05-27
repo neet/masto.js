@@ -1,6 +1,6 @@
-import type { HttpMetaParams } from '../../../interfaces';
-import type { Paginator } from '../../paginator';
-import type { FeaturedTag, Tag } from '../../entities/v1';
+import { type HttpMetaParams } from '../../../interfaces';
+import { type FeaturedTag, type Tag } from '../../entities/v1';
+import { type Paginator } from '../../paginator';
 
 export interface CreateFeaturedTagParams {
   /** The hashtag to be featured. */

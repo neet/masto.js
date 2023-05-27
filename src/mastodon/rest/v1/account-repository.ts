@@ -1,19 +1,19 @@
-import type { HttpMetaParams } from '../../../interfaces';
-import type {
-  Account,
-  AccountCredentials,
-  AccountField,
-  AccountSource,
-  FamiliarFollowers,
-  FeaturedTag,
-  IdentityProof,
-  List,
-  Relationship,
-  Status,
-  Token,
+import { type HttpMetaParams } from '../../../interfaces';
+import {
+  type Account,
+  type AccountCredentials,
+  type AccountField,
+  type AccountSource,
+  type FamiliarFollowers,
+  type FeaturedTag,
+  type IdentityProof,
+  type List,
+  type Relationship,
+  type Status,
+  type Token,
 } from '../../entities/v1';
-import type { Paginator } from '../../paginator';
-import type { DefaultPaginationParams } from '../../repository';
+import { type Paginator } from '../../paginator';
+import { type DefaultPaginationParams } from '../../repository';
 
 export interface CreateAccountParams {
   /** The desired username for the account */

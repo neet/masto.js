@@ -4,8 +4,7 @@ import { existsSync } from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import type { mastodon } from '../src';
-import { createOAuthClient, createRestClient } from '../src';
+import { createOAuthClient, createRestClient, type mastodon } from '../src';
 
 const readOrCreateApp = async (
   baseCacheDir: string,

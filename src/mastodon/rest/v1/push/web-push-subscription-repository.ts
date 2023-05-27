@@ -1,8 +1,8 @@
-import type { HttpMetaParams } from '../../../../interfaces';
-import type {
-  WebPushSubscription,
-  WebPushSubscriptionAlerts,
-  WebPushSubscriptionPolicy,
+import { type HttpMetaParams } from '../../../../interfaces';
+import {
+  type WebPushSubscription,
+  type WebPushSubscriptionAlerts,
+  type WebPushSubscriptionPolicy,
 } from '../../../entities/v1';
 
 export interface CreateWebPushSubscriptionParams {

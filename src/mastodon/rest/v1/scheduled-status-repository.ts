@@ -1,7 +1,7 @@
-import type { HttpMetaParams } from '../../../interfaces';
-import type { Paginator } from '../../paginator';
-import type { ScheduledStatus } from '../../entities/v1';
-import type { DefaultPaginationParams } from '../../repository';
+import { type HttpMetaParams } from '../../../interfaces';
+import { type ScheduledStatus } from '../../entities/v1';
+import { type Paginator } from '../../paginator';
+import { type DefaultPaginationParams } from '../../repository';
 
 export interface UpdateScheduledStatusParams {
   /** ISO 8601 Date-time at which the status will be published. Must be at least 5 minutes into the future. */

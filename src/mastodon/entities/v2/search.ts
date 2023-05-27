@@ -1,4 +1,4 @@
-import type { v1 } from '../../mastodon';
+import { type v1 } from '../../mastodon';
 
 /**
  * Represents the results of a search.

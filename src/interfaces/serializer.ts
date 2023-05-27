@@ -1,4 +1,4 @@
-import type { BodyInit } from '@mastojs/ponyfills';
+import { type BodyInit } from '@mastojs/ponyfills';
 
 export type Encoding =
   | 'none'

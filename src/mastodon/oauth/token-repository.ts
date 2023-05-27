@@ -1,5 +1,5 @@
-import type { HttpMetaParams } from '../../interfaces';
-import type { Token } from '../entities/v1';
+import { type HttpMetaParams } from '../../interfaces';
+import { type Token } from '../entities/v1';
 
 export interface CreateTokenParamsWithPassword {
   readonly grantType: 'password';

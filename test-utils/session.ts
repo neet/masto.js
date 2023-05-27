@@ -1,5 +1,4 @@
-import type { mastodon } from '../src';
-import { createRestClient, createStreamingClient } from '../src';
+import { createRestClient, createStreamingClient, type mastodon } from '../src';
 
 export interface Session {
   readonly id: string;

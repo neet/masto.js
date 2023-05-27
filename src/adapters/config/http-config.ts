@@ -1,7 +1,11 @@
-import type { AbortSignal, HeadersInit, RequestInit } from '@mastojs/ponyfills';
-import { Headers } from '@mastojs/ponyfills';
+import {
+  type AbortSignal,
+  Headers,
+  type HeadersInit,
+  type RequestInit,
+} from '@mastojs/ponyfills';
 
-import type { HttpConfig, Serializer } from '../../interfaces';
+import { type HttpConfig, type Serializer } from '../../interfaces';
 import { Timeout } from '../../utils';
 import { mergeAbortSignals } from './merge-abort-signals';
 import { mergeHeadersInit } from './merge-headers-init';

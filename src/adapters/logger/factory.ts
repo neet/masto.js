@@ -1,5 +1,4 @@
-import type { LogType } from './log-level';
-import { LogLevel } from './log-level';
+import { LogLevel, type LogType } from './log-level';
 import { LoggerConsoleImpl } from './logger-console-impl';
 
 export const createLogger = (type?: LogType): LoggerConsoleImpl => {

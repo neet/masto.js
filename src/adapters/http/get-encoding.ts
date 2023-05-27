@@ -1,6 +1,6 @@
-import type { Headers } from '@mastojs/ponyfills';
+import { type Headers } from '@mastojs/ponyfills';
 
-import type { Encoding } from '../../interfaces';
+import { type Encoding } from '../../interfaces';
 
 export const getEncoding = (headers: Headers): Encoding | undefined => {
   const contentType = headers.get('Content-Type')?.replace(/\s*;.*$/, '');

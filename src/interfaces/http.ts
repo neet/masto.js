@@ -1,6 +1,6 @@
-import type { AbortSignal, Headers } from '@mastojs/ponyfills';
+import { type AbortSignal, type Headers } from '@mastojs/ponyfills';
 
-import type { Encoding } from '../interfaces';
+import { type Encoding } from '../interfaces';
 
 export type HttpMetaParams<T extends Encoding = 'none'> = {
   readonly headers?: Headers;

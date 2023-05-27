@@ -1,4 +1,4 @@
-import type { Serializer } from '../../interfaces';
+import { type Serializer } from '../../interfaces';
 import { SerializerNativeImpl } from './serializer-native-impl';
 
 describe('SerializerNativeImpl', () => {

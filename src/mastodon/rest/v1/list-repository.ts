@@ -1,7 +1,7 @@
-import type { HttpMetaParams } from '../../../interfaces';
-import type { Paginator } from '../../paginator';
-import type { Account, List } from '../../entities/v1';
-import type { DefaultPaginationParams } from '../../repository';
+import { type HttpMetaParams } from '../../../interfaces';
+import { type Account, type List } from '../../entities/v1';
+import { type Paginator } from '../../paginator';
+import { type DefaultPaginationParams } from '../../repository';
 
 export interface CreateListParams {
   /** The title of the list to be created. */

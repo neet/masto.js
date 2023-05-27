@@ -1,5 +1,4 @@
-import type { AbortSignal } from '@mastojs/ponyfills';
-import { AbortController } from '@mastojs/ponyfills';
+import { AbortController, type AbortSignal } from '@mastojs/ponyfills';
 
 export const mergeAbortSignals = (
   signals: readonly AbortSignal[],

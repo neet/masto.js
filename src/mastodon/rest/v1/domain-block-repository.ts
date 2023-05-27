@@ -1,6 +1,6 @@
-import type { HttpMetaParams } from '../../../interfaces';
-import type { Paginator } from '../../paginator';
-import type { DefaultPaginationParams } from '../../repository';
+import { type HttpMetaParams } from '../../../interfaces';
+import { type Paginator } from '../../paginator';
+import { type DefaultPaginationParams } from '../../repository';
 
 export interface CreateDomainBlockParams {
   /** Domain to block */

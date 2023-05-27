@@ -1,16 +1,16 @@
-import type { HttpMetaParams } from '../../../interfaces';
-import type { Paginator } from '../../paginator';
-import type {
-  Account,
-  Context,
-  PreviewCard,
-  ScheduledStatus,
-  Status,
-  StatusEdit,
-  StatusSource,
-  StatusVisibility,
-  Translation,
+import { type HttpMetaParams } from '../../../interfaces';
+import {
+  type Account,
+  type Context,
+  type PreviewCard,
+  type ScheduledStatus,
+  type Status,
+  type StatusEdit,
+  type StatusSource,
+  type StatusVisibility,
+  type Translation,
 } from '../../entities/v1';
+import { type Paginator } from '../../paginator';
 
 export interface CreateStatusParamsBase {
   /** ID of the status being replied to, if status is a reply */

@@ -1,4 +1,4 @@
-import type { TagHistory } from './tag';
+import { type TagHistory } from './tag';
 
 export type PreviewCardType = 'link' | 'photo' | 'video' | 'rich';
 

@@ -1,4 +1,4 @@
-import type { Account, ReportCategory, Rule, Status } from '..';
+import { type Account, type ReportCategory, type Rule, type Status } from '..';
 
 /**
  * Admin-level information about a filed report.

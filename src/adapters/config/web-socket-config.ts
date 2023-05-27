@@ -1,4 +1,4 @@
-import type { Serializer, WebSocketConfig } from '../../interfaces';
+import { type Serializer, type WebSocketConfig } from '../../interfaces';
 
 export type WebSocketConfigProps = {
   readonly url: string;

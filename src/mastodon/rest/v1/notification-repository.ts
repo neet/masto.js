@@ -1,7 +1,7 @@
-import type { HttpMetaParams } from '../../../interfaces';
-import type { Paginator } from '../../paginator';
-import type { Notification, NotificationType } from '../../entities/v1';
-import type { DefaultPaginationParams } from '../../repository';
+import { type HttpMetaParams } from '../../../interfaces';
+import { type Notification, type NotificationType } from '../../entities/v1';
+import { type Paginator } from '../../paginator';
+import { type DefaultPaginationParams } from '../../repository';
 
 export interface ListNotificationsParams extends DefaultPaginationParams {
   /** Instead of specifying every known type to exclude, you can specify only the types you want. */

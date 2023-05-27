@@ -1,6 +1,6 @@
-import type { Account } from './account';
-import type { Report } from './report';
-import type { Status } from './status';
+import { type Account } from './account';
+import { type Report } from './report';
+import { type Status } from './status';
 
 export type NotificationType =
   | 'mention' // Someone mentioned you in their status

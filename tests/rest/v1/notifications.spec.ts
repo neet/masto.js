@@ -1,6 +1,6 @@
 import assert from 'node:assert';
 
-import type { mastodon } from '../../../src';
+import { type mastodon } from '../../../src';
 import { waitForCondition } from '../../../test-utils/wait-for-condition';
 
 it('handles notifications', () => {

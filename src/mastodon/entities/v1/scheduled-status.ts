@@ -1,5 +1,5 @@
-import type { MediaAttachment } from './media-attachment';
-import type { Status } from './status';
+import { type MediaAttachment } from './media-attachment';
+import { type Status } from './status';
 
 export interface StatusParams
   extends Pick<

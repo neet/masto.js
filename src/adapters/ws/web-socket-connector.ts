@@ -1,6 +1,6 @@
 import type WebSocket from 'ws';
 
-import type { Logger, WebSocketConfig } from '../../interfaces';
+import { type Logger, type WebSocketConfig } from '../../interfaces';
 import { ExponentialBackoff } from '../../utils';
 import { toAsyncIterable } from './async-iterable';
 import { connect } from './connect';

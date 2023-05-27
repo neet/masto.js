@@ -1,4 +1,4 @@
-import type { Account, Status } from '.';
+import { type Account, type Status } from '.';
 
 /**
  * Represents the results of a search.

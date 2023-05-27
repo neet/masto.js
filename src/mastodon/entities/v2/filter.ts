@@ -1,4 +1,4 @@
-import type { FilterKeyword, FilterStatus } from '../v1';
+import { type FilterKeyword, type FilterStatus } from '../v1';
 
 export type FilterContext =
   | 'home'

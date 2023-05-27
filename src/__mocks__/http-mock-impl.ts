@@ -1,4 +1,4 @@
-import type { Http } from '../interfaces';
+import { Http } from '../interfaces';
 
 export const httpRequest = jest.fn();
 export const httpGet = jest.fn();

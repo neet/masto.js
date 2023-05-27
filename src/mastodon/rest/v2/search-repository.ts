@@ -1,7 +1,7 @@
-import type { HttpMetaParams } from '../../../interfaces';
-import type { Paginator } from '../../paginator';
-import type { Search } from '../../entities/v2';
-import type { DefaultPaginationParams } from '../../repository';
+import { type HttpMetaParams } from '../../../interfaces';
+import { type Search } from '../../entities/v2';
+import { type Paginator } from '../../paginator';
+import { type DefaultPaginationParams } from '../../repository';
 
 export type SearchType = 'accounts' | 'hashtags' | 'statuses';
 

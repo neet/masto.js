@@ -1,6 +1,6 @@
-import type { HttpMetaParams } from '../../../../interfaces';
-import type { Paginator } from '../../../paginator';
-import type { Admin, Status, TrendLink } from '../../../entities/v1';
+import { type HttpMetaParams } from '../../../../interfaces';
+import { type Admin, type Status, type TrendLink } from '../../../entities/v1';
+import { type Paginator } from '../../../paginator';
 
 export interface TrendRepository {
   links: {

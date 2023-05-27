@@ -1,9 +1,9 @@
-import type {
-  Encoding,
-  Http,
-  HttpMetaParams,
-  HttpRequestParams,
-  HttpRequestResult,
+import {
+  type Encoding,
+  type Http,
+  type HttpMetaParams,
+  type HttpRequestParams,
+  type HttpRequestResult,
 } from '../../interfaces';
 
 export abstract class BaseHttp implements Http {

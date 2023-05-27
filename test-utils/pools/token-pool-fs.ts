@@ -1,7 +1,7 @@
-import type { mastodon } from '../../src';
-import type { TokenFactory } from './token-factory';
-import type { TokenPool } from './token-pool';
-import type { TokenRepository } from './token-repository';
+import { type mastodon } from '../../src';
+import { type TokenFactory } from './token-factory';
+import { type TokenPool } from './token-pool';
+import { type TokenRepository } from './token-repository';
 
 export class TokenPoolFsImpl implements TokenPool {
   constructor(

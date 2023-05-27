@@ -1,7 +1,7 @@
 import { Headers } from '@mastojs/ponyfills';
 
 import { HttpMockImpl } from '../../__mocks__';
-import type { HttpRequestParams } from '../../interfaces';
+import { type HttpRequestParams } from '../../interfaces';
 import { PaginatorHttp } from './paginator-http';
 
 describe('PaginatorHttp', () => {

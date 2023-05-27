@@ -1,8 +1,8 @@
 /* eslint-disable unicorn/no-thenable */
 import parseLinkHeader from 'parse-link-header';
 
-import type { Http, HttpMetaParams } from '../../interfaces';
-import type { mastodon } from '../../mastodon';
+import { type Http, type HttpMetaParams } from '../../interfaces';
+import { type mastodon } from '../../mastodon';
 
 type Rel = 'next' | 'prev';
 

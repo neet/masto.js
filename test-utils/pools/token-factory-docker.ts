@@ -1,8 +1,8 @@
 import crypto from 'node:crypto';
 
-import type { mastodon } from '../../src';
-import type { Tootctl } from '../tootctl';
-import type { TokenFactory } from './token-factory';
+import { type mastodon } from '../../src';
+import { type Tootctl } from '../tootctl';
+import { type TokenFactory } from './token-factory';
 
 export class TokenFactoryDocker implements TokenFactory {
   constructor(

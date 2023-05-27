@@ -1,6 +1,6 @@
-import type { HttpMetaParams } from '../../../interfaces';
-import type { Paginator } from '../../paginator';
-import type { Filter, FilterContext } from '../../entities/v1';
+import { type HttpMetaParams } from '../../../interfaces';
+import { type Filter, type FilterContext } from '../../entities/v1';
+import { type Paginator } from '../../paginator';
 
 export interface CreateFilterParams {
   /** Text to be filtered */

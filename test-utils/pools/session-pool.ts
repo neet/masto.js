@@ -1,8 +1,7 @@
-import type { mastodon } from '../../src';
-import type { Session } from '../session';
-import { createSession } from '../session';
+import { type mastodon } from '../../src';
+import { createSession, type Session } from '../session';
 import { BasePool } from './base-pool';
-import type { TokenPool } from './token-pool';
+import { type TokenPool } from './token-pool';
 
 export class SessionPoolImpl extends BasePool<Session> {
   private readonly sessionToToken = new WeakMap<Session, mastodon.v1.Token>();

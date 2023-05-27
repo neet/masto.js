@@ -1,9 +1,8 @@
-import type { BodyInit } from '@mastojs/ponyfills';
-import { FormData } from '@mastojs/ponyfills';
+import { type BodyInit, FormData } from '@mastojs/ponyfills';
 import { camelCase, snakeCase } from 'change-case';
 
+import { type Encoding, type Serializer } from '../../interfaces';
 import { MastoDeserializeError } from '../errors';
-import type { Encoding, Serializer } from '../../interfaces';
 import { flattenObject } from './form-data';
 import { railsQueryString } from './rails-query-string';
 import { transformKeys } from './transform-keys';

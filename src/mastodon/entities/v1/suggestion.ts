@@ -1,4 +1,4 @@
-import type { Account } from './account';
+import { type Account } from './account';
 
 export type SuggestionSource = 'staff' | 'past_interactions' | 'global';
 

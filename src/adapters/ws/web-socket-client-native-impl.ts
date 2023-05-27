@@ -1,9 +1,9 @@
 import WebSocket from 'ws';
 
-import type { Serializer } from '../../interfaces';
-import type { mastodon } from '../../mastodon';
+import { type Serializer } from '../../interfaces';
+import { type mastodon } from '../../mastodon';
 import { MastoUnexpectedError } from '../errors';
-import type { WebSocketConnection } from './web-socket-connector';
+import { type WebSocketConnection } from './web-socket-connector';
 
 export class WebSocketClientNativeImpl implements mastodon.streaming.Client {
   private connection?: WebSocketConnection;

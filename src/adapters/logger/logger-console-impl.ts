@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
-import type { Logger } from '../../interfaces';
+import { type Logger } from '../../interfaces';
 import { BaseLogger } from './base-logger';
-import type { LogLevel, LogType } from './log-level';
+import { type LogLevel, type LogType } from './log-level';
 
 export class LoggerConsoleImpl extends BaseLogger implements Logger {
   constructor(logLevel: LogLevel) {

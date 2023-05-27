@@ -1,7 +1,11 @@
-import type { HttpMetaParams } from '../../../interfaces';
-import type { Paginator } from '../../paginator';
-import type { FilterKeyword, FilterStatus } from '../../entities/v1';
-import type { Filter, FilterAction, FilterContext } from '../../entities/v2';
+import { type HttpMetaParams } from '../../../interfaces';
+import { type FilterKeyword, type FilterStatus } from '../../entities/v1';
+import {
+  type Filter,
+  type FilterAction,
+  type FilterContext,
+} from '../../entities/v2';
+import { type Paginator } from '../../paginator';
 
 export interface CreateFilterParams {
   /** String. The name of the filter group. */

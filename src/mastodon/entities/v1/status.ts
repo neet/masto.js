@@ -1,12 +1,12 @@
-import type {
-  Account,
-  Application,
-  CustomEmoji,
-  FilterResult,
-  MediaAttachment,
-  Poll,
-  PreviewCard,
-  Tag,
+import {
+  type Account,
+  type Application,
+  type CustomEmoji,
+  type FilterResult,
+  type MediaAttachment,
+  type Poll,
+  type PreviewCard,
+  type Tag,
 } from '.';
 
 /**

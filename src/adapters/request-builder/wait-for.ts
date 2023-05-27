@@ -1,7 +1,7 @@
-import { MastoHttpError, MastoTimeoutError } from '../errors';
-import type { Http } from '../../interfaces';
-import type { mastodon } from '../../mastodon';
+import { type Http } from '../../interfaces';
+import { type mastodon } from '../../mastodon';
 import { delay, Timeout } from '../../utils';
+import { MastoHttpError, MastoTimeoutError } from '../errors';
 
 export const waitForMediaAttachment = async (
   http: Http,

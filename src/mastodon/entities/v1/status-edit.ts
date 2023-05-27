@@ -1,4 +1,4 @@
-import type { Status } from './status';
+import { type Status } from './status';
 
 export type StatusEdit = Pick<
   Status,

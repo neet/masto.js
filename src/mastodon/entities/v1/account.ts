@@ -1,4 +1,4 @@
-import type { CustomEmoji, Role, StatusVisibility } from '.';
+import { type CustomEmoji, type Role, type StatusVisibility } from '.';
 
 /**
  * Represents display or publishing preferences of user's own account.

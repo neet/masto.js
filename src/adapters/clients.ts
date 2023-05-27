@@ -1,9 +1,12 @@
-import type { mastodon } from '../mastodon';
-import type { MastoHttpConfigProps, WebSocketConfigProps } from './config';
-import { HttpConfigImpl, WebSocketConfigImpl } from './config';
+import { type mastodon } from '../mastodon';
+import {
+  HttpConfigImpl,
+  type MastoHttpConfigProps,
+  WebSocketConfigImpl,
+  type WebSocketConfigProps,
+} from './config';
 import { HttpNativeImpl } from './http';
-import type { LogType } from './logger';
-import { createLogger } from './logger';
+import { createLogger, type LogType } from './logger';
 import { createRequestBuilder } from './request-builder';
 import { SerializerNativeImpl } from './serializers';
 import { WebSocketClientNativeImpl, WebSocketConnector } from './ws';

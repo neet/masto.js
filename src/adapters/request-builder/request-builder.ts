@@ -1,7 +1,7 @@
 import { snakeCase } from 'change-case';
 
-import type { Http, HttpMetaParams } from '../../interfaces';
-import type { mastodon } from '../../mastodon';
+import { type Http, type HttpMetaParams } from '../../interfaces';
+import { type mastodon } from '../../mastodon';
 import { noop } from '../../utils/noop';
 import { inferEncoding } from './encoding';
 import { PaginatorHttp } from './paginator-http';

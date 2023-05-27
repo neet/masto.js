@@ -1,4 +1,4 @@
-import type { LogLevel, LogType } from './log-level';
+import { type LogLevel, type LogType } from './log-level';
 
 export abstract class BaseLogger {
   constructor(private readonly logLevel: LogLevel) {}

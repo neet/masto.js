@@ -1,18 +1,17 @@
-import type { RequestInit } from '@mastojs/ponyfills';
-import { fetch, Request, Response } from '@mastojs/ponyfills';
+import { fetch, Request, type RequestInit, Response } from '@mastojs/ponyfills';
 
-import type {
-  Http,
-  HttpConfig,
-  HttpRequestParams,
-  HttpRequestResult,
-  Logger,
-  Serializer,
+import {
+  type Http,
+  type HttpConfig,
+  type HttpRequestParams,
+  type HttpRequestResult,
+  type Logger,
+  type Serializer,
 } from '../../interfaces';
-import type { Timeout } from '../../utils';
-import type { MastoHttpErrorDetails } from '../errors';
+import { type Timeout } from '../../utils';
 import {
   MastoHttpError,
+  type MastoHttpErrorDetails,
   MastoTimeoutError,
   MastoUnexpectedError,
 } from '../errors';

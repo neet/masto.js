@@ -1,6 +1,6 @@
-import type { HttpMetaParams } from '../../../interfaces';
-import type { Paginator } from '../../paginator';
-import type { v1 } from '../../mastodon';
+import { type HttpMetaParams } from '../../../interfaces';
+import { type v1 } from '../../mastodon';
+import { type Paginator } from '../../paginator';
 
 export interface ListSuggestionsParams {
   /** Integer. Maximum number of results to return. Defaults to 40. */
