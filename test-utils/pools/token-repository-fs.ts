@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 
 import { ExponentialBackoff } from '../../src/utils';
 import { ExclusiveLock } from './fs-exclusive-lock';
-import type { Entry, TokenRepository } from './token-repository';
+import { type Entry, type TokenRepository } from './token-repository';
 
 export class TokenRepositoryFs implements TokenRepository {
   private readonly locker: ExclusiveLock;

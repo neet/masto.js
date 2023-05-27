@@ -13,11 +13,11 @@
   },
   "env": {
     "browser": true,
-    "node": true,
-    "jest": true
+    "node": true
   },
   "rules": {
     "no-console": "error",
+    "import/no-cycle": "error",
     "simple-import-sort/imports": "error",
     "unicorn/prevent-abbreviations": "off",
     "unicorn/no-array-reduce": "off"
@@ -46,7 +46,7 @@
         ],
         "@typescript-eslint/consistent-type-imports": [
           "error",
-          { "prefer": "type-imports" }
+          { "prefer": "type-imports", "fixStyle": "inline-type-imports" }
         ]
       }
     },
@@ -57,6 +57,12 @@
         "import/no-unresolved": "off",
         "unicorn/prefer-top-level-await": "off",
         "unicorn/no-process-exit": "off"
+      }
+    },
+    {
+      "files": ["tests/**/*.ts", "**/*.spec.ts"],
+      "env": {
+        "jest": true
       }
     }
   ]

@@ -1,13 +1,11 @@
 /* eslint-disable unicorn/prefer-module */
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { existsSync } from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
 import NodeEnvironment from 'jest-environment-node';
 
-import type { mastodon } from '../src';
-import { createOAuthClient, createRestClient } from '../src';
+import { createOAuthClient, createRestClient, type mastodon } from '../src';
 import { TokenPoolFsImpl } from './pools';
 import { TokenFactoryDocker } from './pools/token-factory-docker';
 import { TokenRepositoryFs } from './pools/token-repository-fs';

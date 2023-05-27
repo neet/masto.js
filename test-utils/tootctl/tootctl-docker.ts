@@ -1,10 +1,10 @@
 import childProcess from 'node:child_process';
 import util from 'node:util';
 
-import type {
-  CreateAccountParams,
-  CreateAccountResult,
-  Tootctl,
+import {
+  type CreateAccountParams,
+  type CreateAccountResult,
+  type Tootctl,
 } from './tootctl';
 
 const exec = util.promisify(childProcess.exec);

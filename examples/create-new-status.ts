@@ -1,5 +1,4 @@
-import type { mastodon } from 'masto';
-import { createRestClient } from 'masto';
+import { createRestClient, type mastodon } from 'masto';
 
 const masto = await createRestClient({
   url: 'https://example.com',
