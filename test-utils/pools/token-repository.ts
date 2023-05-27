@@ -1,4 +1,4 @@
-import type { mastodon } from '../../src';
+import { type mastodon } from '../../src';
 
 export type Entry = {
   readonly token: mastodon.v1.Token;
