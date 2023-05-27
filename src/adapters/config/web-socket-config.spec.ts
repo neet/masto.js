@@ -1,16 +1,14 @@
-import { SerializerNativeImpl } from '../adapters/serializers';
-import { MastoLogConfig } from './log-config';
-import { MastoWebSocketConfig } from './web-socket-config';
+import { SerializerNativeImpl } from '../serializers';
+import { WebSocketConfigImpl } from './web-socket-config';
 
-describe('WebSocketConfig', () => {
+describe('WebSocketConfigImpl', () => {
   it('resolves WS path with path', () => {
-    const config = new MastoWebSocketConfig(
+    const config = new WebSocketConfigImpl(
       {
         url: 'wss://mastodon.social',
         accessToken: 'token',
       },
       new SerializerNativeImpl(),
-      new MastoLogConfig(),
     );
 
     const url = config.resolvePath('/path/to/somewhere').toString();
@@ -18,14 +16,13 @@ describe('WebSocketConfig', () => {
   });
 
   it('resolves WS path with path with token when Sec-Websocket-Protocols is not supported', () => {
-    const config = new MastoWebSocketConfig(
+    const config = new WebSocketConfigImpl(
       {
         url: 'wss://mastodon.social',
         accessToken: 'token',
         useInsecureAccessToken: true,
       },
       new SerializerNativeImpl(),
-      new MastoLogConfig(),
     );
 
     const url = config.resolvePath('/path/to/somewhere').toString();
@@ -35,27 +32,25 @@ describe('WebSocketConfig', () => {
   });
 
   it('creates websocket protocol with token when supported', () => {
-    const config = new MastoWebSocketConfig(
+    const config = new WebSocketConfigImpl(
       {
         url: 'wss://mastodon.social',
         accessToken: 'token',
       },
       new SerializerNativeImpl(),
-      new MastoLogConfig(),
     );
 
     expect(config.getProtocols()).toEqual(['token']);
   });
 
   it('creates websocket protocol without token when not supported', () => {
-    const config = new MastoWebSocketConfig(
+    const config = new WebSocketConfigImpl(
       {
         url: 'wss://mastodon.social',
         accessToken: 'token',
         useInsecureAccessToken: true,
       },
       new SerializerNativeImpl(),
-      new MastoLogConfig(),
     );
 
     expect(config.getProtocols()).toEqual([]);

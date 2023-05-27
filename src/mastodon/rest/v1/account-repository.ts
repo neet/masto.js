@@ -1,5 +1,4 @@
 import type { HttpMetaParams } from '../../../interfaces';
-import type { Paginator } from '../../../paginator';
 import type {
   Account,
   AccountCredentials,
@@ -13,6 +12,7 @@ import type {
   Status,
   Token,
 } from '../../entities/v1';
+import type { Paginator } from '../../paginator';
 import type { DefaultPaginationParams } from '../../repository';
 
 export interface CreateAccountParams {

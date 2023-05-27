@@ -4,7 +4,7 @@ import crypto from 'node:crypto';
 import { delay } from '../../src/utils';
 
 describe('events', () => {
-  it('streams update, status.update, and delete event', () => {
+  it.concurrent('streams update, status.update, and delete event', () => {
     return sessions.use(async (session) => {
       let id!: string;
       const tag = `tag_${crypto.randomBytes(4).toString('hex')}`;
@@ -42,7 +42,7 @@ describe('events', () => {
     });
   });
 
-  it('streams filters_changed event', () => {
+  it.concurrent('streams filters_changed event', () => {
     return sessions.use(async (session) => {
       try {
         const events = session.ws.subscribe('user');
@@ -66,7 +66,7 @@ describe('events', () => {
     });
   });
 
-  it('streams notification', () => {
+  it.concurrent('streams notification', () => {
     return sessions.use(2, async ([alice, bob]) => {
       let id!: string;
 
@@ -88,7 +88,7 @@ describe('events', () => {
     });
   });
 
-  it('streams conversation', () => {
+  it.concurrent('streams conversation', () => {
     return sessions.use(2, async ([alice, bob]) => {
       let id!: string;
 

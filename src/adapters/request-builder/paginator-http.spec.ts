@@ -1,10 +1,10 @@
 import { Headers } from '@mastojs/ponyfills';
 
-import { HttpMockImpl } from './__mocks__';
-import type { HttpRequestParams } from './interfaces';
-import { Paginator } from './paginator';
+import { HttpMockImpl } from '../../__mocks__';
+import type { HttpRequestParams } from '../../interfaces';
+import { PaginatorHttp } from './paginator-http';
 
-describe('Paginator', () => {
+describe('PaginatorHttp', () => {
   const http = new HttpMockImpl();
 
   beforeEach(() => {
@@ -16,7 +16,7 @@ describe('Paginator', () => {
   });
 
   it('sends a request', async () => {
-    const paginator = new Paginator(http, '/v1/api/timelines', {
+    const paginator = new PaginatorHttp(http, '/v1/api/timelines', {
       foo: 'bar',
     });
     await paginator.next();
@@ -28,7 +28,7 @@ describe('Paginator', () => {
   });
 
   it('sends a request with await', async () => {
-    const paginator = new Paginator(http, '/v1/api/timelines', {
+    const paginator = new PaginatorHttp(http, '/v1/api/timelines', {
       foo: 'bar',
     });
     await paginator;
@@ -45,7 +45,7 @@ describe('Paginator', () => {
         link: '<https://mastodon.social/api/v1/timelines/home?max_id=109382006402042919>; rel="next", <https://mastodon.social/api/v1/timelines/home?min_id=109382039876197520>; rel="prev"',
       }),
     });
-    const paginator = new Paginator(http, '/v1/api/timelines');
+    const paginator = new PaginatorHttp(http, '/v1/api/timelines');
     await paginator.next();
     await paginator.next();
     expect(http.request).toBeCalledWith({
@@ -62,7 +62,9 @@ describe('Paginator', () => {
       }),
       data: [],
     });
-    const paginator = new Paginator(http, '/v1/api/timelines', { minId: 1 });
+    const paginator = new PaginatorHttp(http, '/v1/api/timelines', {
+      minId: 1,
+    });
     await paginator.next();
     await paginator.next();
     expect(http.request).toBeCalledWith({
@@ -78,7 +80,7 @@ describe('Paginator', () => {
         link: '<https://mastodon.social/api/v1/timelines/home?min_id=109382039876197520>; rel="prev", <https://mastodon.social/api/v1/timelines/home?max_id=109382006402042919>; rel="next"',
       }),
     });
-    const paginator = new Paginator(http, '/v1/api/timelines');
+    const paginator = new PaginatorHttp(http, '/v1/api/timelines');
     await paginator.next();
     await paginator.next();
     expect(http.request).toBeCalledWith({
@@ -89,7 +91,7 @@ describe('Paginator', () => {
   });
 
   it('returns done when next link does not exist', async () => {
-    const paginator = new Paginator(http, '/v1/api/timelines');
+    const paginator = new PaginatorHttp(http, '/v1/api/timelines');
     await paginator.next();
     const result = await paginator.next();
     expect(result).toEqual({
@@ -98,7 +100,7 @@ describe('Paginator', () => {
   });
 
   it('is AsyncIterable', async () => {
-    const paginator = new Paginator(http, '/v1/api/timelines', {
+    const paginator = new PaginatorHttp(http, '/v1/api/timelines', {
       foo: 'bar',
     });
 
@@ -115,7 +117,7 @@ describe('Paginator', () => {
   });
 
   it('clones itself', async () => {
-    const paginator1 = new Paginator(http, '/some/api', { query: 'value' });
+    const paginator1 = new PaginatorHttp(http, '/some/api', { query: 'value' });
     const paginator2 = paginator1.clone();
 
     await paginator1.next();
@@ -137,7 +139,7 @@ describe('Paginator', () => {
   });
 
   it('terminates pagination by return', async () => {
-    const paginator = new Paginator(http, '/v1/api/timelines');
+    const paginator = new PaginatorHttp(http, '/v1/api/timelines');
     await paginator.return();
     const result = await paginator.next();
     expect(result).toEqual({
@@ -147,7 +149,7 @@ describe('Paginator', () => {
   });
 
   it('terminates pagination by throw', async () => {
-    const paginator = new Paginator(http, '/v1/api/timelines');
+    const paginator = new PaginatorHttp(http, '/v1/api/timelines');
     await expect(() => paginator.throw('some error')).rejects.toBe(
       'some error',
     );
@@ -164,7 +166,7 @@ describe('Paginator', () => {
         link: '<https://mastodon.social/api/v1/notifications?types[]=mention&max_id=123456>; rel="next", <https://mastodon.social/api/v1/notifications?types[]=mention>; rel="prev"',
       }),
     });
-    const paginator = new Paginator(http, '/v1/api/notifications', {
+    const paginator = new PaginatorHttp(http, '/v1/api/notifications', {
       types: ['mention'],
     });
     await paginator.next();
@@ -177,14 +179,14 @@ describe('Paginator', () => {
   });
 
   it('is thenable', () => {
-    const paginator = new Paginator(http, '/v1/api/timelines');
+    const paginator = new PaginatorHttp(http, '/v1/api/timelines');
     const onFulfilled = jest.fn();
     paginator.then(onFulfilled);
     expect(onFulfilled).toBeCalledTimes(0);
   });
 
   it('is thenable (error)', () => {
-    const paginator = new Paginator(http, '/v1/api/timelines');
+    const paginator = new PaginatorHttp(http, '/v1/api/timelines');
     http.request.mockImplementation(() => {
       throw new Error('mock error');
     });

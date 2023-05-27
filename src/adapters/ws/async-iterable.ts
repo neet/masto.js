@@ -1,7 +1,7 @@
 import { on } from 'events-to-async';
 import type WebSocket from 'isomorphic-ws';
 
-import { MastoUnexpectedError } from '../../errors';
+import { MastoUnexpectedError } from '../errors';
 
 export async function* toAsyncIterable(
   ws: WebSocket,

@@ -1,11 +1,21 @@
 import { snakeCase } from 'change-case';
 
-import type { Http, HttpMetaParams } from '../interfaces';
-import type { mastodon } from '../mastodon';
-import { Paginator } from '../paginator';
-import { noop } from '../utils/noop';
+import type { Http, HttpMetaParams } from '../../interfaces';
+import type { mastodon } from '../../mastodon';
+import { noop } from '../../utils/noop';
 import { inferEncoding } from './encoding';
+import { PaginatorHttp } from './paginator-http';
 import { waitForMediaAttachment } from './wait-for';
+
+export const createRequestBuilder = <T>(
+  http: Http,
+  context: string[] = [],
+): T => {
+  return new Proxy(noop, {
+    get: get(http, context),
+    apply: apply(http, context),
+  }) as T;
+};
 
 const get =
   <T>(http: Http, context: string[]) =>
@@ -15,7 +25,7 @@ const get =
       return;
     }
 
-    return createBuilder<T>(http, [...context, key]);
+    return createRequestBuilder<T>(http, [...context, key]);
   };
 
 const apply =
@@ -28,7 +38,7 @@ const apply =
     }
 
     if (action === 'select') {
-      return createBuilder(http, [...context, ...(args as string[])]);
+      return createRequestBuilder(http, [...context, ...(args as string[])]);
     }
 
     const data = args[0];
@@ -60,7 +70,7 @@ const apply =
         return http.delete(path, data, meta);
       }
       case 'list': {
-        return new Paginator(http, path, data);
+        return new PaginatorHttp(http, path, data);
       }
       default: {
         const customAction = [path, snakeCase(action)].join('/');
@@ -68,10 +78,3 @@ const apply =
       }
     }
   };
-
-export const createBuilder = <T>(http: Http, context: string[] = []): T => {
-  return new Proxy(noop, {
-    get: get(http, context),
-    apply: apply(http, context),
-  }) as T;
-};

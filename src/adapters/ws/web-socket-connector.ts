@@ -1,10 +1,10 @@
 import type WebSocket from 'ws';
 
-import type { MastoWebSocketConfig } from '../../config';
-import type { Logger } from '../../interfaces';
+import type { Logger, WebSocketConfig } from '../../interfaces';
 import { ExponentialBackoff } from '../../utils';
-import { waitForAsyncIterableToEnd } from '../../utils/wait-for-async-iterable-to-end';
-import { webSocket } from '../../utils/web-socket';
+import { toAsyncIterable } from './async-iterable';
+import { connect } from './connect';
+import { waitForAsyncIterableToEnd } from './wait-for-async-iterable-to-end';
 
 export type WebSocketConnection = {
   readonly messages: AsyncIterable<WebSocket.MessageEvent>;
@@ -20,7 +20,7 @@ export class WebSocketConnector {
   constructor(
     private readonly params: ConstructorParameters<typeof WebSocket>,
     private readonly logger: Logger,
-    private readonly config: MastoWebSocketConfig,
+    private readonly config: WebSocketConfig,
   ) {}
 
   async *getConnections(): AsyncGenerator<WebSocketConnection> {
@@ -28,9 +28,9 @@ export class WebSocketConnector {
 
     while (this.shouldRetry(backoff)) {
       try {
-        this.ws = await webSocket.promises.connect(this.params);
+        this.ws = await connect(this.params);
         this.logger.info('WebSocket connection established');
-        const messages = webSocket.toAsyncIterable(this.ws);
+        const messages = toAsyncIterable(this.ws);
 
         yield {
           messages,
@@ -66,6 +66,6 @@ export class WebSocketConnector {
       return false;
     }
 
-    return backoff.attempts < this.config.maxAttempts;
+    return backoff.attempts < this.config.getMaxAttempts();
   }
 }

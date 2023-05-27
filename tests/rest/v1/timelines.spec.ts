@@ -2,7 +2,7 @@ import type { mastodon } from '../../../src';
 import { waitForCondition } from '../../../test-utils/wait-for-condition';
 
 describe('timeline', () => {
-  it('returns home', () => {
+  it.concurrent('returns home', () => {
     return sessions.use(async (client) => {
       const status = await client.rest.v1.statuses.create({
         status: 'own post',
@@ -19,7 +19,7 @@ describe('timeline', () => {
     });
   });
 
-  it('returns public', () => {
+  it.concurrent('returns public', () => {
     return sessions.use(2, async ([alice, bob]) => {
       const status = await bob.rest.v1.statuses.create({
         status: 'public post',
@@ -29,7 +29,7 @@ describe('timeline', () => {
     });
   });
 
-  it('returns hashtag', () => {
+  it.concurrent('returns hashtag', () => {
     return sessions.use(async (client) => {
       const status = await client.rest.v1.statuses.create({
         status: '#mastodon',
@@ -41,7 +41,7 @@ describe('timeline', () => {
     });
   });
 
-  it('returns list', () => {
+  it.concurrent('returns list', () => {
     return sessions.use(async (client) => {
       const list = await client.rest.v1.lists.create({ title: 'List' });
       const statuses = await client.rest.v1.timelines.list

@@ -1,20 +1,21 @@
 /* eslint-disable unicorn/no-thenable */
 import parseLinkHeader from 'parse-link-header';
 
-import type { Http, HttpMetaParams } from './interfaces';
+import type { Http, HttpMetaParams } from '../../interfaces';
+import type { mastodon } from '../../mastodon';
 
 type Rel = 'next' | 'prev';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const mixins =
+const mixins: any =
   (globalThis as any).AsyncIterator == undefined
     ? class {}
     : (globalThis as any).AsyncIterator;
 /* eslint-enable @typescript-eslint/no-explicit-any */
 
-export class Paginator<Entity, Params = undefined>
+export class PaginatorHttp<Entity, Params = undefined>
   extends mixins
-  implements PromiseLike<Entity>
+  implements mastodon.Paginator<Entity, Params>
 {
   private readonly rel: Rel;
 
@@ -119,7 +120,12 @@ export class Paginator<Entity, Params = undefined>
     this.nextParams = undefined;
   }
 
-  clone(): Paginator<Entity, Params> {
-    return new Paginator(this.http, this.nextPath, this.nextParams, this.meta);
+  clone(): mastodon.Paginator<Entity, Params> {
+    return new PaginatorHttp(
+      this.http,
+      this.nextPath,
+      this.nextParams,
+      this.meta,
+    );
   }
 }

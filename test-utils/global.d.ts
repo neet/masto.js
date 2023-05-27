@@ -1,6 +1,6 @@
 /* eslint-disable no-var */
 import type { mastodon } from '../src';
-import type { SessionPoolImpl } from './pools';
+import type { SessionPoolImpl, TokenPool } from './pools';
 
 declare global {
   var admin: mastodon.rest.Client;

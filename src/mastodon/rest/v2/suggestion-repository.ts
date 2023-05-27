@@ -1,5 +1,5 @@
 import type { HttpMetaParams } from '../../../interfaces';
-import type { Paginator } from '../../../paginator';
+import type { Paginator } from '../../paginator';
 import type { v1 } from '../../mastodon';
 
 export interface ListSuggestionsParams {

@@ -2,7 +2,7 @@ import type { BodyInit } from '@mastojs/ponyfills';
 import { FormData } from '@mastojs/ponyfills';
 import { camelCase, snakeCase } from 'change-case';
 
-import { MastoDeserializeError } from '../../errors';
+import { MastoDeserializeError } from '../errors';
 import type { Encoding, Serializer } from '../../interfaces';
 import { flattenObject } from './form-data';
 import { railsQueryString } from './rails-query-string';

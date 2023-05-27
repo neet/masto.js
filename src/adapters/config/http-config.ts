@@ -1,9 +1,10 @@
 import type { AbortSignal, HeadersInit, RequestInit } from '@mastojs/ponyfills';
 import { Headers } from '@mastojs/ponyfills';
 
-import type { Serializer } from '../interfaces';
-import { mergeAbortSignals, mergeHeadersInit, Timeout } from '../utils';
-import type { MastoLogConfig } from './log-config';
+import type { HttpConfig, Serializer } from '../../interfaces';
+import { Timeout } from '../../utils';
+import { mergeAbortSignals } from './merge-abort-signals';
+import { mergeHeadersInit } from './merge-headers-init';
 
 const DEFAULT_TIMEOUT_MS = 1000 * 300;
 
@@ -14,14 +15,13 @@ export interface MastoHttpConfigProps {
   readonly defaultRequestInit?: Omit<RequestInit, 'body' | 'method'>;
 }
 
-export class MastoHttpConfig {
+export class HttpConfigImpl implements HttpConfig {
   constructor(
     private readonly props: MastoHttpConfigProps,
     private readonly serializer: Serializer,
-    readonly log: MastoLogConfig,
   ) {}
 
-  createHeader(override: HeadersInit = {}): Headers {
+  mergeHeadersWithDefaults(override: HeadersInit = {}): Headers {
     const headersInit = mergeHeadersInit([
       this.props.defaultRequestInit?.headers ?? {},
       override,
@@ -52,7 +52,9 @@ export class MastoHttpConfig {
     return new Timeout(this.props.timeout ?? DEFAULT_TIMEOUT_MS);
   }
 
-  createAbortSignal(signal?: AbortSignal | null): [AbortSignal, Timeout] {
+  mergeAbortSignalWithDefaults(
+    signal?: AbortSignal | null,
+  ): [AbortSignal, Timeout] {
     const timeout = this.createTimeout();
     const signals: AbortSignal[] = [timeout.signal];
 

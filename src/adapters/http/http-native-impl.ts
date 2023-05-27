@@ -1,28 +1,28 @@
 import type { RequestInit } from '@mastojs/ponyfills';
 import { fetch, Request, Response } from '@mastojs/ponyfills';
 
-import type { MastoHttpConfig } from '../../config';
-import type { MastoHttpErrorDetails } from '../../errors';
-import {
-  MastoHttpError,
-  MastoTimeoutError,
-  MastoUnexpectedError,
-} from '../../errors';
 import type {
   Http,
+  HttpConfig,
   HttpRequestParams,
   HttpRequestResult,
   Logger,
   Serializer,
 } from '../../interfaces';
 import type { Timeout } from '../../utils';
+import type { MastoHttpErrorDetails } from '../errors';
+import {
+  MastoHttpError,
+  MastoTimeoutError,
+  MastoUnexpectedError,
+} from '../errors';
 import { BaseHttp } from './base-http';
 import { getEncoding } from './get-encoding';
 
 export class HttpNativeImpl extends BaseHttp implements Http {
   constructor(
     private readonly serializer: Serializer,
-    private readonly config: MastoHttpConfig,
+    private readonly config: HttpConfig,
     private readonly logger?: Logger,
   ) {
     super();
@@ -67,8 +67,10 @@ export class HttpNativeImpl extends BaseHttp implements Http {
     const { method, path, search, encoding = 'json' } = params;
 
     const url = this.config.resolvePath(path, search);
-    const headers = this.config.createHeader(params.headers);
-    const [signal, timeout] = this.config.createAbortSignal(params?.signal);
+    const headers = this.config.mergeHeadersWithDefaults(params.headers);
+    const [signal, timeout] = this.config.mergeAbortSignalWithDefaults(
+      params?.signal,
+    );
     const body = this.serializer.serialize(encoding, params.body);
 
     const requestInit: RequestInit = {

@@ -1,5 +1,5 @@
 import type { HttpMetaParams } from '../../../interfaces';
-import type { Paginator } from '../../../paginator';
+import type { Paginator } from '../../paginator';
 import type { Account, List } from '../../entities/v1';
 import type { DefaultPaginationParams } from '../../repository';
 

@@ -1,18 +1,16 @@
-import type { Serializer } from '../interfaces';
-import type { MastoLogConfig } from './log-config';
+import type { Serializer, WebSocketConfig } from '../../interfaces';
 
-export type MastoWebSocketConfigProps = {
+export type WebSocketConfigProps = {
   readonly url: string;
   readonly retry?: boolean | number;
   readonly accessToken?: string;
   readonly useInsecureAccessToken?: boolean;
 };
 
-export class MastoWebSocketConfig {
+export class WebSocketConfigImpl implements WebSocketConfig {
   constructor(
-    private readonly props: MastoWebSocketConfigProps,
+    private readonly props: WebSocketConfigProps,
     private readonly serializer: Serializer,
-    readonly log: MastoLogConfig,
   ) {}
 
   getProtocols(protocols: readonly string[] = []): string[] {
@@ -36,7 +34,7 @@ export class MastoWebSocketConfig {
     return url;
   }
 
-  get maxAttempts(): number {
+  getMaxAttempts(): number {
     if (this.props.retry === true || this.props.retry == undefined) {
       return Number.POSITIVE_INFINITY;
     }
