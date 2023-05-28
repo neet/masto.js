@@ -22,23 +22,19 @@ export type SubscribeHashtagParams = {
   readonly tag: string;
 };
 
-export interface Client {
-  subscribe(
-    stream: 'list',
-    params: SubscribeListParams,
-  ): AsyncIterableIterator<Event>;
-  subscribe(
-    stream: 'hashtag' | 'hashtag:local',
-    params: SubscribeHashtagParams,
-  ): AsyncIterableIterator<Event>;
-  subscribe(stream: Stream): AsyncIterableIterator<Event>;
+export interface Subscription {
+  unsubscribe(): void;
+  values(): AsyncIterableIterator<Event>;
+  [Symbol.asyncIterator](): AsyncIterator<Event, undefined>;
+}
 
-  unsubscribe(stream: 'list', params: SubscribeListParams): void;
-  unsubscribe(
+export interface Client {
+  subscribe(stream: 'list', params: SubscribeListParams): Subscription;
+  subscribe(
     stream: 'hashtag' | 'hashtag:local',
     params: SubscribeHashtagParams,
-  ): void;
-  unsubscribe(stream: Stream): void;
+  ): Subscription;
+  subscribe(stream: Stream): Subscription;
 
   close(): void;
 }

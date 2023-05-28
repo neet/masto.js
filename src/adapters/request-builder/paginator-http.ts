@@ -6,15 +6,7 @@ import { type mastodon } from '../../mastodon';
 
 type Rel = 'next' | 'prev';
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-const mixins: any =
-  (globalThis as any).AsyncIterator == undefined
-    ? class {}
-    : (globalThis as any).AsyncIterator;
-/* eslint-enable @typescript-eslint/no-explicit-any */
-
 export class PaginatorHttp<Entity, Params = undefined>
-  extends mixins
   implements mastodon.Paginator<Entity, Params>
 {
   private readonly rel: Rel;
@@ -25,8 +17,6 @@ export class PaginatorHttp<Entity, Params = undefined>
     private nextParams?: Params | string,
     private readonly meta?: HttpMetaParams,
   ) {
-    super();
-
     const hasMinId =
       nextParams && typeof nextParams === 'object' && 'minId' in nextParams;
     this.rel = hasMinId ? 'prev' : 'next';
@@ -86,6 +76,10 @@ export class PaginatorHttp<Entity, Params = undefined>
     // we assume the first item won't be undefined
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     return this.next().then((value) => onfulfilled(value.value!), onrejected);
+  }
+
+  values(): AsyncIterableIterator<Entity> {
+    return this[Symbol.asyncIterator]();
   }
 
   [Symbol.asyncIterator](): AsyncIterator<

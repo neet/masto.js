@@ -8,25 +8,24 @@ describe('events', () => {
     return sessions.use(async (session) => {
       let id!: string;
       const tag = `tag_${crypto.randomBytes(4).toString('hex')}`;
+      const subscription = session.ws.subscribe('hashtag:local', { tag });
+
+      const dispatch = async () => {
+        const status = await session.rest.v1.statuses.create({
+          status: `test1 #${tag}`,
+        });
+        id = status.id;
+        await delay(1000);
+        await session.rest.v1.statuses.select(status.id).update({
+          status: `test2 #${tag}`,
+        });
+        await delay(1000);
+        await session.rest.v1.statuses.select(status.id).remove();
+      };
 
       try {
-        const events = session.ws.subscribe('hashtag:local', { tag });
-
-        const dispatch = async () => {
-          const status = await session.rest.v1.statuses.create({
-            status: `test1 #${tag}`,
-          });
-          id = status.id;
-          await delay(1000);
-          await session.rest.v1.statuses.select(status.id).update({
-            status: `test2 #${tag}`,
-          });
-          await delay(1000);
-          await session.rest.v1.statuses.select(status.id).remove();
-        };
-
         const [[e1, e2, e3]] = await Promise.all([
-          events.take(3).toArray(),
+          subscription.values().take(3).toArray(),
           dispatch(),
         ]);
 
@@ -37,31 +36,34 @@ describe('events', () => {
         assert(e3?.event === 'delete');
         expect(e3.payload).toBe(id);
       } finally {
-        session.ws.unsubscribe('public:local');
+        subscription.unsubscribe();
       }
     });
   });
 
   it.concurrent('streams filters_changed event', () => {
     return sessions.use(async (session) => {
+      const subscription = session.ws.subscribe('user');
+
+      const dispatch = async () => {
+        const filter = await session.rest.v2.filters.create({
+          title: 'test',
+          context: ['public'],
+          keywordsAttributes: [{ keyword: 'TypeScript' }],
+        });
+        await session.rest.v2.filters.select(filter.id).remove();
+      };
+
       try {
-        const events = session.ws.subscribe('user');
-
-        const dispatch = async () => {
-          const filter = await session.rest.v2.filters.create({
-            title: 'test',
-            context: ['public'],
-            keywordsAttributes: [{ keyword: 'TypeScript' }],
-          });
-          await session.rest.v2.filters.select(filter.id).remove();
-        };
-
-        const [[e]] = await Promise.all([events.take(1).toArray(), dispatch()]);
+        const [[e]] = await Promise.all([
+          subscription.values().take(1).toArray(),
+          dispatch(),
+        ]);
 
         assert(e?.event === 'filters_changed');
         expect(e.payload).toBeUndefined();
       } finally {
-        session.ws.unsubscribe('user');
+        subscription.unsubscribe();
       }
     });
   });
@@ -69,12 +71,11 @@ describe('events', () => {
   it.concurrent('streams notification', () => {
     return sessions.use(2, async ([alice, bob]) => {
       let id!: string;
+      const subscription = alice.ws.subscribe('user:notification');
 
       try {
-        const events = alice.ws.subscribe('user:notification');
-
         const [[e]] = await Promise.all([
-          events.take(1).toArray(),
+          subscription.values().take(1).toArray(),
           bob.rest.v1.accounts.select(alice.id).follow(),
         ]);
 
@@ -83,7 +84,7 @@ describe('events', () => {
         expect(e.payload.status?.id).toBe(id);
       } finally {
         await bob.rest.v1.accounts.select(alice.id).unfollow();
-        alice.ws.unsubscribe('user:notification');
+        subscription.unsubscribe();
       }
     });
   });
@@ -91,26 +92,28 @@ describe('events', () => {
   it.concurrent('streams conversation', () => {
     return sessions.use(2, async ([alice, bob]) => {
       let id!: string;
+      const subscription = alice.ws.subscribe('direct');
+
+      const dispatch = async () => {
+        const status = await bob.rest.v1.statuses.create({
+          status: `@${alice.acct} Hello there`,
+          visibility: 'direct',
+        });
+        id = status.id;
+        await delay(1000);
+      };
 
       try {
-        const events = alice.ws.subscribe('direct');
-
-        const dispatch = async () => {
-          const status = await bob.rest.v1.statuses.create({
-            status: `@${alice.acct} Hello there`,
-            visibility: 'direct',
-          });
-          id = status.id;
-          await delay(1000);
-        };
-
-        const [[e]] = await Promise.all([events.take(1).toArray(), dispatch()]);
+        const [[e]] = await Promise.all([
+          subscription.values().take(1).toArray(),
+          dispatch(),
+        ]);
 
         assert(e?.event === 'conversation');
         expect(e.payload.lastStatus?.id).toBe(id);
       } finally {
         await bob.rest.v1.statuses.select(id).remove();
-        alice.ws.unsubscribe('direct');
+        subscription.unsubscribe();
       }
     });
   });
