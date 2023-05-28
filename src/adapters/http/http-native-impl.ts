@@ -8,7 +8,6 @@ import {
   type Logger,
   type Serializer,
 } from '../../interfaces';
-import { type Timeout } from '../../utils';
 import {
   MastoHttpError,
   type MastoHttpErrorDetails,
@@ -28,7 +27,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
   }
 
   async request(params: HttpRequestParams): Promise<HttpRequestResult> {
-    const [request, timeout] = this.createRequest(params);
+    const request = this.createRequest(params);
 
     try {
       this.logger?.info(`↑ ${request.method} ${request.url}`);
@@ -57,19 +56,15 @@ export class HttpNativeImpl extends BaseHttp implements Http {
     } catch (error) {
       this.logger?.debug(`HTTP failed`, error);
       throw await this.createError(error);
-    } finally {
-      timeout.clear();
     }
   }
 
-  private createRequest(params: HttpRequestParams): [Request, Timeout] {
+  private createRequest(params: HttpRequestParams): Request {
     const { method, path, search, encoding = 'json' } = params;
 
     const url = this.config.resolvePath(path, search);
     const headers = this.config.mergeHeadersWithDefaults(params.headers);
-    const [signal, timeout] = this.config.mergeAbortSignalWithDefaults(
-      params?.signal,
-    );
+    const signal = this.config.mergeAbortSignalWithDefaults(params?.signal);
     const body = this.serializer.serialize(encoding, params.body);
 
     const requestInit: RequestInit = {
@@ -87,8 +82,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       headers.set('Content-Type', 'application/x-www-form-urlencoded');
     }
 
-    const request = new Request(url, requestInit);
-    return [request, timeout];
+    return new Request(url, requestInit);
   }
 
   private async createError(error: unknown): Promise<unknown> {

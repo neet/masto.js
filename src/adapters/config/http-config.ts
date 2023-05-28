@@ -6,7 +6,7 @@ import {
 } from '@mastojs/ponyfills';
 
 import { type HttpConfig, type Serializer } from '../../interfaces';
-import { Timeout } from '../../utils';
+import { createTimeoutSignal } from '../../utils';
 import { mergeAbortSignals } from './merge-abort-signals';
 import { mergeHeadersInit } from './merge-headers-init';
 
@@ -52,15 +52,11 @@ export class HttpConfigImpl implements HttpConfig {
     return url;
   }
 
-  private createTimeout(): Timeout {
-    return new Timeout(this.props.timeout ?? DEFAULT_TIMEOUT_MS);
-  }
-
-  mergeAbortSignalWithDefaults(
-    signal?: AbortSignal | null,
-  ): [AbortSignal, Timeout] {
-    const timeout = this.createTimeout();
-    const signals: AbortSignal[] = [timeout.signal];
+  mergeAbortSignalWithDefaults(signal?: AbortSignal | null): AbortSignal {
+    const timeout = createTimeoutSignal(
+      this.props.timeout ?? DEFAULT_TIMEOUT_MS,
+    );
+    const signals: AbortSignal[] = [timeout];
 
     if (this.props.defaultRequestInit?.signal) {
       // FIXME: `abort-controller` and `node-fetch` mismatches
@@ -71,6 +67,6 @@ export class HttpConfigImpl implements HttpConfig {
       signals.push(signal);
     }
 
-    return [mergeAbortSignals(signals), timeout];
+    return mergeAbortSignals(signals);
   }
 }

@@ -1,6 +1,6 @@
 import { type Http } from '../../interfaces';
 import { type mastodon } from '../../mastodon';
-import { delay, Timeout } from '../../utils';
+import { createTimeoutSignal, delay } from '../../utils';
 import { MastoHttpError, MastoTimeoutError } from '../errors';
 
 export const waitForMediaAttachment = async (
@@ -9,10 +9,10 @@ export const waitForMediaAttachment = async (
   timeoutMs = 60 * 1000,
 ): Promise<mastodon.v1.MediaAttachment> => {
   let media: mastodon.v1.MediaAttachment | undefined;
-  const timeout = new Timeout(timeoutMs);
+  const timeout = createTimeoutSignal(timeoutMs);
 
   while (media == undefined) {
-    if (timeout.signal.aborted) {
+    if (timeout.aborted) {
       throw new MastoTimeoutError(
         'The media encoding has been timed out in your instance.',
       );
@@ -27,7 +27,6 @@ export const waitForMediaAttachment = async (
 
       if (processing.url != undefined) {
         media = processing;
-        timeout.clear();
       }
     } catch (error) {
       if (error instanceof MastoHttpError && error.statusCode === 404) {
