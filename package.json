@@ -51,7 +51,7 @@
     "conventional-changelog-conventionalcommits": "^5.0.0",
     "cspell": "^6.31.1",
     "eslint": "^8.39.0",
-    "eslint-config-prettier": "^8.6.0",
+    "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
