@@ -33,7 +33,7 @@
     "eventemitter3": "^5.0.0",
     "isomorphic-ws": "^5.0.0",
     "qs": "^6.11.0",
-    "semver": "^7.3.7",
+    "semver": "^7.5.2",
     "ws": "^8.13.0"
   },
   "devDependencies": {
