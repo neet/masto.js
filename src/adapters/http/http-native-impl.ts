@@ -1,5 +1,3 @@
-import { fetch, Request, type RequestInit, Response } from '@mastojs/ponyfills';
-
 import {
   type Http,
   type HttpConfig,
@@ -8,7 +6,6 @@ import {
   type Logger,
   type Serializer,
 } from '../../interfaces';
-import { type Timeout } from '../../utils';
 import {
   MastoHttpError,
   type MastoHttpErrorDetails,
@@ -28,7 +25,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
   }
 
   async request(params: HttpRequestParams): Promise<HttpRequestResult> {
-    const [request, timeout] = this.createRequest(params);
+    const request = this.createRequest(params);
 
     try {
       this.logger?.info(`↑ ${request.method} ${request.url}`);
@@ -57,38 +54,37 @@ export class HttpNativeImpl extends BaseHttp implements Http {
     } catch (error) {
       this.logger?.debug(`HTTP failed`, error);
       throw await this.createError(error);
-    } finally {
-      timeout.clear();
     }
   }
 
-  private createRequest(params: HttpRequestParams): [Request, Timeout] {
-    const { method, path, search, encoding = 'json' } = params;
+  private createRequest(params: HttpRequestParams): Request {
+    const {
+      method,
+      path,
+      search,
+      encoding = 'json',
+      requestInit = {},
+    } = params;
 
     const url = this.config.resolvePath(path, search);
-    const headers = this.config.mergeHeadersWithDefaults(params.headers);
-    const [signal, timeout] = this.config.mergeAbortSignalWithDefaults(
-      params?.signal,
-    );
     const body = this.serializer.serialize(encoding, params.body);
+    const init = this.config.mergeRequestInitWithDefaults(requestInit);
 
-    const requestInit: RequestInit = {
+    const request = new Request(url, {
       method,
-      headers,
       body,
-      signal,
-    };
+      ...init,
+    });
 
     if (typeof body === 'string' && encoding === 'json') {
-      headers.set('Content-Type', 'application/json');
+      request.headers.set('Content-Type', 'application/json');
     }
 
     if (typeof body === 'string' && encoding === 'form-url-encoded') {
-      headers.set('Content-Type', 'application/x-www-form-urlencoded');
+      request.headers.set('Content-Type', 'application/x-www-form-urlencoded');
     }
 
-    const request = new Request(url, requestInit);
-    return [request, timeout];
+    return request;
   }
 
   private async createError(error: unknown): Promise<unknown> {
@@ -107,7 +103,6 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       );
     }
 
-    // TODO: Use abort reason
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     if (error != undefined && (error as any).name === 'AbortError') {
       return new MastoTimeoutError(`Request timed out`, { cause: error });

@@ -1,6 +1,3 @@
-import { Headers, type HeadersInit } from '@mastojs/ponyfills';
-
-/* eslint-disable unicorn/no-array-for-each */
 export const mergeHeadersInit = ([
   head,
   ...tail
@@ -8,9 +5,9 @@ export const mergeHeadersInit = ([
   const headers = new Headers(head);
 
   for (const entry of tail) {
-    new Headers(entry).forEach((value, key) => {
+    for (const [key, value] of new Headers(entry).entries()) {
       headers.set(key, value);
-    });
+    }
   }
 
   return headers;

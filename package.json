@@ -2,7 +2,7 @@
   "name": "masto",
   "description": "Mastodon API client for JavaScript, TypeScript, Node.js, browsers",
   "private": false,
-  "version": "6.0.0-alpha.2",
+  "version": "6.0.0-alpha.3",
   "author": "Ryo Igarashi <n33t5hin@gmail.com>",
   "license": "MIT",
   "type": "module",
@@ -29,12 +29,12 @@
     "purge:cache": "rm -rf ./node_modules/.cache/masto"
   },
   "dependencies": {
-    "@mastojs/ponyfills": "^1.0.4",
     "change-case": "^4.1.2",
     "events-to-async": "^2.0.0",
     "isomorphic-ws": "^5.0.0",
     "parse-link-header": "^2.0.0",
     "ts-custom-error": "^3.3.1",
+    "undici": "^5.22.1",
     "ws": "^8.13.0"
   },
   "devDependencies": {

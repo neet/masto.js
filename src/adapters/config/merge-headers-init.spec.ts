@@ -1,5 +1,3 @@
-import { Headers } from '@mastojs/ponyfills';
-
 import { mergeHeadersInit } from './merge-headers-init';
 
 describe('mergeHeadersInit', () => {

@@ -16,7 +16,7 @@ export class TokenRepositoryFs implements TokenRepository {
   async getAll(): Promise<Entry[]> {
     const backoff = new ExponentialBackoff(2, 10);
 
-    while (backoff.attempts < 10) {
+    while (backoff.getAttempts() < 10) {
       try {
         const file = await fs.readFile(this.path, 'utf8');
         const entries = JSON.parse(file);
