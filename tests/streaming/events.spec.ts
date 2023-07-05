@@ -1,7 +1,7 @@
 import assert from 'node:assert';
 import crypto from 'node:crypto';
 
-import { delay } from '../../src/utils';
+import { sleep } from '../../src/utils';
 
 describe('events', () => {
   it.concurrent('streams update, status.update, and delete event', () => {
@@ -15,11 +15,11 @@ describe('events', () => {
           status: `test1 #${tag}`,
         });
         id = status.id;
-        await delay(1000);
+        await sleep(1000);
         await session.rest.v1.statuses.select(status.id).update({
           status: `test2 #${tag}`,
         });
-        await delay(1000);
+        await sleep(1000);
         await session.rest.v1.statuses.select(status.id).remove();
       };
 
@@ -100,7 +100,7 @@ describe('events', () => {
           visibility: 'direct',
         });
         id = status.id;
-        await delay(1000);
+        await sleep(1000);
       };
 
       try {

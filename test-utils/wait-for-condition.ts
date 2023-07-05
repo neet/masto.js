@@ -1,4 +1,4 @@
-import { delay } from '../src/utils';
+import { sleep } from '../src/utils';
 
 export const waitForCondition = async (
   condition: () => Promise<boolean>,
@@ -13,7 +13,7 @@ export const waitForCondition = async (
     }
 
     attempts += 1;
-    await delay(1000);
+    await sleep(1000);
   }
 
   throw new Error('waitForCondition: timeout');

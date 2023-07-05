@@ -1,5 +1,3 @@
-import { type BodyInit } from '@mastojs/ponyfills';
-
 export type Encoding =
   | 'none'
   | 'json'

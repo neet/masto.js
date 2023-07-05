@@ -1,19 +1,9 @@
-import { type AbortSignal, type Headers } from '@mastojs/ponyfills';
-
 import { type Encoding } from '../interfaces';
 
 export type HttpMetaParams<T extends Encoding = 'none'> = {
-  readonly headers?: Headers;
   readonly encoding?: T;
-  readonly signal?: AbortSignal;
-  readonly timeout?: number;
+  readonly requestInit?: Omit<RequestInit, 'body' | 'method'>;
 };
-
-export type HttpMethod = <T>(
-  path: string,
-  data?: unknown,
-  meta?: HttpMetaParams<Encoding>,
-) => Promise<T>;
 
 export type HttpRequestParams = HttpMetaParams<Encoding> & {
   readonly method: string;
@@ -26,6 +16,12 @@ export type HttpRequestResult = {
   headers: Headers;
   data: unknown;
 };
+
+export type HttpMethod = <T>(
+  path: string,
+  data?: unknown,
+  meta?: HttpMetaParams<Encoding>,
+) => Promise<T>;
 
 export interface Http {
   readonly request: (params: HttpRequestParams) => Promise<HttpRequestResult>;

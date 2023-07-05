@@ -7,13 +7,28 @@ describe('Config', () => {
       {
         url: 'https://mastodon.social',
         accessToken: 'token',
+        requestInit: {
+          headers: {
+            'X-Header-Specified-In-Config': 'true',
+            'User-Agent': 'user agent specified in config',
+          },
+        },
       },
       new SerializerNativeImpl(),
     );
-    const headers = config.mergeHeadersWithDefaults({ extra: 'header' });
 
-    expect(headers.get('Authorization')).toBe('Bearer token');
-    expect(headers.get('extra')).toBe('header');
+    const requestInit = config.mergeRequestInitWithDefaults({
+      headers: { 'User-Agent': 'user agent per request' },
+      keepalive: true,
+      redirect: 'follow',
+    });
+    const request = new Request('https://example.com', requestInit);
+
+    expect(request.keepalive).toBe(true);
+    expect(request.redirect).toBe('follow');
+    expect(request.headers?.get('Authorization')).toBe('Bearer token');
+    expect(request.headers?.get('X-Header-Specified-In-Config')).toBe('true');
+    expect(request.headers?.get('User-Agent')).toBe('user agent per request');
   });
 
   it('overrides content-type header', () => {
@@ -25,12 +40,40 @@ describe('Config', () => {
       new SerializerNativeImpl(),
     );
 
-    const headers = config.mergeHeadersWithDefaults({
-      'Content-Type': 'multipart/form-data',
+    const requestInit = config.mergeRequestInitWithDefaults({
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
     });
+    const request = new Request('https://example.com', requestInit);
 
-    expect(headers.get('Authorization')).toBe('Bearer token');
-    expect(headers.get('Content-Type')).toBe('multipart/form-data');
+    expect(request.headers.get('Authorization')).toBe('Bearer token');
+    expect(request.headers.get('Content-Type')).toBe('multipart/form-data');
+  });
+
+  it('merges multiple signals', () => {
+    const abc1 = new AbortController();
+    const abc2 = new AbortController();
+
+    const config = new HttpConfigImpl(
+      {
+        url: 'https://mastodon.social',
+        accessToken: 'token',
+        requestInit: {
+          signal: abc1.signal,
+        },
+      },
+      new SerializerNativeImpl(),
+    );
+
+    const requestInit = config.mergeRequestInitWithDefaults({
+      signal: abc2.signal,
+    });
+    const request = new Request('https://example.com', requestInit);
+
+    expect(request.signal.aborted).toBe(false);
+    [abc1, abc2][Math.floor(Math.random() * 2)].abort();
+    expect(request.signal.aborted).toBe(true);
   });
 
   it('resolves HTTP path', () => {

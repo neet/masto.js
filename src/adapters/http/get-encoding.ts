@@ -1,5 +1,3 @@
-import { type Headers } from '@mastojs/ponyfills';
-
 import { type Encoding } from '../../interfaces';
 
 export const getEncoding = (headers: Headers): Encoding | undefined => {

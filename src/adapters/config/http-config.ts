@@ -1,12 +1,4 @@
-import {
-  type AbortSignal,
-  Headers,
-  type HeadersInit,
-  type RequestInit,
-} from '@mastojs/ponyfills';
-
 import { type HttpConfig, type Serializer } from '../../interfaces';
-import { Timeout } from '../../utils';
 import { mergeAbortSignals } from './merge-abort-signals';
 import { mergeHeadersInit } from './merge-headers-init';
 
@@ -16,7 +8,7 @@ export interface MastoHttpConfigProps {
   readonly url: string;
   readonly accessToken?: string;
   readonly timeout?: number;
-  readonly defaultRequestInit?: Omit<RequestInit, 'body' | 'method'>;
+  readonly requestInit?: Omit<RequestInit, 'body' | 'method'>;
 }
 
 export class HttpConfigImpl implements HttpConfig {
@@ -25,9 +17,39 @@ export class HttpConfigImpl implements HttpConfig {
     private readonly serializer: Serializer,
   ) {}
 
-  mergeHeadersWithDefaults(override: HeadersInit = {}): Headers {
+  mergeRequestInitWithDefaults(override: RequestInit = {}): RequestInit {
+    const requestInit: RequestInit = { ...this.props.requestInit };
+
+    // Copy
+    {
+      const { headers, signal, ...rest } = override;
+      Object.assign(requestInit, rest);
+      requestInit.headers = this.mergeHeadersWithDefaults(headers);
+      requestInit.signal = this.mergeAbortSignalWithDefaults(signal);
+    }
+
+    return requestInit;
+  }
+
+  resolvePath(path: string, params?: string | Record<string, unknown>): URL {
+    const url = new URL(path, this.props.url);
+
+    if (typeof params === 'string') {
+      url.search = params;
+    } else if (params != undefined) {
+      url.search = this.serializer.serialize('querystring', params);
+    }
+
+    return url;
+  }
+
+  private createTimeout(): AbortSignal {
+    return AbortSignal.timeout(this.props.timeout ?? DEFAULT_TIMEOUT_MS);
+  }
+
+  private mergeHeadersWithDefaults(override: HeadersInit = {}): Headers {
     const headersInit = mergeHeadersInit([
-      this.props.defaultRequestInit?.headers ?? {},
+      this.props.requestInit?.headers ?? {},
       override,
     ]);
     const headers: HeadersInit = new Headers(headersInit);
@@ -39,38 +61,20 @@ export class HttpConfigImpl implements HttpConfig {
     return new Headers(headers);
   }
 
-  resolvePath(path: string, params?: string | Record<string, unknown>): URL {
-    const url = new URL(path, this.props.url);
-
-    if (params != undefined) {
-      url.search =
-        typeof params === 'string'
-          ? params
-          : this.serializer.serialize('querystring', params);
-    }
-
-    return url;
-  }
-
-  private createTimeout(): Timeout {
-    return new Timeout(this.props.timeout ?? DEFAULT_TIMEOUT_MS);
-  }
-
-  mergeAbortSignalWithDefaults(
+  private mergeAbortSignalWithDefaults(
     signal?: AbortSignal | null,
-  ): [AbortSignal, Timeout] {
+  ): AbortSignal {
     const timeout = this.createTimeout();
-    const signals: AbortSignal[] = [timeout.signal];
+    const signals: AbortSignal[] = [timeout];
 
-    if (this.props.defaultRequestInit?.signal) {
-      // FIXME: `abort-controller` and `node-fetch` mismatches
-      signals.push(this.props.defaultRequestInit.signal as AbortSignal);
+    if (this.props.requestInit?.signal) {
+      signals.push(this.props.requestInit.signal);
     }
 
     if (signal != undefined) {
       signals.push(signal);
     }
 
-    return [mergeAbortSignals(signals), timeout];
+    return mergeAbortSignals(signals);
   }
 }
