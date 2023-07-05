@@ -1,7 +1,5 @@
 import crypto from 'node:crypto';
 
-import { Headers } from '@mastojs/ponyfills';
-
 describe('status', () => {
   it('creates, updates, and removes a status', () => {
     return sessions.use(async (client) => {
@@ -45,11 +43,19 @@ describe('status', () => {
 
       const s1 = await client.rest.v1.statuses.create(
         { status: 'hello' },
-        { headers: new Headers({ 'Idempotency-Key': idempotencyKey }) },
+        {
+          requestInit: {
+            headers: new Headers({ 'Idempotency-Key': idempotencyKey }),
+          },
+        },
       );
       const s2 = await client.rest.v1.statuses.create(
         { status: 'hello' },
-        { headers: new Headers({ 'Idempotency-Key': idempotencyKey }) },
+        {
+          requestInit: {
+            headers: new Headers({ 'Idempotency-Key': idempotencyKey }),
+          },
+        },
       );
 
       expect(s1.id).toBe(s2.id);

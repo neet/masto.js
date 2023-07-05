@@ -1,4 +1,3 @@
-export * from './delay';
-export * from './timeout';
+export * from './sleep';
 export * from './noop';
 export * from './exponential-backoff';

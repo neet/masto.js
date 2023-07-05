@@ -18,7 +18,7 @@ export class ExclusiveLock {
   private lock = async (): Promise<() => Promise<void>> => {
     const backoff = new ExponentialBackoff(2, 10);
 
-    while (backoff.attempts < 100) {
+    while (backoff.getAttempts() < 100) {
       try {
         return await lockfile.lock(this.path);
       } catch {

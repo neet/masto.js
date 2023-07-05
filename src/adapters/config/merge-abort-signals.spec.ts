@@ -1,5 +1,3 @@
-import { AbortController } from '@mastojs/ponyfills';
-
 import { mergeAbortSignals } from './merge-abort-signals';
 
 const getRandomInt = (): number => Math.floor(Math.random() * 10);

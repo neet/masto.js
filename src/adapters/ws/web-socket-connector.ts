@@ -45,7 +45,7 @@ export class WebSocketConnector {
       } catch (error) {
         this.logger.warn('WebSocket error occurred', error);
       } finally {
-        this.logger.info(`Reconnecting in ${backoff.timeout}ms...`);
+        this.logger.info(`Reconnecting in ${backoff.getTimeout()}ms...`);
         await backoff.sleep();
       }
     }
@@ -66,6 +66,6 @@ export class WebSocketConnector {
       return false;
     }
 
-    return backoff.attempts < this.config.getMaxAttempts();
+    return backoff.getAttempts() < this.config.getMaxAttempts();
   }
 }

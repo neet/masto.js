@@ -1,5 +1,3 @@
-import { Headers } from '@mastojs/ponyfills';
-
 import { getEncoding } from './get-encoding';
 
 test.each([
