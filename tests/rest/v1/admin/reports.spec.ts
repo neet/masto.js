@@ -10,19 +10,19 @@ it('handles reports', async () => {
     let report = reports.find((r) => r.targetAccount.id === session.id);
 
     assert(report != undefined);
-    report = await admin.v1.admin.reports.select(report.id).fetch();
+    report = await admin.v1.admin.reports.$select(report.id).fetch();
     expect(report.targetAccount.id).toBe(session.id);
 
-    report = await admin.v1.admin.reports.select(report.id).assignToSelf();
+    report = await admin.v1.admin.reports.$select(report.id).assignToSelf();
     expect(report.assignedAccount?.id).toBe(self.id);
 
-    report = await admin.v1.admin.reports.select(report.id).unassign();
+    report = await admin.v1.admin.reports.$select(report.id).unassign();
     expect(report.assignedAccount).toBeNull();
 
-    report = await admin.v1.admin.reports.select(report.id).resolve();
+    report = await admin.v1.admin.reports.$select(report.id).resolve();
     expect(report.actionTaken).toBe(true);
 
-    report = await admin.v1.admin.reports.select(report.id).reopen();
+    report = await admin.v1.admin.reports.$select(report.id).reopen();
     expect(report.actionTaken).toBe(false);
   });
 });

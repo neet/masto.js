@@ -6,13 +6,15 @@ it('handle email domain block', async () => {
 
   try {
     emailDomainBlock = await admin.v1.admin.emailDomainBlocks
-      .select(emailDomainBlock.id)
+      .$select(emailDomainBlock.id)
       .fetch();
     expect(emailDomainBlock.domain).toMatch(/example.domain.to.block.com/);
 
     const list = await admin.v1.admin.emailDomainBlocks.list();
     expect(list).toContainId(emailDomainBlock.id);
   } finally {
-    await admin.v1.admin.emailDomainBlocks.select(emailDomainBlock.id).remove();
+    await admin.v1.admin.emailDomainBlocks
+      .$select(emailDomainBlock.id)
+      .remove();
   }
 });

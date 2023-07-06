@@ -68,7 +68,7 @@ export interface AccountRepository {
     meta?: HttpMetaParams,
   ): Paginator<Admin.Account[], ListAccountsParams>;
 
-  select(id: string): {
+  $select(id: string): {
     /**
      * View admin-level information about the given account.
      * @return AdminAccount

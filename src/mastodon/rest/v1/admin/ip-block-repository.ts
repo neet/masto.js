@@ -42,7 +42,7 @@ export interface IpBlockRepository {
     meta?: HttpMetaParams,
   ): Paginator<Admin.IpBlock[], ListIpBlocksParams>;
 
-  select(id: string): {
+  $select(id: string): {
     /**
      * Show information about a single IP block.
      * @return IpBlock

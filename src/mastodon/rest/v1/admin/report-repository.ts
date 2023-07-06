@@ -21,7 +21,7 @@ export interface ReportRepository {
     meta?: HttpMetaParams,
   ): Paginator<Admin.Report[], ListReportsParams>;
 
-  select(id: string): {
+  $select(id: string): {
     /**
      * View information about the report with the given ID.
      * @return AdminReport

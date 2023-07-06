@@ -12,14 +12,14 @@ describe('scheduled-statuses', () => {
       expect(schedule.scheduledAt).toBe(scheduledAt);
 
       schedule = await client.rest.v1.scheduledStatuses
-        .select(schedule.id)
+        .$select(schedule.id)
         .fetch();
       expect(schedule.params.text).toBe('Scheduled status');
       expect(schedule.scheduledAt).toBe(scheduledAt);
 
       const dayAfterTomorrow = new Date(Date.now() + 1000 * 60 * 60 * 24 * 2);
       schedule = await client.rest.v1.scheduledStatuses
-        .select(schedule.id)
+        .$select(schedule.id)
         .update({
           scheduledAt: dayAfterTomorrow.toISOString(),
         });
@@ -29,7 +29,7 @@ describe('scheduled-statuses', () => {
       const scheduledStatuses = await client.rest.v1.scheduledStatuses.list();
       expect(scheduledStatuses[0].id).toBe(schedule.id);
 
-      await client.rest.v1.scheduledStatuses.select(schedule.id).remove();
+      await client.rest.v1.scheduledStatuses.$select(schedule.id).remove();
     });
   });
 });

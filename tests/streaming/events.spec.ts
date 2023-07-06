@@ -16,11 +16,11 @@ describe('events', () => {
         });
         id = status.id;
         await sleep(1000);
-        await session.rest.v1.statuses.select(status.id).update({
+        await session.rest.v1.statuses.$select(status.id).update({
           status: `test2 #${tag}`,
         });
         await sleep(1000);
-        await session.rest.v1.statuses.select(status.id).remove();
+        await session.rest.v1.statuses.$select(status.id).remove();
       };
 
       try {
@@ -51,7 +51,7 @@ describe('events', () => {
           context: ['public'],
           keywordsAttributes: [{ keyword: 'TypeScript' }],
         });
-        await session.rest.v2.filters.select(filter.id).remove();
+        await session.rest.v2.filters.$select(filter.id).remove();
       };
 
       try {
@@ -76,14 +76,14 @@ describe('events', () => {
       try {
         const [[e]] = await Promise.all([
           subscription.values().take(1).toArray(),
-          bob.rest.v1.accounts.select(alice.id).follow(),
+          bob.rest.v1.accounts.$select(alice.id).follow(),
         ]);
 
         assert(e?.event === 'notification');
         expect(e.payload.account?.id).toBe(bob.id);
         expect(e.payload.status?.id).toBe(id);
       } finally {
-        await bob.rest.v1.accounts.select(alice.id).unfollow();
+        await bob.rest.v1.accounts.$select(alice.id).unfollow();
         subscription.unsubscribe();
       }
     });
@@ -112,7 +112,7 @@ describe('events', () => {
         assert(e?.event === 'conversation');
         expect(e.payload.lastStatus?.id).toBe(id);
       } finally {
-        await bob.rest.v1.statuses.select(id).remove();
+        await bob.rest.v1.statuses.$select(id).remove();
         subscription.unsubscribe();
       }
     });

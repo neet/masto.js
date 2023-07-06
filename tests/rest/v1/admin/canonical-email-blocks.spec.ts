@@ -5,7 +5,7 @@ describe('canonical-email-blocks', () => {
     });
     try {
       canonicalEmailBlock = await admin.v1.admin.canonicalEmailBlocks
-        .select(canonicalEmailBlock.id)
+        .$select(canonicalEmailBlock.id)
         .fetch();
       expect(canonicalEmailBlock.canonicalEmailHash).toEqual(
         expect.any(String),
@@ -21,7 +21,7 @@ describe('canonical-email-blocks', () => {
       expect(canonicalEmailBlocks).toContainId(canonicalEmailBlock.id);
     } finally {
       await admin.v1.admin.canonicalEmailBlocks
-        .select(canonicalEmailBlock.id)
+        .$select(canonicalEmailBlock.id)
         .remove();
     }
   });

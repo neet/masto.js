@@ -79,7 +79,7 @@ export interface FilterRepository {
     meta?: HttpMetaParams<'json'>,
   ): Promise<Filter>;
 
-  select(id: string): {
+  $select(id: string): {
     /**
      * Obtain a single filter group owned by the current user.
      * @return Filter
@@ -148,7 +148,7 @@ export interface FilterRepository {
   };
 
   keywords: {
-    select(id: string): {
+    $select(id: string): {
       /**
        * Get one filter keyword by the given id.
        * @returns FilterKeyword
@@ -177,7 +177,7 @@ export interface FilterRepository {
   };
 
   statuses: {
-    select(id: string): {
+    $select(id: string): {
       /**
        * Obtain a single status filter.
        * @returns FilterStatus

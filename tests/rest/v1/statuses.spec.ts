@@ -9,20 +9,20 @@ describe('status', () => {
         visibility: 'direct',
       });
 
-      let status = await client.rest.v1.statuses.select(id).fetch();
+      let status = await client.rest.v1.statuses.$select(id).fetch();
       expect(status.content).toBe(`<p>${random}</p>`);
 
-      const source = await client.rest.v1.statuses.select(id).source.fetch();
+      const source = await client.rest.v1.statuses.$select(id).source.fetch();
       expect(source.text).toBe(random);
 
       const random2 = Math.random().toString();
       status = await client.rest.v1.statuses
-        .select(id)
+        .$select(id)
         .update({ status: random2 });
       expect(status.content).toBe(`<p>${random2}</p>`);
 
       const history = await client.rest.v1.statuses
-        .select(status.id)
+        .$select(status.id)
         .history.list();
       expect(history[0]).toEqual(
         expect.objectContaining({
@@ -30,9 +30,9 @@ describe('status', () => {
         }),
       );
 
-      await client.rest.v1.statuses.select(id).remove();
+      await client.rest.v1.statuses.$select(id).remove();
       await expect(
-        client.rest.v1.statuses.select(id).fetch(),
+        client.rest.v1.statuses.$select(id).fetch(),
       ).rejects.toThrow();
     });
   });
@@ -78,14 +78,14 @@ describe('status', () => {
 
       try {
         const context = await client.rest.v1.statuses
-          .select(s2.id)
+          .$select(s2.id)
           .context.fetch();
         expect(context.ancestors).toContainId(s1.id);
         expect(context.descendants).toContainId(s3.id);
       } finally {
-        await client.rest.v1.statuses.select(s1.id).remove();
-        await client.rest.v1.statuses.select(s2.id).remove();
-        await client.rest.v1.statuses.select(s3.id).remove();
+        await client.rest.v1.statuses.$select(s1.id).remove();
+        await client.rest.v1.statuses.$select(s2.id).remove();
+        await client.rest.v1.statuses.$select(s3.id).remove();
       }
     });
   });
@@ -103,11 +103,11 @@ describe('status', () => {
 
       try {
         const translation = await session.rest.v1.statuses
-          .select(id)
+          .$select(id)
           .translate({ lang: 'ja' });
         expect(translation.content).toEqual(expect.any(String));
       } finally {
-        await session.rest.v1.statuses.select(id).remove();
+        await session.rest.v1.statuses.$select(id).remove();
       }
     });
   });
@@ -119,18 +119,18 @@ describe('status', () => {
       });
 
       try {
-        let status = await bob.rest.v1.statuses.select(statusId).favourite();
+        let status = await bob.rest.v1.statuses.$select(statusId).favourite();
         expect(status.favourited).toBe(true);
 
         const favourites = await bob.rest.v1.statuses
-          .select(statusId)
+          .$select(statusId)
           .favouritedBy.list();
         expect(favourites).toContainId(bob.id);
 
-        status = await bob.rest.v1.statuses.select(statusId).unfavourite();
+        status = await bob.rest.v1.statuses.$select(statusId).unfavourite();
         expect(status.favourited).toBe(false);
       } finally {
-        await alice.rest.v1.statuses.select(statusId).remove();
+        await alice.rest.v1.statuses.$select(statusId).remove();
       }
     });
   });
@@ -143,13 +143,13 @@ describe('status', () => {
       });
 
       try {
-        status = await client.rest.v1.statuses.select(status.id).mute();
+        status = await client.rest.v1.statuses.$select(status.id).mute();
         expect(status.muted).toBe(true);
 
-        status = await client.rest.v1.statuses.select(status.id).unmute();
+        status = await client.rest.v1.statuses.$select(status.id).unmute();
         expect(status.muted).toBe(false);
       } finally {
-        await client.rest.v1.statuses.select(status.id).remove();
+        await client.rest.v1.statuses.$select(status.id).remove();
       }
     });
   });
@@ -161,18 +161,18 @@ describe('status', () => {
       });
 
       try {
-        let status = await bob.rest.v1.statuses.select(statusId).reblog();
+        let status = await bob.rest.v1.statuses.$select(statusId).reblog();
         expect(status.reblogged).toBe(true);
 
         const reblogs = await alice.rest.v1.statuses
-          .select(statusId)
+          .$select(statusId)
           .rebloggedBy.list();
         expect(reblogs).toContainId(bob.id);
 
-        status = await bob.rest.v1.statuses.select(statusId).unreblog();
+        status = await bob.rest.v1.statuses.$select(statusId).unreblog();
         expect(status.reblogged).toBe(false);
       } finally {
-        await alice.rest.v1.statuses.select(statusId).remove();
+        await alice.rest.v1.statuses.$select(statusId).remove();
       }
     });
   });
@@ -184,13 +184,13 @@ describe('status', () => {
         visibility: 'private',
       });
 
-      status = await client.rest.v1.statuses.select(status.id).pin();
+      status = await client.rest.v1.statuses.$select(status.id).pin();
       expect(status.pinned).toBe(true);
 
-      status = await client.rest.v1.statuses.select(status.id).unpin();
+      status = await client.rest.v1.statuses.$select(status.id).unpin();
       expect(status.pinned).toBe(false);
 
-      await client.rest.v1.statuses.select(status.id).remove();
+      await client.rest.v1.statuses.$select(status.id).remove();
     });
   });
 
@@ -201,13 +201,13 @@ describe('status', () => {
         visibility: 'direct',
       });
 
-      status = await client.rest.v1.statuses.select(status.id).bookmark();
+      status = await client.rest.v1.statuses.$select(status.id).bookmark();
       expect(status.bookmarked).toBe(true);
 
-      status = await client.rest.v1.statuses.select(status.id).unbookmark();
+      status = await client.rest.v1.statuses.$select(status.id).unbookmark();
       expect(status.bookmarked).toBe(false);
 
-      await client.rest.v1.statuses.select(status.id).remove();
+      await client.rest.v1.statuses.$select(status.id).remove();
     });
   });
 });

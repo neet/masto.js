@@ -6,13 +6,13 @@ it('handles domain allows', async () => {
 
   try {
     domainAllow = await admin.v1.admin.domainAllows
-      .select(domainAllow.id)
+      .$select(domainAllow.id)
       .fetch();
     expect(domainAllow.domain).toMatch(/example.domain.to.allow.com/);
 
     const list = await admin.v1.admin.domainAllows.list();
     expect(list).toContainId(domainAllow.id);
   } finally {
-    await admin.v1.admin.domainAllows.select(domainAllow.id).remove();
+    await admin.v1.admin.domainAllows.$select(domainAllow.id).remove();
   }
 });

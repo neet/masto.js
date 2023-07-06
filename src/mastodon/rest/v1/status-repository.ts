@@ -103,7 +103,7 @@ export interface StatusRepository {
     meta?: HttpMetaParams<'json'>,
   ): Promise<ScheduledStatus>;
 
-  select(id: string): {
+  $select(id: string): {
     /**
      * View information about a status.
      * @return Status

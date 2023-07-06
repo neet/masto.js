@@ -109,7 +109,7 @@ export interface FetchRelationshipsParams {
 }
 
 export interface AccountRepository {
-  select(id: string): {
+  $select(id: string): {
     /**
      * View information about a profile.
      * @return Account
