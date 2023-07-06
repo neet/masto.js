@@ -7,7 +7,7 @@ export interface VotePollParams {
 }
 
 export interface PollRepository {
-  select(id: string): {
+  $select(id: string): {
     /**
      * View a poll
      * @return Poll

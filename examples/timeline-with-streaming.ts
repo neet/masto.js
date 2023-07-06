@@ -1,7 +1,7 @@
-import { createWebSocketClient } from 'masto';
+import { createStreamingClient } from 'masto';
 
 const subscribe = async (): Promise<void> => {
-  const masto = createWebSocketClient({
+  const masto = createStreamingClient({
     url: '<STREAMING API URL>',
     accessToken: '<TOKEN>',
   });

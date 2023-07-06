@@ -2,7 +2,7 @@ import { type HttpMetaParams } from '../../../interfaces';
 import { type Tag } from '../../entities/v1';
 
 export interface TagRepository {
-  select(id: string): {
+  $select(id: string): {
     /**
      * Show a hashtag and its associated information
      * @return Tag

@@ -37,7 +37,7 @@ const apply =
       throw new Error('No action specified');
     }
 
-    if (action === 'select') {
+    if (action === '$select') {
       return createRequestBuilder(http, [...context, ...(args as string[])]);
     }
 

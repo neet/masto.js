@@ -37,49 +37,49 @@ describe('account', () => {
 
   it('fetches an account with ID', () => {
     return sessions.use(async (session) => {
-      const someone = await admin.v1.accounts.select(session.id).fetch();
+      const someone = await admin.v1.accounts.$select(session.id).fetch();
       expect(session.id).toBe(someone.id);
     });
   });
 
   it('follows / unfollow by ID', () => {
     return sessions.use(2, async ([alice, bob]) => {
-      let relationship = await alice.rest.v1.accounts.select(bob.id).follow();
+      let relationship = await alice.rest.v1.accounts.$select(bob.id).follow();
       expect(relationship.following).toBe(true);
 
-      relationship = await alice.rest.v1.accounts.select(bob.id).unfollow();
+      relationship = await alice.rest.v1.accounts.$select(bob.id).unfollow();
       expect(relationship.following).toBe(false);
     });
   });
 
   it('blocks / unblock by ID', () => {
     return sessions.use(2, async ([alice, bob]) => {
-      let relationship = await alice.rest.v1.accounts.select(bob.id).block();
+      let relationship = await alice.rest.v1.accounts.$select(bob.id).block();
       expect(relationship.blocking).toBe(true);
 
-      relationship = await alice.rest.v1.accounts.select(bob.id).unblock();
+      relationship = await alice.rest.v1.accounts.$select(bob.id).unblock();
       expect(relationship.blocking).toBe(false);
     });
   });
 
   it('can pin / unpin by ID', () => {
     return sessions.use(2, async ([alice, bob]) => {
-      await alice.rest.v1.accounts.select(bob.id).follow();
-      let relationship = await alice.rest.v1.accounts.select(bob.id).pin();
+      await alice.rest.v1.accounts.$select(bob.id).follow();
+      let relationship = await alice.rest.v1.accounts.$select(bob.id).pin();
       expect(relationship.endorsed).toBe(true);
 
-      relationship = await alice.rest.v1.accounts.select(bob.id).unpin();
-      await alice.rest.v1.accounts.select(bob.id).unfollow();
+      relationship = await alice.rest.v1.accounts.$select(bob.id).unpin();
+      await alice.rest.v1.accounts.$select(bob.id).unfollow();
       expect(relationship.endorsed).toBe(false);
     });
   });
 
   it('mutes / unmute by ID', () => {
     return sessions.use(2, async ([alice, bob]) => {
-      let relationship = await alice.rest.v1.accounts.select(bob.id).mute();
+      let relationship = await alice.rest.v1.accounts.$select(bob.id).mute();
       expect(relationship.muting).toBe(true);
 
-      relationship = await alice.rest.v1.accounts.select(bob.id).unmute();
+      relationship = await alice.rest.v1.accounts.$select(bob.id).unmute();
       expect(relationship.muting).toBe(false);
     });
   });
@@ -88,7 +88,7 @@ describe('account', () => {
     return sessions.use(2, async ([alice, bob]) => {
       const comment = Math.random().toString();
       const relationship = await alice.rest.v1.accounts
-        .select(bob.id)
+        .$select(bob.id)
         .note.create({ comment });
 
       expect(relationship.note).toBe(comment);
@@ -106,25 +106,25 @@ describe('account', () => {
 
   it('lists followers', () => {
     return sessions.use(2, async ([alice, bob]) => {
-      await alice.rest.v1.accounts.select(bob.id).follow();
+      await alice.rest.v1.accounts.$select(bob.id).follow();
       const followers = await alice.rest.v1.accounts
-        .select(bob.id)
+        .$select(bob.id)
         .followers.list();
 
       expect(followers).toContainId(alice.id);
-      await alice.rest.v1.accounts.select(bob.id).unfollow();
+      await alice.rest.v1.accounts.$select(bob.id).unfollow();
     });
   });
 
   it('lists following', () => {
     return sessions.use(2, async ([alice, bob]) => {
-      await alice.rest.v1.accounts.select(bob.id).follow();
+      await alice.rest.v1.accounts.$select(bob.id).follow();
       const accounts = await alice.rest.v1.accounts
-        .select(alice.id)
+        .$select(alice.id)
         .following.list();
 
       expect(accounts).toContainId(bob.id);
-      await alice.rest.v1.accounts.select(bob.id).unfollow();
+      await alice.rest.v1.accounts.$select(bob.id).unfollow();
     });
   });
 
@@ -132,7 +132,7 @@ describe('account', () => {
     return sessions.use(async (client) => {
       const status = await client.rest.v1.statuses.create({ status: 'Hello' });
       const statuses = await client.rest.v1.accounts
-        .select(status.account.id)
+        .$select(status.account.id)
         .statuses.list();
 
       expect(statuses).toContainId(status.id);
@@ -152,18 +152,18 @@ describe('account', () => {
   it('lists lists', () => {
     return sessions.use(2, async ([alice, bob]) => {
       const list = await alice.rest.v1.lists.create({ title: 'title' });
-      await alice.rest.v1.accounts.select(bob.id).follow();
+      await alice.rest.v1.accounts.$select(bob.id).follow();
 
       try {
-        await alice.rest.v1.lists.select(list.id).accounts.create({
+        await alice.rest.v1.lists.$select(list.id).accounts.create({
           accountIds: [bob.id],
         });
         const accounts = await alice.rest.v1.accounts
-          .select(bob.id)
+          .$select(bob.id)
           .lists.list();
         expect(accounts).toContainId(list.id);
       } finally {
-        await alice.rest.v1.lists.select(list.id).remove();
+        await alice.rest.v1.lists.$select(list.id).remove();
       }
     });
   });
@@ -175,18 +175,18 @@ describe('account', () => {
       });
 
       const tags = await client.rest.v1.accounts
-        .select(client.id)
+        .$select(client.id)
         .featuredTags.list();
       expect(tags).toContainId(featuredTag.id);
 
-      await client.rest.v1.featuredTags.select(featuredTag.id).remove();
+      await client.rest.v1.featuredTags.$select(featuredTag.id).remove();
     });
   });
 
   it('lists Identity proofs', () => {
     return sessions.use(async (client) => {
       const identityProofs = await client.rest.v1.accounts
-        .select(client.id)
+        .$select(client.id)
         .identityProofs.list();
 
       expect(identityProofs).toEqual(expect.any(Array));
@@ -212,8 +212,8 @@ describe('account', () => {
 
   it('removes from followers', () => {
     return sessions.use(2, async ([alice, bob]) => {
-      await bob.rest.v1.accounts.select(alice.id).follow();
-      await alice.rest.v1.accounts.select(bob.id).removeFromFollowers();
+      await bob.rest.v1.accounts.$select(alice.id).follow();
+      await alice.rest.v1.accounts.$select(bob.id).removeFromFollowers();
       const [rel] = await alice.rest.v1.accounts.relationships.fetch({
         id: [bob.id],
       });

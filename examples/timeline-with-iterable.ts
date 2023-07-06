@@ -15,7 +15,7 @@ console.log(result);
 let i = 0;
 for await (const statuses of masto.v1.timelines.public.list()) {
   for (const status of statuses) {
-    await masto.v1.statuses.select(status.id).favourite();
+    await masto.v1.statuses.$select(status.id).favourite();
     i += 1;
   }
   if (i >= 10) break;

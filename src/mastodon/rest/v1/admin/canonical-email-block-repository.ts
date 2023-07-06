@@ -56,7 +56,7 @@ export interface CanonicalEmailBlockRepository {
     meta?: HttpMetaParams<'json'>,
   ): Promise<Admin.CanonicalEmailBlock>;
 
-  select(id: string): {
+  $select(id: string): {
     /**
      * Show a single canonical email block
      * @return CanonicalEmailBlock

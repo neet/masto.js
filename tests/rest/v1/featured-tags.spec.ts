@@ -14,7 +14,7 @@ it('lists featured tags', () => {
       const featuredTags = await client.rest.v1.featuredTags.list();
       expect(featuredTags).toContainEqual(expect.objectContaining({ name }));
     } finally {
-      await client.rest.v1.featuredTags.select(featuredTag.id).remove();
+      await client.rest.v1.featuredTags.$select(featuredTag.id).remove();
     }
   });
 });

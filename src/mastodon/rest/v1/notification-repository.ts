@@ -26,7 +26,7 @@ export interface NotificationRepository {
     meta?: HttpMetaParams<'json'>,
   ): Paginator<Notification[], ListNotificationsParams>;
 
-  select(id: string): {
+  $select(id: string): {
     /**
      * View information about a notification with a given ID.
      * @return Notification

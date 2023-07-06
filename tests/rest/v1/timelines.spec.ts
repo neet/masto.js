@@ -35,7 +35,7 @@ describe('timeline', () => {
         status: '#mastodon',
       });
       const statuses = await client.rest.v1.timelines.tag
-        .select('mastodon')
+        .$select('mastodon')
         .list();
       expect(statuses).toContainId(status.id);
     });
@@ -45,7 +45,7 @@ describe('timeline', () => {
     return sessions.use(async (client) => {
       const list = await client.rest.v1.lists.create({ title: 'List' });
       const statuses = await client.rest.v1.timelines.list
-        .select(list.id)
+        .$select(list.id)
         .list();
       expect(statuses).toEqual([]);
     });

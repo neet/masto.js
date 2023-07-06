@@ -15,7 +15,7 @@ export interface FollowRequestRepository {
     meta?: HttpMetaParams,
   ): Paginator<Account[], DefaultPaginationParams>;
 
-  select(id: string): {
+  $select(id: string): {
     /**
      * Accept Follow
      * @return Relationship

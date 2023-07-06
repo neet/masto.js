@@ -35,7 +35,7 @@ describe('websocket', () => {
         expect(event?.payload?.id).toBe(id);
       } finally {
         subscription.unsubscribe();
-        await session.rest.v1.statuses.select(id).remove();
+        await session.rest.v1.statuses.$select(id).remove();
       }
     });
   });
@@ -73,7 +73,7 @@ describe('websocket', () => {
         expect(event?.payload?.id).toBe(id);
       } finally {
         subscription.unsubscribe();
-        await session.rest.v1.statuses.select(id).remove();
+        await session.rest.v1.statuses.$select(id).remove();
       }
     });
   });
@@ -107,7 +107,7 @@ describe('websocket', () => {
         expect(event?.payload?.id).toBe(id);
       } finally {
         subscription.unsubscribe();
-        await session.rest.v1.statuses.select(id).remove();
+        await session.rest.v1.statuses.$select(id).remove();
       }
     });
   });
@@ -147,7 +147,7 @@ describe('websocket', () => {
         expect(event?.payload?.id).toBe(id);
       } finally {
         subscription.unsubscribe();
-        await session.rest.v1.statuses.select(id).remove();
+        await session.rest.v1.statuses.$select(id).remove();
       }
     });
   });
@@ -180,7 +180,7 @@ describe('websocket', () => {
         expect(event?.payload?.id).toBe(id);
       } finally {
         subscription.unsubscribe();
-        await session.rest.v1.statuses.select(id).remove();
+        await session.rest.v1.statuses.$select(id).remove();
       }
     });
   });
@@ -215,7 +215,7 @@ describe('websocket', () => {
         expect(event?.payload?.id).toBe(id);
       } finally {
         subscription.unsubscribe();
-        await session.rest.v1.statuses.select(id).remove();
+        await session.rest.v1.statuses.$select(id).remove();
       }
     });
   });
@@ -233,8 +233,8 @@ describe('websocket', () => {
         .take(1);
 
       const dispatch = async () => {
-        await bob.rest.v1.accounts.select(alice.id).unfollow();
-        await bob.rest.v1.accounts.select(alice.id).follow();
+        await bob.rest.v1.accounts.$select(alice.id).unfollow();
+        await bob.rest.v1.accounts.$select(alice.id).follow();
       };
 
       try {
@@ -245,7 +245,7 @@ describe('websocket', () => {
         expect(e1?.payload?.account.id).toBe(bob.id);
       } finally {
         subscription.unsubscribe();
-        await bob.rest.v1.accounts.select(alice.id).unfollow();
+        await bob.rest.v1.accounts.$select(alice.id).unfollow();
       }
     });
   });
@@ -264,7 +264,7 @@ describe('websocket', () => {
         .take(1);
 
       const dispatch = async () => {
-        await bob.rest.v1.accounts.select(alice.id).follow();
+        await bob.rest.v1.accounts.$select(alice.id).follow();
       };
 
       try {
@@ -275,7 +275,7 @@ describe('websocket', () => {
         expect(e1?.payload?.account.id).toBe(bob.id);
       } finally {
         subscription.unsubscribe();
-        await bob.rest.v1.accounts.select(alice.id).unfollow();
+        await bob.rest.v1.accounts.$select(alice.id).unfollow();
       }
     });
   });
@@ -299,8 +299,8 @@ describe('websocket', () => {
       };
 
       try {
-        await alice.rest.v1.accounts.select(bob.id).follow();
-        await alice.rest.v1.lists.select(list.id).accounts.create({
+        await alice.rest.v1.accounts.$select(bob.id).follow();
+        await alice.rest.v1.lists.$select(list.id).accounts.create({
           accountIds: [bob.id],
         });
 
@@ -310,8 +310,8 @@ describe('websocket', () => {
         expect(e1?.payload?.account?.id).toBe(bob.id);
       } finally {
         subscription.unsubscribe();
-        await alice.rest.v1.lists.select(list.id).remove();
-        await alice.rest.v1.accounts.select(bob.id).unfollow();
+        await alice.rest.v1.lists.$select(list.id).remove();
+        await alice.rest.v1.accounts.$select(bob.id).unfollow();
       }
     });
   });

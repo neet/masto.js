@@ -12,10 +12,10 @@ describe('media', () => {
     const file = await createFile();
     let media = await admin.v2.media.create({ file });
 
-    media = await admin.v1.media.select(media.id).fetch();
+    media = await admin.v1.media.$select(media.id).fetch();
     expect(media.type).toBe('image');
 
-    media = await admin.v1.media.select(media.id).update({
+    media = await admin.v1.media.$select(media.id).update({
       description: 'test',
     });
     expect(media.description).toBe('test');

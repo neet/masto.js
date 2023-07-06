@@ -15,7 +15,7 @@ export interface ConversationRepository {
     meta?: HttpMetaParams,
   ): Paginator<Conversation[], DefaultPaginationParams>;
 
-  select(id: string): {
+  $select(id: string): {
     /**
      * Remove conversation
      * @return N/A

@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 
 import { createRestClient } from '../src';
 
-const masto = await createRestClient({
+const masto = createRestClient({
   url: 'https://example.com',
   accessToken: 'YOUR TOKEN',
 });
