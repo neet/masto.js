@@ -40,7 +40,7 @@ export interface TimelineRepository {
   };
 
   tag: {
-    select(hashtag: string): {
+    $select(hashtag: string): {
       /**
        * View public statuses containing the given hashtag.
        * @param hashtag Content of a #hashtag, not including # symbol.
@@ -56,7 +56,7 @@ export interface TimelineRepository {
   };
 
   list: {
-    select(id: string): {
+    $select(id: string): {
       /**
        * View statuses in the given list timeline.
        * @param id Local ID of the list in the database.

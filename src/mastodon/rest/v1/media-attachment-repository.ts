@@ -26,7 +26,7 @@ export interface MediaAttachmentRepository {
     meta?: HttpMetaParams<'json'>,
   ): Promise<MediaAttachment>;
 
-  select(id: string): {
+  $select(id: string): {
     /**
      * Fetches an attachment to be used with a new status.
      * @param id ID of the attachment

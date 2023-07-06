@@ -20,16 +20,16 @@ it('handles notifications', () => {
 
       assert(notification != undefined);
       notification = await alice.rest.v1.notifications
-        .select(notification.id)
+        .$select(notification.id)
         .fetch();
 
       expect(notification.status?.id).toBe(status.id);
-      await alice.rest.v1.notifications.select(notification.id).dismiss();
+      await alice.rest.v1.notifications.$select(notification.id).dismiss();
 
       const notifications = await alice.rest.v1.notifications.list();
       expect(notifications).not.toContainId(notification.id);
     } finally {
-      await bob.rest.v1.statuses.select(status.id).remove();
+      await bob.rest.v1.statuses.$select(status.id).remove();
     }
   });
 });
@@ -63,9 +63,9 @@ it('clear notifications', () => {
       notifications = await alice.rest.v1.notifications.list();
       expect(notifications).toHaveLength(0);
     } finally {
-      await bob.rest.v1.statuses.select(s1.id).remove();
-      await bob.rest.v1.statuses.select(s2.id).remove();
-      await bob.rest.v1.statuses.select(s3.id).remove();
+      await bob.rest.v1.statuses.$select(s1.id).remove();
+      await bob.rest.v1.statuses.$select(s2.id).remove();
+      await bob.rest.v1.statuses.$select(s3.id).remove();
     }
   });
 });

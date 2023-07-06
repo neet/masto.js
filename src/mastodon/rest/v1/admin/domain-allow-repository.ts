@@ -31,7 +31,7 @@ export interface DomainAllowRepository {
     meta?: HttpMetaParams<'json'>,
   ): Promise<Admin.DomainAllow>;
 
-  select(id: string): {
+  $select(id: string): {
     /**
      * Show information about a single allowed domain
      * @return DomainAllow

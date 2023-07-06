@@ -11,6 +11,6 @@ it('creates a report', () => {
 
     assert(report != undefined);
     expect(report).toBeDefined();
-    await admin.v1.admin.reports.select(report.id).resolve();
+    await admin.v1.admin.reports.$select(report.id).resolve();
   });
 });

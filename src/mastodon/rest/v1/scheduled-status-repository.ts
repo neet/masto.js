@@ -20,7 +20,7 @@ export interface ScheduledStatusRepository {
     meta?: HttpMetaParams,
   ): Paginator<ScheduledStatus[], DefaultPaginationParams>;
 
-  select(id: string): {
+  $select(id: string): {
     /**
      * View a single scheduled status
      * @return ScheduledStatus

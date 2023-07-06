@@ -10,20 +10,20 @@ it('authorize follow requests', () => {
     });
 
     try {
-      let relationship = await bob.rest.v1.accounts.select(alice.id).follow();
+      let relationship = await bob.rest.v1.accounts.$select(alice.id).follow();
       expect(relationship.requested).toBe(true);
 
       const followRequests = await alice.rest.v1.followRequests.list();
       expect(followRequests).toContainId(bob.id);
 
-      await alice.rest.v1.followRequests.select(bob.id).authorize();
+      await alice.rest.v1.followRequests.$select(bob.id).authorize();
       [relationship] = await bob.rest.v1.accounts.relationships.fetch({
         id: [alice.id],
       });
       expect(relationship.following).toBe(true);
     } finally {
       await alice.rest.v1.accounts.updateCredentials.update({ locked: false });
-      await bob.rest.v1.accounts.select(alice.id).unfollow();
+      await bob.rest.v1.accounts.$select(alice.id).unfollow();
     }
   });
 });
@@ -38,13 +38,13 @@ it('reject follow requests', () => {
     });
 
     try {
-      let relationship = await bob.rest.v1.accounts.select(alice.id).follow();
+      let relationship = await bob.rest.v1.accounts.$select(alice.id).follow();
       expect(relationship.requested).toBe(true);
 
       const followRequests = await alice.rest.v1.followRequests.list();
       expect(followRequests).toContainId(bob.id);
 
-      await alice.rest.v1.followRequests.select(bob.id).reject();
+      await alice.rest.v1.followRequests.$select(bob.id).reject();
       [relationship] = await bob.rest.v1.accounts.relationships.fetch({
         id: [alice.id],
       });

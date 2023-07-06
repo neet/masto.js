@@ -19,7 +19,7 @@ export interface SuggestionRepository {
     meta?: HttpMetaParams,
   ): Paginator<Account[], ListSuggestionParams>;
 
-  select(id: string): {
+  $select(id: string): {
     /**
      * Remove an account from follow suggestions.
      * @return N/A

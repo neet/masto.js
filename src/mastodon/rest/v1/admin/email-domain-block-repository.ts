@@ -24,7 +24,7 @@ export interface EmailDomainBlockRepository {
     meta?: HttpMetaParams,
   ): Paginator<Admin.EmailDomainBlock[], ListEmailDomainBlocksParams>;
 
-  select(id: string): {
+  $select(id: string): {
     /**
      * Show information about a single email domain that is blocked from sign-ups.
      * @return EmailDomainBlock

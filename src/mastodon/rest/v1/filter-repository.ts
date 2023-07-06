@@ -28,7 +28,7 @@ export interface FilterRepository {
    */
   list(meta?: HttpMetaParams): Paginator<Filter[]>;
 
-  select(id: string): {
+  $select(id: string): {
     /**
      * View a single filter
      * @return Returns Filter

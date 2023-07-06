@@ -10,7 +10,7 @@ export interface AnnouncementRepository {
    */
   list(meta?: HttpMetaParams): Paginator<Announcement[]>;
 
-  select(id: string): {
+  $select(id: string): {
     /**
      * Dismiss announcement
      * @return Nothing

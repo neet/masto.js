@@ -18,7 +18,7 @@ export interface AddListAccountsParams {
 export type RemoveListAccountsParams = AddListAccountsParams;
 
 export interface ListRepository {
-  select(id: string): {
+  $select(id: string): {
     /**
      * Fetch the list with the given ID. Used for verifying the title of a list.
      * @return List

@@ -11,14 +11,14 @@ it('handles poll', () => {
     });
 
     try {
-      await bob.rest.v1.polls.select(status.poll!.id).votes.create({
+      await bob.rest.v1.polls.$select(status.poll!.id).votes.create({
         choices: [0, 1],
       });
-      const poll = await bob.rest.v1.polls.select(status.poll!.id).fetch();
+      const poll = await bob.rest.v1.polls.$select(status.poll!.id).fetch();
       expect(poll.votesCount).toBe(2);
       expect(poll.ownVotes).toEqual([0, 1]);
     } finally {
-      await alice.rest.v1.statuses.select(status.id).remove();
+      await alice.rest.v1.statuses.$select(status.id).remove();
     }
   });
 });

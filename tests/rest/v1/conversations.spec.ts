@@ -22,8 +22,8 @@ describe('conversations', () => {
       });
 
       assert(conversation != undefined);
-      await alice.rest.v1.conversations.select(conversation.id).read();
-      await alice.rest.v1.conversations.select(conversation.id).remove();
+      await alice.rest.v1.conversations.$select(conversation.id).read();
+      await alice.rest.v1.conversations.$select(conversation.id).remove();
     });
   });
 });

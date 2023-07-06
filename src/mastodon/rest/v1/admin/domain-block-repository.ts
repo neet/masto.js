@@ -48,7 +48,7 @@ export interface DomainBlockRepository {
     meta?: HttpMetaParams<'json'>,
   ): Promise<Admin.DomainBlock>;
 
-  select(id: string): {
+  $select(id: string): {
     /**
      * Show information about a single blocked domain.
      * @return DomainBlock

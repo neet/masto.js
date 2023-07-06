@@ -36,7 +36,7 @@ export interface FeaturedTagRepository {
     list(meta?: HttpMetaParams): Paginator<Tag[]>;
   };
 
-  select(id: string): {
+  $select(id: string): {
     /**
      * Un-feature a tag
      * @return N/A
