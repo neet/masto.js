@@ -1,4 +1,4 @@
-export type CohortFrequency = 'day' | 'month';
+export type CohortFrequency = "day" | "month";
 
 export interface CohortData {
   /** The timestamp for the start of the bucket, at midnight. */

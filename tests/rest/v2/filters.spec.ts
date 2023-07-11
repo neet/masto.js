@@ -1,18 +1,18 @@
-describe('filters', () => {
-  it('creates a filter', () => {
+describe("filters", () => {
+  it("creates a filter", () => {
     return sessions.use(async (session) => {
       let filter = await session.rest.v2.filters.create({
-        title: 'Filter',
-        context: ['notifications'],
-        keywordsAttributes: [{ keyword: 'test' }],
+        title: "Filter",
+        context: ["notifications"],
+        keywordsAttributes: [{ keyword: "test" }],
       });
 
       try {
         await session.rest.v2.filters.$select(filter.id).update({
-          title: 'Filter Updated',
+          title: "Filter Updated",
         });
         filter = await session.rest.v2.filters.$select(filter.id).fetch();
-        expect(filter.title).toBe('Filter Updated');
+        expect(filter.title).toBe("Filter Updated");
 
         const filters = await session.rest.v2.filters.list();
         expect(filters).toContainId(filter.id);
@@ -22,28 +22,28 @@ describe('filters', () => {
     });
   });
 
-  it('handles filter keywords', () => {
+  it("handles filter keywords", () => {
     return sessions.use(async (session) => {
       const filter = await session.rest.v2.filters.create({
-        title: 'Filter',
-        context: ['notifications'],
+        title: "Filter",
+        context: ["notifications"],
       });
 
       try {
         let keyword = await session.rest.v2.filters
           .$select(filter.id)
           .keywords.create({
-            keyword: 'test',
+            keyword: "test",
           });
 
         await session.rest.v2.filters.keywords.$select(keyword.id).update({
-          keyword: 'test2',
+          keyword: "test2",
         });
 
         keyword = await session.rest.v2.filters.keywords
           .$select(keyword.id)
           .fetch();
-        expect(keyword.keyword).toBe('test2');
+        expect(keyword.keyword).toBe("test2");
 
         const keywords = await session.rest.v2.filters
           .$select(filter.id)
@@ -56,16 +56,16 @@ describe('filters', () => {
     });
   });
 
-  it('handles status filters', () => {
+  it("handles status filters", () => {
     return sessions.use(async (session) => {
       const filter = await session.rest.v2.filters.create({
-        title: 'Filter',
-        context: ['notifications'],
+        title: "Filter",
+        context: ["notifications"],
       });
 
       try {
         const status = await session.rest.v1.statuses.create({
-          status: 'test',
+          status: "test",
         });
         let statusFilter = await session.rest.v2.filters
           .$select(filter.id)
@@ -91,12 +91,12 @@ describe('filters', () => {
     });
   });
 
-  it('removes a filter with _destroy', () => {
+  it("removes a filter with _destroy", () => {
     return sessions.use(async (session) => {
       let filter = await session.rest.v2.filters.create({
-        title: 'Filter',
-        context: ['notifications'],
-        keywordsAttributes: [{ keyword: 'test' }, { keyword: 'test2' }],
+        title: "Filter",
+        context: ["notifications"],
+        keywordsAttributes: [{ keyword: "test" }, { keyword: "test2" }],
       });
       expect(filter.keywords).toHaveLength(2);
 

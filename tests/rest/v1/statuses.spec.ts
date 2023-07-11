@@ -1,12 +1,12 @@
-import crypto from 'node:crypto';
+import crypto from "node:crypto";
 
-describe('status', () => {
-  it('creates, updates, and removes a status', () => {
+describe("status", () => {
+  it("creates, updates, and removes a status", () => {
     return sessions.use(async (client) => {
       const random = Math.random().toString();
       const { id } = await client.rest.v1.statuses.create({
         status: random,
-        visibility: 'direct',
+        visibility: "direct",
       });
 
       let status = await client.rest.v1.statuses.$select(id).fetch();
@@ -37,23 +37,23 @@ describe('status', () => {
     });
   });
 
-  it('creates a status with an Idempotency-Key', () => {
+  it("creates a status with an Idempotency-Key", () => {
     return sessions.use(async (client) => {
       const idempotencyKey = crypto.randomUUID();
 
       const s1 = await client.rest.v1.statuses.create(
-        { status: 'hello' },
+        { status: "hello" },
         {
           requestInit: {
-            headers: new Headers({ 'Idempotency-Key': idempotencyKey }),
+            headers: new Headers({ "Idempotency-Key": idempotencyKey }),
           },
         },
       );
       const s2 = await client.rest.v1.statuses.create(
-        { status: 'hello' },
+        { status: "hello" },
         {
           requestInit: {
-            headers: new Headers({ 'Idempotency-Key': idempotencyKey }),
+            headers: new Headers({ "Idempotency-Key": idempotencyKey }),
           },
         },
       );
@@ -62,17 +62,17 @@ describe('status', () => {
     });
   });
 
-  it('fetches a status context', () => {
+  it("fetches a status context", () => {
     return sessions.use(async (client) => {
       const s1 = await client.rest.v1.statuses.create({
-        status: 'Hello',
+        status: "Hello",
       });
       const s2 = await client.rest.v1.statuses.create({
-        status: 'Hello 2',
+        status: "Hello 2",
         inReplyToId: s1.id,
       });
       const s3 = await client.rest.v1.statuses.create({
-        status: 'Hello 3',
+        status: "Hello 3",
         inReplyToId: s2.id,
       });
 
@@ -90,7 +90,7 @@ describe('status', () => {
     });
   });
 
-  it('translates a status', () => {
+  it("translates a status", () => {
     return sessions.use(async (session) => {
       const instance = await session.rest.v2.instance.fetch();
       if (!instance.configuration.translation.enabled) {
@@ -98,13 +98,13 @@ describe('status', () => {
       }
 
       const { id } = await session.rest.v1.statuses.create({
-        status: 'Hello',
+        status: "Hello",
       });
 
       try {
         const translation = await session.rest.v1.statuses
           .$select(id)
-          .translate({ lang: 'ja' });
+          .translate({ lang: "ja" });
         expect(translation.content).toEqual(expect.any(String));
       } finally {
         await session.rest.v1.statuses.$select(id).remove();
@@ -112,10 +112,10 @@ describe('status', () => {
     });
   });
 
-  it('favourites and unfavourites a status', () => {
+  it("favourites and unfavourites a status", () => {
     return sessions.use(2, async ([alice, bob]) => {
       const { id: statusId } = await alice.rest.v1.statuses.create({
-        status: 'status',
+        status: "status",
       });
 
       try {
@@ -135,11 +135,11 @@ describe('status', () => {
     });
   });
 
-  it('mutes and unmute a status', () => {
+  it("mutes and unmute a status", () => {
     return sessions.use(async (client) => {
       let status = await client.rest.v1.statuses.create({
-        status: 'status',
-        visibility: 'direct',
+        status: "status",
+        visibility: "direct",
       });
 
       try {
@@ -154,10 +154,10 @@ describe('status', () => {
     });
   });
 
-  it('reblogs and unreblog a status', () => {
+  it("reblogs and unreblog a status", () => {
     return sessions.use(2, async ([alice, bob]) => {
       const { id: statusId } = await alice.rest.v1.statuses.create({
-        status: 'status',
+        status: "status",
       });
 
       try {
@@ -177,11 +177,11 @@ describe('status', () => {
     });
   });
 
-  it('pins and unpin a status', () => {
+  it("pins and unpin a status", () => {
     return sessions.use(async (client) => {
       let status = await client.rest.v1.statuses.create({
-        status: 'status',
-        visibility: 'private',
+        status: "status",
+        visibility: "private",
       });
 
       status = await client.rest.v1.statuses.$select(status.id).pin();
@@ -194,11 +194,11 @@ describe('status', () => {
     });
   });
 
-  it('bookmarks and unbookmark a status', () => {
+  it("bookmarks and unbookmark a status", () => {
     return sessions.use(async (client) => {
       let status = await client.rest.v1.statuses.create({
-        status: 'status',
-        visibility: 'direct',
+        status: "status",
+        visibility: "direct",
       });
 
       status = await client.rest.v1.statuses.$select(status.id).bookmark();

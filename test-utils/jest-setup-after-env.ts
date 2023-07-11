@@ -1,8 +1,8 @@
-import './jest-polyfills';
-import './jest-extend-expect';
+import "./jest-polyfills";
+import "./jest-extend-expect";
 
-import { createRestClient } from '../src';
-import { SessionPoolImpl } from './pools';
+import { createRestClient } from "../src";
+import { SessionPoolImpl } from "./pools";
 
 jest.setTimeout(1000 * 60);
 

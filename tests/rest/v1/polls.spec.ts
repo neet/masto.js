@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-it('handles poll', () => {
+it("handles poll", () => {
   return sessions.use(2, async ([alice, bob]) => {
     const status = await alice.rest.v1.statuses.create({
       status: `Which fruits do you like?`,
       poll: {
-        options: ['Apple', 'Banana', 'Orange'],
+        options: ["Apple", "Banana", "Orange"],
         multiple: true,
         expiresIn: 60 * 60 * 24,
       },

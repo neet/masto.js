@@ -1,21 +1,21 @@
-import { createStreamingClient } from 'masto';
+import { createStreamingClient } from "masto";
 
 const subscribe = async (): Promise<void> => {
   const masto = createStreamingClient({
-    url: '<STREAMING API URL>',
-    accessToken: '<TOKEN>',
+    url: "<STREAMING API URL>",
+    accessToken: "<TOKEN>",
   });
 
-  console.log('subscribed to #mastojs');
+  console.log("subscribed to #mastojs");
 
-  for await (const event of masto.subscribe('hashtag', { tag: 'mastojs' })) {
+  for await (const event of masto.subscribe("hashtag", { tag: "mastojs" })) {
     switch (event.event) {
-      case 'update': {
-        console.log('new post', event.payload.content);
+      case "update": {
+        console.log("new post", event.payload.content);
         break;
       }
-      case 'delete': {
-        console.log('deleted post', event.payload);
+      case "delete": {
+        console.log("deleted post", event.payload);
         break;
       }
       default: {

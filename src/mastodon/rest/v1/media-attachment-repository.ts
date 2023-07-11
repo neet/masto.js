@@ -1,5 +1,5 @@
-import { type HttpMetaParams } from '../../../interfaces';
-import { type MediaAttachment } from '../../entities/v1';
+import { type HttpMetaParams } from "../../../interfaces";
+import { type MediaAttachment } from "../../entities/v1";
 
 export interface CreateMediaAttachmentParams {
   /** The file to be attached, using multipart form data. */
@@ -23,7 +23,7 @@ export interface MediaAttachmentRepository {
    */
   create(
     params: CreateMediaAttachmentParams,
-    meta?: HttpMetaParams<'json'>,
+    meta?: HttpMetaParams<"json">,
   ): Promise<MediaAttachment>;
 
   $select(id: string): {
@@ -43,7 +43,7 @@ export interface MediaAttachmentRepository {
      */
     update(
       params: UpdateMediaAttachmentParams,
-      meta?: HttpMetaParams<'json'>,
+      meta?: HttpMetaParams<"json">,
     ): Promise<MediaAttachment>;
   };
 }

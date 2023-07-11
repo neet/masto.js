@@ -1,7 +1,7 @@
-it('searches', () => {
+it("searches", () => {
   return sessions.use(async (session) => {
     const results = await session.rest.v2.search.fetch({
-      q: 'mastodon',
+      q: "mastodon",
     });
 
     expect(results).toMatchObject({

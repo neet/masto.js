@@ -1,7 +1,7 @@
-import { type HttpMetaParams } from '../../../interfaces';
-import { type Status } from '../../entities/v1';
-import { type Paginator } from '../../paginator';
-import { type DefaultPaginationParams } from '../../repository';
+import { type HttpMetaParams } from "../../../interfaces";
+import { type Status } from "../../entities/v1";
+import { type Paginator } from "../../paginator";
+import { type DefaultPaginationParams } from "../../repository";
 
 export interface FavouriteRepository {
   /**

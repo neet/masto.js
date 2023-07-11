@@ -1,2 +1,2 @@
-import { installIntoGlobal } from 'iterator-helpers-polyfill';
+import { installIntoGlobal } from "iterator-helpers-polyfill";
 installIntoGlobal();

@@ -1,9 +1,9 @@
-import { type mastodon } from '../../src';
+import { type mastodon } from "../../src";
 
-export type Entry = {
+export interface Entry {
   readonly token: mastodon.v1.Token;
   inUse: boolean;
-};
+}
 
 export interface TokenRepository {
   getAll(): Promise<Entry[]>;

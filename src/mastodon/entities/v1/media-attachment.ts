@@ -1,9 +1,9 @@
 export type MediaAttachmentType =
-  | 'image'
-  | 'video'
-  | 'gifv'
-  | 'audio'
-  | 'unknown';
+  | "image"
+  | "video"
+  | "gifv"
+  | "audio"
+  | "unknown";
 
 export interface MediaAttachmentMetaImage {
   width: number;

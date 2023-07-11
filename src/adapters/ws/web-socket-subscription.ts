@@ -1,60 +1,71 @@
-import type WebSocket from 'ws';
+import type WebSocket from "ws";
 
-import { type Serializer } from '../../interfaces';
-import { type mastodon } from '../../mastodon';
-import { MastoUnexpectedError } from '../errors';
-import { type WebSocketConnection } from './web-socket-connector';
+import {
+  type Logger,
+  type Serializer,
+  type WebSocketConnector,
+} from "../../interfaces";
+import { type mastodon } from "../../mastodon";
+import { MastoUnexpectedError } from "../errors";
+import { toAsyncIterable } from "./async-iterable";
 
 export class WebSocketSubscription implements mastodon.streaming.Subscription {
-  private connection?: WebSocketConnection;
+  private connection?: WebSocket;
 
   constructor(
-    private readonly connections: AsyncIterable<WebSocketConnection>,
+    private readonly connector: WebSocketConnector,
     private readonly serializer: Serializer,
-    private readonly stream: mastodon.streaming.Stream,
+    private readonly stream: string,
+    private readonly logger?: Logger,
     private readonly params?: Record<string, unknown>,
   ) {}
 
   async *values(): AsyncIterableIterator<mastodon.streaming.Event> {
-    for await (this.connection of this.connections) {
-      const data = this.serializer.serialize('json', {
-        type: 'subscribe',
+    this.logger?.info("Subscribing to stream", this.stream);
+
+    while (this.connector.canAcquire()) {
+      this.connection = await this.connector.acquire();
+
+      const messages = toAsyncIterable(this.connection);
+
+      const data = this.serializer.serialize("json", {
+        type: "subscribe",
         stream: this.stream,
         ...this.params,
       });
 
-      if (data == undefined) {
-        throw new MastoUnexpectedError('Failed to serialize data');
-      }
-
+      this.logger?.debug("↑ WEBSOCKET", data);
       this.connection.send(data);
 
-      for await (const event of this.mapEvents(this.connection.messages)) {
-        if (!event.stream.includes(this.stream as string)) {
-          continue;
-        }
-
+      for await (const event of this.mapEvents(messages)) {
+        if (!this.matches(event)) continue;
+        this.logger?.debug("↓ WEBSOCKET", event);
         yield event;
       }
     }
   }
 
   unsubscribe(): void {
-    const data = this.serializer.serialize('json', {
-      type: 'unsubscribe',
+    if (this.connection == undefined) {
+      return;
+    }
+
+    const data = this.serializer.serialize("json", {
+      type: "unsubscribe",
       stream: this.stream,
       ...this.params,
     });
 
-    if (this.connection == undefined) {
-      throw new MastoUnexpectedError('No connection established');
-    }
-
-    if (data == undefined) {
-      throw new MastoUnexpectedError('Failed to serialize data');
-    }
-
     this.connection.send(data);
+  }
+
+  matches(event: mastodon.streaming.Event): boolean {
+    // subscribe("hashtag", { tag: "foo" }) -> ["hashtag", "foo"]
+    // subscribe("list", { list: "foo" }) -> ["list", "foo"]
+    const params = this.params ?? {};
+    const extra = Object.values(params) as string[];
+    const stream = [this.stream, ...extra];
+    return stream.every((s) => event.stream.includes(s));
   }
 
   [Symbol.asyncIterator](): AsyncIterableIterator<mastodon.streaming.Event> {
@@ -72,18 +83,18 @@ export class WebSocketSubscription implements mastodon.streaming.Subscription {
     rawEvent: string,
   ): Promise<mastodon.streaming.Event> {
     const data = this.serializer.deserialize<mastodon.streaming.RawEvent>(
-      'json',
+      "json",
       rawEvent,
     );
 
-    if ('error' in data) {
+    if ("error" in data) {
       throw new MastoUnexpectedError(data.error);
     }
 
     const payload =
-      data.event === 'delete'
+      data.event === "delete" || data.payload == undefined
         ? data.payload
-        : this.serializer.deserialize('json', data.payload);
+        : this.serializer.deserialize("json", data.payload);
 
     return {
       stream: data.stream,

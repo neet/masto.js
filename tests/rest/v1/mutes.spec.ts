@@ -1,4 +1,4 @@
-it('lists mute', () => {
+it("lists mute", () => {
   return sessions.use(2, async ([alice, bob]) => {
     await alice.rest.v1.accounts.$select(bob.id).mute();
 

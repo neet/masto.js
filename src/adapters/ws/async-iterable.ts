@@ -1,34 +1,36 @@
-import { on } from 'events-to-async';
-import type WebSocket from 'isomorphic-ws';
+import { on } from "events-to-async";
+import type WebSocket from "isomorphic-ws";
 
-import { MastoUnexpectedError } from '../errors';
+import { MastoUnexpectedError } from "../errors";
 
 export async function* toAsyncIterable(
   ws: WebSocket,
-): AsyncIterable<WebSocket.MessageEvent> {
-  const handleClose = (e: WebSocket.CloseEvent) => {
+): AsyncIterableIterator<WebSocket.MessageEvent> {
+  const handleClose = async (e: WebSocket.CloseEvent) => {
+    /* istanbul ignore next */
     if (events.return == undefined) {
-      throw new MastoUnexpectedError('events.return is undefined');
+      throw new MastoUnexpectedError("events.return is undefined");
     }
-    events.return(e);
+    await events.return(e);
   };
 
-  const handleError = (e: WebSocket.ErrorEvent) => {
-    if (events.throw == undefined) {
-      throw new MastoUnexpectedError('events.return is undefined');
+  const handleError = async (e: WebSocket.ErrorEvent) => {
+    /* istanbul ignore next */
+    if (events.return == undefined) {
+      throw new MastoUnexpectedError("events.return is undefined");
     }
-    events.throw(e);
+    await events.return(e);
   };
 
   const events = on<[WebSocket.MessageEvent]>((handler) => {
-    ws.addEventListener('message', handler);
-    ws.addEventListener('error', handleError);
-    ws.addEventListener('close', handleClose);
+    ws.addEventListener("message", handler);
+    ws.addEventListener("error", handleError);
+    ws.addEventListener("close", handleClose);
 
     return () => {
-      ws.removeEventListener('message', handler);
-      ws.removeEventListener('error', handleError);
-      ws.removeEventListener('close', handleClose);
+      ws.removeEventListener("message", handler);
+      ws.removeEventListener("error", handleError);
+      ws.removeEventListener("close", handleClose);
     };
   });
 

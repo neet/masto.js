@@ -1,75 +1,75 @@
 /* eslint-disable unicorn/no-null */
-import { railsQueryString } from './rails-query-string';
+import { railsQueryString } from "./rails-query-string";
 
-describe('railsQueryString', () => {
-  it('encodes null', () => {
+describe("railsQueryString", () => {
+  it("encodes null", () => {
     const result = railsQueryString.stringify(null);
-    expect(result).toBe('');
+    expect(result).toBe("");
   });
 
-  it('encodes an empty object', () => {
+  it("encodes an empty object", () => {
     const result = railsQueryString.stringify({});
-    expect(result).toBe('');
+    expect(result).toBe("");
   });
 
-  it('encodes a basic record', () => {
-    const result = railsQueryString.stringify({ key: 'value' });
-    expect(result).toBe('key=value');
+  it("encodes a basic record", () => {
+    const result = railsQueryString.stringify({ key: "value" });
+    expect(result).toBe("key=value");
   });
 
-  it('encodes a record with multiple values', () => {
+  it("encodes a record with multiple values", () => {
     const result = railsQueryString.stringify({
-      key1: 'value1',
-      key2: 'value2',
+      key1: "value1",
+      key2: "value2",
     });
-    expect(result).toBe('key1=value1&key2=value2');
+    expect(result).toBe("key1=value1&key2=value2");
   });
 
-  it('encodes string safely', () => {
+  it("encodes string safely", () => {
     const result = railsQueryString.stringify({
-      q: 'https://neet.love',
+      q: "https://neet.love",
     });
     // cspell:disable-next-line
-    expect(result).toBe('q=https%3A%2F%2Fneet.love');
+    expect(result).toBe("q=https%3A%2F%2Fneet.love");
   });
 
-  it('encodes an array inside a record', () => {
+  it("encodes an array inside a record", () => {
     const result = railsQueryString.stringify({
-      key1: 'value1',
-      key2: 'value2',
-      key3: ['apple', 'facebook', 'microsoft'],
+      key1: "value1",
+      key2: "value2",
+      key3: ["apple", "facebook", "microsoft"],
     });
     expect(result).toBe(
-      'key1=value1&key2=value2&key3[]=apple&key3[]=facebook&key3[]=microsoft',
+      "key1=value1&key2=value2&key3[]=apple&key3[]=facebook&key3[]=microsoft",
     );
   });
 
-  it('encodes null', () => {
+  it("encodes null", () => {
     const result = railsQueryString.stringify({
       foo: null,
-      bar: 'baz',
+      bar: "baz",
     });
 
-    expect(result).toBe('bar=baz');
+    expect(result).toBe("bar=baz");
   });
 
-  it('encodes undefined', () => {
+  it("encodes undefined", () => {
     const result = railsQueryString.stringify({
       foo: undefined,
-      bar: 'baz',
+      bar: "baz",
     });
 
-    expect(result).toBe('bar=baz');
+    expect(result).toBe("bar=baz");
   });
 
-  it('encodes tested object', () => {
+  it("encodes tested object", () => {
     expect(
       railsQueryString.stringify({
-        title: 'some group',
-        context: ['notifications'],
+        title: "some group",
+        context: ["notifications"],
         keywordsAttributes: [
           {
-            keyword: 'my keyword',
+            keyword: "my keyword",
           },
         ],
       }),

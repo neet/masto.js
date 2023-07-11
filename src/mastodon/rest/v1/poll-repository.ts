@@ -1,5 +1,5 @@
-import { type HttpMetaParams } from '../../../interfaces';
-import { type Poll } from '../../entities/v1';
+import { type HttpMetaParams } from "../../../interfaces";
+import { type Poll } from "../../entities/v1";
 
 export interface VotePollParams {
   /** Array of own votes containing index for each option (starting from 0) */
@@ -24,7 +24,7 @@ export interface PollRepository {
        */
       create(
         params: VotePollParams,
-        meta?: HttpMetaParams<'json'>,
+        meta?: HttpMetaParams<"json">,
       ): Promise<Poll>;
     };
   };

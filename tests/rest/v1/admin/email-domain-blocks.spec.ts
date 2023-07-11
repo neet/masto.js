@@ -1,5 +1,5 @@
-it('handle email domain block', async () => {
-  const domain = 'example.domain.to.block.com';
+it("handle email domain block", async () => {
+  const domain = "example.domain.to.block.com";
   let emailDomainBlock = await admin.v1.admin.emailDomainBlocks.create({
     domain,
   });

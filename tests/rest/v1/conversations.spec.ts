@@ -1,14 +1,14 @@
-import assert from 'node:assert';
+import assert from "node:assert";
 
-import { type mastodon } from '../../../src';
-import { waitForCondition } from '../../../test-utils/wait-for-condition';
+import { type mastodon } from "../../../src";
+import { waitForCondition } from "../../../test-utils/wait-for-condition";
 
-describe('conversations', () => {
-  it('interacts with conversations', () => {
+describe("conversations", () => {
+  it("interacts with conversations", () => {
     return sessions.use(2, async ([alice, bob]) => {
       const status = await bob.rest.v1.statuses.create({
         status: `@${alice.acct} Hi alice`,
-        visibility: 'direct',
+        visibility: "direct",
       });
 
       let conversation: mastodon.v1.Conversation | undefined;

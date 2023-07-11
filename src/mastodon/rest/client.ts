@@ -1,5 +1,5 @@
-import type * as v1 from './v1';
-import type * as v2 from './v2';
+import type * as v1 from "./v1";
+import type * as v2 from "./v2";
 
 export interface Client {
   readonly v1: {

@@ -1,4 +1,4 @@
-import { isObject } from './is-object';
+import { isRecord } from "./is-record";
 
 const _transformKeys = <T>(
   data: unknown,
@@ -10,7 +10,7 @@ const _transformKeys = <T>(
     ) as unknown as T;
   }
 
-  if (isObject(data)) {
+  if (isRecord(data)) {
     return Object.fromEntries(
       Object.entries(data).map(([key, value]) => [
         transform(key),
@@ -28,10 +28,10 @@ export const transformKeys = <T>(
 ): T => {
   const f = (key: string) => {
     // `PATCH /v1/preferences` uses `:` as a delimiter
-    if (key.includes(':')) return key;
+    if (key.includes(":")) return key;
 
     // `PATCH /v2/filters` uses _destroy as a special key
-    if (key.startsWith('_')) return key;
+    if (key.startsWith("_")) return key;
 
     return transform(key);
   };

@@ -4,7 +4,7 @@ import {
   type HttpMetaParams,
   type HttpRequestParams,
   type HttpRequestResult,
-} from '../../interfaces';
+} from "../../interfaces";
 
 export abstract class BaseHttp implements Http {
   abstract request(params: HttpRequestParams): Promise<HttpRequestResult>;
@@ -15,7 +15,7 @@ export abstract class BaseHttp implements Http {
     meta: HttpMetaParams<Encoding> = {},
   ): Promise<T> {
     return this.request({
-      method: 'GET',
+      method: "GET",
       path,
       search: data as Record<string, unknown>,
       ...meta,
@@ -28,7 +28,7 @@ export abstract class BaseHttp implements Http {
     meta: HttpMetaParams<Encoding> = {},
   ): Promise<T> {
     return this.request({
-      method: 'POST',
+      method: "POST",
       path,
       body: data as Record<string, unknown>,
       ...meta,
@@ -41,20 +41,21 @@ export abstract class BaseHttp implements Http {
     meta: HttpMetaParams<Encoding> = {},
   ): Promise<T> {
     return this.request({
-      method: 'DELETE',
+      method: "DELETE",
       path,
       body: data as Record<string, unknown>,
       ...meta,
     }).then((response) => response.data as T);
   }
 
+  /* istanbul ignore next */
   put<T>(
     path: string,
     data?: unknown,
     meta: HttpMetaParams<Encoding> = {},
   ): Promise<T> {
     return this.request({
-      method: 'PUT',
+      method: "PUT",
       path,
       body: data as Record<string, unknown>,
       ...meta,
@@ -67,7 +68,7 @@ export abstract class BaseHttp implements Http {
     meta: HttpMetaParams<Encoding> = {},
   ): Promise<T> {
     return this.request({
-      method: 'PATCH',
+      method: "PATCH",
       path,
       body: data as Record<string, unknown>,
       ...meta,

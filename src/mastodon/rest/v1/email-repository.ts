@@ -1,4 +1,4 @@
-import { type HttpMetaParams } from '../../../interfaces';
+import { type HttpMetaParams } from "../../../interfaces";
 
 export interface CreateConfirmationParams {
   /** If provided, updates the unconfirmed user’s email before resending the confirmation email. */
@@ -15,7 +15,7 @@ export interface EmailRepository {
      */
     create(
       params: CreateConfirmationParams,
-      meta?: HttpMetaParams<'multipart-form'>,
+      meta?: HttpMetaParams<"multipart-form">,
     ): Promise<void>;
   };
 }

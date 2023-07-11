@@ -1,9 +1,9 @@
 export type FilterContext =
-  | 'home'
-  | 'notifications'
-  | 'public'
-  | 'thread'
-  | 'account';
+  | "home"
+  | "notifications"
+  | "public"
+  | "thread"
+  | "account";
 
 /**
  * Represents a user-defined filter for determining which statuses should not be shown to the user.

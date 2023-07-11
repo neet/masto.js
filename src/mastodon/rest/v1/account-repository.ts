@@ -1,4 +1,4 @@
-import { type HttpMetaParams } from '../../../interfaces';
+import { type HttpMetaParams } from "../../../interfaces";
 import {
   type Account,
   type AccountCredentials,
@@ -11,9 +11,9 @@ import {
   type Relationship,
   type Status,
   type Token,
-} from '../../entities/v1';
-import { type Paginator } from '../../paginator';
-import { type DefaultPaginationParams } from '../../repository';
+} from "../../entities/v1";
+import { type Paginator } from "../../paginator";
+import { type DefaultPaginationParams } from "../../repository";
 
 export interface CreateAccountParams {
   /** The desired username for the account */
@@ -46,7 +46,7 @@ export interface UpdateCredentialsParams {
   /** Whether manual approval of follow requests is required. */
   readonly locked?: boolean | null;
   readonly source?: Partial<
-    Pick<AccountSource, 'privacy' | 'sensitive' | 'language'>
+    Pick<AccountSource, "privacy" | "sensitive" | "language">
   > | null;
   /** Whether you want to hide followers and followings on your profile  */
   readonly hideCollections?: boolean | null;
@@ -126,7 +126,7 @@ export interface AccountRepository {
      */
     follow(
       params?: FollowAccountParams,
-      meta?: HttpMetaParams<'json'>,
+      meta?: HttpMetaParams<"json">,
     ): Promise<Relationship>;
 
     /**
@@ -137,7 +137,7 @@ export interface AccountRepository {
      */
     unfollow(
       params?: FollowAccountParams,
-      meta?: HttpMetaParams<'json'>,
+      meta?: HttpMetaParams<"json">,
     ): Promise<Relationship>;
 
     /**
@@ -176,7 +176,7 @@ export interface AccountRepository {
      */
     mute(
       params?: MuteAccountParams,
-      meta?: HttpMetaParams<'json'>,
+      meta?: HttpMetaParams<"json">,
     ): Promise<Relationship>;
 
     /**
@@ -208,7 +208,7 @@ export interface AccountRepository {
        */
       create(
         params: CreateAccountNoteParams,
-        meta?: HttpMetaParams<'json'>,
+        meta?: HttpMetaParams<"json">,
       ): Promise<Relationship>;
     };
 
@@ -270,14 +270,12 @@ export interface AccountRepository {
     };
   };
 
-  lookup: {
-    /**
-     * This method allows to quickly convert a username of a known account to an ID that can be used with the REST API, or to check if a username is available for sign-up
-     * @param params Parameters
-     * @return Account
-     */
-    fetch(params: LookupAccountParams, meta?: HttpMetaParams): Promise<Account>;
-  };
+  /**
+   * This method allows to quickly convert a username of a known account to an ID that can be used with the REST API, or to check if a username is available for sign-up
+   * @param params Parameters
+   * @return Account
+   */
+  lookup(params: LookupAccountParams, meta?: HttpMetaParams): Promise<Account>;
 
   /**
    * Creates a user and account records. Returns an account access token
@@ -289,30 +287,26 @@ export interface AccountRepository {
    */
   create(
     params: CreateAccountParams,
-    meta?: HttpMetaParams<'multipart-form'>,
+    meta?: HttpMetaParams<"multipart-form">,
   ): Promise<Token>;
 
-  verifyCredentials: {
-    /**
-     * Test to make sure that the user token works.
-     * @return the user's own Account with Source
-     * @see https://docs.joinmastodon.org/methods/accounts/
-     */
-    fetch(meta?: HttpMetaParams): Promise<AccountCredentials>;
-  };
+  /**
+   * Test to make sure that the user token works.
+   * @return the user's own Account with Source
+   * @see https://docs.joinmastodon.org/methods/accounts/
+   */
+  verifyCredentials(meta?: HttpMetaParams): Promise<AccountCredentials>;
 
-  updateCredentials: {
-    /**
-     *  Update the user's display and preferences.
-     * @param params Parameters
-     * @return the user's own Account with Source
-     * @see https://docs.joinmastodon.org/methods/accounts/
-     */
-    update(
-      params: UpdateCredentialsParams,
-      meta?: HttpMetaParams<'multipart-form'>,
-    ): Promise<AccountCredentials>;
-  };
+  /**
+   *  Update the user's display and preferences.
+   * @param params Parameters
+   * @return the user's own Account with Source
+   * @see https://docs.joinmastodon.org/methods/accounts/
+   */
+  updateCredentials(
+    params: UpdateCredentialsParams,
+    meta?: HttpMetaParams<"multipart-form">,
+  ): Promise<AccountCredentials>;
 
   relationships: {
     /**

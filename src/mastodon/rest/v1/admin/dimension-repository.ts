@@ -1,6 +1,6 @@
-import { type HttpMetaParams } from '../../../../interfaces';
-import { type Admin } from '../../../entities/v1';
-import { type DimensionKey } from '../../../entities/v1/admin';
+import { type HttpMetaParams } from "../../../../interfaces";
+import { type Admin } from "../../../entities/v1";
+import { type DimensionKey } from "../../../entities/v1/admin";
 
 export interface FetchDimensionParams {
   /**
@@ -56,6 +56,6 @@ export interface DimensionRepository {
    */
   create(
     params: FetchDimensionParams,
-    meta?: HttpMetaParams<'json'>,
+    meta?: HttpMetaParams<"json">,
   ): Promise<Admin.Dimension[]>;
 }

@@ -1,8 +1,8 @@
-import crypto from 'node:crypto';
+import crypto from "node:crypto";
 
-import { type mastodon } from '../../src';
-import { type Tootctl } from '../tootctl';
-import { type TokenFactory } from './token-factory';
+import { type mastodon } from "../../src";
+import { type Tootctl } from "../tootctl";
+import { type TokenFactory } from "./token-factory";
 
 export class TokenFactoryDocker implements TokenFactory {
   constructor(
@@ -12,8 +12,8 @@ export class TokenFactoryDocker implements TokenFactory {
   ) {}
 
   async obtain(): Promise<mastodon.v1.Token> {
-    const username = crypto.randomBytes(8).toString('hex');
-    const email = crypto.randomBytes(8).toString('hex') + '@example.com';
+    const username = crypto.randomBytes(8).toString("hex");
+    const email = crypto.randomBytes(8).toString("hex") + "@example.com";
 
     // eslint-disable-next-line no-console
     console.log(`Creating user ${username} (${email})`);
@@ -24,16 +24,16 @@ export class TokenFactoryDocker implements TokenFactory {
     });
 
     if (this.app.clientId == undefined || this.app.clientSecret == undefined) {
-      throw new Error('App not created');
+      throw new Error("App not created");
     }
 
     const token = await this.oauth.token.create({
-      grantType: 'password',
+      grantType: "password",
       clientId: this.app.clientId,
       clientSecret: this.app.clientSecret,
       username: email,
       password,
-      scope: 'read write follow push admin:read admin:write',
+      scope: "read write follow push admin:read admin:write",
     });
 
     return token;

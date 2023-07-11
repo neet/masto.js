@@ -1,1 +1,1 @@
-export * from './serializer-native-impl';
+export * from "./serializer-native-impl";

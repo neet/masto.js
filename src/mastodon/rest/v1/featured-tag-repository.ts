@@ -1,6 +1,6 @@
-import { type HttpMetaParams } from '../../../interfaces';
-import { type FeaturedTag, type Tag } from '../../entities/v1';
-import { type Paginator } from '../../paginator';
+import { type HttpMetaParams } from "../../../interfaces";
+import { type FeaturedTag, type Tag } from "../../entities/v1";
+import { type Paginator } from "../../paginator";
 
 export interface CreateFeaturedTagParams {
   /** The hashtag to be featured. */
@@ -24,7 +24,7 @@ export interface FeaturedTagRepository {
    */
   create(
     params: CreateFeaturedTagParams,
-    meta?: HttpMetaParams<'multipart-form'>,
+    meta?: HttpMetaParams<"multipart-form">,
   ): Promise<FeaturedTag>;
 
   suggestions: {

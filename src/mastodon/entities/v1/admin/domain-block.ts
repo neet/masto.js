@@ -1,4 +1,4 @@
-export type DomainBlockSeverity = 'silence' | 'suspend' | 'noop';
+export type DomainBlockSeverity = "silence" | "suspend" | "noop";
 
 export interface DomainBlock {
   /** The ID of the domain block in the database. */

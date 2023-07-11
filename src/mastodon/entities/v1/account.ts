@@ -1,4 +1,6 @@
-import { type CustomEmoji, type Role, type StatusVisibility } from '.';
+import { type CustomEmoji } from "./custom-emoji";
+import { type Role } from "./role";
+import { type StatusVisibility } from "./status";
 
 /**
  * Represents display or publishing preferences of user's own account.
@@ -87,7 +89,7 @@ export interface Account {
   /** Boolean to indicate that the account performs automated actions */
   bot?: boolean | null;
   /** Roles that have been granted to this account. */
-  roles: Pick<Role, 'id' | 'name' | 'color'>[]; // TODO: Create an entity when documentation is updated
+  roles: Pick<Role, "id" | "name" | "color">[]; // TODO: Create an entity when documentation is updated
 }
 
 /**

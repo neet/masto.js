@@ -1,11 +1,11 @@
-import { type HttpMetaParams } from '../../../interfaces';
-import { type FilterKeyword, type FilterStatus } from '../../entities/v1';
+import { type HttpMetaParams } from "../../../interfaces";
+import { type FilterKeyword, type FilterStatus } from "../../entities/v1";
 import {
   type Filter,
   type FilterAction,
   type FilterContext,
-} from '../../entities/v2';
-import { type Paginator } from '../../paginator';
+} from "../../entities/v2";
+import { type Paginator } from "../../paginator";
 
 export interface CreateFilterParams {
   /** String. The name of the filter group. */
@@ -76,7 +76,7 @@ export interface FilterRepository {
    */
   create(
     params?: CreateFilterParams,
-    meta?: HttpMetaParams<'json'>,
+    meta?: HttpMetaParams<"json">,
   ): Promise<Filter>;
 
   $select(id: string): {
@@ -95,7 +95,7 @@ export interface FilterRepository {
      */
     update(
       params?: UpdateFilterParams,
-      meta?: HttpMetaParams<'json'>,
+      meta?: HttpMetaParams<"json">,
     ): Promise<Filter>;
 
     /**
@@ -115,7 +115,7 @@ export interface FilterRepository {
        */
       create(
         params: CreateFilterKeywordParams,
-        meta?: HttpMetaParams<'json'>,
+        meta?: HttpMetaParams<"json">,
       ): Promise<FilterKeyword>;
 
       /**
@@ -142,7 +142,7 @@ export interface FilterRepository {
        */
       create(
         params: CreateFilterStatusParams,
-        meta?: HttpMetaParams<'json'>,
+        meta?: HttpMetaParams<"json">,
       ): Promise<FilterStatus>;
     };
   };
@@ -164,7 +164,7 @@ export interface FilterRepository {
        */
       update(
         params: CreateFilterKeywordParams,
-        meta?: HttpMetaParams<'json'>,
+        meta?: HttpMetaParams<"json">,
       ): Promise<FilterKeyword>;
 
       /**

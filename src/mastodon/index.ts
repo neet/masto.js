@@ -1,1 +1,1 @@
-export * as mastodon from './mastodon';
+export * as mastodon from "./mastodon";

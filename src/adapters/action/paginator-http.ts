@@ -1,10 +1,10 @@
 /* eslint-disable unicorn/no-thenable */
-import parseLinkHeader from 'parse-link-header';
+import parseLinkHeader from "parse-link-header";
 
-import { type Http, type HttpMetaParams } from '../../interfaces';
-import { type mastodon } from '../../mastodon';
+import { type Http, type HttpMetaParams } from "../../interfaces";
+import { type mastodon } from "../../mastodon";
 
-type Rel = 'next' | 'prev';
+type Rel = "next" | "prev";
 
 export class PaginatorHttp<Entity, Params = undefined>
   implements mastodon.Paginator<Entity, Params>
@@ -18,8 +18,8 @@ export class PaginatorHttp<Entity, Params = undefined>
     private readonly meta?: HttpMetaParams,
   ) {
     const hasMinId =
-      nextParams && typeof nextParams === 'object' && 'minId' in nextParams;
-    this.rel = hasMinId ? 'prev' : 'next';
+      nextParams && typeof nextParams === "object" && "minId" in nextParams;
+    this.rel = hasMinId ? "prev" : "next";
   }
 
   async next(): Promise<IteratorResult<Entity, undefined>> {
@@ -28,20 +28,20 @@ export class PaginatorHttp<Entity, Params = undefined>
     }
 
     const response = await this.http.request({
-      method: 'GET',
+      method: "GET",
       path: this.nextPath,
       search: this.nextParams as Record<string, unknown>,
       ...this.meta,
     });
 
-    const nextUrl = this.getLink(response.headers.get('link'));
+    const nextUrl = this.getLink(response.headers.get("link"));
     this.nextPath = nextUrl?.pathname;
-    this.nextParams = nextUrl?.search?.replace(/^\?/, '');
+    this.nextParams = nextUrl?.search.replace(/^\?/, "");
 
     const data = response.data as Entity | undefined;
     const value =
-      this.rel === 'prev' && Array.isArray(data)
-        ? data?.reverse()
+      this.rel === "prev" && Array.isArray(data)
+        ? data.reverse()
         : response.data;
 
     return {
@@ -68,13 +68,12 @@ export class PaginatorHttp<Entity, Params = undefined>
   then<TResult1 = Entity, TResult2 = never>(
     onfulfilled: (
       value: Entity,
-    ) => TResult1 | PromiseLike<TResult1> = Promise.resolve,
+    ) => TResult1 | PromiseLike<TResult1> = Promise.resolve.bind(Promise),
     onrejected: (
       reason: unknown,
-    ) => TResult2 | PromiseLike<TResult2> = Promise.reject,
+    ) => TResult2 | PromiseLike<TResult2> = Promise.reject.bind(Promise),
   ): Promise<TResult1 | TResult2> {
     // we assume the first item won't be undefined
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     return this.next().then((value) => onfulfilled(value.value!), onrejected);
   }
 
@@ -87,8 +86,6 @@ export class PaginatorHttp<Entity, Params = undefined>
     undefined,
     Params | string | undefined
   > {
-    // TODO: Use polyfill on demand
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return this as any as AsyncIterator<
       Entity,
       undefined,

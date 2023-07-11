@@ -1,7 +1,7 @@
-import { type HttpMetaParams } from '../../../../interfaces';
-import { type Admin } from '../../../entities/v1';
-import { type IpBlockSeverity } from '../../../entities/v1/admin';
-import { type Paginator } from '../../../paginator';
+import { type HttpMetaParams } from "../../../../interfaces";
+import { type Admin } from "../../../entities/v1";
+import { type IpBlockSeverity } from "../../../entities/v1/admin";
+import { type Paginator } from "../../../paginator";
 
 export interface ListIpBlocksParams {
   /** Integer. Maximum number of results to return. Defaults to 100. */
@@ -58,7 +58,7 @@ export interface IpBlockRepository {
      */
     update(
       params: UpdateIpBlockParams,
-      meta?: HttpMetaParams<'json'>,
+      meta?: HttpMetaParams<"json">,
     ): Promise<Admin.IpBlock>;
 
     /**
@@ -77,6 +77,6 @@ export interface IpBlockRepository {
    */
   create(
     params: CreateIpBlockParams,
-    meta?: HttpMetaParams<'json'>,
+    meta?: HttpMetaParams<"json">,
   ): Promise<Admin.IpBlock>;
 }

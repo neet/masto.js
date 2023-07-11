@@ -1,13 +1,14 @@
-import { type FilterKeyword, type FilterStatus } from '../v1';
+import { type FilterKeyword } from "../v1/filter-keyword";
+import { type FilterStatus } from "../v1/filter-status";
 
 export type FilterContext =
-  | 'home'
-  | 'notifications'
-  | 'public'
-  | 'thread'
-  | 'account';
+  | "home"
+  | "notifications"
+  | "public"
+  | "thread"
+  | "account";
 
-export type FilterAction = 'warn' | 'hide';
+export type FilterAction = "warn" | "hide";
 
 /**
  * Represents a user-defined filter for determining which statuses should not be shown to the user.

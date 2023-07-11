@@ -7,7 +7,7 @@
  */
 
 /* eslint-disable @typescript-eslint/consistent-type-imports */
-import type * as undici_types from 'undici';
+import type * as undici_types from "undici";
 
 declare global {
   export const {
@@ -16,7 +16,7 @@ declare global {
     Headers,
     Request,
     Response,
-  }: typeof import('undici');
+  }: typeof import("undici");
 
   type FormData = undici_types.FormData;
   type Headers = undici_types.Headers;

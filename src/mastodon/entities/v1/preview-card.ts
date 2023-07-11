@@ -1,6 +1,6 @@
-import { type TagHistory } from './tag';
+import { type TagHistory } from "./tag";
 
-export type PreviewCardType = 'link' | 'photo' | 'video' | 'rich';
+export type PreviewCardType = "link" | "photo" | "video" | "rich";
 
 /**
  * Represents a rich preview card that is generated using OpenGraph tags from a URL.

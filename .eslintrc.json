@@ -9,7 +9,8 @@
   "plugins": ["import", "simple-import-sort"],
   "parserOptions": {
     "ecmaVersion": 9,
-    "sourceType": "module"
+    "sourceType": "module",
+    "project": "./tsconfig.json"
   },
   "env": {
     "browser": true,
@@ -17,6 +18,7 @@
   },
   "rules": {
     "no-console": "error",
+    "no-unused-vars": "off",
     "import/no-cycle": "error",
     "simple-import-sort/imports": "error",
     "unicorn/prevent-abbreviations": "off",
@@ -26,8 +28,7 @@
     {
       "files": "**/*.ts",
       "extends": [
-        "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/strict",
         "plugin:import/typescript",
         "plugin:prettier/recommended"
       ],
@@ -41,7 +42,8 @@
         "@typescript-eslint/no-unused-vars": [
           "error",
           {
-            "argsIgnorePattern": "^_"
+            "argsIgnorePattern": "^_",
+            "varsIgnorePattern": "^_"
           }
         ],
         "@typescript-eslint/consistent-type-imports": [
@@ -60,9 +62,12 @@
       }
     },
     {
-      "files": ["tests/**/*.ts", "**/*.spec.ts"],
+      "files": ["tests/**/*.ts", "test-utils/**/*.ts", "**/*.spec.ts"],
       "env": {
         "jest": true
+      },
+      "rules": {
+        "no-constant-condition": "off"
       }
     }
   ]

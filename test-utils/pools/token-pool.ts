@@ -1,4 +1,4 @@
-import { type mastodon } from '../../src';
+import { type mastodon } from "../../src";
 
 export interface TokenPool {
   acquire(): Promise<mastodon.v1.Token>;

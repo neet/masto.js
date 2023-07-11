@@ -1,6 +1,6 @@
-import { type HttpMetaParams } from '../../../interfaces';
-import { type Paginator } from '../../paginator';
-import { type DefaultPaginationParams } from '../../repository';
+import { type HttpMetaParams } from "../../../interfaces";
+import { type Paginator } from "../../paginator";
+import { type DefaultPaginationParams } from "../../repository";
 
 export interface CreateDomainBlockParams {
   /** Domain to block */
@@ -36,7 +36,7 @@ export interface DomainBlockRepository {
    */
   create(
     params: CreateDomainBlockParams,
-    meta?: HttpMetaParams<'json'>,
+    meta?: HttpMetaParams<"json">,
   ): Promise<void>;
 
   /**
@@ -47,6 +47,6 @@ export interface DomainBlockRepository {
    */
   remove(
     params: RemoveDomainBlockParams,
-    meta?: HttpMetaParams<'json'>,
+    meta?: HttpMetaParams<"json">,
   ): Promise<void>;
 }

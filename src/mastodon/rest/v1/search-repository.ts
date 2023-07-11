@@ -1,9 +1,9 @@
-import { type HttpMetaParams } from '../../../interfaces';
-import { type Search } from '../../entities/v1';
-import { type Paginator } from '../../paginator';
-import { type DefaultPaginationParams } from '../../repository';
+import { type HttpMetaParams } from "../../../interfaces";
+import { type Search } from "../../entities/v1";
+import { type Paginator } from "../../paginator";
+import { type DefaultPaginationParams } from "../../repository";
 
-export type SearchType = 'accounts' | 'hashtags' | 'statuses';
+export type SearchType = "accounts" | "hashtags" | "statuses";
 
 export interface SearchParams extends DefaultPaginationParams {
   /** Attempt WebFinger lookup. Defaults to false. */

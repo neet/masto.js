@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-interface */
-/* eslint-disable @typescript-eslint/no-namespace */
 export interface CustomMatchers<R = unknown> {
   toContainId(id: string): R;
 }
@@ -15,13 +13,13 @@ declare global {
 expect.extend({
   toContainId<T extends { id: string }>(received?: T, expected?: string) {
     if (!Array.isArray(received)) {
-      return { pass: false, message: () => 'Expected an array' };
+      return { pass: false, message: () => "Expected an array" };
     }
 
     if (received.length === 0) {
       return {
         pass: false,
-        message: () => 'Expected an array with at least one element',
+        message: () => "Expected an array with at least one element",
       };
     }
 

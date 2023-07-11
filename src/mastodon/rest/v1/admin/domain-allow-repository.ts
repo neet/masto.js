@@ -1,7 +1,7 @@
-import { type HttpMetaParams } from '../../../../interfaces';
-import { type Admin } from '../../../entities/v1';
-import { type Paginator } from '../../../paginator';
-import { type DefaultPaginationParams } from '../../../repository';
+import { type HttpMetaParams } from "../../../../interfaces";
+import { type Admin } from "../../../entities/v1";
+import { type Paginator } from "../../../paginator";
+import { type DefaultPaginationParams } from "../../../repository";
 
 export interface CreateDomainAllowParams {
   readonly domain: string;
@@ -28,7 +28,7 @@ export interface DomainAllowRepository {
    */
   create(
     params: CreateDomainAllowParams,
-    meta?: HttpMetaParams<'json'>,
+    meta?: HttpMetaParams<"json">,
   ): Promise<Admin.DomainAllow>;
 
   $select(id: string): {

@@ -1,6 +1,6 @@
-import lockfile from 'proper-lockfile';
+import lockfile from "proper-lockfile";
 
-import { ExponentialBackoff } from '../../src/utils';
+import { ExponentialBackoff, noop } from "../../src/utils";
 
 export class ExclusiveLock {
   constructor(readonly path: string) {}
@@ -16,16 +16,19 @@ export class ExclusiveLock {
   };
 
   private lock = async (): Promise<() => Promise<void>> => {
-    const backoff = new ExponentialBackoff(2, 10);
+    const backoff = new ExponentialBackoff({
+      factor: 10,
+      maxAttempts: 100,
+    });
 
-    while (backoff.getAttempts() < 100) {
+    for await (const _ of backoff) {
       try {
         return await lockfile.lock(this.path);
       } catch {
-        await backoff.sleep();
+        noop();
       }
     }
 
-    throw new Error('Failed to acquire lock');
+    throw new Error("Failed to lock");
   };
 }

@@ -1,17 +1,17 @@
-import crypto from 'node:crypto';
+import crypto from "node:crypto";
 
-import { createRestClient } from '../../../src';
+import { createRestClient } from "../../../src";
 
-it('can create a confirmation', async () => {
-  const username = crypto.randomBytes(8).toString('hex');
+it("can create a confirmation", async () => {
+  const username = crypto.randomBytes(8).toString("hex");
   let email = `${username}@example.com`;
 
   const token = await admin.v1.accounts.create({
     username,
     email,
-    password: 'password',
+    password: "password",
     agreement: true,
-    locale: 'en',
+    locale: "en",
   });
 
   const client = createRestClient({

@@ -1,9 +1,9 @@
-import assert from 'node:assert';
+import assert from "node:assert";
 
-import { type mastodon } from '../../../src';
-import { waitForCondition } from '../../../test-utils/wait-for-condition';
+import { type mastodon } from "../../../src";
+import { waitForCondition } from "../../../test-utils/wait-for-condition";
 
-it('handles notifications', () => {
+it("handles notifications", () => {
   return sessions.use(2, async ([alice, bob]) => {
     const status = await bob.rest.v1.statuses.create({
       status: `@${alice.acct} Hello`,
@@ -34,7 +34,7 @@ it('handles notifications', () => {
   });
 });
 
-it('clear notifications', () => {
+it("clear notifications", () => {
   return sessions.use(2, async ([alice, bob]) => {
     const s1 = await bob.rest.v1.statuses.create({
       status: `@${alice.acct} Hello 1`,

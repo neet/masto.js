@@ -1,4 +1,4 @@
-import { type v1 } from '../../mastodon';
+import { type Account, type Rule } from "../v1";
 
 export interface InstanceUsageUsers {
   /** The number of active users in the past 4 weeks. */
@@ -12,9 +12,9 @@ export interface InstanceUsage {
 
 export interface InstanceThumbnailVersions {
   /** The URL for the thumbnail image at 1x resolution. */
-  '@1x': string;
+  "@1x": string;
   /** The URL for the thumbnail image at 2x resolution. */
-  '@2x': string;
+  "@2x": string;
 }
 
 export interface InstanceThumbnail {
@@ -106,7 +106,7 @@ export interface InstanceContact {
   /** An email address that can be messaged regarding inquiries or issues. */
   email: string;
   /** An account that can be contacted natively over the network regarding inquiries or issues. */
-  account: v1.Account;
+  account: Account;
 }
 
 /**
@@ -137,5 +137,5 @@ export interface Instance {
   /** Hints related to contacting a representative of the website. */
   contact: InstanceContact;
   /** An itemized list of rules for this website. */
-  rules: v1.Rule[];
+  rules: Rule[];
 }

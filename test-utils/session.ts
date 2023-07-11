@@ -1,4 +1,4 @@
-import { createRestClient, createStreamingClient, type mastodon } from '../src';
+import { createRestClient, createStreamingClient, type mastodon } from "../src";
 
 export interface Session {
   readonly id: string;
@@ -22,7 +22,7 @@ export const createSession = async (
     accessToken: token.accessToken,
   });
 
-  const account = await rest.v1.accounts.verifyCredentials.fetch();
+  const account = await rest.v1.accounts.verifyCredentials();
 
   return Object.freeze({
     id: account.id,

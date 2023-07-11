@@ -1,6 +1,6 @@
-import { type Account } from './account';
+import { type Account } from "./account";
 
-export type SuggestionSource = 'staff' | 'past_interactions' | 'global';
+export type SuggestionSource = "staff" | "past_interactions" | "global";
 
 /**
  * Represents a suggested account to follow and an associated reason for the suggestion.

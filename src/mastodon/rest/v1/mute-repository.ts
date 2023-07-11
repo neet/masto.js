@@ -1,7 +1,7 @@
-import { type HttpMetaParams } from '../../../interfaces';
-import { type Account } from '../../entities/v1';
-import { type Paginator } from '../../paginator';
-import { type DefaultPaginationParams } from '../../repository';
+import { type HttpMetaParams } from "../../../interfaces";
+import { type Account } from "../../entities/v1";
+import { type Paginator } from "../../paginator";
+import { type DefaultPaginationParams } from "../../repository";
 
 export interface MuteRepository {
   /**
@@ -12,6 +12,6 @@ export interface MuteRepository {
    */
   list(
     params?: DefaultPaginationParams,
-    meta?: HttpMetaParams<'json'>,
+    meta?: HttpMetaParams<"json">,
   ): Paginator<Account[], DefaultPaginationParams>;
 }

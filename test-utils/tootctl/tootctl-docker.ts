@@ -1,11 +1,11 @@
-import childProcess from 'node:child_process';
-import util from 'node:util';
+import childProcess from "node:child_process";
+import util from "node:util";
 
 import {
   type CreateAccountParams,
   type CreateAccountResult,
   type Tootctl,
-} from './tootctl';
+} from "./tootctl";
 
 const exec = util.promisify(childProcess.exec);
 
@@ -18,12 +18,12 @@ const stringifyArguments = (
 ): string => {
   return Object.entries(args)
     .map(([key, value]) => (value === true ? `--${key}` : `--${key}=${value}`))
-    .join(' ');
+    .join(" ");
 };
 
-export type CreateTootctlParams = {
+export interface CreateTootctlParams {
   readonly container: string;
-};
+}
 
 export const createTootctl = (params: CreateTootctlParams): Tootctl => {
   const { container } = params;
@@ -34,13 +34,13 @@ export const createTootctl = (params: CreateTootctlParams): Tootctl => {
         username: string,
         params: CreateAccountParams,
       ): Promise<CreateAccountResult> => {
-        const args = stringifyArguments(params);
+        const args = stringifyArguments({ ...params });
 
         const { stdout } = await exec(
           [
             `docker exec ${container}`,
             `bash -c "RAILS_ENV=development bin/tootctl accounts create ${username} ${args}"`,
-          ].join(' '),
+          ].join(" "),
         );
 
         const password = extractPassword(stdout.trim());

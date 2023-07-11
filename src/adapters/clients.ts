@@ -1,19 +1,23 @@
-import { type mastodon } from '../mastodon';
+import { type mastodon } from "../mastodon";
+import {
+  createActionProxy,
+  HttpActionDispatcher,
+  WebSocketActionDispatcher,
+} from "./action";
 import {
   HttpConfigImpl,
   type MastoHttpConfigProps,
   WebSocketConfigImpl,
   type WebSocketConfigProps,
-} from './config';
-import { HttpNativeImpl } from './http';
-import { createLogger, type LogType } from './logger';
-import { createRequestBuilder } from './request-builder';
-import { SerializerNativeImpl } from './serializers';
-import { WebSocketClientNativeImpl, WebSocketConnector } from './ws';
+} from "./config";
+import { HttpNativeImpl } from "./http";
+import { createLogger, type LogType } from "./logger";
+import { SerializerNativeImpl } from "./serializers";
+import { WebSocketConnectorImpl } from "./ws";
 
-type LogConfigProps = {
+interface LogConfigProps {
   readonly logLevel?: LogType;
-};
+}
 
 export const createRestClient = (
   props: MastoHttpConfigProps & LogConfigProps,
@@ -22,8 +26,11 @@ export const createRestClient = (
   const config = new HttpConfigImpl(props, serializer);
   const logger = createLogger(props.logLevel);
   const http = new HttpNativeImpl(serializer, config, logger);
-  const builder = createRequestBuilder(http, ['api']) as mastodon.rest.Client;
-  return builder;
+  const actionDispatcher = new HttpActionDispatcher(http);
+  const actionProxy = createActionProxy(actionDispatcher, [
+    "api",
+  ]) as mastodon.rest.Client;
+  return actionProxy;
 };
 
 export const createOAuthClient = (
@@ -33,10 +40,11 @@ export const createOAuthClient = (
   const config = new HttpConfigImpl(props, serializer);
   const logger = createLogger(props.logLevel);
   const http = new HttpNativeImpl(serializer, config, logger);
-  const builder = createRequestBuilder(http, [
-    'oauth',
+  const actionDispatcher = new HttpActionDispatcher(http);
+  const actionProxy = createActionProxy(actionDispatcher, [
+    "oauth",
   ]) as mastodon.oauth.Client;
-  return builder;
+  return actionProxy;
 };
 
 export function createStreamingClient(
@@ -45,16 +53,17 @@ export function createStreamingClient(
   const serializer = new SerializerNativeImpl();
   const config = new WebSocketConfigImpl(props, serializer);
   const logger = createLogger(props.logLevel);
-  const connector = new WebSocketConnector(
-    [config.resolvePath('/api/v1/streaming').toString(), config.getProtocols()],
+  const connector = new WebSocketConnectorImpl(
+    [config.resolvePath("/api/v1/streaming"), config.getProtocols()],
     logger,
-    config,
+    config.getMaxAttempts(),
   );
-  const connections = connector.getConnections();
-
-  return new WebSocketClientNativeImpl(
-    connections,
+  const actionDispatcher = new WebSocketActionDispatcher(
+    connector,
     serializer,
-    connector.close.bind(connector),
+    logger,
   );
+
+  const actionProxy = createActionProxy(actionDispatcher);
+  return actionProxy as mastodon.streaming.Client;
 }

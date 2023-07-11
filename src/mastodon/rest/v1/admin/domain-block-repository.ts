@@ -1,6 +1,6 @@
-import { type HttpMetaParams } from '../../../../interfaces';
-import { type Admin } from '../../../entities/v1';
-import { type Paginator } from '../../../paginator';
+import { type HttpMetaParams } from "../../../../interfaces";
+import { type Admin } from "../../../entities/v1";
+import { type Paginator } from "../../../paginator";
 
 export interface CreateDomainBlockParams {
   /** The domain to block federation required*/
@@ -19,11 +19,11 @@ export interface CreateDomainBlockParams {
   readonly obfuscate?: boolean;
 }
 
-export type ListDomainBlocksParams = {
+export interface ListDomainBlocksParams {
   readonly limit?: number;
-};
+}
 
-export type UpdateDomainBlockParams = Omit<CreateDomainBlockParams, 'domain'>;
+export type UpdateDomainBlockParams = Omit<CreateDomainBlockParams, "domain">;
 
 export interface DomainBlockRepository {
   /**
@@ -45,7 +45,7 @@ export interface DomainBlockRepository {
    */
   create(
     params: CreateDomainBlockParams,
-    meta?: HttpMetaParams<'json'>,
+    meta?: HttpMetaParams<"json">,
   ): Promise<Admin.DomainBlock>;
 
   $select(id: string): {
@@ -64,7 +64,7 @@ export interface DomainBlockRepository {
      */
     update(
       params?: UpdateDomainBlockParams,
-      meta?: HttpMetaParams<'json'>,
+      meta?: HttpMetaParams<"json">,
     ): Promise<Admin.DomainBlock>;
 
     /**

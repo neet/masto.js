@@ -1,26 +1,12 @@
-import { type Event } from './event';
+import { type Event } from "./event";
 
-export type Stream =
-  | 'public'
-  | 'public:media'
-  | 'public:local'
-  | 'public:local:media'
-  | 'public:remote'
-  | 'public:remote:media'
-  | 'hashtag'
-  | 'hashtag:local'
-  | 'user'
-  | 'user:notification'
-  | 'list'
-  | 'direct';
-
-export type SubscribeListParams = {
+export interface SubscribeListParams {
   readonly list: string;
-};
+}
 
-export type SubscribeHashtagParams = {
+export interface SubscribeHashtagParams {
   readonly tag: string;
-};
+}
 
 export interface Subscription {
   unsubscribe(): void;
@@ -29,12 +15,42 @@ export interface Subscription {
 }
 
 export interface Client {
-  subscribe(stream: 'list', params: SubscribeListParams): Subscription;
-  subscribe(
-    stream: 'hashtag' | 'hashtag:local',
-    params: SubscribeHashtagParams,
-  ): Subscription;
-  subscribe(stream: Stream): Subscription;
+  public: {
+    subscribe(): Subscription;
+    media: {
+      subscribe(): Subscription;
+    };
+    local: {
+      subscribe(): Subscription;
+      media: {
+        subscribe(): Subscription;
+      };
+    };
+    remote: {
+      subscribe(): Subscription;
+      media: {
+        subscribe(): Subscription;
+      };
+    };
+  };
+  hashtag: {
+    subscribe(params: SubscribeHashtagParams): Subscription;
+    local: {
+      subscribe(params: SubscribeHashtagParams): Subscription;
+    };
+  };
+  list: {
+    subscribe(params: SubscribeListParams): Subscription;
+  };
+  direct: {
+    subscribe(): Subscription;
+  };
+  user: {
+    subscribe(): Subscription;
+    notification: {
+      subscribe(): Subscription;
+    };
+  };
 
   close(): void;
 }

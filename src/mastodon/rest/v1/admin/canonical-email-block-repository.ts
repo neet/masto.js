@@ -1,7 +1,7 @@
-import { type HttpMetaParams } from '../../../../interfaces';
-import { type Admin } from '../../../entities/v1';
-import { type Paginator } from '../../../paginator';
-import { type DefaultPaginationParams } from '../../../repository';
+import { type HttpMetaParams } from "../../../../interfaces";
+import { type Admin } from "../../../entities/v1";
+import { type Paginator } from "../../../paginator";
+import { type DefaultPaginationParams } from "../../../repository";
 
 export interface TestCanonicalEmailBlockParams {
   /** The email to canonicalize and hash */
@@ -42,7 +42,7 @@ export interface CanonicalEmailBlockRepository {
    */
   test(
     params: TestCanonicalEmailBlockParams,
-    meta?: HttpMetaParams<'json'>,
+    meta?: HttpMetaParams<"json">,
   ): Promise<Admin.CanonicalEmailBlock[]>;
 
   /**
@@ -53,7 +53,7 @@ export interface CanonicalEmailBlockRepository {
    */
   create(
     params: CreateCanonicalEmailBlockParams,
-    meta?: HttpMetaParams<'json'>,
+    meta?: HttpMetaParams<"json">,
   ): Promise<Admin.CanonicalEmailBlock>;
 
   $select(id: string): {

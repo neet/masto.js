@@ -1,6 +1,6 @@
-import { type HttpMetaParams } from '../../../interfaces';
-import { type Activity, type Instance } from '../../entities/v1';
-import { type Paginator } from '../../paginator';
+import { type HttpMetaParams } from "../../../interfaces";
+import { type Activity, type Instance } from "../../entities/v1";
+import { type Paginator } from "../../paginator";
 
 export interface InstanceRepository {
   /**
