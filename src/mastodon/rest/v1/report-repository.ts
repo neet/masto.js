@@ -1,5 +1,5 @@
-import { type HttpMetaParams } from '../../../interfaces';
-import { type Report, type ReportCategory } from '../../entities/v1';
+import { type HttpMetaParams } from "../../../interfaces";
+import { type Report, type ReportCategory } from "../../entities/v1";
 
 export interface ReportAccountParams {
   /** ID of the account to report */
@@ -25,6 +25,6 @@ export interface ReportRepository {
    */
   create(
     params: ReportAccountParams,
-    meta?: HttpMetaParams<'json'>,
+    meta?: HttpMetaParams<"json">,
   ): Promise<Report>;
 }

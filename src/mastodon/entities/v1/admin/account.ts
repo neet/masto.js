@@ -1,5 +1,6 @@
-import { type Account as PublicAccount, type Role } from '..';
-import { type Ip } from './ip';
+import { type Account as PublicAccount } from "../../v1/account";
+import { type Role } from "../role";
+import { type Ip } from "./ip";
 
 /**
  * Admin-level information about a given account.

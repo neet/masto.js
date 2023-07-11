@@ -1,6 +1,6 @@
-import { type HttpMetaParams } from '../../../interfaces';
-import { type Filter, type FilterContext } from '../../entities/v1';
-import { type Paginator } from '../../paginator';
+import { type HttpMetaParams } from "../../../interfaces";
+import { type Filter, type FilterContext } from "../../entities/v1";
+import { type Paginator } from "../../paginator";
 
 export interface CreateFilterParams {
   /** Text to be filtered */
@@ -44,7 +44,7 @@ export interface FilterRepository {
      */
     update(
       params?: UpdateFilterParams,
-      meta?: HttpMetaParams<'json'>,
+      meta?: HttpMetaParams<"json">,
     ): Promise<Filter>;
 
     /**
@@ -63,6 +63,6 @@ export interface FilterRepository {
    */
   create(
     params?: CreateFilterParams,
-    meta?: HttpMetaParams<'json'>,
+    meta?: HttpMetaParams<"json">,
   ): Promise<Filter>;
 }

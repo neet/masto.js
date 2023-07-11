@@ -1,9 +1,9 @@
-import { type Encoding } from '../interfaces';
+import { type Encoding } from "./serializer";
 
-export type HttpMetaParams<T extends Encoding = 'none'> = {
+export interface HttpMetaParams<T extends Encoding = "none"> {
   readonly encoding?: T;
-  readonly requestInit?: Omit<RequestInit, 'body' | 'method'>;
-};
+  readonly requestInit?: Omit<RequestInit, "body" | "method">;
+}
 
 export type HttpRequestParams = HttpMetaParams<Encoding> & {
   readonly method: string;
@@ -12,10 +12,10 @@ export type HttpRequestParams = HttpMetaParams<Encoding> & {
   readonly body?: Record<string, unknown>;
 };
 
-export type HttpRequestResult = {
+export interface HttpRequestResult {
   headers: Headers;
   data: unknown;
-};
+}
 
 export type HttpMethod = <T>(
   path: string,

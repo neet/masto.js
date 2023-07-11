@@ -1,5 +1,5 @@
-it('handles domain blocks', async () => {
-  const domain = 'example.com';
+it("handles domain blocks", async () => {
+  const domain = "example.com";
   let domainBlock = await admin.v1.admin.domainBlocks.create({
     domain,
     rejectMedia: true,

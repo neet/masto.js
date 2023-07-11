@@ -1,14 +1,13 @@
 type UseFn<T, U> = (client: T) => Promise<U>;
 type UseFnMany<T, U> = (client: T[]) => Promise<U>;
 
-export type Pool<T> = {
+export interface Pool<T> {
   acquire(n?: 1 | undefined): Promise<T>;
   acquire(n: number): Promise<T[]>;
-  release(token: T): Promise<void>;
-  release(tokens: T[]): Promise<void>;
+  release(token: T | T[]): Promise<void>;
   use<U>(fn: UseFn<T, U>): Promise<U>;
   use<U>(n: number, fn: UseFnMany<T, U>): Promise<U>;
-};
+}
 
 export abstract class BasePool<T extends object> implements Pool<T> {
   protected abstract acquireOne(): Promise<T>;
@@ -23,8 +22,6 @@ export abstract class BasePool<T extends object> implements Pool<T> {
     return Promise.all(Array.from({ length: n }).map(() => this.acquireOne()));
   }
 
-  async release(client: T): Promise<void>;
-  async release(clients: T[]): Promise<void>;
   async release(clients: T | T[]): Promise<void> {
     await (Array.isArray(clients)
       ? Promise.all(clients.map((client) => this.releaseOne(client)))
@@ -37,7 +34,7 @@ export abstract class BasePool<T extends object> implements Pool<T> {
     fnOrNumber: number | UseFn<T, U>,
     fnOrUndefined?: UseFnMany<T, U>,
   ): Promise<U> {
-    if (typeof fnOrNumber === 'function' && fnOrUndefined == undefined) {
+    if (typeof fnOrNumber === "function" && fnOrUndefined == undefined) {
       const fn = fnOrNumber;
       const client = await this.acquire(1);
 
@@ -48,7 +45,7 @@ export abstract class BasePool<T extends object> implements Pool<T> {
       }
     }
 
-    if (typeof fnOrNumber === 'number' && typeof fnOrUndefined === 'function') {
+    if (typeof fnOrNumber === "number" && typeof fnOrUndefined === "function") {
       const n = fnOrNumber;
       const fn = fnOrUndefined;
       const clients = await this.acquire(n);
@@ -60,6 +57,6 @@ export abstract class BasePool<T extends object> implements Pool<T> {
       }
     }
 
-    throw new Error('Invalid arguments');
+    throw new Error("Invalid arguments");
   }
 }

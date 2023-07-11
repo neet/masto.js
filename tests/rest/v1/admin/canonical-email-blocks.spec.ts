@@ -1,7 +1,7 @@
-describe('canonical-email-blocks', () => {
-  it('block canonical email address', async () => {
+describe("canonical-email-blocks", () => {
+  it("block canonical email address", async () => {
     let canonicalEmailBlock = await admin.v1.admin.canonicalEmailBlocks.create({
-      email: 'test@example.com',
+      email: "test@example.com",
     });
     try {
       canonicalEmailBlock = await admin.v1.admin.canonicalEmailBlocks
@@ -12,7 +12,7 @@ describe('canonical-email-blocks', () => {
       );
 
       const result = await admin.v1.admin.canonicalEmailBlocks.test({
-        email: 'test@example.com',
+        email: "test@example.com",
       });
       expect(result).toContainId(canonicalEmailBlock.id);
 

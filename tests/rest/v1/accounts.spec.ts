@@ -1,48 +1,104 @@
-import crypto from 'node:crypto';
+import assert from "node:assert";
+import crypto from "node:crypto";
 
-describe('account', () => {
-  it('creates an account', () => {
+import { MastoHttpError } from "../../../src/adapters/errors";
+
+describe("account", () => {
+  it("creates an account", () => {
     return sessions.use(async (session) => {
-      const username = crypto.randomBytes(8).toString('hex');
+      const username = crypto.randomBytes(8).toString("hex");
       const email = `${username}@example.com`;
 
       const token = await session.rest.v1.accounts.create({
         username,
         email,
-        password: 'password',
+        password: "password",
         agreement: true,
-        locale: 'en',
+        locale: "en",
       });
 
       expect(token.accessToken).toEqual(expect.any(String));
     });
   });
 
-  it('verifies credential', () => {
+  it("throws an error if registration is malformed", () => {
     return sessions.use(async (session) => {
-      const me = await session.rest.v1.accounts.verifyCredentials.fetch();
+      let error: unknown;
+
+      try {
+        await session.rest.v1.accounts.create({
+          username: "",
+          email: "",
+          password: "",
+          agreement: false,
+          locale: "hello",
+        });
+      } catch (error_) {
+        error = error_ as Error;
+      }
+
+      assert(error instanceof MastoHttpError);
+      expect(error.statusCode).toBe(422);
+      expect(error.details).toEqual({
+        agreement: [
+          {
+            description: "must be accepted",
+            error: "ERR_ACCEPTED",
+          },
+        ],
+        email: [
+          {
+            description: "can't be blank",
+            error: "ERR_BLANK",
+          },
+        ],
+        locale: [
+          {
+            description: "is not included in the list",
+            error: "ERR_INCLUSION",
+          },
+        ],
+        password: [
+          {
+            description: "can't be blank",
+            error: "ERR_BLANK",
+          },
+        ],
+        username: [
+          {
+            description: "can't be blank",
+            error: "ERR_BLANK",
+          },
+        ],
+      });
+    });
+  });
+
+  it("verifies credential", () => {
+    return sessions.use(async (session) => {
+      const me = await session.rest.v1.accounts.verifyCredentials();
       expect(me.username).not.toBeNull();
     });
   });
 
-  it('updates credential', () => {
+  it("updates credential", () => {
     return sessions.use(async (session) => {
       const random = Math.random().toString();
-      const me = await session.rest.v1.accounts.updateCredentials.update({
+      const me = await session.rest.v1.accounts.updateCredentials({
         displayName: random,
       });
       expect(me.displayName).toBe(random);
     });
   });
 
-  it('fetches an account with ID', () => {
+  it("fetches an account with ID", () => {
     return sessions.use(async (session) => {
       const someone = await admin.v1.accounts.$select(session.id).fetch();
       expect(session.id).toBe(someone.id);
     });
   });
 
-  it('follows / unfollow by ID', () => {
+  it("follows / unfollow by ID", () => {
     return sessions.use(2, async ([alice, bob]) => {
       let relationship = await alice.rest.v1.accounts.$select(bob.id).follow();
       expect(relationship.following).toBe(true);
@@ -52,7 +108,7 @@ describe('account', () => {
     });
   });
 
-  it('blocks / unblock by ID', () => {
+  it("blocks / unblock by ID", () => {
     return sessions.use(2, async ([alice, bob]) => {
       let relationship = await alice.rest.v1.accounts.$select(bob.id).block();
       expect(relationship.blocking).toBe(true);
@@ -62,7 +118,7 @@ describe('account', () => {
     });
   });
 
-  it('can pin / unpin by ID', () => {
+  it("can pin / unpin by ID", () => {
     return sessions.use(2, async ([alice, bob]) => {
       await alice.rest.v1.accounts.$select(bob.id).follow();
       let relationship = await alice.rest.v1.accounts.$select(bob.id).pin();
@@ -74,7 +130,7 @@ describe('account', () => {
     });
   });
 
-  it('mutes / unmute by ID', () => {
+  it("mutes / unmute by ID", () => {
     return sessions.use(2, async ([alice, bob]) => {
       let relationship = await alice.rest.v1.accounts.$select(bob.id).mute();
       expect(relationship.muting).toBe(true);
@@ -84,7 +140,7 @@ describe('account', () => {
     });
   });
 
-  it('creates a note', () => {
+  it("creates a note", () => {
     return sessions.use(2, async ([alice, bob]) => {
       const comment = Math.random().toString();
       const relationship = await alice.rest.v1.accounts
@@ -95,7 +151,7 @@ describe('account', () => {
     });
   });
 
-  it('fetches relationships', () => {
+  it("fetches relationships", () => {
     return sessions.use(3, async ([alice, bob, carol]) => {
       const res = await alice.rest.v1.accounts.relationships.fetch({
         id: [bob.id, carol.id],
@@ -104,7 +160,7 @@ describe('account', () => {
     });
   });
 
-  it('lists followers', () => {
+  it("lists followers", () => {
     return sessions.use(2, async ([alice, bob]) => {
       await alice.rest.v1.accounts.$select(bob.id).follow();
       const followers = await alice.rest.v1.accounts
@@ -116,7 +172,7 @@ describe('account', () => {
     });
   });
 
-  it('lists following', () => {
+  it("lists following", () => {
     return sessions.use(2, async ([alice, bob]) => {
       await alice.rest.v1.accounts.$select(bob.id).follow();
       const accounts = await alice.rest.v1.accounts
@@ -128,9 +184,9 @@ describe('account', () => {
     });
   });
 
-  it('lists statuses', () => {
+  it("lists statuses", () => {
     return sessions.use(async (client) => {
-      const status = await client.rest.v1.statuses.create({ status: 'Hello' });
+      const status = await client.rest.v1.statuses.create({ status: "Hello" });
       const statuses = await client.rest.v1.accounts
         .$select(status.account.id)
         .statuses.list();
@@ -139,9 +195,9 @@ describe('account', () => {
     });
   });
 
-  it('searches', () => {
+  it("searches", () => {
     return sessions.use(async (client) => {
-      const me = await client.rest.v1.accounts.verifyCredentials.fetch();
+      const me = await client.rest.v1.accounts.verifyCredentials();
       const accounts = await client.rest.v1.accounts.search.list({
         q: me.username,
       });
@@ -149,9 +205,9 @@ describe('account', () => {
     });
   });
 
-  it('lists lists', () => {
+  it("lists lists", () => {
     return sessions.use(2, async ([alice, bob]) => {
-      const list = await alice.rest.v1.lists.create({ title: 'title' });
+      const list = await alice.rest.v1.lists.create({ title: "title" });
       await alice.rest.v1.accounts.$select(bob.id).follow();
 
       try {
@@ -168,10 +224,10 @@ describe('account', () => {
     });
   });
 
-  it('lists featured tags', () => {
+  it("lists featured tags", () => {
     return sessions.use(async (client) => {
       const featuredTag = await client.rest.v1.featuredTags.create({
-        name: 'mastodon',
+        name: "mastodon",
       });
 
       const tags = await client.rest.v1.accounts
@@ -183,7 +239,7 @@ describe('account', () => {
     });
   });
 
-  it('lists Identity proofs', () => {
+  it("lists Identity proofs", () => {
     return sessions.use(async (client) => {
       const identityProofs = await client.rest.v1.accounts
         .$select(client.id)
@@ -193,7 +249,7 @@ describe('account', () => {
     });
   });
 
-  it('fetches familiar followers', () => {
+  it("fetches familiar followers", () => {
     return sessions.use(async (client) => {
       const identityProofs =
         await client.rest.v1.accounts.familiarFollowers.fetch([client.id]);
@@ -201,16 +257,16 @@ describe('account', () => {
     });
   });
 
-  it('lookup', () => {
+  it("lookup", () => {
     return sessions.use(async (client) => {
-      const account = await client.rest.v1.accounts.lookup.fetch({
+      const account = await client.rest.v1.accounts.lookup({
         acct: client.acct,
       });
       expect(account.id).toBe(client.id);
     });
   });
 
-  it('removes from followers', () => {
+  it("removes from followers", () => {
     return sessions.use(2, async ([alice, bob]) => {
       await bob.rest.v1.accounts.$select(alice.id).follow();
       await alice.rest.v1.accounts.$select(bob.id).removeFromFollowers();

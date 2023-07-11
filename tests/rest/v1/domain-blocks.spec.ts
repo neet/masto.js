@@ -1,6 +1,6 @@
-it('block a domain', () => {
+it("block a domain", () => {
   return sessions.use(async (client) => {
-    const domain = 'example.domain.to.block.com';
+    const domain = "example.domain.to.block.com";
 
     await client.rest.v1.domainBlocks.create({ domain });
     let domainBlocks = await client.rest.v1.domainBlocks.list();

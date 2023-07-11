@@ -1,15 +1,15 @@
-import { isObject } from './is-object';
+import { isRecord } from "./is-record";
 
-const flatten = (object: unknown, parent = ''): [string, unknown][] => {
+const flatten = (object: unknown, parent = ""): [string, unknown][] => {
   if (Array.isArray(object)) {
     return object.flatMap((value, i) =>
-      flatten(value, parent == '' ? i.toString() : `${parent}[]`),
+      flatten(value, parent == "" ? i.toString() : `${parent}[]`),
     );
   }
 
-  if (isObject(object)) {
+  if (isRecord(object)) {
     return Object.entries(object).flatMap(([key, value]) =>
-      flatten(value, parent === '' ? key : `${parent}[${key}]`),
+      flatten(value, parent === "" ? key : `${parent}[${key}]`),
     );
   }
 
@@ -20,7 +20,7 @@ const stringify = (object: unknown): string => {
   return flatten(object)
     .filter(([, v]) => v != undefined)
     .map(([k, v]) => `${k}=${encodeURIComponent(v as string)}`)
-    .join('&');
+    .join("&");
 };
 
 export const railsQueryString = { stringify };

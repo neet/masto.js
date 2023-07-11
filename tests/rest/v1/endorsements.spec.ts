@@ -1,4 +1,4 @@
-it('lists endorsements', () => {
+it("lists endorsements", () => {
   return sessions.use(2, async ([alice, bob]) => {
     try {
       await alice.rest.v1.accounts.$select(bob.id).follow();

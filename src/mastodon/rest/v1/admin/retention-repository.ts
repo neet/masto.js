@@ -1,6 +1,6 @@
-import { type HttpMetaParams } from '../../../../interfaces';
-import { type Admin } from '../../../entities/v1';
-import { type CohortFrequency } from '../../../entities/v1/admin/cohort';
+import { type HttpMetaParams } from "../../../../interfaces";
+import { type Admin } from "../../../entities/v1";
+import { type CohortFrequency } from "../../../entities/v1/admin/cohort";
 
 export interface CreateRetentionParams {
   /** String (ISO 8601 Datetime). The start date for the time period. If a time is provided, it will be ignored. */
@@ -18,6 +18,6 @@ export interface RetentionRepository {
    */
   create(
     params: CreateRetentionParams,
-    meta?: HttpMetaParams<'json'>,
+    meta?: HttpMetaParams<"json">,
   ): Promise<Admin.Cohort[]>;
 }

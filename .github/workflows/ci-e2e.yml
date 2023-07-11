@@ -1,4 +1,4 @@
-name: 'CI: E2E'
+name: "CI: E2E"
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
   pull_request:
     branches:
-      - '*'
+      - "*"
   workflow_call:
   workflow_dispatch:
 

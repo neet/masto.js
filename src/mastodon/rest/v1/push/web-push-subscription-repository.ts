@@ -1,9 +1,9 @@
-import { type HttpMetaParams } from '../../../../interfaces';
+import { type HttpMetaParams } from "../../../../interfaces";
 import {
   type WebPushSubscription,
   type WebPushSubscriptionAlerts,
   type WebPushSubscriptionPolicy,
-} from '../../../entities/v1';
+} from "../../../entities/v1";
 
 export interface CreateWebPushSubscriptionParams {
   readonly subscription: {
@@ -25,7 +25,7 @@ export interface CreateWebPushSubscriptionParams {
 
 export type UpdateWebPushSubscriptionParams = Pick<
   CreateWebPushSubscriptionParams,
-  'data'
+  "data"
 >;
 
 export interface WebPushSubscriptionRepository {
@@ -39,7 +39,7 @@ export interface WebPushSubscriptionRepository {
    */
   create(
     params: CreateWebPushSubscriptionParams,
-    meta?: HttpMetaParams<'json'>,
+    meta?: HttpMetaParams<"json">,
   ): Promise<WebPushSubscription>;
 
   /**
@@ -57,7 +57,7 @@ export interface WebPushSubscriptionRepository {
    */
   update(
     params: UpdateWebPushSubscriptionParams,
-    meta?: HttpMetaParams<'json'>,
+    meta?: HttpMetaParams<"json">,
   ): Promise<WebPushSubscription>;
 
   /**

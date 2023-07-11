@@ -7,7 +7,7 @@ export interface MarkerItem {
   version: number;
 }
 
-export type MarkerTimeline = 'home' | 'notifications';
+export type MarkerTimeline = "home" | "notifications";
 
 /**
  * Represents the last read position within a user's timelines.

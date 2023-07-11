@@ -1,10 +1,10 @@
-import { type MediaAttachment } from './media-attachment';
-import { type Status } from './status';
+import { type MediaAttachment } from "./media-attachment";
+import { type Status } from "./status";
 
 export interface StatusParams
   extends Pick<
     Status,
-    'id' | 'inReplyToId' | 'sensitive' | 'spoilerText' | 'visibility'
+    "id" | "inReplyToId" | "sensitive" | "spoilerText" | "visibility"
   > {
   /** Content of the status */
   text: string;

@@ -1,4 +1,4 @@
-export type ListRepliesPolicy = 'followed' | 'list' | 'none';
+export type ListRepliesPolicy = "followed" | "list" | "none";
 
 /**
  * Represents a list of some users that the authenticated user follows.

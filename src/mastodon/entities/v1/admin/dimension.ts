@@ -12,15 +12,15 @@ export interface DimensionData {
 }
 
 export type DimensionKey =
-  | 'languages'
-  | 'sources'
-  | 'servers'
-  | 'space_usage'
-  | 'software_versions'
-  | 'tag_servers'
-  | 'tag_languages'
-  | 'instance_accounts'
-  | 'instance_languages';
+  | "languages"
+  | "sources"
+  | "servers"
+  | "space_usage"
+  | "software_versions"
+  | "tag_servers"
+  | "tag_languages"
+  | "instance_accounts"
+  | "instance_languages";
 
 /**
  * Represents qualitative data about the server.

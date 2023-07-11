@@ -1,12 +1,12 @@
-import fs from 'node:fs/promises';
+import fs from "node:fs/promises";
 
-import { ExponentialBackoff } from '../../src/utils';
-import { ExclusiveLock } from './fs-exclusive-lock';
-import { type Entry, type TokenRepository } from './token-repository';
+import { ExponentialBackoff, noop } from "../../src/utils";
+import { ExclusiveLock } from "./fs-exclusive-lock";
+import { type Entry, type TokenRepository } from "./token-repository";
 
 export class TokenRepositoryFs implements TokenRepository {
   private readonly locker: ExclusiveLock;
-  readonly transaction: TokenRepository['transaction'];
+  readonly transaction: TokenRepository["transaction"];
 
   constructor(private readonly path: string) {
     this.locker = new ExclusiveLock(path);
@@ -14,19 +14,22 @@ export class TokenRepositoryFs implements TokenRepository {
   }
 
   async getAll(): Promise<Entry[]> {
-    const backoff = new ExponentialBackoff(2, 10);
+    const backoff = new ExponentialBackoff({
+      factor: 10,
+      maxAttempts: 100,
+    });
 
-    while (backoff.getAttempts() < 10) {
+    for await (const _ of backoff) {
       try {
-        const file = await fs.readFile(this.path, 'utf8');
+        const file = await fs.readFile(this.path, "utf8");
         const entries = JSON.parse(file);
         return entries;
       } catch {
-        await backoff.sleep();
+        noop();
       }
     }
 
-    throw new Error('Failed to read token repository');
+    throw new Error("Failed to read token repository");
   }
 
   async add(token: Entry): Promise<void> {
@@ -69,7 +72,7 @@ export class TokenRepositoryFs implements TokenRepository {
     await fs.writeFile(
       this.path,
       JSON.stringify(entries, undefined, 2),
-      'utf8',
+      "utf8",
     );
   };
 }

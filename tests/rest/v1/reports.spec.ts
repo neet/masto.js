@@ -1,6 +1,6 @@
-import assert from 'node:assert';
+import assert from "node:assert";
 
-it('creates a report', () => {
+it("creates a report", () => {
   return sessions.use(2, async ([alice, bob]) => {
     await alice.rest.v1.reports.create({
       accountId: bob.id,

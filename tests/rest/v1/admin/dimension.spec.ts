@@ -1,14 +1,14 @@
-it('fetches dimension', async () => {
+it("fetches dimension", async () => {
   const dimension = await admin.v1.admin.dimensions.create({
-    keys: ['languages', 'sources'],
+    keys: ["languages", "sources"],
   });
   expect(dimension).toEqual(
     expect.arrayContaining([
       expect.objectContaining({
-        key: 'languages',
+        key: "languages",
       }),
       expect.objectContaining({
-        key: 'sources',
+        key: "sources",
       }),
     ]),
   );

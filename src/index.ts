@@ -1,2 +1,2 @@
-export * from './adapters/clients';
-export * from './mastodon';
+export * from "./adapters/clients";
+export * from "./mastodon";

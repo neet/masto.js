@@ -1,8 +1,8 @@
-import { AsyncIterator } from 'iterator-helpers-polyfill';
-import { createRestClient } from 'masto';
+import { AsyncIterator } from "iterator-helpers-polyfill";
+import { createRestClient } from "masto";
 
 const masto = createRestClient({
-  url: 'https://example.com',
+  url: "https://example.com",
 });
 
 // You can fetch single page by `await`

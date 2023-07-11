@@ -1,4 +1,4 @@
-import { type v1 } from '../../mastodon';
+import { type Account, type Status, type Tag } from "../v1";
 
 /**
  * Represents the results of a search.
@@ -6,9 +6,9 @@ import { type v1 } from '../../mastodon';
  */
 export interface Search {
   /** Accounts which match the given query */
-  accounts: v1.Account[];
+  accounts: Account[];
   /** Statuses which match the given query */
-  statuses: v1.Status[];
+  statuses: Status[];
   /** Hashtags which match the given query */
-  hashtags: v1.Tag[];
+  hashtags: Tag;
 }

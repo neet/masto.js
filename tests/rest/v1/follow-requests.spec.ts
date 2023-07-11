@@ -1,11 +1,11 @@
-import { waitForCondition } from '../../../test-utils/wait-for-condition';
+import { waitForCondition } from "../../../test-utils/wait-for-condition";
 
-it('authorize follow requests', () => {
+it("authorize follow requests", () => {
   return sessions.use(2, async ([alice, bob]) => {
-    await alice.rest.v1.accounts.updateCredentials.update({ locked: true });
+    await alice.rest.v1.accounts.updateCredentials({ locked: true });
 
     await waitForCondition(async () => {
-      const me = await alice.rest.v1.accounts.verifyCredentials.fetch();
+      const me = await alice.rest.v1.accounts.verifyCredentials();
       return me.locked;
     });
 
@@ -22,19 +22,19 @@ it('authorize follow requests', () => {
       });
       expect(relationship.following).toBe(true);
     } finally {
-      await alice.rest.v1.accounts.updateCredentials.update({ locked: false });
+      await alice.rest.v1.accounts.updateCredentials({ locked: false });
       await bob.rest.v1.accounts.$select(alice.id).unfollow();
     }
   });
 });
 
-it('reject follow requests', () => {
+it("rejects follow requests", () => {
   return sessions.use(2, async ([alice, bob]) => {
-    await alice.rest.v1.accounts.updateCredentials.update({ locked: true });
+    await alice.rest.v1.accounts.updateCredentials({ locked: true });
 
     await waitForCondition(async () => {
-      const me = await alice.rest.v1.accounts.verifyCredentials.fetch();
-      return me.locked;
+      const target = await bob.rest.v1.accounts.$select(alice.id).fetch();
+      return target.locked;
     });
 
     try {
@@ -50,7 +50,7 @@ it('reject follow requests', () => {
       });
       expect(relationship.following).toBe(false);
     } finally {
-      await alice.rest.v1.accounts.updateCredentials.update({ locked: false });
+      await alice.rest.v1.accounts.updateCredentials({ locked: false });
     }
   });
 });

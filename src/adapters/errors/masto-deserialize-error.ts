@@ -1,4 +1,4 @@
-import { CustomError } from 'ts-custom-error';
+import { CustomError } from "ts-custom-error";
 
 export class MastoDeserializeError extends CustomError {
   readonly contentType: string;

@@ -1,5 +1,5 @@
-import { type HttpMetaParams } from '../../../interfaces';
-import { type Client } from '../../entities/v1';
+import { type HttpMetaParams } from "../../../interfaces";
+import { type Client } from "../../entities/v1";
 
 export interface CreateAppParams {
   /** A name of your application */
@@ -25,7 +25,7 @@ export interface AppRepository {
    */
   create(
     params: CreateAppParams,
-    meta?: HttpMetaParams<'json'>,
+    meta?: HttpMetaParams<"json">,
   ): Promise<Client>;
 
   verifyCredentials: {

@@ -1,6 +1,6 @@
-import { type HttpConfig, type Serializer } from '../../interfaces';
-import { mergeAbortSignals } from './merge-abort-signals';
-import { mergeHeadersInit } from './merge-headers-init';
+import { type HttpConfig, type Serializer } from "../../interfaces";
+import { mergeAbortSignals } from "./merge-abort-signals";
+import { mergeHeadersInit } from "./merge-headers-init";
 
 const DEFAULT_TIMEOUT_MS = 1000 * 300;
 
@@ -8,7 +8,7 @@ export interface MastoHttpConfigProps {
   readonly url: string;
   readonly accessToken?: string;
   readonly timeout?: number;
-  readonly requestInit?: Omit<RequestInit, 'body' | 'method'>;
+  readonly requestInit?: Omit<RequestInit, "body" | "method">;
 }
 
 export class HttpConfigImpl implements HttpConfig {
@@ -20,7 +20,7 @@ export class HttpConfigImpl implements HttpConfig {
   mergeRequestInitWithDefaults(override: RequestInit = {}): RequestInit {
     const requestInit: RequestInit = { ...this.props.requestInit };
 
-    // Copy
+    // Merge
     {
       const { headers, signal, ...rest } = override;
       Object.assign(requestInit, rest);
@@ -34,10 +34,10 @@ export class HttpConfigImpl implements HttpConfig {
   resolvePath(path: string, params?: string | Record<string, unknown>): URL {
     const url = new URL(path, this.props.url);
 
-    if (typeof params === 'string') {
+    if (typeof params === "string") {
       url.search = params;
     } else if (params != undefined) {
-      url.search = this.serializer.serialize('querystring', params);
+      url.search = this.serializer.serialize("querystring", params);
     }
 
     return url;
@@ -55,7 +55,7 @@ export class HttpConfigImpl implements HttpConfig {
     const headers: HeadersInit = new Headers(headersInit);
 
     if (this.props.accessToken) {
-      headers.set('Authorization', `Bearer ${this.props.accessToken}`);
+      headers.set("Authorization", `Bearer ${this.props.accessToken}`);
     }
 
     return new Headers(headers);

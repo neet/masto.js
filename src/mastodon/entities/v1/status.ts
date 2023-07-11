@@ -1,13 +1,11 @@
-import {
-  type Account,
-  type Application,
-  type CustomEmoji,
-  type FilterResult,
-  type MediaAttachment,
-  type Poll,
-  type PreviewCard,
-  type Tag,
-} from '.';
+import { type Account } from "./account";
+import { type Application } from "./application";
+import { type CustomEmoji } from "./custom-emoji";
+import { type FilterResult } from "./filter-result";
+import { type MediaAttachment } from "./media-attachment";
+import { type Poll } from "./poll";
+import { type PreviewCard } from "./preview-card";
+import { type Tag } from "./tag";
 
 /**
  * Represents a mention of a user within the content of a status.
@@ -27,7 +25,7 @@ export interface StatusMention {
   acct: string;
 }
 
-export type StatusVisibility = 'public' | 'unlisted' | 'private' | 'direct';
+export type StatusVisibility = "public" | "unlisted" | "private" | "direct";
 
 /**
  * Represents a status posted by an account.

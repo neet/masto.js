@@ -1,6 +1,6 @@
-it('list favourites', () => {
+it("list favourites", () => {
   return sessions.use(async (client) => {
-    const status = await client.rest.v1.statuses.create({ status: 'test' });
+    const status = await client.rest.v1.statuses.create({ status: "test" });
 
     try {
       await client.rest.v1.statuses.$select(status.id).favourite();

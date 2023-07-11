@@ -1,7 +1,7 @@
-import { type HttpMetaParams } from '../../../../interfaces';
-import { type Admin } from '../../../entities/v1';
-import { type Paginator } from '../../../paginator';
-import { type DefaultPaginationParams } from '../../../repository';
+import { type HttpMetaParams } from "../../../../interfaces";
+import { type Admin } from "../../../entities/v1";
+import { type Paginator } from "../../../paginator";
+import { type DefaultPaginationParams } from "../../../repository";
 
 export interface ListAccountsParams extends DefaultPaginationParams {
   /** Filter for local accounts? */
@@ -85,7 +85,7 @@ export interface AccountRepository {
        */
       create(
         params: CreateActionParams,
-        meta?: HttpMetaParams<'json'>,
+        meta?: HttpMetaParams<"json">,
       ): Promise<void>;
     };
 

@@ -1,8 +1,8 @@
 export type WebPushSubscriptionPolicy =
-  | 'all'
-  | 'followed'
-  | 'follower'
-  | 'none';
+  | "all"
+  | "followed"
+  | "follower"
+  | "none";
 
 /**
  * Represents a subscription to the push streaming server.

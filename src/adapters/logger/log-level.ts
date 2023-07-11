@@ -6,23 +6,23 @@ const LOG_TYPES = Object.freeze({
   ERROR: 1 << 3,
 });
 
-export type LogType = 'debug' | 'info' | 'warn' | 'error';
+export type LogType = "debug" | "info" | "warn" | "error";
 
 export class LogLevel {
   private constructor(private readonly level: number) {}
 
   satisfies(type: LogType): boolean {
     switch (type) {
-      case 'debug': {
+      case "debug": {
         return Boolean(this.level & LOG_TYPES.DEBUG);
       }
-      case 'info': {
+      case "info": {
         return Boolean(this.level & LOG_TYPES.INFO);
       }
-      case 'warn': {
+      case "warn": {
         return Boolean(this.level & LOG_TYPES.WARN);
       }
-      case 'error': {
+      case "error": {
         return Boolean(this.level & LOG_TYPES.ERROR);
       }
     }
@@ -30,18 +30,18 @@ export class LogLevel {
 
   static from(type: LogType): LogLevel {
     switch (type) {
-      case 'debug': {
+      case "debug": {
         return new LogLevel(
           LOG_TYPES.DEBUG | LOG_TYPES.INFO | LOG_TYPES.WARN | LOG_TYPES.ERROR,
         );
       }
-      case 'info': {
+      case "info": {
         return new LogLevel(LOG_TYPES.INFO | LOG_TYPES.WARN | LOG_TYPES.ERROR);
       }
-      case 'warn': {
+      case "warn": {
         return new LogLevel(LOG_TYPES.WARN | LOG_TYPES.ERROR);
       }
-      case 'error': {
+      case "error": {
         return new LogLevel(LOG_TYPES.ERROR);
       }
     }

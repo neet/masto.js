@@ -1,7 +1,7 @@
-import assert from 'node:assert';
+import assert from "node:assert";
 
-it('handles reports', async () => {
-  const self = await admin.v1.accounts.verifyCredentials.fetch();
+it("handles reports", async () => {
+  const self = await admin.v1.accounts.verifyCredentials();
 
   return sessions.use(async (session) => {
     await admin.v1.reports.create({ accountId: session.id });

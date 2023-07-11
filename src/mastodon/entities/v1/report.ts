@@ -1,6 +1,6 @@
-import { type Account } from './account';
+import { type Account } from "./account";
 
-export type ReportCategory = 'spam' | 'violation' | 'other';
+export type ReportCategory = "spam" | "violation" | "other";
 
 /**
  * Reports filed against users and/or statuses, to be taken action on by moderators.

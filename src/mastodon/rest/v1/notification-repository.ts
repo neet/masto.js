@@ -1,7 +1,7 @@
-import { type HttpMetaParams } from '../../../interfaces';
-import { type Notification, type NotificationType } from '../../entities/v1';
-import { type Paginator } from '../../paginator';
-import { type DefaultPaginationParams } from '../../repository';
+import { type HttpMetaParams } from "../../../interfaces";
+import { type Notification, type NotificationType } from "../../entities/v1";
+import { type Paginator } from "../../paginator";
+import { type DefaultPaginationParams } from "../../repository";
 
 export interface ListNotificationsParams extends DefaultPaginationParams {
   /** Instead of specifying every known type to exclude, you can specify only the types you want. */
@@ -23,7 +23,7 @@ export interface NotificationRepository {
    */
   list(
     params?: ListNotificationsParams,
-    meta?: HttpMetaParams<'json'>,
+    meta?: HttpMetaParams<"json">,
   ): Paginator<Notification[], ListNotificationsParams>;
 
   $select(id: string): {

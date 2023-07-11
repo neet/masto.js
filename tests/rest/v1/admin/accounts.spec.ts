@@ -1,24 +1,24 @@
-describe('account', () => {
-  it('fetches an account', async () => {
+describe("account", () => {
+  it("fetches an account", async () => {
     return sessions.use(async (session) => {
       const account = await admin.v1.admin.accounts.$select(session.id).fetch();
       expect(account.id).toBe(session.id);
     });
   });
 
-  it('lists accounts', async () => {
+  it("lists accounts", async () => {
     const accounts = await admin.v1.admin.accounts.list();
     expect(accounts.length).toBeGreaterThan(0);
   });
 
-  test.todo('approves an account');
+  test.todo("approves an account");
 
-  test.todo('rejects an account');
+  test.todo("rejects an account");
 
-  it('disables an account', async () => {
+  it("disables an account", async () => {
     return sessions.use(async (client) => {
       await admin.v1.admin.accounts.$select(client.id).action.create({
-        type: 'disable',
+        type: "disable",
       });
       let account = await admin.v1.admin.accounts.$select(client.id).fetch();
       expect(account.disabled).toBe(true);
@@ -28,10 +28,10 @@ describe('account', () => {
     });
   });
 
-  it('suspends an account', async () => {
+  it("suspends an account", async () => {
     return sessions.use(async (session) => {
       await admin.v1.admin.accounts.$select(session.id).action.create({
-        type: 'suspend',
+        type: "suspend",
       });
       let account = await admin.v1.admin.accounts.$select(session.id).fetch();
       expect(account.suspended).toBe(true);
@@ -41,10 +41,10 @@ describe('account', () => {
     });
   });
 
-  it('silences an account', async () => {
+  it("silences an account", async () => {
     return sessions.use(async (session) => {
       await admin.v1.admin.accounts.$select(session.id).action.create({
-        type: 'silence',
+        type: "silence",
       });
       let account = await admin.v1.admin.accounts.$select(session.id).fetch();
       expect(account.silenced).toBe(true);
@@ -54,10 +54,10 @@ describe('account', () => {
     });
   });
 
-  it('marks account as sensitive', async () => {
+  it("marks account as sensitive", async () => {
     return sessions.use(async (session) => {
       await admin.v1.admin.accounts.$select(session.id).action.create({
-        type: 'sensitive',
+        type: "sensitive",
       });
       let account = await admin.v1.admin.accounts.$select(session.id).fetch();
       expect(account.sensitized).toBe(true);

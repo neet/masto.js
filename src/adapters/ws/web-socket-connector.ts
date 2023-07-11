@@ -1,71 +1,104 @@
-import type WebSocket from 'ws';
+import WebSocket from "ws";
 
-import { type Logger, type WebSocketConfig } from '../../interfaces';
-import { ExponentialBackoff } from '../../utils';
-import { toAsyncIterable } from './async-iterable';
-import { connect } from './connect';
-import { waitForAsyncIterableToEnd } from './wait-for-async-iterable-to-end';
+import { type Logger, type WebSocketConnector } from "../../interfaces";
+import {
+  createPromiseWithResolvers,
+  ExponentialBackoff,
+  type PromiseWithResolvers,
+} from "../../utils";
+import { MastoWebSocketError } from "../errors";
+import { waitForClose, waitForOpen } from "./wait-for-events";
 
-export type WebSocketConnection = {
-  readonly messages: AsyncIterable<WebSocket.MessageEvent>;
-  readonly readyState: number;
-  readonly close: () => void;
-  readonly send: (data: string) => void;
-};
-
-export class WebSocketConnector {
+export class WebSocketConnectorImpl implements WebSocketConnector {
   private ws?: WebSocket;
+
+  private queue: PromiseWithResolvers<WebSocket>[] = [];
+  private backoff: ExponentialBackoff;
+
   private disableRetry = false;
+  private initialized = false;
 
   constructor(
     private readonly params: ConstructorParameters<typeof WebSocket>,
-    private readonly logger: Logger,
-    private readonly config: WebSocketConfig,
-  ) {}
+    private readonly logger?: Logger,
+    private readonly maxAttempts?: number,
+  ) {
+    this.backoff = new ExponentialBackoff({
+      maxAttempts: this.maxAttempts,
+    });
+  }
 
-  async *getConnections(): AsyncGenerator<WebSocketConnection> {
-    const backoff = new ExponentialBackoff(2);
+  canAcquire(): boolean {
+    return !this.disableRetry;
+  }
 
-    while (this.shouldRetry(backoff)) {
-      try {
-        this.ws = await connect(this.params);
-        this.logger.info('WebSocket connection established');
-        const messages = toAsyncIterable(this.ws);
+  async acquire(): Promise<WebSocket> {
+    this.init();
 
-        yield {
-          messages,
-          readyState: this.ws.readyState,
-          send: this.ws.send.bind(this.ws),
-          close: this.close.bind(this),
-        };
-
-        await waitForAsyncIterableToEnd(messages);
-        this.logger.info('WebSocket connection closed');
-        backoff.clear();
-      } catch (error) {
-        this.logger.warn('WebSocket error occurred', error);
-      } finally {
-        this.logger.info(`Reconnecting in ${backoff.getTimeout()}ms...`);
-        await backoff.sleep();
-      }
+    if (this.ws != undefined) {
+      return this.ws;
     }
+
+    const promiseWithResolvers = createPromiseWithResolvers<WebSocket>();
+    this.queue.push(promiseWithResolvers);
+    return await promiseWithResolvers.promise;
   }
 
   close(): void {
-    // It can be undefined if client is closed before connection is established
-    if (this.ws == undefined) {
+    this.disableRetry = true;
+    this.ws?.close();
+    this.backoff.clear();
+
+    for (const { reject } of this.queue) {
+      reject(new MastoWebSocketError("WebSocket closed"));
+    }
+
+    this.queue = [];
+  }
+
+  private init = async () => {
+    if (this.initialized) {
       return;
     }
 
-    this.disableRetry = true;
-    this.ws.close();
-  }
+    this.initialized = true;
 
-  private shouldRetry(backoff: ExponentialBackoff): boolean {
-    if (this.disableRetry) {
-      return false;
+    for await (const _ of this.backoff) {
+      this.ws?.close();
+
+      try {
+        this.logger?.info("Connecting to WebSocket...");
+        {
+          const ws = new WebSocket(...this.params);
+          await waitForOpen(ws);
+          this.ws = ws;
+        }
+        this.logger?.info("Connected to WebSocket");
+
+        for (const { resolve } of this.queue) {
+          resolve(this.ws);
+        }
+        this.queue = [];
+
+        await waitForClose(this.ws);
+        this.logger?.info("WebSocket closed");
+        this.backoff.clear();
+      } catch (error) {
+        this.logger?.error("WebSocket error:", error);
+      }
+
+      if (this.disableRetry) {
+        break;
+      }
     }
 
-    return backoff.getAttempts() < this.config.getMaxAttempts();
-  }
+    for (const { reject } of this.queue) {
+      reject(
+        new MastoWebSocketError(
+          `Failed to connect to WebSocket after ${this.maxAttempts} attempts`,
+        ),
+      );
+    }
+    this.queue = [];
+  };
 }

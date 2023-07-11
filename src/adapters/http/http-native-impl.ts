@@ -5,15 +5,15 @@ import {
   type HttpRequestResult,
   type Logger,
   type Serializer,
-} from '../../interfaces';
+} from "../../interfaces";
 import {
   MastoHttpError,
   type MastoHttpErrorDetails,
   MastoTimeoutError,
   MastoUnexpectedError,
-} from '../errors';
-import { BaseHttp } from './base-http';
-import { getEncoding } from './get-encoding';
+} from "../errors";
+import { BaseHttp } from "./base-http";
+import { getEncoding } from "./get-encoding";
 
 export class HttpNativeImpl extends BaseHttp implements Http {
   constructor(
@@ -29,9 +29,10 @@ export class HttpNativeImpl extends BaseHttp implements Http {
 
     try {
       this.logger?.info(`↑ ${request.method} ${request.url}`);
-      this.logger?.debug('\tbody', request.body);
+      this.logger?.debug("\tbody", request.body);
       const response = await fetch(request);
       if (!response.ok) {
+        // eslint-disable-next-line @typescript-eslint/no-throw-literal
         throw response;
       }
 
@@ -39,13 +40,13 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       const encoding = getEncoding(response.headers);
       if (encoding == undefined) {
         throw new MastoUnexpectedError(
-          'Unknown encoding is returned from the server',
+          "The server returned data with an unknown encoding.",
         );
       }
 
       const data = this.serializer.deserialize(encoding, text);
       this.logger?.info(`↓ ${request.method} ${request.url}`);
-      this.logger?.debug('\tbody', text);
+      this.logger?.debug("\tbody", text);
 
       return {
         headers: response.headers,
@@ -62,7 +63,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       method,
       path,
       search,
-      encoding = 'json',
+      encoding = "json",
       requestInit = {},
     } = params;
 
@@ -76,12 +77,8 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       ...init,
     });
 
-    if (typeof body === 'string' && encoding === 'json') {
-      request.headers.set('Content-Type', 'application/json');
-    }
-
-    if (typeof body === 'string' && encoding === 'form-url-encoded') {
-      request.headers.set('Content-Type', 'application/x-www-form-urlencoded');
+    if (typeof body === "string" && encoding === "json") {
+      request.headers.set("Content-Type", "application/json");
     }
 
     return request;
@@ -89,25 +86,29 @@ export class HttpNativeImpl extends BaseHttp implements Http {
 
   private async createError(error: unknown): Promise<unknown> {
     if (error instanceof Response) {
-      const data = this.serializer.deserialize(
-        getEncoding(error.headers) ?? 'json',
-        await error.text(),
-      );
+      const encoding = getEncoding(error.headers);
+      if (encoding == undefined) {
+        throw new MastoUnexpectedError(
+          "The server returned data with an unknown encoding. The server may be down.",
+        );
+      }
+
+      const data = this.serializer.deserialize(encoding, await error.text());
 
       return new MastoHttpError(
         error.status,
-        data?.error as string,
-        data?.description as string,
-        data?.details as MastoHttpErrorDetails,
+        data.error as string,
+        data.errorDescription as string,
+        data.details as MastoHttpErrorDetails,
         { cause: error },
       );
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    if (error != undefined && (error as any).name === 'AbortError') {
+    if (error != undefined && (error as any).name === "AbortError") {
       return new MastoTimeoutError(`Request timed out`, { cause: error });
     }
 
+    /* istanbul ignore next */
     return error;
   }
 }

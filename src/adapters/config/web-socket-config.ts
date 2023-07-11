@@ -1,11 +1,11 @@
-import { type Serializer, type WebSocketConfig } from '../../interfaces';
+import { type Serializer, type WebSocketConfig } from "../../interfaces";
 
-export type WebSocketConfigProps = {
+export interface WebSocketConfigProps {
   readonly url: string;
   readonly retry?: boolean | number;
   readonly accessToken?: string;
   readonly useInsecureAccessToken?: boolean;
-};
+}
 
 export class WebSocketConfigImpl implements WebSocketConfig {
   constructor(
@@ -30,7 +30,7 @@ export class WebSocketConfigImpl implements WebSocketConfig {
       params.accessToken = this.props.accessToken;
     }
 
-    url.search = this.serializer.serialize('querystring', params);
+    url.search = this.serializer.serialize("querystring", params);
     return url;
   }
 

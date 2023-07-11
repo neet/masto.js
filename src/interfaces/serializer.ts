@@ -1,13 +1,7 @@
-export type Encoding =
-  | 'none'
-  | 'json'
-  | 'form-url-encoded'
-  | 'multipart-form'
-  | 'querystring';
+export type Encoding = "none" | "json" | "multipart-form" | "querystring";
 
 export interface Serializer {
-  serialize(type: 'json', data: unknown): string;
-  serialize(type: 'querystring', data: unknown): string;
-  serialize(type: Encoding, data: unknown): BodyInit | undefined;
+  serialize(type: "json" | "querystring", data: unknown): string;
+  serialize(type: Encoding, data: unknown): BodyInit;
   deserialize<T = Record<string, unknown>>(type: Encoding, data: unknown): T;
 }

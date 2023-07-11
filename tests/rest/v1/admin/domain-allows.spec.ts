@@ -1,5 +1,5 @@
-it('handles domain allows', async () => {
-  const domain = 'example.domain.to.allow.com';
+it("handles domain allows", async () => {
+  const domain = "example.domain.to.allow.com";
   let domainAllow = await admin.v1.admin.domainAllows.create({
     domain,
   });

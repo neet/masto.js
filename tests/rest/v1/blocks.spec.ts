@@ -1,5 +1,5 @@
-describe('blocks', () => {
-  it('lists blocks', () => {
+describe("blocks", () => {
+  it("lists blocks", () => {
     return sessions.use(2, async ([alice, bob]) => {
       try {
         await alice.rest.v1.accounts.$select(bob.id).block();

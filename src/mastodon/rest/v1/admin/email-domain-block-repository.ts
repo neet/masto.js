@@ -1,6 +1,6 @@
-import { type HttpMetaParams } from '../../../../interfaces';
-import { type Admin } from '../../../entities/v1';
-import { type Paginator } from '../../../paginator';
+import { type HttpMetaParams } from "../../../../interfaces";
+import { type Admin } from "../../../entities/v1";
+import { type Paginator } from "../../../paginator";
 
 export interface ListEmailDomainBlocksParams {
   /** Integer. Maximum number of results to return. Defaults to 100. */
@@ -48,6 +48,6 @@ export interface EmailDomainBlockRepository {
    */
   create(
     params: CreateEmailDomainBlockParams,
-    meta?: HttpMetaParams<'json'>,
+    meta?: HttpMetaParams<"json">,
   ): Promise<Admin.EmailDomainBlock>;
 }

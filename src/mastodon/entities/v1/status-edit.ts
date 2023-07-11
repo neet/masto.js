@@ -1,12 +1,12 @@
-import { type Status } from './status';
+import { type Status } from "./status";
 
 export type StatusEdit = Pick<
   Status,
-  | 'content'
-  | 'spoilerText'
-  | 'sensitive'
-  | 'createdAt'
-  | 'account'
-  | 'mediaAttachments'
-  | 'emojis'
+  | "content"
+  | "spoilerText"
+  | "sensitive"
+  | "createdAt"
+  | "account"
+  | "mediaAttachments"
+  | "emojis"
 >;

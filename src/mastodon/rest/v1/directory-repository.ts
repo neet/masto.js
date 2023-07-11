@@ -1,8 +1,8 @@
-import { type HttpMetaParams } from '../../../interfaces';
-import { type Account } from '../../entities/v1';
-import { type Paginator } from '../../paginator';
+import { type HttpMetaParams } from "../../../interfaces";
+import { type Account } from "../../entities/v1";
+import { type Paginator } from "../../paginator";
 
-export type DirectoryOrderType = 'active' | 'new';
+export type DirectoryOrderType = "active" | "new";
 
 export interface ListDirectoryParams {
   /** How many accounts to load. Default 40. */
@@ -24,6 +24,6 @@ export interface DirectoryRepository {
    */
   list(
     params?: ListDirectoryParams,
-    meta?: HttpMetaParams<'json'>,
+    meta?: HttpMetaParams<"json">,
   ): Paginator<Account[], ListDirectoryParams>;
 }

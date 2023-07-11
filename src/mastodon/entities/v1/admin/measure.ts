@@ -7,20 +7,20 @@ export interface MeasureData {
 
 /** @see https://docs.joinmastodon.org/entities/Admin_Measure/#key */
 export type MeasureKey =
-  | 'active_users'
-  | 'new_users'
-  | 'interactions'
-  | 'opened_reports'
-  | 'resolved_reports'
-  | 'tag_accounts'
-  | 'tag_uses'
-  | 'tag_servers'
-  | 'instance_accounts'
-  | 'instance_media_attachments'
-  | 'instance_reports'
-  | 'instance_statuses'
-  | 'instance_follows'
-  | 'instance_followers';
+  | "active_users"
+  | "new_users"
+  | "interactions"
+  | "opened_reports"
+  | "resolved_reports"
+  | "tag_accounts"
+  | "tag_uses"
+  | "tag_servers"
+  | "instance_accounts"
+  | "instance_media_attachments"
+  | "instance_reports"
+  | "instance_statuses"
+  | "instance_follows"
+  | "instance_followers";
 
 /**
  * Represents quantitative data about the server.

@@ -1,2 +1,2 @@
-export * from './web-socket-connector';
-export * from './web-socket-client-native-impl';
+export * from "./web-socket-connector";
+export * from "./web-socket-subscription";

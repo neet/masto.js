@@ -1,4 +1,4 @@
-import { type HttpMetaParams } from '../../../interfaces';
+import { type HttpMetaParams } from "../../../interfaces";
 import {
   type Account,
   type Context,
@@ -9,8 +9,8 @@ import {
   type StatusSource,
   type StatusVisibility,
   type Translation,
-} from '../../entities/v1';
-import { type Paginator } from '../../paginator';
+} from "../../entities/v1";
+import { type Paginator } from "../../paginator";
 
 export interface CreateStatusParamsBase {
   /** ID of the status being replied to, if status is a reply */
@@ -61,7 +61,7 @@ export type CreateScheduledStatusParams = CreateStatusParams & {
   readonly scheduledAt?: string | null;
 };
 
-type UpdateStatusMediaAttribute = {
+interface UpdateStatusMediaAttribute {
   /** The ID of the media attachment to be modified */
   readonly id: string;
   /** A plain-text description of the media, for accessibility purposes. */
@@ -70,7 +70,7 @@ type UpdateStatusMediaAttribute = {
   readonly focus?: string | null;
   /** Custom thumbnail */
   readonly thumbnail?: unknown | null;
-};
+}
 
 export type UpdateStatusParams = CreateStatusParams & {
   /** https://github.com/mastodon/mastodon/pull/20878 */
@@ -96,11 +96,11 @@ export interface StatusRepository {
    */
   create(
     params: CreateStatusParams,
-    meta?: HttpMetaParams<'json'>,
+    meta?: HttpMetaParams<"json">,
   ): Promise<Status>;
   create(
     params: CreateScheduledStatusParams,
-    meta?: HttpMetaParams<'json'>,
+    meta?: HttpMetaParams<"json">,
   ): Promise<ScheduledStatus>;
 
   $select(id: string): {
@@ -119,7 +119,7 @@ export interface StatusRepository {
      */
     update(
       params: UpdateStatusParams,
-      meta?: HttpMetaParams<'json'>,
+      meta?: HttpMetaParams<"json">,
     ): Promise<Status>;
 
     /**
@@ -201,7 +201,7 @@ export interface StatusRepository {
      */
     reblog(
       params?: ReblogStatusParams,
-      meta?: HttpMetaParams<'json'>,
+      meta?: HttpMetaParams<"json">,
     ): Promise<Status>;
 
     /**
