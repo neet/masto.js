@@ -4,7 +4,7 @@ import type { Rule } from './rule';
 export interface InstanceStatusesConfiguration {
   maxCharacters: number;
   maxMediaAttachments: number;
-  charactersReservedPerUrl: string;
+  charactersReservedPerUrl: number;
 }
 
 export interface InstanceMediaAttachmentsConfiguration {
