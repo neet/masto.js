@@ -6,6 +6,7 @@
   "author": "Ryo Igarashi <n33t5hin@gmail.com>",
   "license": "MIT",
   "type": "module",
+  "sideEffects": false,
   "types": "./dist/index.d.ts",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
