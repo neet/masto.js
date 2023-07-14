@@ -7,11 +7,6 @@
     "plugin:prettier/recommended"
   ],
   "plugins": ["import", "simple-import-sort"],
-  "parserOptions": {
-    "ecmaVersion": 9,
-    "sourceType": "module",
-    "project": "./tsconfig.json"
-  },
   "env": {
     "browser": true,
     "node": true
@@ -32,6 +27,11 @@
         "plugin:import/typescript",
         "plugin:prettier/recommended"
       ],
+      "parserOptions": {
+        "ecmaVersion": 9,
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+      },
       "rules": {
         "@typescript-eslint/explicit-module-boundary-types": "error",
         "@typescript-eslint/explicit-member-accessibility": [

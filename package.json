@@ -19,12 +19,12 @@
   },
   "scripts": {
     "test": "npm-run-all test:*",
-    "test:unit": "jest --coverage --config=jest.config.cjs --selectProjects unit",
-    "test:e2e": "jest --coverage --config=jest.config.cjs --selectProjects e2e",
+    "test:unit": "jest --coverage --config=jest.config.js --selectProjects unit",
+    "test:e2e": "jest --coverage --config=jest.config.js --selectProjects e2e",
     "lint": "npm-run-all lint:*",
     "lint:eslint": "eslint --ext ts --report-unused-disable-directives --cache '{src,tests,test-utils}/**/*'",
     "lint:spellcheck": "cspell '{src,test,test-utils}/**/*.{ts,tsx,js,json,md}'",
-    "build": "rollup -c rollup.config.cjs",
+    "build": "rollup -c rollup.config.js",
     "prepublishOnly": "yarn run build",
     "docs:build": "typedoc ./src/index.ts && touch ./docs/.nojekyll",
     "purge:cache": "rm -rf ./node_modules/.cache/masto"

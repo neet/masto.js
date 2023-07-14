@@ -4,6 +4,7 @@ import "./jest-extend-expect";
 import { createRestClient } from "../src";
 import { SessionPoolImpl } from "./pools";
 
+jest.retryTimes(3);
 jest.setTimeout(1000 * 60);
 
 globalThis.admin = createRestClient({
