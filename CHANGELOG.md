@@ -1,3 +1,10 @@
+## [5.11.4](https://github.com/neet/masto.js/compare/v5.11.3...v5.11.4) (2023-07-15)
+
+
+### Bug Fixes
+
+* Fix type error in V1::instance ([#940](https://github.com/neet/masto.js/issues/940)) ([f80bec7](https://github.com/neet/masto.js/commit/f80bec7834d3c3406d246cc8b368c831fba4fe26))
+
 ## [5.11.3](https://github.com/neet/masto.js/compare/v5.11.2...v5.11.3) (2023-05-03)
 
 
