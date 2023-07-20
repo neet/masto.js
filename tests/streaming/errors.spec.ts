@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/no-array-callback-reference */
 import { type mastodon } from "../../src";
 import { MastoUnexpectedError } from "../../src/adapters/errors";
 import { sleep } from "../../src/utils";
@@ -28,37 +29,47 @@ it("supports multiplex subscription", () => {
     const s2 = alice.ws.public.local.subscribe();
     const s1 = alice.ws.hashtag.subscribe({ tag: "test" });
 
-    let id!: string;
+    const e1Promise = s1
+      .values()
+      .filter(isUpdate)
+      .filter(isFrom(alice.id))
+      .take(1)
+      .toArray();
+    const e2Promise = s2
+      .values()
+      .filter(isUpdate)
+      .filter(isFrom(alice.id))
+      .take(1)
+      .toArray();
+    const e3Promise = s3
+      .values()
+      .filter(isUpdate)
+      .filter(isFrom(alice.id))
+      .take(1)
+      .toArray();
 
-    const dispatch = async () => {
-      await sleep(1000);
+    await sleep(1000);
 
-      const status = await alice.rest.v1.statuses.create({
-        status: "#test",
-        visibility: "public",
-      });
-
-      id = status.id;
-    };
+    const status = await alice.rest.v1.statuses.create({
+      status: "#test",
+      visibility: "public",
+    });
 
     try {
-      /* eslint-disable unicorn/no-array-callback-reference */
       const [[e1], [e2], [e3]] = await Promise.all([
-        s1.values().filter(isUpdate).filter(isFrom(alice.id)).take(1).toArray(),
-        s2.values().filter(isUpdate).filter(isFrom(alice.id)).take(1).toArray(),
-        s3.values().filter(isUpdate).filter(isFrom(alice.id)).take(1).toArray(),
-        dispatch(),
+        e1Promise,
+        e2Promise,
+        e3Promise,
       ]);
-      /* eslint-enable unicorn/no-array-callback-reference */
 
-      expect(e1.payload.id).toBe(id);
-      expect(e2.payload.id).toBe(id);
-      expect(e3.payload.id).toBe(id);
+      expect(e1.payload.id).toBe(status.id);
+      expect(e2.payload.id).toBe(status.id);
+      expect(e3.payload.id).toBe(status.id);
     } finally {
       s1.unsubscribe();
       s2.unsubscribe();
       s3.unsubscribe();
-      await alice.rest.v1.statuses.$select(id).remove();
+      await alice.rest.v1.statuses.$select(status.id).remove();
     }
   });
 });
