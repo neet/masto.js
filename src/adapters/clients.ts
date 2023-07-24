@@ -19,6 +19,10 @@ interface LogConfigProps {
   readonly logLevel?: LogType;
 }
 
+interface WebSocketCustomImplProps {
+  readonly implementation?: unknown;
+}
+
 export const createRestClient = (
   props: MastoHttpConfigProps & LogConfigProps,
 ): mastodon.rest.Client => {
@@ -48,7 +52,7 @@ export const createOAuthClient = (
 };
 
 export function createStreamingClient(
-  props: WebSocketConfigProps & LogConfigProps,
+  props: WebSocketConfigProps & LogConfigProps & WebSocketCustomImplProps,
 ): mastodon.streaming.Client {
   const serializer = new SerializerNativeImpl();
   const config = new WebSocketConfigImpl(props, serializer);
@@ -56,6 +60,7 @@ export function createStreamingClient(
   const connector = new WebSocketConnectorImpl(
     [config.resolvePath("/api/v1/streaming"), config.getProtocols()],
     logger,
+    props.implementation,
     config.getMaxAttempts(),
   );
   const actionDispatcher = new WebSocketActionDispatcher(

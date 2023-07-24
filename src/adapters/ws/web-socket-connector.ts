@@ -21,6 +21,7 @@ export class WebSocketConnectorImpl implements WebSocketConnector {
   constructor(
     private readonly params: ConstructorParameters<typeof WebSocket>,
     private readonly logger?: Logger,
+    private readonly implementation?: unknown,
     private readonly maxAttempts?: number,
   ) {
     this.backoff = new ExponentialBackoff({
@@ -69,7 +70,8 @@ export class WebSocketConnectorImpl implements WebSocketConnector {
       try {
         this.logger?.info("Connecting to WebSocket...");
         {
-          const ws = new WebSocket(...this.params);
+          const ctor = (this.implementation ?? WebSocket) as typeof WebSocket;
+          const ws = new ctor(...this.params);
           await waitForOpen(ws);
           this.ws = ws;
         }
