@@ -29,7 +29,10 @@ export class HttpNativeImpl extends BaseHttp implements Http {
 
     try {
       this.logger?.info(`↑ ${request.method} ${request.url}`);
-      this.logger?.debug("\tbody", request.body);
+      this.logger?.debug("\tbody", {
+        encoding: params.encoding,
+        body: params.body,
+      });
       const response = await fetch(request);
       if (!response.ok) {
         // eslint-disable-next-line @typescript-eslint/no-throw-literal

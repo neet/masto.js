@@ -91,6 +91,33 @@ describe("account", () => {
     });
   });
 
+  it("updates field", () => {
+    return sessions.use(async (session) => {
+      const random = Math.random().toString();
+      const me = await session.rest.v1.accounts.updateCredentials({
+        fieldsAttributes: [
+          {
+            name: "test",
+            value: random,
+          },
+        ],
+      });
+
+      expect(me.fields).toEqual([
+        {
+          name: "test",
+          value: random,
+          // eslint-disable-next-line unicorn/no-null
+          verifiedAt: null,
+        },
+      ]);
+
+      await session.rest.v1.accounts.updateCredentials({
+        fieldsAttributes: undefined,
+      });
+    });
+  });
+
   it("fetches an account with ID", () => {
     return sessions.use(async (session) => {
       const someone = await admin.v1.accounts.$select(session.id).fetch();
