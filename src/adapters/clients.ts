@@ -58,10 +58,15 @@ export function createStreamingClient(
   const config = new WebSocketConfigImpl(props, serializer);
   const logger = createLogger(props.logLevel);
   const connector = new WebSocketConnectorImpl(
-    [config.resolvePath("/api/v1/streaming"), config.getProtocols()],
+    {
+      constructorParameters: [
+        config.resolvePath("/api/v1/streaming"),
+        config.getProtocols(),
+      ],
+      implementation: props.implementation,
+      maxAttempts: config.getMaxAttempts(),
+    },
     logger,
-    props.implementation,
-    config.getMaxAttempts(),
   );
   const actionDispatcher = new WebSocketActionDispatcher(
     connector,

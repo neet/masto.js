@@ -9,6 +9,12 @@ import {
 import { MastoWebSocketError } from "../errors";
 import { waitForClose, waitForOpen } from "./wait-for-events";
 
+interface WebSocketConnectorImplProps {
+  readonly constructorParameters: ConstructorParameters<typeof WebSocket>;
+  readonly implementation?: unknown;
+  readonly maxAttempts?: number;
+}
+
 export class WebSocketConnectorImpl implements WebSocketConnector {
   private ws?: WebSocket;
 
@@ -19,13 +25,11 @@ export class WebSocketConnectorImpl implements WebSocketConnector {
   private initialized = false;
 
   constructor(
-    private readonly params: ConstructorParameters<typeof WebSocket>,
+    private readonly props: WebSocketConnectorImplProps,
     private readonly logger?: Logger,
-    private readonly implementation?: unknown,
-    private readonly maxAttempts?: number,
   ) {
     this.backoff = new ExponentialBackoff({
-      maxAttempts: this.maxAttempts,
+      maxAttempts: this.props.maxAttempts,
     });
   }
 
@@ -70,8 +74,9 @@ export class WebSocketConnectorImpl implements WebSocketConnector {
       try {
         this.logger?.info("Connecting to WebSocket...");
         {
-          const ctor = (this.implementation ?? WebSocket) as typeof WebSocket;
-          const ws = new ctor(...this.params);
+          const ctor = (this.props.implementation ??
+            WebSocket) as typeof WebSocket;
+          const ws = new ctor(...this.props.constructorParameters);
           await waitForOpen(ws);
           this.ws = ws;
         }
@@ -97,7 +102,7 @@ export class WebSocketConnectorImpl implements WebSocketConnector {
     for (const { reject } of this.queue) {
       reject(
         new MastoWebSocketError(
-          `Failed to connect to WebSocket after ${this.maxAttempts} attempts`,
+          `Failed to connect to WebSocket after ${this.props.maxAttempts} attempts`,
         ),
       );
     }

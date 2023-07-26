@@ -7,7 +7,9 @@ import { WebSocketActionDispatcher } from "./dispatcher-ws";
 describe("DispatcherWs", () => {
   it("throws for unknown action type", async () => {
     const dispatcher = new WebSocketActionDispatcher(
-      new WebSocketConnectorImpl(["wss://example.com"]),
+      new WebSocketConnectorImpl({
+        constructorParameters: ["wss://example.com"],
+      }),
       new SerializerNativeImpl(),
       createLogger("error"),
     );

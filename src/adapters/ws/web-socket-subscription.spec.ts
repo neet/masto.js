@@ -11,7 +11,10 @@ describe("WebSocketSubscription", () => {
     const logger = createLogger();
 
     const subscription = new WebSocketSubscription(
-      new WebSocketConnectorImpl(["ws://localhost:0"], logger),
+      new WebSocketConnectorImpl(
+        { constructorParameters: ["ws://localhost:0"] },
+        logger,
+      ),
       new SerializerNativeImpl(),
       "public",
       logger,
@@ -39,7 +42,7 @@ describe("WebSocketSubscription", () => {
     });
 
     const connection = new WebSocketConnectorImpl(
-      [`ws://localhost:${port}`],
+      { constructorParameters: [`ws://localhost:${port}`] },
       logger,
     );
     const subscription = new WebSocketSubscription(
