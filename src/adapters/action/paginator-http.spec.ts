@@ -53,16 +53,20 @@ describe("PaginatorHttp", () => {
     });
   });
 
-  it("paginates with opposite direction when minId is specified", async () => {
+  it("paginates with opposite direction when prev direction was set", async () => {
     http.request.mockReturnValue({
       headers: new Headers({
         link: '<https://mastodon.social/api/v1/timelines/home?max_id=109382006402042919>; rel="next", <https://mastodon.social/api/v1/timelines/home?min_id=109382039876197520>; rel="prev"',
       }),
       data: [],
     });
-    const paginator = new PaginatorHttp(http, "/v1/api/timelines", {
-      minId: 1,
-    });
+
+    let paginator = new PaginatorHttp(http, "/v1/api/timelines");
+    expect(paginator.getDirection()).toBe("next");
+
+    paginator = paginator.setDirection("prev");
+    expect(paginator.getDirection()).toBe("prev");
+
     await paginator.next();
     await paginator.next();
     expect(http.request).toBeCalledWith({

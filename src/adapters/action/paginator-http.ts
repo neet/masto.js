@@ -4,23 +4,17 @@ import parseLinkHeader from "parse-link-header";
 import { type Http, type HttpMetaParams } from "../../interfaces";
 import { type mastodon } from "../../mastodon";
 
-type Rel = "next" | "prev";
-
 export class PaginatorHttp<Entity, Params = undefined>
   implements mastodon.Paginator<Entity, Params>
 {
-  private readonly rel: Rel;
+  private direction: mastodon.Direction = "next";
 
   constructor(
     private readonly http: Http,
     private nextPath?: string,
     private nextParams?: Params | string,
     private readonly meta?: HttpMetaParams,
-  ) {
-    const hasMinId =
-      nextParams && typeof nextParams === "object" && "minId" in nextParams;
-    this.rel = hasMinId ? "prev" : "next";
-  }
+  ) {}
 
   async next(): Promise<IteratorResult<Entity, undefined>> {
     if (this.nextPath == undefined) {
@@ -38,15 +32,11 @@ export class PaginatorHttp<Entity, Params = undefined>
     this.nextPath = nextUrl?.pathname;
     this.nextParams = nextUrl?.search.replace(/^\?/, "");
 
-    const data = response.data as Entity | undefined;
-    const value =
-      this.rel === "prev" && Array.isArray(data)
-        ? data.reverse()
-        : response.data;
+    const data = (await response.data) as Entity;
 
     return {
       done: false,
-      value: value as Entity,
+      value: data,
     };
   }
 
@@ -81,6 +71,16 @@ export class PaginatorHttp<Entity, Params = undefined>
     return this[Symbol.asyncIterator]();
   }
 
+  getDirection(): mastodon.Direction {
+    return this.direction;
+  }
+
+  setDirection(direction: mastodon.Direction): PaginatorHttp<Entity, Params> {
+    const that = this.clone();
+    that.direction = direction;
+    return that;
+  }
+
   [Symbol.asyncIterator](): AsyncIterator<
     Entity,
     undefined,
@@ -98,7 +98,7 @@ export class PaginatorHttp<Entity, Params = undefined>
       return;
     }
 
-    const parsed = parseLinkHeader(value)?.[this.rel]?.url;
+    const parsed = parseLinkHeader(value)?.[this.direction]?.url;
     if (parsed == undefined) {
       return;
     }
@@ -111,7 +111,7 @@ export class PaginatorHttp<Entity, Params = undefined>
     this.nextParams = undefined;
   }
 
-  clone(): mastodon.Paginator<Entity, Params> {
+  clone(): PaginatorHttp<Entity, Params> {
     return new PaginatorHttp(
       this.http,
       this.nextPath,

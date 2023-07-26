@@ -8,7 +8,7 @@ describe("events", () => {
     return sessions.use(async (session) => {
       const tag = `tag_${crypto.randomBytes(4).toString("hex")}`;
       const subscription = session.ws.hashtag.local.subscribe({ tag });
-
+      await subscription.waitForOpen();
       const eventsPromise = subscription.values().take(3).toArray();
 
       await sleep(1000);
@@ -39,14 +39,15 @@ describe("events", () => {
   it.concurrent("streams filters_changed event", () => {
     return sessions.use(async (session) => {
       const subscription = session.ws.user.subscribe();
+      await subscription.waitForOpen();
       const eventsPromise = subscription.values().take(1).toArray();
 
-      await sleep(1000);
       const filter = await session.rest.v2.filters.create({
         title: "test",
         context: ["public"],
         keywordsAttributes: [{ keyword: "TypeScript" }],
       });
+      await sleep(1000);
       await session.rest.v2.filters.$select(filter.id).remove();
 
       try {
@@ -62,9 +63,9 @@ describe("events", () => {
   it.concurrent("streams notification", () => {
     return sessions.use(2, async ([alice, bob]) => {
       const subscription = alice.ws.user.notification.subscribe();
+      await subscription.waitForOpen();
       const eventsPromise = subscription.values().take(1).toArray();
 
-      await sleep(1000);
       await bob.rest.v1.accounts.$select(alice.id).follow();
 
       try {
@@ -81,9 +82,9 @@ describe("events", () => {
   it.concurrent("streams conversation", () => {
     return sessions.use(2, async ([alice, bob]) => {
       const subscription = alice.ws.direct.subscribe();
+      await subscription.waitForOpen();
       const eventsPromise = subscription.values().take(1).toArray();
 
-      await sleep(1000);
       const status = await bob.rest.v1.statuses.create({
         status: `@${alice.acct} Hello there`,
         visibility: "direct",

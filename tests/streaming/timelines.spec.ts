@@ -11,6 +11,7 @@ describe("websocket", () => {
     return sessions.use(async (session) => {
       const random = crypto.randomBytes(16).toString("hex");
       const subscription = session.ws.public.subscribe();
+      await subscription.waitForOpen();
 
       const eventsPromise = subscription
         .values()
@@ -21,7 +22,6 @@ describe("websocket", () => {
         .take(1)
         .toArray();
 
-      await sleep(1000);
       const status = await session.rest.v1.statuses.create({
         status: random,
       });
@@ -40,6 +40,7 @@ describe("websocket", () => {
     return sessions.use(async (session) => {
       const random = crypto.randomBytes(16).toString("hex");
       const subscription = session.ws.public.media.subscribe();
+      await subscription.waitForOpen();
 
       const eventsPromise = subscription
         .values()
@@ -50,7 +51,6 @@ describe("websocket", () => {
         .take(1)
         .toArray();
 
-      await sleep(1000);
       const media = await session.rest.v2.media.create({
         file: TRANSPARENT_1X1_PNG,
       });
@@ -74,6 +74,7 @@ describe("websocket", () => {
     return sessions.use(async (session) => {
       const random = crypto.randomBytes(16).toString("hex");
       const subscription = session.ws.public.local.subscribe();
+      await subscription.waitForOpen();
 
       const eventsPromise = subscription
         .values()
@@ -84,7 +85,6 @@ describe("websocket", () => {
         .take(1)
         .toArray();
 
-      await sleep(1000);
       const status = await session.rest.v1.statuses.create({
         status: random,
         visibility: "public",
@@ -104,6 +104,7 @@ describe("websocket", () => {
     return sessions.use(async (session) => {
       const random = crypto.randomBytes(16).toString("hex");
       const subscription = session.ws.public.local.media.subscribe();
+      await subscription.waitForOpen();
 
       const eventsPromise = subscription
         .values()
@@ -114,7 +115,6 @@ describe("websocket", () => {
         .take(1)
         .toArray();
 
-      await sleep(1000);
       const media = await session.rest.v2.media.create({
         file: TRANSPARENT_1X1_PNG,
       });
@@ -139,6 +139,7 @@ describe("websocket", () => {
     return sessions.use(async (session) => {
       const hashtag = `tag_${crypto.randomBytes(4).toString("hex")}`;
       const subscription = session.ws.hashtag.subscribe({ tag: hashtag });
+      await subscription.waitForOpen();
 
       const eventsPromise = subscription
         .values()
@@ -149,7 +150,6 @@ describe("websocket", () => {
         .take(1)
         .toArray();
 
-      await sleep(1000);
       const status = await session.rest.v1.statuses.create({
         status: "#" + hashtag,
       });
@@ -170,6 +170,7 @@ describe("websocket", () => {
       const subscription = session.ws.hashtag.local.subscribe({
         tag: hashtag,
       });
+      await subscription.waitForOpen();
 
       const eventsPromise = subscription
         .values()
@@ -180,7 +181,6 @@ describe("websocket", () => {
         .take(1)
         .toArray();
 
-      await sleep(1000);
       const status = await session.rest.v1.statuses.create({
         status: "#" + hashtag,
       });
@@ -198,6 +198,7 @@ describe("websocket", () => {
   it("streams user", () => {
     return sessions.use(2, async ([alice, bob]) => {
       const subscription = alice.ws.user.subscribe();
+      await subscription.waitForOpen();
 
       const eventsPromise = subscription
         .values()
@@ -208,7 +209,6 @@ describe("websocket", () => {
         .take(1)
         .toArray();
 
-      await sleep(1000);
       await bob.rest.v1.accounts.$select(alice.id).unfollow();
       await bob.rest.v1.accounts.$select(alice.id).follow();
 
@@ -226,6 +226,7 @@ describe("websocket", () => {
   it("streams user:notification", () => {
     return sessions.use(2, async ([alice, bob]) => {
       const subscription = alice.ws.user.notification.subscribe();
+      await subscription.waitForOpen();
 
       const eventsPromise = subscription
         .values()
@@ -237,7 +238,6 @@ describe("websocket", () => {
         .take(1)
         .toArray();
 
-      await sleep(1000);
       await bob.rest.v1.accounts.$select(alice.id).follow();
 
       try {
@@ -255,6 +255,7 @@ describe("websocket", () => {
     return sessions.use(2, async ([alice, bob]) => {
       const list = await alice.rest.v1.lists.create({ title: "test" });
       const subscription = alice.ws.list.subscribe({ list: list.id });
+      await subscription.waitForOpen();
 
       const eventsPromise = subscription
         .values()

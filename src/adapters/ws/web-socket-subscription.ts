@@ -8,6 +8,7 @@ import {
 import { type mastodon } from "../../mastodon";
 import { MastoUnexpectedError } from "../errors";
 import { toAsyncIterable } from "./async-iterable";
+import { waitForOpen } from "./wait-for-events";
 
 export class WebSocketSubscription implements mastodon.streaming.Subscription {
   private connection?: WebSocket;
@@ -37,7 +38,7 @@ export class WebSocketSubscription implements mastodon.streaming.Subscription {
       this.logger?.debug("↑ WEBSOCKET", data);
       this.connection.send(data);
 
-      for await (const event of this.mapEvents(messages)) {
+      for await (const event of this.transformIntoEvents(messages)) {
         if (!this.matches(event)) continue;
         this.logger?.debug("↓ WEBSOCKET", event);
         yield event;
@@ -59,20 +60,27 @@ export class WebSocketSubscription implements mastodon.streaming.Subscription {
     this.connection.send(data);
   }
 
-  matches(event: mastodon.streaming.Event): boolean {
+  [Symbol.asyncIterator](): AsyncIterableIterator<mastodon.streaming.Event> {
+    return this.values();
+  }
+
+  async waitForOpen(): Promise<void> {
+    this.connection = await this.connector.acquire();
+    await waitForOpen(this.connection);
+  }
+
+  private matches(event: mastodon.streaming.Event): boolean {
     // subscribe("hashtag", { tag: "foo" }) -> ["hashtag", "foo"]
-    // subscribe("list", { list: "foo" }) -> ["list", "foo"]
+    // subscribe("list", { list: "foo" })   -> ["list", "foo"]
     const params = this.params ?? {};
     const extra = Object.values(params) as string[];
     const stream = [this.stream, ...extra];
     return stream.every((s) => event.stream.includes(s));
   }
 
-  [Symbol.asyncIterator](): AsyncIterableIterator<mastodon.streaming.Event> {
-    return this.values();
-  }
-
-  private async *mapEvents(messages: AsyncIterable<WebSocket.MessageEvent>) {
+  private async *transformIntoEvents(
+    messages: AsyncIterable<WebSocket.MessageEvent>,
+  ) {
     for await (const message of messages) {
       const event = await this.parseMessage(message.data as string);
       yield event;

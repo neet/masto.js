@@ -11,6 +11,8 @@ export interface SubscribeHashtagParams {
 export interface Subscription {
   unsubscribe(): void;
   values(): AsyncIterableIterator<Event>;
+  /** @internal */
+  waitForOpen(): Promise<void>;
   [Symbol.asyncIterator](): AsyncIterator<Event, undefined>;
 }
 
