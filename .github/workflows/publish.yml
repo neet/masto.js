@@ -6,18 +6,13 @@ on:
     - cron: '0 0 * * *'
 
 jobs:
-  test-unit:
-    uses: ./.github/workflows/ci-unit.yml
-    secrets: inherit
-
-  test-e2e:
-    uses: ./.github/workflows/ci-e2e.yml
+  test:
+    uses: ./.github/workflows/ci.yml
     secrets: inherit
 
   build:
     needs:
-      - test-unit
-      - test-e2e
+      - test
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
