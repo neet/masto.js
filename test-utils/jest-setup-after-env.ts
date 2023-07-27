@@ -1,13 +1,13 @@
 import "./jest-polyfills";
 import "./jest-extend-expect";
 
-import { createRestClient } from "../src";
+import { createRestAPIClient } from "../src";
 import { SessionPoolImpl } from "./pools";
 
 jest.retryTimes(3);
 jest.setTimeout(1000 * 60);
 
-globalThis.admin = createRestClient({
+globalThis.admin = createRestAPIClient({
   url: globalThis.__misc__.url,
   accessToken: globalThis.__misc__.adminToken.accessToken,
 });

@@ -5,7 +5,11 @@ import path from "node:path";
 
 import NodeEnvironment from "jest-environment-node";
 
-import { createOAuthClient, createRestClient, type mastodon } from "../src";
+import {
+  createOAuthAPIClient,
+  createRestAPIClient,
+  type mastodon,
+} from "../src";
 import { TokenPoolFsImpl } from "./pools";
 import { TokenFactoryDocker } from "./pools/token-factory-docker";
 import { TokenRepositoryFs } from "./pools/token-repository-fs";
@@ -20,7 +24,7 @@ class CustomEnvironment extends NodeEnvironment {
 
   private async createGlobals(): Promise<typeof globalThis.__misc__> {
     const url = "http://localhost:3000";
-    const instance = await createRestClient({ url }).v1.instance.fetch();
+    const instance = await createRestAPIClient({ url }).v1.instance.fetch();
 
     const baseCacheDir = path.join(__dirname, "../node_modules/.cache/masto");
     if (!existsSync(baseCacheDir)) {
@@ -33,7 +37,7 @@ class CustomEnvironment extends NodeEnvironment {
     );
     const container = process.env.MASTODON_CONTAINER ?? "mastodon";
     const tootctl = createTootctl({ container });
-    const oauth = createOAuthClient({ url });
+    const oauth = createOAuthAPIClient({ url });
     const app = await this.readApp(baseCacheDir);
     const factory = new TokenFactoryDocker(tootctl, oauth, app);
     const tokenPool = new TokenPoolFsImpl(repository, factory);

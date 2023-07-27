@@ -1,8 +1,8 @@
-import { createStreamingClient } from "masto";
+import { createStreamingAPIClient } from "masto";
 
 const subscribe = async (): Promise<void> => {
-  const masto = createStreamingClient({
-    url: "<STREAMING API URL>",
+  const masto = createStreamingAPIClient({
+    streamingApiUrl: "<STREAMING API URL>",
     accessToken: "<TOKEN>",
   });
 

@@ -1,4 +1,8 @@
-import { createRestClient, createStreamingClient, type mastodon } from "../src";
+import {
+  createRestAPIClient,
+  createStreamingAPIClient,
+  type mastodon,
+} from "../src";
 
 export interface Session {
   readonly id: string;
@@ -12,13 +16,13 @@ export const createSession = async (
   url: string,
   streamingApiUrl: string,
 ): Promise<Session> => {
-  const rest = createRestClient({
-    url: url,
+  const rest = createRestAPIClient({
+    url,
     accessToken: token.accessToken,
   });
 
-  const ws = createStreamingClient({
-    url: streamingApiUrl,
+  const ws = createStreamingAPIClient({
+    streamingApiUrl,
     accessToken: token.accessToken,
   });
 

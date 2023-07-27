@@ -1,6 +1,6 @@
-import { createRestClient, type mastodon } from "masto";
+import { createRestAPIClient, type mastodon } from "masto";
 
-const masto = createRestClient({
+const masto = createRestAPIClient({
   url: "https://example.com",
   accessToken: "YOUR TOKEN",
 });

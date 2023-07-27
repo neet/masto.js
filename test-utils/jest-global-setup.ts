@@ -4,7 +4,11 @@ import { existsSync } from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
 
-import { createOAuthClient, createRestClient, type mastodon } from "../src";
+import {
+  createOAuthAPIClient,
+  createRestAPIClient,
+  type mastodon,
+} from "../src";
 
 const readOrCreateApp = async (
   baseCacheDir: string,
@@ -68,8 +72,8 @@ export default async function main(): Promise<void> {
     await fs.mkdir(baseCacheDir, { recursive: true });
   }
 
-  const masto = createRestClient({ url: "http://localhost:3000" });
-  const oauth = createOAuthClient({ url: "http://localhost:3000" });
+  const masto = createRestAPIClient({ url: "http://localhost:3000" });
+  const oauth = createOAuthAPIClient({ url: "http://localhost:3000" });
 
   const app = await readOrCreateApp(baseCacheDir, masto);
   await readOrCreateAdminToken(baseCacheDir, oauth, app);

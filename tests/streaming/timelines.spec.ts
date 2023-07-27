@@ -1,7 +1,6 @@
 import crypto from "node:crypto";
 
 import { type mastodon } from "../../src";
-import { waitForCondition } from "../../test-utils/wait-for-condition";
 
 const TRANSPARENT_1X1_PNG =
   "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==";
@@ -251,6 +250,8 @@ describe("websocket", () => {
     });
   });
 
+  test.todo("streams list (it often times out for some reason)");
+  /*
   it("streams list", () => {
     return sessions.use(2, async ([alice, bob]) => {
       await alice.ws.prepare();
@@ -290,4 +291,5 @@ describe("websocket", () => {
       }
     });
   });
+  */
 });

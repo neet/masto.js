@@ -1,7 +1,7 @@
 import { type Serializer, type WebSocketConfig } from "../../interfaces";
 
 export interface WebSocketConfigProps {
-  readonly url: string;
+  readonly streamingApiUrl: string;
   readonly retry?: boolean | number;
   readonly accessToken?: string;
   readonly useInsecureAccessToken?: boolean;
@@ -25,7 +25,7 @@ export class WebSocketConfigImpl implements WebSocketConfig {
   }
 
   resolvePath(path: string, params: Record<string, unknown> = {}): URL {
-    const url = new URL(path, this.props.url);
+    const url = new URL(path, this.props.streamingApiUrl);
     if (this.props.useInsecureAccessToken) {
       params.accessToken = this.props.accessToken;
     }

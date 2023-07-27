@@ -1,7 +1,7 @@
-import { createOAuthClient } from "../../src";
+import { createOAuthAPIClient } from "../../src";
 
 it("issues token", async () => {
-  const oauth = createOAuthClient({
+  const oauth = createOAuthAPIClient({
     url: globalThis.__misc__.url,
   });
 

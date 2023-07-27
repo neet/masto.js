@@ -78,9 +78,9 @@ If you could create an application, save **Your access token** securely. This st
 Then you're almost there! Create a file named `index.js` inside your project directory and add the following code. This is an example which will post a status from your account.
 
 ```ts
-import { createRestClient } from "masto";
+import { createRestAPIClient } from "masto";
 
-const masto = await createRestClient({
+const masto = await createRestAPIClient({
   url: process.env.URL,
   accessToken: process.env.TOKEN,
 });

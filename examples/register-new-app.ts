@@ -1,6 +1,6 @@
-import { createRestClient } from "masto";
+import { createRestAPIClient } from "masto";
 
-const masto = createRestClient({
+const masto = createRestAPIClient({
   url: "https://example.com",
 });
 

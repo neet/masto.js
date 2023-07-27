@@ -5,7 +5,7 @@ describe("WebSocketConfigImpl", () => {
   it("resolves WS path with path", () => {
     const config = new WebSocketConfigImpl(
       {
-        url: "wss://mastodon.social",
+        streamingApiUrl: "wss://mastodon.social",
         accessToken: "token",
       },
       new SerializerNativeImpl(),
@@ -18,7 +18,7 @@ describe("WebSocketConfigImpl", () => {
   it("resolves WS path with path with token when Sec-Websocket-Protocols is not supported", () => {
     const config = new WebSocketConfigImpl(
       {
-        url: "wss://mastodon.social",
+        streamingApiUrl: "wss://mastodon.social",
         accessToken: "token",
         useInsecureAccessToken: true,
       },
@@ -34,7 +34,7 @@ describe("WebSocketConfigImpl", () => {
   it("creates websocket protocol with token when supported", () => {
     const config = new WebSocketConfigImpl(
       {
-        url: "wss://mastodon.social",
+        streamingApiUrl: "wss://mastodon.social",
         accessToken: "token",
       },
       new SerializerNativeImpl(),
@@ -46,7 +46,7 @@ describe("WebSocketConfigImpl", () => {
   it("creates websocket protocol without token when not supported", () => {
     const config = new WebSocketConfigImpl(
       {
-        url: "wss://mastodon.social",
+        streamingApiUrl: "wss://mastodon.social",
         accessToken: "token",
         useInsecureAccessToken: true,
       },
@@ -59,7 +59,7 @@ describe("WebSocketConfigImpl", () => {
   it("gets max attempts with retry true", () => {
     const config = new WebSocketConfigImpl(
       {
-        url: "wss://mastodon.social",
+        streamingApiUrl: "wss://mastodon.social",
         retry: true,
       },
       new SerializerNativeImpl(),
@@ -71,7 +71,7 @@ describe("WebSocketConfigImpl", () => {
   it("gets max attempts with retry false", () => {
     const config = new WebSocketConfigImpl(
       {
-        url: "wss://mastodon.social",
+        streamingApiUrl: "wss://mastodon.social",
         retry: false,
       },
       new SerializerNativeImpl(),
@@ -83,7 +83,7 @@ describe("WebSocketConfigImpl", () => {
   it("gets max attempts with retry number", () => {
     const config = new WebSocketConfigImpl(
       {
-        url: "wss://mastodon.social",
+        streamingApiUrl: "wss://mastodon.social",
         retry: 5,
       },
       new SerializerNativeImpl(),

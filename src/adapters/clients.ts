@@ -16,19 +16,15 @@ import { SerializerNativeImpl } from "./serializers";
 import { WebSocketConnectorImpl } from "./ws";
 
 interface LogConfigProps {
-  readonly logLevel?: LogType;
+  readonly log?: LogType;
 }
 
-interface WebSocketCustomImplProps {
-  readonly implementation?: unknown;
-}
-
-export const createRestClient = (
+export const createRestAPIClient = (
   props: MastoHttpConfigProps & LogConfigProps,
 ): mastodon.rest.Client => {
   const serializer = new SerializerNativeImpl();
   const config = new HttpConfigImpl(props, serializer);
-  const logger = createLogger(props.logLevel);
+  const logger = createLogger(props.log);
   const http = new HttpNativeImpl(serializer, config, logger);
   const actionDispatcher = new HttpActionDispatcher(http);
   const actionProxy = createActionProxy(actionDispatcher, [
@@ -37,12 +33,12 @@ export const createRestClient = (
   return actionProxy;
 };
 
-export const createOAuthClient = (
+export const createOAuthAPIClient = (
   props: MastoHttpConfigProps & LogConfigProps,
 ): mastodon.oauth.Client => {
   const serializer = new SerializerNativeImpl();
   const config = new HttpConfigImpl(props, serializer);
-  const logger = createLogger(props.logLevel);
+  const logger = createLogger(props.log);
   const http = new HttpNativeImpl(serializer, config, logger);
   const actionDispatcher = new HttpActionDispatcher(http);
   const actionProxy = createActionProxy(actionDispatcher, [
@@ -51,12 +47,17 @@ export const createOAuthClient = (
   return actionProxy;
 };
 
-export function createStreamingClient(
+interface WebSocketCustomImplProps {
+  /** Custom WebSocket implementation. In Deno, you can use `WebSocket` to avoid potential errors. */
+  readonly implementation?: unknown;
+}
+
+export function createStreamingAPIClient(
   props: WebSocketConfigProps & LogConfigProps & WebSocketCustomImplProps,
 ): mastodon.streaming.Client {
   const serializer = new SerializerNativeImpl();
   const config = new WebSocketConfigImpl(props, serializer);
-  const logger = createLogger(props.logLevel);
+  const logger = createLogger(props.log);
   const connector = new WebSocketConnectorImpl(
     {
       constructorParameters: [

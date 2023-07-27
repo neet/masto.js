@@ -1,8 +1,8 @@
 import fs from "node:fs";
 
-import { createRestClient } from "masto";
+import { createRestAPIClient } from "masto";
 
-const masto = createRestClient({
+const masto = createRestAPIClient({
   url: "https://example.com",
   accessToken: "YOUR TOKEN",
 });
