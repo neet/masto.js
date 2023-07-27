@@ -7,13 +7,12 @@ import { type mastodon } from "../../mastodon";
 export class PaginatorHttp<Entity, Params = undefined>
   implements mastodon.Paginator<Entity, Params>
 {
-  private direction: mastodon.Direction = "next";
-
   constructor(
     private readonly http: Http,
     private nextPath?: string,
     private nextParams?: Params | string,
     private readonly meta?: HttpMetaParams,
+    private readonly direction: mastodon.Direction = "next",
   ) {}
 
   async next(): Promise<IteratorResult<Entity, undefined>> {
@@ -76,9 +75,13 @@ export class PaginatorHttp<Entity, Params = undefined>
   }
 
   setDirection(direction: mastodon.Direction): PaginatorHttp<Entity, Params> {
-    const that = this.clone();
-    that.direction = direction;
-    return that;
+    return new PaginatorHttp(
+      this.http,
+      this.nextPath,
+      this.nextParams,
+      this.meta,
+      direction,
+    );
   }
 
   [Symbol.asyncIterator](): AsyncIterator<
@@ -117,6 +120,7 @@ export class PaginatorHttp<Entity, Params = undefined>
       this.nextPath,
       this.nextParams,
       this.meta,
+      this.direction,
     );
   }
 }
