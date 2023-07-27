@@ -1,3 +1,21 @@
+## [6.0.1](https://github.com/neet/masto.js/compare/v6.0.0...v6.0.1) (2023-07-27)
+
+
+### Bug Fixes
+
+* Add missing exports for error classes ([6dc0937](https://github.com/neet/masto.js/commit/6dc0937e8fcab4be0fa0deccd4bd6c4fdd6c9314))
+
+
+### Chores
+
+* **deps-dev:** bump @rollup/plugin-commonjs from 25.0.2 to 25.0.3 ([9ce1eee](https://github.com/neet/masto.js/commit/9ce1eee76e6b857f021424fe37d7a4975f21d99b))
+* **deps-dev:** bump @typescript-eslint/eslint-plugin ([a20d9c5](https://github.com/neet/masto.js/commit/a20d9c5e82779b59b51f467c1fd6dae54316befc))
+* **deps-dev:** bump @typescript-eslint/parser from 5.60.1 to 5.62.0 ([0bc86e5](https://github.com/neet/masto.js/commit/0bc86e5709bd2e81c251202b1b3fcbebc655874b))
+* **deps-dev:** bump rollup from 3.26.0 to 3.26.3 ([6b108f3](https://github.com/neet/masto.js/commit/6b108f327f59d7cb39267155371578662548f545))
+* **deps:** bump semver from 5.7.1 to 5.7.2 ([8b682c6](https://github.com/neet/masto.js/commit/8b682c61234f7ef7f1357d80c55e8a0d851940f1))
+* **deps:** Move Undici to devDependencies ([237cb71](https://github.com/neet/masto.js/commit/237cb71948dd34768d036ca4b2718f6020a9ec1a))
+* Update README.md [skip ci] ([32daa9c](https://github.com/neet/masto.js/commit/32daa9c254208309af4542c640a9d827542e6315))
+
 ## [6.0.0](https://github.com/neet/masto.js/compare/v5.11.4...v6.0.0) (2023-07-27)
 
 
