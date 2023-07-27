@@ -23,7 +23,8 @@ it("handles notifications", () => {
         .$select(notification.id)
         .fetch();
 
-      expect(notification.status?.id).toBe(status.id);
+      assert(notification.type === "mention");
+      expect(notification.status.id).toBe(status.id);
       await alice.rest.v1.notifications.$select(notification.id).dismiss();
 
       const notifications = await alice.rest.v1.notifications.list();
