@@ -1,3 +1,72 @@
+## [6.0.0](https://github.com/neet/masto.js/compare/v5.11.4...v6.0.0) (2023-07-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* Drop Node.js 16 support
+* Use ts-custom-error
+* Change WebSocket to AsyncIterator
+* Use Proxy API to reduce bundle size
+* Eliminate version check feature Idea: Drop version check feature #883
+* Remove SubscriptionPolicy, api.v1.admin.{account, report, domainEmailBlocks}
+
+### Features
+
+* Add `setDirection` and `getDirection` to paginator ([2ad2da7](https://github.com/neet/masto.js/commit/2ad2da77ec457fe96df2ac70141f437e364b1e93))
+* Add ability to use custom WebSocket implementation ([6e410ce](https://github.com/neet/masto.js/commit/6e410ce329e0cf10b689a4b94b288ce9caf921b1))
+* Change WebSocket to AsyncIterator ([fcdc5ec](https://github.com/neet/masto.js/commit/fcdc5ec9ce9b03d21abb3d27d1bdc1ef5cbb3e8a))
+* Use Proxy API to reduce bundle size ([6e61c3d](https://github.com/neet/masto.js/commit/6e61c3df99d5ae78a42963429ce57a08aaec479d))
+* **websocket:** Add `retry` option ([4b06ae1](https://github.com/neet/masto.js/commit/4b06ae15ba96e6c7497679aa8813937208855e1f))
+* **websocket:** Support auto retry ([fe47102](https://github.com/neet/masto.js/commit/fe4710264f4b8dc7e902c95d1456714462b55a30))
+
+
+### Bug Fixes
+
+* Add type guard to Notification ([26e0684](https://github.com/neet/masto.js/commit/26e068405a8d0476c23ae97dd9b6e3d098f6b5cc))
+* **build:** Fix releaserc to run only in main branch ([bc3d297](https://github.com/neet/masto.js/commit/bc3d297ff919fb68779e12568bc54f8db8746136))
+* Fix /accounts/update_credentials encoding ([31ad84d](https://github.com/neet/masto.js/commit/31ad84d05af6084176bc9598f2630234b0e688f2))
+* Fix constructor types ([2864d17](https://github.com/neet/masto.js/commit/2864d17c8c66ae98ab83e8aaae1136bc5d624684))
+* Fix streaming timelines test ([ddbb022](https://github.com/neet/masto.js/commit/ddbb02280b8ebf44fa875f23bd773afbce81df05))
+* Map app.verifyCredentials action type ([212f4c0](https://github.com/neet/masto.js/commit/212f4c0accb7ad9e8b5b2f37d471954fa5e13424))
+
+
+### Chores
+
+* Add detectOpenHandles option ([d8625b1](https://github.com/neet/masto.js/commit/d8625b146dc9c0d8886f6a144132d1c11f993a11))
+* Add sideEffects: [secure] ([029544c](https://github.com/neet/masto.js/commit/029544cda43fdd999d6e9bfe22c8f99451317e14))
+* Add unsubscribe method ([30a0a95](https://github.com/neet/masto.js/commit/30a0a95ac79d42142477a7cf087db1f5c022421f))
+* Auto-set encoding ([604c3d6](https://github.com/neet/masto.js/commit/604c3d60427fadf76a06fe98f0fb8e283987bcd7))
+* **build:** Use ES Module for config files ([d9806ed](https://github.com/neet/masto.js/commit/d9806edc505879e7fd9993b722351e9b00c978ef))
+* Bump dependencies ([5d14b67](https://github.com/neet/masto.js/commit/5d14b67fbcb023bb4f0fa37b8f120ec74ed21f28))
+* Clean up dependencies ([64b62ba](https://github.com/neet/masto.js/commit/64b62ba947b91a30f4a2cade76d7697e20d8bc42))
+* **config:** Segregate ws and rest configs ([fc23e5d](https://github.com/neet/masto.js/commit/fc23e5d765855671d84241d6e7961acfa8aa713e))
+* **docs:** Update CONTRIBUTING.md ([c48a03b](https://github.com/neet/masto.js/commit/c48a03b73f05989f76bca89100728f684f9e31ef))
+* **docs:** Update example ([da940be](https://github.com/neet/masto.js/commit/da940be252bfdad1f9966e2157ed67ef1569ce0e))
+* Drop Node.js 16 support ([9cc1286](https://github.com/neet/masto.js/commit/9cc1286cfeacd4f8cca377902d8ff64597d87b14))
+* Eliminate version check feature Idea: Drop version check feature [#883](https://github.com/neet/masto.js/issues/883) ([68448ff](https://github.com/neet/masto.js/commit/68448fff79f9d4a119fab3cc09192775fd3f95f1))
+* Fix events test ([c34a0d0](https://github.com/neet/masto.js/commit/c34a0d0de2d28e832c87ca34d104b7437255f3cd))
+* Fix naming convention ([4c2cf74](https://github.com/neet/masto.js/commit/4c2cf748a6d2db1e1a96f0e7d54a30bd74141a94))
+* Remove qs module ([a00f3b2](https://github.com/neet/masto.js/commit/a00f3b2797d3216f0186af5fe2e631c7b0b08249))
+* Remove SubscriptionPolicy, api.v1.admin.{account, report, domainEmailBlocks} ([a1c727b](https://github.com/neet/masto.js/commit/a1c727bcd6a792edb75ca25a21e246ca27890395))
+* Rename select to $select ([0aa23ca](https://github.com/neet/masto.js/commit/0aa23ca9a61a2a64b694e74a1f6e6b2733de0ec4))
+* **rest:** Restore auto media awaiting ([31e20e4](https://github.com/neet/masto.js/commit/31e20e4025609e772004da8487b318e5847fac57))
+* Revert target and module to ES6 ([1bab465](https://github.com/neet/masto.js/commit/1bab4656a18079a7fb648706595864f16787f0cd))
+* Segregate rest and streaming directory ([#915](https://github.com/neet/masto.js/issues/915)) ([e42295f](https://github.com/neet/masto.js/commit/e42295f71143eeed5fd9e2d8fc8468b228165179))
+* Tag 6.0.0 alpha7 ([a25b80c](https://github.com/neet/masto.js/commit/a25b80c753c2dc9aae0a02a84f4c04fd560dd4fa))
+* Tag 6.0.0-alpha.4 ([4fbfde0](https://github.com/neet/masto.js/commit/4fbfde03d2e8cb24837e68b692b38e9cb8d08ff4))
+* Tag Alpha 1 ([0fc1c4b](https://github.com/neet/masto.js/commit/0fc1c4b0e965e643db8b4036389ff35a1991a038))
+* Tag alpha 2 ([ba36be1](https://github.com/neet/masto.js/commit/ba36be17785b43d01407c1a5ff62bc72f994d381))
+* Tag alpha.0 ([1d28068](https://github.com/neet/masto.js/commit/1d28068412a6edf91ed9546338781b9dd17fa280))
+* **test:** Enable concurrent test ([fd8f203](https://github.com/neet/masto.js/commit/fd8f203370ee0536d19ec857bbb46fa2fc0afb5b))
+* **test:** Improve test readability ([6079201](https://github.com/neet/masto.js/commit/60792019f30753b612fb2abd85f47d214fae0b6e))
+* **test:** Override tsconfig in jest.config ([ac89a3f](https://github.com/neet/masto.js/commit/ac89a3ffd9f680bdfbcca019e72f1643c4d5931f))
+* **tests:** Add tests for WebSocket and Proxy API ([507fe44](https://github.com/neet/masto.js/commit/507fe444289bb356640a4bb83ac47ead382bd907))
+* **tests:** Create token on demand ([cc7e15f](https://github.com/neet/masto.js/commit/cc7e15ffbba18c7f83c5c1212b64218d693deadb))
+* **test:** Set max-workers on CI ([4f370eb](https://github.com/neet/masto.js/commit/4f370eb5fc32a66a56e5242777f96112c7b2b84a))
+* **test:** Use --report-unused-disable-directives ([bc4a94a](https://github.com/neet/masto.js/commit/bc4a94a970c804a7015458839685c9e8c90c05d4))
+* **test:** Use maxWorkers=1 temporarily ([61759ff](https://github.com/neet/masto.js/commit/61759ffd20405e8dc6469a5660462b5d2f6792b8))
+* Use ts-custom-error ([d439af9](https://github.com/neet/masto.js/commit/d439af9dd6ea99b2baba813a218549eb37822b4a))
+
 ## [5.11.4](https://github.com/neet/masto.js/compare/v5.11.3...v5.11.4) (2023-07-15)
 
 
