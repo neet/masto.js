@@ -8,6 +8,7 @@
   "words": [
     "AGPL",
     "asynckit",
+    "Backoff",
     "blurhash",
     "builtins",
     "carryforward",
@@ -43,6 +44,7 @@
     "typedoc",
     "unassign",
     "unbookmark",
+    "undici",
     "unfavourite",
     "unfetch",
     "unfollow",

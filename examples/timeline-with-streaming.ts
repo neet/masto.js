@@ -1,19 +1,32 @@
-import { login } from 'masto';
+import { createStreamingAPIClient } from "masto";
 
-const masto = await login({
-  url: 'https://example.com',
-  accessToken: 'YOUR TOKEN',
-});
+const subscribe = async (): Promise<void> => {
+  const masto = createStreamingAPIClient({
+    streamingApiUrl: "<STREAMING API URL>",
+    accessToken: "<TOKEN>",
+  });
 
-// Connect to the streaming api
-const stream = await masto.v1.stream.streamPublicTimeline();
+  console.log("subscribed to #mastojs");
 
-// Subscribe to updates
-stream.on('update', (status) => {
-  console.log(`${status.account.username}: ${status.content}`);
-});
+  for await (const event of masto.hashtag.subscribe({ tag: "mastojs" })) {
+    switch (event.event) {
+      case "update": {
+        console.log("new post", event.payload.content);
+        break;
+      }
+      case "delete": {
+        console.log("deleted post", event.payload);
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+  }
+};
 
-// Subscribe to notifications
-stream.on('notification', (notification) => {
-  console.log(`${notification.account.username}: ${notification.type}`);
-});
+try {
+  await subscribe();
+} catch (error) {
+  console.error(error);
+}

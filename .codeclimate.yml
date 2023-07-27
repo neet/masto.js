@@ -1,5 +1,5 @@
 ---
-version: '2'
+version: "2"
 checks:
   file-lines:
     enabled: false
@@ -14,4 +14,4 @@ checks:
     config:
       threshold: 10
 exclude_patterns:
-  - '**/__tests__/'
+  - "**/__tests__/"

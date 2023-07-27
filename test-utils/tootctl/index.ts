@@ -1,2 +1,2 @@
-export * from './tootctl';
-export * from './tootctl-docker';
+export * from "./tootctl";
+export * from "./tootctl-docker";

@@ -1,4 +1,4 @@
-name: 'CI: E2E'
+name: "CI: E2E"
 
 on:
   push:
@@ -6,13 +6,13 @@ on:
       - main
   pull_request:
     branches:
-      - '*'
+      - "*"
   workflow_call:
   workflow_dispatch:
 
 jobs:
   test:
-    name: End-to-end Testing
+    name: Test
     runs-on: ubuntu-latest
     env:
       DB_USER: mastodon
@@ -84,7 +84,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Run tests
-        run: yarn run test:e2e
+        run: yarn run test:e2e --max-workers=1
 
       - name: Codecov
         uses: codecov/codecov-action@v3

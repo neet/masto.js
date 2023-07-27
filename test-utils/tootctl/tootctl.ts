@@ -1,11 +1,11 @@
-export type CreateAccountParams = {
+export interface CreateAccountParams {
   readonly email: string;
   readonly confirmed: boolean;
-};
+}
 
-export type CreateAccountResult = {
+export interface CreateAccountResult {
   password: string;
-};
+}
 
 export interface Tootctl {
   accounts: {

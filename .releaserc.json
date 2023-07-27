@@ -1,5 +1,5 @@
 {
-  "branches": ["main", "add-tests-for-websocket"],
+  "branches": ["main"],
   "preset": "conventionalcommits",
   "plugins": [
     [

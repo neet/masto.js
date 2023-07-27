@@ -1,15 +1,19 @@
-import './jest-extend-expect';
+import "./jest-polyfills";
+import "./jest-extend-expect";
 
-import { createClient } from '../src';
-import { ClientPoolImpl } from './pools';
+import { createRestAPIClient } from "../src";
+import { SessionPoolImpl } from "./pools";
 
+jest.retryTimes(3);
 jest.setTimeout(1000 * 60);
 
-globalThis.admin = createClient({
-  url: __misc__.url,
-  version: __misc__.instance.version,
-  streamingApiUrl: __misc__.instance.urls.streamingApi,
-  accessToken: __misc__.adminToken.accessToken,
+globalThis.admin = createRestAPIClient({
+  url: globalThis.__misc__.url,
+  accessToken: globalThis.__misc__.adminToken.accessToken,
 });
 
-globalThis.clients = new ClientPoolImpl();
+globalThis.sessions = new SessionPoolImpl(
+  globalThis.__misc__.tokens,
+  globalThis.__misc__.url,
+  globalThis.__misc__.instance,
+);
