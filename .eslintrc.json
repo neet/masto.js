@@ -54,6 +54,9 @@
     },
     {
       "files": "examples/**",
+      "parserOptions": {
+        "project": "./examples/tsconfig.json"
+      },
       "rules": {
         "no-console": "off",
         "import/no-unresolved": "off",

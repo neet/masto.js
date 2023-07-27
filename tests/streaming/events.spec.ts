@@ -4,11 +4,11 @@ import crypto from "node:crypto";
 import { sleep } from "../../src/utils";
 
 describe("events", () => {
-  it.concurrent("streams update, status.update, and delete event", () => {
+  it("streams update, status.update, and delete event", () => {
     return sessions.use(async (session) => {
+      await session.ws.prepare();
       const tag = `tag_${crypto.randomBytes(4).toString("hex")}`;
       const subscription = session.ws.hashtag.local.subscribe({ tag });
-      await subscription.waitForOpen();
       const eventsPromise = subscription.values().take(3).toArray();
 
       await sleep(1000);
@@ -36,10 +36,10 @@ describe("events", () => {
     });
   });
 
-  it.concurrent("streams filters_changed event", () => {
+  it("streams filters_changed event", () => {
     return sessions.use(async (session) => {
+      await session.ws.prepare();
       const subscription = session.ws.user.subscribe();
-      await subscription.waitForOpen();
       const eventsPromise = subscription.values().take(1).toArray();
 
       const filter = await session.rest.v2.filters.create({
@@ -60,10 +60,10 @@ describe("events", () => {
     });
   });
 
-  it.concurrent("streams notification", () => {
+  it("streams notification", () => {
     return sessions.use(2, async ([alice, bob]) => {
+      await alice.ws.prepare();
       const subscription = alice.ws.user.notification.subscribe();
-      await subscription.waitForOpen();
       const eventsPromise = subscription.values().take(1).toArray();
 
       await bob.rest.v1.accounts.$select(alice.id).follow();
@@ -79,10 +79,10 @@ describe("events", () => {
     });
   });
 
-  it.concurrent("streams conversation", () => {
+  it("streams conversation", () => {
     return sessions.use(2, async ([alice, bob]) => {
+      await alice.ws.prepare();
       const subscription = alice.ws.direct.subscribe();
-      await subscription.waitForOpen();
       const eventsPromise = subscription.values().take(1).toArray();
 
       const status = await bob.rest.v1.statuses.create({

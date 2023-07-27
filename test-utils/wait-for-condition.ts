@@ -7,13 +7,15 @@ export const waitForCondition = async (
   let attempts = 0;
 
   while (attempts < MAX_ATTEMPTS) {
-    const result = await condition();
-    if (result) {
-      return;
+    try {
+      const result = await condition();
+      if (result) {
+        return;
+      }
+    } finally {
+      attempts += 1;
+      await sleep(1000);
     }
-
-    attempts += 1;
-    await sleep(1000);
   }
 
   throw new Error("waitForCondition: timeout");

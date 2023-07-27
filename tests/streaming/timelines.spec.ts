@@ -1,7 +1,7 @@
 import crypto from "node:crypto";
 
 import { type mastodon } from "../../src";
-import { sleep } from "../../src/utils";
+import { waitForCondition } from "../../test-utils/wait-for-condition";
 
 const TRANSPARENT_1X1_PNG =
   "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==";
@@ -9,9 +9,9 @@ const TRANSPARENT_1X1_PNG =
 describe("websocket", () => {
   it("streams public", () => {
     return sessions.use(async (session) => {
+      await session.ws.prepare();
       const random = crypto.randomBytes(16).toString("hex");
       const subscription = session.ws.public.subscribe();
-      await subscription.waitForOpen();
 
       const eventsPromise = subscription
         .values()
@@ -38,9 +38,9 @@ describe("websocket", () => {
 
   it("streams public:media", () => {
     return sessions.use(async (session) => {
+      await session.ws.prepare();
       const random = crypto.randomBytes(16).toString("hex");
       const subscription = session.ws.public.media.subscribe();
-      await subscription.waitForOpen();
 
       const eventsPromise = subscription
         .values()
@@ -72,9 +72,9 @@ describe("websocket", () => {
 
   it("streams public:local", () => {
     return sessions.use(async (session) => {
+      await session.ws.prepare();
       const random = crypto.randomBytes(16).toString("hex");
       const subscription = session.ws.public.local.subscribe();
-      await subscription.waitForOpen();
 
       const eventsPromise = subscription
         .values()
@@ -102,9 +102,9 @@ describe("websocket", () => {
 
   it("streams public:local:media", () => {
     return sessions.use(async (session) => {
+      await session.ws.prepare();
       const random = crypto.randomBytes(16).toString("hex");
       const subscription = session.ws.public.local.media.subscribe();
-      await subscription.waitForOpen();
 
       const eventsPromise = subscription
         .values()
@@ -137,9 +137,9 @@ describe("websocket", () => {
 
   it("streams hashtag", () => {
     return sessions.use(async (session) => {
+      await session.ws.prepare();
       const hashtag = `tag_${crypto.randomBytes(4).toString("hex")}`;
       const subscription = session.ws.hashtag.subscribe({ tag: hashtag });
-      await subscription.waitForOpen();
 
       const eventsPromise = subscription
         .values()
@@ -166,11 +166,11 @@ describe("websocket", () => {
 
   it("streams hashtag:local", () => {
     return sessions.use(async (session) => {
+      await session.ws.prepare();
       const hashtag = `tag_${crypto.randomBytes(4).toString("hex")}`;
       const subscription = session.ws.hashtag.local.subscribe({
         tag: hashtag,
       });
-      await subscription.waitForOpen();
 
       const eventsPromise = subscription
         .values()
@@ -197,8 +197,8 @@ describe("websocket", () => {
 
   it("streams user", () => {
     return sessions.use(2, async ([alice, bob]) => {
+      await alice.ws.prepare();
       const subscription = alice.ws.user.subscribe();
-      await subscription.waitForOpen();
 
       const eventsPromise = subscription
         .values()
@@ -225,8 +225,8 @@ describe("websocket", () => {
 
   it("streams user:notification", () => {
     return sessions.use(2, async ([alice, bob]) => {
+      await alice.ws.prepare();
       const subscription = alice.ws.user.notification.subscribe();
-      await subscription.waitForOpen();
 
       const eventsPromise = subscription
         .values()
@@ -253,9 +253,9 @@ describe("websocket", () => {
 
   it("streams list", () => {
     return sessions.use(2, async ([alice, bob]) => {
+      await alice.ws.prepare();
       const list = await alice.rest.v1.lists.create({ title: "test" });
       const subscription = alice.ws.list.subscribe({ list: list.id });
-      await subscription.waitForOpen();
 
       const eventsPromise = subscription
         .values()
@@ -265,7 +265,12 @@ describe("websocket", () => {
         .take(1)
         .toArray();
 
-      await sleep(1000);
+      // Wait for the list to be created
+      await waitForCondition(async () => {
+        const result = await alice.rest.v1.lists.$select(list.id).fetch();
+        return result.id === list.id;
+      });
+
       await bob.rest.v1.statuses.create({
         status: "a post from bob",
       });

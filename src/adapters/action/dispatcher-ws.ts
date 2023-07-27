@@ -21,6 +21,10 @@ export class WebSocketActionDispatcher implements ActionDispatcher {
       return {} as T;
     }
 
+    if (action.type === "prepare") {
+      return this.connector.acquire() as T;
+    }
+
     if (action.type !== "subscribe") {
       throw new MastoUnexpectedError("Unknown action type");
     }

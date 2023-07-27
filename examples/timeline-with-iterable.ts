@@ -1,4 +1,3 @@
-import { AsyncIterator } from "iterator-helpers-polyfill";
 import { createRestClient } from "masto";
 
 const masto = createRestClient({
@@ -22,7 +21,12 @@ for await (const statuses of masto.v1.timelines.public.list()) {
 }
 
 // If you use `iterator-helpers`, you can handle multiple pages in the same way as an array
-const names = await AsyncIterator.from(masto.v1.timelines.public.list())
+import { installIntoGlobal } from "iterator-helpers-polyfill";
+installIntoGlobal();
+
+const names = await masto.v1.timelines.public
+  .list()
+  .values()
   .flatten()
   .filter((status) => !status.account.bot)
   .filter((status) => status.reblogsCount >= 10)

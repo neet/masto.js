@@ -8,7 +8,7 @@ const subscribe = async (): Promise<void> => {
 
   console.log("subscribed to #mastojs");
 
-  for await (const event of masto.subscribe("hashtag", { tag: "mastojs" })) {
+  for await (const event of masto.hashtag.subscribe({ tag: "mastojs" })) {
     switch (event.event) {
       case "update": {
         console.log("new post", event.payload.content);
