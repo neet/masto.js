@@ -8,7 +8,6 @@ import {
 import { type mastodon } from "../../mastodon";
 import { MastoUnexpectedError } from "../errors";
 import { toAsyncIterable } from "./async-iterable";
-import { waitForOpen } from "./wait-for-events";
 
 export class WebSocketSubscription implements mastodon.streaming.Subscription {
   private connection?: WebSocket;
@@ -62,11 +61,6 @@ export class WebSocketSubscription implements mastodon.streaming.Subscription {
 
   [Symbol.asyncIterator](): AsyncIterableIterator<mastodon.streaming.Event> {
     return this.values();
-  }
-
-  async waitForOpen(): Promise<void> {
-    this.connection = await this.connector.acquire();
-    await waitForOpen(this.connection);
   }
 
   private matches(event: mastodon.streaming.Event): boolean {
