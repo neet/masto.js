@@ -28,12 +28,10 @@ export interface AppRepository {
     meta?: HttpMetaParams<"json">,
   ): Promise<Client>;
 
-  verifyCredentials: {
-    /**
-     * Confirm that the app's OAuth2 credentials work.
-     * @return Application
-     * @see https://docs.joinmastodon.org/methods/apps/
-     */
-    fetch(meta?: HttpMetaParams): Promise<Client>;
-  };
+  /**
+   * Confirm that the app's OAuth2 credentials work.
+   * @return Application
+   * @see https://docs.joinmastodon.org/methods/apps/
+   */
+  verifyCredentials(meta?: HttpMetaParams): Promise<Client>;
 }
