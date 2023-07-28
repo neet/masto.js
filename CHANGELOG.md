@@ -1,3 +1,15 @@
+## [6.0.2](https://github.com/neet/masto.js/compare/v6.0.1...v6.0.2) (2023-07-28)
+
+
+### Bug Fixes
+
+* Fix Paginator#setDirection to return a new instance ([b004e95](https://github.com/neet/masto.js/commit/b004e958b4e2fe9de2b3ad879f70f496e932d0ea))
+
+
+### Chores
+
+* **ci:** Integrate CI workflow configurations ([4c5d57b](https://github.com/neet/masto.js/commit/4c5d57be2480c1db8fe58c4992221852300ab38f))
+
 ## [6.0.1](https://github.com/neet/masto.js/compare/v6.0.0...v6.0.1) (2023-07-27)
 
 
