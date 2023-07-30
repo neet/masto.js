@@ -1,3 +1,10 @@
+## [6.0.3](https://github.com/neet/masto.js/compare/v6.0.2...v6.0.3) (2023-07-30)
+
+
+### Bug Fixes
+
+* Fix `dispatch` to return non-promise value ([9fb38e7](https://github.com/neet/masto.js/commit/9fb38e7911a1c9b4b597622dc861c0c1738e2c23))
+
 ## [6.0.2](https://github.com/neet/masto.js/compare/v6.0.1...v6.0.2) (2023-07-28)
 
 
