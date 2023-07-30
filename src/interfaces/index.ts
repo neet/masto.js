@@ -1,3 +1,4 @@
+export * from "./event-stream";
 export * from "./http";
 export * from "./logger";
 export * from "./serializer";

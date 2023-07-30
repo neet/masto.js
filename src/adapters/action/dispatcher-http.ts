@@ -4,15 +4,27 @@ import {
   type Action,
   type ActionDispatcher,
   type Encoding,
+  type EventStream,
   type Http,
   type HttpMetaParams,
 } from "../../interfaces";
 import { type mastodon } from "../../mastodon";
 import { sleep } from "../../utils";
-import { MastoHttpError, MastoTimeoutError } from "../errors";
+import {
+  MastoHttpError,
+  MastoInvalidArgumentError,
+  MastoTimeoutError,
+} from "../errors";
 import { PaginatorHttp } from "./paginator-http";
+import { SubscriptionHttp } from "./subscription-http";
 
-type PrimitiveAction = "fetch" | "create" | "update" | "remove" | "list";
+type PrimitiveAction =
+  | "fetch"
+  | "create"
+  | "update"
+  | "remove"
+  | "list"
+  | "subscribe";
 
 export interface HttpActionDispatcherParams {
   readonly mediaTimeout?: number;
@@ -21,6 +33,7 @@ export interface HttpActionDispatcherParams {
 export class HttpActionDispatcher implements ActionDispatcher {
   constructor(
     private readonly http: Http,
+    private readonly eventStream?: EventStream,
     private readonly params: HttpActionDispatcherParams = {},
   ) {}
 
@@ -55,6 +68,14 @@ export class HttpActionDispatcher implements ActionDispatcher {
       case "list": {
         return new PaginatorHttp(this.http, path, action.data) as T;
       }
+      case "subscribe": {
+        if (this.eventStream == undefined) {
+          throw new MastoInvalidArgumentError(
+            "EventStream is required to subscribe",
+          );
+        }
+        return new SubscriptionHttp(this.eventStream, path, action.data) as T;
+      }
     }
   }
 
@@ -64,7 +85,8 @@ export class HttpActionDispatcher implements ActionDispatcher {
       case "create":
       case "update":
       case "remove":
-      case "list": {
+      case "list":
+      case "subscribe": {
         return true;
       }
       default: {

@@ -10,6 +10,7 @@ import {
   WebSocketConfigImpl,
   type WebSocketConfigProps,
 } from "./config";
+import { EventStreamImpl } from "./event-stream";
 import { HttpNativeImpl } from "./http";
 import { createLogger, type LogType } from "./logger";
 import { SerializerNativeImpl } from "./serializers";
@@ -26,7 +27,8 @@ export const createRestAPIClient = (
   const config = new HttpConfigImpl(props, serializer);
   const logger = createLogger(props.log);
   const http = new HttpNativeImpl(serializer, config, logger);
-  const actionDispatcher = new HttpActionDispatcher(http);
+  const eventStream = new EventStreamImpl(config, serializer);
+  const actionDispatcher = new HttpActionDispatcher(http, eventStream);
   const actionProxy = createActionProxy(actionDispatcher, [
     "api",
   ]) as mastodon.rest.Client;

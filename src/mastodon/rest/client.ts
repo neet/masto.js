@@ -1,6 +1,8 @@
 import type * as v1 from "./v1";
 import type * as v2 from "./v2";
 
+import { Client as StreamingRepository } from "../streaming/client";
+
 export interface Client {
   readonly v1: {
     readonly admin: v1.AdminRepository;
@@ -37,6 +39,7 @@ export interface Client {
     readonly tags: v1.TagRepository;
     readonly followedTags: v1.FollowedTagRepository;
     readonly push: v1.PushRepository;
+    readonly streaming: StreamingRepository;
   };
   readonly v2: {
     readonly filters: v2.FilterRepository;

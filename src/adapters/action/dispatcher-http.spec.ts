@@ -31,7 +31,7 @@ describe("DispatcherHttp", () => {
   });
 
   it("throws an error if media processing did not finish", async () => {
-    const dispatcher = new HttpActionDispatcher(new HttpMockImpl(), {
+    const dispatcher = new HttpActionDispatcher(new HttpMockImpl(), undefined, {
       mediaTimeout: 1,
     });
 
