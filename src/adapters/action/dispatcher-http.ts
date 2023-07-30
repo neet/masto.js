@@ -24,7 +24,7 @@ export class HttpActionDispatcher implements ActionDispatcher {
     private readonly params: HttpActionDispatcherParams = {},
   ) {}
 
-  async dispatch<T>(action: Action): Promise<T> {
+  dispatch<T>(action: Action): T | Promise<T> {
     const actionType = this.toPrimitiveAction(action.type);
     const path = this.isPrimitiveAction(action.type)
       ? action.path
@@ -38,12 +38,11 @@ export class HttpActionDispatcher implements ActionDispatcher {
       }
       case "create": {
         if (path === "/api/v2/media") {
-          const media = await this.http.post<mastodon.v1.MediaAttachment>(
-            path,
-            action.data,
-            meta,
-          );
-          return this.waitForMediaAttachment(media.id) as T;
+          return this.http
+            .post<mastodon.v1.MediaAttachment>(path, action.data, meta)
+            .then((media) => {
+              return this.waitForMediaAttachment(media.id) as T;
+            });
         }
         return this.http.post(path, action.data, meta);
       }
@@ -54,7 +53,7 @@ export class HttpActionDispatcher implements ActionDispatcher {
         return this.http.delete(path, action.data, meta);
       }
       case "list": {
-        return new PaginatorHttp(this.http, path, action.data);
+        return new PaginatorHttp(this.http, path, action.data) as T;
       }
     }
   }

@@ -2,6 +2,17 @@ import { type mastodon } from "../../../src";
 import { waitForCondition } from "../../../test-utils/wait-for-condition";
 
 describe("timeline", () => {
+  it("can iterate over timeline", () => {
+    return sessions.use(async (client) => {
+      let statuses: mastodon.v1.Status[] | undefined;
+      for await (const entry of client.rest.v1.timelines.public.list()) {
+        statuses = entry;
+        break;
+      }
+      expect(statuses).not.toBeUndefined();
+    });
+  });
+
   it("returns home", () => {
     return sessions.use(async (client) => {
       const status = await client.rest.v1.statuses.create({
