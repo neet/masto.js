@@ -33,7 +33,6 @@
     "change-case": "^4.1.2",
     "events-to-async": "^2.0.0",
     "isomorphic-ws": "^5.0.0",
-    "parse-link-header": "^2.0.0",
     "ts-custom-error": "^3.3.1",
     "ws": "^8.13.0"
   },
@@ -44,7 +43,6 @@
     "@semantic-release/git": "^10.0.1",
     "@types/jest": "^29.5.2",
     "@types/node": "^20.3.3",
-    "@types/parse-link-header": "^2.0.1",
     "@types/proper-lockfile": "^4.1.2",
     "@types/ws": "^8.5.5",
     "@typescript-eslint/eslint-plugin": "^5.62.0",

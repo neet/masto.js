@@ -1,8 +1,7 @@
 /* eslint-disable unicorn/no-thenable */
-import parseLinkHeader from "parse-link-header";
-
 import { type Http, type HttpMetaParams } from "../../interfaces";
 import { type mastodon } from "../../mastodon";
+import { parseLinkHeader } from "../../utils";
 
 export class PaginatorHttp<Entity, Params = undefined>
   implements mastodon.Paginator<Entity, Params>
@@ -101,7 +100,7 @@ export class PaginatorHttp<Entity, Params = undefined>
       return;
     }
 
-    const parsed = parseLinkHeader(value)?.[this.direction]?.url;
+    const parsed = parseLinkHeader(value).get(this.direction);
     if (parsed == undefined) {
       return;
     }
