@@ -52,6 +52,18 @@ describe("timeline", () => {
     });
   });
 
+  it("returns hashtag in camel case", () => {
+    return sessions.use(async (client) => {
+      const status = await client.rest.v1.statuses.create({
+        status: "#CamelCase",
+      });
+      const statuses = await client.rest.v1.timelines.tag
+        .$select("CamelCase")
+        .list();
+      expect(statuses).toContainId(status.id);
+    });
+  });
+
   it("returns list", () => {
     return sessions.use(async (client) => {
       const list = await client.rest.v1.lists.create({ title: "List" });

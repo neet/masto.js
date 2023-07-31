@@ -42,7 +42,13 @@ const get =
     if (typeof property === "symbol") {
       return;
     }
-    return createActionProxy<T>(actionDispatcher, [...context, property]);
+    if (property === "$select") {
+      return createActionProxy<T>(actionDispatcher, [...context, property]);
+    }
+    return createActionProxy<T>(actionDispatcher, [
+      ...context,
+      snakeCase(property),
+    ]);
   };
 
 const apply =
@@ -61,7 +67,7 @@ const apply =
       ]);
     }
 
-    const path = "/" + context.map((name) => snakeCase(name)).join("/");
+    const path = "/" + context.join("/");
     const [data, meta] = args;
 
     return actionDispatcher.dispatch<T>({
