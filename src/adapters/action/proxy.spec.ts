@@ -37,7 +37,7 @@ describe("RequestBuilder", () => {
           return {} as T;
         },
       },
-      ["/root"],
+      ["root"],
     );
     const data = {};
     builder.$select("foo").bar.fetch(data);
@@ -57,13 +57,32 @@ describe("RequestBuilder", () => {
           return {} as T;
         },
       },
-      ["/root"],
+      ["root"],
     );
     const data = {};
     builder.$select("foo").bar.create(data);
 
     expect(action?.type).toBe("create");
     expect(action?.path).toBe("/root/foo/bar");
+    expect(action?.data).toBe(data);
+  });
+
+  it("builds a resource with CamelCase", () => {
+    let action: Action | undefined;
+
+    const builder: any = createActionProxy(
+      {
+        dispatch: async <T>(a: Action) => {
+          action = a;
+          return {} as T;
+        },
+      },
+      ["root"],
+    );
+    const data = {};
+    builder.$select("AlphaBeta").gammaDelta.create(data);
+    expect(action?.type).toBe("create");
+    expect(action?.path).toBe("/root/AlphaBeta/gamma_delta");
     expect(action?.data).toBe(data);
   });
 

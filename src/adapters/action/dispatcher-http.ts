@@ -80,10 +80,10 @@ export class HttpActionDispatcher implements ActionDispatcher {
 
     switch (action) {
       case "lookup":
-      case "verifyCredentials": {
+      case "verify_credentials": {
         return "fetch";
       }
-      case "updateCredentials": {
+      case "update_credentials": {
         return "update";
       }
       default: {
