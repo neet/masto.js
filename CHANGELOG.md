@@ -1,3 +1,11 @@
+## [6.0.4](https://github.com/neet/masto.js/compare/v6.0.3...v6.0.4) (2023-08-01)
+
+
+### Bug Fixes
+
+* Handle camelCase selection in proxy as an exception ([df6e78b](https://github.com/neet/masto.js/commit/df6e78b75403b78566899e0fe53f72ef49c833c4))
+* Remove parse-link-header and restore original implementation ([f8215af](https://github.com/neet/masto.js/commit/f8215af862dfd12f04ea94af4fd7a78fbd8bf1d2))
+
 ## [6.0.3](https://github.com/neet/masto.js/compare/v6.0.2...v6.0.3) (2023-07-30)
 
 
