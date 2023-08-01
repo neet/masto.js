@@ -10,7 +10,6 @@ const masto = createRestAPIClient({
 const newProfile = await masto.v1.accounts.updateCredentials({
   displayName: "Fluffy elephant friend",
   note: "Hi fediverse!",
-  // See `create-new-status-with-image.ts` example for this field.
   avatar: new Blob([await fs.readFile("../some_image.png")]),
 });
 

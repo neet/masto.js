@@ -7,16 +7,16 @@ const masto = createRestAPIClient({
   accessToken: "YOUR TOKEN",
 });
 
-// What you need to specify as `file` argument depends on your runtime.
-// If you're on Node.js >= 18 or other platforms that supports `fetch` natively...
-const attachment = await masto.v2.media.create({
+// Create media from a local file
+const attachment1 = await masto.v2.media.create({
   file: new Blob([fs.readFileSync("../some_image.png")]),
   description: "Some image",
 });
 
-// If you're on Node.js < 18, Use `fs.readFileSync` directly.
-await masto.v2.media.create({
-  file: fs.readFileSync("../some_image.png"),
+// Create media from an URL
+const remoteFile = await fetch("https://example.com/some_image.png");
+const attachment2 = await masto.v2.media.create({
+  file: await remoteFile.blob(),
   description: "Some image",
 });
 
@@ -24,7 +24,7 @@ await masto.v2.media.create({
 const status = await masto.v1.statuses.create({
   status: "Hello from #mastojs!",
   visibility: "public",
-  mediaIds: [attachment.id],
+  mediaIds: [attachment1.id, attachment2.id],
 });
 
 console.log(status);
