@@ -1,3 +1,10 @@
+## [6.0.5](https://github.com/neet/masto.js/compare/v6.0.4...v6.0.5) (2023-08-02)
+
+
+### Chores
+
+* **docs:** Update examples and docs ([a3908d7](https://github.com/neet/masto.js/commit/a3908d78f0cfc24bde29084a3558f2498847b65b))
+
 ## [6.0.4](https://github.com/neet/masto.js/compare/v6.0.3...v6.0.4) (2023-08-01)
 
 
