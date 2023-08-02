@@ -4,6 +4,7 @@ import {
   HttpActionDispatcher,
   WebSocketActionDispatcher,
 } from "./action";
+import { SseActionDispatcher } from "./action/dispatcher-sse";
 import {
   HttpConfigImpl,
   type MastoHttpConfigProps,
@@ -49,14 +50,34 @@ export const createOAuthAPIClient = (
   return actionProxy;
 };
 
-interface WebSocketCustomImplProps {
-  /** Custom WebSocket implementation. In Deno, you can use `WebSocket` to avoid potential errors. */
-  readonly implementation?: unknown;
-}
+type BaseCreateStreamingAPIClientProps = LogConfigProps;
+type WebSocketCreateStreamingAPIClientProps = WebSocketConfigProps &
+  BaseCreateStreamingAPIClientProps & {
+    readonly mode?: "websocket";
+    /** Custom WebSocket implementation. In Deno, you can use `WebSocket` to avoid potential errors. */
+    readonly implementation?: unknown;
+  };
+
+type SSECreateStreamingAPIClientProps = BaseCreateStreamingAPIClientProps & {
+  readonly mode: "sse";
+  readonly streamingApiUrl: string;
+};
+type CreateStreamingAPIClientProps =
+  | WebSocketCreateStreamingAPIClientProps
+  | SSECreateStreamingAPIClientProps;
 
 export function createStreamingAPIClient(
-  props: WebSocketConfigProps & LogConfigProps & WebSocketCustomImplProps,
+  props: CreateStreamingAPIClientProps,
 ): mastodon.streaming.Client {
+  if (props.mode === "sse") {
+    const serializer = new SerializerNativeImpl();
+    const logger = createLogger(props.log);
+    const eventStream = new EventStreamImpl({} as any, serializer, logger);
+    const actionDispatcher = new SseActionDispatcher(eventStream);
+    const actionProxy = createActionProxy(actionDispatcher);
+    return actionProxy as mastodon.streaming.Client;
+  }
+
   const serializer = new SerializerNativeImpl();
   const config = new WebSocketConfigImpl(props, serializer);
   const logger = createLogger(props.log);
@@ -76,7 +97,6 @@ export function createStreamingAPIClient(
     serializer,
     logger,
   );
-
   const actionProxy = createActionProxy(actionDispatcher);
   return actionProxy as mastodon.streaming.Client;
 }

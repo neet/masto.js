@@ -2,17 +2,19 @@ import {
   type EventStream,
   type HttpConfig,
   type HttpMetaParams,
+  type Logger,
   type Serializer,
 } from "../../interfaces";
 import { MastoHttpError, MastoUnexpectedError } from "../errors";
 
-export class EventStreamImpl implements EventStream {
-  static EVENT_PATTERN = /^event: (.*)$/;
-  static DATA_PATTERN = /^data: (.*)$/;
+const EVENT_PATTERN = /^event:\s*(.*)$/;
+const DATA_PATTERN = /^data:\s*(.*)$/;
 
+export class EventStreamImpl implements EventStream {
   constructor(
     private readonly config: HttpConfig,
     private readonly serializer: Serializer,
+    private readonly logger?: Logger,
   ) {}
 
   async *stream<T>(
@@ -27,17 +29,27 @@ export class EventStreamImpl implements EventStream {
 
     const request = new Request(url, {
       method: "GET",
+      redirect: "follow",
       ...init,
     });
 
+    this.logger?.debug("↑", request);
+    this.logger?.debug("token->", (this.config as any).props);
+    this.logger?.debug(
+      "headers->",
+      Object.fromEntries(request.headers.entries() as any),
+    );
+
     const response = await fetch(request);
+
+    this.logger?.debug("↓", response);
 
     if (!response.ok) {
       try {
         const error = await response.json();
         throw new MastoHttpError(response.status, error as string);
       } catch {
-        throw new MastoUnexpectedError("Unexpected error occurred");
+        throw new MastoHttpError(response.status, response.statusText);
       }
     }
 
@@ -60,6 +72,10 @@ export class EventStreamImpl implements EventStream {
       buffer = lines.pop()!;
 
       for (const line of lines) {
+        if (line.startsWith(":")) {
+          continue;
+        }
+
         if (line === "") {
           if (event != undefined) {
             yield this.serializer.deserialize("json", buffer) as T;
@@ -67,16 +83,20 @@ export class EventStreamImpl implements EventStream {
 
           event = undefined;
           buffer = "";
-        } else if (event == undefined) {
-          const match = line.match(EventStreamImpl.EVENT_PATTERN);
+          continue;
+        }
+
+        if (event == undefined) {
+          const match = line.match(EVENT_PATTERN);
           if (match != undefined) {
             event = match[1];
           }
-        } else {
-          const match = line.match(EventStreamImpl.DATA_PATTERN);
-          if (match != undefined) {
-            buffer = match[1];
-          }
+          continue;
+        }
+
+        const match = line.match(DATA_PATTERN);
+        if (match != undefined) {
+          buffer = match[1];
         }
       }
     }
