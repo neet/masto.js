@@ -78,7 +78,10 @@ export class EventStreamImpl implements EventStream {
 
         if (line === "") {
           if (event != undefined) {
-            yield this.serializer.deserialize("json", buffer) as T;
+            yield {
+              event: event,
+              payload: this.serializer.deserialize("json", buffer),
+            } as T;
           }
 
           event = undefined;

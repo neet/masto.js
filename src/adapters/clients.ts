@@ -51,17 +51,19 @@ export const createOAuthAPIClient = (
 };
 
 type BaseCreateStreamingAPIClientProps = LogConfigProps;
-type WebSocketCreateStreamingAPIClientProps = WebSocketConfigProps &
-  BaseCreateStreamingAPIClientProps & {
-    readonly mode?: "websocket";
-    /** Custom WebSocket implementation. In Deno, you can use `WebSocket` to avoid potential errors. */
-    readonly implementation?: unknown;
-  };
 
-type SSECreateStreamingAPIClientProps = BaseCreateStreamingAPIClientProps & {
+// prettier-ignore
+interface WebSocketCreateStreamingAPIClientProps extends WebSocketConfigProps, BaseCreateStreamingAPIClientProps {
+  readonly mode?: "websocket";
+  /** Custom WebSocket implementation. In Deno, you can use `WebSocket` to avoid potential errors. */
+  readonly implementation?: unknown;
+}
+
+// prettier-ignore
+interface SSECreateStreamingAPIClientProps extends BaseCreateStreamingAPIClientProps, MastoHttpConfigProps {
   readonly mode: "sse";
   readonly streamingApiUrl: string;
-};
+}
 type CreateStreamingAPIClientProps =
   | WebSocketCreateStreamingAPIClientProps
   | SSECreateStreamingAPIClientProps;
@@ -72,9 +74,14 @@ export function createStreamingAPIClient(
   if (props.mode === "sse") {
     const serializer = new SerializerNativeImpl();
     const logger = createLogger(props.log);
-    const eventStream = new EventStreamImpl({} as any, serializer, logger);
+    const config = new HttpConfigImpl(props, serializer);
+    const eventStream = new EventStreamImpl(config, serializer, logger);
     const actionDispatcher = new SseActionDispatcher(eventStream);
-    const actionProxy = createActionProxy(actionDispatcher);
+    const actionProxy = createActionProxy(actionDispatcher, [
+      "api",
+      "v1",
+      "streaming",
+    ]);
     return actionProxy as mastodon.streaming.Client;
   }
 
