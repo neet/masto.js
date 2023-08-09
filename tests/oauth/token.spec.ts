@@ -9,7 +9,7 @@ it("issues token", async () => {
     grantType: "password",
     clientId: global.__misc__.app.clientId!,
     clientSecret: global.__misc__.app.clientSecret!,
-    username: "admin@localhost:3000",
+    username: "admin@localhost",
     password: "mastodonadmin",
     scope: "read write follow push admin:read admin:write",
   });
