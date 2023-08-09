@@ -19,4 +19,6 @@ export interface List {
    * `none` = Show replies to no one
    */
   repliesPolicy: ListRepliesPolicy;
+  /** https://github.com/mastodon/mastodon/pull/22048/files */
+  isExclusive: boolean;
 }

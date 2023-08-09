@@ -27,4 +27,14 @@ export interface InstanceRepository {
      */
     list(meta?: HttpMetaParams): Paginator<Activity[]>;
   };
+
+  languages: {
+    /** https://github.com/mastodon/mastodon/pull/24443 */
+    list(meta?: HttpMetaParams): Promise<string[]>;
+  };
+
+  translationLanguages: {
+    /** https://github.com/mastodon/mastodon/pull/24037 */
+    list(meta?: HttpMetaParams): Promise<Record<string, string[]>>;
+  };
 }

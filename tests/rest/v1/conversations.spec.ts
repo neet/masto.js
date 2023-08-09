@@ -22,7 +22,17 @@ describe("conversations", () => {
       });
 
       assert(conversation != undefined);
-      await alice.rest.v1.conversations.$select(conversation.id).read();
+
+      conversation = await alice.rest.v1.conversations
+        .$select(conversation.id)
+        .read();
+      expect(conversation.unread).toBe(false);
+
+      conversation = await alice.rest.v1.conversations
+        .$select(conversation.id)
+        .unread();
+      expect(conversation.unread).toBe(true);
+
       await alice.rest.v1.conversations.$select(conversation.id).remove();
     });
   });
