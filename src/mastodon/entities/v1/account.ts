@@ -49,7 +49,6 @@ export interface Account {
   acct: string;
   /** The location of the user's profile page. */
   url: string;
-
   /** The profile's display name. */
   displayName: string;
   /** The profile's bio / description. */
@@ -64,30 +63,34 @@ export interface Account {
   headerStatic: string;
   /** Whether the account manually approves follow requests. */
   locked: boolean;
+  /** Additional metadata attached to a profile as name-value pairs. */
+  fields: AccountField[];
   /** Custom emoji entities to be used when rendering the profile. If none, an empty array will be returned. */
   emojis: CustomEmoji[];
+  /** Boolean to indicate that the account performs automated actions */
+  bot: boolean;
+  /** Indicates that the account represents a Group actor. */
+  group: boolean;
   /** Whether the account has opted into discovery features such as the profile directory. */
-  discoverable: boolean;
-
+  discoverable?: boolean | null;
+  /** Whether the local user has opted out of being indexed by search engines. */
+  noindex?: boolean | null;
+  /** Indicates that the profile is currently inactive and that its user has moved to a new account. */
+  moved?: Account | null;
+  /** An extra entity returned when an account is suspended. **/
+  suspended?: boolean | null;
+  /** An extra attribute returned only when an account is silenced. If true, indicates that the account should be hidden behind a warning screen. */
+  limited?: boolean | null;
   /** When the account was created. */
   createdAt: string;
+  /** Time of the last status posted */
+  lastStatusAt: string;
   /** How many statuses are attached to this account. */
   statusesCount: number;
   /** The reported followers of this profile. */
   followersCount: number;
   /** The reported follows of this profile. */
   followingCount: number;
-  /** Time of the last status posted */
-  lastStatusAt: string;
-
-  /** Indicates that the profile is currently inactive and that its user has moved to a new account. */
-  moved?: Account | null;
-  /** An extra entity returned when an account is suspended. **/
-  suspended?: boolean | null;
-  /** Additional metadata attached to a profile as name-value pairs. */
-  fields?: AccountField[] | null;
-  /** Boolean to indicate that the account performs automated actions */
-  bot?: boolean | null;
   /** Roles that have been granted to this account. */
   roles: Pick<Role, "id" | "name" | "color">[]; // TODO: Create an entity when documentation is updated
 }
