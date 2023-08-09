@@ -22,6 +22,6 @@ it("lists languages", () => {
 it("lists translatable languages", () => {
   return sessions.use(async (client) => {
     const languages = await client.rest.v1.instance.translationLanguages.list();
-    expect(languages).toMatchInlineSnapshot();
+    expect(languages).toMatchInlineSnapshot(`{}`);
   });
 });
