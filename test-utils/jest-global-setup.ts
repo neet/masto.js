@@ -47,7 +47,7 @@ const readOrCreateAdminToken = async (
     grantType: "password",
     clientId: app.clientId!,
     clientSecret: app.clientSecret!,
-    username: "admin@localhost:3000",
+    username: "admin@localhost",
     password: "mastodonadmin",
     scope: "read write follow push admin:read admin:write",
   });
