@@ -1,3 +1,11 @@
+## [6.0.6](https://github.com/neet/masto.js/compare/v6.0.5...v6.0.6) (2023-08-10)
+
+
+### Bug Fixes
+
+* Add missing `group`, `limited`, `noindex` attributes to Account ([3294a8d](https://github.com/neet/masto.js/commit/3294a8d7e2df3cf1b5c0022e439a7219112709ec))
+* **test:** Remove port number from OAuth grant ([d095916](https://github.com/neet/masto.js/commit/d09591636d86695d4a0aa72c8f0c38bdd2ec81bd))
+
 ## [6.0.5](https://github.com/neet/masto.js/compare/v6.0.4...v6.0.5) (2023-08-02)
 
 
