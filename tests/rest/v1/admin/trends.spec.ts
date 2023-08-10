@@ -18,4 +18,16 @@ describe("trends", () => {
     const tags = await admin.v1.admin.trends.tags.list();
     expect(tags).toEqual(expect.any(Array));
   });
+
+  test.todo("approve a tag");
+  test.todo("reject a tag");
+
+  test.todo("approve a link");
+  test.todo("reject a link");
+
+  test.todo("approve a status");
+  test.todo("reject a status");
+
+  test.todo("approve a link publisher");
+  test.todo("reject a link publisher");
 });
