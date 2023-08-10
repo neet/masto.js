@@ -4,6 +4,11 @@ describe("trends", () => {
     expect(links).toEqual(expect.any(Array));
   });
 
+  it("fetches link publishers", async () => {
+    const links = await admin.v1.admin.trends.links.publishers.list();
+    expect(links).toEqual(expect.any(Array));
+  });
+
   it("fetches statuses", async () => {
     const statuses = await admin.v1.admin.trends.statuses.list();
     expect(statuses).toEqual(expect.any(Array));

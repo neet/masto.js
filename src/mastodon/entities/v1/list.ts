@@ -20,5 +20,5 @@ export interface List {
    */
   repliesPolicy: ListRepliesPolicy;
   /** https://github.com/mastodon/mastodon/pull/22048/files */
-  isExclusive: boolean;
+  exclusive: boolean;
 }
