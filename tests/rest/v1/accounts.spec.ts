@@ -23,19 +23,20 @@ describe("account", () => {
 
   it("throws an error if registration is malformed", () => {
     return sessions.use(async (session) => {
-      let error: unknown;
-
-      try {
-        await session.rest.v1.accounts.create({
+      const error = await session.rest.v1.accounts
+        .create({
           username: "",
           email: "",
           password: "",
           agreement: false,
           locale: "hello",
-        });
-      } catch (error_) {
-        error = error_ as Error;
-      }
+        })
+        .then(
+          () => {
+            throw new Error("should not be called");
+          },
+          (error) => error,
+        );
 
       assert(error instanceof MastoHttpError);
       expect(error.statusCode).toBe(422);

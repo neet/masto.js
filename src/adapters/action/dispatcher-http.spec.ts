@@ -14,8 +14,12 @@ describe("DispatcherHttp", () => {
     httpPost.mockResolvedValueOnce({ id: "1" });
 
     httpGet
-      .mockRejectedValueOnce(new MastoHttpError(404, "Not Found"))
-      .mockRejectedValueOnce(new MastoHttpError(404, "Not Found"))
+      .mockRejectedValueOnce(
+        new MastoHttpError({ statusCode: 404, message: "Not Found" }),
+      )
+      .mockRejectedValueOnce(
+        new MastoHttpError({ statusCode: 404, message: "Not Found" }),
+      )
       .mockResolvedValueOnce({ id: "1", url: "https://example.com" });
 
     const media = await dispatcher.dispatch({
@@ -36,7 +40,9 @@ describe("DispatcherHttp", () => {
     });
 
     httpPost.mockResolvedValueOnce({ id: "1" });
-    httpGet.mockRejectedValue(new MastoHttpError(404, "Not Found"));
+    httpGet.mockRejectedValue(
+      new MastoHttpError({ statusCode: 404, message: "Not Found" }),
+    );
 
     const promise = dispatcher.dispatch({
       type: "create",

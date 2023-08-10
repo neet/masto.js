@@ -1,5 +1,7 @@
 import crypto from "node:crypto";
 
+import { MastoHttpError } from "../../../src";
+
 describe("status", () => {
   it("creates, updates, and removes a status", () => {
     return sessions.use(async (client) => {
@@ -208,6 +210,33 @@ describe("status", () => {
       expect(status.bookmarked).toBe(false);
 
       await client.rest.v1.statuses.$select(status.id).remove();
+    });
+  });
+
+  it("only mentions listed users when allowedMentions is specified", () => {
+    return sessions.use(2, async ([alice, bob]) => {
+      const error = await alice.rest.v1.statuses
+        .create({
+          status: `@${bob.acct} hello`,
+          allowedMentions: [],
+        })
+        .then(
+          () => {
+            throw new Error("Unexpected success");
+          },
+          (_error) => {
+            if (_error instanceof MastoHttpError) return _error;
+            throw _error;
+          },
+        );
+
+      expect(error.additionalProperties).toEqual({
+        unexpectedAccounts: [
+          expect.objectContaining({
+            id: bob.id,
+          }),
+        ],
+      });
     });
   });
 });
