@@ -93,6 +93,8 @@ export interface Account {
   followingCount: number;
   /** Roles that have been granted to this account. */
   roles: Pick<Role, "id" | "name" | "color">[]; // TODO: Create an entity when documentation is updated
+  /** https://github.com/mastodon/mastodon/pull/23591 */
+  memorial?: boolean | null;
 }
 
 /**

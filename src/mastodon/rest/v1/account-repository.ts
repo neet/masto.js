@@ -28,6 +28,8 @@ export interface CreateAccountParams {
   readonly locale: string;
   /** Text that will be reviewed by moderators if registrations require manual approval. */
   readonly reason?: string;
+  /** https://github.com/mastodon/mastodon/pull/25342 */
+  readonly timeZone?: string;
 }
 
 export interface UpdateCredentialsParams {

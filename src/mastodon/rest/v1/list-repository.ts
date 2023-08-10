@@ -6,6 +6,8 @@ import { type DefaultPaginationParams } from "../../repository";
 export interface CreateListParams {
   /** The title of the list to be created. */
   readonly title: string;
+  /** https://github.com/mastodon/mastodon/pull/22048/files */
+  readonly exclusive?: boolean;
 }
 
 export type UpdateListParams = CreateListParams;

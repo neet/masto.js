@@ -97,12 +97,21 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       }
 
       const data = this.serializer.deserialize(encoding, await error.text());
+      const {
+        error: message,
+        errorDescription,
+        details,
+        ...additionalProperties
+      } = data;
 
       return new MastoHttpError(
-        error.status,
-        data.error as string,
-        data.errorDescription as string,
-        data.details as MastoHttpErrorDetails,
+        {
+          statusCode: error.status,
+          message: message as string,
+          description: errorDescription as string,
+          details: details as MastoHttpErrorDetails,
+          additionalProperties,
+        },
         { cause: error },
       );
     }

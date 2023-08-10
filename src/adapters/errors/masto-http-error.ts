@@ -23,22 +23,26 @@ export type MastoHttpErrorDetails = Record<
   readonly MastoHttpErrorDetail[]
 >;
 
+export interface MastoHttpErrorProps {
+  readonly statusCode: number;
+  readonly message: string;
+  readonly description?: string;
+  readonly details?: MastoHttpErrorDetails;
+  readonly additionalProperties?: Record<string, unknown>;
+}
+
 export class MastoHttpError extends CustomError {
   readonly statusCode: number;
   readonly description?: string;
   readonly details?: MastoHttpErrorDetails;
+  readonly additionalProperties?: Record<string, unknown>;
 
-  constructor(
-    statusCode: number,
-    message: string,
-    description?: string,
-    details?: MastoHttpErrorDetails,
-    options?: ErrorOptions,
-  ) {
-    super(message, options);
-    this.statusCode = statusCode;
-    this.message = message;
-    this.description = description;
-    this.details = details;
+  constructor(props: MastoHttpErrorProps, errorOptions?: ErrorOptions) {
+    super(props.message, errorOptions);
+    this.statusCode = props.statusCode;
+    this.message = props.message;
+    this.description = props.description;
+    this.additionalProperties = props.additionalProperties;
+    this.details = props.details;
   }
 }

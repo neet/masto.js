@@ -29,5 +29,8 @@ export interface ConversationRepository {
      * @see https://docs.joinmastodon.org/methods/timelines/conversations/#post
      */
     read(meta?: HttpMetaParams): Promise<Conversation>;
+
+    /** https://github.com/mastodon/mastodon/pull/25509 */
+    unread(meta?: HttpMetaParams): Promise<Conversation>;
   };
 }

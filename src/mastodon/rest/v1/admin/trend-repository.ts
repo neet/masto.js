@@ -9,6 +9,21 @@ export interface TrendRepository {
      * @see https://docs.joinmastodon.org/methods/admin/trends/#links
      */
     list(meta?: HttpMetaParams): Paginator<TrendLink[]>;
+
+    /** https://github.com/mastodon/mastodon/pull/24257 */
+    $select(id: string): {
+      approve(meta?: HttpMetaParams): Promise<TrendLink>;
+      reject(meta?: HttpMetaParams): Promise<TrendLink>;
+    };
+
+    /** https://github.com/mastodon/mastodon/pull/24257 */
+    publishers: {
+      list(meta?: HttpMetaParams): Paginator<TrendLink[]>;
+      $select(id: string): {
+        approve(meta?: HttpMetaParams): Promise<TrendLink>;
+        reject(meta?: HttpMetaParams): Promise<TrendLink>;
+      };
+    };
   };
 
   statuses: {
@@ -17,6 +32,12 @@ export interface TrendRepository {
      * @see https://docs.joinmastodon.org/methods/admin/trends/#statuses
      */
     list(meta?: HttpMetaParams): Paginator<Status[]>;
+
+    /** https://github.com/mastodon/mastodon/pull/24257 */
+    $select(id: string): {
+      approve(meta?: HttpMetaParams): Promise<Status>;
+      reject(meta?: HttpMetaParams): Promise<Status>;
+    };
   };
 
   tags: {
@@ -25,5 +46,11 @@ export interface TrendRepository {
      * @see https://docs.joinmastodon.org/methods/admin/trends/#tags
      */
     list(meta?: HttpMetaParams): Paginator<Admin.Tag[]>;
+
+    /** https://github.com/mastodon/mastodon/pull/24257 */
+    $select(id: string): {
+      approve(meta?: HttpMetaParams): Promise<Admin.Tag>;
+      reject(meta?: HttpMetaParams): Promise<Admin.Tag>;
+    };
   };
 }

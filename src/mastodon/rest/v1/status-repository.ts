@@ -23,6 +23,8 @@ export interface CreateStatusParamsBase {
   readonly visibility?: StatusVisibility | null;
   /** ISO 639 language code for this status. */
   readonly language?: string | null;
+  /** https://github.com/mastodon/mastodon/pull/18350 */
+  readonly allowedMentions?: readonly string[] | null;
 }
 
 export interface CreateStatusPollParam {

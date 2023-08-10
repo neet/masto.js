@@ -14,6 +14,8 @@ export interface ReportAccountParams {
   readonly category?: ReportCategory | null;
   /** must reference rules returned in GET /api/v1/instance */
   readonly ruleIds?: readonly string[] | null;
+  /** https://github.com/mastodon/mastodon/pull/25866 */
+  readonly forwardToDomains?: readonly string[] | null;
 }
 
 export interface ReportRepository {
