@@ -1,3 +1,23 @@
+## [6.1.0](https://github.com/neet/masto.js/compare/v6.0.6...v6.1.0) (2023-08-11)
+
+
+### Features
+
+* Add `allowedMentions` to v1.status.create ([f307eff](https://github.com/neet/masto.js/commit/f307eff0f84116a5e33510d49b48a4f2ca4d4f66))
+* Mastodon 4.2.0 beta ([88703ac](https://github.com/neet/masto.js/commit/88703acf94a105648a0f4a0caa2c2ef130c3a459))
+
+
+### Bug Fixes
+
+* Fix /v1/instance/translation_languages assertion ([a531d3c](https://github.com/neet/masto.js/commit/a531d3c97e6f7a939e37758df31a2a3b6281a324))
+* Fix missing `DefaultPaginationParams` export ([1894934](https://github.com/neet/masto.js/commit/18949343aa4cd39a7661735be332c547b1e0c68d))
+* Remove port number from admin username ([f5d83e1](https://github.com/neet/masto.js/commit/f5d83e15776759eec0ece5f027b6c7e45add4407))
+
+
+### Chores
+
+* **test:** Add test todos ([2676c69](https://github.com/neet/masto.js/commit/2676c691b04a2963d309b7910d6a21da8e8232ce))
+
 ## [6.0.6](https://github.com/neet/masto.js/compare/v6.0.5...v6.0.6) (2023-08-10)
 
 
