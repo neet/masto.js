@@ -1,9 +1,7 @@
 import crypto from "node:crypto";
 
 import { type mastodon } from "../../src";
-
-const TRANSPARENT_1X1_PNG =
-  "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==";
+import { getMockImage } from "../../test-utils/image";
 
 describe("websocket", () => {
   it("streams public", () => {
@@ -51,7 +49,7 @@ describe("websocket", () => {
         .toArray();
 
       const media = await session.rest.v2.media.create({
-        file: TRANSPARENT_1X1_PNG,
+        file: await getMockImage(),
       });
       const status = await session.rest.v1.statuses.create({
         status: random,
@@ -115,7 +113,7 @@ describe("websocket", () => {
         .toArray();
 
       const media = await session.rest.v2.media.create({
-        file: TRANSPARENT_1X1_PNG,
+        file: await getMockImage(),
       });
 
       const status = await session.rest.v1.statuses.create({
