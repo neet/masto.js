@@ -37,6 +37,7 @@ export interface Client {
     readonly tags: v1.TagRepository;
     readonly followedTags: v1.FollowedTagRepository;
     readonly push: v1.PushRepository;
+    readonly profile: v1.ProfileRepository;
   };
   readonly v2: {
     readonly filters: v2.FilterRepository;
