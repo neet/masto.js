@@ -1,3 +1,10 @@
+## [6.2.0](https://github.com/neet/masto.js/compare/v6.1.0...v6.2.0) (2023-08-25)
+
+
+### Features
+
+* Support Mastodon v4.2.0 beta2 ([3732a24](https://github.com/neet/masto.js/commit/3732a24afec2ecaee29acd9b019b77385a210c3f))
+
 ## [6.1.0](https://github.com/neet/masto.js/compare/v6.0.6...v6.1.0) (2023-08-11)
 
 
