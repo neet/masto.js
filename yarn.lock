@@ -3303,6 +3303,21 @@ execa@^7.0.0:
     signal-exit "^3.0.7"
     strip-final-newline "^3.0.0"
 
+execa@^8.0.0:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/execa/-/execa-8.0.1.tgz#51f6a5943b580f963c3ca9c6321796db8cc39b8c"
+  integrity sha512-VyhnebXciFV2DESc+p6B+y0LjSm0krU4OgJN44qFAhBY0TJ+1V61tYD2+wHusZ6F9n5K+vl8k0sTy7PEfV4qpg==
+  dependencies:
+    cross-spawn "^7.0.3"
+    get-stream "^8.0.1"
+    human-signals "^5.0.0"
+    is-stream "^3.0.0"
+    merge-stream "^2.0.0"
+    npm-run-path "^5.1.0"
+    onetime "^6.0.0"
+    signal-exit "^4.1.0"
+    strip-final-newline "^3.0.0"
+
 exit@^0.1.2:
   version "0.1.2"
   resolved "https://registry.npmjs.org/exit/-/exit-0.1.2.tgz"
@@ -3640,6 +3655,11 @@ get-stream@^6.0.0, get-stream@^6.0.1:
   resolved "https://registry.npmjs.org/get-stream/-/get-stream-6.0.1.tgz"
   integrity sha512-ts6Wi+2j3jQjqi70w5AlN8DFnkSwC+MqmxEzdEALB2qXZYV3X/b1CTfgPLGJNMeAWxdPfU8FO1ms3NUfaHCPYg==
 
+get-stream@^8.0.1:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/get-stream/-/get-stream-8.0.1.tgz#def9dfd71742cd7754a7761ed43749a27d02eca2"
+  integrity sha512-VaUJspBffn/LMCJVoMvSAdmscJyS1auj5Zulnn5UoYcY531UWmdwhRWkcGKnGU93m5HSXP9LP2usOryrBtQowA==
+
 get-symbol-description@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/get-symbol-description/-/get-symbol-description-1.0.0.tgz"
@@ -3904,6 +3924,13 @@ hosted-git-info@^6.0.0, hosted-git-info@^6.1.1:
   dependencies:
     lru-cache "^7.5.1"
 
+hosted-git-info@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-7.0.0.tgz#276330b8ad9f4566e82c8ccb16050decc096076b"
+  integrity sha512-ICclEpTLhHj+zCuSb2/usoNXSVkxUSIopre+b1w8NDY9Dntp9LO4vLdHYI336TH8sAqwrRgnSfdkBG2/YpisHA==
+  dependencies:
+    lru-cache "^10.0.1"
+
 html-escaper@^2.0.0:
   version "2.0.2"
   resolved "https://registry.npmjs.org/html-escaper/-/html-escaper-2.0.2.tgz"
@@ -3956,6 +3983,11 @@ human-signals@^4.3.0:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/human-signals/-/human-signals-4.3.1.tgz#ab7f811e851fca97ffbd2c1fe9a958964de321b2"
   integrity sha512-nZXjEF2nbo7lIw3mgYjItAfgQXog3OjJogSbKa2CQIIvSGWcKgeJnQlNXip6NglNzYH45nSRiEVimMvYL8DDqQ==
+
+human-signals@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/human-signals/-/human-signals-5.0.0.tgz#42665a284f9ae0dade3ba41ebc37eb4b852f3a28"
+  integrity sha512-AXcZb6vzzrFAUE61HnN4mpLqd/cSIwNQjtNWR0euPm6y0iqx3G4gOXaIDdtdDwZmhwe82LA6+zinmW4UBWVePQ==
 
 humanize-ms@^1.2.1:
   version "1.2.1"
@@ -5147,6 +5179,11 @@ lower-case@^2.0.2:
   dependencies:
     tslib "^2.0.3"
 
+lru-cache@^10.0.1:
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.0.1.tgz#0a3be479df549cca0e5d693ac402ff19537a6b7a"
+  integrity sha512-IJ4uwUTi2qCccrioU6g9g/5rvvVl13bsdczUUcqbciD9iLr095yj8DQKdObriEvuNSx325N1rV1O0sJFszx75g==
+
 lru-cache@^6.0.0:
   version "6.0.0"
   resolved "https://registry.npmjs.org/lru-cache/-/lru-cache-6.0.0.tgz"
@@ -5633,6 +5670,16 @@ normalize-package-data@^5.0.0:
   integrity sha512-h9iPVIfrVZ9wVYQnxFgtw1ugSvGEMOlyPWWtm8BMJhnwyEL/FLbYbTY3V3PpjI/BUK67n9PEWDu6eHzu1fB15Q==
   dependencies:
     hosted-git-info "^6.0.0"
+    is-core-module "^2.8.1"
+    semver "^7.3.5"
+    validate-npm-package-license "^3.0.4"
+
+normalize-package-data@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/normalize-package-data/-/normalize-package-data-6.0.0.tgz#68a96b3c11edd462af7189c837b6b1064a484196"
+  integrity sha512-UL7ELRVxYBHBgYEtZCXjxuD5vPxnmvMGq0jp/dGPKKrN7tfsBh2IY7TlJ15WWwdjRWD3RJbnsygUurTK3xkPkg==
+  dependencies:
+    hosted-git-info "^7.0.0"
     is-core-module "^2.8.1"
     semver "^7.3.5"
     validate-npm-package-license "^3.0.4"
@@ -6410,6 +6457,15 @@ read-package-json@^6.0.0, read-package-json@^6.0.1:
     normalize-package-data "^5.0.0"
     npm-normalize-package-bin "^3.0.0"
 
+read-pkg-up@^10.0.0:
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/read-pkg-up/-/read-pkg-up-10.1.0.tgz#2d13ab732d2f05d6e8094167c2112e2ee50644f4"
+  integrity sha512-aNtBq4jR8NawpKJQldrQcSW9y/d+KWH4v24HWkHljOZ7H0av+YTGANBzRh9A5pw7v/bLVsLVPpOhJ7gHNVy8lA==
+  dependencies:
+    find-up "^6.3.0"
+    read-pkg "^8.1.0"
+    type-fest "^4.2.0"
+
 read-pkg-up@^7.0.1:
   version "7.0.1"
   resolved "https://registry.npmjs.org/read-pkg-up/-/read-pkg-up-7.0.1.tgz"
@@ -6419,7 +6475,7 @@ read-pkg-up@^7.0.1:
     read-pkg "^5.2.0"
     type-fest "^0.8.1"
 
-read-pkg-up@^9.0.0, read-pkg-up@^9.1.0:
+read-pkg-up@^9.0.0:
   version "9.1.0"
   resolved "https://registry.yarnpkg.com/read-pkg-up/-/read-pkg-up-9.1.0.tgz#38ca48e0bc6c6b260464b14aad9bcd4e5b1fbdc3"
   integrity sha512-vaMRR1AC1nrd5CQM0PhlRsO5oc2AAigqr7cCrZ/MW/Rsaflz4RlgzkpL4qoU/z1F6wrbd85iFv1OQj/y5RdGvg==
@@ -6466,6 +6522,16 @@ read-pkg@^8.0.0:
     normalize-package-data "^5.0.0"
     parse-json "^7.0.0"
     type-fest "^3.8.0"
+
+read-pkg@^8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/read-pkg/-/read-pkg-8.1.0.tgz#6cf560b91d90df68bce658527e7e3eee75f7c4c7"
+  integrity sha512-PORM8AgzXeskHO/WEv312k9U03B8K9JSiWF/8N9sUuFjBa+9SF2u6K7VClzXwDXab51jCd8Nd36CNM+zR97ScQ==
+  dependencies:
+    "@types/normalize-package-data" "^2.4.1"
+    normalize-package-data "^6.0.0"
+    parse-json "^7.0.0"
+    type-fest "^4.2.0"
 
 read@^2.0.0, read@^2.1.0:
   version "2.1.0"
@@ -6713,10 +6779,10 @@ safe-resolve@^1.0.0:
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
-semantic-release@^21.0.6:
-  version "21.0.6"
-  resolved "https://registry.yarnpkg.com/semantic-release/-/semantic-release-21.0.6.tgz#096fd47630716461f4f634d13c9d7dfea92fe5a1"
-  integrity sha512-NDyosObAwUNzPpdf+mpL49Xy+5iYHjdWM34LBNdbdYv9vBLbw+eCCDihxcqPh+f9m4ZzlBrYCkHUaZv2vPGW9A==
+semantic-release@^21.1.1:
+  version "21.1.1"
+  resolved "https://registry.yarnpkg.com/semantic-release/-/semantic-release-21.1.1.tgz#b1a0735fe5037699b26f81ec9e7e8a2fb89d5972"
+  integrity sha512-OCIazQnaCHdq1F6zfmKS0P7jZakYq0weiqW2mxUWo4H2CDnxelUoa/0Bs/dQatoHc6JFh6lG2HWpusdl93bFcw==
   dependencies:
     "@semantic-release/commit-analyzer" "^10.0.0"
     "@semantic-release/error" "^4.0.0"
@@ -6727,20 +6793,20 @@ semantic-release@^21.0.6:
     cosmiconfig "^8.0.0"
     debug "^4.0.0"
     env-ci "^9.0.0"
-    execa "^7.0.0"
+    execa "^8.0.0"
     figures "^5.0.0"
     find-versions "^5.1.0"
     get-stream "^6.0.0"
     git-log-parser "^1.2.0"
     hook-std "^3.0.0"
-    hosted-git-info "^6.0.0"
+    hosted-git-info "^7.0.0"
     lodash-es "^4.17.21"
     marked "^5.0.0"
     marked-terminal "^5.1.1"
     micromatch "^4.0.2"
     p-each-series "^3.0.0"
     p-reduce "^3.0.0"
-    read-pkg-up "^9.1.0"
+    read-pkg-up "^10.0.0"
     resolve-from "^5.0.0"
     semver "^7.3.2"
     semver-diff "^4.0.0"
@@ -6847,6 +6913,11 @@ signal-exit@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-4.0.1.tgz#96a61033896120ec9335d96851d902cc98f0ba2a"
   integrity sha512-uUWsN4aOxJAS8KOuf3QMyFtgm1pkb6I+KRZbRF/ghdf5T7sM+B1lLLzPDxswUjkmHyxQAVzEgG35E3NzDM9GVw==
+
+signal-exit@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-4.1.0.tgz#952188c1cbd546070e2dd20d0f41c0ae0530cb04"
+  integrity sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==
 
 signale@^1.2.1:
   version "1.4.0"
@@ -7417,6 +7488,11 @@ type-fest@^3.8.0:
   version "3.9.0"
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-3.9.0.tgz#36a9e46e6583649f9e6098b267bc577275e9e4f4"
   integrity sha512-hR8JP2e8UiH7SME5JZjsobBlEiatFoxpzCP+R3ZeCo7kAaG1jXQE5X/buLzogM6GJu8le9Y4OcfNuIQX0rZskA==
+
+type-fest@^4.2.0:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-4.3.1.tgz#5cb58cdab5120f7ab0b40cfdc35073fb9adb651d"
+  integrity sha512-pphNW/msgOUSkJbH58x8sqpq8uQj6b0ZKGxEsLKMUnGorRcDjrUaLS+39+/ub41JNTwrrMyJcUB8+YZs3mbwqw==
 
 typed-array-length@^1.0.4:
   version "1.0.4"
