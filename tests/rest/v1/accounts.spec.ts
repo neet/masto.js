@@ -2,6 +2,7 @@ import assert from "node:assert";
 import crypto from "node:crypto";
 
 import { MastoHttpError } from "../../../src/adapters/errors";
+import { sleep } from "../../../src/utils";
 
 describe("account", () => {
   it("creates an account", () => {
@@ -164,6 +165,22 @@ describe("account", () => {
       expect(relationship.muting).toBe(true);
 
       relationship = await alice.rest.v1.accounts.$select(bob.id).unmute();
+      expect(relationship.muting).toBe(false);
+    });
+  });
+
+  it("mutes by ID for 1s", () => {
+    return sessions.use(2, async ([alice, bob]) => {
+      let relationship = await alice.rest.v1.accounts
+        .$select(bob.id)
+        .mute({ duration: 1 });
+      expect(relationship.muting).toBe(true);
+
+      await sleep(5000);
+
+      [relationship] = await alice.rest.v1.accounts.relationships.fetch({
+        id: [bob.id],
+      });
       expect(relationship.muting).toBe(false);
     });
   });
