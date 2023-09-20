@@ -62,6 +62,8 @@ export interface UpdateCredentialsParams {
 export interface MuteAccountParams {
   /** Mute notifications in addition to statuses? Defaults to true. */
   readonly notifications?: boolean;
+  /** Duration to mute in seconds. Defaults to 0 (indefinite). */
+  readonly duration?: number;
 }
 
 export interface CreateAccountNoteParams {
