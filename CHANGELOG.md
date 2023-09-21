@@ -1,3 +1,10 @@
+## [6.3.0](https://github.com/neet/masto.js/compare/v6.2.0...v6.3.0) (2023-09-21)
+
+
+### Features
+
+* Support `duration` parameter for account muting ([a09f1a5](https://github.com/neet/masto.js/commit/a09f1a5cd9b1235e7ac36ed93aba7e05a67bc092))
+
 ## [6.2.0](https://github.com/neet/masto.js/compare/v6.1.0...v6.2.0) (2023-08-25)
 
 
