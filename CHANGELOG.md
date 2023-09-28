@@ -1,3 +1,10 @@
+## [6.3.1](https://github.com/neet/masto.js/compare/v6.3.0...v6.3.1) (2023-09-28)
+
+
+### Chores
+
+* **dev:** Add Nix Flake config ([b77bae5](https://github.com/neet/masto.js/commit/b77bae52866ac63ee7820029af524b30cc8bfc9d))
+
 ## [6.3.0](https://github.com/neet/masto.js/compare/v6.2.0...v6.3.0) (2023-09-21)
 
 
