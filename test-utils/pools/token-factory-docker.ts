@@ -1,6 +1,7 @@
 import crypto from "node:crypto";
 
 import { type mastodon } from "../../src";
+import { sleep } from "../../src/utils";
 import { type Tootctl } from "../tootctl";
 import { type TokenFactory } from "./token-factory";
 
@@ -22,6 +23,9 @@ export class TokenFactoryDocker implements TokenFactory {
       email,
       confirmed: true,
     });
+
+    // Wait for the new account to be available
+    await sleep(5000);
 
     if (this.app.clientId == undefined || this.app.clientSecret == undefined) {
       throw new Error("App not created");
