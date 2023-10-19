@@ -1,3 +1,10 @@
+## [6.3.2](https://github.com/neet/masto.js/compare/v6.3.1...v6.3.2) (2023-10-19)
+
+
+### Chores
+
+* **test:** Add sleep after new account creation ([39dd99f](https://github.com/neet/masto.js/commit/39dd99f91f53a7cc92528a2bb2ae1454c0ab495b))
+
 ## [6.3.1](https://github.com/neet/masto.js/compare/v6.3.0...v6.3.1) (2023-09-28)
 
 
