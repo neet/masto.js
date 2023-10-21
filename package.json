@@ -83,7 +83,11 @@
     "url": "git+https://github.com/neet/masto.js.git"
   },
   "keywords": [
-    "mastodon"
+    "mastodon",
+    "client",
+    "activitypub",
+    "federated",
+    "fediverse"
   ],
   "bugs": {
     "url": "https://github.com/neet/masto.js/issues"
