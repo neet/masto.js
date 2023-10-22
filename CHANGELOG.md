@@ -1,3 +1,10 @@
+## [6.3.3](https://github.com/neet/masto.js/compare/v6.3.2...v6.3.3) (2023-10-22)
+
+
+### Chores
+
+* Add new keywords to package.json ([#997](https://github.com/neet/masto.js/issues/997)) ([22f3d46](https://github.com/neet/masto.js/commit/22f3d46a4e5ef0836779c06d88b240691cefd74f))
+
 ## [6.3.2](https://github.com/neet/masto.js/compare/v6.3.1...v6.3.2) (2023-10-19)
 
 
