@@ -4,101 +4,91 @@ import crypto from "node:crypto";
 import { sleep } from "../../src/utils";
 
 describe("events", () => {
-  it("streams update, status.update, and delete event", () => {
-    return sessions.use(async (session) => {
-      await session.ws.prepare();
-      const tag = `tag_${crypto.randomBytes(4).toString("hex")}`;
-      const subscription = session.ws.hashtag.local.subscribe({ tag });
-      const eventsPromise = subscription.values().take(3).toArray();
+  it("streams update, status.update, and delete event", async () => {
+    await using session = await sessions.acquire();
+    await session.ws.prepare();
+    const tag = `tag_${crypto.randomBytes(4).toString("hex")}`;
+    using subscription = session.ws.hashtag.local.subscribe({ tag });
+    const eventsPromise = subscription.values().take(3).toArray();
 
-      await sleep(1000);
-      const status = await session.rest.v1.statuses.create({
-        status: `test1 #${tag}`,
-      });
-      await sleep(1000);
-      await session.rest.v1.statuses.$select(status.id).update({
-        status: `test2 #${tag}`,
-      });
-      await sleep(1000);
-      await session.rest.v1.statuses.$select(status.id).remove();
-
-      try {
-        const [e1, e2, e3] = await eventsPromise;
-        assert(e1.event === "update");
-        expect(e1.payload.content).toMatch(/test1/);
-        assert(e2.event === "status.update");
-        expect(e2.payload.content).toMatch(/test2/);
-        assert(e3.event === "delete");
-        expect(e3.payload).toBe(status.id);
-      } finally {
-        subscription.unsubscribe();
-      }
+    await sleep(1000);
+    const status = await session.rest.v1.statuses.create({
+      status: `test1 #${tag}`,
     });
+    await sleep(1000);
+    await session.rest.v1.statuses.$select(status.id).update({
+      status: `test2 #${tag}`,
+    });
+    await sleep(1000);
+    await session.rest.v1.statuses.$select(status.id).remove();
+
+    const [e1, e2, e3] = await eventsPromise;
+    assert(e1.event === "update");
+    expect(e1.payload.content).toMatch(/test1/);
+    assert(e2.event === "status.update");
+    expect(e2.payload.content).toMatch(/test2/);
+    assert(e3.event === "delete");
+    expect(e3.payload).toBe(status.id);
   });
 
-  it("streams filters_changed event", () => {
-    return sessions.use(async (session) => {
-      await session.ws.prepare();
-      const subscription = session.ws.user.subscribe();
-      const eventsPromise = subscription.values().take(1).toArray();
+  it("streams filters_changed event", async () => {
+    await using session = await sessions.acquire();
+    await session.ws.prepare();
+    using subscription = session.ws.user.subscribe();
+    const eventsPromise = subscription.values().take(1).toArray();
 
-      const filter = await session.rest.v2.filters.create({
-        title: "test",
-        context: ["public"],
-        keywordsAttributes: [{ keyword: "TypeScript" }],
-      });
-      await sleep(1000);
-      await session.rest.v2.filters.$select(filter.id).remove();
-
-      try {
-        const [e] = await eventsPromise;
-        assert(e.event === "filters_changed");
-        expect(e.payload).toBeUndefined();
-      } finally {
-        subscription.unsubscribe();
-      }
+    const filter = await session.rest.v2.filters.create({
+      title: "test",
+      context: ["public"],
+      keywordsAttributes: [{ keyword: "TypeScript" }],
     });
+    await sleep(1000);
+    await session.rest.v2.filters.$select(filter.id).remove();
+
+    const [e] = await eventsPromise;
+    assert(e.event === "filters_changed");
+    expect(e.payload).toBeUndefined();
   });
 
-  it("streams notification", () => {
-    return sessions.use(2, async ([alice, bob]) => {
-      await alice.ws.prepare();
-      const subscription = alice.ws.user.notification.subscribe();
-      const eventsPromise = subscription.values().take(1).toArray();
+  it("streams notification", async () => {
+    await using alice = await sessions.acquire();
+    await using bob = await sessions.acquire();
 
-      await bob.rest.v1.accounts.$select(alice.id).follow();
+    await alice.ws.prepare();
+    using subscription = alice.ws.user.notification.subscribe();
+    const eventsPromise = subscription.values().take(1).toArray();
 
-      try {
-        const [e] = await eventsPromise;
-        assert(e.event === "notification");
-        expect(e.payload.account.id).toBe(bob.id);
-      } finally {
-        await bob.rest.v1.accounts.$select(alice.id).unfollow();
-        subscription.unsubscribe();
-      }
-    });
+    await bob.rest.v1.accounts.$select(alice.id).follow();
+
+    try {
+      const [e] = await eventsPromise;
+      assert(e.event === "notification");
+      expect(e.payload.account.id).toBe(bob.id);
+    } finally {
+      await bob.rest.v1.accounts.$select(alice.id).unfollow();
+    }
   });
 
-  it("streams conversation", () => {
-    return sessions.use(2, async ([alice, bob]) => {
-      await alice.ws.prepare();
-      const subscription = alice.ws.direct.subscribe();
-      const eventsPromise = subscription.values().take(1).toArray();
+  it("streams conversation", async () => {
+    await using alice = await sessions.acquire();
+    await using bob = await sessions.acquire();
 
-      const status = await bob.rest.v1.statuses.create({
-        status: `@${alice.acct} Hello there`,
-        visibility: "direct",
-      });
+    await alice.ws.prepare();
+    using subscription = alice.ws.direct.subscribe();
+    const eventsPromise = subscription.values().take(1).toArray();
 
-      try {
-        const [e] = await eventsPromise;
-        assert(e.event === "conversation");
-        expect(e.payload.lastStatus?.id).toBe(status.id);
-      } finally {
-        await bob.rest.v1.statuses.$select(status.id).remove();
-        subscription.unsubscribe();
-      }
+    const status = await bob.rest.v1.statuses.create({
+      status: `@${alice.acct} Hello there`,
+      visibility: "direct",
     });
+
+    try {
+      const [e] = await eventsPromise;
+      assert(e.event === "conversation");
+      expect(e.payload.lastStatus?.id).toBe(status.id);
+    } finally {
+      await bob.rest.v1.statuses.$select(status.id).remove();
+    }
   });
 
   test.todo("announcement");

@@ -1,8 +1,7 @@
 describe("custom emojis", () => {
-  it("lists custom emojis", () => {
-    return sessions.use(async (client) => {
-      const emojis = await client.rest.v1.customEmojis.list();
-      expect(emojis).toEqual(expect.any(Array));
-    });
+  it("lists custom emojis", async () => {
+    await using client = await sessions.acquire();
+    const emojis = await client.rest.v1.customEmojis.list();
+    expect(emojis).toEqual(expect.any(Array));
   });
 });

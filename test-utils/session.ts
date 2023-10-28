@@ -9,12 +9,14 @@ export interface Session {
   readonly acct: string;
   readonly rest: mastodon.rest.Client;
   readonly ws: mastodon.streaming.Client;
+  readonly [Symbol.asyncDispose]: () => Promise<void>;
 }
 
 export const createSession = async (
   token: mastodon.v1.Token,
   url: string,
   streamingApiUrl: string,
+  dispose: () => Promise<void>,
 ): Promise<Session> => {
   const rest = createRestAPIClient({
     url,
@@ -33,5 +35,6 @@ export const createSession = async (
     acct: account.acct,
     rest,
     ws,
+    [Symbol.asyncDispose]: dispose,
   });
 };

@@ -62,6 +62,7 @@ export class PaginatorHttp<Entity, Params = undefined>
     ) => TResult2 | PromiseLike<TResult2> = Promise.reject.bind(Promise),
   ): Promise<TResult1 | TResult2> {
     // we assume the first item won't be undefined
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     return this.next().then((value) => onfulfilled(value.value!), onrejected);
   }
 
@@ -88,6 +89,7 @@ export class PaginatorHttp<Entity, Params = undefined>
     undefined,
     Params | string | undefined
   > {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return this as any as AsyncIterator<
       Entity,
       undefined,

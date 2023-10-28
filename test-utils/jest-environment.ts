@@ -20,6 +20,7 @@ class CustomEnvironment extends NodeEnvironment {
     await super.setup();
     const misc = await this.createGlobals();
     this.global.__misc__ = misc;
+    this.global.Symbol = Symbol;
   }
 
   private async createGlobals(): Promise<typeof globalThis.__misc__> {

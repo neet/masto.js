@@ -95,6 +95,7 @@ describe("HttpNativeImpl", () => {
     );
 
     expect(error.message).toEqual("unknown error");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect((error.additionalProperties as any).foo).toEqual("bar");
 
     server.close();

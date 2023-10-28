@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { createOAuthAPIClient } from "../../src";
 
 it("issues token", async () => {

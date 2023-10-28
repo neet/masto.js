@@ -16,8 +16,8 @@ export default {
           "ts-jest",
           {
             tsconfig: {
-              target: "esnext",
-              module: "esnext",
+              target: "ES2022",
+              module: "ES2022",
             },
           },
         ],

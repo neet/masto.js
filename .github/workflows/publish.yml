@@ -3,7 +3,7 @@ name: Publish
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: "0 0 * * *"
 
 jobs:
   test:
@@ -26,7 +26,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: "20.6.1"
           cache: yarn
 
       - run: yarn install --frozen-lockfiles

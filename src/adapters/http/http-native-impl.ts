@@ -35,7 +35,6 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       });
       const response = await fetch(request);
       if (!response.ok) {
-        // eslint-disable-next-line @typescript-eslint/no-throw-literal
         throw response;
       }
 
@@ -116,6 +115,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       );
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     if (error != undefined && (error as any).name === "AbortError") {
       return new MastoTimeoutError(`Request timed out`, { cause: error });
     }
