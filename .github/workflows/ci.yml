@@ -23,7 +23,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "20.5.1"
+          node-version: "20.6.1"
           cache: yarn
 
       - name: Install dependencies
@@ -79,7 +79,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "20.5.1"
+          node-version: "20.6.1"
           cache: yarn
 
       - name: Setup Mastodon
