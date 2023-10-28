@@ -14,11 +14,10 @@ describe("media", () => {
     expect(media.description).toBe("test");
   });
 
-  it("creates media attachment without polling", () => {
-    return sessions.use(async (session) => {
-      const file = await getMockImage();
-      const media = await session.rest.v2.media.create({ file });
-      expect(media.type).toBe("image");
-    });
+  it("creates media attachment without polling", async () => {
+    await using session = await sessions.acquire();
+    const file = await getMockImage();
+    const media = await session.rest.v2.media.create({ file });
+    expect(media.type).toBe("image");
   });
 });

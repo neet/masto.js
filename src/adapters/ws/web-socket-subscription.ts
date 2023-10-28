@@ -63,6 +63,13 @@ export class WebSocketSubscription implements mastodon.streaming.Subscription {
     return this.values();
   }
 
+  /**
+   * @experimental This is an experimental API.
+   */
+  [Symbol.dispose](): void {
+    this.unsubscribe();
+  }
+
   private matches(event: mastodon.streaming.Event): boolean {
     // subscribe("hashtag", { tag: "foo" }) -> ["hashtag", "foo"]
     // subscribe("list", { list: "foo" })   -> ["list", "foo"]

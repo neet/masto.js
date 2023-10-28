@@ -12,6 +12,11 @@ export interface Subscription {
   unsubscribe(): void;
   values(): AsyncIterableIterator<Event>;
   [Symbol.asyncIterator](): AsyncIterator<Event, undefined>;
+
+  /**
+   * @experimental This is an experimental API.
+   */
+  [Symbol.dispose](): void;
 }
 
 export interface Client {
