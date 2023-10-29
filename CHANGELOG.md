@@ -1,3 +1,18 @@
+## [6.4.0](https://github.com/neet/masto.js/compare/v6.3.3...v6.4.0) (2023-10-29)
+
+
+### Features
+
+* Add experimental support for explicit resource management ([077bc09](https://github.com/neet/masto.js/commit/077bc092795c686bcbae45a51b5bf0f1c3b8945a))
+
+
+### Chores
+
+* Add `dotenv` to envrc [skip ci] ([4c6fbde](https://github.com/neet/masto.js/commit/4c6fbdeee2cba0a8cdb7738f4f94fc574f0e1a7d))
+* Bump dependencies ([f22af2a](https://github.com/neet/masto.js/commit/f22af2a8606b46467a5cd5929129b8bdd805ff4f))
+* **deps:** bump @babel/traverse from 7.20.1 to 7.23.2 ([e448f1e](https://github.com/neet/masto.js/commit/e448f1ea1b0b171b5cfe8f91ea0ba5fa17ad75e0))
+* Use @rollup/plugin-typescript ([a7630b6](https://github.com/neet/masto.js/commit/a7630b6a45729d5cae93820141d52e5f20379923))
+
 ## [6.3.3](https://github.com/neet/masto.js/compare/v6.3.2...v6.3.3) (2023-10-22)
 
 
