@@ -71,7 +71,7 @@ interface UpdateStatusMediaAttribute {
   /** Two floating points (x,y), comma-delimited, ranging from -1.0 to 1.0 */
   readonly focus?: string | null;
   /** Custom thumbnail */
-  readonly thumbnail?: unknown | null;
+  readonly thumbnail?: Blob | string | null;
 }
 
 export type UpdateStatusParams = CreateStatusParams & {

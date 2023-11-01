@@ -42,9 +42,9 @@ export interface UpdateCredentialsParams {
   /** The account bio. */
   readonly note?: string | null;
   /** Avatar image encoded using multipart/form-data */
-  readonly avatar?: unknown;
+  readonly avatar?: Blob | string | null;
   /** Header image encoded using multipart/form-data */
-  readonly header?: unknown;
+  readonly header?: Blob | string | null;
   /** Whether manual approval of follow requests is required. */
   readonly locked?: boolean | null;
   readonly source?: Partial<
