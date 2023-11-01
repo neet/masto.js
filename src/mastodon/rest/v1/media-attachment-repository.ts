@@ -3,13 +3,13 @@ import { type MediaAttachment } from "../../entities/v1";
 
 export interface CreateMediaAttachmentParams {
   /** The file to be attached, using multipart form data. */
-  readonly file: unknown;
+  readonly file: Blob | string;
   /** A plain-text description of the media, for accessibility purposes. */
   readonly description?: string | null;
   /** Two floating points (x,y), comma-delimited, ranging from -1.0 to 1.0 */
   readonly focus?: string | null;
   /** Custom thumbnail */
-  readonly thumbnail?: unknown | null;
+  readonly thumbnail?: Blob | string | null;
 }
 
 export type UpdateMediaAttachmentParams = Partial<CreateMediaAttachmentParams>;
