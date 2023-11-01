@@ -42,6 +42,7 @@
     "@rollup/plugin-typescript": "^11.1.5",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
+    "@size-limit/preset-small-lib": "^10.0.1",
     "@types/jest": "^29.5.6",
     "@types/node": "^20.8.9",
     "@types/proper-lockfile": "^4.1.3",
@@ -67,6 +68,7 @@
     "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-node-globals": "^1.4.0",
     "semantic-release": "^22.0.5",
+    "size-limit": "^10.0.1",
     "ts-jest": "^29.1.1",
     "tslib": "^2.6.2",
     "typedoc": "^0.25.2",
@@ -93,5 +95,11 @@
   "bugs": {
     "url": "https://github.com/neet/masto.js/issues"
   },
-  "homepage": "https://github.com/neet/masto.js#readme"
+  "homepage": "https://github.com/neet/masto.js#readme",
+  "size-limit": [
+    {
+      "limit": "7.5 kB",
+      "path": "./dist/index.js"
+    }
+  ]
 }
