@@ -1,10 +1,15 @@
 /* eslint-disable no-console */
-import { type Logger } from "../../interfaces";
-import { BaseLogger } from "./base-logger";
-import { type LogType } from "./log-level";
+import { type Logger, type LogType } from "../../interfaces";
+import { type LogLevel } from "./log-level";
 
-export class LoggerConsoleImpl extends BaseLogger implements Logger {
+export class LoggerConsoleImpl implements Logger {
+  constructor(private readonly level: LogLevel) {}
+
   log(type: LogType, message: string, meta: unknown): void {
+    if (!this.level.satisfies(type)) {
+      return;
+    }
+
     const args = meta == undefined ? [message] : [message, meta];
     switch (type) {
       case "debug": {

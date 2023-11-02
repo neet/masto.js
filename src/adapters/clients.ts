@@ -1,3 +1,4 @@
+import { type LogType } from "../interfaces";
 import { type mastodon } from "../mastodon";
 import {
   createActionProxy,
@@ -11,7 +12,7 @@ import {
   type WebSocketConfigProps,
 } from "./config";
 import { HttpNativeImpl } from "./http";
-import { createLogger, type LogType } from "./logger";
+import { createLogger } from "./logger";
 import { SerializerNativeImpl } from "./serializers";
 import { WebSocketConnectorImpl } from "./ws";
 

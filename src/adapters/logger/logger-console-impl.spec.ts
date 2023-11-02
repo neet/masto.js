@@ -9,28 +9,28 @@ describe("LoggerConsoleImpl", () => {
   it("logs debug", () => {
     const consoleDebug = jest.spyOn(console, "debug").mockImplementation();
     const logger = new LoggerConsoleImpl(LogLevel.from("debug"));
-    logger.debug("message", { meta: "meta" });
+    logger.log("debug", "message", { meta: "meta" });
     expect(consoleDebug).toHaveBeenCalledWith("message", { meta: "meta" });
   });
 
   it("logs info", () => {
     const consoleInfo = jest.spyOn(console, "info").mockImplementation();
     const logger = new LoggerConsoleImpl(LogLevel.from("info"));
-    logger.info("message", { meta: "meta" });
+    logger.log("info", "message", { meta: "meta" });
     expect(consoleInfo).toHaveBeenCalledWith("message", { meta: "meta" });
   });
 
   it("logs warn", () => {
     const consoleWarn = jest.spyOn(console, "warn").mockImplementation();
     const logger = new LoggerConsoleImpl(LogLevel.from("warn"));
-    logger.warn("message", { meta: "meta" });
+    logger.log("warn", "message", { meta: "meta" });
     expect(consoleWarn).toHaveBeenCalledWith("message", { meta: "meta" });
   });
 
   it("logs error", () => {
     const consoleError = jest.spyOn(console, "error").mockImplementation();
     const logger = new LoggerConsoleImpl(LogLevel.from("error"));
-    logger.error("message", { meta: "meta" });
+    logger.log("error", "message", { meta: "meta" });
     expect(consoleError).toHaveBeenCalledWith("message", { meta: "meta" });
   });
 });
