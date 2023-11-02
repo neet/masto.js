@@ -21,7 +21,7 @@ export class WebSocketSubscription implements mastodon.streaming.Subscription {
   ) {}
 
   async *values(): AsyncIterableIterator<mastodon.streaming.Event> {
-    this.logger?.info("Subscribing to stream", this.stream);
+    this.logger?.log("info", "Subscribing to stream", this.stream);
 
     while (this.connector.canAcquire()) {
       this.connection = await this.connector.acquire();
@@ -34,12 +34,12 @@ export class WebSocketSubscription implements mastodon.streaming.Subscription {
         ...this.params,
       });
 
-      this.logger?.debug("↑ WEBSOCKET", data);
+      this.logger?.log("debug", "↑ WEBSOCKET", data);
       this.connection.send(data);
 
       for await (const event of this.transformIntoEvents(messages)) {
         if (!this.matches(event)) continue;
-        this.logger?.debug("↓ WEBSOCKET", event);
+        this.logger?.log("debug", "↓ WEBSOCKET", event);
         yield event;
       }
     }

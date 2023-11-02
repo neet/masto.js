@@ -1,3 +1,5 @@
+import { type LogType } from "../../interfaces";
+
 /* eslint-disable unicorn/prefer-math-trunc */
 const LOG_TYPES = Object.freeze({
   DEBUG: 1 << 0,
@@ -5,8 +7,6 @@ const LOG_TYPES = Object.freeze({
   WARN: 1 << 2,
   ERROR: 1 << 3,
 });
-
-export type LogType = "debug" | "info" | "warn" | "error";
 
 export class LogLevel {
   private constructor(private readonly level: number) {}

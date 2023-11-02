@@ -1,7 +1,7 @@
-import { BaseLogger } from '../adapters/logger';
+import { Logger } from "../interfaces";
 
 export const log = jest.fn();
 
-export class LoggerMockImpl extends BaseLogger {
+export class LoggerMockImpl implements Logger {
   log = log;
 }

@@ -28,8 +28,8 @@ export class HttpNativeImpl extends BaseHttp implements Http {
     const request = this.createRequest(params);
 
     try {
-      this.logger?.info(`↑ ${request.method} ${request.url}`);
-      this.logger?.debug("\tbody", {
+      this.logger?.log("info", `↑ ${request.method} ${request.url}`);
+      this.logger?.log("debug", "\tbody", {
         encoding: params.encoding,
         body: params.body,
       });
@@ -47,15 +47,15 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       }
 
       const data = this.serializer.deserialize(encoding, text);
-      this.logger?.info(`↓ ${request.method} ${request.url}`);
-      this.logger?.debug("\tbody", text);
+      this.logger?.log("info", `↓ ${request.method} ${request.url}`);
+      this.logger?.log("debug", "\tbody", text);
 
       return {
         headers: response.headers,
         data,
       };
     } catch (error) {
-      this.logger?.debug(`HTTP failed`, error);
+      this.logger?.log("debug", `HTTP failed`, error);
       throw await this.createError(error);
     }
   }

@@ -72,7 +72,7 @@ export class WebSocketConnectorImpl implements WebSocketConnector {
       this.ws?.close();
 
       try {
-        this.logger?.info("Connecting to WebSocket...");
+        this.logger?.log("info", "Connecting to WebSocket...");
         {
           const ctor = (this.props.implementation ??
             WebSocket) as typeof WebSocket;
@@ -80,7 +80,7 @@ export class WebSocketConnectorImpl implements WebSocketConnector {
           await waitForOpen(ws);
           this.ws = ws;
         }
-        this.logger?.info("Connected to WebSocket");
+        this.logger?.log("info", "Connected to WebSocket");
 
         for (const { resolve } of this.queue) {
           resolve(this.ws);
@@ -88,10 +88,10 @@ export class WebSocketConnectorImpl implements WebSocketConnector {
         this.queue = [];
 
         await waitForClose(this.ws);
-        this.logger?.info("WebSocket closed");
+        this.logger?.log("info", "WebSocket closed");
         this.backoff.clear();
       } catch (error) {
-        this.logger?.error("WebSocket error:", error);
+        this.logger?.log("error", "WebSocket error:", error);
       }
 
       if (this.disableRetry) {
