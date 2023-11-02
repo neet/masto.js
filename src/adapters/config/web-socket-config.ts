@@ -1,4 +1,6 @@
 import { type Serializer, type WebSocketConfig } from "../../interfaces";
+import { MastoInvalidArgumentError } from "../errors";
+import { isPositiveInteger, isURL } from "./validators";
 
 export interface WebSocketConfigProps {
   readonly streamingApiUrl: string;
@@ -11,7 +13,17 @@ export class WebSocketConfigImpl implements WebSocketConfig {
   constructor(
     private readonly props: WebSocketConfigProps,
     private readonly serializer: Serializer,
-  ) {}
+  ) {
+    if (!isURL(this.props.streamingApiUrl)) {
+      throw new MastoInvalidArgumentError(`streamingApiUrl is required`);
+    }
+    if (
+      typeof this.props.retry === "number" &&
+      !isPositiveInteger(this.props.retry)
+    ) {
+      throw new MastoInvalidArgumentError("retry must be a positive integer");
+    }
+  }
 
   getProtocols(protocols: readonly string[] = []): string[] {
     if (
