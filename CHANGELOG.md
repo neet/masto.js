@@ -1,3 +1,16 @@
+## [6.4.1](https://github.com/neet/masto.js/compare/v6.4.0...v6.4.1) (2023-11-02)
+
+
+### Bug Fixes
+
+* Use `Blob | string` as a type annotation for media ([cca5c30](https://github.com/neet/masto.js/commit/cca5c309fc770920b56467fac077c47d9fd37308))
+
+
+### Chores
+
+* Add size limit ([14d5387](https://github.com/neet/masto.js/commit/14d5387e8eacd8abf88343ff81ede0b27cdc57b7))
+* Configure size-limit ([70c67a4](https://github.com/neet/masto.js/commit/70c67a46542543c16c3bacc6a7c0975bec452dfc))
+
 ## [6.4.0](https://github.com/neet/masto.js/compare/v6.3.3...v6.4.0) (2023-10-29)
 
 
