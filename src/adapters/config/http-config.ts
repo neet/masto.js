@@ -1,6 +1,8 @@
 import { type HttpConfig, type Serializer } from "../../interfaces";
+import { MastoInvalidArgumentError } from "../errors";
 import { mergeAbortSignals } from "./merge-abort-signals";
 import { mergeHeadersInit } from "./merge-headers-init";
+import { isPositiveInteger, isURL } from "./validators";
 
 export interface MastoHttpConfigProps {
   /**
@@ -34,7 +36,19 @@ export class HttpConfigImpl implements HttpConfig {
   constructor(
     private readonly props: MastoHttpConfigProps,
     private readonly serializer: Serializer,
-  ) {}
+  ) {
+    if (!isURL(this.props.url)) {
+      throw new MastoInvalidArgumentError("url is required");
+    }
+    if (
+      this.props.timeout != undefined &&
+      !isPositiveInteger(this.props.timeout)
+    ) {
+      throw new MastoInvalidArgumentError(
+        "timeout must be greater than or equal to zero",
+      );
+    }
+  }
 
   mergeRequestInitWithDefaults(override: RequestInit = {}): RequestInit {
     const requestInit: RequestInit = { ...this.props.requestInit };

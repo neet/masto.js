@@ -1,7 +1,43 @@
+import { MastoInvalidArgumentError } from "../errors";
 import { SerializerNativeImpl } from "../serializers";
 import { WebSocketConfigImpl } from "./web-socket-config";
 
 describe("WebSocketConfigImpl", () => {
+  it("throws invalid argument error when url is not specified", () => {
+    expect(() => {
+      new WebSocketConfigImpl(
+        {
+          streamingApiUrl: "",
+        },
+        new SerializerNativeImpl(),
+      );
+    }).toThrowError(MastoInvalidArgumentError);
+  });
+
+  it("throws invalid argument error when retry is less than zero", () => {
+    expect(() => {
+      new WebSocketConfigImpl(
+        {
+          streamingApiUrl: "wss://mastodon.social",
+          retry: -1,
+        },
+        new SerializerNativeImpl(),
+      );
+    }).toThrowError(MastoInvalidArgumentError);
+  });
+
+  it("throws invalid argument error when retry is not an integer", () => {
+    expect(() => {
+      new WebSocketConfigImpl(
+        {
+          streamingApiUrl: "wss://mastodon.social",
+          retry: 1.5,
+        },
+        new SerializerNativeImpl(),
+      );
+    }).toThrowError(MastoInvalidArgumentError);
+  });
+
   it("resolves WS path with path", () => {
     const config = new WebSocketConfigImpl(
       {

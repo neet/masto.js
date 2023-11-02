@@ -1,7 +1,31 @@
+import { MastoInvalidArgumentError } from "../errors";
 import { SerializerNativeImpl } from "../serializers";
 import { HttpConfigImpl } from "./http-config";
 
 describe("Config", () => {
+  it("throws invalid argument error when url is not specified", () => {
+    expect(() => {
+      new HttpConfigImpl(
+        {
+          url: "",
+        },
+        new SerializerNativeImpl(),
+      );
+    }).toThrowError(MastoInvalidArgumentError);
+  });
+
+  it("throws invalid argument error when timeout is less than zero", () => {
+    expect(() => {
+      new HttpConfigImpl(
+        {
+          url: "https://example.com",
+          timeout: -1,
+        },
+        new SerializerNativeImpl(),
+      );
+    }).toThrowError(MastoInvalidArgumentError);
+  });
+
   it("creates header", () => {
     const config = new HttpConfigImpl(
       {
