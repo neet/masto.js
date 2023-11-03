@@ -1,3 +1,10 @@
+## [6.4.2](https://github.com/neet/masto.js/compare/v6.4.1...v6.4.2) (2023-11-03)
+
+
+### Chores
+
+* Simplify logger service ([3cedcf8](https://github.com/neet/masto.js/commit/3cedcf80aea5fba6c40d42f7a3f7f44b0945c395))
+
 ## [6.4.1](https://github.com/neet/masto.js/compare/v6.4.0...v6.4.1) (2023-11-02)
 
 
