@@ -1,18 +1,13 @@
-import { snakeCase } from "change-case";
-
 import {
   type Action,
   type ActionDispatcher,
-  type Encoding,
   type Http,
-  type HttpMetaParams,
 } from "../../interfaces";
 import { type mastodon } from "../../mastodon";
 import { sleep } from "../../utils";
 import { MastoHttpError, MastoTimeoutError } from "../errors";
+import { HttpAction } from "./action-http";
 import { PaginatorHttp } from "./paginator-http";
-
-type PrimitiveAction = "fetch" | "create" | "update" | "remove" | "list";
 
 export interface HttpActionDispatcherParams {
   readonly mediaTimeout?: number;
@@ -25,86 +20,37 @@ export class HttpActionDispatcher implements ActionDispatcher {
   ) {}
 
   dispatch<T>(action: Action): T | Promise<T> {
-    const actionType = this.toPrimitiveAction(action.type);
-    const path = this.isPrimitiveAction(action.type)
-      ? action.path
-      : action.path + "/" + snakeCase(action.type);
-    const encoding = this.inferEncoding(actionType, path);
-    const meta: HttpMetaParams<Encoding> = { ...action.meta, encoding };
+    const httpAction = new HttpAction(action);
+    return this.dispatchHttp(httpAction);
+  }
 
-    switch (actionType) {
+  dispatchHttp<T>(action: HttpAction): T | Promise<T> {
+    const req = action.toRequest();
+
+    switch (req.type) {
       case "fetch": {
-        return this.http.get(path, action.data, meta);
+        return this.http.get(req.path, req.data, req.meta);
       }
       case "create": {
-        if (path === "/api/v2/media") {
+        if (req.path === "/api/v2/media") {
           return this.http
-            .post<mastodon.v1.MediaAttachment>(path, action.data, meta)
+            .post<mastodon.v1.MediaAttachment>(req.path, req.data, req.meta)
             .then((media) => {
               return this.waitForMediaAttachment(media.id) as T;
             });
         }
-        return this.http.post(path, action.data, meta);
+        return this.http.post(req.path, req.data, req.meta);
       }
       case "update": {
-        return this.http.patch(path, action.data, meta);
+        return this.http.patch(req.path, req.data, req.meta);
       }
       case "remove": {
-        return this.http.delete(path, action.data, meta);
+        return this.http.delete(req.path, req.data, req.meta);
       }
       case "list": {
-        return new PaginatorHttp(this.http, path, action.data) as T;
+        return new PaginatorHttp(this.http, req.path, req.data) as T;
       }
     }
-  }
-
-  private isPrimitiveAction(action: string): action is PrimitiveAction {
-    switch (action) {
-      case "fetch":
-      case "create":
-      case "update":
-      case "remove":
-      case "list": {
-        return true;
-      }
-      default: {
-        return false;
-      }
-    }
-  }
-
-  private toPrimitiveAction(action: string): PrimitiveAction {
-    if (this.isPrimitiveAction(action)) {
-      return action;
-    }
-
-    switch (action) {
-      case "lookup":
-      case "verify_credentials": {
-        return "fetch";
-      }
-      case "update_credentials": {
-        return "update";
-      }
-      default: {
-        return "create";
-      }
-    }
-  }
-
-  private inferEncoding(action: PrimitiveAction, path: string): Encoding {
-    if (
-      (action === "create" && path === "/api/v1/accounts") ||
-      (action === "update" && path === "/api/v1/accounts/update_credentials") ||
-      (action === "create" && path === "/api/v1/email") ||
-      (action === "create" && path === "/api/v1/featured_tag") ||
-      (action === "create" && path === "/api/v1/media") ||
-      (action === "create" && path === "/api/v2/media")
-    ) {
-      return "multipart-form";
-    }
-
-    return "json";
   }
 
   private get mediaTimeout(): number {
