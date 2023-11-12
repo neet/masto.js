@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { createOAuthAPIClient } from "../../src";
 
-it("issues token", async () => {
+it("issues and revokes token", async () => {
   const oauth = createOAuthAPIClient({
     url: globalThis.__misc__.url,
   });
@@ -12,8 +12,14 @@ it("issues token", async () => {
     clientSecret: global.__misc__.app.clientSecret!,
     username: "admin@localhost",
     password: "mastodonadmin",
-    scope: "read write follow push admin:read admin:write",
+    scope: "read",
   });
 
   expect(token).toHaveProperty("accessToken");
+
+  await oauth.revoke({
+    clientId: global.__misc__.app.clientId!,
+    clientSecret: global.__misc__.app.clientSecret!,
+    token: token.accessToken!,
+  });
 });
