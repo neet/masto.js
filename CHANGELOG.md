@@ -1,3 +1,10 @@
+## [6.5.0](https://github.com/neet/masto.js/compare/v6.4.2...v6.5.0) (2023-11-13)
+
+
+### Features
+
+* Add token.revoke to OAuth client ([47688e0](https://github.com/neet/masto.js/commit/47688e0502318a331f9da5c3f69cf2cb3f575d16))
+
 ## [6.4.2](https://github.com/neet/masto.js/compare/v6.4.1...v6.4.2) (2023-11-03)
 
 
