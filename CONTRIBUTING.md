@@ -37,16 +37,13 @@ In the Jest environment for E2E testing, an object called `session` is exposed i
 
 ```typescript
 // To simulate a single user
-sessions.use(async session => {
-  await session.rest.v1.statuses.$select("123").fetch();
-});
+await using session = await sessions.acquire();
+await session.rest.v1.statuses.$select("123").fetch();
 
 // To simulate an interaction between two users
-sessions.use(2, async ([alice, bob]) => {
-  await alice.rest.v1.statuses.create({
-    `Hello @${bob.account.acct}`
-  })
-});
+await using alice = await sessions.acquire();
+await using bob = await sessions.acquire();
+await alice.rest.v1.statuses.create({ status: `Hello @${bob.account.acct}` });
 ```
 
 The tests are automatically run by CI, but if you need to check them locally, please refer to the GitHub Actions workflow in the repository to set up your environment. For other ways to write tests, please refer to the official Jest documentation.
