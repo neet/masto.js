@@ -1,3 +1,10 @@
+## [6.5.1](https://github.com/neet/masto.js/compare/v6.5.0...v6.5.1) (2023-11-18)
+
+
+### Chores
+
+* Update CONTRIBUTING.md [skip ci] ([0dc5158](https://github.com/neet/masto.js/commit/0dc5158e9637edf9b0faecf33b5b7456ddf7f25c))
+
 ## [6.5.0](https://github.com/neet/masto.js/compare/v6.4.2...v6.5.0) (2023-11-13)
 
 
