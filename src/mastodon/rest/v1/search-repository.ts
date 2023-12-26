@@ -18,12 +18,17 @@ export interface SearchParams extends DefaultPaginationParams {
 
 export interface SearchRepository {
   /**
+   * @deprecated Use `list` instead
+   */
+  fetch(params: SearchParams, meta?: HttpMetaParams): Search;
+
+  /**
    * Search, but hashtags is an array of strings instead of an array of Tag.
    * @param params Parameters
    * @return Results
    * @see https://docs.joinmastodon.org/methods/search/
    */
-  fetch(
+  list(
     params: SearchParams,
     meta?: HttpMetaParams,
   ): Paginator<Search, SearchParams>;

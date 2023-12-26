@@ -22,12 +22,17 @@ export interface SearchParams extends DefaultPaginationParams {
 
 export interface SearchRepository {
   /**
+   * @deprecated Use `list` instead
+   */
+  fetch(params: SearchParams, meta?: HttpMetaParams): Search;
+
+  /**
    * Perform a search
    * @param params Parameters
    * @return Results
    * @see https://docs.joinmastodon.org/methods/search/
    */
-  fetch(
+  list(
     params: SearchParams,
     meta?: HttpMetaParams,
   ): Paginator<Search, SearchParams>;
