@@ -10,5 +10,5 @@ export interface Search {
   /** Statuses which match the given query */
   statuses: Status[];
   /** Hashtags which match the given query */
-  hashtags: Tag;
+  hashtags: Tag[];
 }
