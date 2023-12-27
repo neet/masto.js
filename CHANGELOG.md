@@ -1,3 +1,11 @@
+## [6.5.2](https://github.com/neet/masto.js/compare/v6.5.1...v6.5.2) (2023-12-27)
+
+
+### Bug Fixes
+
+* Fix search API to return paginator ([2691c27](https://github.com/neet/masto.js/commit/2691c274b789ea80c561b2baa12305e0dfed859a))
+* Fix type of hashtags to be an array in `Search` entity ([35cad26](https://github.com/neet/masto.js/commit/35cad2681e61c95b60e7e91c5ea1a666bd777a70))
+
 ## [6.5.1](https://github.com/neet/masto.js/compare/v6.5.0...v6.5.1) (2023-11-18)
 
 
