@@ -30,7 +30,7 @@
     "purge:cache": "rm -rf ./node_modules/.cache/masto"
   },
   "dependencies": {
-    "change-case": "^4.1.2",
+    "change-case": "^5.3.0",
     "events-to-async": "^2.0.1",
     "isomorphic-ws": "^5.0.0",
     "ts-custom-error": "^3.3.1",
