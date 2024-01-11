@@ -36,10 +36,13 @@ const SPECIAL_PROPERTIES = new Set([
 const get =
   <T>(actionDispatcher: ActionDispatcher, context: string[]) =>
   (_: unknown, property: string | symbol) => {
-    if (typeof property === "string" && SPECIAL_PROPERTIES.has(property)) {
-      return;
+    if (property === Symbol.dispose) {
+      return actionDispatcher[Symbol.dispose]?.();
     }
     if (typeof property === "symbol") {
+      return;
+    }
+    if (SPECIAL_PROPERTIES.has(property)) {
       return;
     }
     if (property === "$select") {

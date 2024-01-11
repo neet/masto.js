@@ -9,4 +9,5 @@ export interface Action {
 
 export interface ActionDispatcher {
   dispatch<T>(action: Action): T | Promise<T>;
+  [Symbol.dispose]?(): void;
 }
