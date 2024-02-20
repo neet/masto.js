@@ -5,8 +5,7 @@ import { sleep } from "../../src/utils";
 
 describe("events", () => {
   it("streams update, status.update, and delete event", async () => {
-    await using session = await sessions.acquire();
-    await session.ws.prepare();
+    await using session = await sessions.acquire({ waitForWs: true });
     const tag = `tag_${crypto.randomBytes(4).toString("hex")}`;
     using subscription = session.ws.hashtag.local.subscribe({ tag });
     const eventsPromise = subscription.values().take(3).toArray();
@@ -32,8 +31,7 @@ describe("events", () => {
   });
 
   it("streams filters_changed event", async () => {
-    await using session = await sessions.acquire();
-    await session.ws.prepare();
+    await using session = await sessions.acquire({ waitForWs: true });
     using subscription = session.ws.user.subscribe();
     const eventsPromise = subscription.values().take(1).toArray();
 
@@ -51,10 +49,9 @@ describe("events", () => {
   });
 
   it("streams notification", async () => {
-    await using alice = await sessions.acquire();
+    await using alice = await sessions.acquire({ waitForWs: true });
     await using bob = await sessions.acquire();
 
-    await alice.ws.prepare();
     using subscription = alice.ws.user.notification.subscribe();
     const eventsPromise = subscription.values().take(1).toArray();
 
@@ -70,10 +67,9 @@ describe("events", () => {
   });
 
   it("streams conversation", async () => {
-    await using alice = await sessions.acquire();
+    await using alice = await sessions.acquire({ waitForWs: true });
     await using bob = await sessions.acquire();
 
-    await alice.ws.prepare();
     using subscription = alice.ws.direct.subscribe();
     const eventsPromise = subscription.values().take(1).toArray();
 

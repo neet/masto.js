@@ -26,7 +26,7 @@ export class WebSocketActionDispatcher implements ActionDispatcher {
     }
 
     if (action.type !== "subscribe") {
-      throw new MastoUnexpectedError("Unknown action type");
+      throw new MastoUnexpectedError(`Unknown action type ${action.type}`);
     }
 
     const data = action.data ?? {};

@@ -57,16 +57,6 @@ const readOrCreateAdminToken = async (
   return token;
 };
 
-const initTokens = async (baseCacheDir: string) => {
-  const tokensFilePath = path.join(baseCacheDir, "tokens.json");
-
-  if (existsSync(tokensFilePath)) {
-    return;
-  }
-
-  await fs.writeFile(path.join(baseCacheDir, "tokens.json"), "[]", "utf8");
-};
-
 export default async function main(): Promise<void> {
   const baseCacheDir = path.join(__dirname, "../node_modules/.cache/masto");
   if (!existsSync(baseCacheDir)) {
@@ -78,5 +68,4 @@ export default async function main(): Promise<void> {
 
   const app = await readOrCreateApp(baseCacheDir, masto);
   await readOrCreateAdminToken(baseCacheDir, oauth, app);
-  await initTokens(baseCacheDir);
 }

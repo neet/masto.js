@@ -58,6 +58,7 @@ export interface Client {
   };
 
   close(): void;
+
   /** @internal */
   prepare(): Promise<void>;
 }
