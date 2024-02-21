@@ -5,8 +5,7 @@ import { getMockImage } from "../../test-utils/image";
 
 describe("websocket", () => {
   it("streams public", async () => {
-    await using session = await sessions.acquire();
-    await session.ws.prepare();
+    await using session = await sessions.acquire({ waitForWs: true });
     const random = crypto.randomBytes(16).toString("hex");
     using subscription = session.ws.public.subscribe();
 
@@ -30,8 +29,7 @@ describe("websocket", () => {
   });
 
   it("streams public:media", async () => {
-    await using session = await sessions.acquire();
-    await session.ws.prepare();
+    await using session = await sessions.acquire({ waitForWs: true });
     const random = crypto.randomBytes(16).toString("hex");
     using subscription = session.ws.public.media.subscribe();
 
@@ -60,8 +58,7 @@ describe("websocket", () => {
   });
 
   it("streams public:local", async () => {
-    await using session = await sessions.acquire();
-    await session.ws.prepare();
+    await using session = await sessions.acquire({ waitForWs: true });
     const random = crypto.randomBytes(16).toString("hex");
     using subscription = session.ws.public.local.subscribe();
 
@@ -86,8 +83,7 @@ describe("websocket", () => {
   });
 
   it("streams public:local:media", async () => {
-    await using session = await sessions.acquire();
-    await session.ws.prepare();
+    await using session = await sessions.acquire({ waitForWs: true });
     const random = crypto.randomBytes(16).toString("hex");
     using subscription = session.ws.public.local.media.subscribe();
 
@@ -117,8 +113,7 @@ describe("websocket", () => {
   });
 
   it("streams hashtag", async () => {
-    await using session = await sessions.acquire();
-    await session.ws.prepare();
+    await using session = await sessions.acquire({ waitForWs: true });
     const hashtag = `tag_${crypto.randomBytes(4).toString("hex")}`;
     using subscription = session.ws.hashtag.subscribe({ tag: hashtag });
 
@@ -142,8 +137,7 @@ describe("websocket", () => {
   });
 
   it("streams hashtag:local", async () => {
-    await using session = await sessions.acquire();
-    await session.ws.prepare();
+    await using session = await sessions.acquire({ waitForWs: true });
     const hashtag = `tag_${crypto.randomBytes(4).toString("hex")}`;
     using subscription = session.ws.hashtag.local.subscribe({
       tag: hashtag,
@@ -169,9 +163,8 @@ describe("websocket", () => {
   });
 
   it("streams user", async () => {
-    await using alice = await sessions.acquire();
+    await using alice = await sessions.acquire({ waitForWs: true });
     await using bob = await sessions.acquire();
-    await alice.ws.prepare();
     using subscription = alice.ws.user.subscribe();
 
     const eventsPromise = subscription
@@ -196,9 +189,8 @@ describe("websocket", () => {
   });
 
   it("streams user:notification", async () => {
-    await using alice = await sessions.acquire();
+    await using alice = await sessions.acquire({ waitForWs: true });
     await using bob = await sessions.acquire();
-    await alice.ws.prepare();
     using subscription = alice.ws.user.notification.subscribe();
 
     const eventsPromise = subscription

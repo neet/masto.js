@@ -3,6 +3,7 @@ import { existsSync } from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
 
+import Redis from "ioredis";
 import NodeEnvironment from "jest-environment-node";
 
 import {
@@ -10,17 +11,26 @@ import {
   createRestAPIClient,
   type mastodon,
 } from "../src";
-import { TokenPoolFsImpl } from "./pools";
-import { TokenFactoryDocker } from "./pools/token-factory-docker";
-import { TokenRepositoryFs } from "./pools/token-repository-fs";
+import { TokenFactoryDocker, TokenPoolRedis } from "./pools";
 import { createTootctl } from "./tootctl";
 
 class CustomEnvironment extends NodeEnvironment {
+  redis!: Redis;
+
   override async setup(): Promise<void> {
     await super.setup();
-    const misc = await this.createGlobals();
-    this.global.__misc__ = misc;
-    this.global.Symbol = Symbol;
+    this.redis = new Redis();
+    this.global.__misc__ = await this.createGlobals();
+
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    (this.global.Symbol as any).dispose ??= Symbol("Symbol.dispose");
+    (this.global.Symbol as any).asyncDispose ??= Symbol("Symbol.asyncDispose");
+    /* eslint-enable @typescript-eslint/no-explicit-any */
+  }
+
+  override async teardown(): Promise<void> {
+    await super.teardown();
+    this.redis.disconnect();
   }
 
   private async createGlobals(): Promise<typeof globalThis.__misc__> {
@@ -33,15 +43,12 @@ class CustomEnvironment extends NodeEnvironment {
     }
 
     const adminToken = await this.readAdminToken(baseCacheDir);
-    const repository = new TokenRepositoryFs(
-      path.join(baseCacheDir, "tokens.json"),
-    );
     const container = process.env.MASTODON_CONTAINER ?? "mastodon";
-    const tootctl = createTootctl({ container });
+    const tootctl = createTootctl({ container, compose: true });
     const oauth = createOAuthAPIClient({ url });
     const app = await this.readApp(baseCacheDir);
     const factory = new TokenFactoryDocker(tootctl, oauth, app);
-    const tokenPool = new TokenPoolFsImpl(repository, factory);
+    const tokenPool = new TokenPoolRedis(this.redis, factory);
 
     return {
       url,

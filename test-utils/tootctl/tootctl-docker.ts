@@ -23,10 +23,11 @@ const stringifyArguments = (
 
 export interface CreateTootctlParams {
   readonly container: string;
+  readonly compose: boolean;
 }
 
 export const createTootctl = (params: CreateTootctlParams): Tootctl => {
-  const { container } = params;
+  const { container, compose } = params;
 
   return {
     accounts: {
@@ -36,9 +37,13 @@ export const createTootctl = (params: CreateTootctlParams): Tootctl => {
       ): Promise<CreateAccountResult> => {
         const args = stringifyArguments({ ...params });
 
+        const command = compose
+          ? `docker compose exec ${container}`
+          : `docker exec ${container}`;
+
         const { stdout } = await exec(
           [
-            `docker exec ${container}`,
+            command,
             `bash -c "RAILS_ENV=development bin/tootctl accounts create ${username} ${args}"`,
           ].join(" "),
         );

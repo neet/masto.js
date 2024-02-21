@@ -46,30 +46,6 @@ jobs:
   test-e2e:
     name: E2E Test
     runs-on: ubuntu-latest
-    env:
-      DB_USER: mastodon
-      DB_NAME: mastodon
-      DB_PASS: password
-      MASTODON_CONTAINER: mastodon
-
-    services:
-      db:
-        image: postgres
-        ports:
-          - 5432:5432
-        env:
-          POSTGRES_USER: ${{ env.DB_USER }}
-          POSTGRES_DB: ${{ env.DB_NAME }}
-          POSTGRES_PASSWORD: ${{ env.DB_PASS }}
-          POSTGRES_HOST_AUTH_METHOD: trust
-        options: >-
-          --health-cmd "pg_isready -U postgres"
-      redis:
-        image: redis
-        ports:
-          - 6379:6379
-        options: >-
-          --health-cmd "redis-cli ping"
 
     steps:
       - uses: actions/checkout@v3
@@ -83,32 +59,23 @@ jobs:
           cache: yarn
 
       - name: Setup Mastodon
-        run: >-
-          docker run
-          -i
-          --rm
-          --env-file ./.github/.env.test
-          docker.io/neetshin/mastodon-dev:latest
-          bash -c "RAILS_ENV=development bundle exec rails db:setup"
-
-      - name: Run Mastodon
-        run: >-
-          docker run
-          -d
-          -p 3000:3000
-          -p 4000:4000
-          --name ${{ env.MASTODON_CONTAINER }} 
-          -e DEEPL_PLAN=${{ secrets.DEEPL_PLAN }}
-          -e DEEPL_API_KEY=${{ secrets.DEEPL_API_KEY }}
-          --env-file ./.github/.env.test
-          docker.io/neetshin/mastodon-dev:latest
-          bash -c "foreman start"
+        run: docker compose up -d
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Wait for http://localhost:3000
+        run: |
+          for i in {1..10}; do
+            curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/api/v2/instance && break
+            sleep 5
+          done
+
       - name: Run tests
         run: yarn run test:e2e --max-workers=2
+
+      - name: Teardown Mastodon
+        run: docker compose down
 
       - name: Codecov
         uses: codecov/codecov-action@v3
