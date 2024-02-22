@@ -1,10 +1,14 @@
 import { snakeCase } from "change-case";
 
-import { type ActionDispatcher, type HttpMetaParams } from "../../interfaces";
+import {
+  type ActionDispatcher,
+  type AnyAction,
+  type HttpMetaParams,
+} from "../../interfaces";
 import { noop } from "../../utils/noop";
 
 export const createActionProxy = <T>(
-  actionDispatcher: ActionDispatcher,
+  actionDispatcher: ActionDispatcher<AnyAction>,
   context: string[] = [],
 ): T => {
   return new Proxy(noop, {
@@ -34,7 +38,7 @@ const SPECIAL_PROPERTIES = new Set([
 ]);
 
 const get =
-  <T>(actionDispatcher: ActionDispatcher, context: string[]) =>
+  <T>(actionDispatcher: ActionDispatcher<AnyAction>, context: string[]) =>
   (_: unknown, property: string | symbol) => {
     if (typeof property === "string" && SPECIAL_PROPERTIES.has(property)) {
       return;
@@ -52,7 +56,7 @@ const get =
   };
 
 const apply =
-  <T>(actionDispatcher: ActionDispatcher, context: string[]) =>
+  <T>(actionDispatcher: ActionDispatcher<AnyAction>, context: string[]) =>
   (_1: unknown, _2: unknown, args: unknown[]): unknown => {
     const action = context.pop();
 

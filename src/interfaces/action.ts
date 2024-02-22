@@ -1,12 +1,20 @@
 import { type HttpMetaParams } from "./http";
+import { type Encoding } from "./serializer";
 
-export interface Action {
-  readonly type: string;
+export interface Action<T extends string> {
+  readonly type: T;
   readonly path: string;
   readonly data: unknown;
-  readonly meta: HttpMetaParams;
+  readonly meta: HttpMetaParams<Encoding>;
 }
 
-export interface ActionDispatcher {
-  dispatch<T>(action: Action): T | Promise<T>;
+export type AnyAction = Action<string>;
+
+export interface ActionDispatcher<T extends AnyAction> {
+  dispatch<U>(action: T): U | Promise<U>;
+}
+
+export interface ActionDispatcherHook<T extends AnyAction, U = unknown> {
+  beforeDispatch(action: T): T;
+  afterDispatch(action: T, result: U | Promise<U>): U;
 }

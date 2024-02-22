@@ -5,6 +5,7 @@ import {
   HttpActionDispatcher,
   WebSocketActionDispatcher,
 } from "./action";
+import { HttpActionDispatcherHookMastodon } from "./action/dispatcher-http-hook-mastodon";
 import {
   HttpConfigImpl,
   type MastoHttpConfigProps,
@@ -27,7 +28,8 @@ export const createRestAPIClient = (
   const config = new HttpConfigImpl(props, serializer);
   const logger = createLogger(props.log);
   const http = new HttpNativeImpl(serializer, config, logger);
-  const actionDispatcher = new HttpActionDispatcher(http);
+  const hook = new HttpActionDispatcherHookMastodon(http);
+  const actionDispatcher = new HttpActionDispatcher(http, hook);
   const actionProxy = createActionProxy(actionDispatcher, [
     "api",
   ]) as mastodon.rest.Client;
@@ -41,7 +43,8 @@ export const createOAuthAPIClient = (
   const config = new HttpConfigImpl(props, serializer);
   const logger = createLogger(props.log);
   const http = new HttpNativeImpl(serializer, config, logger);
-  const actionDispatcher = new HttpActionDispatcher(http);
+  const hook = new HttpActionDispatcherHookMastodon(http);
+  const actionDispatcher = new HttpActionDispatcher(http, hook);
   const actionProxy = createActionProxy(actionDispatcher, [
     "oauth",
   ]) as mastodon.oauth.Client;
