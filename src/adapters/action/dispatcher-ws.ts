@@ -45,4 +45,8 @@ export class WebSocketActionDispatcher
       { ...data },
     ) as T;
   }
+
+  [Symbol.dispose](): void {
+    this.connector.close();
+  }
 }

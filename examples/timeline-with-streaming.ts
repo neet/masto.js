@@ -1,14 +1,15 @@
 import { createStreamingAPIClient } from "masto";
 
 const subscribe = async (): Promise<void> => {
-  const masto = createStreamingAPIClient({
+  using masto = createStreamingAPIClient({
     streamingApiUrl: "<STREAMING API URL>",
     accessToken: "<TOKEN>",
   });
 
+  using events = masto.hashtag.subscribe({ tag: "mastojs" });
   console.log("subscribed to #mastojs");
 
-  for await (const event of masto.hashtag.subscribe({ tag: "mastojs" })) {
+  for await (const event of events) {
     switch (event.event) {
       case "update": {
         console.log("new post", event.payload.content);

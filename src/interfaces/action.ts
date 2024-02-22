@@ -12,6 +12,7 @@ export type AnyAction = Action<string>;
 
 export interface ActionDispatcher<T extends AnyAction> {
   dispatch<U>(action: T): U | Promise<U>;
+  [Symbol.dispose]?(): void;
 }
 
 export interface ActionDispatcherHook<T extends AnyAction, U = unknown> {

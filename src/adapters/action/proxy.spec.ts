@@ -102,4 +102,18 @@ describe("RequestBuilder", () => {
     expect(() => api()).toThrow(TypeError);
     expect(() => api.close()).not.toThrow(TypeError);
   });
+
+  it("can be disposed", () => {
+    const dispatcher = {
+      dispatch: async <T>(_: AnyAction) => {
+        return {} as T;
+      },
+      [Symbol.dispose]: jest.fn(),
+    };
+    const api: any = createActionProxy(dispatcher, { context: ["root"] });
+
+    api[Symbol.dispose]();
+
+    expect(dispatcher[Symbol.dispose]).toHaveBeenCalled();
+  });
 });

@@ -22,6 +22,20 @@ describe("DispatcherWs", () => {
         data: undefined,
         meta: {},
       });
-    }).toThrowError(MastoUnexpectedError);
+    }).toThrow(MastoUnexpectedError);
+  });
+
+  it("can be disposed", () => {
+    const connector = new WebSocketConnectorImpl({
+      constructorParameters: ["wss://example.com"],
+    });
+    const dispatcher = new WebSocketActionDispatcher(
+      connector,
+      new SerializerNativeImpl(),
+      createLogger("error"),
+    );
+
+    dispatcher[Symbol.dispose]();
+    expect(connector.canAcquire()).toBe(false);
   });
 });
