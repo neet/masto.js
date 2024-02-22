@@ -1,16 +1,34 @@
 import { snakeCase } from "change-case";
 
-import { type ActionDispatcher, type HttpMetaParams } from "../../interfaces";
+import {
+  type ActionDispatcher,
+  type AnyAction,
+  type HttpMetaParams,
+} from "../../interfaces";
 import { noop } from "../../utils/noop";
 
+type CreateActionProxyOptions = {
+  readonly context?: string[];
+  readonly applicable?: boolean;
+};
+
 export const createActionProxy = <T>(
-  actionDispatcher: ActionDispatcher,
-  context: string[] = [],
+  actionDispatcher: ActionDispatcher<AnyAction>,
+  options: CreateActionProxyOptions = {},
 ): T => {
-  return new Proxy(noop, {
+  const { context = [], applicable = false } = options;
+
+  let target = {};
+  const handler: ProxyHandler<typeof noop> = {
     get: get(actionDispatcher, context),
-    apply: apply(actionDispatcher, context),
-  }) as T;
+  };
+
+  if (applicable) {
+    target = noop;
+    handler.apply = apply(actionDispatcher, context);
+  }
+
+  return new Proxy(target, handler) as T;
 };
 
 const SPECIAL_PROPERTIES = new Set([
@@ -34,7 +52,10 @@ const SPECIAL_PROPERTIES = new Set([
 ]);
 
 const get =
-  <T>(actionDispatcher: ActionDispatcher, context: string[]) =>
+  <T>(
+    actionDispatcher: ActionDispatcher<AnyAction>,
+    context: readonly string[],
+  ) =>
   (_: unknown, property: string | symbol) => {
     if (typeof property === "string" && SPECIAL_PROPERTIES.has(property)) {
       return;
@@ -42,29 +63,33 @@ const get =
     if (typeof property === "symbol") {
       return;
     }
-    if (property === "$select") {
-      return createActionProxy<T>(actionDispatcher, [...context, property]);
+    if (property.startsWith("$")) {
+      return createActionProxy<T>(actionDispatcher, {
+        context: [...context, property],
+        applicable: true,
+      });
     }
-    return createActionProxy<T>(actionDispatcher, [
-      ...context,
-      snakeCase(property),
-    ]);
+    return createActionProxy<T>(actionDispatcher, {
+      context: [...context, snakeCase(property)],
+      applicable: true,
+    });
   };
 
 const apply =
-  <T>(actionDispatcher: ActionDispatcher, context: string[]) =>
+  <T>(actionDispatcher: ActionDispatcher<AnyAction>, context: string[]) =>
   (_1: unknown, _2: unknown, args: unknown[]): unknown => {
     const action = context.pop();
 
+    /* istanbul ignore next */
     if (action == undefined) {
       throw new Error("No action specified");
     }
 
     if (action === "$select") {
-      return createActionProxy<T>(actionDispatcher, [
-        ...context,
-        ...(args as string[]),
-      ]);
+      return createActionProxy<T>(actionDispatcher, {
+        context: [...context, ...(args as string[])],
+        applicable: true,
+      });
     }
 
     const path = "/" + context.join("/");

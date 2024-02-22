@@ -16,7 +16,8 @@ describe("DispatcherWs", () => {
 
     expect(() => {
       return dispatcher.dispatch({
-        type: "unknown",
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        type: "unknown" as any,
         path: "/api/v2/unknown",
         data: undefined,
         meta: {},

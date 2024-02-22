@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { type Action } from "../../interfaces";
+import { type AnyAction } from "../../interfaces";
 import { createActionProxy } from "./proxy";
 
 describe("RequestBuilder", () => {
@@ -29,16 +29,16 @@ describe("RequestBuilder", () => {
   });
 
   it("builds fetch manifest", () => {
-    let action: Action | undefined;
+    let action: AnyAction | undefined;
 
     const builder: any = createActionProxy(
       {
-        dispatch: async <T>(a: Action) => {
+        dispatch: async <T>(a: AnyAction) => {
           action = a;
           return {} as T;
         },
       },
-      ["root"],
+      { context: ["root"] },
     );
     const data = {};
     builder.$select("foo").bar.fetch(data);
@@ -49,16 +49,18 @@ describe("RequestBuilder", () => {
   });
 
   it("builds create manifest", () => {
-    let action: Action | undefined;
+    let action: AnyAction | undefined;
 
     const builder: any = createActionProxy(
       {
-        dispatch: async <T>(a: Action) => {
+        dispatch: async <T>(a: AnyAction) => {
           action = a;
           return {} as T;
         },
       },
-      ["root"],
+      {
+        context: ["root"],
+      },
     );
     const data = {};
     builder.$select("foo").bar.create(data);
@@ -69,16 +71,16 @@ describe("RequestBuilder", () => {
   });
 
   it("builds a resource with CamelCase", () => {
-    let action: Action | undefined;
+    let action: AnyAction | undefined;
 
     const builder: any = createActionProxy(
       {
-        dispatch: async <T>(a: Action) => {
+        dispatch: async <T>(a: AnyAction) => {
           action = a;
           return {} as T;
         },
       },
-      ["root"],
+      { context: ["root"] },
     );
     const data = {};
     builder.$select("AlphaBeta").gammaDelta.create(data);
@@ -87,13 +89,17 @@ describe("RequestBuilder", () => {
     expect(action?.data).toBe(data);
   });
 
-  it("cannot invoke without context", () => {
-    const builder: any = createActionProxy({
-      dispatch: Promise.resolve,
-    });
+  it("cannot invoke with too few context", () => {
+    const api: any = createActionProxy(
+      {
+        dispatch: async <T>(_: AnyAction) => {
+          return {} as T;
+        },
+      },
+      { context: [] },
+    );
 
-    expect(() => {
-      builder();
-    }).toThrow();
+    expect(() => api()).toThrow(TypeError);
+    expect(() => api.close()).not.toThrow(TypeError);
   });
 });

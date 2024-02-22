@@ -8,14 +8,19 @@ import {
 import { MastoUnexpectedError } from "../errors";
 import { WebSocketSubscription } from "../ws";
 
-export class WebSocketActionDispatcher implements ActionDispatcher {
+type WebSocketActionType = "close" | "prepare" | "subscribe";
+type WebSocketAction = Action<WebSocketActionType>;
+
+export class WebSocketActionDispatcher
+  implements ActionDispatcher<WebSocketAction>
+{
   constructor(
     private readonly connector: WebSocketConnector,
     private readonly serializer: Serializer,
     private readonly logger?: Logger,
   ) {}
 
-  dispatch<T>(action: Action): T {
+  dispatch<T>(action: WebSocketAction): T {
     if (action.type === "close") {
       this.connector.close();
       return {} as T;

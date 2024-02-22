@@ -1,6 +1,7 @@
 import { httpGet, HttpMockImpl, httpPost } from "../../__mocks__";
 import { MastoHttpError, MastoTimeoutError } from "../errors";
 import { HttpActionDispatcher } from "./dispatcher-http";
+import { HttpActionDispatcherHookMastodon } from "./dispatcher-http-hook-mastodon";
 
 describe("DispatcherHttp", () => {
   afterEach(() => {
@@ -9,7 +10,11 @@ describe("DispatcherHttp", () => {
   });
 
   it("waits for media attachment to be created", async () => {
-    const dispatcher = new HttpActionDispatcher(new HttpMockImpl());
+    const http = new HttpMockImpl();
+    const dispatcher = new HttpActionDispatcher(
+      http,
+      new HttpActionDispatcherHookMastodon(http),
+    );
 
     httpPost.mockResolvedValueOnce({ id: "1" });
 
@@ -35,9 +40,11 @@ describe("DispatcherHttp", () => {
   });
 
   it("throws an error if media processing did not finish", async () => {
-    const dispatcher = new HttpActionDispatcher(new HttpMockImpl(), {
-      mediaTimeout: 1,
-    });
+    const http = new HttpMockImpl();
+    const dispatcher = new HttpActionDispatcher(
+      http,
+      new HttpActionDispatcherHookMastodon(http, 1),
+    );
 
     httpPost.mockResolvedValueOnce({ id: "1" });
     httpGet.mockRejectedValue(
@@ -55,7 +62,11 @@ describe("DispatcherHttp", () => {
   });
 
   it("rethrows errors for media processing", async () => {
-    const dispatcher = new HttpActionDispatcher(new HttpMockImpl());
+    const http = new HttpMockImpl();
+    const dispatcher = new HttpActionDispatcher(
+      http,
+      new HttpActionDispatcherHookMastodon(http),
+    );
 
     httpPost.mockResolvedValueOnce({ id: "1" });
     httpGet.mockRejectedValueOnce(new Error("Unknown error"));
