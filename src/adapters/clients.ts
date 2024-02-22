@@ -30,9 +30,9 @@ export const createRestAPIClient = (
   const http = new HttpNativeImpl(serializer, config, logger);
   const hook = new HttpActionDispatcherHookMastodon(http);
   const actionDispatcher = new HttpActionDispatcher(http, hook);
-  const actionProxy = createActionProxy(actionDispatcher, [
-    "api",
-  ]) as mastodon.rest.Client;
+  const actionProxy = createActionProxy(actionDispatcher, {
+    context: ["api"],
+  }) as mastodon.rest.Client;
   return actionProxy;
 };
 
@@ -45,9 +45,9 @@ export const createOAuthAPIClient = (
   const http = new HttpNativeImpl(serializer, config, logger);
   const hook = new HttpActionDispatcherHookMastodon(http);
   const actionDispatcher = new HttpActionDispatcher(http, hook);
-  const actionProxy = createActionProxy(actionDispatcher, [
-    "oauth",
-  ]) as mastodon.oauth.Client;
+  const actionProxy = createActionProxy(actionDispatcher, {
+    context: ["oauth"],
+  }) as mastodon.oauth.Client;
   return actionProxy;
 };
 

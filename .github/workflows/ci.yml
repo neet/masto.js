@@ -59,7 +59,7 @@ jobs:
           cache: yarn
 
       - name: Setup Mastodon
-        run: docker compose up -d
+        run: docker compose up -d --quiet-pull
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
