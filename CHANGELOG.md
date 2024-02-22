@@ -1,3 +1,17 @@
+## [6.5.4](https://github.com/neet/masto.js/compare/v6.5.3...v6.5.4) (2024-02-22)
+
+
+### Bug Fixes
+
+* Fix "Masquerading as ESM" ([4d88a43](https://github.com/neet/masto.js/commit/4d88a4343fdfc72d1c5a8ea5d13d521e7a3d712b))
+* Prevent REST API client to be a type of function ([42abe50](https://github.com/neet/masto.js/commit/42abe50ae93221a4b8a69741d34ee9bb2d8f04e2))
+
+
+### Chores
+
+* **deps:** Update dependencies ([75107a4](https://github.com/neet/masto.js/commit/75107a4eebbdd395e0c8c3a047bc988b068e7922))
+* **refactor:** Refactor HTTP dispatcher ([90f6c0e](https://github.com/neet/masto.js/commit/90f6c0eb0a6c7f0da0eefbf84592ebe1e01cf794))
+
 ## [6.5.3](https://github.com/neet/masto.js/compare/v6.5.2...v6.5.3) (2024-02-22)
 
 
