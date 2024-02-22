@@ -8,18 +8,13 @@ export interface SubscribeHashtagParams {
   readonly tag: string;
 }
 
-export interface Subscription {
-  unsubscribe(): void;
+export interface Subscription extends AsyncIterable<Event>, Disposable {
   values(): AsyncIterableIterator<Event>;
-  [Symbol.asyncIterator](): AsyncIterator<Event, undefined>;
 
-  /**
-   * @experimental This is an experimental API.
-   */
-  [Symbol.dispose](): void;
+  unsubscribe(): void;
 }
 
-export interface Client {
+export interface Client extends Disposable {
   public: {
     subscribe(): Subscription;
     media: {
