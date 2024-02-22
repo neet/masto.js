@@ -12,7 +12,7 @@ export default [
     input: "./src/index.ts",
     output: {
       file: packageJSON.exports["."].require,
-      format: "cjs",
+      format: "commonjs",
     },
     plugins: [json(), typescript(), autoExternal()],
   },
@@ -20,15 +20,23 @@ export default [
     input: "./src/index.ts",
     output: {
       file: packageJSON.exports["."].import,
-      format: "esm",
+      format: "module",
     },
     plugins: [commonjs(), json(), typescript(), autoExternal()],
   },
   {
     input: "./src/index.ts",
     output: {
-      file: packageJSON.exports["."].types,
-      format: "esm",
+      file: packageJSON.exports["."].types["require"],
+      format: "commonjs",
+    },
+    plugins: [commonjs(), dts()],
+  },
+  {
+    input: "./src/index.ts",
+    output: {
+      file: packageJSON.exports["."].types["import"],
+      format: "module",
     },
     plugins: [dts()],
   },
