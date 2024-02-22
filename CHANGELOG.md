@@ -1,3 +1,10 @@
+## [6.5.3](https://github.com/neet/masto.js/compare/v6.5.2...v6.5.3) (2024-02-22)
+
+
+### Chores
+
+* **test:** Use docker-compose for E2E testing and reduce file I/O ([63ebc29](https://github.com/neet/masto.js/commit/63ebc295721f1822dac56862e6e8c28cc7b5e19e))
+
 ## [6.5.2](https://github.com/neet/masto.js/compare/v6.5.1...v6.5.2) (2023-12-27)
 
 
