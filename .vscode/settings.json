@@ -3,8 +3,5 @@
     "**/.yarn": true,
     "**/docs": true
   },
-  "npm.packageManager": "yarn",
-  "eslint.packageManager": "yarn",
-  "jest.jestCommandLine": "jest --runInBand",
   "typescript.tsdk": "node_modules/typescript/lib"
 }

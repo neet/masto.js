@@ -21,7 +21,7 @@
 ## Features
 
 - 🌎 **Universal:** Works in Node.js, browsers, and Deno
-- 📦 **Lightweight:** Less runtime codes, [7kB+ minified and gzipped](https://bundlephobia.com/package/masto@6.0.0-alpha.7)
+- 📦 **Lightweight:** Less runtime codes, [6kB+ minified and gzipped](https://bundlephobia.com/package/masto)
 - 📚 **TypeScript:** Written in TypeScript, and provides type definitions
 - 🧪 **Tested:** 99% test coverage using a real Mastodon server
 - 🤓 **Maintained:** Actively maintained by a Fediverse lover [since 2018](https://github.com/neet/masto.js/releases/tag/1.0.0)
