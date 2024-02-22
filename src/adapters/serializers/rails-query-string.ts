@@ -1,4 +1,4 @@
-import { isRecord } from "./is-record";
+import { isRecord } from "../../utils";
 
 const flatten = (object: unknown, parent = ""): [string, unknown][] => {
   if (Array.isArray(object)) {

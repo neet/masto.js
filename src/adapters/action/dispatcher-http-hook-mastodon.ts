@@ -8,7 +8,7 @@ import {
   type HttpMetaParams,
 } from "../../interfaces";
 import { type mastodon } from "../../mastodon";
-import { sleep } from "../../utils";
+import { isRecord, sleep } from "../../utils";
 import { MastoHttpError, MastoTimeoutError } from "../errors";
 import { type HttpAction, type HttpActionType } from "./dispatcher-http";
 
@@ -105,6 +105,9 @@ export class HttpActionDispatcherHookMastodon
   afterDispatch(action: AnyAction, result: unknown): unknown {
     if (action.type === "create" && action.path === "/api/v2/media") {
       const media = result as mastodon.v1.MediaAttachment;
+      if (isRecord(action.data) && action.data?.skipPolling === true) {
+        return media;
+      }
       return waitForMediaAttachment(media.id, this.mediaTimeout, this.http);
     }
 

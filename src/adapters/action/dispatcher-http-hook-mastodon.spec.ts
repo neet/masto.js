@@ -80,4 +80,26 @@ describe("DispatcherHttp", () => {
 
     await expect(promise).rejects.toBeInstanceOf(Error);
   });
+
+  it("skips media polling if `skipPolling` is passed", async () => {
+    const http = new HttpMockImpl();
+    const dispatcher = new HttpActionDispatcher(
+      http,
+      new HttpActionDispatcherHookMastodon(http),
+    );
+
+    httpPost.mockResolvedValueOnce({ id: "1" });
+
+    const media = await dispatcher.dispatch({
+      type: "create",
+      path: "/api/v2/media",
+      data: {
+        skipPolling: true,
+      },
+      meta: {},
+    });
+
+    expect(media).toHaveProperty("id", "1");
+    expect(httpGet).toHaveBeenCalledTimes(0);
+  });
 });

@@ -1,4 +1,4 @@
-import { isRecord } from "./is-record";
+import { isRecord } from "../../utils";
 
 const _transformKeys = <T>(
   data: unknown,
