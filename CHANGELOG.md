@@ -1,3 +1,15 @@
+## [6.6.0](https://github.com/neet/masto.js/compare/v6.5.4...v6.6.0) (2024-02-23)
+
+
+### Features
+
+* Implement Disposable for mastodon.streaming.Client ([d926649](https://github.com/neet/masto.js/commit/d926649d29d34bc7d6048ac91be9d9bd3e67327e))
+
+
+### Bug Fixes
+
+* Handle `skipPolling` option properly ([4dbccbc](https://github.com/neet/masto.js/commit/4dbccbc02cf725555ec2f0a20c2ac66d9f1eaca0))
+
 ## [6.5.4](https://github.com/neet/masto.js/compare/v6.5.3...v6.5.4) (2024-02-22)
 
 
