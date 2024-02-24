@@ -1,9 +1,55 @@
 import { type Serializer, type WebSocketConfig } from "../../interfaces";
 
 export interface WebSocketConfigProps {
+  /**
+   * Streaming API URL for your Mastodon instance.
+   *
+   * Note that this is often different from the REST API URL.
+   *
+   * If you are not sure which URL to use, you can obtain it via the following script:
+   *
+   * @example
+   * ```ts
+   * import { createRestAPIClient, createStreamingAPIClient } from "masto";
+   *
+   * const rest = createRestAPIClient({
+   *   url: "https://example.com",
+   * });
+   *
+   * const instance = await rest.v2.instance.fetch();
+   *
+   * const streaming = createStreamingAPIClient({
+   *  streamingApiUrl: instance.configuration.urls.streamingApi,
+   * })
+   * ```
+   */
   readonly streamingApiUrl: string;
-  readonly retry?: boolean | number;
+
+  /**
+   * Access token for the streaming API.
+   *
+   * If it is not provided, you won't be able to use private APIs.
+   */
   readonly accessToken?: string;
+
+  /**
+   * Whether to retry the connection when it fails.
+   *
+   * - If `true`, it will retry indefinitely.
+   * - If `false`, it will not retry.
+   * - If a number, it will retry that many times.
+   *
+   * Defaults to `true`.
+   */
+  readonly retry?: boolean | number;
+
+  /**
+   * Whether to use the access token as a query parameter.
+   *
+   * This is useful when your instance runs an old version of Mastodon that does not support the `Sec-Websocket-Protocols`
+   *
+   * Defaults to `false`.
+   */
   readonly useInsecureAccessToken?: boolean;
 }
 

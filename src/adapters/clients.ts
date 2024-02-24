@@ -18,6 +18,16 @@ import { SerializerNativeImpl } from "./serializers";
 import { WebSocketConnectorImpl } from "./ws";
 
 interface LogConfigProps {
+  /**
+   * Log level for the client.
+   *
+   * - `debug`: Log everything.
+   * - `info`: Log important information.
+   * - `warn`: Log warnings.
+   * - `error`: Log errors.
+   *
+   * Defaults to `warn`.
+   */
   readonly log?: LogType;
 }
 
@@ -52,7 +62,11 @@ export const createOAuthAPIClient = (
 };
 
 interface WebSocketCustomImplProps {
-  /** Custom WebSocket implementation. In Deno, you can use `WebSocket` to avoid potential errors. */
+  /**
+   * Custom WebSocket implementation. In Deno, you can use `WebSocket` to avoid potential errors.
+   *
+   * Defaults to `window.WebSocket`.
+   */
   readonly implementation?: unknown;
 }
 

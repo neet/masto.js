@@ -5,9 +5,30 @@ import { mergeHeadersInit } from "./merge-headers-init";
 const DEFAULT_TIMEOUT_MS = 1000 * 300;
 
 export interface MastoHttpConfigProps {
+  /**
+   * REST API URL for your Mastodon instance.
+   */
   readonly url: string;
+
+  /**
+   * Access token for the REST API.
+   *
+   * Please refer to the [quickstart](https://github.com/neet/masto.js?tab=readme-ov-file#quick-start) for how to get an access token.
+   */
   readonly accessToken?: string;
+
+  /**
+   * Timeout in milliseconds.
+   *
+   * Defaults to 1000 * 300 = 300 seconds.
+   */
   readonly timeout?: number;
+
+  /**
+   * Additional options for the `fetch` function.
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch
+   */
   readonly requestInit?: Omit<RequestInit, "body" | "method">;
 }
 
