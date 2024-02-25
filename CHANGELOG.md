@@ -1,3 +1,10 @@
+## [6.6.1](https://github.com/neet/masto.js/compare/v6.6.0...v6.6.1) (2024-02-25)
+
+
+### Chores
+
+* **docs:** Add descriptions for config parameters ([ade9eb2](https://github.com/neet/masto.js/commit/ade9eb2f6bfa90475ead5814cbfee92f1bb95460))
+
 ## [6.6.0](https://github.com/neet/masto.js/compare/v6.5.4...v6.6.0) (2024-02-23)
 
 
