@@ -8,6 +8,7 @@
 
 /* eslint-disable @typescript-eslint/consistent-type-imports */
 import type * as undici_types from "undici";
+import type * as ws from "ws";
 
 declare global {
   export const {
@@ -33,4 +34,7 @@ declare global {
   type Response = undici_types.Response;
   type ResponseInit = undici_types.ResponseInit;
   type ResponseType = undici_types.ResponseType;
+
+  type MessageEvent = ws.MessageEvent;
+  type WebSocket = ws.WebSocket;
 }
