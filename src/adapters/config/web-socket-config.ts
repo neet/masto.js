@@ -19,7 +19,7 @@ export interface WebSocketConfigProps {
    * const instance = await rest.v2.instance.fetch();
    *
    * const streaming = createStreamingAPIClient({
-   *  streamingApiUrl: instance.configuration.urls.streamingApi,
+   *  streamingApiUrl: instance.configuration.urls.streaming,
    * })
    * ```
    */
