@@ -1,3 +1,10 @@
+## [6.6.2](https://github.com/neet/masto.js/compare/v6.6.1...v6.6.2) (2024-02-29)
+
+
+### Bug Fixes
+
+* Fix property name for streaming API URL in v2.Instance ([a66f087](https://github.com/neet/masto.js/commit/a66f0875219c1e76d0b71d93887289ce1e4c2bc1))
+
 ## [6.6.1](https://github.com/neet/masto.js/compare/v6.6.0...v6.6.1) (2024-02-25)
 
 
