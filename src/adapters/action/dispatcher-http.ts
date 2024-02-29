@@ -20,7 +20,10 @@ export class HttpActionDispatcher implements ActionDispatcher<HttpAction> {
       action = this.hook.beforeDispatch(action);
     }
 
-    let result: T | Promise<T>;
+    let result = this.hook.dispatch(action) as T | Promise<T> | false;
+    if (result !== false) {
+      return result;
+    }
 
     switch (action.type) {
       case "fetch": {
@@ -32,7 +35,7 @@ export class HttpActionDispatcher implements ActionDispatcher<HttpAction> {
         break;
       }
       case "update": {
-        result = this.http.patch(action.path, action.data, action.meta);
+        result = this.http.put(action.path, action.data, action.meta);
         break;
       }
       case "remove": {

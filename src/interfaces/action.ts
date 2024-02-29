@@ -17,5 +17,6 @@ export interface ActionDispatcher<T extends AnyAction> {
 
 export interface ActionDispatcherHook<T extends AnyAction, U = unknown> {
   beforeDispatch(action: T): T;
+  dispatch(action: T): U | Promise<U> | false;
   afterDispatch(action: T, result: U | Promise<U>): U;
 }
