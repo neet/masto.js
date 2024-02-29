@@ -48,7 +48,6 @@ export abstract class BaseHttp implements Http {
     }).then((response) => response.data as T);
   }
 
-  /* istanbul ignore next */
   put<T>(
     path: string,
     data?: unknown,
