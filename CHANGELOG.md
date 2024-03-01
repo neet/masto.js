@@ -1,3 +1,10 @@
+## [6.6.3](https://github.com/neet/masto.js/compare/v6.6.2...v6.6.3) (2024-03-01)
+
+
+### Bug Fixes
+
+* Use PUT for update for Mastodon-fork compatibility ([304d2fd](https://github.com/neet/masto.js/commit/304d2fdd37d9e7d1398b2a9ea0d1d104bf5e2252))
+
 ## [6.6.2](https://github.com/neet/masto.js/compare/v6.6.1...v6.6.2) (2024-02-29)
 
 
