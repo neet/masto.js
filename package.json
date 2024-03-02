@@ -47,7 +47,7 @@
     "@semantic-release/git": "^10.0.1",
     "@size-limit/preset-small-lib": "^11.0.2",
     "@types/jest": "^29.5.12",
-    "@types/node": "^20.11.19",
+    "@types/node": "^20.11.24",
     "@types/ws": "^8.5.10",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.1.0",
