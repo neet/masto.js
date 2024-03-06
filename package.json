@@ -35,9 +35,16 @@
   "dependencies": {
     "change-case": "^4.1.2",
     "events-to-async": "^2.0.1",
-    "isomorphic-ws": "^5.0.0",
     "ts-custom-error": "^3.3.1",
-    "ws": "^8.16.0"
+    "unws": "^0.2.4"
+  },
+  "peerDependencies": {
+    "ws": "*"
+  },
+  "peerDependenciesMeta": {
+    "ws": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",
@@ -75,7 +82,8 @@
     "tslib": "^2.6.2",
     "typedoc": "^0.25.9",
     "typescript": "^5.3.3",
-    "undici": "^6.6.2"
+    "undici": "^6.6.2",
+    "ws": "^8.16.0"
   },
   "files": [
     "README.md",

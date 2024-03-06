@@ -1,4 +1,4 @@
-import { type WebSocket } from "ws";
+import { type WebSocket } from "unws";
 
 export interface WebSocketConnector {
   acquire(): Promise<WebSocket>;
