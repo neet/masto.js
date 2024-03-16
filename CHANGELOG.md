@@ -1,3 +1,10 @@
+## [6.7.0](https://github.com/neet/masto.js/compare/v6.6.4...v6.7.0) (2024-03-16)
+
+
+### Features
+
+* Support `grant_type: authorization_code` and `client_credentials`. ([1f6b3ca](https://github.com/neet/masto.js/commit/1f6b3caed3e892c7d30bf6280f6c847e8aad6f4d))
+
 ## [6.6.4](https://github.com/neet/masto.js/compare/v6.6.3...v6.6.4) (2024-03-03)
 
 
