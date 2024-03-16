@@ -38,6 +38,7 @@ export class TokenFactoryDocker implements TokenFactory {
       username: email,
       password,
       scope: "read write follow push admin:read admin:write",
+      redirectUri: "urn:ietf:wg:oauth:2.0:oob",
     });
 
     return token;
