@@ -51,6 +51,7 @@ const readOrCreateAdminToken = async (
     username: "admin@localhost",
     password: "mastodonadmin",
     scope: "read write follow push admin:read admin:write",
+    redirectUri: "urn:ietf:wg:oauth:2.0:oob",
   });
 
   fs.writeFile(tokenFilePath, JSON.stringify(token, undefined, 2));

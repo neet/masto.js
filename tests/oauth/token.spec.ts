@@ -13,6 +13,7 @@ it("issues and revokes token", async () => {
     username: "admin@localhost",
     password: "mastodonadmin",
     scope: "read",
+    redirectUri: "urn:ietf:wg:oauth:2.0:oob",
   });
 
   expect(token).toHaveProperty("accessToken");
