@@ -1,4 +1,4 @@
-import WebSocket from "ws";
+import { WebSocket } from "unws";
 
 import { type Logger, type WebSocketConnector } from "../../interfaces";
 import {

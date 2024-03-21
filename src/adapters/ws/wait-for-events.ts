@@ -1,12 +1,20 @@
-import WebSocket from "ws";
+import { type WebSocket } from "unws";
+
+// https://developer.mozilla.org/en-US/docs/Web/API/WebSocket/readyState
+const ReadyState = {
+  CONNECTING: 0,
+  OPEN: 1,
+  CLOSING: 2,
+  CLOSED: 3,
+};
 
 export function waitForOpen(ws: WebSocket): Promise<void> {
-  if (ws.readyState === WebSocket.OPEN) {
+  if (ws.readyState === ReadyState.OPEN) {
     return Promise.resolve();
   }
 
   return new Promise<void>((resolve, reject) => {
-    const handleError = (error: WebSocket.ErrorEvent): void => {
+    const handleError = (error: unknown): void => {
       reject(error);
     };
 
@@ -25,7 +33,7 @@ export function waitForOpen(ws: WebSocket): Promise<void> {
 }
 
 export function waitForClose(ws: WebSocket): Promise<void> {
-  if (ws.readyState === WebSocket.CLOSED) {
+  if (ws.readyState === ReadyState.CLOSED) {
     return Promise.resolve();
   }
 

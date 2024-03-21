@@ -1,12 +1,12 @@
 import { on } from "events-to-async";
-import type WebSocket from "isomorphic-ws";
+import { type MessageEvent, type WebSocket } from "unws";
 
 import { MastoUnexpectedError } from "../errors";
 
 export async function* toAsyncIterable(
   ws: WebSocket,
-): AsyncIterableIterator<WebSocket.MessageEvent> {
-  const handleClose = async (e: WebSocket.CloseEvent) => {
+): AsyncIterableIterator<MessageEvent> {
+  const handleClose = async (e: unknown) => {
     /* istanbul ignore next */
     if (events.return == undefined) {
       throw new MastoUnexpectedError("events.return is undefined");
@@ -14,7 +14,7 @@ export async function* toAsyncIterable(
     await events.return(e);
   };
 
-  const handleError = async (e: WebSocket.ErrorEvent) => {
+  const handleError = async (e: unknown) => {
     /* istanbul ignore next */
     if (events.return == undefined) {
       throw new MastoUnexpectedError("events.return is undefined");
@@ -22,7 +22,7 @@ export async function* toAsyncIterable(
     await events.return(e);
   };
 
-  const events = on<[WebSocket.MessageEvent]>((handler) => {
+  const events = on<[MessageEvent]>((handler) => {
     ws.addEventListener("message", handler);
     ws.addEventListener("error", handleError);
     ws.addEventListener("close", handleClose);
