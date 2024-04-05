@@ -7466,10 +7466,10 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typedoc@^0.25.9:
-  version "0.25.9"
-  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.25.9.tgz#0fb6608feec994eedc1e3276154fa8a486218ed2"
-  integrity sha512-jVoGmfNw848iW0L313+jqHbsknepwDV6F9nzk1H30oWhKXkw65uaENgR6QtTw9a5KqRWEb6nwNd54KxffBJyWw==
+typedoc@^0.25.12:
+  version "0.25.12"
+  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.25.12.tgz#f73f0a8d3731d418cc604d4230f95a857799e27a"
+  integrity sha512-F+qhkK2VoTweDXd1c42GS/By2DvI2uDF4/EpG424dTexSHdtCH52C6IcAvMA6jR3DzAWZjHpUOW+E02kyPNUNw==
   dependencies:
     lunr "^2.3.9"
     marked "^4.3.0"
