@@ -1,3 +1,15 @@
+## [6.7.1](https://github.com/neet/masto.js/compare/v6.7.0...v6.7.1) (2024-04-06)
+
+
+### Chores
+
+* **deps-dev:** bump @typescript-eslint/eslint-plugin ([5a1ceeb](https://github.com/neet/masto.js/commit/5a1ceeb3ed1f51e10c13ce8acc66313291fa3885))
+* **deps-dev:** bump cspell from 8.5.0 to 8.6.1 ([92b3fc2](https://github.com/neet/masto.js/commit/92b3fc2f9ed3b766bf46c6c663439ae0c071e0f6))
+* **deps-dev:** bump rollup from 4.12.0 to 4.14.0 ([0a279e9](https://github.com/neet/masto.js/commit/0a279e9096911694a20b36bc19b0ad1ced093fce))
+* **deps-dev:** bump size-limit and @size-limit/preset-small-lib ([09bb46d](https://github.com/neet/masto.js/commit/09bb46d61dd22b7a47973b613447429a60faccf5))
+* **deps-dev:** bump typedoc from 0.25.9 to 0.25.12 ([86af832](https://github.com/neet/masto.js/commit/86af83206d58dc09b8e1f0c90b81440d51b6ca82))
+* **deps-dev:** bump undici from 6.6.2 to 6.11.1 ([b0d3ac8](https://github.com/neet/masto.js/commit/b0d3ac8097387a5e8b44e5b634eee976fc06b79e))
+
 ## [6.7.0](https://github.com/neet/masto.js/compare/v6.6.4...v6.7.0) (2024-03-16)
 
 
