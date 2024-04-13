@@ -1,3 +1,11 @@
+## [6.7.2](https://github.com/neet/masto.js/compare/v6.7.1...v6.7.2) (2024-04-13)
+
+
+### Chores
+
+* **deps-dev:** bump @typescript-eslint/parser from 7.1.0 to 7.5.0 ([a9f1c43](https://github.com/neet/masto.js/commit/a9f1c43cfedc977b1da0a4b0869f79f39bf3e2a7))
+* **deps:** bump tar from 6.2.0 to 6.2.1 ([dcb8307](https://github.com/neet/masto.js/commit/dcb8307e39953781c2801e0253db37ebec375c54))
+
 ## [6.7.1](https://github.com/neet/masto.js/compare/v6.7.0...v6.7.1) (2024-04-06)
 
 
