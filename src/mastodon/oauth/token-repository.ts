@@ -16,7 +16,7 @@ interface BaseCreateTokenParams<T extends string> {
   /** Set a URI to redirect the user to. If this parameter is set to urn:ietf:wg:oauth:2.0:oob then the token will be shown instead. Must match one of the `redirect_uris` declared during app registration. */
   readonly redirectUri: string;
   /** List of requested OAuth scopes, separated by spaces (or by pluses, if using query parameters). If code was provided, then this must be equal to the `scope` requested from the user. Otherwise, it must be a subset of `scopes` declared during app registration. If not provided, defaults to read. */
-  readonly scope?: string;
+  readonly scope?: string | null;
 }
 
 export interface CreateTokenWithAuthorizationCodeParams
