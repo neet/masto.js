@@ -1,4 +1,4 @@
-name: "CI"
+name: ci
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
 
 jobs:
   test-unit:
-    name: Unit Test
+    name: unit
     runs-on: ubuntu-latest
 
     steps:
@@ -44,7 +44,7 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
 
   test-e2e:
-    name: E2E Test
+    name: e2e
     runs-on: ubuntu-latest
 
     steps:

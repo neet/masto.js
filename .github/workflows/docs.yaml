@@ -1,4 +1,4 @@
-name: Publish Documentation
+name: docs
 
 on:
   push:
@@ -12,6 +12,7 @@ permissions:
 
 jobs:
   build:
+    name: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -37,6 +38,7 @@ jobs:
           path: "./docs"
 
   deploy:
+    name: deploy
     runs-on: ubuntu-latest
     needs: build
     environment:

@@ -1,11 +1,12 @@
 # https://github.com/andresz1/size-limit-action
-name: "CI (size-limit)"
+name: size-limit
 on:
   pull_request:
     branches:
       - main
 jobs:
-  size:
+  check:
+    name: check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
