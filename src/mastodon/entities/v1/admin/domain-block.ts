@@ -1,5 +1,3 @@
-export type DomainBlockSeverity = "silence" | "suspend" | "noop";
-
 export interface DomainBlock {
   /** The ID of the domain block in the database. */
   id: string;
@@ -8,7 +6,7 @@ export interface DomainBlock {
   /** The create date of the domain block in the database. */
   createdAt: string;
   /** The date of the application that created this account. */
-  severity: DomainBlockSeverity;
+  severity: DomainBlock.Severity;
   /** The reject media of the domain. */
   rejectMedia: boolean;
   /** The reject report of the domain. */
@@ -20,3 +18,10 @@ export interface DomainBlock {
   /** The obfuscate of the domain block. */
   obfuscate: boolean;
 }
+
+export namespace DomainBlock {
+  export type Severity = "silence" | "suspend" | "noop";
+}
+
+/** @deprecated Use DomainBlock.Severity */
+export type DomainBlockSeverity = DomainBlock.Severity;

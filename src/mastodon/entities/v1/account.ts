@@ -1,40 +1,6 @@
 import { type CustomEmoji } from "./custom-emoji";
 import { type Role } from "./role";
-import { type StatusVisibility } from "./status";
-
-/**
- * Represents display or publishing preferences of user's own account.
- * Returned as an additional entity when verifying and updated credentials, as an attribute of Account.
- * @see https://docs.joinmastodon.org/entities/source/
- */
-export interface AccountSource {
-  /** Profile bio. */
-  note: string;
-  /** Metadata about the account. */
-  fields: AccountField;
-
-  /** The default post privacy to be used for new statuses. */
-  privacy?: StatusVisibility | null;
-  /** Whether new statuses should be marked sensitive by default. */
-  sensitive?: boolean | null;
-  /** The default posting language for new statuses. */
-  language: string | null;
-  /** The number of pending follow requests. */
-  followRequestsCount?: number | null;
-}
-
-/**
- * Represents a profile field as a name-value pair with optional verification.
- */
-export interface AccountField {
-  /** The key of a given field's key-value pair. */
-  name: string;
-  /** The value associated with the `name` key. */
-  value: string;
-
-  /** Timestamp of when the server verified a URL value for a rel="me” link. */
-  verifiedAt?: string | null;
-}
+import { type Status } from "./status";
 
 /**
  * Represents a user of Mastodon and their associated profile.
@@ -64,7 +30,7 @@ export interface Account {
   /** Whether the account manually approves follow requests. */
   locked: boolean;
   /** Additional metadata attached to a profile as name-value pairs. */
-  fields: AccountField[];
+  fields: Account.Field[];
   /** Custom emoji entities to be used when rendering the profile. If none, an empty array will be returned. */
   emojis: CustomEmoji[];
   /** Boolean to indicate that the account performs automated actions */
@@ -97,16 +63,60 @@ export interface Account {
   memorial?: boolean | null;
 }
 
-/**
- * @see https://docs.joinmastodon.org/entities/Account/#CredentialAccount
- */
-export interface AccountCredentials extends Account {
+export namespace Account {
   /**
-   * Note the extra `source` property, which is not visible on accounts other than your own.
-   * Also note that plain-text is used within `source` and HTML is used for their
-   * corresponding properties such as `note` and `fields`.
+   * Represents display or publishing preferences of user's own account.
+   * Returned as an additional entity when verifying and updated credentials, as an attribute of Account.
+   * @see https://docs.joinmastodon.org/entities/source/
    */
-  source: AccountSource;
-  /** The role assigned to the currently authorized user. */
-  role: Role;
+  export interface Source {
+    /** Profile bio. */
+    note: string;
+    /** Metadata about the account. */
+    fields: Field;
+    /** The default post privacy to be used for new statuses. */
+    privacy?: Status.Visibility | null;
+    /** Whether new statuses should be marked sensitive by default. */
+    sensitive?: boolean | null;
+    /** The default posting language for new statuses. */
+    language: string | null;
+    /** The number of pending follow requests. */
+    followRequestsCount?: number | null;
+  }
+
+  /**
+   * Represents a profile field as a name-value pair with optional verification.
+   */
+  export interface Field {
+    /** The key of a given field's key-value pair. */
+    name: string;
+    /** The value associated with the `name` key. */
+    value: string;
+
+    /** Timestamp of when the server verified a URL value for a rel="me” link. */
+    verifiedAt?: string | null;
+  }
+
+  /**
+   * @see https://docs.joinmastodon.org/entities/Account/#CredentialAccount
+   */
+  export interface Credentials extends Account {
+    /**
+     * Note the extra `source` property, which is not visible on accounts other than your own.
+     * Also note that plain-text is used within `source` and HTML is used for their
+     * corresponding properties such as `note` and `fields`.
+     */
+    source: Source;
+    /** The role assigned to the currently authorized user. */
+    role: Role;
+  }
 }
+
+/** @deprecated Use Account.Field */
+export type AccountField = Account.Field;
+
+/** @deprecated Use Account.Source */
+export type AccountSource = Account.Source;
+
+/** @deprecated Use Account.Credentials */
+export type AccountCredentials = Account.Credentials;

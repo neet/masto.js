@@ -53,6 +53,12 @@
       }
     },
     {
+      "files": "./src/mastodon/**/*.ts",
+      "rules": {
+        "@typescript-eslint/no-namespace": "off"
+      }
+    },
+    {
       "files": "examples/**",
       "parserOptions": {
         "project": "./examples/tsconfig.json"

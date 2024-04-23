@@ -1,7 +1,5 @@
 import { type TagHistory } from "./tag";
 
-export type PreviewCardType = "link" | "photo" | "video" | "rich";
-
 /**
  * Represents a rich preview card that is generated using OpenGraph tags from a URL.
  * @see https://docs.joinmastodon.org/entities/PreviewCard
@@ -14,7 +12,7 @@ export interface PreviewCard {
   /** Description of preview. */
   description: string;
   /** The type of the preview card. */
-  type: PreviewCardType;
+  type: PreviewCard.Type;
   /** Blurhash */
   blurhash: string;
 
@@ -37,6 +35,13 @@ export interface PreviewCard {
   /** Used for photo embeds, instead of custom `html`. */
   embedUrl: string;
 }
+
+export namespace PreviewCard {
+  export type Type = "link" | "photo" | "video" | "rich";
+}
+
+/** @deprecated Use PreviewCard.Type */
+export type PreviewCardType = PreviewCard.Type;
 
 export interface TrendLink extends PreviewCard {
   history: TagHistory[];
