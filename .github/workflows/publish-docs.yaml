@@ -22,14 +22,14 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "20.6.1"
-          cache: yarn
+          cache: npm
 
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
 
-      - run: yarn install --forzen-lockfiles
-      - run: yarn docs:build
+      - run: npm ci
+      - run: npm run docs:build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1

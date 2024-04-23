@@ -1,6 +1,5 @@
 {
   "search.exclude": {
-    "**/.yarn": true,
     "**/docs": true
   },
   "typescript.tsdk": "node_modules/typescript/lib"
