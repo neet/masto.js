@@ -69,7 +69,7 @@
     "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-node-globals": "^1.4.0",
-    "semantic-release": "^22.0.5",
+    "semantic-release": "^23.0.8",
     "size-limit": "^11.1.2",
     "ts-jest": "^29.1.2",
     "tslib": "^2.6.2",
