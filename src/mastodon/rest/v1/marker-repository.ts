@@ -1,9 +1,5 @@
 import { type HttpMetaParams } from "../../../interfaces";
-import {
-  type Marker,
-  type MarkerItem,
-  type MarkerTimeline,
-} from "../../entities/v1";
+import { type Marker } from "../../entities/v1";
 
 export interface FetchMarkersParams {
   /**
@@ -11,12 +7,12 @@ export interface FetchMarkersParams {
    * String enum anyOf `home`, `notifications`.
    * If not provided, an empty object will be returned.
    */
-  readonly timeline?: readonly MarkerTimeline[];
+  readonly timeline?: readonly Marker.Timeline[];
 }
 
 export type CreateMarkersParams = {
   /** ID of the last status read in the timeline. */
-  readonly [key in MarkerTimeline]?: Pick<MarkerItem, "lastReadId">;
+  readonly [key in Marker.Timeline]?: Pick<Marker.Item, "lastReadId">;
 };
 
 export interface MarkerRepository {

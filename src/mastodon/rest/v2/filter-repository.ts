@@ -1,19 +1,15 @@
 import { type HttpMetaParams } from "../../../interfaces";
 import { type FilterKeyword, type FilterStatus } from "../../entities/v1";
-import {
-  type Filter,
-  type FilterAction,
-  type FilterContext,
-} from "../../entities/v2";
+import { type Filter } from "../../entities/v2";
 import { type Paginator } from "../../paginator";
 
 export interface CreateFilterParams {
   /** String. The name of the filter group. */
   readonly title: string;
   /** Array of String. Where the filter should be applied. Specify at least one of home, notifications, public, thread, account. */
-  readonly context: readonly FilterContext[] | null;
+  readonly context: readonly Filter.Context[] | null;
   /** String. The policy to be applied when the filter is matched. Specify warn or hide. */
-  readonly filterAction?: FilterAction | null;
+  readonly filterAction?: Filter.Action | null;
   /** Integer. How many seconds from now should the filter expire? */
   readonly expiresIn?: number | null;
 
@@ -29,9 +25,9 @@ export interface UpdateFilterParams {
   /** String. The name of the filter group. */
   readonly title?: string;
   /** Array of String. Where the filter should be applied. Specify at least one of home, notifications, public, thread, account. */
-  readonly context?: readonly FilterContext[] | null;
+  readonly context?: readonly Filter.Context[] | null;
   /** String. The policy to be applied when the filter is matched. Specify warn or hide. */
-  readonly filterAction?: FilterAction | null;
+  readonly filterAction?: Filter.Action | null;
   /** Integer. How many seconds from now should the filter expire? */
   readonly expiresIn?: number | null;
 

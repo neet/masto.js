@@ -1,5 +1,5 @@
 import { type HttpMetaParams } from "../../../interfaces";
-import { type Filter, type FilterContext } from "../../entities/v1";
+import { type Filter } from "../../entities/v1";
 import { type Paginator } from "../../paginator";
 
 export interface CreateFilterParams {
@@ -9,7 +9,7 @@ export interface CreateFilterParams {
    * Array of enumerable strings `home`, `notifications`, `public`, `thread`.
    * At least one context must be specified.
    */
-  readonly context: readonly FilterContext[] | null;
+  readonly context: readonly Filter.Context[] | null;
   /** Should the server irreversibly drop matching entities from home and notifications? */
   readonly irreversible?: boolean | null;
   /** Consider word boundaries? */

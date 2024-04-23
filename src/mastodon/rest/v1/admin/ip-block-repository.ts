@@ -1,6 +1,6 @@
 import { type HttpMetaParams } from "../../../../interfaces";
 import { type Admin } from "../../../entities/v1";
-import { type IpBlockSeverity } from "../../../entities/v1/admin";
+import { type IpBlock } from "../../../entities/v1/admin";
 import { type Paginator } from "../../../paginator";
 
 export interface ListIpBlocksParams {
@@ -12,7 +12,7 @@ export interface CreateIpBlockParams {
   /** The IP address and prefix to block. */
   readonly ip?: string | null;
   /** The policy to apply to this IP range. */
-  readonly severity: IpBlockSeverity;
+  readonly severity: IpBlock.Severity;
   /** The reason for this IP block. */
   readonly comment?: string | null;
   /** The number of seconds in which this IP block will expire. */
@@ -23,7 +23,7 @@ export interface UpdateIpBlockParams {
   /** The IP address and prefix to block. */
   readonly ip?: string | null;
   /** The policy to apply to this IP range. */
-  readonly severity?: IpBlockSeverity | null;
+  readonly severity?: IpBlock.Severity | null;
   /** The reason for this IP block. */
   readonly comment?: string | null;
   /** The number of seconds in which this IP block will expire. */

@@ -1,5 +1,3 @@
-export type ListRepliesPolicy = "followed" | "list" | "none";
-
 /**
  * Represents a list of some users that the authenticated user follows.
  * @see https://docs.joinmastodon.org/entities/list/
@@ -18,7 +16,14 @@ export interface List {
    *
    * `none` = Show replies to no one
    */
-  repliesPolicy: ListRepliesPolicy;
+  repliesPolicy: List.RepliesPolicy;
   /** https://github.com/mastodon/mastodon/pull/22048/files */
   exclusive: boolean;
 }
+
+export namespace List {
+  export type RepliesPolicy = "followed" | "list" | "none";
+}
+
+/** @deprecated Use List.RepliesPolicy */
+export type ListRepliesPolicy = List.RepliesPolicy;

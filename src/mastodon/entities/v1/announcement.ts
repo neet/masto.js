@@ -2,18 +2,6 @@ import { type CustomEmoji } from "./custom-emoji";
 import { type Reaction } from "./reaction";
 import { type Tag } from "./tag";
 
-export interface AnnouncementAccount {
-  id: string;
-  username: string;
-  url: string;
-  acct: string;
-}
-
-export interface AnnouncementStatus {
-  id: string;
-  url: string;
-}
-
 export interface Announcement {
   id: string;
   content: string;
@@ -22,9 +10,29 @@ export interface Announcement {
   allDay: boolean;
   publishedAt: string;
   updatedAt: string;
-  mentions: AnnouncementAccount[];
-  statuses: AnnouncementStatus[];
+  mentions: Announcement.Account[];
+  statuses: Announcement.Status[];
   tags: Tag[];
   emojis: CustomEmoji[];
   reactions: Reaction[];
 }
+
+export namespace Announcement {
+  export interface Account {
+    id: string;
+    username: string;
+    url: string;
+    acct: string;
+  }
+
+  export interface Status {
+    id: string;
+    url: string;
+  }
+}
+
+/** @deprecated Use Announcement.Account */
+export type AnnouncementAccount = Announcement.Account;
+
+/** @deprecated Use Announcement.Status */
+export type AnnouncementStatus = Announcement.Status;

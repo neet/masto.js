@@ -1,14 +1,5 @@
 import { type CustomEmoji } from "./custom-emoji";
 
-export interface PollOption {
-  /** The text value of the poll option. String. */
-  title: string;
-  /** The number of received votes for this option. Number, or null if results are not published yet. */
-  votesCount?: number;
-  /** Custom emoji to be used for rendering poll options. */
-  emojis: CustomEmoji[];
-}
-
 /**
  * Represents a poll attached to a status.
  * @see https://docs.joinmastodon.org/entities/poll/
@@ -34,5 +25,19 @@ export interface Poll {
    */
   ownVotes?: number[] | null;
   /** Possible answers for the poll. */
-  options: PollOption[];
+  options: Poll.Option[];
 }
+
+export namespace Poll {
+  export interface Option {
+    /** The text value of the poll option. String. */
+    title: string;
+    /** The number of received votes for this option. Number, or null if results are not published yet. */
+    votesCount?: number;
+    /** Custom emoji to be used for rendering poll options. */
+    emojis: CustomEmoji[];
+  }
+}
+
+/** @deprecated Use Poll.Option */
+export type PollOption = Poll.Option;

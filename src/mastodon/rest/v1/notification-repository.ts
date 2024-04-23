@@ -1,15 +1,15 @@
 import { type HttpMetaParams } from "../../../interfaces";
-import { type Notification, type NotificationType } from "../../entities/v1";
+import { type Notification } from "../../entities/v1";
 import { type Paginator } from "../../paginator";
 import { type DefaultPaginationParams } from "../../repository";
 
 export interface ListNotificationsParams extends DefaultPaginationParams {
   /** Instead of specifying every known type to exclude, you can specify only the types you want. */
-  readonly types?: readonly NotificationType[] | null;
+  readonly types?: readonly Notification.Type[] | null;
   /** ID of the account */
   readonly accountId?: string | null;
   /** Array of notifications to exclude (Allowed values: "follow", "favourite", "reblog", "mention") */
-  readonly excludeTypes?: readonly NotificationType[] | null;
+  readonly excludeTypes?: readonly Notification.Type[] | null;
 }
 
 export interface NotificationRepository {

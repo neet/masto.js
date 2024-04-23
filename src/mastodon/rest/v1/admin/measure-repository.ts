@@ -1,6 +1,6 @@
 import { type HttpMetaParams } from "../../../../interfaces";
 import { type Admin } from "../../../entities/v1";
-import { type MeasureKey } from "../../../entities/v1/admin";
+import { type Measure } from "../../../entities/v1/admin";
 
 export interface FetchMeasureParams {
   /**
@@ -34,7 +34,7 @@ export interface FetchMeasureParams {
    *
    * `instance_followers` = Total local accounts followed by accounts from a remote domain within the time period
    */
-  readonly keys: readonly MeasureKey[];
+  readonly keys: readonly Measure.Key[];
   /** String (ISO 8601 Datetime). The start date for the time period. If a time is provided, it will be ignored. */
   readonly startAt: string;
   /** String (ISO 8601 Datetime). The end date for the time period. If a time is provided, it will be ignored. */

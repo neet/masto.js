@@ -1,10 +1,3 @@
-export type FilterContext =
-  | "home"
-  | "notifications"
-  | "public"
-  | "thread"
-  | "account";
-
 /**
  * Represents a user-defined filter for determining which statuses should not be shown to the user.
  * @see https://docs.joinmastodon.org/entities/filter/
@@ -15,7 +8,7 @@ export interface Filter {
   /** The text to be filtered. */
   phrase: string;
   /** The contexts in which the filter should be applied. */
-  context: FilterContext[];
+  context: Filter.Context[];
   /** When the filter should no longer be applied */
   expiresAt?: string | null;
   /** Should matching entities in home and notifications be dropped by the server? */
@@ -23,3 +16,15 @@ export interface Filter {
   /** Should the filter consider word boundaries? */
   wholeWord: boolean;
 }
+
+export namespace Filter {
+  export type Context =
+    | "home"
+    | "notifications"
+    | "public"
+    | "thread"
+    | "account";
+}
+
+/** @deprecated Use Filter.Context instead */
+export type FilterContext = Filter.Context;

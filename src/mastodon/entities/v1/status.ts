@@ -8,26 +8,6 @@ import { type PreviewCard } from "./preview-card";
 import { type Tag } from "./tag";
 
 /**
- * Represents a mention of a user within the content of a status.
- * @see https://docs.joinmastodon.org/entities/mention/
- */
-export interface StatusMention {
-  /** The account id of the mentioned user. */
-  id: string;
-  /** The username of the mentioned user. */
-  username: string;
-  /** The location of the mentioned user's profile. */
-  url: string;
-  /**
-   * The WebFinger acct: URI of the mentioned user.
-   * Equivalent to username for local users, or `username@domain` for remote users.
-   */
-  acct: string;
-}
-
-export type StatusVisibility = "public" | "unlisted" | "private" | "direct";
-
-/**
  * Represents a status posted by an account.
  * @see https://docs.joinmastodon.org/entities/status/
  */
@@ -45,7 +25,7 @@ export interface Status {
   /** HTML-encoded status content. */
   content: string;
   /** Visibility of this status. */
-  visibility: StatusVisibility;
+  visibility: Status.Visibility;
   /** Is this status marked as sensitive content? */
   sensitive: boolean;
   /** Subject or summary line, below which status content is collapsed until expanded. */
@@ -56,7 +36,7 @@ export interface Status {
   application: Application;
 
   /** Mentions of users within the status content. */
-  mentions: StatusMention[];
+  mentions: Status.Mention[];
   /** Hashtags used within the status content. */
   tags: Tag[];
   /** Custom emoji to be used when rendering status content. */
@@ -103,3 +83,31 @@ export interface Status {
   /** Have you pinned this status? Only appears if the status is pin-able. */
   pinned?: boolean | null;
 }
+
+export namespace Status {
+  /**
+   * Represents a mention of a user within the content of a status.
+   * @see https://docs.joinmastodon.org/entities/mention/
+   */
+  export interface Mention {
+    /** The account id of the mentioned user. */
+    id: string;
+    /** The username of the mentioned user. */
+    username: string;
+    /** The location of the mentioned user's profile. */
+    url: string;
+    /**
+     * The WebFinger acct: URI of the mentioned user.
+     * Equivalent to username for local users, or `username@domain` for remote users.
+     */
+    acct: string;
+  }
+
+  export type Visibility = "public" | "unlisted" | "private" | "direct";
+}
+
+/** @deprecated Use Status.Visibility */
+export type StatusVisibility = Status.Visibility;
+
+/** @deprecated Use Status.Mention */
+export type StatusMention = Status.Mention;

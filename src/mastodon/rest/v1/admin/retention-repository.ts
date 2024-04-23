@@ -1,6 +1,6 @@
 import { type HttpMetaParams } from "../../../../interfaces";
 import { type Admin } from "../../../entities/v1";
-import { type CohortFrequency } from "../../../entities/v1/admin/cohort";
+import { type Cohort } from "../../../entities/v1/admin/cohort";
 
 export interface CreateRetentionParams {
   /** String (ISO 8601 Datetime). The start date for the time period. If a time is provided, it will be ignored. */
@@ -8,7 +8,7 @@ export interface CreateRetentionParams {
   /** String (ISO 8601 Datetime). The end date for the time period. If a time is provided, it will be ignored. */
   readonly endAt: string;
   /** String (Enumerable oneOf). Specify whether to use `day` or `month` buckets. If any other value is provided, defaults to `day`. */
-  readonly frequency: CohortFrequency;
+  readonly frequency: Cohort.Frequency;
 }
 
 export interface RetentionRepository {

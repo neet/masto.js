@@ -1,6 +1,6 @@
 import { type HttpMetaParams } from "../../../../interfaces";
 import { type Admin } from "../../../entities/v1";
-import { type DimensionKey } from "../../../entities/v1/admin";
+import { type Dimension } from "../../../entities/v1/admin";
 
 export interface FetchDimensionParams {
   /**
@@ -24,7 +24,7 @@ export interface FetchDimensionParams {
    *
    * - `instance_languages` = Most-used languages from a remote server
    */
-  readonly keys: readonly DimensionKey[];
+  readonly keys: readonly Dimension.Key[];
   /** String (ISO 8601 Datetime). The start date for the time period. If a time is provided, it will be ignored. */
   readonly startAt?: string | null;
   /** String (ISO 8601 Datetime). The end date for the time period. If a time is provided, it will be ignored. */

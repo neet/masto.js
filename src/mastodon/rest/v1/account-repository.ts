@@ -1,9 +1,6 @@
 import { type HttpMetaParams } from "../../../interfaces";
 import {
   type Account,
-  type AccountCredentials,
-  type AccountField,
-  type AccountSource,
   type FamiliarFollowers,
   type FeaturedTag,
   type IdentityProof,
@@ -48,7 +45,7 @@ export interface UpdateCredentialsParams {
   /** Whether manual approval of follow requests is required. */
   readonly locked?: boolean | null;
   readonly source?: Partial<
-    Pick<AccountSource, "privacy" | "sensitive" | "language">
+    Pick<Account.Source, "privacy" | "sensitive" | "language">
   > | null;
   /** Whether you want to hide followers and followings on your profile  */
   readonly hideCollections?: boolean | null;
@@ -56,7 +53,7 @@ export interface UpdateCredentialsParams {
    * Profile metadata `name` and `value`.
    * (By default, max 4 fields and 255 characters per property/value)
    */
-  readonly fieldsAttributes?: AccountField[] | null;
+  readonly fieldsAttributes?: Account.Field[] | null;
 }
 
 export interface MuteAccountParams {
@@ -299,7 +296,7 @@ export interface AccountRepository {
    * @return the user's own Account with Source
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  verifyCredentials(meta?: HttpMetaParams): Promise<AccountCredentials>;
+  verifyCredentials(meta?: HttpMetaParams): Promise<Account.Credentials>;
 
   /**
    *  Update the user's display and preferences.
@@ -310,7 +307,7 @@ export interface AccountRepository {
   updateCredentials(
     params: UpdateCredentialsParams,
     meta?: HttpMetaParams<"multipart-form">,
-  ): Promise<AccountCredentials>;
+  ): Promise<Account.Credentials>;
 
   relationships: {
     /**
