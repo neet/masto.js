@@ -1,42 +1,6 @@
 import { type Account } from "./account";
 import { type Rule } from "./rule";
 
-export interface InstanceStatusesConfiguration {
-  maxCharacters: number;
-  maxMediaAttachments: number;
-  charactersReservedPerUrl: number;
-}
-
-export interface InstanceMediaAttachmentsConfiguration {
-  supportedMimeTypes: string[];
-  imageSizeLimit: number;
-  imageMatrixLimit: number;
-  videoSizeLimit: number;
-  videoFrameRateLimit: number;
-  videoMatrixLimit: number;
-}
-
-export interface InstancePollsConfiguration {
-  maxOptions: number;
-  maxCharactersPerOption: number;
-  minExpiration: number;
-  maxExpiration: number;
-}
-
-export interface InstanceAccountsConfiguration {
-  maxFeaturedTags: number;
-}
-
-/**
- * @see https://github.com/mastodon/mastodon/pull/16485
- */
-export interface InstanceConfiguration {
-  statuses: InstanceStatusesConfiguration;
-  mediaAttachments: InstanceMediaAttachmentsConfiguration;
-  polls: InstancePollsConfiguration;
-  accounts: InstanceAccountsConfiguration;
-}
-
 /**
  * Represents the software instance of Mastodon running on this domain.
  * @see https://docs.joinmastodon.org/entities/instance/
@@ -61,13 +25,13 @@ export interface Instance {
   /** Whether registrations require moderator approval. */
   approvalRequired: boolean;
   /** URLs of interest for clients apps. */
-  urls: InstanceURLs;
+  urls: Instance.Urls;
   /** Statistics about how much information the instance contains. */
-  stats: InstanceStats;
+  stats: Instance.Stats;
   /** Whether invitation in enabled */
   invitesEnabled: boolean;
   /** List various values like file size limits and supported mime types */
-  configuration: InstanceConfiguration;
+  configuration: Instance.Configuration;
 
   /** Banner image for the website. */
   thumbnail?: string | null;
@@ -77,16 +41,78 @@ export interface Instance {
   rules?: Rule[] | null;
 }
 
-export interface InstanceURLs {
-  /** WebSockets address for push streaming. String (URL). */
-  streamingApi: string;
+export namespace Instance {
+  /**
+   * @see https://github.com/mastodon/mastodon/pull/16485
+   */
+  export interface Configuration {
+    statuses: Configuration.Statuses;
+    mediaAttachments: Configuration.MediaAttachments;
+    polls: Configuration.Polls;
+    accounts: Configuration.Accounts;
+  }
+
+  export namespace Configuration {
+    export interface Statuses {
+      maxCharacters: number;
+      maxMediaAttachments: number;
+      charactersReservedPerUrl: number;
+    }
+
+    export interface MediaAttachments {
+      supportedMimeTypes: string[];
+      imageSizeLimit: number;
+      imageMatrixLimit: number;
+      videoSizeLimit: number;
+      videoFrameRateLimit: number;
+      videoMatrixLimit: number;
+    }
+
+    export interface Polls {
+      maxOptions: number;
+      maxCharactersPerOption: number;
+      minExpiration: number;
+      maxExpiration: number;
+    }
+
+    export interface Accounts {
+      maxFeaturedTags: number;
+    }
+  }
+
+  export interface Urls {
+    /** WebSockets address for push streaming. String (URL). */
+    streamingApi: string;
+  }
+
+  export interface Stats {
+    /** Users registered on this instance. Number. */
+    userCount: number;
+    /** Statuses authored by users on instance. Number. */
+    statusCount: number;
+    /** Domains federated with this instance. Number. */
+    domainCount: number;
+  }
 }
 
-export interface InstanceStats {
-  /** Users registered on this instance. Number. */
-  userCount: number;
-  /** Statuses authored by users on instance. Number. */
-  statusCount: number;
-  /** Domains federated with this instance. Number. */
-  domainCount: number;
-}
+/** @deprecated Use Instance.Configuration */
+export type InstanceConfiguration = Instance.Configuration;
+
+/** @deprecated Use Instance.Configuration.Statuses */
+export type InstanceStatusesConfiguration = Instance.Configuration.Statuses;
+
+/** @deprecated Use Instance.Configuration.MediaAttachments */
+export type InstanceMediaAttachmentsConfiguration =
+  Instance.Configuration.MediaAttachments;
+
+/** @deprecated Use Instance.Configuration.Polls */
+export type InstancePollsConfiguration = Instance.Configuration.Polls;
+
+/** @deprecated Use Instance.Configuration.Accounts */
+export type InstanceAccountsConfiguration = Instance.Configuration.Accounts;
+
+/** @deprecated Use Instance.Stats */
+export type InstanceStats = Instance.Stats;
+
+/** @deprecated Use Instance.Urls */
+export type InstanceURLs = Instance.Urls;

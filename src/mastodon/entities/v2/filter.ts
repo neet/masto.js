@@ -1,15 +1,6 @@
 import { type FilterKeyword } from "../v1/filter-keyword";
 import { type FilterStatus } from "../v1/filter-status";
 
-export type FilterContext =
-  | "home"
-  | "notifications"
-  | "public"
-  | "thread"
-  | "account";
-
-export type FilterAction = "warn" | "hide";
-
 /**
  * Represents a user-defined filter for determining which statuses should not be shown to the user.
  * @see https://docs.joinmastodon.org/entities/filter/
@@ -20,7 +11,7 @@ export interface Filter {
   /** A title given by the user to name the filter. */
   title: string;
   /** The contexts in which the filter should be applied. */
-  context: FilterContext[];
+  context: Filter.Context[];
   /** When the filter should no longer be applied */
   expiresAt?: string | null;
   /**
@@ -30,9 +21,26 @@ export interface Filter {
    *
    * `hide` = do not show this status if it is received
    */
-  filterAction: FilterAction;
+  filterAction: Filter.Action;
   /** The keywords grouped under this filter. */
   keywords: FilterKeyword[];
   /** The statuses grouped under this filter. */
   statuses: FilterStatus[];
 }
+
+export namespace Filter {
+  export type Context =
+    | "home"
+    | "notifications"
+    | "public"
+    | "thread"
+    | "account";
+
+  export type Action = "warn" | "hide";
+}
+
+/** @deprecated Use Filter.Context */
+export type FilterContext = Filter.Context;
+
+/** @deprecated Use Filter.Action */
+export type FilterAction = Filter.Action;

@@ -1,5 +1,5 @@
 import { type Account } from "../account";
-import { type ReportCategory } from "../report";
+import { type Report as PublicReport } from "../report";
 import { type Rule } from "../rule";
 import { type Status } from "../status";
 
@@ -15,7 +15,7 @@ export interface Report {
   /** When an action was taken, if this report is currently resolved. */
   actionTakenAt?: string | null;
   /** The category under which the report is classified */
-  category: ReportCategory;
+  category: PublicReport.Category;
   /** An optional reason for reporting. */
   comment: string;
   /** Whether a report was forwarded to a remote instance. */
