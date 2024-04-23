@@ -13,7 +13,6 @@
           devShell = mkShell {
             packages = [
               nodejs_20
-              yarn
             ];
           };
         }

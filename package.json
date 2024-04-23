@@ -28,7 +28,7 @@
     "lint:eslint": "eslint --ext ts --report-unused-disable-directives --cache '{src,tests,test-utils}/**/*'",
     "lint:spellcheck": "cspell --quiet '{src,test,test-utils}/**/*.{ts,tsx,js,json,md}'",
     "build": "rollup -c rollup.config.js",
-    "prepublishOnly": "yarn run build",
+    "prepublishOnly": "npm run build",
     "docs:build": "typedoc ./src/index.ts && touch ./docs/.nojekyll",
     "purge:cache": "rm -rf ./node_modules/.cache/masto"
   },
