@@ -6,6 +6,15 @@
 * **deps-dev:** bump @typescript-eslint/parser from 7.1.0 to 7.5.0 ([a9f1c43](https://github.com/neet/masto.js/commit/a9f1c43cfedc977b1da0a4b0869f79f39bf3e2a7))
 * **deps:** bump tar from 6.2.0 to 6.2.1 ([dcb8307](https://github.com/neet/masto.js/commit/dcb8307e39953781c2801e0253db37ebec375c54))
 
+## [6.7.3](https://github.com/neet/masto.js/compare/v6.7.2...v6.7.3) (2024-04-23)
+
+
+### Bug Fixes
+
+* Fix BaseCreateTokenParams["scope"] type to accept null ([ab197c5](https://github.com/neet/masto.js/commit/ab197c5155c956e28656e9eb0ac0f8ad96df5d34))
+* Run npm publish from release-please ([4e6b5af](https://github.com/neet/masto.js/commit/4e6b5af9b2234bee2048885e61f2513a508d8c4a))
+* Use personal access token on release-please CI ([2c6c0be](https://github.com/neet/masto.js/commit/2c6c0be46c0d00317f337796fa5d8e68b51c01af))
+
 ## [6.7.1](https://github.com/neet/masto.js/compare/v6.7.0...v6.7.1) (2024-04-06)
 
 
