@@ -6,7 +6,7 @@ export interface CreateDomainBlockParams {
   /** The domain to block federation required*/
   readonly domain: string;
   /** Whether to apply a silence, suspend, or noop to the domain?*/
-  readonly severity?: Admin.DomainBlockSeverity;
+  readonly severity?: Admin.DomainBlock.Severity;
   /** Whether media attachments should be rejected*/
   readonly rejectMedia?: boolean;
   /** Whether reports from this domain should be rejected*/

@@ -1,9 +1,5 @@
 import { type HttpMetaParams } from "../../../../interfaces";
-import {
-  type WebPushSubscription,
-  type WebPushSubscriptionAlerts,
-  type WebPushSubscriptionPolicy,
-} from "../../../entities/v1";
+import { type WebPushSubscription } from "../../../entities/v1";
 
 export interface CreateWebPushSubscriptionParams {
   readonly subscription: {
@@ -18,9 +14,9 @@ export interface CreateWebPushSubscriptionParams {
     };
   };
   readonly data?: {
-    readonly alerts?: Partial<WebPushSubscriptionAlerts> | null;
+    readonly alerts?: Partial<WebPushSubscription.Alerts> | null;
   } | null;
-  readonly policy: WebPushSubscriptionPolicy;
+  readonly policy: WebPushSubscription.Policy;
 }
 
 export type UpdateWebPushSubscriptionParams = Pick<

@@ -7,7 +7,6 @@ import {
   type Status,
   type StatusEdit,
   type StatusSource,
-  type StatusVisibility,
   type Translation,
 } from "../../entities/v1";
 import { type Paginator } from "../../paginator";
@@ -20,7 +19,7 @@ export interface CreateStatusParamsBase {
   /** Text to be shown as a warning or subject before the actual content. Statuses are generally collapsed behind this field. */
   readonly spoilerText?: string | null;
   /** Visibility of the posted status. Enumerable oneOf public, unlisted, private, direct. */
-  readonly visibility?: StatusVisibility | null;
+  readonly visibility?: Status.Visibility | null;
   /** ISO 639 language code for this status. */
   readonly language?: string | null;
   /** https://github.com/mastodon/mastodon/pull/18350 */
@@ -81,7 +80,7 @@ export type UpdateStatusParams = CreateStatusParams & {
 
 export interface ReblogStatusParams {
   /** any visibility except limited or direct (i.e. public, unlisted, private). Defaults to public. Currently unused in UI. */
-  readonly visibility: StatusVisibility;
+  readonly visibility: Status.Visibility;
 }
 
 export interface TranslateStatusParams {

@@ -1,5 +1,5 @@
 import { type HttpMetaParams } from "../../../interfaces";
-import { type Report, type ReportCategory } from "../../entities/v1";
+import { type Report } from "../../entities/v1";
 
 export interface ReportAccountParams {
   /** ID of the account to report */
@@ -11,7 +11,7 @@ export interface ReportAccountParams {
   /** If the account is remote, should the report be forwarded to the remote admin? */
   readonly forward?: boolean | null;
   /** category can be one of: spam, violation, other (default) */
-  readonly category?: ReportCategory | null;
+  readonly category?: Report.Category | null;
   /** must reference rules returned in GET /api/v1/instance */
   readonly ruleIds?: readonly string[] | null;
   /** https://github.com/mastodon/mastodon/pull/25866 */
