@@ -43,15 +43,12 @@
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-typescript": "^11.1.6",
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
     "@size-limit/preset-small-lib": "^11.1.2",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.24",
     "@types/ws": "^8.5.10",
     "@typescript-eslint/eslint-plugin": "^7.5.0",
     "@typescript-eslint/parser": "^7.5.0",
-    "conventional-changelog-conventionalcommits": "^7.0.1",
     "cspell": "^8.6.1",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
@@ -69,7 +66,6 @@
     "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-node-globals": "^1.4.0",
-    "semantic-release": "^22.0.5",
     "size-limit": "^11.1.2",
     "ts-jest": "^29.1.2",
     "tslib": "^2.6.2",
@@ -100,13 +96,8 @@
   "homepage": "https://github.com/neet/masto.js#readme",
   "size-limit": [
     {
-      "limit": "7.5 kB",
+      "limit": "7.0 kB",
       "path": "./dist/index.js"
     }
-  ],
-  "resolutions": {
-    "string-width": "4.2.3",
-    "strip-ansi": "6.0.1",
-    "wrap-ansi": "7.0.0"
-  }
+  ]
 }
