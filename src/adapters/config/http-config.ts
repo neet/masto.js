@@ -2,8 +2,6 @@ import { type HttpConfig, type Serializer } from "../../interfaces";
 import { mergeAbortSignals } from "./merge-abort-signals";
 import { mergeHeadersInit } from "./merge-headers-init";
 
-const DEFAULT_TIMEOUT_MS = 1000 * 300;
-
 export interface MastoHttpConfigProps {
   /**
    * REST API URL for your Mastodon instance.
@@ -18,7 +16,9 @@ export interface MastoHttpConfigProps {
   readonly accessToken?: string;
 
   /**
-   * Timeout in milliseconds.
+   * Timeout configuration
+   *
+   * - A number sets the timeout in milliseconds.
    *
    * Defaults to 1000 * 300 = 300 seconds.
    */
@@ -64,10 +64,6 @@ export class HttpConfigImpl implements HttpConfig {
     return url;
   }
 
-  private createTimeout(): AbortSignal {
-    return AbortSignal.timeout(this.props.timeout ?? DEFAULT_TIMEOUT_MS);
-  }
-
   private mergeHeadersWithDefaults(override: HeadersInit = {}): Headers {
     const headersInit = mergeHeadersInit([
       this.props.requestInit?.headers ?? {},
@@ -85,8 +81,11 @@ export class HttpConfigImpl implements HttpConfig {
   private mergeAbortSignalWithDefaults(
     signal?: AbortSignal | null,
   ): AbortSignal {
-    const timeout = this.createTimeout();
-    const signals: AbortSignal[] = [timeout];
+    const signals: AbortSignal[] = [];
+
+    if (this.props.timeout != undefined) {
+      signals.push(AbortSignal.timeout(this.props.timeout));
+    }
 
     if (this.props.requestInit?.signal) {
       signals.push(this.props.requestInit.signal);

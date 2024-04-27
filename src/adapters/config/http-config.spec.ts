@@ -76,6 +76,26 @@ describe("Config", () => {
     expect(request.signal.aborted).toBe(true);
   });
 
+  it("falls back to default timeout if timeout = undefined (#1097)", () => {
+    jest.spyOn(AbortSignal, "timeout");
+
+    const config = new HttpConfigImpl(
+      {
+        url: "https://mastodon.social",
+        accessToken: "token",
+      },
+      new SerializerNativeImpl(),
+    );
+
+    const requestInit = config.mergeRequestInitWithDefaults();
+    const request = new Request("https://example.com", requestInit);
+
+    expect(request.signal.aborted).toBe(false);
+    expect(AbortSignal.timeout).not.toHaveBeenCalled();
+
+    jest.restoreAllMocks();
+  });
+
   it("resolves HTTP path", () => {
     const config = new HttpConfigImpl(
       {
