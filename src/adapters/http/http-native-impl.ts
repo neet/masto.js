@@ -115,8 +115,9 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       );
     }
 
+    // TODO: Remove this handling when `AbortSignal.any` is shipped
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    if (error != undefined && (error as any).name === "AbortError") {
+    if (error != undefined && (error as any).name === "TimeoutError") {
       return new MastoTimeoutError(`Request timed out`, { cause: error });
     }
 
