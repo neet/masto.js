@@ -16,11 +16,9 @@ export interface MastoHttpConfigProps {
   readonly accessToken?: string;
 
   /**
-   * Timeout configuration
+   * Timeout milliseconds for the fetch request.
    *
-   * - A number sets the timeout in milliseconds.
-   *
-   * Defaults to 1000 * 300 = 300 seconds.
+   * Defaults to browser's default timeout.
    */
   readonly timeout?: number;
 
@@ -95,6 +93,6 @@ export class HttpConfigImpl implements HttpConfig {
       signals.push(signal);
     }
 
-    return mergeAbortSignals(signals);
+    return signals.length === 1 ? signals[0] : mergeAbortSignals(signals);
   }
 }
