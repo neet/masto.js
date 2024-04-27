@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.7.4](https://github.com/neet/masto.js/compare/v6.7.3...v6.7.4) (2024-04-27)
+
+
+### Bug Fixes
+
+* Change `timeout: undefined` to fall back to Fetch API default timeout ([dfbaaa6](https://github.com/neet/masto.js/commit/dfbaaa6577d13e3be331c7ac76e5320035fe2775))
+
 ## [6.7.3](https://github.com/neet/masto.js/compare/v6.7.2...v6.7.3) (2024-04-23)
 
 
