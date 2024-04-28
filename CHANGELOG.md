@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.7.5](https://github.com/neet/masto.js/compare/v6.7.4...v6.7.5) (2024-04-27)
+
+
+### Bug Fixes
+
+* Remove unnecessary merging of AbortSignal to avoid overhead ([8967643](https://github.com/neet/masto.js/commit/896764329a9036c2190afab00ab4422f9aba3299))
+
 ## [6.7.4](https://github.com/neet/masto.js/compare/v6.7.3...v6.7.4) (2024-04-27)
 
 
