@@ -36,6 +36,8 @@ export interface PreviewCard {
   image?: string | null;
   /** Used for photo embeds, instead of custom `html`. */
   embedUrl: string;
+  /** @see https://github.com/mastodon/mastodon/pull/27503 */
+  language?: string;
 }
 
 export interface TrendLink extends PreviewCard {
