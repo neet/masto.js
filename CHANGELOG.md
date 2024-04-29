@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.7.6](https://github.com/neet/masto.js/compare/v6.7.5...v6.7.6) (2024-04-29)
+
+
+### Bug Fixes
+
+* Add missing `language` attribute to PreviewCard type ([6c6fdef](https://github.com/neet/masto.js/commit/6c6fdef48c56bd7314751f0ae93763156fb78224))
+* Restore missing `skipPolling` param ([620c895](https://github.com/neet/masto.js/commit/620c8956bd32664532a1d58b81c22344ca9cee2e))
+
 ## [6.7.5](https://github.com/neet/masto.js/compare/v6.7.4...v6.7.5) (2024-04-27)
 
 
