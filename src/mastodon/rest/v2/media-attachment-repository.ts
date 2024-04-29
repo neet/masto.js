@@ -25,7 +25,7 @@ export interface MediaAttachmentRepository {
    * @see https://docs.joinmastodon.org/methods/statuses/media/
    */
   create(
-    params: CreateMediaAttachmentParams,
+    params: CreateMediaAttachmentParams & CreateMediaAttachmentExtraParams,
     meta?: HttpMetaParams<"multipart-form">,
   ): Promise<MediaAttachment>;
 }
