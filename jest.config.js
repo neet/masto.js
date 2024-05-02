@@ -1,5 +1,12 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 export default {
+  extensionsToTreatAsEsm: [".ts", ".tsx"],
+  collectCoverageFrom: [
+    "src/**/*.ts",
+    "!src/**/index.ts",
+    "!src/**/*.spec.ts",
+    "!**/__mocks__/**",
+  ],
   projects: [
     {
       displayName: "unit",
@@ -27,5 +34,4 @@ export default {
       setupFilesAfterEnv: ["<rootDir>/test-utils/jest-setup-after-env.ts"],
     },
   ],
-  collectCoverageFrom: ["src/**/*.ts", "!src/**/*.spec.ts", "!**/__mocks__/**"],
 };
