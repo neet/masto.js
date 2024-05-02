@@ -70,7 +70,7 @@
     "ts-jest": "^29.1.2",
     "tslib": "^2.6.2",
     "typedoc": "^0.25.12",
-    "typescript": "^5.3.3",
+    "typescript": "^5.4.5",
     "undici": "^6.15.0"
   },
   "files": [
