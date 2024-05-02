@@ -38,7 +38,7 @@ jobs:
           npm run test:unit
 
       - name: Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           flags: unit
           token: ${{ secrets.CODECOV_TOKEN }}
@@ -78,7 +78,7 @@ jobs:
         run: docker compose down
 
       - name: Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           flags: e2e
           token: ${{ secrets.CODECOV_TOKEN }}
