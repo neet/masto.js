@@ -25,7 +25,7 @@ export class ExponentialBackoff {
       throw new ExponentialBackoffError(this.attempts);
     }
 
-    await sleep(this.getTimeout());
+    await sleep(this.timeout);
     this.attempts++;
   }
 
@@ -45,7 +45,7 @@ export class ExponentialBackoff {
     return this.props.maxAttempts ?? Number.POSITIVE_INFINITY;
   }
 
-  getTimeout(): number {
+  private get timeout(): number {
     return this.factor * this.base ** this.attempts;
   }
 }

@@ -26,8 +26,6 @@ export class WebSocketSubscription implements mastodon.streaming.Subscription {
     while (this.connector.canAcquire()) {
       this.connection = await this.connector.acquire();
 
-      const messages = toAsyncIterable(this.connection);
-
       const data = this.serializer.serialize("json", {
         type: "subscribe",
         stream: this.stream,
@@ -37,8 +35,15 @@ export class WebSocketSubscription implements mastodon.streaming.Subscription {
       this.logger?.log("debug", "↑ WEBSOCKET", data);
       this.connection.send(data);
 
-      for await (const event of this.transformIntoEvents(messages)) {
-        if (!this.matches(event)) continue;
+      const messages = toAsyncIterable(this.connection);
+
+      for await (const message of messages) {
+        const event = await this.parseMessage(message.data as string);
+
+        if (!this.test(event)) {
+          continue;
+        }
+
         this.logger?.log("debug", "↓ WEBSOCKET", event);
         yield event;
       }
@@ -70,22 +75,13 @@ export class WebSocketSubscription implements mastodon.streaming.Subscription {
     this.unsubscribe();
   }
 
-  private matches(event: mastodon.streaming.Event): boolean {
+  private test(event: mastodon.streaming.Event): boolean {
     // subscribe("hashtag", { tag: "foo" }) -> ["hashtag", "foo"]
     // subscribe("list", { list: "foo" })   -> ["list", "foo"]
     const params = this.params ?? {};
     const extra = Object.values(params) as string[];
     const stream = [this.stream, ...extra];
     return stream.every((s) => event.stream.includes(s));
-  }
-
-  private async *transformIntoEvents(
-    messages: AsyncIterable<WebSocket.MessageEvent>,
-  ) {
-    for await (const message of messages) {
-      const event = await this.parseMessage(message.data as string);
-      yield event;
-    }
   }
 
   private async parseMessage(
