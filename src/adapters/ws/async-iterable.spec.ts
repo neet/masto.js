@@ -1,5 +1,5 @@
 import getPort from "get-port";
-import { WebSocket, WebSocketServer } from "ws";
+import { WebSocket, WebSocketServer } from "isomorphic-ws";
 
 import { toAsyncIterable } from "./async-iterable";
 import { waitForOpen } from "./wait-for-events";

@@ -1,4 +1,4 @@
-import WebSocket from "ws";
+import WebSocket from "isomorphic-ws";
 
 export function waitForOpen(ws: WebSocket): Promise<void> {
   if (ws.readyState === WebSocket.OPEN) {

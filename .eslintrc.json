@@ -49,6 +49,17 @@
         "@typescript-eslint/consistent-type-imports": [
           "error",
           { "prefer": "type-imports", "fixStyle": "inline-type-imports" }
+        ],
+        "no-restricted-imports": [
+          "error",
+          {
+            "paths": [
+              {
+                "name": "ws",
+                "message": "Use `isomophic-ws` instead."
+              }
+            ]
+          }
         ]
       }
     },
