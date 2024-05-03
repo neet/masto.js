@@ -21,7 +21,7 @@ export class WebSocketConnectorImpl implements WebSocketConnector {
   private queue: PromiseWithResolvers<WebSocket>[] = [];
   private backoff: ExponentialBackoff;
 
-  private disableRetry = false;
+  private closed = false;
   private initialized = false;
 
   constructor(
@@ -34,7 +34,7 @@ export class WebSocketConnectorImpl implements WebSocketConnector {
   }
 
   canAcquire(): boolean {
-    return !this.disableRetry;
+    return !this.closed;
   }
 
   async acquire(): Promise<WebSocket> {
@@ -50,7 +50,7 @@ export class WebSocketConnectorImpl implements WebSocketConnector {
   }
 
   close(): void {
-    this.disableRetry = true;
+    this.closed = true;
     this.ws?.close();
     this.backoff.clear();
 
@@ -61,15 +61,21 @@ export class WebSocketConnectorImpl implements WebSocketConnector {
     this.queue = [];
   }
 
-  private init = async () => {
+  private async init() {
     if (this.initialized) {
       return;
     }
 
     this.initialized = true;
 
-    for await (const _ of this.backoff) {
+    while (!this.closed) {
       this.ws?.close();
+
+      try {
+        await this.backoff.sleep();
+      } catch {
+        break;
+      }
 
       try {
         this.logger?.log("info", "Connecting to WebSocket...");
@@ -93,10 +99,6 @@ export class WebSocketConnectorImpl implements WebSocketConnector {
       } catch (error) {
         this.logger?.log("error", "WebSocket error:", error);
       }
-
-      if (this.disableRetry) {
-        break;
-      }
     }
 
     for (const { reject } of this.queue) {
@@ -107,5 +109,5 @@ export class WebSocketConnectorImpl implements WebSocketConnector {
       );
     }
     this.queue = [];
-  };
+  }
 }

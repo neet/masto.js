@@ -58,23 +58,4 @@ describe("ExponentialBackoff", () => {
       ExponentialBackoffError,
     );
   });
-
-  it("implements async iterator", async () => {
-    const backoff = new ExponentialBackoff({ maxAttempts: 3 }).values();
-
-    const p1 = backoff.next();
-    await jest.advanceTimersByTimeAsync(1000);
-    await expect(p1).resolves.toEqual({ done: false, value: undefined });
-
-    const p2 = backoff.next();
-    await jest.advanceTimersByTimeAsync(2000);
-    await expect(p2).resolves.toEqual({ done: false, value: undefined });
-
-    const p3 = backoff.next();
-    await jest.advanceTimersByTimeAsync(4000);
-    await expect(p3).resolves.toEqual({ done: false, value: undefined });
-
-    const p4 = await backoff.next();
-    expect(p4).toEqual({ done: true, value: undefined });
-  });
 });
