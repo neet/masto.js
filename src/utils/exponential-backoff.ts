@@ -48,14 +48,4 @@ export class ExponentialBackoff {
   getTimeout(): number {
     return this.factor * this.base ** this.attempts;
   }
-
-  async *values(): AsyncIterableIterator<void> {
-    while (this.attempts < this.maxAttempts) {
-      yield this.sleep();
-    }
-  }
-
-  [Symbol.asyncIterator](): AsyncIterableIterator<void> {
-    return this.values();
-  }
 }

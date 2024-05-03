@@ -2,8 +2,7 @@ import { camelCase, snakeCase } from "change-case";
 
 import { type Encoding, type Serializer } from "../../interfaces";
 import { MastoDeserializeError, MastoUnexpectedError } from "../errors";
-import { flattenRecord } from "./flatten-record";
-import { railsQueryString } from "./rails-query-string";
+import { flattenForFormData, flattenForRailsQueryString } from "./flatten";
 import { transformKeys } from "./transform-keys";
 
 export class SerializerNativeImpl implements Serializer {
@@ -17,13 +16,13 @@ export class SerializerNativeImpl implements Serializer {
       }
       case "multipart-form": {
         const formData = new FormData();
-        for (const [key, value] of Object.entries(flattenRecord(data))) {
+        for (const [key, value] of Object.entries(flattenForFormData(data))) {
           formData.append(key, value);
         }
         return formData;
       }
       case "querystring": {
-        return railsQueryString.stringify(data);
+        return flattenForRailsQueryString(data);
       }
       default: {
         throw new MastoUnexpectedError(
