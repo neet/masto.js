@@ -1,5 +1,14 @@
 # Changelog
 
+## [6.7.7](https://github.com/neet/masto.js/compare/v6.7.6...v6.7.7) (2024-05-03)
+
+
+### Bug Fixes
+
+* Eliminate direct imports from `ws` ([37049df](https://github.com/neet/masto.js/commit/37049df7c1a7e9ed1094be9189ce5092e6561de1))
+* Refactor FormData, querystring and websocket utils ([1052740](https://github.com/neet/masto.js/commit/105274064f37e235a3b684483675c0947e1db8eb))
+* Refactor WebSocketSubscription and remove unused code ([6870df2](https://github.com/neet/masto.js/commit/6870df2bae6aeb633d78528b82f2b88ed382294b))
+
 ## [6.7.6](https://github.com/neet/masto.js/compare/v6.7.5...v6.7.6) (2024-04-29)
 
 
