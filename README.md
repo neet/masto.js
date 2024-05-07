@@ -41,7 +41,7 @@
 
 In this quick start, we'll look at how to create a simple Mastodon bot that publishes a post using _Masto.js_.
 
-First, you must install _Node.js_ and _npm_ in your environment. Follow [the npm official guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) for the setup, and proceed to the next step when it's ready. Alternatively, you can use _yarn_, _pnpm_ or other package managers to install Masto.js, but this guide below uses _npm_.
+First, you must install _Node.js_ and _npm_ in your environment. Follow [the npm official guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) for the setup, and proceed to the next step. Alternatively, you can use _yarn_, _pnpm_ or other package managers to install Masto.js.
 
 The minimal required version of dependencies is as follows
 
@@ -54,9 +54,8 @@ If you could successfully install _Node.js_ and _npm_, create your first _Masto.
 Create a directory and initialise your project.
 
 ```sh
-mkdir my-bot
-cd my-bot
-npm init es6 --yes
+npm init --yes
+npm pkg set type=module
 ```
 
 And install Masto.js using _npm_
@@ -73,7 +72,7 @@ Go to your settings page, open **Development**, and click the **New Application*
 
 You need to fill out _Application name_, but the website and redirect URI are fine to be the default for now. What you need to select for _Scopes_ is depending on your bot's ability, but you can access most of the functionality by granting `read` and `write`. See [OAuth Scopes](https://docs.joinmastodon.org/api/oauth-scopes/) documentation for further information.
 
-If you could create an application, save **Your access token** securely. This string is required to access your account through Masto.js.
+Once you have created an application, save **Your access token** securely. This string is required to access your account through Masto.js.
 
 Then you're almost there! Create a file named `index.js` inside your project directory and add the following code. This is an example which will post a status from your account.
 
@@ -87,7 +86,6 @@ const masto = createRestAPIClient({
 
 const status = await masto.v1.statuses.create({
   status: "Hello from #mastojs!",
-  visibility: "public",
 });
 
 console.log(status.url);
