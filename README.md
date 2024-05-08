@@ -1,6 +1,6 @@
-<p align="center">
-  <img src="https://i.imgur.com/jakvzSd.png" width="260px">
-</p>
+<h1 align="center">
+  <img src="https://i.imgur.com/jakvzSd.png" width="260px" alt="Masto.js">
+</h1>
 
 <p align="center">Universal Mastodon API client for JavaScript</p>
 
@@ -28,8 +28,8 @@
 
 ## Migration Guides
 
-- [v5.x → v6.0.0](https://github.com/neet/masto.js/releases/tag/v6.0.0)
-- [v4.x → v5.0.0](https://github.com/neet/masto.js/releases/tag/v5.0.0)
+- [Migrate from v5 to v6](https://github.com/neet/masto.js/releases/tag/v6.0.0)
+- [Migrate from v4 to v5](https://github.com/neet/masto.js/releases/tag/v5.0.0)
 
 ## Who's using Masto.js?
 
@@ -41,15 +41,15 @@
 
 In this quick start, we'll look at how to create a simple Mastodon bot that publishes a post using _Masto.js_.
 
-First, you must install _Node.js_ and _npm_ in your environment. Follow [the npm official guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) for the setup, and proceed to the next step. Alternatively, you can use _yarn_, _pnpm_ or other package managers to install Masto.js.
+First, you must install _Node.js_ and _npm_ in your environment. Follow [the npm official guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) for the setup, and proceed to the next step. Alternatively, you can use _yarn_, _pnpm_, or other package managers to install Masto.js.
 
-The minimal required version of dependencies is as follows
+The minimal required version of dependencies is as follows:
 
 - **Node.js**: `>= 18.x`
 - **npm**: `>= 9.x`
 - **TypeScript** (optional peer dependency): `>= 5.0.0`
 
-If you could successfully install _Node.js_ and _npm_, create your first _Masto.js_ project with the following command. Assume you're using a POSIX-compatible operating system.
+If you successfully installed _Node.js_ and _npm_, create your first _Masto.js_ project with the following command. Assume you're using a POSIX-compatible operating system.
 
 Create a directory and initialise your project.
 
@@ -58,7 +58,7 @@ npm init --yes
 npm pkg set type=module
 ```
 
-And install Masto.js using _npm_
+Make sure a `package.json` file is created in your project directory. Then install Masto.js using _npm_
 
 ```
 npm install masto
@@ -66,11 +66,11 @@ npm install masto
 
 Now you successfully initialised your project for developing a Mastodon bot. Next, you need to create an application to obtain an _[access token](https://docs.joinmastodon.org/client/authorized/)_ required to access your account.
 
-Go to your settings page, open **Development**, and click the **New Application** button to earn your personal access token.
+Go to your settings page, open **Development**, and click the **New Application** button to obtain your personal access token.
 
-![Create New App](https://i.imgur.com/rCwMw3j.png)
+![A screenshot from "New application" page from a setting page of Mastodon. It contains three input fields "Application name" "Application website" and "Redirect URI" and checkboxes named "Scopes".](https://i.imgur.com/rCwMw3j.png)
 
-You need to fill out _Application name_, but the website and redirect URI are fine to be the default for now. What you need to select for _Scopes_ is depending on your bot's ability, but you can access most of the functionality by granting `read` and `write`. See [OAuth Scopes](https://docs.joinmastodon.org/api/oauth-scopes/) documentation for further information.
+You need to fill out _Application name_, but rest of the fields can be left as defaults. What you need to select for _Scopes_ is depending on your bot's ability, but you can access most of the functionality by granting `read` and `write`. See [OAuth Scopes](https://docs.joinmastodon.org/api/oauth-scopes/) documentation for further information.
 
 Once you have created an application, save **Your access token** securely. This string is required to access your account through Masto.js.
 
@@ -97,7 +97,9 @@ Finally, run the program with the following command. Replace `{URL}` with your i
 URL={URL} TOKEN={TOKEN} node ./index.js
 ```
 
-Other available features are described in the [documentation](https://neet.github.io/masto.js). You may also want to refer [/examples](https://github.com/neet/masto.js/tree/main/examples) directory on this repository.
+You can learn about other available features in the [documentation](https://neet.github.io/masto.js). You may also want to refer [examples](https://github.com/neet/masto.js/tree/main/examples) to see more examples. Of course, you can ask questions in the [Discussions](https://github.com/neet/masto.js/discussions) if you have any.
+
+Enjoy your Mastodon development with Masto.js!
 
 ## Contribution
 
