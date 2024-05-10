@@ -27,5 +27,10 @@ export default {
       setupFilesAfterEnv: ["<rootDir>/test-utils/jest-setup-after-env.ts"],
     },
   ],
-  collectCoverageFrom: ["src/**/*.ts", "!src/**/*.spec.ts", "!**/__mocks__/**"],
+  collectCoverageFrom: [
+    "src/**/*.ts",
+    "!src/**/index.ts",
+    "!src/**/*.spec.ts",
+    "!**/__mocks__/**",
+  ],
 };
