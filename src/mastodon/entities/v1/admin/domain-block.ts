@@ -19,4 +19,6 @@ export interface DomainBlock {
   publicComment?: string | null;
   /** The obfuscate of the domain block. */
   obfuscate: boolean;
+  /** SHA256 of the domain. https://github.com/mastodon/mastodon/pull/29092 */
+  digest: string;
 }
