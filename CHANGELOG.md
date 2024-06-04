@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.8.0](https://github.com/neet/masto.js/compare/v6.7.7...v6.8.0) (2024-06-02)
+
+
+### Features
+
+* Support Mastodon v4.2.9 ([b2fd141](https://github.com/neet/masto.js/commit/b2fd141bc6bf07f737115fb76bc46a2537dc5d8d))
+
 ## [6.7.7](https://github.com/neet/masto.js/compare/v6.7.6...v6.7.7) (2024-05-03)
 
 
