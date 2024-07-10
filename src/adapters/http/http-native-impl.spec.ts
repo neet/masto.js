@@ -15,7 +15,7 @@ describe("HttpNativeImpl", () => {
       new HttpConfigImpl(
         {
           url: "https://example.com",
-          timeout: 0,
+          timeout: 1,
         },
         serializer,
       ),
