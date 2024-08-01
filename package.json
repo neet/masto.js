@@ -67,7 +67,7 @@
     "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-node-globals": "^1.4.0",
     "size-limit": "^11.1.2",
-    "ts-jest": "^29.1.2",
+    "ts-jest": "^29.2.4",
     "tslib": "^2.6.2",
     "typedoc": "^0.25.12",
     "typescript": "^5.4.5",
