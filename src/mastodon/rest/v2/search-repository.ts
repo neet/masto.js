@@ -18,6 +18,8 @@ export interface SearchParams extends DefaultPaginationParams {
   readonly excludeUnreviewed?: boolean | null;
   /** Only include accounts that the user is following. Defaults to false. */
   readonly following?: boolean | null;
+  /** Skip the first n results. */
+  readonly offset?: number | null;
 }
 
 export interface SearchRepository {
