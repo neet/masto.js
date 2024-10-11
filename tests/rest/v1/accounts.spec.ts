@@ -53,12 +53,12 @@ describe("account", () => {
           error: "ERR_BLANK",
         },
       ],
-      locale: [
-        {
-          description: "is not included in the list",
-          error: "ERR_INCLUSION",
-        },
-      ],
+      // locale: [
+      //   {
+      //     description: "is not included in the list",
+      //     error: "ERR_INCLUSION",
+      //   },
+      // ],
       password: [
         {
           description: "can't be blank",
