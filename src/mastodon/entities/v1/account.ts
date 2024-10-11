@@ -11,7 +11,7 @@ export interface AccountSource {
   /** Profile bio. */
   note: string;
   /** Metadata about the account. */
-  fields: AccountField;
+  fields: AccountField[];
 
   /** The default post privacy to be used for new statuses. */
   privacy?: StatusVisibility | null;
