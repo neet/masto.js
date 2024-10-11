@@ -1,3 +1,7 @@
 {
-  "extends": [":semanticCommitTypeAll(deps)", ":semanticCommitScopeDisabled"]
+  "extends": [
+    ":semanticCommitTypeAll(deps)",
+    ":semanticCommitScopeDisabled",
+    "schedule:monthly"
+  ]
 }
