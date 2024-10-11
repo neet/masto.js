@@ -101,6 +101,8 @@ export interface SearchAccountsParams {
   readonly resolve?: boolean | null;
   /** Only who the user is following. Defaults to false. */
   readonly following?: boolean | null;
+  /** Skip the first n results. */
+  readonly offset?: number | null;
 }
 
 export interface LookupAccountParams {
