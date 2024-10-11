@@ -69,7 +69,7 @@
     "size-limit": "^11.1.2",
     "ts-jest": "^29.1.2",
     "tslib": "^2.6.2",
-    "typedoc": "^0.25.12",
+    "typedoc": "^0.26.0",
     "typescript": "^5.4.5",
     "undici": "^6.15.0"
   },
