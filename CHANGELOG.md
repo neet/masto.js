@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.8.1](https://github.com/neet/masto.js/compare/v6.8.0...v6.8.1) (2024-10-11)
+
+
+### Bug Fixes
+
+* Add dependabot.yml to use prefix deps ([c43bc7d](https://github.com/neet/masto.js/commit/c43bc7dbcf90e5e4d944dd3059eafd69fe349dfd))
+* Add dependabot.yml to use prefix deps ([3f8310b](https://github.com/neet/masto.js/commit/3f8310b0a054804cb9fdc47dc149f720ff365e68))
+* Add missing `offset` to SearchAccountsParams ([#1164](https://github.com/neet/masto.js/issues/1164)) ([54089da](https://github.com/neet/masto.js/commit/54089da4e088220d7b620b15259a50968a0fd424))
+* Add missing `offset` to v2 SearchParams ([#1163](https://github.com/neet/masto.js/issues/1163)) ([4ae3951](https://github.com/neet/masto.js/commit/4ae3951e3a971c9f0362ff42cee4cfac6fcc0712))
+* Fix type of AccountSource.fields ([#1161](https://github.com/neet/masto.js/issues/1161)) ([bd885de](https://github.com/neet/masto.js/commit/bd885de23a5d966213ae9b1b86d8bf99d9f4bf90))
+* Remove ERR_INCLUSION test ([101c7ff](https://github.com/neet/masto.js/commit/101c7ff4d614a1c0f1eec35874ce05fdde6dbafd))
+
 ## [6.8.0](https://github.com/neet/masto.js/compare/v6.7.7...v6.8.0) (2024-06-02)
 
 
