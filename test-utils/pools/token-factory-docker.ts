@@ -13,6 +13,8 @@ export class TokenFactoryDocker implements TokenFactory {
   ) {}
 
   async obtain(): Promise<mastodon.v1.Token> {
+    await this.tootctl.settings.registrations.open();
+
     const username = crypto.randomBytes(8).toString("hex");
     const email = crypto.randomBytes(8).toString("hex") + "@example.com";
 

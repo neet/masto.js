@@ -29,6 +29,10 @@ export interface CreateTootctlParams {
 export const createTootctl = (params: CreateTootctlParams): Tootctl => {
   const { container, compose } = params;
 
+  const command = compose
+    ? `docker compose exec ${container}`
+    : `docker exec ${container}`;
+
   return {
     accounts: {
       create: async (
@@ -36,10 +40,6 @@ export const createTootctl = (params: CreateTootctlParams): Tootctl => {
         params: CreateAccountParams,
       ): Promise<CreateAccountResult> => {
         const args = stringifyArguments({ ...params });
-
-        const command = compose
-          ? `docker compose exec ${container}`
-          : `docker exec ${container}`;
 
         const { stdout } = await exec(
           [
@@ -54,6 +54,18 @@ export const createTootctl = (params: CreateTootctlParams): Tootctl => {
         }
 
         return { password };
+      },
+    },
+    settings: {
+      registrations: {
+        open: async (): Promise<void> => {
+          await exec(
+            [
+              command,
+              "bash -c 'RAILS_ENV=development bin/tootctl settings registrations open'",
+            ].join(" "),
+          );
+        },
       },
     },
   };
