@@ -14,4 +14,9 @@ export interface Tootctl {
       params: CreateAccountParams,
     ) => Promise<CreateAccountResult>;
   };
+  settings: {
+    registrations: {
+      open: () => Promise<void>;
+    };
+  };
 }

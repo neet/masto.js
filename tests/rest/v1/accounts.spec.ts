@@ -52,6 +52,10 @@ describe("account", () => {
           description: "can't be blank",
           error: "ERR_BLANK",
         },
+        {
+          description: "is invalid",
+          error: "ERR_INVALID",
+        },
       ],
       // locale: [
       //   {
