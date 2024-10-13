@@ -32,3 +32,11 @@ it("fetches extended description", async () => {
     updatedAt: null,
   });
 });
+
+test.todo("lists domain blocks");
+// FIXME: domain blocks publicity setting can only be edited via the admin panel
+// it("lists domain blocks", async () => {
+//   await using client = await sessions.acquire();
+//   const blocks = await client.rest.v1.instance.domainBlocks.fetch();
+//   expect(blocks).toEqual([]);
+// });
