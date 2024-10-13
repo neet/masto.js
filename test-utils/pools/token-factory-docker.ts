@@ -17,6 +17,7 @@ export class TokenFactoryDocker implements TokenFactory {
   async obtain(): Promise<mastodon.v1.Token> {
     if (!this.opened) {
       await this.tootctl.settings.registrations.open();
+      await sleep(5000);
       this.opened = true;
     }
 
