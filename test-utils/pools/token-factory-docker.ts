@@ -6,6 +6,8 @@ import { type Tootctl } from "../tootctl";
 import { type TokenFactory } from "./token-factory";
 
 export class TokenFactoryDocker implements TokenFactory {
+  private opened = false;
+
   constructor(
     private readonly tootctl: Tootctl,
     private readonly oauth: mastodon.oauth.Client,
@@ -13,7 +15,10 @@ export class TokenFactoryDocker implements TokenFactory {
   ) {}
 
   async obtain(): Promise<mastodon.v1.Token> {
-    await this.tootctl.settings.registrations.open();
+    if (!this.opened) {
+      await this.tootctl.settings.registrations.open();
+      this.opened = true;
+    }
 
     const username = crypto.randomBytes(8).toString("hex");
     const email = crypto.randomBytes(8).toString("hex") + "@example.com";
