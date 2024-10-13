@@ -7,6 +7,7 @@ export * from "./context";
 export * from "./conversation";
 export * from "./custom-emoji";
 export * from "./extended-description";
+export * from "./domain-block";
 export * from "./familiar-followers";
 export * from "./featured-tags";
 export * from "./filter";
