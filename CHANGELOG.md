@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.8.2](https://github.com/neet/masto.js/compare/v6.8.1...v6.8.2) (2024-10-13)
+
+
+### Bug Fixes
+
+* Add missing `v1.instance.extendedDescription` API ([#1212](https://github.com/neet/masto.js/issues/1212)) ([74681b3](https://github.com/neet/masto.js/commit/74681b3ca019563d6c7f21c4db986142614a5bf4))
+* Add missing public domain block API ([#1214](https://github.com/neet/masto.js/issues/1214)) ([884b83d](https://github.com/neet/masto.js/commit/884b83d145636ecb87ad26367a6e212f566888d9))
+
 ## [6.8.1](https://github.com/neet/masto.js/compare/v6.8.0...v6.8.1) (2024-10-11)
 
 
