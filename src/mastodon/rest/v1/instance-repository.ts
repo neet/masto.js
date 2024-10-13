@@ -1,5 +1,9 @@
 import { type HttpMetaParams } from "../../../interfaces";
-import { type Activity, type Instance } from "../../entities/v1";
+import {
+  type Activity,
+  type ExtendedDescription,
+  type Instance,
+} from "../../entities/v1";
 import { type Paginator } from "../../paginator";
 
 export interface InstanceRepository {
@@ -31,6 +35,13 @@ export interface InstanceRepository {
   languages: {
     /** https://github.com/mastodon/mastodon/pull/24443 */
     list(meta?: HttpMetaParams): Promise<string[]>;
+  };
+
+  extendedDescription: {
+    /**
+     * Obtain an extended description of this server
+     */
+    fetch(meta?: HttpMetaParams): Promise<ExtendedDescription>;
   };
 
   translationLanguages: {

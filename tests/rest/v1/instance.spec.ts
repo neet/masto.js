@@ -21,3 +21,14 @@ it("lists translatable languages", async () => {
   const languages = await client.rest.v1.instance.translationLanguages.list();
   expect(languages).toEqual(expect.any(Object));
 });
+
+it("fetches extended description", async () => {
+  await using client = await sessions.acquire();
+  const description = await client.rest.v1.instance.extendedDescription.fetch();
+
+  expect(description).toEqual({
+    content: "",
+    // eslint-disable-next-line unicorn/no-null
+    updatedAt: null,
+  });
+});
