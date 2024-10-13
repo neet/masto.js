@@ -36,6 +36,8 @@ export interface InstanceUrls {
 export interface InstanceAccountsConfiguration {
   /** The maximum number of featured tags allowed for each account. */
   maxFeaturedTags: number;
+  /** The maximum number of pinned statuses for each account. */
+  maxPinnedStatuses: number;
 }
 
 export interface InstanceStatusesConfiguration {
@@ -78,6 +80,11 @@ export interface InstanceTranslationConfiguration {
   enabled: boolean;
 }
 
+export interface InstanceVapidConfiguration {
+  /** The instances VAPID public key, used for push notifications, the same as */
+  publicKey: string;
+}
+
 export interface InstanceConfiguration {
   /** URLs of interest for clients apps. */
   urls: InstanceUrls;
@@ -91,6 +98,7 @@ export interface InstanceConfiguration {
   polls: InstancePollsConfiguration;
   /** Hints related to translation. */
   translation: InstanceTranslationConfiguration;
+  vapid: InstanceVapidConfiguration;
 }
 
 export interface InstanceRegistrations {
@@ -107,6 +115,18 @@ export interface InstanceContact {
   email: string;
   /** An account that can be contacted natively over the network regarding inquiries or issues. */
   account: Account;
+}
+
+export interface InstanceApiVersions {
+  /** API version number that this server implements. Starting from Mastodon v4.3.0, API changes will come with a version number, which clients can check against this value. */
+  mastodon: string;
+}
+
+export interface InstanceIcon {
+  /** The URL of this icon. */
+  src: string;
+  /** The size of this icon. */
+  size: string;
 }
 
 /**
@@ -128,12 +148,16 @@ export interface Instance {
   usage: InstanceUsage;
   /** An image used to represent this instance */
   thumbnail: InstanceThumbnail;
+  /** The list of available size variants for this instance configured icon. */
+  icon: InstanceIcon[];
   /** Primary languages of the website and its staff. */
   languages: string[];
   /** Configured values and limits for this website. */
   configuration: InstanceConfiguration;
   /** Information about registering for this website. */
   registrations: InstanceRegistrations;
+  /** Information about which version of the API is implemented by this server. It contains at least a mastodon attribute, and other implementations may have their own additional attributes. */
+  apiVersions: InstanceApiVersions;
   /** Hints related to contacting a representative of the website. */
   contact: InstanceContact;
   /** An itemized list of rules for this website. */

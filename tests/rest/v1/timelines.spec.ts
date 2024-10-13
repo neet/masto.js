@@ -72,4 +72,6 @@ describe("timeline", () => {
   });
 
   test.todo("returns direct");
+
+  test.todo("returns link (hard to emulate)");
 });

@@ -12,6 +12,11 @@ import {
 } from "../../entities/v1";
 import { type Paginator } from "../../paginator";
 
+export interface FetchStatusesParams {
+  /** The IDs of the Statuses in the database. */
+  readonly id: readonly string[];
+}
+
 export interface CreateStatusParamsBase {
   /** ID of the status being replied to, if status is a reply */
   readonly inReplyToId?: string | null;
@@ -90,6 +95,11 @@ export interface TranslateStatusParams {
 }
 
 export interface StatusRepository {
+  /**
+   * Obtain information about multiple statuses.
+   */
+  fetch(params: FetchStatusesParams, meta?: HttpMetaParams): Promise<Status[]>;
+
   /**
    * Post a new status.
    * @param params Parameters

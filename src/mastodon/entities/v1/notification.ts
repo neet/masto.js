@@ -1,4 +1,6 @@
 import { type Account } from "./account";
+import { type AccountWarning } from "./account-warning";
+import { type RelationshipSeveranceEvent } from "./relationship-severance-event";
 import { type Report } from "./report";
 import { type Status } from "./status";
 
@@ -11,6 +13,8 @@ interface BaseNotification<T> {
   createdAt: string;
   /** The account that performed the action that generated the notification. */
   account: Account;
+  /** Group key shared by similar notifications, to be used in the grouped notifications feature. Should be considered opaque, but ungrouped notifications can be assumed to have a group_key of the form ungrouped-{notification_id} */
+  groupKey: string;
 }
 
 type BaseNotificationPlain<T> = BaseNotification<T> & {
@@ -83,6 +87,22 @@ export type AdminReportNotification =
   BaseNotificationWithReport<"admin.report">;
 
 /**
+ * Some of your follow relationships have been severed as a result of a moderation or block event
+ */
+export type SeveredRelationshipsNotification =
+  BaseNotificationPlain<"severed_relationships"> & {
+    relationshipSeveranceEvent: RelationshipSeveranceEvent;
+  };
+
+/**
+ * A moderator has taken action against your account or has sent you a warning
+ */
+export type ModerationWarningNotification =
+  BaseNotificationPlain<"moderation_warning"> & {
+    moderationWarning: AccountWarning;
+  };
+
+/**
  * Represents a notification of an event relevant to the user.
  * @see https://docs.joinmastodon.org/entities/notification
  */
@@ -96,6 +116,8 @@ export type Notification =
   | PollNotification
   | UpdateNotification
   | AdminSignUpNotification
-  | AdminReportNotification;
+  | AdminReportNotification
+  | SeveredRelationshipsNotification
+  | ModerationWarningNotification;
 
 export type NotificationType = Notification["type"];

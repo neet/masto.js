@@ -12,6 +12,11 @@ export interface ListTimelineParams extends DefaultPaginationParams {
   readonly remote?: boolean | null;
 }
 
+export interface ListLinkTimelineParams extends ListTimelineParams {
+  /** The URL of the trending article. */
+  readonly url: string;
+}
+
 export interface TimelineRepository {
   home: {
     /**
@@ -82,5 +87,17 @@ export interface TimelineRepository {
       params?: ListTimelineParams,
       meta?: HttpMetaParams,
     ): Paginator<Status[], ListTimelineParams>;
+  };
+
+  link: {
+    /**
+     * View public statuses containing a link to the specified currently-trending article. This only lists statuses from people who have opted in to discoverability features.
+     * @returns Array of {@link Status}
+     * @see https://docs.joinmastodon.org/methods/timelines/#link
+     */
+    list(
+      params: ListLinkTimelineParams,
+      meta?: HttpMetaParams,
+    ): Paginator<Status[], ListLinkTimelineParams>;
   };
 }

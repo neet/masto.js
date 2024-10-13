@@ -45,6 +45,12 @@ export type AnnouncementDeleteEvent = BaseEvent<"announcement.delete", string>;
 
 export type StatusUpdateEvent = BaseEvent<"status.update", Status>;
 
+/** Accepted notification requests have finished merging, and the notifications list should be refreshed. Payload can be ignored. Available since v4.3.0 */
+export type NotificationsMergedEvent = BaseEvent<
+  "notifications_merged",
+  undefined
+>;
+
 export type Event =
   | UpdateEvent
   | DeleteEvent
@@ -54,4 +60,5 @@ export type Event =
   | AnnouncementEvent
   | AnnouncementReactionEvent
   | AnnouncementDeleteEvent
-  | StatusUpdateEvent;
+  | StatusUpdateEvent
+  | NotificationsMergedEvent;
