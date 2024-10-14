@@ -1,13 +1,13 @@
-import { waitForCondition } from "../../../test-utils/wait-for-condition";
+import waitForExpect from "@sadams/wait-for-expect";
 
 it("authorize follow requests", async () => {
   await using alice = await sessions.acquire();
   await using bob = await sessions.acquire();
   await alice.rest.v1.accounts.updateCredentials({ locked: true });
 
-  await waitForCondition(async () => {
+  await waitForExpect(async () => {
     const me = await alice.rest.v1.accounts.verifyCredentials();
-    return me.locked;
+    expect(me.locked).toBe(true);
   });
 
   try {
@@ -33,9 +33,9 @@ it("rejects follow requests", async () => {
   await using bob = await sessions.acquire();
   await alice.rest.v1.accounts.updateCredentials({ locked: true });
 
-  await waitForCondition(async () => {
+  await waitForExpect(async () => {
     const target = await bob.rest.v1.accounts.$select(alice.id).fetch();
-    return target.locked;
+    expect(target.locked).toBe(true);
   });
 
   try {

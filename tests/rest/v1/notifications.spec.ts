@@ -2,8 +2,6 @@ import assert from "node:assert";
 
 import waitForExpect from "@sadams/wait-for-expect";
 
-import { waitForCondition } from "../../../test-utils/wait-for-condition";
-
 it("handles notifications", async () => {
   await using alice = await sessions.acquire();
   await using bob = await sessions.acquire();
@@ -54,12 +52,11 @@ it("clear notifications", async () => {
   try {
     let notifications = await alice.rest.v1.notifications.list();
 
-    await waitForCondition(async () => {
+    await waitForExpect(async () => {
       notifications = await alice.rest.v1.notifications.list();
-      const hasS1 = notifications.some((n) => n.status?.id === s1.id);
-      const hasS2 = notifications.some((n) => n.status?.id === s2.id);
-      const hasS3 = notifications.some((n) => n.status?.id === s3.id);
-      return hasS1 && hasS2 && hasS3;
+      expect(notifications.map((n) => n.status?.id)).toContain(s1.id);
+      expect(notifications.map((n) => n.status?.id)).toContain(s2.id);
+      expect(notifications.map((n) => n.status?.id)).toContain(s3.id);
     });
 
     expect(notifications.length >= 3).toBe(true);

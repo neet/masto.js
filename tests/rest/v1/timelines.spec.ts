@@ -1,5 +1,6 @@
+import waitForExpect from "@sadams/wait-for-expect";
+
 import { type mastodon } from "../../../src";
-import { waitForCondition } from "../../../test-utils/wait-for-condition";
 
 describe("timeline", () => {
   it("can iterate over timeline", async () => {
@@ -20,9 +21,9 @@ describe("timeline", () => {
 
     let statuses: mastodon.v1.Status[] | undefined;
 
-    await waitForCondition(async () => {
+    await waitForExpect(async () => {
       statuses = await client.rest.v1.timelines.home.list();
-      return statuses.some((s) => s.id === status.id);
+      expect(statuses.map((s) => s.id)).toContain(status.id);
     });
 
     expect(statuses).toContainId(status.id);
