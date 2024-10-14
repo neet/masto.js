@@ -43,6 +43,7 @@ export interface Client {
     readonly filters: v2.FilterRepository;
     readonly instance: v2.InstanceRepository;
     readonly media: v2.MediaAttachmentRepository;
+    readonly notifications: v2.NotificationRepository;
     readonly suggestions: v2.SuggestionRepository;
     readonly search: v2.SearchRepository;
   };

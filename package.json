@@ -43,6 +43,7 @@
     "@rollup/plugin-commonjs": "^26.0.1",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-typescript": "^11.1.6",
+    "@sadams/wait-for-expect": "^1.1.0",
     "@size-limit/preset-small-lib": "^11.1.2",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.12.8",

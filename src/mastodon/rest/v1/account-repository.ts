@@ -15,6 +15,11 @@ import {
 import { type Paginator } from "../../paginator";
 import { type DefaultPaginationParams } from "../../repository";
 
+export interface FetchAccountsParams {
+  /** The IDs of the Accounts in the database. */
+  readonly id: readonly string[];
+}
+
 export interface CreateAccountParams {
   /** The desired username for the account */
   readonly username: string;
@@ -112,9 +117,13 @@ export interface LookupAccountParams {
 export interface FetchRelationshipsParams {
   /** Array of account IDs to check */
   readonly id: readonly string[];
+  /** Whether relationships should be returned for suspended users, defaults to false. */
+  readonly withSuspended?: boolean | null;
 }
 
 export interface AccountRepository {
+  fetch(params: FetchAccountsParams, meta?: HttpMetaParams): Promise<Account[]>;
+
   $select(id: string): {
     /**
      * View information about a profile.

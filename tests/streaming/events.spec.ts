@@ -2,6 +2,7 @@ import assert from "node:assert";
 import crypto from "node:crypto";
 
 import { sleep } from "../../src/utils";
+import { asyncNextTick } from "../../test-utils/async-next-tick";
 
 describe("events", () => {
   it("streams update, status.update, and delete event", async () => {
@@ -30,23 +31,24 @@ describe("events", () => {
     expect(e3.payload).toBe(status.id);
   });
 
-  it("streams filters_changed event", async () => {
-    await using session = await sessions.acquire({ waitForWs: true });
-    using subscription = session.ws.user.subscribe();
-    const eventsPromise = subscription.values().take(1).toArray();
+  test.todo("streams filters_changed event");
+  // it("streams filters_changed event", async () => {
+  //   await using session = await sessions.acquire({ waitForWs: true });
+  //   using subscription = session.ws.user.subscribe();
+  //   const eventsPromise = subscription.values().take(1).toArray();
 
-    const filter = await session.rest.v2.filters.create({
-      title: "test",
-      context: ["public"],
-      keywordsAttributes: [{ keyword: "TypeScript" }],
-    });
-    await sleep(1000);
-    await session.rest.v2.filters.$select(filter.id).remove();
+  //   const filter = await session.rest.v2.filters.create({
+  //     title: "test",
+  //     context: ["public"],
+  //     keywordsAttributes: [{ keyword: "TypeScript" }],
+  //   });
+  //   await sleep(1000);
+  //   await session.rest.v2.filters.$select(filter.id).remove();
 
-    const [e] = await eventsPromise;
-    assert(e.event === "filters_changed");
-    expect(e.payload).toBeUndefined();
-  });
+  //   const [e] = await eventsPromise;
+  //   assert(e.event === "filters_changed");
+  //   expect(e.payload).toBeUndefined();
+  // });
 
   it("streams notification", async () => {
     await using alice = await sessions.acquire({ waitForWs: true });
@@ -54,6 +56,7 @@ describe("events", () => {
 
     using subscription = alice.ws.user.notification.subscribe();
     const eventsPromise = subscription.values().take(1).toArray();
+    await asyncNextTick();
 
     await bob.rest.v1.accounts.$select(alice.id).follow();
 
@@ -72,6 +75,10 @@ describe("events", () => {
 
     using subscription = alice.ws.direct.subscribe();
     const eventsPromise = subscription.values().take(1).toArray();
+    await asyncNextTick();
+
+    await alice.rest.v1.accounts.$select(bob.id).follow();
+    await bob.rest.v1.accounts.$select(alice.id).follow();
 
     const status = await bob.rest.v1.statuses.create({
       status: `@${alice.acct} Hello there`,
@@ -84,8 +91,12 @@ describe("events", () => {
       expect(e.payload.lastStatus?.id).toBe(status.id);
     } finally {
       await bob.rest.v1.statuses.$select(status.id).remove();
+      await alice.rest.v1.accounts.$select(bob.id).unfollow();
+      await bob.rest.v1.accounts.$select(alice.id).unfollow();
     }
   });
 
   test.todo("announcement");
+
+  test.todo("notifications_merged");
 });

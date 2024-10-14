@@ -1,6 +1,7 @@
 import assert from "node:assert";
 
-import { type mastodon } from "../../../src";
+import waitForExpect from "@sadams/wait-for-expect";
+
 import { waitForCondition } from "../../../test-utils/wait-for-condition";
 
 it("handles notifications", async () => {
@@ -11,13 +12,13 @@ it("handles notifications", async () => {
   });
 
   try {
-    let notification: mastodon.v1.Notification | undefined;
-
-    await waitForCondition(async () => {
-      const notifications = await alice.rest.v1.notifications.list();
-      notification = notifications.find((n) => n.status?.id === status.id);
-      return notification?.status != undefined;
+    await waitForExpect(async () => {
+      const unreadCount = await alice.rest.v1.notifications.unreadCount.fetch();
+      expect(unreadCount.count).toBe(1);
     });
+
+    let notifications = await alice.rest.v1.notifications.list();
+    let notification = notifications.find((n) => n.status?.id === status.id);
 
     assert(notification != undefined);
     notification = await alice.rest.v1.notifications
@@ -28,9 +29,10 @@ it("handles notifications", async () => {
     expect(notification.status.id).toBe(status.id);
     await alice.rest.v1.notifications.$select(notification.id).dismiss();
 
-    const notifications = await alice.rest.v1.notifications.list();
+    notifications = await alice.rest.v1.notifications.list();
     expect(notifications).not.toContainId(notification.id);
   } finally {
+    await alice.rest.v1.notifications.clear();
     await bob.rest.v1.statuses.$select(status.id).remove();
   }
 });
