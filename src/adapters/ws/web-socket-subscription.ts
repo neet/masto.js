@@ -25,31 +25,35 @@ export class WebSocketSubscription implements mastodon.streaming.Subscription {
   async *values(): AsyncIterableIterator<mastodon.streaming.Event> {
     this.logger?.log("info", "Subscribing to stream", this.stream);
 
-    while (this.connector.canAcquire()) {
-      this.connection = await this.connector.acquire();
+    try {
+      for await (const connection of this.connector) {
+        this.connection = connection;
 
-      const data = this.serializer.serialize("json", {
-        type: "subscribe",
-        stream: this.stream,
-        ...this.params,
-      });
+        const data = this.serializer.serialize("json", {
+          type: "subscribe",
+          stream: this.stream,
+          ...this.params,
+        });
 
-      this.logger?.log("debug", "↑ WEBSOCKET", data);
-      this.connection.send(data);
-      this.counter.increment(this.stream, this.params);
+        this.logger?.log("debug", "↑ WEBSOCKET", data);
+        this.connection.send(data);
+        this.counter.increment(this.stream, this.params);
 
-      const messages = toAsyncIterable(this.connection);
+        const messages = toAsyncIterable(this.connection);
 
-      for await (const message of messages) {
-        const event = await this.parseMessage(message.data as string);
+        for await (const message of messages) {
+          const event = await this.parseMessage(message.data as string);
 
-        if (!this.test(event)) {
-          continue;
+          if (!this.test(event)) {
+            continue;
+          }
+
+          this.logger?.log("debug", "↓ WEBSOCKET", event);
+          yield event;
         }
-
-        this.logger?.log("debug", "↓ WEBSOCKET", event);
-        yield event;
       }
+    } finally {
+      this.unsubscribe();
     }
   }
 

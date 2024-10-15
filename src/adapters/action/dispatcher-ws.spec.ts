@@ -1,4 +1,4 @@
-import { MastoUnexpectedError } from "../errors";
+import { MastoUnexpectedError, MastoWebSocketError } from "../errors";
 import { createLogger } from "../logger";
 import { SerializerNativeImpl } from "../serializers";
 import {
@@ -29,7 +29,7 @@ describe("DispatcherWs", () => {
     }).toThrow(MastoUnexpectedError);
   });
 
-  it("can be disposed", () => {
+  it("can be disposed", async () => {
     const connector = new WebSocketConnectorImpl({
       constructorParameters: ["wss://example.com"],
     });
@@ -41,6 +41,8 @@ describe("DispatcherWs", () => {
     );
 
     dispatcher[Symbol.dispose]();
-    expect(connector.canAcquire()).toBe(false);
+    await expect(() => connector.acquire()).rejects.toThrow(
+      MastoWebSocketError,
+    );
   });
 });
