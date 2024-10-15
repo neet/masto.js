@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-object-type */
 /* eslint-disable @typescript-eslint/no-namespace */
 export interface CustomMatchers<R = unknown> {
   toContainId(id: string): R;

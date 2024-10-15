@@ -8,8 +8,8 @@ it("issues and revokes token", async () => {
 
   const token = await oauth.token.create({
     grantType: "password",
-    clientId: global.__misc__.app.clientId!,
-    clientSecret: global.__misc__.app.clientSecret!,
+    clientId: globalThis.__misc__.app.clientId!,
+    clientSecret: globalThis.__misc__.app.clientSecret!,
     username: "admin@localhost",
     password: "mastodonadmin",
     scope: "read",
@@ -19,8 +19,8 @@ it("issues and revokes token", async () => {
   expect(token).toHaveProperty("accessToken");
 
   await oauth.revoke({
-    clientId: global.__misc__.app.clientId!,
-    clientSecret: global.__misc__.app.clientSecret!,
+    clientId: globalThis.__misc__.app.clientId!,
+    clientSecret: globalThis.__misc__.app.clientSecret!,
     token: token.accessToken!,
   });
 });
