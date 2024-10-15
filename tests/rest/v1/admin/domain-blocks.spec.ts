@@ -18,7 +18,7 @@ it("handles domain blocks", async () => {
     expect(domainBlock.rejectMedia).toBe(false);
 
     const list = await admin.v1.admin.domainBlocks.list();
-    expect(list).toContainId(domainBlock.id);
+    expect(list).toContainEqual(domainBlock);
   } finally {
     await admin.v1.admin.domainBlocks.$select(domainBlock.id).remove();
   }

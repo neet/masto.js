@@ -1,37 +1,17 @@
-/* eslint-disable @typescript-eslint/no-empty-object-type */
-/* eslint-disable @typescript-eslint/no-namespace */
-export interface CustomMatchers<R = unknown> {
-  toContainId(id: string): R;
-}
+import { expect } from "@jest/globals";
 
-declare global {
-  namespace jest {
-    interface Expect extends CustomMatchers {}
-    interface Matchers<R> extends CustomMatchers<R> {}
-    interface InverseAsymmetricMatchers extends CustomMatchers {}
+// https://jestjs.io/docs/expect#expectaddequalitytesterstesters
+function idChecker(a: unknown, b: unknown) {
+  const hasAId = typeof a === "object" && a !== null && "id" in a;
+  const hasBId = typeof b === "object" && b !== null && "id" in b;
+
+  if (hasAId && hasBId) {
+    return a.id === b.id;
+  } else if (hasAId === hasBId) {
+    return;
+  } else {
+    return false;
   }
 }
 
-expect.extend({
-  toContainId<T extends { id: string }>(received?: T, expected?: string) {
-    if (!Array.isArray(received)) {
-      return { pass: false, message: () => "Expected an array" };
-    }
-
-    if (received.length === 0) {
-      return {
-        pass: false,
-        message: () => "Expected an array with at least one element",
-      };
-    }
-
-    const pass = received.some((entity) => entity.id === expected);
-
-    return {
-      pass,
-      message: () => {
-        return `List does not contain ${expected}`;
-      },
-    };
-  },
-});
+expect.addEqualityTesters([idChecker]);

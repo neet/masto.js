@@ -6,7 +6,7 @@ describe("bookmarks", () => {
     try {
       await client.rest.v1.statuses.$select(status.id).bookmark();
       const bookmarks = await client.rest.v1.bookmarks.list();
-      expect(bookmarks).toContainId(status.id);
+      expect(bookmarks).toContainEqual(status);
     } finally {
       await client.rest.v1.statuses.$select(status.id).unbookmark();
     }

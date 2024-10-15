@@ -54,7 +54,7 @@ export class SessionPoolImpl implements Pool<Session> {
     if (token == undefined) {
       // eslint-disable-next-line no-console
       console.warn(
-        `Session ${session.id} (${session.acct}) is already released`,
+        `Session ${session.id} (${session.account.acct}) is already released`,
       );
       return;
     }

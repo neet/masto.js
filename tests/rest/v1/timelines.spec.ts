@@ -23,10 +23,8 @@ describe("timeline", () => {
 
     await waitForExpect(async () => {
       statuses = await client.rest.v1.timelines.home.list();
-      expect(statuses.map((s) => s.id)).toContain(status.id);
+      expect(statuses).toContainEqual(status);
     });
-
-    expect(statuses).toContainId(status.id);
   });
 
   it("returns public", async () => {
@@ -37,7 +35,7 @@ describe("timeline", () => {
       status: "public post",
     });
     const statuses = await alice.rest.v1.timelines.public.list();
-    expect(statuses).toContainId(status.id);
+    expect(statuses).toContainEqual(status);
   });
 
   it("returns hashtag", async () => {
@@ -48,7 +46,7 @@ describe("timeline", () => {
     const statuses = await client.rest.v1.timelines.tag
       .$select("mastodon")
       .list();
-    expect(statuses).toContainId(status.id);
+    expect(statuses).toContainEqual(status);
   });
 
   it("returns hashtag in camel case", async () => {
@@ -60,7 +58,7 @@ describe("timeline", () => {
     const statuses = await client.rest.v1.timelines.tag
       .$select("CamelCase")
       .list();
-    expect(statuses).toContainId(status.id);
+    expect(statuses).toContainEqual(status);
   });
 
   it("returns list", async () => {

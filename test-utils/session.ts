@@ -6,7 +6,7 @@ import {
 
 export interface Session {
   readonly id: string;
-  readonly acct: string;
+  readonly account: mastodon.v1.Account;
   readonly rest: mastodon.rest.Client;
   readonly ws: mastodon.streaming.Client;
   readonly [Symbol.asyncDispose]: () => Promise<void>;
@@ -32,7 +32,7 @@ export const createSession = async (
 
   return Object.freeze({
     id: account.id,
-    acct: account.acct,
+    account,
     rest,
     ws,
     [Symbol.asyncDispose]: dispose,

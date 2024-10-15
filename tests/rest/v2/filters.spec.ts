@@ -15,7 +15,7 @@ describe("filters", () => {
       expect(filter.title).toBe("Filter Updated");
 
       const filters = await session.rest.v2.filters.list();
-      expect(filters).toContainId(filter.id);
+      expect(filters).toContainEqual(filter);
     } finally {
       await session.rest.v2.filters.$select(filter.id).remove();
     }
@@ -47,7 +47,7 @@ describe("filters", () => {
       const keywords = await session.rest.v2.filters
         .$select(filter.id)
         .keywords.list();
-      expect(keywords).toContainId(keyword.id);
+      expect(keywords).toContainEqual(keyword);
       await session.rest.v2.filters.keywords.$select(keyword.id).remove();
     } finally {
       await session.rest.v2.filters.$select(filter.id).remove();
@@ -79,7 +79,7 @@ describe("filters", () => {
       const statusFilters = await session.rest.v2.filters
         .$select(filter.id)
         .statuses.list();
-      expect(statusFilters).toContainId(statusFilter.id);
+      expect(statusFilters).toContainEqual(statusFilter);
       await session.rest.v2.filters.statuses.$select(statusFilter.id).remove();
     } finally {
       await session.rest.v2.filters.$select(filter.id).remove();

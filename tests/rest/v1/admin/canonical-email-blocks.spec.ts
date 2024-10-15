@@ -14,11 +14,11 @@ describe("canonical-email-blocks", () => {
       const result = await admin.v1.admin.canonicalEmailBlocks.test({
         email: "test@example.com",
       });
-      expect(result).toContainId(canonicalEmailBlock.id);
+      expect(result).toContainEqual(canonicalEmailBlock);
 
       const canonicalEmailBlocks =
         await admin.v1.admin.canonicalEmailBlocks.list();
-      expect(canonicalEmailBlocks).toContainId(canonicalEmailBlock.id);
+      expect(canonicalEmailBlocks).toContainEqual(canonicalEmailBlock);
     } finally {
       await admin.v1.admin.canonicalEmailBlocks
         .$select(canonicalEmailBlock.id)

@@ -78,8 +78,8 @@ describe("status", () => {
       const context = await client.rest.v1.statuses
         .$select(s2.id)
         .context.fetch();
-      expect(context.ancestors).toContainId(s1.id);
-      expect(context.descendants).toContainId(s3.id);
+      expect(context.ancestors).toContainEqual(s1);
+      expect(context.descendants).toContainEqual(s3);
     } finally {
       await client.rest.v1.statuses.$select(s1.id).remove();
       await client.rest.v1.statuses.$select(s2.id).remove();
@@ -123,7 +123,7 @@ describe("status", () => {
       const favourites = await bob.rest.v1.statuses
         .$select(statusId)
         .favouritedBy.list();
-      expect(favourites).toContainId(bob.id);
+      expect(favourites).toContainEqual(bob.account);
 
       status = await bob.rest.v1.statuses.$select(statusId).unfavourite();
       expect(status.favourited).toBe(false);
@@ -165,7 +165,7 @@ describe("status", () => {
       const reblogs = await alice.rest.v1.statuses
         .$select(statusId)
         .rebloggedBy.list();
-      expect(reblogs).toContainId(bob.id);
+      expect(reblogs).toContainEqual(bob.account);
 
       status = await bob.rest.v1.statuses.$select(statusId).unreblog();
       expect(status.reblogged).toBe(false);
@@ -212,7 +212,7 @@ describe("status", () => {
 
     const error = await alice.rest.v1.statuses
       .create({
-        status: `@${bob.acct} hello`,
+        status: `@${bob.account.acct} hello`,
         allowedMentions: [],
       })
       .then(

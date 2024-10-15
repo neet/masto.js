@@ -16,7 +16,7 @@ it("lists filters", async () => {
     expect(filter.context).toEqual(["home", "notifications"]);
 
     const filters = await client.rest.v1.filters.list();
-    expect(filters).toContainId(filter.id);
+    expect(filters).toContainEqual(filter);
   } finally {
     await client.rest.v1.filters.$select(filter.id).remove();
   }

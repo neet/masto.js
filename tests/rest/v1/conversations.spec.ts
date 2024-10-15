@@ -16,7 +16,7 @@ describe("conversations", () => {
       await bob.rest.v1.accounts.$select(alice.id).follow();
 
       const status = await bob.rest.v1.statuses.create({
-        status: `@${alice.acct} Hi alice`,
+        status: `@${alice.account.acct} Hi alice`,
         visibility: "direct",
       });
 
@@ -25,7 +25,7 @@ describe("conversations", () => {
         conversation = conversations.find(
           (c) => c.lastStatus?.id === status.id,
         );
-        expect(conversation?.accounts.map((a) => a.id)).toContain(bob.id);
+        expect(conversation?.accounts).toContainEqual(bob.account);
       });
 
       assert(conversation != undefined);

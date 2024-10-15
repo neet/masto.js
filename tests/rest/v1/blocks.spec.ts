@@ -6,7 +6,7 @@ describe("blocks", () => {
     try {
       await alice.rest.v1.accounts.$select(bob.id).block();
       const blocks = await alice.rest.v1.blocks.list();
-      expect(blocks).toContainId(bob.id);
+      expect(blocks).toContainEqual(bob.account);
     } finally {
       await alice.rest.v1.accounts.$select(bob.id).unblock();
     }

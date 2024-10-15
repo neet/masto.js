@@ -5,7 +5,7 @@ it("list favourites", async () => {
   try {
     await client.rest.v1.statuses.$select(status.id).favourite();
     const statuses = await client.rest.v1.favourites.list();
-    expect(statuses).toContainId(status.id);
+    expect(statuses).toContainEqual(status);
   } finally {
     await client.rest.v1.statuses.$select(status.id).remove();
   }

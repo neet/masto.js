@@ -5,7 +5,7 @@ it("lists mute", async () => {
 
   try {
     const mutes = await alice.rest.v1.mutes.list();
-    expect(mutes).toContainId(bob.id);
+    expect(mutes).toContainEqual(bob.account);
   } finally {
     await alice.rest.v1.accounts.$select(bob.id).unmute();
   }
