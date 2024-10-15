@@ -5,3 +5,9 @@ export interface WebSocketConnector {
   close(): void;
   canAcquire(): boolean;
 }
+
+export interface WebSocketSubscriptionCounter {
+  count(stream: string, params?: Record<string, unknown>): number;
+  increment(stream: string, params?: Record<string, unknown>): void;
+  decrement(stream: string, params?: Record<string, unknown>): void;
+}

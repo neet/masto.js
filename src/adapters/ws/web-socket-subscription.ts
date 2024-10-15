@@ -4,6 +4,7 @@ import {
   type Logger,
   type Serializer,
   type WebSocketConnector,
+  type WebSocketSubscriptionCounter,
 } from "../../interfaces";
 import { type mastodon } from "../../mastodon";
 import { MastoUnexpectedError } from "../errors";
@@ -14,6 +15,7 @@ export class WebSocketSubscription implements mastodon.streaming.Subscription {
 
   constructor(
     private readonly connector: WebSocketConnector,
+    private readonly counter: WebSocketSubscriptionCounter,
     private readonly serializer: Serializer,
     private readonly stream: string,
     private readonly logger?: Logger,
@@ -34,6 +36,7 @@ export class WebSocketSubscription implements mastodon.streaming.Subscription {
 
       this.logger?.log("debug", "↑ WEBSOCKET", data);
       this.connection.send(data);
+      this.counter.increment(this.stream, this.params);
 
       const messages = toAsyncIterable(this.connection);
 
@@ -55,13 +58,19 @@ export class WebSocketSubscription implements mastodon.streaming.Subscription {
       return;
     }
 
-    const data = this.serializer.serialize("json", {
-      type: "unsubscribe",
-      stream: this.stream,
-      ...this.params,
-    });
+    this.counter.decrement(this.stream, this.params);
 
-    this.connection.send(data);
+    if (this.counter.count(this.stream, this.params) <= 0) {
+      const data = this.serializer.serialize("json", {
+        type: "unsubscribe",
+        stream: this.stream,
+        ...this.params,
+      });
+
+      this.connection.send(data);
+    }
+
+    this.connection = undefined;
   }
 
   [Symbol.asyncIterator](): AsyncIterableIterator<mastodon.streaming.Event> {

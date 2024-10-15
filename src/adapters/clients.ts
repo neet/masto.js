@@ -15,7 +15,7 @@ import {
 import { HttpNativeImpl } from "./http";
 import { createLogger } from "./logger";
 import { SerializerNativeImpl } from "./serializers";
-import { WebSocketConnectorImpl } from "./ws";
+import { WebSocketConnectorImpl, WebSocketSubscriptionCounterImpl } from "./ws";
 
 interface LogConfigProps {
   /**
@@ -87,8 +87,10 @@ export function createStreamingAPIClient(
     },
     logger,
   );
+  const counter = new WebSocketSubscriptionCounterImpl();
   const actionDispatcher = new WebSocketActionDispatcher(
     connector,
+    counter,
     serializer,
     logger,
   );
