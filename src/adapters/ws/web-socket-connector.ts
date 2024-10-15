@@ -33,11 +33,11 @@ export class WebSocketConnectorImpl implements WebSocketConnector {
     });
   }
 
-  canAcquire(): boolean {
-    return !this.closed;
-  }
-
   async acquire(): Promise<WebSocket> {
+    if (this.closed) {
+      throw new MastoWebSocketError("WebSocket closed");
+    }
+
     this.init();
 
     if (this.ws != undefined) {
@@ -47,6 +47,12 @@ export class WebSocketConnectorImpl implements WebSocketConnector {
     const promiseWithResolvers = createPromiseWithResolvers<WebSocket>();
     this.queue.push(promiseWithResolvers);
     return await promiseWithResolvers.promise;
+  }
+
+  async *[Symbol.asyncIterator](): AsyncIterableIterator<WebSocket> {
+    while (!this.closed) {
+      yield await this.acquire();
+    }
   }
 
   close(): void {
