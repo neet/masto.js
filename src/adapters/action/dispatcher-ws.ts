@@ -4,6 +4,7 @@ import {
   type Logger,
   type Serializer,
   type WebSocketConnector,
+  type WebSocketSubscriptionCounter,
 } from "../../interfaces";
 import { MastoUnexpectedError } from "../errors";
 import { WebSocketSubscription } from "../ws";
@@ -16,6 +17,7 @@ export class WebSocketActionDispatcher
 {
   constructor(
     private readonly connector: WebSocketConnector,
+    private readonly counter: WebSocketSubscriptionCounter,
     private readonly serializer: Serializer,
     private readonly logger?: Logger,
   ) {}
@@ -39,6 +41,7 @@ export class WebSocketActionDispatcher
 
     return new WebSocketSubscription(
       this.connector,
+      this.counter,
       this.serializer,
       stream,
       this.logger,

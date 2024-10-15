@@ -5,6 +5,7 @@ import { createLogger } from "../logger";
 import { SerializerNativeImpl } from "../serializers";
 import { WebSocketConnectorImpl } from "./web-socket-connector";
 import { WebSocketSubscription } from "./web-socket-subscription";
+import { WebSocketSubscriptionCounterImpl } from "./web-socket-subscription-counter";
 
 describe("WebSocketSubscription", () => {
   it("doesn't do anything if no connection was established", async () => {
@@ -15,6 +16,7 @@ describe("WebSocketSubscription", () => {
         { constructorParameters: ["ws://localhost:0"] },
         logger,
       ),
+      new WebSocketSubscriptionCounterImpl(),
       new SerializerNativeImpl(),
       "public",
       logger,
@@ -47,6 +49,7 @@ describe("WebSocketSubscription", () => {
     );
     const subscription = new WebSocketSubscription(
       connection,
+      new WebSocketSubscriptionCounterImpl(),
       new SerializerNativeImpl(),
       "public",
       logger,

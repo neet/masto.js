@@ -1,7 +1,10 @@
 import { MastoUnexpectedError } from "../errors";
 import { createLogger } from "../logger";
 import { SerializerNativeImpl } from "../serializers";
-import { WebSocketConnectorImpl } from "../ws";
+import {
+  WebSocketConnectorImpl,
+  WebSocketSubscriptionCounterImpl,
+} from "../ws";
 import { WebSocketActionDispatcher } from "./dispatcher-ws";
 
 describe("DispatcherWs", () => {
@@ -10,6 +13,7 @@ describe("DispatcherWs", () => {
       new WebSocketConnectorImpl({
         constructorParameters: ["wss://example.com"],
       }),
+      new WebSocketSubscriptionCounterImpl(),
       new SerializerNativeImpl(),
       createLogger("error"),
     );
@@ -31,6 +35,7 @@ describe("DispatcherWs", () => {
     });
     const dispatcher = new WebSocketActionDispatcher(
       connector,
+      new WebSocketSubscriptionCounterImpl(),
       new SerializerNativeImpl(),
       createLogger("error"),
     );
