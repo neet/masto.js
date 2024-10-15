@@ -220,7 +220,7 @@ describe("account", () => {
       .$select(bob.id)
       .followers.list();
 
-    expect(followers).toContainId(alice.id);
+    expect(followers).toContainEqual(alice.account);
     await alice.rest.v1.accounts.$select(bob.id).unfollow();
   });
 
@@ -233,7 +233,7 @@ describe("account", () => {
       .$select(alice.id)
       .following.list();
 
-    expect(accounts).toContainId(bob.id);
+    expect(accounts).toContainEqual(bob.account);
     await alice.rest.v1.accounts.$select(bob.id).unfollow();
   });
 
@@ -244,7 +244,7 @@ describe("account", () => {
       .$select(status.account.id)
       .statuses.list();
 
-    expect(statuses).toContainId(status.id);
+    expect(statuses).toContainEqual(status);
   });
 
   it("searches", async () => {
@@ -253,7 +253,7 @@ describe("account", () => {
     const accounts = await client.rest.v1.accounts.search.list({
       q: me.username,
     });
-    expect(accounts).toContainId(me.id);
+    expect(accounts).toContainEqual(me);
   });
 
   it("lists lists", async () => {
@@ -266,10 +266,8 @@ describe("account", () => {
       await alice.rest.v1.lists.$select(list.id).accounts.create({
         accountIds: [bob.id],
       });
-      const accounts = await alice.rest.v1.accounts
-        .$select(bob.id)
-        .lists.list();
-      expect(accounts).toContainId(list.id);
+      const lists = await alice.rest.v1.accounts.$select(bob.id).lists.list();
+      expect(lists).toContainEqual(list);
     } finally {
       await alice.rest.v1.lists.$select(list.id).remove();
     }
@@ -284,7 +282,7 @@ describe("account", () => {
     const tags = await client.rest.v1.accounts
       .$select(client.id)
       .featuredTags.list();
-    expect(tags).toContainId(featuredTag.id);
+    expect(tags).toContainEqual(featuredTag);
 
     await client.rest.v1.featuredTags.$select(featuredTag.id).remove();
   });
@@ -308,7 +306,7 @@ describe("account", () => {
   it("lookup", async () => {
     await using client = await sessions.acquire();
     const account = await client.rest.v1.accounts.lookup({
-      acct: client.acct,
+      acct: client.account.acct,
     });
     expect(account.id).toBe(client.id);
   });

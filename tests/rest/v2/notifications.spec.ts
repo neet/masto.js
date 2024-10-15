@@ -17,21 +17,21 @@ describe("notification group", () => {
       });
 
       const notifications = await alice.rest.v2.notifications.list();
-      expect(notifications.notificationGroups[0].type).toEqual("follow");
-      expect(notifications.accounts.map((a) => a.id)).toContain(bob.id);
+      expect(notifications.notificationGroups[0].type).toBe("follow");
+      expect(notifications.accounts).toContainEqual(bob.account);
 
       const groupKey = notifications.notificationGroups[0].groupKey;
       const notification = await alice.rest.v2.notifications
         .$select(groupKey)
         .fetch();
-      expect(notification.notificationGroups[0].type).toEqual("follow");
-      expect(notification.accounts.map((a) => a.id)).toContain(bob.id);
+      expect(notification.notificationGroups[0].type).toBe("follow");
+      expect(notification.accounts).toContainEqual(bob.account);
 
       const accounts = await alice.rest.v2.notifications
         .$select(groupKey)
         .accounts.fetch();
       expect(accounts).toHaveLength(1);
-      expect(accounts[0].id).toEqual(bob.id);
+      expect(accounts[0].id).toBe(bob.id);
 
       await alice.rest.v2.notifications.$select(groupKey).dismiss();
     } finally {
@@ -90,7 +90,9 @@ describe("notification requests", () => {
         forNotFollowing: "filter",
       });
 
-      await bob.rest.v1.statuses.create({ status: `@${alice.acct} Hello` });
+      await bob.rest.v1.statuses.create({
+        status: `@${alice.account.acct} Hello`,
+      });
 
       let requests!: mastodon.v1.NotificationRequest[];
       await waitForExpect(async () => {
@@ -103,7 +105,7 @@ describe("notification requests", () => {
         .fetch();
       await alice.rest.v1.notifications.requests.$select(request.id).dismiss();
 
-      expect(request.account.id).toEqual(bob.id);
+      expect(request.account.id).toBe(bob.id);
     } finally {
       await alice.rest.v2.notifications.policy.update({
         forNotFollowing: "accept",
@@ -128,7 +130,7 @@ describe("notification requests", () => {
       });
 
       await bob.rest.v1.statuses.create({
-        status: `@${alice.acct} hello`,
+        status: `@${alice.account.acct} hello`,
       });
 
       await alice.rest.v1.notifications.requests.accept();
@@ -156,7 +158,7 @@ describe("notification requests", () => {
       });
 
       await bob.rest.v1.statuses.create({
-        status: `@${alice.acct} hello`,
+        status: `@${alice.account.acct} hello`,
       });
 
       await alice.rest.v1.notifications.requests.accept();
@@ -190,7 +192,7 @@ describe("notification requests", () => {
       });
 
       await bob.rest.v1.statuses.create({
-        status: `@${alice.acct} hello`,
+        status: `@${alice.account.acct} hello`,
       });
 
       let requests!: mastodon.v1.NotificationRequest[];
@@ -226,7 +228,7 @@ describe("notification requests", () => {
       });
 
       await bob.rest.v1.statuses.create({
-        status: `@${alice.acct} hello`,
+        status: `@${alice.account.acct} hello`,
       });
 
       let requests!: mastodon.v1.NotificationRequest[];

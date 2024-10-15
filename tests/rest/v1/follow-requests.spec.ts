@@ -15,7 +15,7 @@ it("authorize follow requests", async () => {
     expect(relationship.requested).toBe(true);
 
     const followRequests = await alice.rest.v1.followRequests.list();
-    expect(followRequests).toContainId(bob.id);
+    expect(followRequests).toContainEqual(bob.account);
 
     await alice.rest.v1.followRequests.$select(bob.id).authorize();
     [relationship] = await bob.rest.v1.accounts.relationships.fetch({
@@ -43,7 +43,7 @@ it("rejects follow requests", async () => {
     expect(relationship.requested).toBe(true);
 
     const followRequests = await alice.rest.v1.followRequests.list();
-    expect(followRequests).toContainId(bob.id);
+    expect(followRequests).toContainEqual(bob.account);
 
     await alice.rest.v1.followRequests.$select(bob.id).reject();
     [relationship] = await bob.rest.v1.accounts.relationships.fetch({

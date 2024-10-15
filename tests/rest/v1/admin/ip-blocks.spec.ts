@@ -14,7 +14,7 @@ it("handles ip blocks", async () => {
     expect(ipBlock.severity).toBe("sign_up_requires_approval");
 
     const list = await admin.v1.admin.ipBlocks.list();
-    expect(list).toContainId(ipBlock.id);
+    expect(list).toContainEqual(ipBlock);
   } finally {
     await admin.v1.admin.ipBlocks.$select(ipBlock.id).remove();
   }

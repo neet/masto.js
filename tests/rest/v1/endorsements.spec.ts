@@ -7,7 +7,7 @@ it("lists endorsements", async () => {
     await alice.rest.v1.accounts.$select(bob.id).pin();
     const endorsements = await alice.rest.v1.endorsements.list();
 
-    expect(endorsements).toContainId(bob.id);
+    expect(endorsements).toContainEqual(bob.account);
   } finally {
     await alice.rest.v1.accounts.$select(bob.id).unfollow();
     await alice.rest.v1.accounts.$select(bob.id).unpin();

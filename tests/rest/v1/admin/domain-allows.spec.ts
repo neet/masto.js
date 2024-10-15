@@ -11,7 +11,7 @@ it("handles domain allows", async () => {
     expect(domainAllow.domain).toMatch(/example.domain.to.allow.com/);
 
     const list = await admin.v1.admin.domainAllows.list();
-    expect(list).toContainId(domainAllow.id);
+    expect(list).toContainEqual(domainAllow);
   } finally {
     await admin.v1.admin.domainAllows.$select(domainAllow.id).remove();
   }

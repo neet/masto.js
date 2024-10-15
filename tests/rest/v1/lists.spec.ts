@@ -14,14 +14,14 @@ it("mutates a list", async () => {
     list = await alice.rest.v1.lists.$select(list.id).fetch();
 
     const lists = await alice.rest.v1.lists.list();
-    expect(lists).toContainId(list.id);
+    expect(lists).toContainEqual(list);
 
     await alice.rest.v1.lists
       .$select(list.id)
       .accounts.create({ accountIds: [bob.id] });
 
     const accounts = await alice.rest.v1.lists.$select(list.id).accounts.list();
-    expect(accounts).toContainId(bob.id);
+    expect(accounts).toContainEqual(bob.account);
   } finally {
     await alice.rest.v1.lists
       .$select(list.id)

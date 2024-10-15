@@ -2,7 +2,6 @@ import assert from "node:assert";
 import crypto from "node:crypto";
 
 import { sleep } from "../../src/utils";
-import { asyncNextTick } from "../../test-utils/async-next-tick";
 
 describe("events", () => {
   it("streams update, status.update, and delete event", async () => {
@@ -56,7 +55,6 @@ describe("events", () => {
 
     using subscription = alice.ws.user.notification.subscribe();
     const eventsPromise = subscription.values().take(1).toArray();
-    await asyncNextTick();
 
     await bob.rest.v1.accounts.$select(alice.id).follow();
 
@@ -75,13 +73,12 @@ describe("events", () => {
 
     using subscription = alice.ws.direct.subscribe();
     const eventsPromise = subscription.values().take(1).toArray();
-    await asyncNextTick();
 
     await alice.rest.v1.accounts.$select(bob.id).follow();
     await bob.rest.v1.accounts.$select(alice.id).follow();
 
     const status = await bob.rest.v1.statuses.create({
-      status: `@${alice.acct} Hello there`,
+      status: `@${alice.account.acct} Hello there`,
       visibility: "direct",
     });
 
