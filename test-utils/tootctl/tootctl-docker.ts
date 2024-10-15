@@ -1,5 +1,5 @@
 import childProcess from "node:child_process";
-import util from "node:util";
+import { promisify } from "node:util";
 
 import {
   type CreateAccountParams,
@@ -7,7 +7,7 @@ import {
   type Tootctl,
 } from "./tootctl";
 
-const exec = util.promisify(childProcess.exec);
+const exec = promisify(childProcess.exec);
 
 const extractPassword = (stdout: string) => {
   return stdout.match(/New password:\s(.+?)$/)?.[1];
