@@ -37,7 +37,6 @@ export default tseslint.config(
       "unicorn/prevent-abbreviations": "off",
       "unicorn/no-array-reduce": "off",
     },
-    ignores: ["/dist", "/docs", "**/__tests__/", "**/__mocks__/"],
   },
   {
     files: ["**/*.ts"],
