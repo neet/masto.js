@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.9.1](https://github.com/neet/masto.js/compare/v6.9.0...v6.9.1) (2024-10-17)
+
+
+### Bug Fixes
+
+* Fix WebSocket client to maintain subscription even if other subscription with same parameter ends ([e6d6bd0](https://github.com/neet/masto.js/commit/e6d6bd02255077b9e403ec5d634ef0a6b7fd9bf2))
+* Unsubscribe from WebSocket stream when iterator ended ([b7732ed](https://github.com/neet/masto.js/commit/b7732ed404b15378bef28249bee59e240e23e529))
+
 ## [6.9.0](https://github.com/neet/masto.js/compare/v6.8.2...v6.9.0) (2024-10-14)
 
 
