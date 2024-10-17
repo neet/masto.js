@@ -23,12 +23,10 @@ export class WebSocketSubscription implements mastodon.streaming.Subscription {
   ) {}
 
   async *values(): AsyncIterableIterator<mastodon.streaming.Event> {
-    this.logger?.log("info", "Subscribing to stream", this.stream);
-
     try {
-      for await (const connection of this.connector) {
-        this.connection = connection;
+      this.logger?.log("info", "Subscribing to stream", this.stream);
 
+      for await (this.connection of this.connector) {
         const data = this.serializer.serialize("json", {
           type: "subscribe",
           stream: this.stream,
