@@ -11,8 +11,6 @@ import { MastoUnexpectedError } from "../errors";
 import { toAsyncIterable } from "./async-iterable";
 
 export class WebSocketSubscription implements mastodon.streaming.Subscription {
-  private connection?: WebSocket;
-
   constructor(
     private readonly connector: WebSocketConnector,
     private readonly counter: WebSocketSubscriptionCounter,
@@ -23,10 +21,12 @@ export class WebSocketSubscription implements mastodon.streaming.Subscription {
   ) {}
 
   async *values(): AsyncIterableIterator<mastodon.streaming.Event> {
+    let connection: WebSocket | undefined = undefined;
+
     try {
       this.logger?.log("info", "Subscribing to stream", this.stream);
 
-      for await (this.connection of this.connector) {
+      for await (connection of this.connector) {
         const data = this.serializer.serialize("json", {
           type: "subscribe",
           stream: this.stream,
@@ -34,10 +34,10 @@ export class WebSocketSubscription implements mastodon.streaming.Subscription {
         });
 
         this.logger?.log("debug", "↑ WEBSOCKET", data);
-        this.connection.send(data);
+        connection.send(data);
         this.counter.increment(this.stream, this.params);
 
-        const messages = toAsyncIterable(this.connection);
+        const messages = toAsyncIterable(connection);
 
         for await (const message of messages) {
           const event = await this.parseMessage(message.data as string);
@@ -51,28 +51,26 @@ export class WebSocketSubscription implements mastodon.streaming.Subscription {
         }
       }
     } finally {
-      this.unsubscribe();
+      this.counter.decrement(this.stream, this.params);
+
+      if (this.counter.count(this.stream, this.params) <= 0) {
+        const data = this.serializer.serialize("json", {
+          type: "unsubscribe",
+          stream: this.stream,
+          ...this.params,
+        });
+
+        connection?.send(data);
+      }
     }
   }
 
+  /**
+   * @deprecated Use `for await (const event of subscription) { ... }` instead.
+   */
   unsubscribe(): void {
-    if (this.connection == undefined) {
-      return;
-    }
-
-    this.counter.decrement(this.stream, this.params);
-
-    if (this.counter.count(this.stream, this.params) <= 0) {
-      const data = this.serializer.serialize("json", {
-        type: "unsubscribe",
-        stream: this.stream,
-        ...this.params,
-      });
-
-      this.connection.send(data);
-    }
-
-    this.connection = undefined;
+    // eslint-disable-next-line no-console
+    console.warn("WebSocketSubscription#unsubscribe is deprecated.");
   }
 
   [Symbol.asyncIterator](): AsyncIterableIterator<mastodon.streaming.Event> {
