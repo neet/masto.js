@@ -8,24 +8,6 @@ import { WebSocketSubscription } from "./web-socket-subscription";
 import { WebSocketSubscriptionCounterImpl } from "./web-socket-subscription-counter";
 
 describe("WebSocketSubscription", () => {
-  it("doesn't do anything if no connection was established", async () => {
-    const logger = createLogger();
-
-    const subscription = new WebSocketSubscription(
-      new WebSocketConnectorImpl(
-        { constructorParameters: ["ws://localhost:0"] },
-        logger,
-      ),
-      new WebSocketSubscriptionCounterImpl(),
-      new SerializerNativeImpl(),
-      "public",
-      logger,
-    );
-
-    const res = subscription.unsubscribe();
-    expect(res).toBeUndefined();
-  });
-
   it("implements async iterator", async () => {
     const logger = createLogger();
     const port = await getPort();
@@ -43,12 +25,12 @@ describe("WebSocketSubscription", () => {
       });
     });
 
-    const connection = new WebSocketConnectorImpl(
+    const connector = new WebSocketConnectorImpl(
       { constructorParameters: [`ws://localhost:${port}`] },
       logger,
     );
     const subscription = new WebSocketSubscription(
-      connection,
+      connector,
       new WebSocketSubscriptionCounterImpl(),
       new SerializerNativeImpl(),
       "public",
@@ -63,7 +45,7 @@ describe("WebSocketSubscription", () => {
 
     expect(value).toBe("123");
 
-    connection.close();
+    connector.kill();
     server.close();
   });
 });

@@ -18,7 +18,7 @@ describe("WebSocketConnector", () => {
     expect(ws1).toBe(ws2);
 
     server.close();
-    connector.close();
+    connector.kill();
   });
 
   it("rejects if WebSocket closes", async () => {
@@ -26,7 +26,7 @@ describe("WebSocketConnector", () => {
       constructorParameters: [`ws://localhost:0`],
     });
     const promise = connector.acquire();
-    connector.close();
+    connector.kill();
 
     await expect(promise).rejects.toBeInstanceOf(MastoWebSocketError);
   });

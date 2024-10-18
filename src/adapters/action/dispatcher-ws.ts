@@ -24,7 +24,7 @@ export class WebSocketActionDispatcher
 
   dispatch<T>(action: WebSocketAction): T {
     if (action.type === "close") {
-      this.connector.close();
+      this.connector.kill();
       return {} as T;
     }
 
@@ -50,6 +50,6 @@ export class WebSocketActionDispatcher
   }
 
   [Symbol.dispose](): void {
-    this.connector.close();
+    this.connector.kill();
   }
 }
