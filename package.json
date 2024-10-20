@@ -101,5 +101,6 @@
       "limit": "7.0 kB",
       "path": "./dist/index.js"
     }
-  ]
+  ],
+  "packageManager": "npm@10.9.0+sha256.c12def16fe3efdc80b1e652d60903d807ac4b78b9e7c3e76f633f4b13a32897c"
 }
