@@ -10,7 +10,6 @@ export interface SubscribeHashtagParams {
 
 export interface Subscription extends AsyncIterable<Event>, Disposable {
   values(): AsyncIterableIterator<Event>;
-
   unsubscribe(): void;
 }
 

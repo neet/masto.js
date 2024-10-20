@@ -18,11 +18,9 @@ interface WebSocketConnectorImplProps {
 export class WebSocketConnectorImpl implements WebSocketConnector {
   private ws?: WebSocket;
 
+  private killed = false;
   private queue: PromiseWithResolvers<WebSocket>[] = [];
   private backoff: ExponentialBackoff;
-
-  private closed = false;
-  private initialized = false;
 
   constructor(
     private readonly props: WebSocketConnectorImplProps,
@@ -31,32 +29,31 @@ export class WebSocketConnectorImpl implements WebSocketConnector {
     this.backoff = new ExponentialBackoff({
       maxAttempts: this.props.maxAttempts,
     });
+    this.spawn();
   }
 
-  async acquire(): Promise<WebSocket> {
-    if (this.closed) {
+  acquire(): Promise<WebSocket> {
+    if (this.killed) {
       throw new MastoWebSocketError("WebSocket closed");
     }
 
-    this.init();
-
     if (this.ws != undefined) {
-      return this.ws;
+      return Promise.resolve(this.ws);
     }
 
     const promiseWithResolvers = createPromiseWithResolvers<WebSocket>();
     this.queue.push(promiseWithResolvers);
-    return await promiseWithResolvers.promise;
+    return promiseWithResolvers.promise;
   }
 
   async *[Symbol.asyncIterator](): AsyncIterableIterator<WebSocket> {
-    while (!this.closed) {
+    while (!this.killed) {
       yield await this.acquire();
     }
   }
 
-  close(): void {
-    this.closed = true;
+  kill(): void {
+    this.killed = true;
     this.ws?.close();
     this.backoff.clear();
 
@@ -67,14 +64,8 @@ export class WebSocketConnectorImpl implements WebSocketConnector {
     this.queue = [];
   }
 
-  private async init() {
-    if (this.initialized) {
-      return;
-    }
-
-    this.initialized = true;
-
-    while (!this.closed) {
+  private async spawn() {
+    while (!this.killed) {
       this.ws?.close();
 
       try {
@@ -114,6 +105,7 @@ export class WebSocketConnectorImpl implements WebSocketConnector {
         ),
       );
     }
+
     this.queue = [];
   }
 }

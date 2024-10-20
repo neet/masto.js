@@ -2,7 +2,7 @@ import { type WebSocket } from "isomorphic-ws";
 
 export interface WebSocketConnector extends AsyncIterable<WebSocket> {
   acquire(): Promise<WebSocket>;
-  close(): void;
+  kill(): void;
 }
 
 export interface WebSocketSubscriptionCounter {
