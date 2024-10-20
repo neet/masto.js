@@ -1,19 +1,13 @@
 import { type HttpMetaParams } from "../../../interfaces";
-import { type FilterKeyword, type FilterStatus } from "../../entities/v1";
-import {
-  type Filter,
-  type FilterAction,
-  type FilterContext,
-} from "../../entities/v2";
-import { type Paginator } from "../../paginator";
+import { type mastodon } from "../..";
 
 export interface CreateFilterParams {
   /** String. The name of the filter group. */
   readonly title: string;
   /** Array of String. Where the filter should be applied. Specify at least one of home, notifications, public, thread, account. */
-  readonly context: readonly FilterContext[] | null;
+  readonly context: readonly mastodon.v2.FilterContext[] | null;
   /** String. The policy to be applied when the filter is matched. Specify warn or hide. */
-  readonly filterAction?: FilterAction | null;
+  readonly filterAction?: mastodon.v2.FilterAction | null;
   /** Integer. How many seconds from now should the filter expire? */
   readonly expiresIn?: number | null;
 
@@ -29,9 +23,9 @@ export interface UpdateFilterParams {
   /** String. The name of the filter group. */
   readonly title?: string;
   /** Array of String. Where the filter should be applied. Specify at least one of home, notifications, public, thread, account. */
-  readonly context?: readonly FilterContext[] | null;
+  readonly context?: readonly mastodon.v2.FilterContext[] | null;
   /** String. The policy to be applied when the filter is matched. Specify warn or hide. */
-  readonly filterAction?: FilterAction | null;
+  readonly filterAction?: mastodon.v2.FilterAction | null;
   /** Integer. How many seconds from now should the filter expire? */
   readonly expiresIn?: number | null;
 
@@ -66,7 +60,7 @@ export interface FilterRepository {
    * @return Array of Filter
    * @see https://docs.joinmastodon.org/methods/filters/#get
    */
-  list(meta?: HttpMetaParams): Paginator<Filter[]>;
+  list(meta?: HttpMetaParams): mastodon.Paginator<mastodon.v2.Filter[]>;
 
   /**
    * Create a filter group with the given parameters.
@@ -77,7 +71,7 @@ export interface FilterRepository {
   create(
     params?: CreateFilterParams,
     meta?: HttpMetaParams<"json">,
-  ): Promise<Filter>;
+  ): Promise<mastodon.v2.Filter>;
 
   $select(id: string): {
     /**
@@ -85,7 +79,7 @@ export interface FilterRepository {
      * @return Filter
      * @see https://docs.joinmastodon.org/methods/filters/#get-one
      */
-    fetch(meta?: HttpMetaParams): Promise<Filter>;
+    fetch(meta?: HttpMetaParams): Promise<mastodon.v2.Filter>;
 
     /**
      * Update a filter group with the given parameters.
@@ -96,7 +90,7 @@ export interface FilterRepository {
     update(
       params?: UpdateFilterParams,
       meta?: HttpMetaParams<"json">,
-    ): Promise<Filter>;
+    ): Promise<mastodon.v2.Filter>;
 
     /**
      * Delete a filter group with the given id.
@@ -116,14 +110,16 @@ export interface FilterRepository {
       create(
         params: CreateFilterKeywordParams,
         meta?: HttpMetaParams<"json">,
-      ): Promise<FilterKeyword>;
+      ): Promise<mastodon.v1.FilterKeyword>;
 
       /**
        * List all keywords attached to the current filter group.
        * @returns Array of FilterKeyword
        * @see https://docs.joinmastodon.org/methods/filters/#keywords-get
        */
-      list(meta?: HttpMetaParams): Paginator<FilterKeyword[]>;
+      list(
+        meta?: HttpMetaParams,
+      ): mastodon.Paginator<mastodon.v1.FilterKeyword[]>;
     };
 
     statuses: {
@@ -132,7 +128,9 @@ export interface FilterRepository {
        * @returns Array of FilterStatus
        * @see https://docs.joinmastodon.org/methods/filters/#statuses-get
        */
-      list(meta?: HttpMetaParams): Paginator<FilterStatus[]>;
+      list(
+        meta?: HttpMetaParams,
+      ): mastodon.Paginator<mastodon.v1.FilterStatus[]>;
 
       /**
        * Add a status filter to the current filter group.
@@ -143,7 +141,7 @@ export interface FilterRepository {
       create(
         params: CreateFilterStatusParams,
         meta?: HttpMetaParams<"json">,
-      ): Promise<FilterStatus>;
+      ): Promise<mastodon.v1.FilterStatus>;
     };
   };
 
@@ -154,7 +152,9 @@ export interface FilterRepository {
        * @returns FilterKeyword
        * @see https://docs.joinmastodon.org/methods/filters/#keywords-get-one
        */
-      fetch(meta?: HttpMetaParams): Paginator<FilterKeyword>;
+      fetch(
+        meta?: HttpMetaParams,
+      ): mastodon.Paginator<mastodon.v1.FilterKeyword>;
 
       /**
        * Update the given filter keyword.
@@ -165,7 +165,7 @@ export interface FilterRepository {
       update(
         params: CreateFilterKeywordParams,
         meta?: HttpMetaParams<"json">,
-      ): Promise<FilterKeyword>;
+      ): Promise<mastodon.v1.FilterKeyword>;
 
       /**
        * Deletes the given filter keyword.
@@ -183,13 +183,13 @@ export interface FilterRepository {
        * @returns FilterStatus
        * @see https://docs.joinmastodon.org/methods/filters/#statuses-get-one
        */
-      fetch(): Promise<FilterStatus>;
+      fetch(): Promise<mastodon.v1.FilterStatus>;
 
       /**
        * @returns FilterStatus
        * @see https://docs.joinmastodon.org/methods/filters/#statuses-get-one
        */
-      remove(): Promise<FilterStatus>;
+      remove(): Promise<mastodon.v1.FilterStatus>;
     };
   };
 }

@@ -1,5 +1,5 @@
 import { type HttpMetaParams } from "../../../interfaces";
-import { type Instance } from "../../entities/v2";
+import { type mastodon } from "../..";
 
 export interface InstanceRepository {
   /**
@@ -7,5 +7,5 @@ export interface InstanceRepository {
    * @return Instance
    * @see https://docs.joinmastodon.org/methods/instance/
    */
-  fetch(meta?: HttpMetaParams): Promise<Instance>;
+  fetch(meta?: HttpMetaParams): Promise<mastodon.v2.Instance>;
 }

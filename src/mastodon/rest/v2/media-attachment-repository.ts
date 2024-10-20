@@ -1,5 +1,5 @@
 import { type HttpMetaParams } from "../../../interfaces";
-import { type MediaAttachment } from "../../entities/v1";
+import { type mastodon } from "../..";
 
 export interface CreateMediaAttachmentParams {
   /** The file to be attached, using multipart form data. */
@@ -27,5 +27,5 @@ export interface MediaAttachmentRepository {
   create(
     params: CreateMediaAttachmentParams & CreateMediaAttachmentExtraParams,
     meta?: HttpMetaParams<"multipart-form">,
-  ): Promise<MediaAttachment>;
+  ): Promise<mastodon.v1.MediaAttachment>;
 }

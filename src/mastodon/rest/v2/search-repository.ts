@@ -1,11 +1,9 @@
 import { type HttpMetaParams } from "../../../interfaces";
-import { type Search } from "../../entities/v2";
-import { type Paginator } from "../../paginator";
-import { type DefaultPaginationParams } from "../../repository";
+import { type mastodon } from "../..";
 
 export type SearchType = "accounts" | "hashtags" | "statuses";
 
-export interface SearchParams extends DefaultPaginationParams {
+export interface SearchParams extends mastodon.DefaultPaginationParams {
   /** Attempt WebFinger lookup. Defaults to false. */
   readonly q: string;
   /** Enum(accounts, hashtags, statuses) */
@@ -26,7 +24,7 @@ export interface SearchRepository {
   /**
    * @deprecated Use `list` instead
    */
-  fetch(params: SearchParams, meta?: HttpMetaParams): Search;
+  fetch(params: SearchParams, meta?: HttpMetaParams): mastodon.v2.Search;
 
   /**
    * Perform a search
@@ -37,5 +35,5 @@ export interface SearchRepository {
   list(
     params: SearchParams,
     meta?: HttpMetaParams,
-  ): Paginator<Search, SearchParams>;
+  ): mastodon.Paginator<mastodon.v2.Search, SearchParams>;
 }

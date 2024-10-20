@@ -1,21 +1,12 @@
 import { type HttpMetaParams } from "../../../interfaces";
-import {
-  type Account,
-  type GroupedNotificationsResults,
-  type NotificationGroupType,
-} from "../../entities/v1";
-import {
-  type NotificationPolicy,
-  type NotificationPolicyType,
-} from "../../entities/v2";
-import { type Paginator } from "../../paginator";
-import { type DefaultPaginationParams } from "../../repository";
+import { type mastodon } from "../..";
 
-export interface ListNotificationsParams extends DefaultPaginationParams {
+export interface ListNotificationsParams
+  extends mastodon.DefaultPaginationParams {
   /** Types to include in the result. */
-  readonly types?: readonly NotificationGroupType[] | null;
+  readonly types?: readonly mastodon.v1.NotificationGroupType[] | null;
   /** Types to exclude from the results. */
-  readonly excludeTypes?: readonly NotificationGroupType[] | null;
+  readonly excludeTypes?: readonly mastodon.v1.NotificationGroupType[] | null;
   /** Return only notifications received from the specified account. */
   readonly accountId?: string;
 
@@ -40,7 +31,7 @@ export interface ListNotificationsParams extends DefaultPaginationParams {
    * returned here, meaning that you may have to ignore group_key for such notifications that you do
    * not want grouped and use ungrouped-{notification_id} instead for consistency.
    */
-  readonly groupedTypes?: readonly NotificationGroupType[] | null;
+  readonly groupedTypes?: readonly mastodon.v1.NotificationGroupType[] | null;
 
   /** Whether to include notifications filtered by the user’s NotificationPolicy. Defaults to false. */
   readonly includeFiltered?: boolean;
@@ -50,26 +41,26 @@ export interface FetchUnreadCountParams {
   /** Maximum number of results to return. Defaults to 100 notifications. Max 1000 notifications. */
   readonly limit?: number;
   /** Types of notifications that should count towards unread notifications. */
-  readonly types?: readonly NotificationGroupType[];
+  readonly types?: readonly mastodon.v1.NotificationGroupType[];
   /** Types of notifications that should not count towards unread notifications. */
-  readonly excludeTypes?: readonly NotificationGroupType[];
+  readonly excludeTypes?: readonly mastodon.v1.NotificationGroupType[];
   /** Only count unread notifications received from the specified account. */
   readonly accountId?: string;
   /** Restrict which notification types can be grouped. Use this if there are notification types for which your client does not support grouping. If omitted, the server will group notifications of all types it supports (currently, favourite, follow and reblog). If you do not want any notification grouping, use GET /api/v1/notifications/unread_count instead. */
-  readonly groupedTypes?: readonly NotificationGroupType[];
+  readonly groupedTypes?: readonly mastodon.v1.NotificationGroupType[];
 }
 
 export interface UpdateNotificationPolicyParams {
   /** Whether to accept, filter or drop notifications from accounts the user is not following. drop will prevent creation of the notification object altogether (without preventing the underlying activity), filter will cause it to be marked as filtered, and accept will not affect its processing. */
-  readonly forNotFollowing?: NotificationPolicyType;
+  readonly forNotFollowing?: mastodon.v2.NotificationPolicyType;
   /** Whether to accept, filter or drop notifications from accounts that are not following the user. drop will prevent creation of the notification object altogether (without preventing the underlying activity), filter will cause it to be marked as filtered, and accept will not affect its processing. */
-  readonly forNotFollowers?: NotificationPolicyType;
+  readonly forNotFollowers?: mastodon.v2.NotificationPolicyType;
   /** Whether to accept, filter or drop notifications from accounts created in the past 30 days. drop will prevent creation of the notification object altogether (without preventing the underlying activity), filter will cause it to be marked as filtered, and accept will not affect its processing. */
-  readonly forNewAccounts?: NotificationPolicyType;
+  readonly forNewAccounts?: mastodon.v2.NotificationPolicyType;
   /** Whether to accept, filter or drop notifications from private mentions. drop will prevent creation of the notification object altogether (without preventing the underlying activity), filter will cause it to be marked as filtered, and accept will not affect its processing. Replies to private mentions initiated by the user, as well as accounts the user follows, are always allowed, regardless of this value. */
-  readonly forPrivateMentions?: NotificationPolicyType;
+  readonly forPrivateMentions?: mastodon.v2.NotificationPolicyType;
   /** Whether to accept, filter or drop notifications from accounts that were limited by a moderator. drop will prevent creation of the notification object altogether (without preventing the underlying activity), filter will cause it to be marked as filtered, and accept will not affect its processing. */
-  readonly forLimitedAccounts?: NotificationPolicyType;
+  readonly forLimitedAccounts?: mastodon.v2.NotificationPolicyType;
 }
 
 export interface NotificationRepository {
@@ -87,7 +78,7 @@ export interface NotificationRepository {
   list(
     params?: ListNotificationsParams,
     meta?: HttpMetaParams,
-  ): Paginator<GroupedNotificationsResults>;
+  ): mastodon.Paginator<mastodon.v1.GroupedNotificationsResults>;
 
   /**
    * @param groupKey The group key of the notification group.
@@ -96,7 +87,9 @@ export interface NotificationRepository {
     /**
      * View information about a specific notification group with a given group key.
      */
-    fetch(meta?: HttpMetaParams): Promise<GroupedNotificationsResults>;
+    fetch(
+      meta?: HttpMetaParams,
+    ): Promise<mastodon.v1.GroupedNotificationsResults>;
 
     /**
      * Dismiss a single notification group from the server.
@@ -104,7 +97,7 @@ export interface NotificationRepository {
     dismiss(meta?: HttpMetaParams): Promise<void>;
 
     accounts: {
-      fetch(meta?: HttpMetaParams): Promise<Account[]>;
+      fetch(meta?: HttpMetaParams): Promise<mastodon.v1.Account[]>;
     };
   };
 
@@ -126,7 +119,7 @@ export interface NotificationRepository {
     /**
      * Notifications filtering policy for the user.
      */
-    fetch(meta?: HttpMetaParams): Promise<NotificationPolicy>;
+    fetch(meta?: HttpMetaParams): Promise<mastodon.v2.NotificationPolicy>;
 
     /**
      * Update the user’s notifications filtering policy.
@@ -134,6 +127,6 @@ export interface NotificationRepository {
     update(
       params: UpdateNotificationPolicyParams,
       meta?: HttpMetaParams<"json">,
-    ): Promise<NotificationPolicy>;
+    ): Promise<mastodon.v2.NotificationPolicy>;
   };
 }
