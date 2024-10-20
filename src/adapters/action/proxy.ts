@@ -84,7 +84,7 @@ const apply =
     const action = context.pop();
 
     /* istanbul ignore next */
-    if (action == undefined) {
+    if (!action) {
       throw new Error("No action specified");
     }
 

@@ -8,7 +8,7 @@ export async function* toAsyncIterable(
 ): AsyncIterableIterator<WebSocket.MessageEvent> {
   const handleClose = async (e: WebSocket.CloseEvent) => {
     /* istanbul ignore next */
-    if (events.return == undefined) {
+    if (!events.return) {
       throw new MastoUnexpectedError("events.return is undefined");
     }
     await events.return(e);
@@ -16,7 +16,7 @@ export async function* toAsyncIterable(
 
   const handleError = async (e: WebSocket.ErrorEvent) => {
     /* istanbul ignore next */
-    if (events.return == undefined) {
+    if (!events.return) {
       throw new MastoUnexpectedError("events.return is undefined");
     }
     await events.return(e);

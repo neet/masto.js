@@ -56,7 +56,7 @@ export class WebSocketSubscription implements mastodon.streaming.Subscription {
   }
 
   unsubscribe(): void {
-    if (this.connection == undefined) {
+    if (!this.connection) {
       return;
     }
 

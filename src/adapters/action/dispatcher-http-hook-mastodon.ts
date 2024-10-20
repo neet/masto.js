@@ -58,7 +58,7 @@ async function waitForMediaAttachment(
   let media: mastodon.v1.MediaAttachment | undefined;
   const signal = AbortSignal.timeout(timeout);
 
-  while (media == undefined) {
+  while (!media) {
     if (signal.aborted) {
       throw new MastoTimeoutError(`Media processing timed out of ${timeout}ms`);
     }
@@ -70,7 +70,7 @@ async function waitForMediaAttachment(
         `/api/v1/media/${id}`,
       );
 
-      if (processing.url != undefined) {
+      if (processing.url) {
         media = processing;
       }
     } catch (error) {
