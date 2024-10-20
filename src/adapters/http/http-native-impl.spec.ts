@@ -9,19 +9,29 @@ import { HttpNativeImpl } from "./http-native-impl";
 
 describe("HttpNativeImpl", () => {
   it("timeouts", async () => {
+    const server = node_http.createServer((_, res) => {
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.end("{}");
+    });
+
+    const port = await getPort();
+    server.listen(port);
+
     const serializer = new SerializerNativeImpl();
     const http = new HttpNativeImpl(
       serializer,
       new HttpConfigImpl(
         {
-          url: "https://example.com",
-          timeout: 0,
+          url: `http://localhost:${port}`,
+          timeout: 1,
         },
         serializer,
       ),
     );
 
-    await expect(() => http.get("/")).rejects.toThrowError(MastoTimeoutError);
+    await expect(() => http.get("/")).rejects.toThrow(MastoTimeoutError);
+
+    server.close();
   });
 
   it("throws an error if server returned non-JSON", async () => {

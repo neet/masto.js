@@ -55,7 +55,7 @@ export class HttpConfigImpl implements HttpConfig {
 
     if (typeof params === "string") {
       url.search = params;
-    } else if (params != undefined) {
+    } else if (params) {
       url.search = this.serializer.serialize("querystring", params);
     }
 
@@ -81,7 +81,7 @@ export class HttpConfigImpl implements HttpConfig {
   ): AbortSignal {
     const signals: AbortSignal[] = [];
 
-    if (this.props.timeout != undefined) {
+    if (this.props.timeout) {
       signals.push(AbortSignal.timeout(this.props.timeout));
     }
 
@@ -89,7 +89,7 @@ export class HttpConfigImpl implements HttpConfig {
       signals.push(this.props.requestInit.signal);
     }
 
-    if (signal != undefined) {
+    if (signal) {
       signals.push(signal);
     }
 

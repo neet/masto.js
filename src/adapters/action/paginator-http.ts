@@ -15,7 +15,7 @@ export class PaginatorHttp<Entity, Params = undefined>
   ) {}
 
   async next(): Promise<IteratorResult<Entity, undefined>> {
-    if (this.nextPath == undefined) {
+    if (!this.nextPath) {
       return { done: true, value: undefined };
     }
 
@@ -98,12 +98,12 @@ export class PaginatorHttp<Entity, Params = undefined>
   }
 
   private getLink(value?: string | null): URL | undefined {
-    if (value == undefined) {
+    if (!value) {
       return;
     }
 
     const parsed = parseLinkHeader(value).get(this.direction);
-    if (parsed == undefined) {
+    if (!parsed) {
       return;
     }
 

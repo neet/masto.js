@@ -16,7 +16,7 @@ export class HttpActionDispatcher implements ActionDispatcher<HttpAction> {
   ) {}
 
   dispatch<T>(action: HttpAction): T | Promise<T> {
-    if (this.hook != undefined) {
+    if (this.hook) {
       action = this.hook.beforeDispatch(action);
     }
 

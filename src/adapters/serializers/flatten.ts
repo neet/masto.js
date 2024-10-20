@@ -46,7 +46,7 @@ export const flattenForRailsQueryString = (object: unknown): string => {
   });
 
   return flatten(object)
-    .filter(([, v]) => v != undefined)
+    .filter(([, v]) => !!v)
     .map(([k, v]) => `${k}=${encodeURIComponent(v as string)}`)
     .join("&");
 };

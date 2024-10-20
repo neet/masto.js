@@ -40,7 +40,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
 
       const text = await response.text();
       const encoding = getEncoding(response.headers);
-      if (encoding == undefined) {
+      if (!encoding) {
         throw new MastoUnexpectedError(
           "The server returned data with an unknown encoding.",
         );
@@ -89,7 +89,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
   private async createError(error: unknown): Promise<unknown> {
     if (error instanceof Response) {
       const encoding = getEncoding(error.headers);
-      if (encoding == undefined) {
+      if (!encoding) {
         throw new MastoUnexpectedError(
           "The server returned data with an unknown encoding. The server may be down.",
         );

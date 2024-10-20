@@ -37,7 +37,7 @@ export class WebSocketConnectorImpl implements WebSocketConnector {
       throw new MastoWebSocketError("WebSocket closed");
     }
 
-    if (this.ws != undefined) {
+    if (this.ws) {
       return Promise.resolve(this.ws);
     }
 
