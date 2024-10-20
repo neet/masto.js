@@ -29,7 +29,7 @@ describe("DispatcherWs", () => {
     }).toThrow(MastoUnexpectedError);
   });
 
-  it("can be disposed", async () => {
+  it("can be disposed", () => {
     const connector = new WebSocketConnectorImpl({
       constructorParameters: ["wss://example.com"],
     });
@@ -41,8 +41,6 @@ describe("DispatcherWs", () => {
     );
 
     dispatcher[Symbol.dispose]();
-    await expect(() => connector.acquire()).rejects.toThrow(
-      MastoWebSocketError,
-    );
+    expect(() => connector.acquire()).toThrow(MastoWebSocketError);
   });
 });
