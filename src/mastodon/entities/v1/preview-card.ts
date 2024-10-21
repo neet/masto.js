@@ -1,5 +1,5 @@
+import { type Account } from "./account";
 import { type TagHistory } from "./tag";
-import { Account } from "./account";
 
 export type PreviewCardType = "link" | "photo" | "video" | "rich";
 
