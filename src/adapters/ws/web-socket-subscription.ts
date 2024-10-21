@@ -40,7 +40,7 @@ export class WebSocketSubscription implements mastodon.streaming.Subscription {
         const messages = toAsyncIterable(this.connection);
 
         for await (const message of messages) {
-          const event = await this.parseMessage(message.data as string);
+          const event = this.parseMessage(message.data as string);
 
           if (!this.test(event)) {
             continue;
@@ -95,9 +95,7 @@ export class WebSocketSubscription implements mastodon.streaming.Subscription {
     return stream.every((s) => event.stream.includes(s));
   }
 
-  private async parseMessage(
-    rawEvent: string,
-  ): Promise<mastodon.streaming.Event> {
+  private parseMessage(rawEvent: string): mastodon.streaming.Event {
     const data = this.serializer.deserialize<mastodon.streaming.RawEvent>(
       "json",
       rawEvent,
