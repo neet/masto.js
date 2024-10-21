@@ -1,5 +1,19 @@
 # Changelog
 
+## [6.10.0](https://github.com/neet/masto.js/compare/v6.9.0...v6.10.0) (2024-10-21)
+
+
+### Features
+
+* Support new `accounts` field in `PreviewCard` of status introduced by Mastodon 4.3.0 ([96a84f2](https://github.com/neet/masto.js/commit/96a84f2c0f66006731850e187b0364211df1466c))
+
+
+### Bug Fixes
+
+* Fix duplicated WebSocket connection created when acquiring connection before one established ([dbfd4c8](https://github.com/neet/masto.js/commit/dbfd4c8bbd9c3601de25aa85f10eedfde2e5ccb7))
+* Fix WebSocket client to maintain subscription even if other subscription with same parameter ends ([e6d6bd0](https://github.com/neet/masto.js/commit/e6d6bd02255077b9e403ec5d634ef0a6b7fd9bf2))
+* Unsubscribe from WebSocket stream when iterator ended ([b7732ed](https://github.com/neet/masto.js/commit/b7732ed404b15378bef28249bee59e240e23e529))
+
 ## [6.9.0](https://github.com/neet/masto.js/compare/v6.8.2...v6.9.0) (2024-10-14)
 
 
