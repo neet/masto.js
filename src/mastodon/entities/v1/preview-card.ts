@@ -1,6 +1,20 @@
 import { type TagHistory } from "./tag";
+import { Account } from "./account";
 
 export type PreviewCardType = "link" | "photo" | "video" | "rich";
+
+/**
+ * Represents an author in a rich preview card.
+ * @see https://docs.joinmastodon.org/entities/PreviewCardAuthor/
+ */
+export interface PreviewCardAuthor {
+  /** The original resource author’s name. Replaces the deprecated author_name attribute of the preview card. */
+  name: string;
+  /** A link to the author of the original resource. Replaces the deprecated author_url attribute of the preview card. */
+  url: string;
+  /** The fediverse account of the author. */
+  account: Account | null;
+}
 
 /**
  * Represents a rich preview card that is generated using OpenGraph tags from a URL.
@@ -17,10 +31,17 @@ export interface PreviewCard {
   type: PreviewCardType;
   /** Blurhash */
   blurhash: string;
-
-  /** The author of the original resource. */
+  /** Fediverse account of the authors of the original resource. */
+  authors: PreviewCardAuthor[];
+  /**
+   * The author of the original resource.
+   * @deprecated Use `authors` instead
+   */
   authorName?: string | null;
-  /** A link to the author of the original resource. */
+  /**
+   * A link to the author of the original resource.
+   * @deprecated Use `authors` instead
+   */
   authorUrl?: string | null;
   /** The provider of the original resource. */
   providerName?: string | null;
