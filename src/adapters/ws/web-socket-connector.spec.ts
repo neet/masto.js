@@ -1,6 +1,7 @@
 import getPort from "get-port";
-import { WebSocketServer } from "isomorphic-ws";
+import { WebSocket, WebSocketServer } from "isomorphic-ws";
 
+import { sleep } from "../../utils";
 import { MastoWebSocketError } from "../errors";
 import { WebSocketConnectorImpl } from "./web-socket-connector";
 
@@ -39,5 +40,36 @@ describe("WebSocketConnector", () => {
 
     const promise = connector.acquire();
     await expect(promise).rejects.toBeInstanceOf(MastoWebSocketError);
+  });
+
+  it("creates reconnection after connection closed", async () => {
+    const port = await getPort();
+    let server = new WebSocketServer({ port });
+
+    const connector = new WebSocketConnectorImpl({
+      constructorParameters: [`ws://localhost:${port}`],
+    });
+    const connections = connector[Symbol.asyncIterator]();
+
+    // First connection
+    const { value: ws } = await connections.next();
+    await sleep(100);
+    expect(ws.readyState).toBe(WebSocket.OPEN);
+
+    // Close first connection
+    for (const client of server.clients) client.close();
+    server.close();
+    await sleep(100);
+    expect(ws.readyState).toBe(WebSocket.CLOSED);
+
+    server = new WebSocketServer({ port });
+
+    // Second connection
+    const { value: ws2 } = await connections.next();
+    await sleep(100);
+    expect(ws2.readyState).toBe(WebSocket.OPEN);
+
+    server.close();
+    connector.kill();
   });
 });
