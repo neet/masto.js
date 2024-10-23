@@ -66,8 +66,6 @@ export class WebSocketConnectorImpl implements WebSocketConnector {
 
   private async spawn() {
     while (!this.killed) {
-      this.ws?.close();
-
       try {
         await this.backoff.sleep();
       } catch {
@@ -96,6 +94,8 @@ export class WebSocketConnectorImpl implements WebSocketConnector {
       } catch (error) {
         this.logger?.log("error", "WebSocket error:", error);
       }
+
+      this.ws = undefined;
     }
 
     for (const { reject } of this.queue) {
