@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.10.1](https://github.com/neet/masto.js/compare/v6.10.0...v6.10.1) (2024-10-23)
+
+
+### Bug Fixes
+
+* Unset `ws` of WebSocketConnectorImpl after close event ([0a73a2a](https://github.com/neet/masto.js/commit/0a73a2a1fba0189373a9f45e78dd056b24e3b6dc))
+
 ## [6.10.0](https://github.com/neet/masto.js/compare/v6.9.0...v6.10.0) (2024-10-21)
 
 
