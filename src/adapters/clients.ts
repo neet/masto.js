@@ -80,7 +80,10 @@ export function createStreamingAPIClient(
     {
       constructorParameters: [
         config.resolvePath("/api/v1/streaming"),
-        config.getProtocols(),
+        [],
+        {
+          headers: config.getHeaders(),
+        },
       ],
       implementation: props.implementation,
       maxAttempts: config.getMaxAttempts(),
