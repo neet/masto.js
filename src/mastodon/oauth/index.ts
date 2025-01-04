@@ -1,2 +1,2 @@
-export * from "./client";
-export * from "./token-repository";
+export type * from "./client";
+export type * from "./token-repository";

@@ -1,4 +1,4 @@
-export * from "./filter";
-export * from "./instance";
-export * from "./notification-policy";
-export * from "./search";
+export type * from "./filter";
+export type * from "./instance";
+export type * from "./notification-policy";
+export type * from "./search";

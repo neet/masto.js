@@ -1,2 +1,2 @@
-export * from "./client";
-export * from "./event";
+export type * from "./client";
+export type * from "./event";
