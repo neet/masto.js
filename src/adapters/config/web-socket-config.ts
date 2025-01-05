@@ -68,7 +68,7 @@ export class WebSocketConfigImpl implements WebSocketConfig {
     }
 
     return {
-      Authorization: this.props.accessToken,
+      Authorization: `Bearer ${this.props.accessToken}`,
     };
   }
 

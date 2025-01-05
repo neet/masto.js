@@ -40,7 +40,7 @@ describe("WebSocketConfigImpl", () => {
       new SerializerNativeImpl(),
     );
 
-    expect(config.getHeaders()).toEqual({ Authorization: "token" });
+    expect(config.getHeaders()).toEqual({ Authorization: "Bearer token" });
   });
 
   it("creates websocket header without token when not supported", () => {
