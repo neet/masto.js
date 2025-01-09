@@ -1,5 +1,14 @@
 # Changelog
 
+## [6.10.2](https://github.com/neet/masto.js/compare/v6.10.1...v6.10.2) (2025-01-05)
+
+
+### Bug Fixes
+
+* Add Bearer type to WebSocket Authorization header ([ed4631c](https://github.com/neet/masto.js/commit/ed4631c37e8c46056a440d35273b579ac57573f9))
+* Use `export type` statement for mastodon namespace to reduce bundle size ([e725e95](https://github.com/neet/masto.js/commit/e725e9504bd4bce7fc43f05ea676cd1e56df0182))
+* Use Authorization header for sending access_token to WebSocket API ([7f01cb3](https://github.com/neet/masto.js/commit/7f01cb3f9c2c9f53f7bdbb9ad1d95fc4b4e9bab5))
+
 ## [6.10.1](https://github.com/neet/masto.js/compare/v6.10.0...v6.10.1) (2024-10-23)
 
 
