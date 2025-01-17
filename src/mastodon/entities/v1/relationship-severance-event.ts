@@ -8,10 +8,12 @@ export interface RelationshipSeveranceEvent {
   type: RelationshipSeveranceEventType;
   /** Whether the list of severed relationships is unavailable because the underlying issue has been purged. */
   purged: boolean;
+  /** Number of followers that were removed as result of the event. */
+  followersCount: number;
+  /** Number of accounts the user stopped following as result of the event. */
+  followingCount: number;
   /** Name of the target of the moderation/block event. This is either a domain name or a user handle, depending on the event type. */
   targetName: string;
-  /** Number of follow relationships (in either direction) that were severed. */
-  relationshipsCount?: number | null;
   /** When the event took place. */
   createdAt: string;
 }
