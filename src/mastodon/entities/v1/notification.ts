@@ -91,7 +91,7 @@ export type AdminReportNotification =
  */
 export type SeveredRelationshipsNotification =
   BaseNotificationPlain<"severed_relationships"> & {
-    relationshipSeveranceEvent: RelationshipSeveranceEvent;
+    event: RelationshipSeveranceEvent;
   };
 
 /**
