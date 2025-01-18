@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.10.3](https://github.com/neet/masto.js/compare/v6.10.2...v6.10.3) (2025-01-18)
+
+
+### Bug Fixes
+
+* update type information related to relationship severance ([fc34274](https://github.com/neet/masto.js/commit/fc34274de67eff502e25666c40e9f760b5c29ae5))
+
 ## [6.10.2](https://github.com/neet/masto.js/compare/v6.10.1...v6.10.2) (2025-01-05)
 
 
