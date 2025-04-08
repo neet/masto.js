@@ -9,7 +9,7 @@ export interface CreateAppParams {
    * To display the authorization code to the user instead of redirecting to a web page,
    * use `urn:ietf:wg:oauth:2.0:oob` in this parameter.
    */
-  readonly redirectUris: string;
+  readonly redirectUris: string | readonly string[];
   /** Space separated list of scopes. If none is provided, defaults to `read`. */
   readonly scopes: string;
   /** URL to the homepage of your app */
