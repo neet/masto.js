@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.10.4](https://github.com/neet/masto.js/compare/v6.10.3...v6.10.4) (2025-04-08)
+
+
+### Bug Fixes
+
+* Allow multiple URIs in redirectUris in POST /v1/app ([8f5248d](https://github.com/neet/masto.js/commit/8f5248dff6443ccfad2b6af46ffc998af4fd30a6))
+
 ## [6.10.3](https://github.com/neet/masto.js/compare/v6.10.2...v6.10.3) (2025-01-18)
 
 
