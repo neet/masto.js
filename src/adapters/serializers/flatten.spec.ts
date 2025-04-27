@@ -135,4 +135,12 @@ describe("flattenForRailsQueryString", () => {
       `"title=some%20group&context[]=notifications&keywordsAttributes[][keyword]=my%20keyword"`,
     );
   });
+
+  it("encodes an object with value 0", () => {
+    const result = flattenForRailsQueryString({
+      limit: 0,
+    });
+
+    expect(result).toBe("limit=0");
+  });
 });

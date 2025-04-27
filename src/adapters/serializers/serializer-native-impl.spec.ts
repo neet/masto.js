@@ -46,6 +46,14 @@ describe("SerializerNativeImpl", () => {
     );
   });
 
+  it("encodes an object with value 0 to a querystring (#1282)", () => {
+    const data = serializer.serialize("querystring", {
+      limit: 0,
+    });
+
+    expect(data).toBe("limit=0");
+  });
+
   it("parses JSON string to an Object", () => {
     const data = serializer.deserialize("json", '{ "key_name": "value" }');
     expect(data).toEqual({ keyName: "value" });
