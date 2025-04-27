@@ -45,7 +45,7 @@ First, you must install _Node.js_ and _npm_ in your environment. Follow [the npm
 
 The minimal required version of dependencies is as follows:
 
-- **Node.js**: `>= 18.x`
+- **Node.js**: `>= 20.x`
 - **npm**: `>= 9.x`
 - **TypeScript** (optional peer dependency): `>= 5.0.0`
 
