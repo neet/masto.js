@@ -1,5 +1,4 @@
 import { type HttpConfig, type Serializer } from "../../interfaces";
-import { mergeAbortSignals } from "./merge-abort-signals";
 import { mergeHeadersInit } from "./merge-headers-init";
 
 export interface MastoHttpConfigProps {
@@ -93,6 +92,6 @@ export class HttpConfigImpl implements HttpConfig {
       signals.push(signal);
     }
 
-    return signals.length === 1 ? signals[0] : mergeAbortSignals(signals);
+    return AbortSignal.any(signals);
   }
 }
