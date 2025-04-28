@@ -1,5 +1,26 @@
 # Changelog
 
+## [7.0.0](https://github.com/neet/masto.js/compare/v6.10.4...v7.0.0) (2025-04-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* Remove deprecated APIs (CreateTokenParamsWithPassword, v1.search.fetch, v2.search.fetch, SuggestionSource)
+* Change PaginatorHttp.values to a generator
+* Replace mergeAbortSignals with AbortSignal.any
+
+### Features
+
+* Change PaginatorHttp.values to a generator ([cba6d19](https://github.com/neet/masto.js/commit/cba6d19038fd277a6eda919ad76b9a24907ad85f))
+* Promote Symbol.dispose for WebSocketSubscription to a stable API ([abd385a](https://github.com/neet/masto.js/commit/abd385a55ce558baac756e5a22ed9bfe843c1df7))
+* Remove deprecated APIs (CreateTokenParamsWithPassword, v1.search.fetch, v2.search.fetch, SuggestionSource) ([b2ae9b5](https://github.com/neet/masto.js/commit/b2ae9b58cb02ad334cae4b68244ed3e2747d153e))
+
+
+### Bug Fixes
+
+* Fix URL Search Parameter with falsy value gets omitted ([1b2418f](https://github.com/neet/masto.js/commit/1b2418fe5570a64aaff24cc94c0f359ab76ef540))
+* Replace mergeAbortSignals with AbortSignal.any ([15ee586](https://github.com/neet/masto.js/commit/15ee586113e3a80ccf477b53841dcf35a4a544cc))
+
 ## [6.10.4](https://github.com/neet/masto.js/compare/v6.10.3...v6.10.4) (2025-04-08)
 
 
