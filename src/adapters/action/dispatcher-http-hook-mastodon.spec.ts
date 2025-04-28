@@ -1,12 +1,11 @@
-import { httpGet, HttpMockImpl, httpPost } from "../../__mocks__";
+import { HttpMockImpl } from "../../__mocks__";
 import { MastoHttpError, MastoTimeoutError } from "../errors";
 import { HttpActionDispatcher } from "./dispatcher-http";
 import { HttpActionDispatcherHookMastodon } from "./dispatcher-http-hook-mastodon";
 
 describe("DispatcherHttp", () => {
   afterEach(() => {
-    httpGet.mockClear();
-    httpPost.mockClear();
+    HttpMockImpl.clear();
   });
 
   it("waits for media attachment to be created", async () => {
@@ -16,9 +15,9 @@ describe("DispatcherHttp", () => {
       new HttpActionDispatcherHookMastodon(http),
     );
 
-    httpPost.mockResolvedValueOnce({ id: "1" });
+    HttpMockImpl.post.mockResolvedValueOnce({ id: "1" });
 
-    httpGet
+    HttpMockImpl.get
       .mockRejectedValueOnce(
         new MastoHttpError({ statusCode: 404, message: "Not Found" }),
       )
@@ -36,7 +35,7 @@ describe("DispatcherHttp", () => {
 
     expect(media).toHaveProperty("id", "1");
     expect(media).toHaveProperty("url", "https://example.com");
-    expect(httpGet).toHaveBeenCalledTimes(3);
+    expect(HttpMockImpl.get).toHaveBeenCalledTimes(3);
   });
 
   it("throws an error if media processing did not finish", async () => {
@@ -46,8 +45,8 @@ describe("DispatcherHttp", () => {
       new HttpActionDispatcherHookMastodon(http, 1),
     );
 
-    httpPost.mockResolvedValueOnce({ id: "1" });
-    httpGet.mockRejectedValue(
+    HttpMockImpl.post.mockResolvedValueOnce({ id: "1" });
+    HttpMockImpl.get.mockRejectedValue(
       new MastoHttpError({ statusCode: 404, message: "Not Found" }),
     );
 
@@ -68,8 +67,8 @@ describe("DispatcherHttp", () => {
       new HttpActionDispatcherHookMastodon(http),
     );
 
-    httpPost.mockResolvedValueOnce({ id: "1" });
-    httpGet.mockRejectedValueOnce(new Error("Unknown error"));
+    HttpMockImpl.post.mockResolvedValueOnce({ id: "1" });
+    HttpMockImpl.get.mockRejectedValueOnce(new Error("Unknown error"));
 
     const promise = dispatcher.dispatch({
       type: "create",
@@ -88,7 +87,7 @@ describe("DispatcherHttp", () => {
       new HttpActionDispatcherHookMastodon(http),
     );
 
-    httpPost.mockResolvedValueOnce({ id: "1" });
+    HttpMockImpl.post.mockResolvedValueOnce({ id: "1" });
 
     const media = await dispatcher.dispatch({
       type: "create",
@@ -100,6 +99,6 @@ describe("DispatcherHttp", () => {
     });
 
     expect(media).toHaveProperty("id", "1");
-    expect(httpGet).toHaveBeenCalledTimes(0);
+    expect(HttpMockImpl.get).toHaveBeenCalledTimes(0);
   });
 });
