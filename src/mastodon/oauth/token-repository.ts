@@ -1,11 +1,6 @@
 import { type HttpMetaParams } from "../../interfaces";
 import { type Token } from "../entities/v1";
 
-/**
- * @deprecated Use `CreateTokenParamsWithPassword` instead
- */
-export type CreateTokenParamsWithPassword = CreateTokenWithPasswordParams;
-
 interface BaseCreateTokenParams<T extends string> {
   /** Set equal to `authorization_code` if code is provided in order to gain user-level access. Otherwise, set equal to `client_credentials` to obtain app-level access only. */
   readonly grantType: T;
