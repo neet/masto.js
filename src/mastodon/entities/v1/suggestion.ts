@@ -7,7 +7,7 @@ import { type Account } from "./account";
  *
  * @deprecated Use {@link SuggestionSource_} instead
  */
-export type SuggestionSource = "staff" | "past_interactions" | "global";
+export type LegacySuggestionSource = "staff" | "past_interactions" | "global";
 
 /**
  * `featured` = This account was manually recommended by your administration team. Equivalent to the staff value for source
@@ -20,7 +20,7 @@ export type SuggestionSource = "staff" | "past_interactions" | "global";
  *
  * `friends_of_friends`  = This account is followed by people you follow
  */
-export type SuggestionSource_ =
+export type SuggestionSource =
   | "featured"
   | "most_followed"
   | "most_interactions"
@@ -36,10 +36,10 @@ export interface Suggestion {
    * The reason this account is being suggested.
    * @deprecated
    */
-  source: SuggestionSource;
+  source: LegacySuggestionSource;
 
   /** A list of reasons this account is being suggested. This replaces source */
-  sources: SuggestionSource_[];
+  sources: SuggestionSource[];
 
   /**
    * The account being recommended to follow.

@@ -24,11 +24,6 @@ export interface SearchParams extends DefaultPaginationParams {
 
 export interface SearchRepository {
   /**
-   * @deprecated Use `list` instead
-   */
-  fetch(params: SearchParams, meta?: HttpMetaParams): Search;
-
-  /**
    * Perform a search
    * @param params Parameters
    * @return Results
