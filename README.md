@@ -28,6 +28,7 @@
 
 ## Migration Guides
 
+- [Migrate from v6 to v7](https://github.com/neet/masto.js/releases/tag/v7.0.0)
 - [Migrate from v5 to v6](https://github.com/neet/masto.js/releases/tag/v6.0.0)
 - [Migrate from v4 to v5](https://github.com/neet/masto.js/releases/tag/v5.0.0)
 
