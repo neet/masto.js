@@ -1,4 +1,4 @@
-import { type Account, type Rule } from "../v1";
+import { type Account, type Rule } from "../v1/index.js";
 
 export interface InstanceUsageUsers {
   /** The number of active users in the past 4 weeks. */

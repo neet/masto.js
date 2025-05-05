@@ -1,4 +1,4 @@
-import { createPromiseWithResolvers } from "./promise-with-resolvers";
+import { createPromiseWithResolvers } from "./promise-with-resolvers.js";
 
 describe("createPromiseWithResolvers", () => {
   it("resolves promise with resolver", async () => {

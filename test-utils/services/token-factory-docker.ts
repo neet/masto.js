@@ -1,9 +1,9 @@
 import crypto from "node:crypto";
 
-import { type mastodon } from "../../src";
-import { sleep } from "../../src/utils";
-import { type Tootctl } from "../tootctl";
-import { type TokenFactory } from "./token-factory";
+import { type mastodon } from "../../src/index.js";
+import { sleep } from "../../src/utils/index.js";
+import { type TokenFactory } from "./token-factory.js";
+import { type Tootctl } from "./tootctl/index.js";
 
 export class TokenFactoryDocker implements TokenFactory {
   private opened = false;

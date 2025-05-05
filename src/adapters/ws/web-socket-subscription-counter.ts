@@ -1,4 +1,4 @@
-import { type WebSocketSubscriptionCounter } from "../../interfaces";
+import { type WebSocketSubscriptionCounter } from "../../interfaces/index.js";
 
 export class WebSocketSubscriptionCounterImpl
   implements WebSocketSubscriptionCounter

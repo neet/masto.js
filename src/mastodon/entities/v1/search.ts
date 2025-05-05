@@ -1,5 +1,5 @@
-import { type Account } from "./account";
-import { type Status } from "./status";
+import { type Account } from "./account.js";
+import { type Status } from "./status.js";
 
 /**
  * Represents the results of a search.

@@ -1,4 +1,4 @@
-import { type Account } from "./account";
+import { type Account } from "./account.js";
 
 /**
  * `staff` = This account was manually recommended by your administration team

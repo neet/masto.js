@@ -1,6 +1,6 @@
-import { type CustomEmoji } from "./custom-emoji";
-import { type Role } from "./role";
-import { type StatusVisibility } from "./status";
+import { type CustomEmoji } from "./custom-emoji.js";
+import { type Role } from "./role.js";
+import { type StatusVisibility } from "./status.js";
 
 /**
  * Represents display or publishing preferences of user's own account.

@@ -1,6 +1,6 @@
 import waitForExpect from "@sadams/wait-for-expect";
 
-import { type mastodon } from "../../../src";
+import { type mastodon } from "../../../src/index.js";
 
 describe("notification group", () => {
   it("lists, fetches, counts unread, and dismisses", async () => {

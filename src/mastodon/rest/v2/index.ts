@@ -1,6 +1,6 @@
-export type * from "./filter-repository";
-export type * from "./instance-repository";
-export type * from "./media-attachment-repository";
-export type * from "./notification-repository";
-export type * from "./search-repository";
-export type * from "./suggestion-repository";
+export type * from "./filter-repository.js";
+export type * from "./instance-repository.js";
+export type * from "./media-attachment-repository.js";
+export type * from "./notification-repository.js";
+export type * from "./search-repository.js";
+export type * from "./suggestion-repository.js";

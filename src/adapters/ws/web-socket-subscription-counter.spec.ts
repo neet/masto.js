@@ -1,4 +1,4 @@
-import { WebSocketSubscriptionCounterImpl } from "./web-socket-subscription-counter";
+import { WebSocketSubscriptionCounterImpl } from "./web-socket-subscription-counter.js";
 
 describe("WebSocketSubscriptionCounter", () => {
   it("counts", () => {

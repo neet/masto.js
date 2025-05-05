@@ -5,15 +5,15 @@ import {
   type HttpRequestResult,
   type Logger,
   type Serializer,
-} from "../../interfaces";
+} from "../../interfaces/index.js";
 import {
   MastoHttpError,
   type MastoHttpErrorDetails,
   MastoTimeoutError,
   MastoUnexpectedError,
-} from "../errors";
-import { BaseHttp } from "./base-http";
-import { getEncoding } from "./get-encoding";
+} from "../errors/index.js";
+import { BaseHttp } from "./base-http.js";
+import { getEncoding } from "./get-encoding.js";
 
 export class HttpNativeImpl extends BaseHttp implements Http {
   constructor(
@@ -119,7 +119,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
       return new MastoTimeoutError(`Request timed out`, { cause: error });
     }
 
-    /* istanbul ignore next */
+    /* c8 ignore next */
     return error;
   }
 }

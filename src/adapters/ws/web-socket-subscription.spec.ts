@@ -1,11 +1,11 @@
 import getPort from "get-port";
 import { WebSocketServer } from "isomorphic-ws";
 
-import { createLogger } from "../logger";
-import { SerializerNativeImpl } from "../serializers";
-import { WebSocketConnectorImpl } from "./web-socket-connector";
-import { WebSocketSubscription } from "./web-socket-subscription";
-import { WebSocketSubscriptionCounterImpl } from "./web-socket-subscription-counter";
+import { createLogger } from "../logger/index.js";
+import { SerializerNativeImpl } from "../serializers/index.js";
+import { WebSocketConnectorImpl } from "./web-socket-connector.js";
+import { WebSocketSubscription } from "./web-socket-subscription.js";
+import { WebSocketSubscriptionCounterImpl } from "./web-socket-subscription-counter.js";
 
 describe("WebSocketSubscription", () => {
   it("implements async iterator", async () => {

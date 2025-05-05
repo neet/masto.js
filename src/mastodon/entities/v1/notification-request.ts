@@ -1,5 +1,5 @@
-import { type Account } from "./account";
-import { type Status } from "./status";
+import { type Account } from "./account.js";
+import { type Status } from "./status.js";
 
 export interface NotificationRequest {
   /** The id of the notification request in the database. */

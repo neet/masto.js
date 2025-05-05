@@ -3,8 +3,8 @@ import {
   type ActionDispatcher,
   type ActionDispatcherHook,
   type Http,
-} from "../../interfaces";
-import { PaginatorHttp } from "./paginator-http";
+} from "../../interfaces/index.js";
+import { PaginatorHttp } from "./paginator-http.js";
 
 export type HttpActionType = "fetch" | "create" | "update" | "remove" | "list";
 export type HttpAction = Action<HttpActionType>;

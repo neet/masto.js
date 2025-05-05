@@ -1,6 +1,6 @@
 import { CustomError } from "ts-custom-error";
 
-import { sleep } from "./sleep";
+import { sleep } from "./sleep.js";
 
 export class ExponentialBackoffError extends CustomError {
   constructor(attempts: number, options?: ErrorOptions) {

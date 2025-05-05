@@ -1,5 +1,5 @@
-import { type HttpMetaParams } from "../../../interfaces";
-import { type Report, type ReportCategory } from "../../entities/v1";
+import { type HttpMetaParams } from "../../../interfaces/index.js";
+import { type Report, type ReportCategory } from "../../entities/v1/index.js";
 
 export interface ReportAccountParams {
   /** ID of the account to report */

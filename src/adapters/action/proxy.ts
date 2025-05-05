@@ -4,8 +4,8 @@ import {
   type ActionDispatcher,
   type AnyAction,
   type HttpMetaParams,
-} from "../../interfaces";
-import { noop } from "../../utils/noop";
+} from "../../interfaces/index.js";
+import { noop } from "../../utils/noop.js";
 
 type CreateActionProxyOptions = {
   readonly context?: string[];
@@ -83,7 +83,7 @@ const apply =
   (_1: unknown, _2: unknown, args: unknown[]): unknown => {
     const action = context.pop();
 
-    /* istanbul ignore next */
+    /* c8 ignore next 3 */
     if (!action) {
       throw new Error("No action specified");
     }

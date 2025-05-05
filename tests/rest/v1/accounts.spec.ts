@@ -1,8 +1,8 @@
 import assert from "node:assert";
 import crypto from "node:crypto";
 
-import { MastoHttpError } from "../../../src/adapters/errors";
-import { sleep } from "../../../src/utils";
+import { MastoHttpError } from "../../../src/adapters/errors/index.js";
+import { sleep } from "../../../src/utils/index.js";
 
 describe("account", () => {
   it("creates an account", async () => {

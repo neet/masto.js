@@ -1,15 +1,15 @@
-import { type HttpMetaParams } from "../../../interfaces";
+import { type HttpMetaParams } from "../../../interfaces/index.js";
 import {
   type Account,
   type GroupedNotificationsResults,
   type NotificationGroupType,
-} from "../../entities/v1";
+} from "../../entities/v1/index.js";
 import {
   type NotificationPolicy,
   type NotificationPolicyType,
-} from "../../entities/v2";
-import { type Paginator } from "../../paginator";
-import { type DefaultPaginationParams } from "../../repository";
+} from "../../entities/v2/index.js";
+import { type Paginator } from "../../paginator.js";
+import { type DefaultPaginationParams } from "../../repository.js";
 
 export interface ListNotificationsParams extends DefaultPaginationParams {
   /** Types to include in the result. */

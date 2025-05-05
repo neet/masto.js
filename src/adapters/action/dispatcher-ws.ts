@@ -5,9 +5,9 @@ import {
   type Serializer,
   type WebSocketConnector,
   type WebSocketSubscriptionCounter,
-} from "../../interfaces";
-import { MastoUnexpectedError } from "../errors";
-import { WebSocketSubscription } from "../ws";
+} from "../../interfaces/index.js";
+import { MastoUnexpectedError } from "../errors/index.js";
+import { WebSocketSubscription } from "../ws/index.js";
 
 type WebSocketActionType = "close" | "prepare" | "subscribe";
 type WebSocketAction = Action<WebSocketActionType>;

@@ -1,4 +1,4 @@
-import { getEncoding } from "./get-encoding";
+import { getEncoding } from "./get-encoding.js";
 
 test.each([
   [{ "Content-Type": "application/json; charset=utf-8" }, "json"],

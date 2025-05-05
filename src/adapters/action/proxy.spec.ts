@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { type AnyAction } from "../../interfaces";
-import { createActionProxy } from "./proxy";
+import { type AnyAction } from "../../interfaces/index.js";
+import { createActionProxy } from "./proxy.js";
 
 describe("RequestBuilder", () => {
   it("returns undefined for special properties", () => {
@@ -108,7 +108,7 @@ describe("RequestBuilder", () => {
       dispatch: async <T>(_: AnyAction) => {
         return {} as T;
       },
-      [Symbol.dispose]: jest.fn(),
+      [Symbol.dispose]: vi.fn(),
     };
     const api: any = createActionProxy(dispatcher, { context: ["root"] });
 

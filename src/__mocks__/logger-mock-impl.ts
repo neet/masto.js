@@ -1,6 +1,6 @@
-import { Logger } from "../interfaces";
+import { type Logger } from "../interfaces/index.js";
 
-export const log = jest.fn();
+export const log = vi.fn();
 
 export class LoggerMockImpl implements Logger {
   log = log;

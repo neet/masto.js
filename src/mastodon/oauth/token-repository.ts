@@ -1,5 +1,5 @@
-import { type HttpMetaParams } from "../../interfaces";
-import { type Token } from "../entities/v1";
+import { type HttpMetaParams } from "../../interfaces/index.js";
+import { type Token } from "../entities/v1/index.js";
 
 interface BaseCreateTokenParams<T extends string> {
   /** Set equal to `authorization_code` if code is provided in order to gain user-level access. Otherwise, set equal to `client_credentials` to obtain app-level access only. */

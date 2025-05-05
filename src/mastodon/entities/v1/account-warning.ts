@@ -1,5 +1,5 @@
-import { type Account } from "./account";
-import { type Appeal } from "./appeal";
+import { type Account } from "./account.js";
+import { type Appeal } from "./appeal.js";
 
 /**
  * Moderation warning against a particular account.

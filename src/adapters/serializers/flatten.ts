@@ -1,4 +1,4 @@
-import { isRecord } from "../../utils";
+import { isRecord } from "../../utils/index.js";
 
 interface KeyMapper {
   readonly onArray: (parent: unknown, index: number) => string;

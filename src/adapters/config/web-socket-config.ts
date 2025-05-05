@@ -1,4 +1,7 @@
-import { type Serializer, type WebSocketConfig } from "../../interfaces";
+import {
+  type Serializer,
+  type WebSocketConfig,
+} from "../../interfaces/index.js";
 
 export interface WebSocketConfigProps {
   /**

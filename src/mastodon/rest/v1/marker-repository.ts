@@ -1,9 +1,9 @@
-import { type HttpMetaParams } from "../../../interfaces";
+import { type HttpMetaParams } from "../../../interfaces/index.js";
 import {
   type Marker,
   type MarkerItem,
   type MarkerTimeline,
-} from "../../entities/v1";
+} from "../../entities/v1/index.js";
 
 export interface FetchMarkersParams {
   /**

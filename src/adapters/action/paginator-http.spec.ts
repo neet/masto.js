@@ -1,6 +1,6 @@
-import { HttpMockImpl } from "../../__mocks__";
-import { type HttpRequestParams } from "../../interfaces";
-import { PaginatorHttp } from "./paginator-http";
+import { HttpMockImpl } from "../../__mocks__/index.js";
+import { type HttpRequestParams } from "../../interfaces/index.js";
+import { PaginatorHttp } from "./paginator-http.js";
 
 describe("PaginatorHttp", () => {
   const http = new HttpMockImpl();
@@ -156,7 +156,7 @@ describe("PaginatorHttp", () => {
 
   it("is thenable", () => {
     const paginator = new PaginatorHttp(http, "/v1/api/timelines");
-    const onFulfilled = jest.fn();
+    const onFulfilled = vi.fn();
     paginator.then(onFulfilled);
     expect(onFulfilled).toBeCalledTimes(0);
   });
@@ -172,8 +172,8 @@ describe("PaginatorHttp", () => {
       throw new Error("mock error");
     });
 
-    const onFulfilled = jest.fn();
-    const onRejected = jest.fn();
+    const onFulfilled = vi.fn();
+    const onRejected = vi.fn();
     paginator.then(onFulfilled, onRejected);
     expect(onFulfilled).not.toBeCalled();
     expect(onRejected).toBeCalledTimes(0);

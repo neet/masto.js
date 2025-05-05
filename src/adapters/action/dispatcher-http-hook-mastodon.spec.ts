@@ -1,7 +1,7 @@
-import { httpGet, HttpMockImpl, httpPost } from "../../__mocks__";
-import { MastoHttpError, MastoTimeoutError } from "../errors";
-import { HttpActionDispatcher } from "./dispatcher-http";
-import { HttpActionDispatcherHookMastodon } from "./dispatcher-http-hook-mastodon";
+import { httpGet, HttpMockImpl, httpPost } from "../../__mocks__/index.js";
+import { MastoHttpError, MastoTimeoutError } from "../errors/index.js";
+import { HttpActionDispatcher } from "./dispatcher-http.js";
+import { HttpActionDispatcherHookMastodon } from "./dispatcher-http-hook-mastodon.js";
 
 describe("DispatcherHttp", () => {
   afterEach(() => {

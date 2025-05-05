@@ -1,4 +1,4 @@
-import { MastoHttpError } from "./masto-http-error";
+import { MastoHttpError } from "./masto-http-error.js";
 
 describe("MastoHttpError", () => {
   it("creates MastoHttpError", () => {

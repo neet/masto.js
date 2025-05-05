@@ -1,7 +1,7 @@
-import { type mastodon } from "../../src";
-import { createSession, type Session } from "../session";
-import { type Pool } from "./base-pool";
-import { type TokenPool } from "./token-pool";
+import { type mastodon } from "../../src/index.js";
+import { createSession, type Session } from "../models/index.js";
+import { type Pool } from "./base-pool.js";
+import { type TokenPool } from "./token-pool.js";
 
 export type AcquireOption = {
   readonly waitForWs?: boolean;

@@ -1,6 +1,6 @@
-import { type CustomEmoji } from "./custom-emoji";
-import { type Reaction } from "./reaction";
-import { type Tag } from "./tag";
+import { type CustomEmoji } from "./custom-emoji.js";
+import { type Reaction } from "./reaction.js";
+import { type Tag } from "./tag.js";
 
 export interface AnnouncementAccount {
   id: string;

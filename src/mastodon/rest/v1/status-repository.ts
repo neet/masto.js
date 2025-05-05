@@ -1,4 +1,4 @@
-import { type HttpMetaParams } from "../../../interfaces";
+import { type HttpMetaParams } from "../../../interfaces/index.js";
 import {
   type Account,
   type Context,
@@ -9,8 +9,8 @@ import {
   type StatusSource,
   type StatusVisibility,
   type Translation,
-} from "../../entities/v1";
-import { type Paginator } from "../../paginator";
+} from "../../entities/v1/index.js";
+import { type Paginator } from "../../paginator.js";
 
 export interface FetchStatusesParams {
   /** The IDs of the Statuses in the database. */

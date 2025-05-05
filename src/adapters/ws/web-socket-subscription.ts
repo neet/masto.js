@@ -5,10 +5,10 @@ import {
   type Serializer,
   type WebSocketConnector,
   type WebSocketSubscriptionCounter,
-} from "../../interfaces";
-import { type mastodon } from "../../mastodon";
-import { MastoUnexpectedError } from "../errors";
-import { toAsyncIterable } from "./async-iterable";
+} from "../../interfaces/index.js";
+import { type mastodon } from "../../mastodon/index.js";
+import { MastoUnexpectedError } from "../errors/index.js";
+import { toAsyncIterable } from "./async-iterable.js";
 
 export class WebSocketSubscription implements mastodon.streaming.Subscription {
   private connection?: WebSocket;
@@ -49,6 +49,7 @@ export class WebSocketSubscription implements mastodon.streaming.Subscription {
           this.logger?.log("debug", "↓ WEBSOCKET", event);
           yield event;
         }
+        /* c8 ignore next */
       }
     } finally {
       this.unsubscribe();

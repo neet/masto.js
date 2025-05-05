@@ -1,4 +1,4 @@
-import { type LogType } from "../../interfaces";
+import { type LogType } from "../../interfaces/index.js";
 
 /* eslint-disable unicorn/prefer-math-trunc */
 const LOG_TYPES = Object.freeze({

@@ -1,5 +1,5 @@
-import { type HttpMetaParams } from "../../interfaces";
-import { type TokenRepository } from "./token-repository";
+import { type HttpMetaParams } from "../../interfaces/index.js";
+import { type TokenRepository } from "./token-repository.js";
 
 export interface RevokeTokenParams {
   /** The client ID, obtained during app registration. */

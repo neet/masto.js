@@ -1,5 +1,5 @@
-import { SerializerNativeImpl } from "../serializers";
-import { HttpConfigImpl } from "./http-config";
+import { SerializerNativeImpl } from "../serializers/index.js";
+import { HttpConfigImpl } from "./http-config.js";
 
 describe("Config", () => {
   it("creates header", () => {
@@ -77,7 +77,7 @@ describe("Config", () => {
   });
 
   it("falls back to default timeout if timeout = undefined (#1097)", () => {
-    jest.spyOn(AbortSignal, "timeout");
+    vi.spyOn(AbortSignal, "timeout");
 
     const config = new HttpConfigImpl(
       {
@@ -93,7 +93,7 @@ describe("Config", () => {
     expect(request.signal.aborted).toBe(false);
     expect(AbortSignal.timeout).not.toHaveBeenCalled();
 
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 
   it("resolves HTTP path", () => {

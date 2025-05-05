@@ -1,3 +1,3 @@
-export * from "./dispatcher-http";
-export * from "./dispatcher-ws";
-export * from "./proxy";
+export * from "./dispatcher-http.js";
+export * from "./dispatcher-ws.js";
+export * from "./proxy.js";

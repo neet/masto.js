@@ -1,2 +1,2 @@
-export type * from "./client";
-export type * from "./event";
+export type * from "./client.js";
+export type * from "./event.js";

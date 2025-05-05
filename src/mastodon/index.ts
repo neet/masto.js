@@ -1,1 +1,1 @@
-export type * as mastodon from "./mastodon";
+export type * as mastodon from "./mastodon.js";

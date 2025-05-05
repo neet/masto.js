@@ -1,2 +1,2 @@
-export * from "./http-config";
-export * from "./web-socket-config";
+export * from "./http-config.js";
+export * from "./web-socket-config.js";

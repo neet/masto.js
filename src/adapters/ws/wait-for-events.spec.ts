@@ -1,7 +1,7 @@
 import getPort from "get-port";
 import WebSocket, { WebSocketServer } from "isomorphic-ws";
 
-import { waitForClose, waitForOpen } from "./wait-for-events";
+import { waitForClose, waitForOpen } from "./wait-for-events.js";
 
 describe("waitForOpen", () => {
   it("waits for WebSocket to open", async () => {

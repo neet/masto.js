@@ -2,7 +2,7 @@ import assert from "node:assert";
 
 import waitForExpect from "@sadams/wait-for-expect";
 
-import { type mastodon } from "../../../src";
+import { type mastodon } from "../../../src/index.js";
 
 describe("conversations", () => {
   it("interacts with conversations", async () => {

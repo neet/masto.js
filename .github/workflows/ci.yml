@@ -72,7 +72,7 @@ jobs:
           done
 
       - name: Run tests
-        run: npm run test:e2e --max-workers=2
+        run: npm run test:e2e
 
       - name: Teardown Mastodon
         run: docker compose down

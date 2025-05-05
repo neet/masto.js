@@ -1,6 +1,6 @@
-export type * from "./entities";
-export type * as rest from "./rest";
-export type * as streaming from "./streaming";
-export type * as oauth from "./oauth";
-export type * from "./paginator";
-export type * from "./repository";
+export type * from "./entities/index.js";
+export type * as rest from "./rest/index.js";
+export type * as streaming from "./streaming/index.js";
+export type * as oauth from "./oauth/index.js";
+export type * from "./paginator.js";
+export type * from "./repository.js";

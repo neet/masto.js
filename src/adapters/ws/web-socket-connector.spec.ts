@@ -1,9 +1,9 @@
 import getPort from "get-port";
 import { WebSocket, WebSocketServer } from "isomorphic-ws";
 
-import { sleep } from "../../utils";
-import { MastoWebSocketError } from "../errors";
-import { WebSocketConnectorImpl } from "./web-socket-connector";
+import { sleep } from "../../utils/index.js";
+import { MastoWebSocketError } from "../errors/index.js";
+import { WebSocketConnectorImpl } from "./web-socket-connector.js";
 
 describe("WebSocketConnector", () => {
   it("returns existing connection if it exists", async () => {

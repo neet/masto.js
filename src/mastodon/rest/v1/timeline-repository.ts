@@ -1,7 +1,7 @@
-import { type HttpMetaParams } from "../../../interfaces";
-import { type Status } from "../../entities/v1";
-import { type Paginator } from "../../paginator";
-import { type DefaultPaginationParams } from "../../repository";
+import { type HttpMetaParams } from "../../../interfaces/index.js";
+import { type Status } from "../../entities/v1/index.js";
+import { type Paginator } from "../../paginator.js";
+import { type DefaultPaginationParams } from "../../repository.js";
 
 export interface ListTimelineParams extends DefaultPaginationParams {
   /** Show only local statuses? Defaults to false. */
@@ -82,7 +82,6 @@ export interface TimelineRepository {
      * @returns Array of Status
      * @see https://docs.joinmastodon.org/methods/timelines/
      */
-    /* istanbul ignore next */
     list(
       params?: ListTimelineParams,
       meta?: HttpMetaParams,

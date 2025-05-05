@@ -1,4 +1,4 @@
-import { type CustomEmoji } from "./custom-emoji";
+import { type CustomEmoji } from "./custom-emoji.js";
 
 export interface PollOption {
   /** The text value of the poll option. String. */
