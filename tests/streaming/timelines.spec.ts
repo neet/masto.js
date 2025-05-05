@@ -1,7 +1,7 @@
 import crypto from "node:crypto";
 
-import { type mastodon } from "../../src";
-import { getMockImage } from "../../test-utils/image";
+import { type mastodon } from "../../src/index.js";
+import { getMockImage } from "../../test-utils/image.js";
 
 describe("websocket", () => {
   it("streams public", async () => {

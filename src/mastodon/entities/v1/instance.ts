@@ -1,5 +1,5 @@
-import { type Account } from "./account";
-import { type Rule } from "./rule";
+import { type Account } from "./account.js";
+import { type Rule } from "./rule.js";
 
 export interface InstanceStatusesConfiguration {
   maxCharacters: number;

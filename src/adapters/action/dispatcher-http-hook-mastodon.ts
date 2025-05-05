@@ -6,11 +6,11 @@ import {
   type Encoding,
   type Http,
   type HttpMetaParams,
-} from "../../interfaces";
-import { type mastodon } from "../../mastodon";
-import { isRecord, sleep } from "../../utils";
-import { MastoHttpError, MastoTimeoutError } from "../errors";
-import { type HttpAction, type HttpActionType } from "./dispatcher-http";
+} from "../../interfaces/index.js";
+import { type mastodon } from "../../mastodon/index.js";
+import { isRecord, sleep } from "../../utils/index.js";
+import { MastoHttpError, MastoTimeoutError } from "../errors/index.js";
+import { type HttpAction, type HttpActionType } from "./dispatcher-http.js";
 
 function isHttpActionType(actionType: string): actionType is HttpActionType {
   return ["fetch", "create", "update", "remove", "list"].includes(actionType);

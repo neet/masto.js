@@ -1,4 +1,4 @@
-import { type HttpMetaParams } from "../../../interfaces";
+import { type HttpMetaParams } from "../../../interfaces/index.js";
 import {
   type Account,
   type AccountCredentials,
@@ -11,9 +11,9 @@ import {
   type Relationship,
   type Status,
   type Token,
-} from "../../entities/v1";
-import { type Paginator } from "../../paginator";
-import { type DefaultPaginationParams } from "../../repository";
+} from "../../entities/v1/index.js";
+import { type Paginator } from "../../paginator.js";
+import { type DefaultPaginationParams } from "../../repository.js";
 
 export interface FetchAccountsParams {
   /** The IDs of the Accounts in the database. */

@@ -1,4 +1,4 @@
-import { LogLevel } from "./log-level";
+import { LogLevel } from "./log-level.js";
 
 describe("LogLevel", () => {
   const debug = LogLevel.from("debug");

@@ -1,13 +1,16 @@
 import WebSocket from "isomorphic-ws";
 
-import { type Logger, type WebSocketConnector } from "../../interfaces";
+import {
+  type Logger,
+  type WebSocketConnector,
+} from "../../interfaces/index.js";
 import {
   createPromiseWithResolvers,
   ExponentialBackoff,
   type PromiseWithResolvers,
-} from "../../utils";
-import { MastoWebSocketError } from "../errors";
-import { waitForClose, waitForOpen } from "./wait-for-events";
+} from "../../utils/index.js";
+import { MastoWebSocketError } from "../errors/index.js";
+import { waitForClose, waitForOpen } from "./wait-for-events.js";
 
 interface WebSocketConnectorImplProps {
   readonly constructorParameters: ConstructorParameters<typeof WebSocket>;

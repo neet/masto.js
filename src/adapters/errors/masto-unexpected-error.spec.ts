@@ -1,4 +1,4 @@
-import { MastoUnexpectedError } from "./masto-unexpected-error";
+import { MastoUnexpectedError } from "./masto-unexpected-error.js";
 
 it("constructs", () => {
   const error = new MastoUnexpectedError("foo");

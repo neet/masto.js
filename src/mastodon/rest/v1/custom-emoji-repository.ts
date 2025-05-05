@@ -1,6 +1,6 @@
-import { type HttpMetaParams } from "../../../interfaces";
-import { type CustomEmoji } from "../../entities/v1";
-import { type Paginator } from "../../paginator";
+import { type HttpMetaParams } from "../../../interfaces/index.js";
+import { type CustomEmoji } from "../../entities/v1/index.js";
+import { type Paginator } from "../../paginator.js";
 
 export interface CustomEmojiRepository {
   /**

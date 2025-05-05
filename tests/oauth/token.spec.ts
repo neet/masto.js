@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { createOAuthAPIClient } from "../../src";
+import { createOAuthAPIClient } from "../../src/index.js";
 
 it("issues and revokes token", async () => {
   const oauth = createOAuthAPIClient({

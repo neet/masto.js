@@ -1,8 +1,11 @@
 import assert from "node:assert";
 
-import { type Serializer } from "../../interfaces";
-import { MastoDeserializeError, MastoUnexpectedError } from "../errors";
-import { SerializerNativeImpl } from "./serializer-native-impl";
+import { type Serializer } from "../../interfaces/index.js";
+import {
+  MastoDeserializeError,
+  MastoUnexpectedError,
+} from "../errors/index.js";
+import { SerializerNativeImpl } from "./serializer-native-impl.js";
 
 describe("SerializerNativeImpl", () => {
   const serializer: Serializer = new SerializerNativeImpl();

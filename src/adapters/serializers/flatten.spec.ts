@@ -1,5 +1,5 @@
 /* eslint-disable unicorn/no-null */
-import { flattenForFormData, flattenForRailsQueryString } from "./flatten";
+import { flattenForFormData, flattenForRailsQueryString } from "./flatten.js";
 
 describe("form data", () => {
   test("flat value", () => {

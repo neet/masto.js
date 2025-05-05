@@ -1,4 +1,4 @@
-import { MastoWebSocketError } from "./masto-web-socket-error";
+import { MastoWebSocketError } from "./masto-web-socket-error.js";
 
 describe("MastoHttpError", () => {
   it("creates MastoHttpError", () => {

@@ -1,6 +1,6 @@
-import { type HttpMetaParams } from "../../../interfaces";
-import { type Suggestion } from "../../entities/v1";
-import { type Paginator } from "../../paginator";
+import { type HttpMetaParams } from "../../../interfaces/index.js";
+import { type Suggestion } from "../../entities/v1/index.js";
+import { type Paginator } from "../../paginator.js";
 
 export interface ListSuggestionsParams {
   /** Integer. Maximum number of results to return. Defaults to 40. */

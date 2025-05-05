@@ -1,11 +1,11 @@
-import { Http } from '../interfaces';
+import { type Http } from "../interfaces/index.js";
 
-export const httpRequest = jest.fn();
-export const httpGet = jest.fn();
-export const httpPost = jest.fn();
-export const httpPatch = jest.fn();
-export const httpPut = jest.fn();
-export const httpDelete = jest.fn();
+export const httpRequest = vi.fn();
+export const httpGet = vi.fn();
+export const httpPost = vi.fn();
+export const httpPatch = vi.fn();
+export const httpPut = vi.fn();
+export const httpDelete = vi.fn();
 
 export class HttpMockImpl implements Http {
   clear(): void {

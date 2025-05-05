@@ -5,7 +5,7 @@ import {
   type CreateAccountParams,
   type CreateAccountResult,
   type Tootctl,
-} from "./tootctl";
+} from "./tootctl.js";
 
 const exec = promisify(childProcess.exec);
 

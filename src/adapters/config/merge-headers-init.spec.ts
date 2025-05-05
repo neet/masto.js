@@ -1,4 +1,4 @@
-import { mergeHeadersInit } from "./merge-headers-init";
+import { mergeHeadersInit } from "./merge-headers-init.js";
 
 describe("mergeHeadersInit", () => {
   it("merges headers init", () => {

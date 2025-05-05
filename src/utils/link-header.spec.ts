@@ -1,4 +1,4 @@
-import { parseLinkHeader } from "./link-header";
+import { parseLinkHeader } from "./link-header.js";
 
 describe("parseLinkHeader", () => {
   it("parse link header", () => {

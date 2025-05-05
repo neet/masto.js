@@ -1,6 +1,6 @@
 import crypto from "node:crypto";
 
-import { MastoHttpError } from "../../../src";
+import { MastoHttpError } from "../../../src/index.js";
 
 describe("status", () => {
   it("creates, updates, and removes a status", async () => {

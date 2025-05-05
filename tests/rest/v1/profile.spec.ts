@@ -1,4 +1,4 @@
-import { getMockImage } from "../../../test-utils/image";
+import { getMockImage } from "../../../test-utils/image.js";
 
 describe("profile", () => {
   it("can remove avatar", async () => {

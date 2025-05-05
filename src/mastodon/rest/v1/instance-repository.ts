@@ -1,11 +1,11 @@
-import { type HttpMetaParams } from "../../../interfaces";
+import { type HttpMetaParams } from "../../../interfaces/index.js";
 import {
   type Activity,
   type DomainBlock,
   type ExtendedDescription,
   type Instance,
-} from "../../entities/v1";
-import { type Paginator } from "../../paginator";
+} from "../../entities/v1/index.js";
+import { type Paginator } from "../../paginator.js";
 
 export interface InstanceRepository {
   /**

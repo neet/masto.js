@@ -4,7 +4,7 @@ import {
   type Notification,
   type Reaction,
   type Status,
-} from "../entities/v1";
+} from "../entities/v1/index.js";
 
 export interface RawEventOk {
   stream: string[];

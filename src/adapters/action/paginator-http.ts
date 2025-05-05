@@ -1,7 +1,7 @@
 /* eslint-disable unicorn/no-thenable */
-import { type Http, type HttpMetaParams } from "../../interfaces";
-import { type mastodon } from "../../mastodon";
-import { parseLinkHeader } from "../../utils";
+import { type Http, type HttpMetaParams } from "../../interfaces/index.js";
+import { type mastodon } from "../../mastodon/index.js";
+import { parseLinkHeader } from "../../utils/index.js";
 
 export class PaginatorHttp<Entity, Params = undefined>
   implements mastodon.Paginator<Entity, Params>

@@ -1,5 +1,5 @@
-import { SerializerNativeImpl } from "../serializers";
-import { WebSocketConfigImpl } from "./web-socket-config";
+import { SerializerNativeImpl } from "../serializers/index.js";
+import { WebSocketConfigImpl } from "./web-socket-config.js";
 
 describe("WebSocketConfigImpl", () => {
   it("resolves WS path with path", () => {

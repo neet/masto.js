@@ -1,9 +1,12 @@
 import { camelCase, snakeCase } from "change-case";
 
-import { type Encoding, type Serializer } from "../../interfaces";
-import { MastoDeserializeError, MastoUnexpectedError } from "../errors";
-import { flattenForFormData, flattenForRailsQueryString } from "./flatten";
-import { transformKeys } from "./transform-keys";
+import { type Encoding, type Serializer } from "../../interfaces/index.js";
+import {
+  MastoDeserializeError,
+  MastoUnexpectedError,
+} from "../errors/index.js";
+import { flattenForFormData, flattenForRailsQueryString } from "./flatten.js";
+import { transformKeys } from "./transform-keys.js";
 
 export class SerializerNativeImpl implements Serializer {
   serialize(type: "json" | "querystring", rawData: unknown): string;

@@ -1,8 +1,8 @@
-import { type Account } from "./account";
-import { type AccountWarning } from "./account-warning";
-import { type RelationshipSeveranceEvent } from "./relationship-severance-event";
-import { type Report } from "./report";
-import { type Status } from "./status";
+import { type Account } from "./account.js";
+import { type AccountWarning } from "./account-warning.js";
+import { type RelationshipSeveranceEvent } from "./relationship-severance-event.js";
+import { type Report } from "./report.js";
+import { type Status } from "./status.js";
 
 export interface GroupedNotificationsResults {
   /** Accounts referenced by grouped notifications. */

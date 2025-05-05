@@ -1,4 +1,4 @@
-import { type HttpMetaParams } from "../../../interfaces";
+import { type HttpMetaParams } from "../../../interfaces/index.js";
 
 export interface ProfileRepository {
   avatar: {

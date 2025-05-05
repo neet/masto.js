@@ -1,5 +1,5 @@
-import { type HttpMetaParams } from "../../../interfaces";
-import { type Instance } from "../../entities/v2";
+import { type HttpMetaParams } from "../../../interfaces/index.js";
+import { type Instance } from "../../entities/v2/index.js";
 
 export interface InstanceRepository {
   /**

@@ -1,3 +1,3 @@
-export * from "./web-socket-connector";
-export * from "./web-socket-subscription";
-export * from "./web-socket-subscription-counter";
+export * from "./web-socket-connector.js";
+export * from "./web-socket-subscription.js";
+export * from "./web-socket-subscription-counter.js";

@@ -1,7 +1,7 @@
-import { type HttpMetaParams } from "../../../interfaces";
-import { type Tag } from "../../entities/v1";
-import { type Paginator } from "../../paginator";
-import { type DefaultPaginationParams } from "../../repository";
+import { type HttpMetaParams } from "../../../interfaces/index.js";
+import { type Tag } from "../../entities/v1/index.js";
+import { type Paginator } from "../../paginator.js";
+import { type DefaultPaginationParams } from "../../repository.js";
 
 export interface FollowedTagRepository {
   list(

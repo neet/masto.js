@@ -1,4 +1,4 @@
-import { type Encoding } from "./serializer";
+import { type Encoding } from "./serializer.js";
 
 export interface HttpMetaParams<T extends Encoding = "none"> {
   readonly encoding?: T;

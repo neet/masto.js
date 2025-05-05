@@ -1,4 +1,4 @@
-import { getMockImage } from "../../../test-utils/image";
+import { getMockImage } from "../../../test-utils/image.js";
 
 describe("media", () => {
   it("creates a media attachment", async () => {

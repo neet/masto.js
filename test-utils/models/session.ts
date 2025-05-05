@@ -2,7 +2,7 @@ import {
   createRestAPIClient,
   createStreamingAPIClient,
   type mastodon,
-} from "../src";
+} from "../../src/index.js";
 
 export interface Session {
   readonly id: string;

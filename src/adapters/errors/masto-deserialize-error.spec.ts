@@ -1,4 +1,4 @@
-import { MastoDeserializeError } from "./masto-deserialize-error";
+import { MastoDeserializeError } from "./masto-deserialize-error.js";
 
 it("creates MastoDeserializeError", () => {
   const error = new MastoDeserializeError("message", "application/json", {});

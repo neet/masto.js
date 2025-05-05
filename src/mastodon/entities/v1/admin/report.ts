@@ -1,7 +1,7 @@
-import { type Account } from "../account";
-import { type ReportCategory } from "../report";
-import { type Rule } from "../rule";
-import { type Status } from "../status";
+import { type Account } from "../account.js";
+import { type ReportCategory } from "../report.js";
+import { type Rule } from "../rule.js";
+import { type Status } from "../status.js";
 
 /**
  * Admin-level information about a filed report.

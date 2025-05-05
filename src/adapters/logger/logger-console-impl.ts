@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import { type Logger, type LogType } from "../../interfaces";
-import { type LogLevel } from "./log-level";
+import { type Logger, type LogType } from "../../interfaces/index.js";
+import { type LogLevel } from "./log-level.js";
 
 export class LoggerConsoleImpl implements Logger {
   constructor(private readonly level: LogLevel) {}

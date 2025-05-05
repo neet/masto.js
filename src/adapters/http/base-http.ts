@@ -4,7 +4,7 @@ import {
   type HttpMetaParams,
   type HttpRequestParams,
   type HttpRequestResult,
-} from "../../interfaces";
+} from "../../interfaces/index.js";
 
 export abstract class BaseHttp implements Http {
   abstract request(params: HttpRequestParams): Promise<HttpRequestResult>;

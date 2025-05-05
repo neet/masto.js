@@ -2,10 +2,10 @@ import node_http from "node:http";
 
 import getPort from "get-port";
 
-import { HttpConfigImpl } from "../config";
-import { type MastoHttpError, MastoTimeoutError } from "../errors";
-import { SerializerNativeImpl } from "../serializers";
-import { HttpNativeImpl } from "./http-native-impl";
+import { HttpConfigImpl } from "../config/index.js";
+import { type MastoHttpError, MastoTimeoutError } from "../errors/index.js";
+import { SerializerNativeImpl } from "../serializers/index.js";
+import { HttpNativeImpl } from "./http-native-impl.js";
 
 describe("HttpNativeImpl", () => {
   it("timeouts", async () => {
@@ -52,7 +52,7 @@ describe("HttpNativeImpl", () => {
     await expect(() =>
       http.get("/"),
     ).rejects.toThrowErrorMatchingInlineSnapshot(
-      `"The server returned data with an unknown encoding."`,
+      `[MastoUnexpectedError: The server returned data with an unknown encoding.]`,
     );
 
     server.close();
@@ -76,7 +76,7 @@ describe("HttpNativeImpl", () => {
     await expect(() =>
       http.get("/"),
     ).rejects.toThrowErrorMatchingInlineSnapshot(
-      `"The server returned data with an unknown encoding. The server may be down."`,
+      `[MastoUnexpectedError: The server returned data with an unknown encoding. The server may be down.]`,
     );
 
     server.close();

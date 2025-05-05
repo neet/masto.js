@@ -1,11 +1,11 @@
-import { type Account } from "./account";
-import { type Application } from "./application";
-import { type CustomEmoji } from "./custom-emoji";
-import { type FilterResult } from "./filter-result";
-import { type MediaAttachment } from "./media-attachment";
-import { type Poll } from "./poll";
-import { type PreviewCard } from "./preview-card";
-import { type Tag } from "./tag";
+import { type Account } from "./account.js";
+import { type Application } from "./application.js";
+import { type CustomEmoji } from "./custom-emoji.js";
+import { type FilterResult } from "./filter-result.js";
+import { type MediaAttachment } from "./media-attachment.js";
+import { type Poll } from "./poll.js";
+import { type PreviewCard } from "./preview-card.js";
+import { type Tag } from "./tag.js";
 
 /**
  * Represents a mention of a user within the content of a status.

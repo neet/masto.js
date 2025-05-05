@@ -1,5 +1,5 @@
-import { type HttpMetaParams } from "./http";
-import { type Encoding } from "./serializer";
+import { type HttpMetaParams } from "./http.js";
+import { type Encoding } from "./serializer.js";
 
 export interface Action<T extends string> {
   readonly type: T;

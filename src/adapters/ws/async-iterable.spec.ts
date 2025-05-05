@@ -1,8 +1,8 @@
 import getPort from "get-port";
 import { WebSocket, WebSocketServer } from "isomorphic-ws";
 
-import { toAsyncIterable } from "./async-iterable";
-import { waitForOpen } from "./wait-for-events";
+import { toAsyncIterable } from "./async-iterable.js";
+import { waitForOpen } from "./wait-for-events.js";
 
 describe("toAsyncIterable", () => {
   it("returns an async iterable", async () => {

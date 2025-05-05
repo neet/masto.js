@@ -1,4 +1,4 @@
-import { type Filter } from "../v2/filter";
+import { type Filter } from "../v2/filter.js";
 
 /**
  * Represents a filter whose keywords matched a given status.

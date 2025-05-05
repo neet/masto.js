@@ -1,4 +1,4 @@
-import { type Encoding } from "../../interfaces";
+import { type Encoding } from "../../interfaces/index.js";
 
 export const getEncoding = (headers: Headers): Encoding | undefined => {
   const contentType = headers.get("Content-Type")?.replace(/\s*;.*$/, "");

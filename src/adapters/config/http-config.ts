@@ -1,5 +1,5 @@
-import { type HttpConfig, type Serializer } from "../../interfaces";
-import { mergeHeadersInit } from "./merge-headers-init";
+import { type HttpConfig, type Serializer } from "../../interfaces/index.js";
+import { mergeHeadersInit } from "./merge-headers-init.js";
 
 export interface MastoHttpConfigProps {
   /**

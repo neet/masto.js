@@ -9,7 +9,7 @@ import {
   createOAuthAPIClient,
   createRestAPIClient,
   type mastodon,
-} from "../src";
+} from "../src/index.js";
 
 const readOrCreateApp = async (
   baseCacheDir: string,

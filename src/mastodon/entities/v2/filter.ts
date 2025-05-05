@@ -1,5 +1,5 @@
-import { type FilterKeyword } from "../v1/filter-keyword";
-import { type FilterStatus } from "../v1/filter-status";
+import { type FilterKeyword } from "../v1/filter-keyword.js";
+import { type FilterStatus } from "../v1/filter-status.js";
 
 export type FilterContext =
   | "home"

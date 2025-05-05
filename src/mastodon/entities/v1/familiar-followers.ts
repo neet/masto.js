@@ -1,4 +1,4 @@
-import { type Account } from "./account";
+import { type Account } from "./account.js";
 
 /**
  * Represents a subset of your follows who also follow some other user.

@@ -1,14 +1,5 @@
-import "./jest-polyfills";
-import "./jest-extend-expect";
-
-import { createRestAPIClient } from "../src";
-import { SessionPoolImpl } from "./pools";
-
-if (process.env.CI) {
-  jest.retryTimes(3);
-}
-
-jest.setTimeout(1000 * 60);
+import { createRestAPIClient } from "../../src/index.js";
+import { SessionPoolImpl } from "../services/index.js";
 
 globalThis.admin = createRestAPIClient({
   url: globalThis.__misc__.url,

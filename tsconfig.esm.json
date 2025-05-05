@@ -1,0 +1,10 @@
+{
+  "extends": "@tsconfig/node22/tsconfig.json",
+  "compilerOptions": {
+    "moduleResolution": "NodeNext",
+    "outDir": "./dist/esm",
+    "declaration": true
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["**/*.spec.ts", "**/__mocks__/**/*.ts"]
+}

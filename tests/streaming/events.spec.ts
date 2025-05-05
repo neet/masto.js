@@ -1,7 +1,7 @@
 import assert from "node:assert";
 import crypto from "node:crypto";
 
-import { sleep } from "../../src/utils";
+import { sleep } from "../../src/utils/index.js";
 
 describe("events", () => {
   it("streams update, status.update, and delete event", async () => {

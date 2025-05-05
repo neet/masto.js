@@ -1,21 +1,24 @@
-import { type LogType } from "../interfaces";
-import { type mastodon } from "../mastodon";
+import { type LogType } from "../interfaces/index.js";
+import { type mastodon } from "../mastodon/index.js";
+import { HttpActionDispatcherHookMastodon } from "./action/dispatcher-http-hook-mastodon.js";
 import {
   createActionProxy,
   HttpActionDispatcher,
   WebSocketActionDispatcher,
-} from "./action";
-import { HttpActionDispatcherHookMastodon } from "./action/dispatcher-http-hook-mastodon";
+} from "./action/index.js";
 import {
   HttpConfigImpl,
   type MastoHttpConfigProps,
   WebSocketConfigImpl,
   type WebSocketConfigProps,
-} from "./config";
-import { HttpNativeImpl } from "./http";
-import { createLogger } from "./logger";
-import { SerializerNativeImpl } from "./serializers";
-import { WebSocketConnectorImpl, WebSocketSubscriptionCounterImpl } from "./ws";
+} from "./config/index.js";
+import { HttpNativeImpl } from "./http/index.js";
+import { createLogger } from "./logger/index.js";
+import { SerializerNativeImpl } from "./serializers/index.js";
+import {
+  WebSocketConnectorImpl,
+  WebSocketSubscriptionCounterImpl,
+} from "./ws/index.js";
 
 interface LogConfigProps {
   /**

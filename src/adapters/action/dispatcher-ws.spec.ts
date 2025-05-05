@@ -1,11 +1,11 @@
-import { MastoUnexpectedError, MastoWebSocketError } from "../errors";
-import { createLogger } from "../logger";
-import { SerializerNativeImpl } from "../serializers";
+import { MastoUnexpectedError, MastoWebSocketError } from "../errors/index.js";
+import { createLogger } from "../logger/index.js";
+import { SerializerNativeImpl } from "../serializers/index.js";
 import {
   WebSocketConnectorImpl,
   WebSocketSubscriptionCounterImpl,
-} from "../ws";
-import { WebSocketActionDispatcher } from "./dispatcher-ws";
+} from "../ws/index.js";
+import { WebSocketActionDispatcher } from "./dispatcher-ws.js";
 
 describe("DispatcherWs", () => {
   it("throws for unknown action type", async () => {

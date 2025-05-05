@@ -1,8 +1,8 @@
 import { type Redis } from "ioredis";
 
-import { type mastodon } from "../../src";
-import { type TokenFactory } from "./token-factory";
-import { type TokenPool } from "./token-pool";
+import { type mastodon } from "../../src/index.js";
+import { type TokenFactory } from "./token-factory.js";
+import { type TokenPool } from "./token-pool.js";
 
 export interface Entry {
   readonly token: mastodon.v1.Token;

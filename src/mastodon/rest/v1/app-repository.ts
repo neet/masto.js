@@ -1,5 +1,5 @@
-import { type HttpMetaParams } from "../../../interfaces";
-import { type Client } from "../../entities/v1";
+import { type HttpMetaParams } from "../../../interfaces/index.js";
+import { type Client } from "../../entities/v1/index.js";
 
 export interface CreateAppParams {
   /** A name of your application */

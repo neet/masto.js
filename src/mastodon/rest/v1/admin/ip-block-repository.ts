@@ -1,7 +1,7 @@
-import { type HttpMetaParams } from "../../../../interfaces";
-import { type Admin } from "../../../entities/v1";
-import { type IpBlockSeverity } from "../../../entities/v1/admin";
-import { type Paginator } from "../../../paginator";
+import { type HttpMetaParams } from "../../../../interfaces/index.js";
+import { type IpBlockSeverity } from "../../../entities/v1/admin/index.js";
+import { type Admin } from "../../../entities/v1/index.js";
+import { type Paginator } from "../../../paginator.js";
 
 export interface ListIpBlocksParams {
   /** Integer. Maximum number of results to return. Defaults to 100. */

@@ -1,6 +1,6 @@
-import { type HttpMetaParams } from "../../../../interfaces";
-import { type Admin } from "../../../entities/v1";
-import { type MeasureKey } from "../../../entities/v1/admin";
+import { type HttpMetaParams } from "../../../../interfaces/index.js";
+import { type MeasureKey } from "../../../entities/v1/admin/index.js";
+import { type Admin } from "../../../entities/v1/index.js";
 
 export interface FetchMeasureParams {
   /**

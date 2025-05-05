@@ -1,4 +1,4 @@
-import { type Account, type Status, type Tag } from "../v1";
+import { type Account, type Status, type Tag } from "../v1/index.js";
 
 /**
  * Represents the results of a search.
