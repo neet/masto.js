@@ -28,7 +28,7 @@ export type UpdateWebPushSubscriptionParams = Pick<
   "data"
 >;
 
-export interface WebPushSubscriptionRepository {
+export interface WebPushSubscriptionResource {
   /**
    * Add a Web Push API subscription to receive notifications.
    * Each access token can have one push subscription.
@@ -67,3 +67,6 @@ export interface WebPushSubscriptionRepository {
    */
   remove(meta?: HttpMetaParams): Promise<void>;
 }
+
+/** @deprecated Use `WebPushSubscriptionResource` instead. */
+export type WebPushSubscriptionRepository = WebPushSubscriptionResource;
