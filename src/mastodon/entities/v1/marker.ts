@@ -7,7 +7,7 @@ export interface MarkerItem {
   version: number;
 }
 
-interface MarkerTimelineRegistry {
+export interface MarkerTimelineRegistry {
   home: never;
   notifications: never;
 }

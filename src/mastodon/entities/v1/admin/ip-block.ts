@@ -1,4 +1,4 @@
-interface IpBlockSeverityRegistry {
+export interface IpBlockSeverityRegistry {
   sign_up_requires_approval: never;
   sign_up_block: never;
   no_access: never;

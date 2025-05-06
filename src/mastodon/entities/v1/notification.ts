@@ -102,7 +102,7 @@ export type ModerationWarningNotification =
     moderationWarning: AccountWarning;
   };
 
-interface NotificationRegistry {
+export interface NotificationRegistry {
   mention: MentionNotification;
   status: StatusNotification;
   reblog: ReblogNotification;

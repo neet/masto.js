@@ -63,7 +63,7 @@ export interface CreateFilterStatusParams {
   readonly statusId: string;
 }
 
-interface Filters$SelectKeywordsResource {
+export interface Filters$SelectKeywordsResource {
   /**
    * Add the given keyword to the specified filter group
    * @param id String. The ID of the Filter in the database.
@@ -84,7 +84,7 @@ interface Filters$SelectKeywordsResource {
   list(meta?: HttpMetaParams): Paginator<FilterKeyword[]>;
 }
 
-interface Filters$SelectStatusesResource {
+export interface Filters$SelectStatusesResource {
   /**
    * Obtain a list of all status filters within this filter group.
    * @returns Array of FilterStatus
@@ -104,7 +104,7 @@ interface Filters$SelectStatusesResource {
   ): Promise<FilterStatus>;
 }
 
-interface Filters$SelectResource {
+export interface Filters$SelectResource {
   keywords: Filters$SelectKeywordsResource;
   statuses: Filters$SelectStatusesResource;
 
@@ -134,7 +134,7 @@ interface Filters$SelectResource {
   remove(meta?: HttpMetaParams): Promise<void>;
 }
 
-interface FiltersKeywords$SelectResource {
+export interface FiltersKeywords$SelectResource {
   /**
    * Get one filter keyword by the given id.
    * @returns FilterKeyword
@@ -161,11 +161,11 @@ interface FiltersKeywords$SelectResource {
   remove(meta?: HttpMetaParams): Promise<void>;
 }
 
-interface FiltersKeywordsResource {
+export interface FiltersKeywordsResource {
   $select(id: string): FiltersKeywords$SelectResource;
 }
 
-interface FiltersStatuses$SelectResource {
+export interface FiltersStatuses$SelectResource {
   /**
    * Obtain a single status filter.
    * @returns FilterStatus
@@ -180,7 +180,7 @@ interface FiltersStatuses$SelectResource {
   remove(): Promise<FilterStatus>;
 }
 
-interface FiltersStatusesResource {
+export interface FiltersStatusesResource {
   $select(id: string): FiltersStatuses$SelectResource;
 }
 

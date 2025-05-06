@@ -1,7 +1,7 @@
 import { type Account } from "./account.js";
 import { type TagHistory } from "./tag.js";
 
-interface PreviewCardRegistry {
+export interface PreviewCardRegistry {
   link: never;
   photo: never;
   video: never;

@@ -3,7 +3,7 @@ import { type Search } from "../../entities/v2/index.js";
 import { type Paginator } from "../../paginator.js";
 import { type DefaultPaginationParams } from "../../repository.js";
 
-interface SearchTypeRegistry {
+export interface SearchTypeRegistry {
   accounts: never;
   hashtags: never;
   statuses: never;

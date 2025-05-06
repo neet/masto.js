@@ -1,4 +1,4 @@
-interface WebPushSubscriptionPolicyRegistry {
+export interface WebPushSubscriptionPolicyRegistry {
   all: never;
   followed: never;
   follower: never;

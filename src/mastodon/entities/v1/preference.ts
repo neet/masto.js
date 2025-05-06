@@ -1,6 +1,6 @@
 import { type StatusVisibility } from "./status.js";
 
-interface PreferenceReadingExpandMediaRegistry {
+export interface PreferenceReadingExpandMediaRegistry {
   show_all: never;
   hide_all: never;
   default: never;

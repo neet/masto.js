@@ -1,6 +1,6 @@
 import { type Account } from "./account.js";
 
-interface LegacySuggestionSourceRegistry {
+export interface LegacySuggestionSourceRegistry {
   staff: never;
   past_interactions: never;
   global: never;
@@ -15,7 +15,7 @@ interface LegacySuggestionSourceRegistry {
  */
 export type LegacySuggestionSource = keyof LegacySuggestionSourceRegistry;
 
-interface SuggestionSourceRegistry {
+export interface SuggestionSourceRegistry {
   featured: never;
   most_followed: never;
   most_interactions: never;

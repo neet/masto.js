@@ -1,4 +1,4 @@
-interface ListRepliesPolicyRegistry {
+export interface ListRepliesPolicyRegistry {
   followed: never;
   list: never;
   none: never;

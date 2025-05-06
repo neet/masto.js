@@ -1,4 +1,4 @@
-interface NotificationPolicyTypeRegistry {
+export interface NotificationPolicyTypeRegistry {
   accept: never;
   filter: never;
   drop: never;

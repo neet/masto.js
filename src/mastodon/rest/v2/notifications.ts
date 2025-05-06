@@ -72,11 +72,11 @@ export interface UpdateNotificationPolicyParams {
   readonly forLimitedAccounts?: NotificationPolicyType;
 }
 
-interface Notifications$SelectAccountsResource {
+export interface Notifications$SelectAccountsResource {
   fetch(meta?: HttpMetaParams): Promise<Account[]>;
 }
 
-interface Notifications$SelectResource {
+export interface Notifications$SelectResource {
   accounts: Notifications$SelectAccountsResource;
 
   /**
@@ -90,7 +90,7 @@ interface Notifications$SelectResource {
   dismiss(meta?: HttpMetaParams): Promise<void>;
 }
 
-interface NotificationsUnreadCountResource {
+export interface NotificationsUnreadCountResource {
   /**
    * Get the (capped) number of unread notification groups for the current user. A notification is
    * considered unread if it is more recent than the notifications read marker. Because the count
@@ -104,7 +104,7 @@ interface NotificationsUnreadCountResource {
   ): Promise<{ count: number }>;
 }
 
-interface NotificationsPolicyResource {
+export interface NotificationsPolicyResource {
   /**
    * Notifications filtering policy for the user.
    */

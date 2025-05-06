@@ -1,4 +1,4 @@
-interface AppealStateRegistry {
+export interface AppealStateRegistry {
   approved: never;
   rejected: never;
   pending: never;

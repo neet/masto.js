@@ -1,4 +1,4 @@
-interface DomainBlockSeverityRegistry {
+export interface DomainBlockSeverityRegistry {
   silence: never;
   suspend: never;
 }

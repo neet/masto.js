@@ -1,6 +1,6 @@
 import { type Account } from "./account.js";
 
-interface ReportCategoryRegistry {
+export interface ReportCategoryRegistry {
   spam: never;
   violation: never;
   legal: never;
