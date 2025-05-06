@@ -1,4 +1,4 @@
-interface FilterContextRegistry {
+export interface FilterContextRegistry {
   home: never;
   notifications: never;
   public: never;

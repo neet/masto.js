@@ -112,7 +112,7 @@ export type SeveredRelationshipsNotificationGroup =
 export type ModerationWarningNotificationGroup =
   NotificationGroupWithModerationWarning<"moderation_warning">;
 
-interface NotificationGroupRegistry {
+export interface NotificationGroupRegistry {
   mention: MentionNotificationGroup;
   status: StatusNotificationGroup;
   reblog: ReblogNotificationGroup;

@@ -1,4 +1,4 @@
-interface MediaAttachmentTypeRegistry {
+export interface MediaAttachmentTypeRegistry {
   image: never;
   video: never;
   gifv: never;

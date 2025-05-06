@@ -25,7 +25,7 @@ export interface StatusMention {
   acct: string;
 }
 
-interface StatusVisibilityRegistry {
+export interface StatusVisibilityRegistry {
   public: never;
   unlisted: never;
   private: never;

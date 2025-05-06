@@ -1,4 +1,4 @@
-interface CohortFrequencyRegistry {
+export interface CohortFrequencyRegistry {
   day: never;
   month: never;
 }

@@ -5,7 +5,7 @@ export interface MeasureData {
   value: string;
 }
 
-interface MeasureKeyRegistry {
+export interface MeasureKeyRegistry {
   active_users: never;
   new_users: never;
   interactions: never;

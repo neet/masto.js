@@ -1,4 +1,4 @@
-interface RelationshipSeveranceEventTypeRegistry {
+export interface RelationshipSeveranceEventTypeRegistry {
   domain_block: never;
   user_domain_block: never;
   account_suspension: never;

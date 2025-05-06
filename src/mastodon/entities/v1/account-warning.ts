@@ -1,7 +1,7 @@
 import { type Account } from "./account.js";
 import { type Appeal } from "./appeal.js";
 
-interface AccountWarningActionRegistry {
+export interface AccountWarningActionRegistry {
   none: never;
   disable: never;
   mark_statuses_as_sensitive: never;

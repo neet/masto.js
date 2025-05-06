@@ -11,7 +11,7 @@ export interface DimensionData {
   humanValue?: string | null;
 }
 
-interface DimensionKeyRegistry {
+export interface DimensionKeyRegistry {
   languages: never;
   sources: never;
   servers: never;

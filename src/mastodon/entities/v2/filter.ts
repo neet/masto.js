@@ -1,7 +1,7 @@
 import { type FilterKeyword } from "../v1/filter-keyword.js";
 import { type FilterStatus } from "../v1/filter-status.js";
 
-interface FilterContextRegistry {
+export interface FilterContextRegistry {
   home: never;
   notifications: never;
   public: never;
@@ -11,7 +11,7 @@ interface FilterContextRegistry {
 
 export type FilterContext = keyof FilterContextRegistry;
 
-interface FilterActionRegistry {
+export interface FilterActionRegistry {
   warn: never;
   hide: never;
 }
