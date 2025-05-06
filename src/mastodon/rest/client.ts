@@ -1,6 +1,15 @@
 import type * as v1 from "./v1/index.js";
 import type * as v2 from "./v2/index.js";
 
+interface V2Resource {
+  filters: v2.FiltersResource;
+  instance: v2.InstanceResource;
+  media: v2.MediaAttachmentsResource;
+  notifications: v2.NotificationsResource;
+  suggestions: v2.SuggestionsResource;
+  search: v2.SearchResource;
+}
+
 export interface Client {
   readonly v1: {
     readonly admin: v1.AdminRepository;
@@ -39,12 +48,5 @@ export interface Client {
     readonly push: v1.PushRepository;
     readonly profile: v1.ProfileRepository;
   };
-  readonly v2: {
-    readonly filters: v2.FilterRepository;
-    readonly instance: v2.InstanceRepository;
-    readonly media: v2.MediaAttachmentRepository;
-    readonly notifications: v2.NotificationRepository;
-    readonly suggestions: v2.SuggestionRepository;
-    readonly search: v2.SearchRepository;
-  };
+  v2: V2Resource;
 }

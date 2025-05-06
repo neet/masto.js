@@ -17,7 +17,7 @@ export interface CreateMediaAttachmentExtraParams {
   readonly skipPolling?: boolean;
 }
 
-export interface MediaAttachmentRepository {
+export interface MediaAttachmentsResource {
   /**
    * Creates an attachment to be used with a new status.
    * @param params Parameters
@@ -29,3 +29,6 @@ export interface MediaAttachmentRepository {
     meta?: HttpMetaParams<"multipart-form">,
   ): Promise<MediaAttachment>;
 }
+
+/** @deprecated Use MediaAttachmentsResource instead. */
+export type MediaAttachmentRepository = MediaAttachmentsResource;

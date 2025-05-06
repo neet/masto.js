@@ -7,7 +7,7 @@ export interface ListSuggestionsParams {
   readonly limit?: number | null;
 }
 
-export interface SuggestionRepository {
+export interface SuggestionsResource {
   /**
    * View follow suggestions.
    * Accounts that are promoted by staff, or that the user has had past positive interactions with, but is not yet following.
@@ -19,3 +19,6 @@ export interface SuggestionRepository {
     meta?: HttpMetaParams,
   ): Paginator<Suggestion[], ListSuggestionsParams>;
 }
+
+/** @deprecated Use SuggestionsResource instead. */
+export type SuggestionRepository = SuggestionsResource;

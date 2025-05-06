@@ -72,7 +72,62 @@ export interface UpdateNotificationPolicyParams {
   readonly forLimitedAccounts?: NotificationPolicyType;
 }
 
-export interface NotificationRepository {
+interface Notifications$SelectAccountsResource {
+  fetch(meta?: HttpMetaParams): Promise<Account[]>;
+}
+
+interface Notifications$SelectResource {
+  accounts: Notifications$SelectAccountsResource;
+
+  /**
+   * View information about a specific notification group with a given group key.
+   */
+  fetch(meta?: HttpMetaParams): Promise<GroupedNotificationsResults>;
+
+  /**
+   * Dismiss a single notification group from the server.
+   */
+  dismiss(meta?: HttpMetaParams): Promise<void>;
+}
+
+interface NotificationsUnreadCountResource {
+  /**
+   * Get the (capped) number of unread notification groups for the current user. A notification is
+   * considered unread if it is more recent than the notifications read marker. Because the count
+   * is dependant on the parameters, it is computed every time and is thus a relatively slow
+   * operation (although faster than getting the full corresponding notifications), therefore the
+   * number of returned notifications is capped.
+   */
+  fetch(
+    params?: FetchUnreadCountParams,
+    meta?: HttpMetaParams,
+  ): Promise<{ count: number }>;
+}
+
+interface NotificationsPolicyResource {
+  /**
+   * Notifications filtering policy for the user.
+   */
+  fetch(meta?: HttpMetaParams): Promise<NotificationPolicy>;
+
+  /**
+   * Update the user’s notifications filtering policy.
+   */
+  update(
+    params: UpdateNotificationPolicyParams,
+    meta?: HttpMetaParams<"json">,
+  ): Promise<NotificationPolicy>;
+}
+
+export interface NotificationsResource {
+  /**
+   * @param groupKey The group key of the notification group.
+   */
+  $select(groupKey: string): Notifications$SelectResource;
+
+  unreadCount: NotificationsUnreadCountResource;
+  policy: NotificationsPolicyResource;
+
   /**
    * Return grouped notifications concerning the user. This API returns Link headers containing links
    * to the next/previous page. However, the links can also be constructed dynamically using query
@@ -88,52 +143,7 @@ export interface NotificationRepository {
     params?: ListNotificationsParams,
     meta?: HttpMetaParams,
   ): Paginator<GroupedNotificationsResults>;
-
-  /**
-   * @param groupKey The group key of the notification group.
-   */
-  $select(groupKey: string): {
-    /**
-     * View information about a specific notification group with a given group key.
-     */
-    fetch(meta?: HttpMetaParams): Promise<GroupedNotificationsResults>;
-
-    /**
-     * Dismiss a single notification group from the server.
-     */
-    dismiss(meta?: HttpMetaParams): Promise<void>;
-
-    accounts: {
-      fetch(meta?: HttpMetaParams): Promise<Account[]>;
-    };
-  };
-
-  unreadCount: {
-    /**
-     * Get the (capped) number of unread notification groups for the current user. A notification is
-     * considered unread if it is more recent than the notifications read marker. Because the count
-     * is dependant on the parameters, it is computed every time and is thus a relatively slow
-     * operation (although faster than getting the full corresponding notifications), therefore the
-     * number of returned notifications is capped.
-     */
-    fetch(
-      params?: FetchUnreadCountParams,
-      meta?: HttpMetaParams,
-    ): Promise<{ count: number }>;
-  };
-
-  policy: {
-    /**
-     * Notifications filtering policy for the user.
-     */
-    fetch(meta?: HttpMetaParams): Promise<NotificationPolicy>;
-
-    /**
-     * Update the user’s notifications filtering policy.
-     */
-    update(
-      params: UpdateNotificationPolicyParams,
-      meta?: HttpMetaParams<"json">,
-    ): Promise<NotificationPolicy>;
-  };
 }
+
+/** @deprecated Use NotificationsResource instead. */
+export type NotificationRepository = NotificationsResource;
