@@ -1,9 +1,12 @@
-export type MediaAttachmentType =
-  | "image"
-  | "video"
-  | "gifv"
-  | "audio"
-  | "unknown";
+interface MediaAttachmentTypeRegistry {
+  image: never;
+  video: never;
+  gifv: never;
+  audio: never;
+  unknown: never;
+}
+
+export type MediaAttachmentType = keyof MediaAttachmentTypeRegistry;
 
 export interface MediaAttachmentMetaImage {
   width: number;

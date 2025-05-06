@@ -1,3 +1,11 @@
+interface AppealStateRegistry {
+  approved: never;
+  rejected: never;
+  pending: never;
+}
+
+export type AppealState = keyof AppealStateRegistry;
+
 /**
  * Appeal against a moderation action.
  */
@@ -7,5 +15,3 @@ export interface Appeal {
   /** State of the appeal. */
   state: AppealState;
 }
-
-export type AppealState = "approved" | "rejected" | "pending";

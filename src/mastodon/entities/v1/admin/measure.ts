@@ -5,22 +5,25 @@ export interface MeasureData {
   value: string;
 }
 
+interface MeasureKeyRegistry {
+  active_users: never;
+  new_users: never;
+  interactions: never;
+  opened_reports: never;
+  resolved_reports: never;
+  tag_accounts: never;
+  tag_uses: never;
+  tag_servers: never;
+  instance_accounts: never;
+  instance_media_attachments: never;
+  instance_reports: never;
+  instance_statuses: never;
+  instance_follows: never;
+  instance_followers: never;
+}
+
 /** @see https://docs.joinmastodon.org/entities/Admin_Measure/#key */
-export type MeasureKey =
-  | "active_users"
-  | "new_users"
-  | "interactions"
-  | "opened_reports"
-  | "resolved_reports"
-  | "tag_accounts"
-  | "tag_uses"
-  | "tag_servers"
-  | "instance_accounts"
-  | "instance_media_attachments"
-  | "instance_reports"
-  | "instance_statuses"
-  | "instance_follows"
-  | "instance_followers";
+export type MeasureKey = keyof MeasureKeyRegistry;
 
 /**
  * Represents quantitative data about the server.

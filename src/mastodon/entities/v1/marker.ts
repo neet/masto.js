@@ -7,7 +7,12 @@ export interface MarkerItem {
   version: number;
 }
 
-export type MarkerTimeline = "home" | "notifications";
+interface MarkerTimelineRegistry {
+  home: never;
+  notifications: never;
+}
+
+export type MarkerTimeline = keyof MarkerTimelineRegistry;
 
 /**
  * Represents the last read position within a user's timelines.

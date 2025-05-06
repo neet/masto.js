@@ -1,6 +1,18 @@
 import { type Account } from "./account.js";
 import { type Appeal } from "./appeal.js";
 
+interface AccountWarningActionRegistry {
+  none: never;
+  disable: never;
+  mark_statuses_as_sensitive: never;
+  delete_statuses: never;
+  sensitive: never;
+  silence: never;
+  suspend: never;
+}
+
+export type AccountWarningAction = keyof AccountWarningActionRegistry;
+
 /**
  * Moderation warning against a particular account.
  */
@@ -20,12 +32,3 @@ export interface AccountWarning {
   /** When the event took place. */
   createdAt: string;
 }
-
-export type AccountWarningAction =
-  | "none"
-  | "disable"
-  | "mark_statuses_as_sensitive"
-  | "delete_statuses"
-  | "sensitive"
-  | "silence"
-  | "suspend";

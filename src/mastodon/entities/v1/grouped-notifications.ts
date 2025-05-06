@@ -112,19 +112,22 @@ export type SeveredRelationshipsNotificationGroup =
 export type ModerationWarningNotificationGroup =
   NotificationGroupWithModerationWarning<"moderation_warning">;
 
+interface NotificationGroupRegistry {
+  mention: MentionNotificationGroup;
+  status: StatusNotificationGroup;
+  reblog: ReblogNotificationGroup;
+  follow: FollowNotificationGroup;
+  follow_request: FollowRequestNotificationGroup;
+  favourite: FavouriteNotificationGroup;
+  poll: PollNotificationGroup;
+  update: UpdateNotificationGroup;
+  "admin.sign_up": AdminSignUpNotificationGroup;
+  "admin.report": AdminReportNotificationGroup;
+  severed_relationships: SeveredRelationshipsNotificationGroup;
+  moderation_warning: ModerationWarningNotificationGroup;
+}
+
 /** Group key identifying the grouped notifications. Should be treated as an opaque value. */
 export type NotificationGroup =
-  | MentionNotificationGroup
-  | StatusNotificationGroup
-  | ReblogNotificationGroup
-  | FollowNotificationGroup
-  | FollowRequestNotificationGroup
-  | FavouriteNotificationGroup
-  | PollNotificationGroup
-  | UpdateNotificationGroup
-  | AdminSignUpNotificationGroup
-  | AdminReportNotificationGroup
-  | SeveredRelationshipsNotificationGroup
-  | ModerationWarningNotificationGroup;
-
+  NotificationGroupRegistry[keyof NotificationGroupRegistry];
 export type NotificationGroupType = NotificationGroup["type"];

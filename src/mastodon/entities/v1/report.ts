@@ -1,6 +1,13 @@
 import { type Account } from "./account.js";
 
-export type ReportCategory = "spam" | "violation" | "legal" | "other";
+interface ReportCategoryRegistry {
+  spam: never;
+  violation: never;
+  legal: never;
+  other: never;
+}
+
+export type ReportCategory = keyof ReportCategoryRegistry;
 
 /**
  * Reports filed against users and/or statuses, to be taken action on by moderators.

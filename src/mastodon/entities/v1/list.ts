@@ -1,4 +1,10 @@
-export type ListRepliesPolicy = "followed" | "list" | "none";
+interface ListRepliesPolicyRegistry {
+  followed: never;
+  list: never;
+  none: never;
+}
+
+export type ListRepliesPolicy = keyof ListRepliesPolicyRegistry;
 
 /**
  * Represents a list of some users that the authenticated user follows.

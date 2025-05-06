@@ -1,7 +1,10 @@
-export type IpBlockSeverity =
-  | "sign_up_requires_approval"
-  | "sign_up_block"
-  | "no_access";
+interface IpBlockSeverityRegistry {
+  sign_up_requires_approval: never;
+  sign_up_block: never;
+  no_access: never;
+}
+
+export type IpBlockSeverity = keyof IpBlockSeverityRegistry;
 
 export interface IpBlock {
   /** The ID of the domain allow in the database. */

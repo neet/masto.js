@@ -1,4 +1,9 @@
-export type CohortFrequency = "day" | "month";
+interface CohortFrequencyRegistry {
+  day: never;
+  month: never;
+}
+
+export type CohortFrequency = keyof CohortFrequencyRegistry;
 
 export interface CohortData {
   /** The timestamp for the start of the bucket, at midnight. */

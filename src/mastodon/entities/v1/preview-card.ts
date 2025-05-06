@@ -1,7 +1,14 @@
 import { type Account } from "./account.js";
 import { type TagHistory } from "./tag.js";
 
-export type PreviewCardType = "link" | "photo" | "video" | "rich";
+interface PreviewCardRegistry {
+  link: never;
+  photo: never;
+  video: never;
+  rich: never;
+}
+
+export type PreviewCardType = keyof PreviewCardRegistry;
 
 /**
  * Represents an author in a rich preview card.

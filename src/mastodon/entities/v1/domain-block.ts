@@ -1,3 +1,10 @@
+interface DomainBlockSeverityRegistry {
+  silence: never;
+  suspend: never;
+}
+
+export type DomainBlockSeverity = keyof DomainBlockSeverityRegistry;
+
 /**
  * Represents a domain that is blocked by the instance.
  */
@@ -11,5 +18,3 @@ export interface DomainBlock {
   /** An optional reason for the domain block. */
   comment?: string | null;
 }
-
-export type DomainBlockSeverity = "silence" | "suspend";

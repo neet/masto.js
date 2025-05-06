@@ -1,9 +1,12 @@
-export type FilterContext =
-  | "home"
-  | "notifications"
-  | "public"
-  | "thread"
-  | "account";
+interface FilterContextRegistry {
+  home: never;
+  notifications: never;
+  public: never;
+  thread: never;
+  account: never;
+}
+
+export type FilterContext = keyof FilterContextRegistry;
 
 /**
  * Represents a user-defined filter for determining which statuses should not be shown to the user.
