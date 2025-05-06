@@ -3,7 +3,13 @@ import { type Search } from "../../entities/v2/index.js";
 import { type Paginator } from "../../paginator.js";
 import { type DefaultPaginationParams } from "../../repository.js";
 
-export type SearchType = "accounts" | "hashtags" | "statuses";
+interface SearchTypeRegistry {
+  accounts: never;
+  hashtags: never;
+  statuses: never;
+}
+
+export type SearchType = keyof SearchTypeRegistry;
 
 export interface SearchParams extends DefaultPaginationParams {
   /** Attempt WebFinger lookup. Defaults to false. */
@@ -22,7 +28,7 @@ export interface SearchParams extends DefaultPaginationParams {
   readonly offset?: number | null;
 }
 
-export interface SearchRepository {
+export interface SearchResource {
   /**
    * Perform a search
    * @param params Parameters
@@ -34,3 +40,6 @@ export interface SearchRepository {
     meta?: HttpMetaParams,
   ): Paginator<Search, SearchParams>;
 }
+
+/** @deprecated Use SearchResource instead. */
+export type SearchRepository = SearchResource;
