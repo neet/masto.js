@@ -1,4 +1,10 @@
-export type NotificationPolicyType = "accept" | "filter" | "drop";
+interface NotificationPolicyTypeRegistry {
+  accept: never;
+  filter: never;
+  drop: never;
+}
+
+export type NotificationPolicyType = keyof NotificationPolicyTypeRegistry;
 
 /**
  * Represents the notification filtering policy of the user.

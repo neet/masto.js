@@ -1,8 +1,11 @@
-export type WebPushSubscriptionPolicy =
-  | "all"
-  | "followed"
-  | "follower"
-  | "none";
+interface WebPushSubscriptionPolicyRegistry {
+  all: never;
+  followed: never;
+  follower: never;
+  none: never;
+}
+
+export type WebPushSubscriptionPolicy = keyof WebPushSubscriptionPolicyRegistry;
 
 /**
  * Represents a subscription to the push streaming server.

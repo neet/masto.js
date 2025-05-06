@@ -102,22 +102,24 @@ export type ModerationWarningNotification =
     moderationWarning: AccountWarning;
   };
 
+interface NotificationRegistry {
+  mention: MentionNotification;
+  status: StatusNotification;
+  reblog: ReblogNotification;
+  follow: FollowNotification;
+  follow_request: FollowRequestNotification;
+  favourite: FavouriteNotification;
+  poll: PollNotification;
+  update: UpdateNotification;
+  "admin.sign_up": AdminSignUpNotification;
+  "admin.report": AdminReportNotification;
+  severed_relationships: SeveredRelationshipsNotification;
+  moderation_warning: ModerationWarningNotification;
+}
+
 /**
  * Represents a notification of an event relevant to the user.
  * @see https://docs.joinmastodon.org/entities/notification
  */
-export type Notification =
-  | MentionNotification
-  | StatusNotification
-  | ReblogNotification
-  | FollowNotification
-  | FollowRequestNotification
-  | FavouriteNotification
-  | PollNotification
-  | UpdateNotification
-  | AdminSignUpNotification
-  | AdminReportNotification
-  | SeveredRelationshipsNotification
-  | ModerationWarningNotification;
-
+export type Notification = NotificationRegistry[keyof NotificationRegistry];
 export type NotificationType = Notification["type"];

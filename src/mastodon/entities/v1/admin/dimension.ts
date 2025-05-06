@@ -11,16 +11,19 @@ export interface DimensionData {
   humanValue?: string | null;
 }
 
-export type DimensionKey =
-  | "languages"
-  | "sources"
-  | "servers"
-  | "space_usage"
-  | "software_versions"
-  | "tag_servers"
-  | "tag_languages"
-  | "instance_accounts"
-  | "instance_languages";
+interface DimensionKeyRegistry {
+  languages: never;
+  sources: never;
+  servers: never;
+  space_usage: never;
+  software_versions: never;
+  tag_servers: never;
+  tag_languages: never;
+  instance_accounts: never;
+  instance_languages: never;
+}
+
+export type DimensionKey = keyof DimensionKeyRegistry;
 
 /**
  * Represents qualitative data about the server.

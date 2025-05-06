@@ -1,4 +1,10 @@
-export type DomainBlockSeverity = "silence" | "suspend" | "noop";
+interface DomainBlockSeverityRegistry {
+  silence: never;
+  suspend: never;
+  noop: never;
+}
+
+export type DomainBlockSeverity = keyof DomainBlockSeverityRegistry;
 
 export interface DomainBlock {
   /** The ID of the domain block in the database. */

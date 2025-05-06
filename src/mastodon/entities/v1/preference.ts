@@ -1,6 +1,13 @@
 import { type StatusVisibility } from "./status.js";
 
-export type PreferenceReadingExpandMedia = "show_all" | "hide_all" | "default";
+interface PreferenceReadingExpandMediaRegistry {
+  show_all: never;
+  hide_all: never;
+  default: never;
+}
+
+export type PreferenceReadingExpandMedia =
+  keyof PreferenceReadingExpandMediaRegistry;
 
 /**
  * Represents a user's preferences.

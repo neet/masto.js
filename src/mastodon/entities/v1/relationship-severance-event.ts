@@ -1,3 +1,12 @@
+interface RelationshipSeveranceEventTypeRegistry {
+  domain_block: never;
+  user_domain_block: never;
+  account_suspension: never;
+}
+
+export type RelationshipSeveranceEventType =
+  keyof RelationshipSeveranceEventTypeRegistry;
+
 /**
  * Summary of a moderation or block event that caused follow relationships to be severed.
  */
@@ -17,8 +26,3 @@ export interface RelationshipSeveranceEvent {
   /** When the event took place. */
   createdAt: string;
 }
-
-export type RelationshipSeveranceEventType =
-  | "domain_block"
-  | "user_domain_block"
-  | "account_suspension";

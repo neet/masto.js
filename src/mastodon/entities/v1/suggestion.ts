@@ -1,5 +1,11 @@
 import { type Account } from "./account.js";
 
+interface LegacySuggestionSourceRegistry {
+  staff: never;
+  past_interactions: never;
+  global: never;
+}
+
 /**
  * `staff` = This account was manually recommended by your administration team
  * `past_interactions` = You have interacted with this account previously
@@ -7,7 +13,15 @@ import { type Account } from "./account.js";
  *
  * @deprecated Use {@link SuggestionSource_} instead
  */
-export type LegacySuggestionSource = "staff" | "past_interactions" | "global";
+export type LegacySuggestionSource = keyof LegacySuggestionSourceRegistry;
+
+interface SuggestionSourceRegistry {
+  featured: never;
+  most_followed: never;
+  most_interactions: never;
+  similar_to_recently_followed: never;
+  friends_of_friends: never;
+}
 
 /**
  * `featured` = This account was manually recommended by your administration team. Equivalent to the staff value for source
@@ -20,12 +34,7 @@ export type LegacySuggestionSource = "staff" | "past_interactions" | "global";
  *
  * `friends_of_friends`  = This account is followed by people you follow
  */
-export type SuggestionSource =
-  | "featured"
-  | "most_followed"
-  | "most_interactions"
-  | "similar_to_recently_followed"
-  | "friends_of_friends";
+export type SuggestionSource = keyof SuggestionSourceRegistry;
 
 /**
  * Represents a suggested account to follow and an associated reason for the suggestion.
