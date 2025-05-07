@@ -10,6 +10,18 @@ import { type mastodon } from "../../mastodon/index.js";
 import { MastoUnexpectedError } from "../errors/index.js";
 import { toAsyncIterable } from "./async-iterable.js";
 
+interface RawEventOk {
+  stream: string[];
+  event: string;
+  payload?: string;
+}
+
+interface RawEventError {
+  error: string;
+}
+
+type RawEvent = RawEventOk | RawEventError;
+
 export class WebSocketSubscription implements mastodon.streaming.Subscription {
   private connection?: WebSocket;
 
@@ -94,10 +106,7 @@ export class WebSocketSubscription implements mastodon.streaming.Subscription {
   }
 
   private parseMessage(rawEvent: string): mastodon.streaming.Event {
-    const data = this.serializer.deserialize<mastodon.streaming.RawEvent>(
-      "json",
-      rawEvent,
-    );
+    const data = this.serializer.deserialize<RawEvent>("json", rawEvent);
 
     if ("error" in data) {
       throw new MastoUnexpectedError(data.error);
