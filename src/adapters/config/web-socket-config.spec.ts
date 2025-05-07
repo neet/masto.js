@@ -31,7 +31,7 @@ describe("WebSocketConfigImpl", () => {
     );
   });
 
-  it("creates websocket header with token when supported", () => {
+  it("creates websocket protocol with token when supported", () => {
     const config = new WebSocketConfigImpl(
       {
         streamingApiUrl: "wss://mastodon.social",
@@ -40,10 +40,10 @@ describe("WebSocketConfigImpl", () => {
       new SerializerNativeImpl(),
     );
 
-    expect(config.getHeaders()).toEqual({ Authorization: "Bearer token" });
+    expect(config.getProtocols()).toEqual(["token"]);
   });
 
-  it("creates websocket header without token when not supported", () => {
+  it("creates websocket protocol without token when not supported", () => {
     const config = new WebSocketConfigImpl(
       {
         streamingApiUrl: "wss://mastodon.social",
@@ -53,7 +53,7 @@ describe("WebSocketConfigImpl", () => {
       new SerializerNativeImpl(),
     );
 
-    expect(config.getHeaders()).toEqual({});
+    expect(config.getProtocols()).toEqual([]);
   });
 
   it("gets max attempts with retry true", () => {

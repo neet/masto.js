@@ -62,17 +62,15 @@ export class WebSocketConfigImpl implements WebSocketConfig {
     private readonly serializer: Serializer,
   ) {}
 
-  getHeaders(): Record<string, string> {
+  getProtocols(protocols: readonly string[] = []): string[] {
     if (
       this.props.useInsecureAccessToken ||
       this.props.accessToken == undefined
     ) {
-      return {};
+      return [...protocols];
     }
 
-    return {
-      Authorization: `Bearer ${this.props.accessToken}`,
-    };
+    return [this.props.accessToken, ...protocols];
   }
 
   resolvePath(path: string, params: Record<string, unknown> = {}): URL {
