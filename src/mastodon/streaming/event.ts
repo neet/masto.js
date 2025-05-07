@@ -5,19 +5,6 @@ import {
   type Reaction,
   type Status,
 } from "../entities/v1/index.js";
-
-export interface RawEventOk {
-  stream: string[];
-  event: string;
-  payload?: string;
-}
-
-export interface RawEventError {
-  error: string;
-}
-
-export type RawEvent = RawEventOk | RawEventError;
-
 interface BaseEvent<T, U> {
   stream: string[];
   event: T;
@@ -51,14 +38,17 @@ export type NotificationsMergedEvent = BaseEvent<
   undefined
 >;
 
-export type Event =
-  | UpdateEvent
-  | DeleteEvent
-  | NotificationEvent
-  | FiltersChangedEvent
-  | ConversationEvent
-  | AnnouncementEvent
-  | AnnouncementReactionEvent
-  | AnnouncementDeleteEvent
-  | StatusUpdateEvent
-  | NotificationsMergedEvent;
+export interface EventRegistry {
+  update: UpdateEvent;
+  delete: DeleteEvent;
+  notification: NotificationEvent;
+  filters_changed: FiltersChangedEvent;
+  conversation: ConversationEvent;
+  announcement: AnnouncementEvent;
+  "announcement.reaction": AnnouncementReactionEvent;
+  "announcement.delete": AnnouncementDeleteEvent;
+  "status.update": StatusUpdateEvent;
+  notifications_merged: NotificationsMergedEvent;
+}
+
+export type Event = EventRegistry[keyof EventRegistry];
