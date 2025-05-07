@@ -13,7 +13,7 @@ import {
   type Token,
 } from "../../entities/v1/index.js";
 import { type Paginator } from "../../paginator.js";
-import { type DefaultPaginationParams } from "../../repository.js";
+import { type DefaultPaginationParams } from "../../resource.js";
 
 export interface FetchAccountsParams {
   /** The IDs of the Accounts in the database. */

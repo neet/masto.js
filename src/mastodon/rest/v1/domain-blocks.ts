@@ -1,6 +1,6 @@
 import { type HttpMetaParams } from "../../../interfaces/index.js";
 import { type Paginator } from "../../paginator.js";
-import { type DefaultPaginationParams } from "../../repository.js";
+import { type DefaultPaginationParams } from "../../resource.js";
 
 export interface CreateDomainBlockParams {
   /** Domain to block */

@@ -1,7 +1,7 @@
 import { type HttpMetaParams } from "../../../interfaces/index.js";
 import { type Search } from "../../entities/v2/index.js";
 import { type Paginator } from "../../paginator.js";
-import { type DefaultPaginationParams } from "../../repository.js";
+import { type DefaultPaginationParams } from "../../resource.js";
 
 export interface SearchTypeRegistry {
   accounts: never;
