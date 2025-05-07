@@ -1,25 +1,28 @@
-import { type AccountRepository } from "./account-repository.js";
-import { type CanonicalEmailBlockRepository } from "./canonical-email-block-repository.js";
-import { type DimensionRepository } from "./dimension-repository.js";
-import { type DomainAllowRepository } from "./domain-allow-repository.js";
-import { type DomainBlockRepository } from "./domain-block-repository.js";
-import { type EmailDomainBlockRepository } from "./email-domain-block-repository.js";
-import { type IpBlockRepository } from "./ip-block-repository.js";
-import { type MeasureRepository } from "./measure-repository.js";
-import { type ReportRepository } from "./report-repository.js";
-import { type RetentionRepository } from "./retention-repository.js";
-import { type TrendRepository } from "./trend-repository.js";
+import { type AccountsResource } from "./accounts.js";
+import { type CanonicalEmailBlocksResource } from "./canonical-email-blocks.js";
+import { type DimensionsResource } from "./dimensions.js";
+import { type DomainAllowsResource } from "./domain-allows.js";
+import { type DomainBlocksResource } from "./domain-blocks.js";
+import { type EmailDomainBlocksResource } from "./email-domain-blocks.js";
+import { type IpBlocksResource } from "./ip-blocks.js";
+import { type MeasuresResource } from "./measures.js";
+import { type ReportsResource } from "./report-repository.js";
+import { type RetentionResource } from "./retention.js";
+import { type TrendsResource } from "./trends.js";
 
-export interface AdminRepository {
-  readonly accounts: AccountRepository;
-  readonly canonicalEmailBlocks: CanonicalEmailBlockRepository;
-  readonly dimensions: DimensionRepository;
-  readonly domainAllows: DomainAllowRepository;
-  readonly domainBlocks: DomainBlockRepository;
-  readonly emailDomainBlocks: EmailDomainBlockRepository;
-  readonly ipBlocks: IpBlockRepository;
-  readonly measures: MeasureRepository;
-  readonly reports: ReportRepository;
-  readonly retention: RetentionRepository;
-  readonly trends: TrendRepository;
+export interface AdminResource {
+  readonly accounts: AccountsResource;
+  readonly canonicalEmailBlocks: CanonicalEmailBlocksResource;
+  readonly dimensions: DimensionsResource;
+  readonly domainAllows: DomainAllowsResource;
+  readonly domainBlocks: DomainBlocksResource;
+  readonly emailDomainBlocks: EmailDomainBlocksResource;
+  readonly ipBlocks: IpBlocksResource;
+  readonly measures: MeasuresResource;
+  readonly reports: ReportsResource;
+  readonly retention: RetentionResource;
+  readonly trends: TrendsResource;
 }
+
+/** @deprecated Use `AdminResource` instead */
+export type AdminRepository = AdminResource;

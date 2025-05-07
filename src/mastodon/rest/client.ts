@@ -1,7 +1,7 @@
 import type * as v1 from "./v1/index.js";
 import type * as v2 from "./v2/index.js";
 
-interface V2Resource {
+export interface V2Resource {
   filters: v2.FiltersResource;
   instance: v2.InstanceResource;
   media: v2.MediaAttachmentsResource;
@@ -10,43 +10,45 @@ interface V2Resource {
   search: v2.SearchResource;
 }
 
+export interface V1Resource {
+  admin: v1.AdminResource;
+  accounts: v1.AccountsResource;
+  announcements: v1.AnnouncementsResource;
+  apps: v1.AppsResource;
+  blocks: v1.BlocksResource;
+  bookmarks: v1.BookmarksResource;
+  conversations: v1.ConversationsResource;
+  customEmojis: v1.CustomEmojisResource;
+  directory: v1.DirectoryResource;
+  domainBlocks: v1.DomainBlocksResource;
+  endorsements: v1.EndorsementsResource;
+  favourites: v1.FavouritesResource;
+  featuredTags: v1.FeaturedTagsResource;
+  filters: v1.FiltersResource;
+  followRequests: v1.FollowRequestsResource;
+  instance: v1.InstanceResource;
+  lists: v1.ListsResource;
+  markers: v1.MarkersResource;
+  media: v1.MediaAttachmentsResource;
+  mutes: v1.MuteResource;
+  notifications: v1.NotificationsResource;
+  polls: v1.PollsResource;
+  preferences: v1.PreferencesResource;
+  reports: v1.ReportsResource;
+  scheduledStatuses: v1.ScheduledStatusesResource;
+  search: v1.SearchResource;
+  statuses: v1.StatusesResource;
+  suggestions: v1.SuggestionsResource;
+  timelines: v1.TimelinesResource;
+  trends: v1.TrendsResource;
+  emails: v1.EmailsResource;
+  tags: v1.TagsResource;
+  followedTags: v1.FollowedTagsResource;
+  push: v1.PushResource;
+  profile: v1.ProfileResource;
+}
+
 export interface Client {
-  readonly v1: {
-    readonly admin: v1.AdminRepository;
-    readonly accounts: v1.AccountRepository;
-    readonly announcements: v1.AnnouncementRepository;
-    readonly apps: v1.AppRepository;
-    readonly blocks: v1.BlockRepository;
-    readonly bookmarks: v1.BookmarkRepository;
-    readonly conversations: v1.ConversationRepository;
-    readonly customEmojis: v1.CustomEmojiRepository;
-    readonly directory: v1.DirectoryRepository;
-    readonly domainBlocks: v1.DomainBlockRepository;
-    readonly endorsements: v1.EndorsementRepository;
-    readonly favourites: v1.FavouriteRepository;
-    readonly featuredTags: v1.FeaturedTagRepository;
-    readonly filters: v1.FilterRepository;
-    readonly followRequests: v1.FollowRequestRepository;
-    readonly instance: v1.InstanceRepository;
-    readonly lists: v1.ListRepository;
-    readonly markers: v1.MarkerRepository;
-    readonly media: v1.MediaAttachmentRepository;
-    readonly mutes: v1.MuteRepository;
-    readonly notifications: v1.NotificationRepository;
-    readonly polls: v1.PollRepository;
-    readonly preferences: v1.PreferenceRepository;
-    readonly reports: v1.ReportRepository;
-    readonly scheduledStatuses: v1.ScheduledStatusRepository;
-    readonly search: v1.SearchRepository;
-    readonly statuses: v1.StatusRepository;
-    readonly suggestions: v1.SuggestionRepository;
-    readonly timelines: v1.TimelineRepository;
-    readonly trends: v1.TrendRepository;
-    readonly emails: v1.EmailRepository;
-    readonly tags: v1.TagRepository;
-    readonly followedTags: v1.FollowedTagRepository;
-    readonly push: v1.PushRepository;
-    readonly profile: v1.ProfileRepository;
-  };
+  v1: V1Resource;
   v2: V2Resource;
 }
