@@ -1,7 +1,7 @@
 import { type HttpMetaParams } from "../../../interfaces/index.js";
 import { type Status } from "../../entities/v1/index.js";
 import { type Paginator } from "../../paginator.js";
-import { type DefaultPaginationParams } from "../../repository.js";
+import { type DefaultPaginationParams } from "../../resource.js";
 
 export interface ListTimelineParams extends DefaultPaginationParams {
   /** Show only local statuses? Defaults to false. */

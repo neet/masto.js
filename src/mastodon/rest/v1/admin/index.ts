@@ -6,7 +6,7 @@ import { type DomainBlocksResource } from "./domain-blocks.js";
 import { type EmailDomainBlocksResource } from "./email-domain-blocks.js";
 import { type IpBlocksResource } from "./ip-blocks.js";
 import { type MeasuresResource } from "./measures.js";
-import { type ReportsResource } from "./report-repository.js";
+import { type ReportsResource } from "./reports.js";
 import { type RetentionResource } from "./retention.js";
 import { type TrendsResource } from "./trends.js";
 

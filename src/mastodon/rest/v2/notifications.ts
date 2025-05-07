@@ -9,7 +9,7 @@ import {
   type NotificationPolicyType,
 } from "../../entities/v2/index.js";
 import { type Paginator } from "../../paginator.js";
-import { type DefaultPaginationParams } from "../../repository.js";
+import { type DefaultPaginationParams } from "../../resource.js";
 
 export interface ListNotificationsParams extends DefaultPaginationParams {
   /** Types to include in the result. */

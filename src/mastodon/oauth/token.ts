@@ -34,9 +34,12 @@ export type CreateTokenParams =
   | CreateTokenWithPasswordParams
   | CreateTokenWithAuthorizationCodeParams;
 
-export interface TokenRepository {
+export interface TokenResource {
   create(
     params: CreateTokenParams,
     meta?: HttpMetaParams<"multipart-form">,
   ): Promise<Token>;
 }
+
+/** @deprecated Use `TokenResource` instead */
+export type TokenRepository = TokenResource;

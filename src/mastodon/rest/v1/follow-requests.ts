@@ -1,9 +1,9 @@
 import { type HttpMetaParams } from "../../../interfaces/index.js";
 import { type Account, type Relationship } from "../../entities/v1/index.js";
 import { type Paginator } from "../../paginator.js";
-import { type DefaultPaginationParams } from "../../repository.js";
+import { type DefaultPaginationParams } from "../../resource.js";
 
-export interface FollowRequest$SelectRepository {
+export interface FollowRequests$SelectResource {
   /**
    * Accept Follow
    * @return Relationship
@@ -20,7 +20,7 @@ export interface FollowRequest$SelectRepository {
 }
 
 export interface FollowRequestsResource {
-  $select(id: string): FollowRequest$SelectRepository;
+  $select(id: string): FollowRequests$SelectResource;
 
   /**
    * Pending Follows

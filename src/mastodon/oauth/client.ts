@@ -1,5 +1,5 @@
 import { type HttpMetaParams } from "../../interfaces/index.js";
-import { type TokenRepository } from "./token-repository.js";
+import { type TokenResource } from "./token.js";
 
 export interface RevokeTokenParams {
   /** The client ID, obtained during app registration. */
@@ -11,7 +11,7 @@ export interface RevokeTokenParams {
 }
 
 export interface Client {
-  readonly token: TokenRepository;
+  readonly token: TokenResource;
 
   /**
    * Revoke an access token to make it no longer valid for use.

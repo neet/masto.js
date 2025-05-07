@@ -1,7 +1,7 @@
 import { type HttpMetaParams } from "../../../interfaces/index.js";
 import { type ScheduledStatus } from "../../entities/v1/index.js";
 import { type Paginator } from "../../paginator.js";
-import { type DefaultPaginationParams } from "../../repository.js";
+import { type DefaultPaginationParams } from "../../resource.js";
 
 export interface UpdateScheduledStatusParams {
   /** ISO 8601 Date-time at which the status will be published. Must be at least 5 minutes into the future. */
