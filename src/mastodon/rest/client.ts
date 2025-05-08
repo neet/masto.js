@@ -30,7 +30,7 @@ export interface V1Resource {
   lists: v1.ListsResource;
   markers: v1.MarkersResource;
   media: v1.MediaAttachmentsResource;
-  mutes: v1.MuteResource;
+  mutes: v1.MutesResource;
   notifications: v1.NotificationsResource;
   polls: v1.PollsResource;
   preferences: v1.PreferencesResource;

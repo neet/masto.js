@@ -3,7 +3,7 @@ import { type Account } from "../../entities/v1/index.js";
 import { type Paginator } from "../../paginator.js";
 import { type DefaultPaginationParams } from "../../resource.js";
 
-export interface MuteResource {
+export interface MutesResource {
   /**
    * Accounts the user has muted.
    * @param params Parameters
@@ -16,5 +16,5 @@ export interface MuteResource {
   ): Paginator<Account[], DefaultPaginationParams>;
 }
 
-/** @deprecated Use `MuteResource` instead. */
-export type MuteRepository = MuteResource;
+/** @deprecated Use `MutesResource` instead. */
+export type MuteRepository = MutesResource;
