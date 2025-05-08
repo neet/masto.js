@@ -1,5 +1,23 @@
 # Changelog
 
+## [7.1.0](https://github.com/neet/masto.js/compare/v7.0.0...v7.1.0) (2025-05-08)
+
+
+### Features
+
+* Support declaration merging in streaming APIs ([6c98542](https://github.com/neet/masto.js/commit/6c98542bdf5b99689947ae58044bee89a61c76ef))
+* Support declaration merging in v1 and v2 entities ([d309f04](https://github.com/neet/masto.js/commit/d309f0436ba688bd18f7a2620bcaca6417551fb1))
+* Support declaration merging in v1 REST APIs ([9c04f66](https://github.com/neet/masto.js/commit/9c04f66a2bb92c31f8a792b109014ba239a154a2))
+* Support declaration merging in v2 APIs ([495988f](https://github.com/neet/masto.js/commit/495988f6c4dab77bb7a06dbe24b858fec778a447))
+
+
+### Bug Fixes
+
+* Export all intermediate interfaces ([af599e1](https://github.com/neet/masto.js/commit/af599e1bd7839d3dc22d1d5416c2282eb39c6144))
+* Rename MuteResource to MutesResource ([be6fb77](https://github.com/neet/masto.js/commit/be6fb771614a118f5becb1e6d6c9b000cf89a0a7))
+* Revert "fix: Use Authorization header for sending access_token to WebSocket API" ([932463c](https://github.com/neet/masto.js/commit/932463c03c985edb3a817992f38a42c3f10cc076))
+* Use `tsconfig-to-dual-package` to support CJS ([2ea5747](https://github.com/neet/masto.js/commit/2ea57472eeb7666d617b5bcc1fb1b92e4c917e9e))
+
 ## [7.0.0](https://github.com/neet/masto.js/compare/v6.10.4...v7.0.0) (2025-04-28)
 
 
