@@ -3,8 +3,10 @@ import { type Application } from "./application.js";
 import { type CustomEmoji } from "./custom-emoji.js";
 import { type FilterResult } from "./filter-result.js";
 import { type MediaAttachment } from "./media-attachment.js";
+import { type Quote } from "./quote.js";
 import { type Poll } from "./poll.js";
 import { type PreviewCard } from "./preview-card.js";
+import { type ShallowQuote } from "./shallow-quote.js";
 import { type Tag } from "./tag.js";
 
 /**
@@ -77,6 +79,8 @@ export interface Status {
   filtered?: FilterResult[];
   /** How many replies this status has received. */
   repliesCount: number;
+  /** Information about the status being quoted, if any */
+  quote: Quote | ShallowQuote | null;
 
   /** A link to the status's HTML representation. */
   url?: string | null;
