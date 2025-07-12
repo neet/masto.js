@@ -3,9 +3,9 @@ import { type Application } from "./application.js";
 import { type CustomEmoji } from "./custom-emoji.js";
 import { type FilterResult } from "./filter-result.js";
 import { type MediaAttachment } from "./media-attachment.js";
-import { type Quote } from "./quote.js";
 import { type Poll } from "./poll.js";
 import { type PreviewCard } from "./preview-card.js";
+import { type Quote } from "./quote.js";
 import { type ShallowQuote } from "./shallow-quote.js";
 import { type Tag } from "./tag.js";
 

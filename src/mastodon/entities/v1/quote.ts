@@ -9,7 +9,7 @@ export interface QuoteStateRegistry {
   unauthorized: never;
 }
 
-export type QuoteState = keyof QuoteStateRegistry
+export type QuoteState = keyof QuoteStateRegistry;
 
 /**
  * Represents a quote or a quote placeholder, with the current authorization status.
