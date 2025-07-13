@@ -199,6 +199,12 @@ export interface Accounts$SelectStatusesResource {
   ): Paginator<Status[], ListAccountStatusesParams>;
 }
 
+export interface Accounts$SelectEndorsementsResource {
+  list(
+    params?: DefaultPaginationParams,
+  ): Paginator<Account[], DefaultPaginationParams>;
+}
+
 export interface Accounts$SelectResource {
   featuredTags: Accounts$SelectFeaturedTagsResource;
   note: Accounts$SelectNoteResource;
@@ -207,6 +213,7 @@ export interface Accounts$SelectResource {
   followers: Accounts$SelectFollowersResource;
   following: Accounts$SelectFollowingResource;
   statuses: Accounts$SelectStatusesResource;
+  endorsements: Accounts$SelectEndorsementsResource;
 
   /**
    * View information about a profile.
@@ -288,6 +295,22 @@ export interface Accounts$SelectResource {
    * @returns N/A
    */
   removeFromFollowers(meta?: HttpMetaParams): Promise<void>;
+
+  /**
+   * Add the given account to the user’s featured profiles.
+   * @params meta Metadata
+   * @return Relationship
+   * @see https://docs.joinmastodon.org/methods/accounts/#endorse
+   */
+  endorse(meta?: HttpMetaParams): Promise<Relationship>;
+
+  /**
+   * Remove the given account from the user’s featured profiles.
+   * @param meta Metadata
+   * @returns Relationship
+   * @see https://docs.joinmastodon.org/methods/accounts/#unendorse
+   */
+  unendorse(meta?: HttpMetaParams): Promise<Relationship>;
 }
 
 export interface AccountsRelationshipsResource {
