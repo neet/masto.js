@@ -9,4 +9,6 @@ export type StatusEdit = Pick<
   | "account"
   | "mediaAttachments"
   | "emojis"
->;
+> & {
+  quote?: Status["quote"];
+};
