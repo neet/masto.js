@@ -8,5 +8,5 @@ export interface ShallowQuote {
   /* The state of the quote. */
   state: QuoteState;
   /* The identifier of the status being quoted, if the quote has been accepted. This will be null, unless the state attribute is accepted. */
-  quotedStatusId: string | null;
+  quotedStatusId?: string | null;
 }

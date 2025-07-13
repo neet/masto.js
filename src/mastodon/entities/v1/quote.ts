@@ -19,5 +19,5 @@ export interface Quote {
   /* The state of the quote */
   state: QuoteState;
   /* The status being quoted, if the quote has been accepted. This will be null, unless the state attribute is accepted. */
-  quotedStatus: Status | null;
+  quotedStatus?: Status | null;
 }

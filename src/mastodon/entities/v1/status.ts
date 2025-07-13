@@ -80,7 +80,7 @@ export interface Status {
   /** How many replies this status has received. */
   repliesCount: number;
   /** Information about the status being quoted, if any */
-  quote: Quote | ShallowQuote | null;
+  quote?: Quote | ShallowQuote | null;
 
   /** A link to the status's HTML representation. */
   url?: string | null;
