@@ -1,5 +1,26 @@
 # Changelog
 
+## [7.2.0](https://github.com/neet/masto.js/compare/v7.1.0...v7.2.0) (2025-07-14)
+
+
+### Features
+
+* Add `blur` enum value for `FilterAction` type ([bd6efb3](https://github.com/neet/masto.js/commit/bd6efb37e5f1997f6aa0320eabd12a8ccb103df1))
+* Add `dateOfBirth` property to `CreateAccountParams` ([1ee4a42](https://github.com/neet/masto.js/commit/1ee4a42a8b3854f92cf65862d07c3a5581a5fdfd))
+* Add `id` and `featuring` property to `Tag` API ([4bcc23a](https://github.com/neet/masto.js/commit/4bcc23acc5dc05169853c0827453b7efda68f9d3))
+* Add `minAge` and `reasonRequired` property to `Instance` ([a57620e](https://github.com/neet/masto.js/commit/a57620ebc40252ea2ef5935cb85e48f3f4cf6ad9))
+* Add `translations` property to `Rule` entity ([bf908c4](https://github.com/neet/masto.js/commit/bf908c435a94b43c052f2b4200d9b619f98cafd7))
+* Add endorsement APIs to AccountsResource ([2f38c45](https://github.com/neet/masto.js/commit/2f38c45b764a8a37ce0ec042ce683307a2fcb5fe))
+* Add feature/unfeature methods to TagResource ([7f790fc](https://github.com/neet/masto.js/commit/7f790fc7b7c4ed470f8b72a0c6d439da0bbd1ea7))
+* Add quote entities and attach to statuses ([#1324](https://github.com/neet/masto.js/issues/1324)) ([be42256](https://github.com/neet/masto.js/commit/be42256f1f07cbe5228913280bee91e67c7bc52a))
+
+
+### Bug Fixes
+
+* Export Quote and ShallowQuote entity types ([3364148](https://github.com/neet/masto.js/commit/33641481e9fa6cff3f3b2a1f8bb4f7cf502fa148))
+* Mark nullable parameters optional for consistency ([dbfdadf](https://github.com/neet/masto.js/commit/dbfdadf6c6bc2ab62c6e44efb6189abe5025b653))
+* Use Pick&lt;T, U&gt; for StatusEdit["quote"] ([4817a7a](https://github.com/neet/masto.js/commit/4817a7acef753047ca554b471a56cb48f58d733c))
+
 ## [7.1.0](https://github.com/neet/masto.js/compare/v7.0.0...v7.1.0) (2025-05-08)
 
 
