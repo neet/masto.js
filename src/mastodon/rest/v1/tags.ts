@@ -19,6 +19,20 @@ export interface Tags$SelectResource {
    * @return Tag
    */
   unfollow(meta?: HttpMetaParams): Promise<Tag>;
+
+  /**
+   * Feature the hashtag on your profile.
+   * @return Tag
+   * @see https://docs.joinmastodon.org/methods/tags/#feature
+   */
+  feature(meta?: HttpMetaParams): Promise<Tag>;
+
+  /**
+   * Stop featuring the hashtag on your profile.
+   * @return Tag
+   * @see https://docs.joinmastodon.org/methods/tags/#unfeature
+   */
+  unfeature(meta?: HttpMetaParams): Promise<Tag>;
 }
 
 export interface TagsResource {

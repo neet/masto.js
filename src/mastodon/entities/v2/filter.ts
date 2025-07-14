@@ -14,6 +14,7 @@ export type FilterContext = keyof FilterContextRegistry;
 export interface FilterActionRegistry {
   warn: never;
   hide: never;
+  blur: never;
 }
 
 export type FilterAction = keyof FilterActionRegistry;
@@ -37,6 +38,8 @@ export interface Filter {
    * `warn` = show a warning that identifies the matching filter by title, and allow the user to expand the filtered status. This is the default (and unknown values should be treated as equivalent to warn).
    *
    * `hide` = do not show this status if it is received
+   *
+   * `blur` = hide/blur media attachments with a warning identifying the matching filter by `title`
    */
   filterAction: FilterAction;
   /** The keywords grouped under this filter. */

@@ -15,13 +15,16 @@ export interface TagHistory {
  * @see https://docs.joinmastodon.org/entities/tag/
  */
 export interface Tag {
+  /** ID of the hashtag in the database. Useful for constructing URLs for the moderation tools & Admin API. */
+  id: string;
   /** The value of the hashtag after the # sign. */
   name: string;
   /** A link to the hashtag on the instance. */
   url: string;
-
   /** Usage statistics for given days. */
   history?: TagHistory[] | null;
   /** Whether the current token’s authorized user is following this tag. */
   following?: boolean | null;
+  /** Whether the current token’s authorized user is featuring this tag on their profile. */
+  featuring?: boolean | null;
 }

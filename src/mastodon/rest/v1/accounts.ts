@@ -33,6 +33,8 @@ export interface CreateAccountParams {
   readonly locale: string;
   /** Text that will be reviewed by moderators if registrations require manual approval. */
   readonly reason?: string;
+  /** String (Date), required if the server has a minimum age requirement. */
+  readonly dateOfBirth?: string;
   /** https://github.com/mastodon/mastodon/pull/25342 */
   readonly timeZone?: string;
 }
@@ -199,6 +201,12 @@ export interface Accounts$SelectStatusesResource {
   ): Paginator<Status[], ListAccountStatusesParams>;
 }
 
+export interface Accounts$SelectEndorsementsResource {
+  list(
+    params?: DefaultPaginationParams,
+  ): Paginator<Account[], DefaultPaginationParams>;
+}
+
 export interface Accounts$SelectResource {
   featuredTags: Accounts$SelectFeaturedTagsResource;
   note: Accounts$SelectNoteResource;
@@ -207,6 +215,7 @@ export interface Accounts$SelectResource {
   followers: Accounts$SelectFollowersResource;
   following: Accounts$SelectFollowingResource;
   statuses: Accounts$SelectStatusesResource;
+  endorsements: Accounts$SelectEndorsementsResource;
 
   /**
    * View information about a profile.
@@ -288,6 +297,22 @@ export interface Accounts$SelectResource {
    * @returns N/A
    */
   removeFromFollowers(meta?: HttpMetaParams): Promise<void>;
+
+  /**
+   * Add the given account to the user’s featured profiles.
+   * @param meta Metadata
+   * @return Relationship
+   * @see https://docs.joinmastodon.org/methods/accounts/#endorse
+   */
+  endorse(meta?: HttpMetaParams): Promise<Relationship>;
+
+  /**
+   * Remove the given account from the user’s featured profiles.
+   * @param meta Metadata
+   * @returns Relationship
+   * @see https://docs.joinmastodon.org/methods/accounts/#unendorse
+   */
+  unendorse(meta?: HttpMetaParams): Promise<Relationship>;
 }
 
 export interface AccountsRelationshipsResource {

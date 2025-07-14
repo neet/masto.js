@@ -12,6 +12,7 @@ it("can create a confirmation", async () => {
     password: "password",
     agreement: true,
     locale: "en",
+    dateOfBirth: new Date("2000-01-01").toISOString(),
   });
 
   const client = createRestAPIClient({

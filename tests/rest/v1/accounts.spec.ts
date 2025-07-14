@@ -321,4 +321,25 @@ describe("account", () => {
     });
     expect(rel.followedBy).toBe(false);
   });
+
+  it("endorses/unendorses an account", async () => {
+    await using alice = await sessions.acquire();
+    await using bob = await sessions.acquire();
+
+    try {
+      await alice.rest.v1.accounts.$select(bob.id).follow();
+      const relationship = await alice.rest.v1.accounts
+        .$select(bob.id)
+        .endorse();
+      expect(relationship.endorsed).toBe(true);
+
+      const endorsements = await alice.rest.v1.accounts
+        .$select(alice.id)
+        .endorsements.list();
+      expect(endorsements).toContainEqual(bob.account);
+    } finally {
+      await alice.rest.v1.accounts.$select(bob.id).unendorse();
+      await alice.rest.v1.accounts.$select(bob.id).unfollow();
+    }
+  });
 });
