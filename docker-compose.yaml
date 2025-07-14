@@ -23,7 +23,7 @@ services:
 
   mastodon:
     restart: always
-    image: neetshin/mastodon-dev:4.3.0
+    image: neetshin/mastodon-dev:4.4.0
     ports:
       - "3000:3000"
       - "4000:4000"
