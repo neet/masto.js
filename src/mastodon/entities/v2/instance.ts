@@ -108,7 +108,7 @@ export interface InstanceRegistrations {
   approvalRequired: boolean;
   /** A custom message to be shown when registrations are closed. */
   message?: string | null;
-  /** Description: A minimum age required to register, if configured. */
+  /** A minimum age required to register, if configured. */
   minAge?: number | null;
   /** Whether registrations require the user to provide a reason for joining. Only applicable when `registrations[approval_required]` is true. */
   reasonRequired?: boolean | null;

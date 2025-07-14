@@ -300,7 +300,7 @@ export interface Accounts$SelectResource {
 
   /**
    * Add the given account to the user’s featured profiles.
-   * @params meta Metadata
+   * @param meta Metadata
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/#endorse
    */
