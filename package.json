@@ -84,7 +84,7 @@
     "typedoc": "^0.27.6",
     "typescript": "^5.6.3",
     "typescript-eslint": "^8.9.0",
-    "undici": "^6.20.1",
+    "undici": "^7.16.0",
     "vitest": "^3.1.2"
   },
   "files": [
