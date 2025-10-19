@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.3.0](https://github.com/neet/masto.js/compare/v7.2.0...v7.3.0) (2025-10-19)
+
+
+### Features
+
+* Use npm's Trusted Publisher ([01fde05](https://github.com/neet/masto.js/commit/01fde0593dbe8087f3aff158ae5bcf9a42367109))
+* Use npm's Trusted Publisher ([9e35ced](https://github.com/neet/masto.js/commit/9e35cedb127d1a75f7cf8318de874af625a24677))
+
 ## [7.2.0](https://github.com/neet/masto.js/compare/v7.1.0...v7.2.0) (2025-07-14)
 
 
