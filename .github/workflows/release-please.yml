@@ -1,28 +1,46 @@
-# https://github.com/google-github-actions/release-please-action?tab=readme-ov-file#automating-publication-to-npm
+# https://github.com/googleapis/release-please-action
+# https://docs.npmjs.com/trusted-publishers
 on:
   push:
     branches:
       - main
+
+permissions:
+  id-token: write
+  contents: write
+  issues: write
+  pull-requests: write
+
 name: release-please
 jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: google-github-actions/release-please-action@v4
+      - uses: googleapis/release-please-action@v4
         id: release
         with:
+          # > By default, Release Please uses the built-in GITHUB_TOKEN secret.
+          # > However, all resources created by release-please (release tag or release pull request) will not trigger future GitHub actions workflows,
+          # > and workflows normally triggered by release.created events will also not run. 
+          # https://github.com/googleapis/release-please-action?tab=readme-ov-file#other-actions-on-release-please-prs
           token: ${{ secrets.GH_PAT }}
           release-type: node
+
       - uses: actions/checkout@v4
         if: ${{ steps.release.outputs.release_created }}
+
       - uses: actions/setup-node@v4
         with:
-          node-version: "20.6.1"
+          node-version: "24.9.0"
           registry-url: 'https://registry.npmjs.org'
         if: ${{ steps.release.outputs.release_created }}
+
+      - run: npm install -g npm@latest
+        if: ${{ steps.release.outputs.release_created }}
+
       - run: npm ci
         if: ${{ steps.release.outputs.release_created }}
+
       - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         if: ${{ steps.release.outputs.release_created }}
+
