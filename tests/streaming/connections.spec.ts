@@ -27,10 +27,10 @@ it("maintains connections for the event even if other handlers closed it", async
 
   try {
     const [e1, e2] = await promise2;
-    assert(e1.event === "update");
+    assert.ok(e1.event === "update");
     expect(e1.payload.id).toBe(status1.id);
 
-    assert(e2.event === "update");
+    assert.ok(e2.event === "update");
     expect(e2.payload.id).toBe(status2.id);
   } finally {
     await alice.rest.v1.statuses.$select(status1.id).remove();
@@ -65,10 +65,10 @@ it("maintains connections for the event if unsubscribe called twice", async () =
 
   try {
     const [e1, e2] = await promise2;
-    assert(e1.event === "update");
+    assert.ok(e1.event === "update");
     expect(e1.payload.id).toBe(status1.id);
 
-    assert(e2.event === "update");
+    assert.ok(e2.event === "update");
     expect(e2.payload.id).toBe(status2.id);
   } finally {
     await alice.rest.v1.statuses.$select(status1.id).remove();
@@ -94,7 +94,7 @@ it("maintains connections for the event if another handler called unsubscribe be
 
   try {
     const [e1] = await promise2;
-    assert(e1.event === "update");
+    assert.ok(e1.event === "update");
     expect(e1.payload.id).toBe(status1.id);
   } finally {
     await alice.rest.v1.statuses.$select(status1.id).remove();

@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-/* eslint-disable unicorn/prefer-module */
 
 import { existsSync } from "node:fs";
 import fs from "node:fs/promises";

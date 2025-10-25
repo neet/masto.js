@@ -1,4 +1,3 @@
-/* eslint-disable no-var */
 import { type mastodon } from "../src/index.js";
 import { type SessionPoolImpl, type TokenPool } from "./services/index.js";
 

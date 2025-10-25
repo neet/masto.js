@@ -18,12 +18,12 @@ it("handles notifications", async () => {
     let notifications = await alice.rest.v1.notifications.list();
     let notification = notifications.find((n) => n.status?.id === status.id);
 
-    assert(notification != undefined);
+    assert.ok(notification != undefined);
     notification = await alice.rest.v1.notifications
       .$select(notification.id)
       .fetch();
 
-    assert(notification.type === "mention");
+    assert.ok(notification.type === "mention");
     expect(notification.status.id).toBe(status.id);
     await alice.rest.v1.notifications.$select(notification.id).dismiss();
 
