@@ -41,7 +41,7 @@ export const createRestAPIClient = (
   const config = new HttpConfigImpl(props, serializer);
   const logger = createLogger(props.log);
   const http = new HttpNativeImpl(serializer, config, logger);
-  const hook = new HttpActionDispatcherHookMastodon(http);
+  const hook = new HttpActionDispatcherHookMastodon(http, props.mediaTimeout);
   const actionDispatcher = new HttpActionDispatcher(http, hook);
   const actionProxy = createActionProxy(actionDispatcher, {
     context: ["api"],
@@ -56,7 +56,7 @@ export const createOAuthAPIClient = (
   const config = new HttpConfigImpl(props, serializer);
   const logger = createLogger(props.log);
   const http = new HttpNativeImpl(serializer, config, logger);
-  const hook = new HttpActionDispatcherHookMastodon(http);
+  const hook = new HttpActionDispatcherHookMastodon(http, props.mediaTimeout);
   const actionDispatcher = new HttpActionDispatcher(http, hook);
   const actionProxy = createActionProxy(actionDispatcher, {
     context: ["oauth"],

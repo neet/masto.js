@@ -61,6 +61,29 @@ describe("DispatcherHttp", () => {
     await expect(promise).rejects.toBeInstanceOf(MastoTimeoutError);
   });
 
+  it("uses custom mediaTimeout value", async () => {
+    const http = new HttpMockImpl();
+    const customTimeout = 100; // Short timeout for fast test
+    const dispatcher = new HttpActionDispatcher(
+      http,
+      new HttpActionDispatcherHookMastodon(http, customTimeout),
+    );
+
+    httpPost.mockResolvedValueOnce({ id: "1" });
+    httpGet.mockRejectedValue(
+      new MastoHttpError({ statusCode: 404, message: "Not Found" }),
+    );
+
+    const promise = dispatcher.dispatch({
+      type: "create",
+      path: "/api/v2/media",
+      data: undefined,
+      meta: {},
+    });
+
+    await expect(promise).rejects.toBeInstanceOf(MastoTimeoutError);
+  });
+
   it("rethrows errors for media processing", async () => {
     const http = new HttpMockImpl();
     const dispatcher = new HttpActionDispatcher(
