@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.4.0](https://github.com/neet/masto.js/compare/v7.3.0...v7.4.0) (2025-10-25)
+
+
+### Features
+
+* Add configurable mediaTimeout option for media upload polling ([#1341](https://github.com/neet/masto.js/issues/1341)) ([7341c22](https://github.com/neet/masto.js/commit/7341c22f0e45b4a0bb3463732302df10da4ab23b))
+
 ## [7.3.0](https://github.com/neet/masto.js/compare/v7.2.0...v7.3.0) (2025-10-19)
 
 
