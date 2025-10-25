@@ -34,14 +34,29 @@ interface LogConfigProps {
   readonly log?: LogType;
 }
 
+interface MediaConfigProps {
+  /**
+   * Timeout milliseconds for media upload processing.
+   *
+   * When uploading media via `/api/v2/media`, the library polls the server
+   * to wait for media processing to complete before returning. This timeout
+   * controls how long to wait before giving up.
+   *
+   * Defaults to 60000 (60 seconds).
+   *
+   * @experimental The behavior of this option may change without any announcement.
+   */
+  readonly mediaTimeout?: number;
+}
+
 export const createRestAPIClient = (
-  props: MastoHttpConfigProps & LogConfigProps,
+  props: MastoHttpConfigProps & LogConfigProps & MediaConfigProps,
 ): mastodon.rest.Client => {
   const serializer = new SerializerNativeImpl();
   const config = new HttpConfigImpl(props, serializer);
   const logger = createLogger(props.log);
   const http = new HttpNativeImpl(serializer, config, logger);
-  const hook = new HttpActionDispatcherHookMastodon(http);
+  const hook = new HttpActionDispatcherHookMastodon(http, props.mediaTimeout);
   const actionDispatcher = new HttpActionDispatcher(http, hook);
   const actionProxy = createActionProxy(actionDispatcher, {
     context: ["api"],
