@@ -43,6 +43,8 @@ interface MediaConfigProps {
    * controls how long to wait before giving up.
    *
    * Defaults to 60000 (60 seconds).
+   *
+   * @experimental The behaviour of this option may change without any announcement.
    */
   readonly mediaTimeout?: number;
 }
