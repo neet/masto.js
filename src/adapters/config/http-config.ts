@@ -22,17 +22,6 @@ export interface MastoHttpConfigProps {
   readonly timeout?: number;
 
   /**
-   * Timeout milliseconds for media upload processing.
-   *
-   * When uploading media via `/api/v2/media`, the library polls the server
-   * to wait for media processing to complete before returning. This timeout
-   * controls how long to wait before giving up.
-   *
-   * Defaults to 60000 (60 seconds).
-   */
-  readonly mediaTimeout?: number;
-
-  /**
    * Additional options for the `fetch` function.
    *
    * @see https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch
