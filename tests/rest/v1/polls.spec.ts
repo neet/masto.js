@@ -14,7 +14,7 @@ it("handles poll", async () => {
   });
 
   try {
-    assert(status.poll != undefined);
+    assert.ok(status.poll != undefined);
     await bob.rest.v1.polls.$select(status.poll.id).votes.create({
       choices: [0, 1],
     });

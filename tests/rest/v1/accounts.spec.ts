@@ -38,7 +38,7 @@ describe("account", () => {
         (error) => error,
       );
 
-    assert(error instanceof MastoHttpError);
+    assert.ok(error instanceof MastoHttpError);
     expect(error.statusCode).toBe(422);
     expect(error.details).toEqual({
       agreement: [

@@ -26,7 +26,7 @@ describe("SerializerNativeImpl", () => {
       keyName: "value",
       anotherKeyName: ["value1", "value2"],
     });
-    assert(data instanceof FormData);
+    assert.ok(data instanceof FormData);
     expect(data.get("key_name")).toBe("value");
     expect(data.get("another_key_name[0]")).toEqual("value1");
     expect(data.get("another_key_name[1]")).toEqual("value2");

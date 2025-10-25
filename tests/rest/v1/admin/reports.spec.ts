@@ -9,7 +9,7 @@ it("handles reports", async () => {
   const reports = await admin.v1.admin.reports.list();
   let report = reports.find((r) => r.targetAccount.id === session.id);
 
-  assert(report != undefined);
+  assert.ok(report != undefined);
   report = await admin.v1.admin.reports.$select(report.id).fetch();
   expect(report.targetAccount.id).toBe(session.id);
 

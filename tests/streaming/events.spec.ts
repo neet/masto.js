@@ -22,11 +22,11 @@ describe("events", () => {
     await session.rest.v1.statuses.$select(status.id).remove();
 
     const [e1, e2, e3] = await eventsPromise;
-    assert(e1.event === "update");
+    assert.ok(e1.event === "update");
     expect(e1.payload.content).toMatch(/test1/);
-    assert(e2.event === "status.update");
+    assert.ok(e2.event === "status.update");
     expect(e2.payload.content).toMatch(/test2/);
-    assert(e3.event === "delete");
+    assert.ok(e3.event === "delete");
     expect(e3.payload).toBe(status.id);
   });
 
@@ -60,7 +60,7 @@ describe("events", () => {
 
     try {
       const [e] = await eventsPromise;
-      assert(e.event === "notification");
+      assert.ok(e.event === "notification");
       expect(e.payload.account.id).toBe(bob.id);
     } finally {
       await bob.rest.v1.accounts.$select(alice.id).unfollow();
@@ -84,7 +84,7 @@ describe("events", () => {
 
     try {
       const [e] = await eventsPromise;
-      assert(e.event === "conversation");
+      assert.ok(e.event === "conversation");
       expect(e.payload.lastStatus?.id).toBe(status.id);
     } finally {
       await bob.rest.v1.statuses.$select(status.id).remove();

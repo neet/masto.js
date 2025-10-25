@@ -28,7 +28,7 @@ describe("conversations", () => {
         expect(conversation?.accounts).toContainEqual(bob.account);
       });
 
-      assert(conversation != undefined);
+      assert.ok(conversation != undefined);
 
       conversation = await alice.rest.v1.conversations
         .$select(conversation.id)

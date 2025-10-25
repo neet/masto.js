@@ -8,7 +8,7 @@ it("creates a report", async () => {
   const reports = await admin.v1.admin.reports.list();
   const report = reports.find((report) => report.targetAccount.id === bob.id);
 
-  assert(report != undefined);
+  assert.ok(report != undefined);
   expect(report).toBeDefined();
   await admin.v1.admin.reports.$select(report.id).resolve();
 });
