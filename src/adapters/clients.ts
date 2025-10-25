@@ -44,7 +44,7 @@ interface MediaConfigProps {
    *
    * Defaults to 60000 (60 seconds).
    *
-   * @experimental The behaviour of this option may change without any announcement.
+   * @experimental The behavior of this option may change without any announcement.
    */
   readonly mediaTimeout?: number;
 }
