@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.4.1](https://github.com/neet/masto.js/compare/v7.4.0...v7.4.1) (2025-10-31)
+
+
+### Bug Fixes
+
+* Fix TypeDoc warnings for referenced but unexported types ([#1344](https://github.com/neet/masto.js/issues/1344)) ([4a89223](https://github.com/neet/masto.js/commit/4a8922318a7cb6bc6fd281c5bfdeeba618f6b7d8))
+
 ## [7.4.0](https://github.com/neet/masto.js/compare/v7.3.0...v7.4.0) (2025-10-25)
 
 
