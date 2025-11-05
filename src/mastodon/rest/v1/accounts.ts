@@ -1,4 +1,5 @@
 import { type HttpMetaParams } from "../../../interfaces/index.js";
+import { type Endpoint } from "../../endpoint.js";
 import {
   type Account,
   type AccountCredentials,
@@ -138,10 +139,11 @@ export interface Accounts$SelectNoteResource {
    * @param param Parameters
    * @return Relationship
    */
-  create(
-    params: CreateAccountNoteParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Relationship>;
+  create: Endpoint<
+    CreateAccountNoteParams,
+    HttpMetaParams<"json">,
+    Relationship
+  >;
 }
 
 export interface Accounts$SelectIdentityProofsResource {
@@ -222,7 +224,7 @@ export interface Accounts$SelectResource {
    * @return Account
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  fetch(meta?: HttpMetaParams): Promise<Account>;
+  fetch: Endpoint<undefined, HttpMetaParams, Account>;
 
   /**
    * Follow the given account.
@@ -231,10 +233,7 @@ export interface Accounts$SelectResource {
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  follow(
-    params?: FollowAccountParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Relationship>;
+  follow: Endpoint<FollowAccountParams, HttpMetaParams<"json">, Relationship>;
 
   /**
    * Unfollow the given account
@@ -242,38 +241,35 @@ export interface Accounts$SelectResource {
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  unfollow(
-    params?: FollowAccountParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Relationship>;
+  unfollow: Endpoint<FollowAccountParams, HttpMetaParams<"json">, Relationship>;
 
   /**
    * Block the given account. Clients should filter statuses from this account if received (e.g. due to a boost in the Home timeline)
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  block(meta?: HttpMetaParams): Promise<Relationship>;
+  block: Endpoint<undefined, HttpMetaParams, Relationship>;
 
   /**
    * Unblock the given account.
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  unblock(meta?: HttpMetaParams): Promise<Relationship>;
+  unblock: Endpoint<undefined, HttpMetaParams, Relationship>;
 
   /**
    * Add the given account to the user's featured profiles. (Featured profiles are currently shown on the user's own public profile.)
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts#pin
    */
-  pin(meta?: HttpMetaParams): Promise<Relationship>;
+  pin: Endpoint<undefined, HttpMetaParams, Relationship>;
 
   /**
    * Remove the given account from the user's featured profiles.
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  unpin(meta?: HttpMetaParams): Promise<Relationship>;
+  unpin: Endpoint<undefined, HttpMetaParams, Relationship>;
 
   /**
    * Mute the given account. Clients should filter statuses and notifications from this account, if received (e.g. due to a boost in the Home timeline).
@@ -281,38 +277,35 @@ export interface Accounts$SelectResource {
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  mute(
-    params?: MuteAccountParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Relationship>;
+  mute: Endpoint<MuteAccountParams, HttpMetaParams<"json">, Relationship>;
 
   /**
    * Unmute the given account.
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  unmute(meta?: HttpMetaParams): Promise<Relationship>;
+  unmute: Endpoint<undefined, HttpMetaParams, Relationship>;
 
   /**
    * @returns N/A
    */
-  removeFromFollowers(meta?: HttpMetaParams): Promise<void>;
+  removeFromFollowers: Endpoint<undefined, HttpMetaParams, void>;
 
   /**
-   * Add the given account to the user’s featured profiles.
+   * Add the given account to the user's featured profiles.
    * @param meta Metadata
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/#endorse
    */
-  endorse(meta?: HttpMetaParams): Promise<Relationship>;
+  endorse: Endpoint<undefined, HttpMetaParams, Relationship>;
 
   /**
-   * Remove the given account from the user’s featured profiles.
+   * Remove the given account from the user's featured profiles.
    * @param meta Metadata
    * @returns Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/#unendorse
    */
-  unendorse(meta?: HttpMetaParams): Promise<Relationship>;
+  unendorse: Endpoint<undefined, HttpMetaParams, Relationship>;
 }
 
 export interface AccountsRelationshipsResource {
@@ -321,10 +314,7 @@ export interface AccountsRelationshipsResource {
    * @return Array of Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  fetch(
-    params: FetchRelationshipsParams,
-    meta?: HttpMetaParams,
-  ): Promise<Relationship[]>;
+  fetch: Endpoint<FetchRelationshipsParams, HttpMetaParams, Relationship[]>;
 }
 
 export interface AccountsSearchResource {
@@ -345,7 +335,7 @@ export interface AccountFamiliarFollowersResource {
    * Obtain a list of all accounts that follow a given account, filtered for accounts you follow.
    * @returns Array of FamiliarFollowers
    */
-  fetch(id: string[], meta?: HttpMetaParams): Promise<FamiliarFollowers[]>;
+  fetch: Endpoint<{ id: string[] }, HttpMetaParams, FamiliarFollowers[]>;
 }
 
 export interface AccountsResource {
@@ -355,14 +345,19 @@ export interface AccountsResource {
   search: AccountsSearchResource;
   familiarFollowers: AccountFamiliarFollowersResource;
 
-  fetch(params: FetchAccountsParams, meta?: HttpMetaParams): Promise<Account[]>;
+  /**
+   * Fetch multiple accounts by their IDs
+   * @param params Parameters
+   * @return Array of Account
+   */
+  fetch: Endpoint<FetchAccountsParams, HttpMetaParams, Account[]>;
 
   /**
    * This method allows to quickly convert a username of a known account to an ID that can be used with the REST API, or to check if a username is available for sign-up
    * @param params Parameters
    * @return Account
    */
-  lookup(params: LookupAccountParams, meta?: HttpMetaParams): Promise<Account>;
+  lookup: Endpoint<LookupAccountParams, HttpMetaParams, Account>;
 
   /**
    * Creates a user and account records. Returns an account access token
@@ -372,17 +367,18 @@ export interface AccountsResource {
    * @return Token
    * @see https://docs.joinmastodon.org/methods/accounts/#create
    */
-  create(
-    params: CreateAccountParams,
-    meta?: HttpMetaParams<"multipart-form">,
-  ): Promise<Token>;
+  create: Endpoint<
+    CreateAccountParams,
+    HttpMetaParams<"multipart-form">,
+    Token
+  >;
 
   /**
    * Test to make sure that the user token works.
    * @return the user's own Account with Source
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  verifyCredentials(meta?: HttpMetaParams): Promise<AccountCredentials>;
+  verifyCredentials: Endpoint<undefined, HttpMetaParams, AccountCredentials>;
 
   /**
    *  Update the user's display and preferences.
@@ -390,10 +386,11 @@ export interface AccountsResource {
    * @return the user's own Account with Source
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  updateCredentials(
-    params: UpdateCredentialsParams,
-    meta?: HttpMetaParams<"multipart-form">,
-  ): Promise<AccountCredentials>;
+  updateCredentials: Endpoint<
+    UpdateCredentialsParams,
+    HttpMetaParams<"multipart-form">,
+    AccountCredentials
+  >;
 }
 
 /** @deprecated Use `AccountsResource` instead. */

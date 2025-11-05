@@ -2,7 +2,7 @@ import {
   type Http,
   type HttpConfig,
   type HttpRequestParams,
-  type HttpRequestResult,
+  type HttpResponse,
   type Logger,
   type Serializer,
 } from "../../interfaces/index.js";
@@ -24,7 +24,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
     super();
   }
 
-  async request(params: HttpRequestParams): Promise<HttpRequestResult> {
+  async request<T>(params: HttpRequestParams): Promise<HttpResponse<T>> {
     const request = this.createRequest(params);
 
     try {
@@ -52,7 +52,7 @@ export class HttpNativeImpl extends BaseHttp implements Http {
 
       return {
         headers: response.headers,
-        data,
+        data: data as T,
       };
     } catch (error) {
       this.logger?.log("debug", `HTTP failed`, error);

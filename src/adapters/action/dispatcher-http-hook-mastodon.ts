@@ -66,7 +66,7 @@ async function waitForMediaAttachment(
     try {
       await sleep(1000);
 
-      const processing = await http.get<mastodon.v1.MediaAttachment>(
+      const { data: processing } = await http.get<mastodon.v1.MediaAttachment>(
         `/api/v1/media/${id}`,
       );
 

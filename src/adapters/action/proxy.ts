@@ -2,9 +2,9 @@ import { snakeCase } from "change-case";
 
 import {
   type ActionDispatcher,
-  type AnyAction,
   type HttpMetaParams,
 } from "../../interfaces/index.js";
+import { isRecord } from "../../utils/is-record.js";
 import { noop } from "../../utils/noop.js";
 
 type CreateActionProxyOptions = {
@@ -13,7 +13,7 @@ type CreateActionProxyOptions = {
 };
 
 export const createActionProxy = <T>(
-  actionDispatcher: ActionDispatcher<AnyAction>,
+  actionDispatcher: ActionDispatcher,
   options: CreateActionProxyOptions = {},
 ): T => {
   const { context = [], applicable = false } = options;
@@ -52,10 +52,7 @@ const SPECIAL_PROPERTIES = new Set([
 ]);
 
 const get =
-  <T>(
-    actionDispatcher: ActionDispatcher<AnyAction>,
-    context: readonly string[],
-  ) =>
+  <T>(actionDispatcher: ActionDispatcher, context: readonly string[]) =>
   (_: unknown, property: string | symbol) => {
     if (typeof property === "string" && SPECIAL_PROPERTIES.has(property)) {
       return;
@@ -79,7 +76,7 @@ const get =
   };
 
 const apply =
-  <T>(actionDispatcher: ActionDispatcher<AnyAction>, context: string[]) =>
+  <T>(actionDispatcher: ActionDispatcher, context: string[]) =>
   (_1: unknown, _2: unknown, args: unknown[]): unknown => {
     const action = context.pop();
 
@@ -98,10 +95,16 @@ const apply =
     const path = "/" + context.join("/");
     const [data, meta] = args;
 
-    return actionDispatcher.dispatch<T>({
+    const result = actionDispatcher.dispatch({
       type: action,
       path,
       data,
       meta: meta as HttpMetaParams,
     });
+
+    if (action === "$raw") {
+      return result;
+    } else {
+      return isRecord(result) && "data" in result ? result.data : result;
+    }
   };

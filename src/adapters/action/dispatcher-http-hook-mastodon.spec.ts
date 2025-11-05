@@ -25,7 +25,10 @@ describe("DispatcherHttp", () => {
       .mockRejectedValueOnce(
         new MastoHttpError({ statusCode: 404, message: "Not Found" }),
       )
-      .mockResolvedValueOnce({ id: "1", url: "https://example.com" });
+      .mockResolvedValueOnce({
+        headers: new Headers(),
+        data: { id: "1", url: "https://example.com" },
+      });
 
     const media = await dispatcher.dispatch({
       type: "create",

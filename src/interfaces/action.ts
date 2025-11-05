@@ -1,7 +1,7 @@
 import { type HttpMetaParams } from "./http.js";
 import { type Encoding } from "./serializer.js";
 
-export interface Action<T extends string> {
+export interface Action<T> {
   readonly type: T;
   readonly path: string;
   readonly data: unknown;
@@ -10,8 +10,10 @@ export interface Action<T extends string> {
 
 export type AnyAction = Action<string>;
 
-export interface ActionDispatcher<T extends AnyAction> {
-  dispatch<U>(action: T): U | Promise<U>;
+export type ActionMap = { [key in string]: unknown };
+
+export interface ActionDispatcher<U extends ActionMap = ActionMap> {
+  dispatch<T extends keyof U>(action: Action<T>): U[T];
   [Symbol.dispose]?(): void;
 }
 

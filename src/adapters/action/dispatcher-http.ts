@@ -3,24 +3,41 @@ import {
   type ActionDispatcher,
   type ActionDispatcherHook,
   type Http,
+  type HttpResponse,
 } from "../../interfaces/index.js";
+import { type Paginator } from "../../mastodon/paginator.js";
 import { PaginatorHttp } from "./paginator-http.js";
 
-export type HttpActionType = "fetch" | "create" | "update" | "remove" | "list";
+export type HttpActionMap = {
+  fetch: Promise<HttpResponse<unknown>>;
+  create: Promise<HttpResponse<unknown>>;
+  update: Promise<HttpResponse<unknown>>;
+  remove: Promise<HttpResponse<unknown>>;
+  list: Paginator<unknown>;
+};
+
+export type HttpActionType = keyof HttpActionMap;
 export type HttpAction = Action<HttpActionType>;
 
-export class HttpActionDispatcher implements ActionDispatcher<HttpAction> {
+export class HttpActionDispatcher implements ActionDispatcher<HttpActionMap> {
   constructor(
     private readonly http: Http,
     private readonly hook: ActionDispatcherHook<HttpAction>,
   ) {}
 
-  dispatch<T>(action: HttpAction): T | Promise<T> {
+  dispatch(
+    action: Action<"fetch" | "create" | "update" | "remove">,
+  ): Promise<HttpResponse<unknown>>;
+  dispatch(action: Action<"list">): Paginator<unknown>;
+  dispatch(action: Action<HttpActionType>): unknown {
     if (this.hook) {
       action = this.hook.beforeDispatch(action);
     }
 
-    let result = this.hook.dispatch(action) as T | Promise<T> | false;
+    let result = this.hook.dispatch(action) as
+      | Promise<HttpResponse<unknown>>
+      | Paginator<unknown>
+      | false;
     if (result !== false) {
       return result;
     }
@@ -43,16 +60,16 @@ export class HttpActionDispatcher implements ActionDispatcher<HttpAction> {
         break;
       }
       case "list": {
-        result = new PaginatorHttp(this.http, action.path, action.data) as T;
+        result = new PaginatorHttp(this.http, action.path, action.data);
         break;
       }
     }
 
     /* eslint-disable unicorn/prefer-ternary, prettier/prettier */
     if (result instanceof Promise) {
-      return result.then((result) => this.hook?.afterDispatch(action, result)) as Promise<T>;
+      return result.then((result) => this.hook?.afterDispatch(action, result)) as Promise<HttpResponse<unknown>>;
     } else {
-      return this.hook.afterDispatch(action, result) as T;
+      return this.hook.afterDispatch(action, result) as Paginator<unknown>;
     }
     /* eslint-enable unicorn/prefer-ternary, prettier/prettier */
   }

@@ -12,19 +12,19 @@ export type HttpRequestParams = HttpMetaParams<Encoding> & {
   readonly body?: Record<string, unknown>;
 };
 
-export interface HttpRequestResult {
+export interface HttpResponse<T = unknown> {
   headers: Headers;
-  data: unknown;
+  data: T;
 }
 
 export type HttpMethod = <T>(
   path: string,
   data?: unknown,
   meta?: HttpMetaParams<Encoding>,
-) => Promise<T>;
+) => Promise<HttpResponse<T>>;
 
 export interface Http {
-  readonly request: (params: HttpRequestParams) => Promise<HttpRequestResult>;
+  readonly request: <T>(params: HttpRequestParams) => Promise<HttpResponse<T>>;
   readonly get: HttpMethod;
   readonly post: HttpMethod;
   readonly patch: HttpMethod;

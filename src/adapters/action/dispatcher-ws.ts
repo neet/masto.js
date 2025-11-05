@@ -9,11 +9,17 @@ import {
 import { MastoUnexpectedError } from "../errors/index.js";
 import { WebSocketSubscription } from "../ws/index.js";
 
-type WebSocketActionType = "close" | "prepare" | "subscribe";
+type WebSocketActionMap = {
+  close: undefined;
+  prepare: Promise<WebSocket>;
+  subscribe: WebSocketSubscription;
+};
+
+type WebSocketActionType = keyof WebSocketActionMap;
 type WebSocketAction = Action<WebSocketActionType>;
 
 export class WebSocketActionDispatcher
-  implements ActionDispatcher<WebSocketAction>
+  implements ActionDispatcher<WebSocketActionMap>
 {
   constructor(
     private readonly connector: WebSocketConnector,
@@ -22,31 +28,34 @@ export class WebSocketActionDispatcher
     private readonly logger?: Logger,
   ) {}
 
-  dispatch<T>(action: WebSocketAction): T {
+  dispatch(action: Action<"close">): void;
+  dispatch(action: Action<"prepare">): Promise<WebSocket>;
+  dispatch(action: Action<"subscribe">): WebSocketSubscription;
+  dispatch(action: WebSocketAction): unknown {
     if (action.type === "close") {
       this.connector.kill();
-      return {} as T;
+      return;
     }
 
     if (action.type === "prepare") {
-      return this.connector.acquire() as T;
+      return this.connector.acquire();
     }
 
-    if (action.type !== "subscribe") {
-      throw new MastoUnexpectedError(`Unknown action type ${action.type}`);
+    if (action.type === "subscribe") {
+      const data = action.data ?? {};
+      const stream = action.path.replace(/^\//, "").replaceAll("/", ":");
+
+      return new WebSocketSubscription(
+        this.connector,
+        this.counter,
+        this.serializer,
+        stream,
+        this.logger,
+        { ...data },
+      );
     }
 
-    const data = action.data ?? {};
-    const stream = action.path.replace(/^\//, "").replaceAll("/", ":");
-
-    return new WebSocketSubscription(
-      this.connector,
-      this.counter,
-      this.serializer,
-      stream,
-      this.logger,
-      { ...data },
-    ) as T;
+    throw new MastoUnexpectedError(`Unknown action type ${action.type}`);
   }
 
   [Symbol.dispose](): void {
