@@ -68,7 +68,7 @@ export interface Client extends Disposable {
   hashtag: HashtagResource;
   list: ListResource;
   direct: DirectResource;
-  user: UserNotificationResource;
+  user: UserResource;
 
   close(): void;
 
