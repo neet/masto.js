@@ -1,5 +1,21 @@
 # Changelog
 
+## [7.6.0](https://github.com/neet/masto.js/compare/v7.5.0...v7.6.0) (2025-11-24)
+
+
+### Features
+
+* Add quote/quoted_update notification types ([b5eea21](https://github.com/neet/masto.js/commit/b5eea2112ac03683d7f345acc855353425457e26))
+* Add quote/quoted_update notification types ([a9448f9](https://github.com/neet/masto.js/commit/a9448f96fe404fad0c3f78c8d928a832186600a7))
+* add QuoteNotification type ([3abae81](https://github.com/neet/masto.js/commit/3abae819e61d91ecef431332ebfeafad1adab02b))
+* add QuoteNotification type ([2fadd76](https://github.com/neet/masto.js/commit/2fadd7696e203fafaebba51d5e032fd81194872e))
+
+
+### Bug Fixes
+
+* Client.user type ([5817b3e](https://github.com/neet/masto.js/commit/5817b3eb154fff97151f0e086ee3ceff44aaedf0))
+* Client.user type ([baeb16a](https://github.com/neet/masto.js/commit/baeb16abb57cbad37d7619950f70bdcf4ad3ecc7))
+
 ## [7.5.0](https://github.com/neet/masto.js/compare/v7.4.0...v7.5.0) (2025-11-20)
 
 
