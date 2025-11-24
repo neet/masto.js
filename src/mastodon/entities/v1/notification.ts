@@ -54,6 +54,11 @@ export type StatusNotification = BaseNotificationWithStatus<"status">;
 export type ReblogNotification = BaseNotificationWithStatus<"reblog">;
 
 /**
+ * Someone boosted one of your statuses
+ */
+export type QuoteNotification = BaseNotificationWithStatus<"quote">;
+
+/**
  * Someone followed you
  */
 export type FollowNotification = BaseNotificationPlain<"follow">;
@@ -107,6 +112,7 @@ export interface NotificationRegistry {
   status: StatusNotification;
   reblog: ReblogNotification;
   follow: FollowNotification;
+  quote: QuoteNotification;
   follow_request: FollowRequestNotification;
   favourite: FavouriteNotification;
   poll: PollNotification;
