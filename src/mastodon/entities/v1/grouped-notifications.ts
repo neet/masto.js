@@ -96,6 +96,13 @@ export type PollNotificationGroup = NotificationGroupWithStatusId<"poll">;
 /** A status you interacted with has been edited */
 export type UpdateNotificationGroup = NotificationGroupWithStatusId<"update">;
 
+/** Someone has quoted one of your statuses */
+export type QuoteNotificationGroup = NotificationGroupWithStatusId<"quote">;
+
+/** A status you have quoted has been edited */
+export type QuotedUpdateNotificationGroup =
+  NotificationGroupWithStatusId<"quoted_update">;
+
 /** Someone signed up (optionally sent to admins) */
 export type AdminSignUpNotificationGroup =
   NotificationGroupPlain<"admin.sign_up">;
@@ -121,6 +128,8 @@ export interface NotificationGroupRegistry {
   favourite: FavouriteNotificationGroup;
   poll: PollNotificationGroup;
   update: UpdateNotificationGroup;
+  quote: QuoteNotificationGroup;
+  quoted_update: QuotedUpdateNotificationGroup;
   "admin.sign_up": AdminSignUpNotificationGroup;
   "admin.report": AdminReportNotificationGroup;
   severed_relationships: SeveredRelationshipsNotificationGroup;
