@@ -8,6 +8,7 @@ import {
   type NotificationPolicy,
   type NotificationPolicyType,
 } from "../../entities/v2/index.js";
+import { type Method } from "../../method.js";
 import { type Paginator } from "../../paginator.js";
 import { type DefaultPaginationParams } from "../../resource.js";
 
@@ -73,7 +74,7 @@ export interface UpdateNotificationPolicyParams {
 }
 
 export interface Notifications$SelectAccountsResource {
-  fetch(meta?: HttpMetaParams): Promise<Account[]>;
+  fetch: Method<Account[]>;
 }
 
 export interface Notifications$SelectResource {
@@ -82,12 +83,12 @@ export interface Notifications$SelectResource {
   /**
    * View information about a specific notification group with a given group key.
    */
-  fetch(meta?: HttpMetaParams): Promise<GroupedNotificationsResults>;
+  fetch: Method<GroupedNotificationsResults>;
 
   /**
    * Dismiss a single notification group from the server.
    */
-  dismiss(meta?: HttpMetaParams): Promise<void>;
+  dismiss: Method<void>;
 }
 
 export interface NotificationsUnreadCountResource {
@@ -98,25 +99,23 @@ export interface NotificationsUnreadCountResource {
    * operation (although faster than getting the full corresponding notifications), therefore the
    * number of returned notifications is capped.
    */
-  fetch(
-    params?: FetchUnreadCountParams,
-    meta?: HttpMetaParams,
-  ): Promise<{ count: number }>;
+  fetch: Method<{ count: number }, FetchUnreadCountParams>;
 }
 
 export interface NotificationsPolicyResource {
   /**
    * Notifications filtering policy for the user.
    */
-  fetch(meta?: HttpMetaParams): Promise<NotificationPolicy>;
+  fetch: Method<NotificationPolicy>;
 
   /**
-   * Update the user’s notifications filtering policy.
+   * Update the user's notifications filtering policy.
    */
-  update(
-    params: UpdateNotificationPolicyParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<NotificationPolicy>;
+  update: Method<
+    NotificationPolicy,
+    UpdateNotificationPolicyParams,
+    HttpMetaParams<"json">
+  >;
 }
 
 export interface NotificationsResource {
@@ -139,10 +138,7 @@ export interface NotificationsResource {
    * be grouped in the future. The grouped_types parameter should be used by the client to explicitly
    * list the types it supports showing grouped notifications for.
    */
-  list(
-    params?: ListNotificationsParams,
-    meta?: HttpMetaParams,
-  ): Paginator<GroupedNotificationsResults>;
+  list: Method<Paginator<GroupedNotificationsResults>, ListNotificationsParams>;
 }
 
 /** @deprecated Use NotificationsResource instead. */

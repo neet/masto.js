@@ -1,5 +1,6 @@
 import { type HttpMetaParams } from "../../../../interfaces/index.js";
 import { type Admin } from "../../../entities/v1/index.js";
+import { type Method } from "../../../method.js";
 import { type Paginator } from "../../../paginator.js";
 
 export interface CreateDomainBlockParams {
@@ -31,7 +32,7 @@ export interface DomainBlocks$SelectResource {
    * @return DomainBlock
    * @see https://docs.joinmastodon.org/methods/admin/domain_blocks/#get-one
    */
-  fetch(meta?: HttpMetaParams): Promise<Admin.DomainBlock>;
+  fetch: Method<Admin.DomainBlock>;
 
   /**
    * Change parameters for an existing domain block.
@@ -39,17 +40,18 @@ export interface DomainBlocks$SelectResource {
    * @return DomainBlock
    * @see https://docs.joinmastodon.org/methods/admin/domain_blocks/#update
    */
-  update(
-    params?: UpdateDomainBlockParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Admin.DomainBlock>;
+  update: Method<
+    Admin.DomainBlock,
+    UpdateDomainBlockParams,
+    HttpMetaParams<"json">
+  >;
 
   /**
    * Lift a block against a domain.
    * @return DomainBlock
    * @see https://docs.joinmastodon.org/methods/admin/domain_blocks/#delete
    */
-  remove(meta?: HttpMetaParams): Promise<void>;
+  remove: Method<void>;
 }
 
 export interface DomainBlocksResource {
@@ -61,10 +63,10 @@ export interface DomainBlocksResource {
    * @return Array of DomainBlock
    * @see https://docs.joinmastodon.org/methods/admin/domain_blocks/#get
    */
-  list(
-    params?: ListDomainBlocksParams,
-    meta?: HttpMetaParams,
-  ): Paginator<Admin.DomainBlock[], ListDomainBlocksParams>;
+  list: Method<
+    Paginator<Admin.DomainBlock[], ListDomainBlocksParams>,
+    ListDomainBlocksParams
+  >;
 
   /**
    * Add a domain to the list of domains blocked from federating.
@@ -72,10 +74,11 @@ export interface DomainBlocksResource {
    * @return DomainBlock
    * @see https://docs.joinmastodon.org/methods/admin/domain_blocks/#post
    */
-  create(
-    params: CreateDomainBlockParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Admin.DomainBlock>;
+  create: Method<
+    Admin.DomainBlock,
+    CreateDomainBlockParams,
+    HttpMetaParams<"json">
+  >;
 }
 
 /** @deprecated Use `DomainBlocksResource` instead */

@@ -1,13 +1,13 @@
-import { type HttpMetaParams } from "../../../interfaces/index.js";
+import { type Method } from "../../method.js";
 
 export interface ProfileAvatarResource {
   /**https://github.com/mastodon/mastodon/pull/25124 */
-  remove(meta?: HttpMetaParams): Promise<void>;
+  remove: Method<void>;
 }
 
 export interface ProfileHeaderResource {
   /**https://github.com/mastodon/mastodon/pull/25124 */
-  remove(meta?: HttpMetaParams): Promise<void>;
+  remove: Method<void>;
 }
 
 export interface ProfileResource {

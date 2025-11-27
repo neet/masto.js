@@ -4,6 +4,7 @@ import {
   type NotificationRequest,
   type NotificationType,
 } from "../../entities/v1/index.js";
+import { type Method } from "../../method.js";
 import { type Paginator } from "../../paginator.js";
 import { type DefaultPaginationParams } from "../../resource.js";
 
@@ -33,38 +34,38 @@ export interface Notifications$SelectResource {
    * @return Notification
    * @see https://docs.joinmastodon.org/methods/notifications/
    */
-  fetch(meta?: HttpMetaParams): Promise<Notification>;
+  fetch: Method<Notification>;
 
   /**
    * Clear a single notification from the server.
    * @return N/A
    * @see https://docs.joinmastodon.org/methods/notifications/
    */
-  dismiss(meta?: HttpMetaParams): Promise<void>;
+  dismiss: Method<void>;
 }
 
 export interface NotificationsRequests$SelectResource {
   /**
    * View information about a notification request with a given ID.
    */
-  fetch(meta?: HttpMetaParams): Promise<NotificationRequest>;
+  fetch: Method<NotificationRequest>;
 
   /**
    * Accept a notification request, which merges the filtered notifications from that user back into the main notification and accepts any future notification from them.
    */
-  accept(meta?: HttpMetaParams): Promise<void>;
+  accept: Method<void>;
 
   /**
    * Dismiss a notification request, which hides it and prevent it from contributing to the pending notification requests count.
    */
-  dismiss(meta?: HttpMetaParams): Promise<void>;
+  dismiss: Method<void>;
 }
 
 export interface NotificationsRequestsMergedResource {
   /**
    * Check whether accepted notification requests have been merged. Accepting notification requests schedules a background job to merge the filtered notifications back into the normal notification list. When that process has finished, the client should refresh the notifications list at its earliest convenience. This is communicated by the notifications_merged streaming event but can also be polled using this endpoint.
    */
-  fetch(meta?: HttpMetaParams): Promise<{ merged: boolean }>;
+  fetch: Method<{ merged: boolean }>;
 }
 
 export interface NotificationsRequestsResource {
@@ -73,22 +74,23 @@ export interface NotificationsRequestsResource {
   merged: NotificationsRequestsMergedResource;
 
   /**
-   * Notification requests for notifications filtered by the user’s policy. This API returns Link headers containing links to the next/previous page.
+   * Notification requests for notifications filtered by the user's policy. This API returns Link headers containing links to the next/previous page.
    */
-  list(
-    params?: DefaultPaginationParams,
-    meta?: HttpMetaParams<"json">,
-  ): Paginator<NotificationRequest[], DefaultPaginationParams>;
+  list: Method<
+    Paginator<NotificationRequest[], DefaultPaginationParams>,
+    DefaultPaginationParams,
+    HttpMetaParams<"json">
+  >;
 
   /**
    * Accepts multiple notification requests, which merges the filtered notifications from those users back into the main notifications and accepts any future notification from them.
    */
-  accept(meta?: HttpMetaParams): Promise<void>;
+  accept: Method<void>;
 
   /**
    * Dismiss multiple notification requests, which hides them and prevent them from contributing to the pending notification requests count.
    */
-  dismiss(meta?: HttpMetaParams): Promise<void>;
+  dismiss: Method<void>;
 }
 
 export interface NotificationsUnreadCountResource {
@@ -99,10 +101,7 @@ export interface NotificationsUnreadCountResource {
    * operation (although faster than getting the full corresponding notifications), therefore the
    * number of returned notifications is capped.
    */
-  fetch(
-    params?: FetchUnreadCountParams,
-    meta?: HttpMetaParams,
-  ): Promise<{ count: number }>;
+  fetch: Method<{ count: number }, FetchUnreadCountParams>;
 }
 
 export interface NotificationsResource {
@@ -119,10 +118,11 @@ export interface NotificationsResource {
    * @return Array of Notification
    * @see https://docs.joinmastodon.org/methods/notifications/
    */
-  list(
-    params?: ListNotificationsParams,
-    meta?: HttpMetaParams<"json">,
-  ): Paginator<Notification[], ListNotificationsParams>;
+  list: Method<
+    Paginator<Notification[], ListNotificationsParams>,
+    ListNotificationsParams,
+    HttpMetaParams<"json">
+  >;
 
   /**
    * Notifications concerning the user.
@@ -132,17 +132,14 @@ export interface NotificationsResource {
    * @return Array of Notification
    * @see https://docs.joinmastodon.org/methods/notifications/
    */
-  fetch(
-    params?: ListNotificationsParams,
-    meta?: HttpMetaParams,
-  ): Promise<Notification[]>;
+  fetch: Method<Notification[], ListNotificationsParams>;
 
   /**
    * Clear all notifications from the server.
    * @return N/A
    * @see https://docs.joinmastodon.org/methods/notifications/
    */
-  clear(meta?: HttpMetaParams): Promise<void>;
+  clear: Method<void>;
 }
 
 /** @deprecated Use `NotificationsResource` instead */

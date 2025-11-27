@@ -4,6 +4,7 @@ import {
   type MarkerItem,
   type MarkerTimeline,
 } from "../../entities/v1/index.js";
+import { type Method } from "../../method.js";
 
 export interface FetchMarkersParams {
   /**
@@ -26,7 +27,7 @@ export interface MarkersResource {
    * @return Markers
    * @see https://docs.joinmastodon.org/methods/timelines/markers/
    */
-  fetch(params?: FetchMarkersParams, meta?: HttpMetaParams): Promise<Marker>;
+  fetch: Method<Marker, FetchMarkersParams>;
 
   /**
    * Save position in timeline
@@ -34,10 +35,7 @@ export interface MarkersResource {
    * @return Markers
    * @see https://github.com/tootsuite/mastodon/pull/11762
    */
-  create(
-    params: CreateMarkersParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Marker>;
+  create: Method<Marker, CreateMarkersParams, HttpMetaParams<"json">>;
 }
 
 /** @deprecated Use `MarkersResource` instead */

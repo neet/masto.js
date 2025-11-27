@@ -1,5 +1,6 @@
 import { type HttpMetaParams } from "../../../interfaces/index.js";
 import { type FeaturedTag, type Tag } from "../../entities/v1/index.js";
+import { type Method } from "../../method.js";
 import { type Paginator } from "../../paginator.js";
 
 export interface CreateFeaturedTagParams {
@@ -13,7 +14,7 @@ export interface FeaturedTagsSuggestionsResource {
    * @return Array of Tag with History
    * @see https://docs.joinmastodon.org/methods/accounts/featured_tags/
    */
-  list(meta?: HttpMetaParams): Paginator<Tag[]>;
+  list: Method<Paginator<Tag[]>>;
 }
 
 export interface FeaturedTags$SelectResource {
@@ -22,7 +23,7 @@ export interface FeaturedTags$SelectResource {
    * @return N/A
    * @see https://docs.joinmastodon.org/methods/accounts/featured_tags/
    */
-  remove(meta?: HttpMetaParams): Promise<void>;
+  remove: Method<void>;
 }
 
 export interface FeaturedTagsResource {
@@ -36,7 +37,7 @@ export interface FeaturedTagsResource {
    * @see https://docs.joinmastodon.org/methods/accounts/featured_tags/
    * @done
    */
-  list(meta?: HttpMetaParams): Paginator<FeaturedTag[]>;
+  list: Method<Paginator<FeaturedTag[]>>;
 
   /**
    * Feature a tag
@@ -44,10 +45,11 @@ export interface FeaturedTagsResource {
    * @return FeaturedTag
    * @see https://docs.joinmastodon.org/methods/accounts/featured_tags/
    */
-  create(
-    params: CreateFeaturedTagParams,
-    meta?: HttpMetaParams<"multipart-form">,
-  ): Promise<FeaturedTag>;
+  create: Method<
+    FeaturedTag,
+    CreateFeaturedTagParams,
+    HttpMetaParams<"multipart-form">
+  >;
 }
 
 /** @deprecated Use `FeaturedTagsResource` instead. */

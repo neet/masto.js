@@ -1,5 +1,5 @@
-import { type HttpMetaParams } from "../../../interfaces/index.js";
 import { type Account, type Relationship } from "../../entities/v1/index.js";
+import { type Method } from "../../method.js";
 import { type Paginator } from "../../paginator.js";
 import { type DefaultPaginationParams } from "../../resource.js";
 
@@ -9,14 +9,14 @@ export interface FollowRequests$SelectResource {
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/follow_requests/#post-authorize
    */
-  authorize(meta?: HttpMetaParams): Promise<Relationship>;
+  authorize: Method<Relationship>;
 
   /**
    * Reject Follow
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/follow_requests/#post-reject
    */
-  reject(meta?: HttpMetaParams): Promise<Relationship>;
+  reject: Method<Relationship>;
 }
 
 export interface FollowRequestsResource {
@@ -28,10 +28,10 @@ export interface FollowRequestsResource {
    * @return Array of Account
    * @see https://docs.joinmastodon.org/methods/accounts/follow_requests/
    */
-  list(
-    params?: DefaultPaginationParams,
-    meta?: HttpMetaParams,
-  ): Paginator<Account[], DefaultPaginationParams>;
+  list: Method<
+    Paginator<Account[], DefaultPaginationParams>,
+    DefaultPaginationParams
+  >;
 }
 
 /** @deprecated Use `FollowRequestsResource` instead. */

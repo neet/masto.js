@@ -1,5 +1,6 @@
 import { type HttpMetaParams } from "../../../interfaces/index.js";
 import { type Client } from "../../entities/v1/index.js";
+import { type Method } from "../../method.js";
 
 export interface CreateAppParams {
   /** A name of your application */
@@ -23,17 +24,14 @@ export interface AppsResource {
    * @return Returns App with `client_id` and `client_secret`
    * @see https://docs.joinmastodon.org/methods/apps/
    */
-  create(
-    params: CreateAppParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Client>;
+  create: Method<Client, CreateAppParams, HttpMetaParams<"json">>;
 
   /**
    * Confirm that the app's OAuth2 credentials work.
    * @return Application
    * @see https://docs.joinmastodon.org/methods/apps/
    */
-  verifyCredentials(meta?: HttpMetaParams): Promise<Client>;
+  verifyCredentials: Method<Client>;
 }
 
 /** @deprecated Use `AppsResource` instead. */

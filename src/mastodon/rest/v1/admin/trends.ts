@@ -1,26 +1,26 @@
-import { type HttpMetaParams } from "../../../../interfaces/index.js";
 import {
   type Admin,
   type Status,
   type TrendLink,
 } from "../../../entities/v1/index.js";
+import { type Method } from "../../../method.js";
 import { type Paginator } from "../../../paginator.js";
 
 /** https://github.com/mastodon/mastodon/pull/24257 */
 export interface TrendsLinks$SelectResource {
-  approve(meta?: HttpMetaParams): Promise<TrendLink>;
-  reject(meta?: HttpMetaParams): Promise<TrendLink>;
+  approve: Method<TrendLink>;
+  reject: Method<TrendLink>;
 }
 
 export interface TrendsLinksPublishers$SelectResource {
-  approve(meta?: HttpMetaParams): Promise<TrendLink>;
-  reject(meta?: HttpMetaParams): Promise<TrendLink>;
+  approve: Method<TrendLink>;
+  reject: Method<TrendLink>;
 }
 
 /** https://github.com/mastodon/mastodon/pull/24257 */
 export interface TrendsLinksPublishersResource {
   $select(id: string): TrendsLinksPublishers$SelectResource;
-  list(meta?: HttpMetaParams): Paginator<TrendLink[]>;
+  list: Method<Paginator<TrendLink[]>>;
 }
 
 export interface TrendsLinksResource {
@@ -32,13 +32,13 @@ export interface TrendsLinksResource {
    * Links that have been shared more than others, including unapproved and unreviewed links.
    * @see https://docs.joinmastodon.org/methods/admin/trends/#links
    */
-  list(meta?: HttpMetaParams): Paginator<TrendLink[]>;
+  list: Method<Paginator<TrendLink[]>>;
 }
 
 /** https://github.com/mastodon/mastodon/pull/24257 */
 export interface TrendsStatuses$SelectResource {
-  approve(meta?: HttpMetaParams): Promise<Status>;
-  reject(meta?: HttpMetaParams): Promise<Status>;
+  approve: Method<Status>;
+  reject: Method<Status>;
 }
 
 export interface TrendsStatusesResource {
@@ -48,13 +48,13 @@ export interface TrendsStatusesResource {
    * Statuses that have been interacted with more than others, including unapproved and unreviewed statuses.
    * @see https://docs.joinmastodon.org/methods/admin/trends/#statuses
    */
-  list(meta?: HttpMetaParams): Paginator<Status[]>;
+  list: Method<Paginator<Status[]>>;
 }
 
 /** https://github.com/mastodon/mastodon/pull/24257 */
 export interface TrendsTags$SelectResource {
-  approve(meta?: HttpMetaParams): Promise<Admin.Tag>;
-  reject(meta?: HttpMetaParams): Promise<Admin.Tag>;
+  approve: Method<Admin.Tag>;
+  reject: Method<Admin.Tag>;
 }
 
 export interface TrendsTagsResource {
@@ -64,7 +64,7 @@ export interface TrendsTagsResource {
    * Tags that are being used more frequently within the past week, including unapproved and unreviewed tags.
    * @see https://docs.joinmastodon.org/methods/admin/trends/#tags
    */
-  list(meta?: HttpMetaParams): Paginator<Admin.Tag[]>;
+  list: Method<Paginator<Admin.Tag[]>>;
 }
 
 export interface TrendsResource {

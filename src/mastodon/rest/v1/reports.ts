@@ -1,5 +1,6 @@
 import { type HttpMetaParams } from "../../../interfaces/index.js";
 import { type Report, type ReportCategory } from "../../entities/v1/index.js";
+import { type Method } from "../../method.js";
 
 export interface ReportAccountParams {
   /** ID of the account to report */
@@ -25,10 +26,7 @@ export interface ReportsResource {
    * @return Report
    * @see https://docs.joinmastodon.org/methods/accounts/reports/
    */
-  create(
-    params: ReportAccountParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Report>;
+  create: Method<Report, ReportAccountParams, HttpMetaParams<"json">>;
 }
 
 /** @deprecated Use `ReportsResource` instead. */

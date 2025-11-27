@@ -1,5 +1,5 @@
-import { type HttpMetaParams } from "../../../interfaces/index.js";
 import { type Preference } from "../../entities/v1/index.js";
+import { type Method } from "../../method.js";
 
 export interface PreferencesResource {
   /**
@@ -7,7 +7,7 @@ export interface PreferencesResource {
    * @return Preferences by key and value
    * @see https://docs.joinmastodon.org/methods/accounts/preferences/
    */
-  fetch(meta?: HttpMetaParams): Promise<Preference>;
+  fetch: Method<Preference>;
 }
 
 /** @deprecated Use `PreferencesResource` instead. */

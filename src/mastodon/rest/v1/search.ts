@@ -1,5 +1,5 @@
-import { type HttpMetaParams } from "../../../interfaces/index.js";
 import { type Search } from "../../entities/v1/index.js";
+import { type Method } from "../../method.js";
 import { type Paginator } from "../../paginator.js";
 import { type DefaultPaginationParams } from "../../resource.js";
 
@@ -29,10 +29,7 @@ export interface SearchResource {
    * @return Results
    * @see https://docs.joinmastodon.org/methods/search/
    */
-  list(
-    params: SearchParams,
-    meta?: HttpMetaParams,
-  ): Paginator<Search, SearchParams>;
+  list: Method<Paginator<Search, SearchParams>, SearchParams>;
 }
 
 /** @deprecated Use `SearchResource` instead. */

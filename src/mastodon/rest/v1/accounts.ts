@@ -12,6 +12,7 @@ import {
   type Status,
   type Token,
 } from "../../entities/v1/index.js";
+import { type Method } from "../../method.js";
 import { type Paginator } from "../../paginator.js";
 import { type DefaultPaginationParams } from "../../resource.js";
 
@@ -128,7 +129,7 @@ export interface Accounts$SelectFeaturedTagsResource {
    * Get featured tag of the account
    * @return FeaturedTags
    */
-  list(meta?: HttpMetaParams): Paginator<FeaturedTag[]>;
+  list: Method<Paginator<FeaturedTag[]>>;
 }
 
 export interface Accounts$SelectNoteResource {
@@ -138,10 +139,7 @@ export interface Accounts$SelectNoteResource {
    * @param param Parameters
    * @return Relationship
    */
-  create(
-    params: CreateAccountNoteParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Relationship>;
+  create: Method<Relationship, CreateAccountNoteParams, HttpMetaParams<"json">>;
 }
 
 export interface Accounts$SelectIdentityProofsResource {
@@ -150,7 +148,7 @@ export interface Accounts$SelectIdentityProofsResource {
    * @return Array of IdentityProof
    * @see https://github.com/tootsuite/mastodon/pull/10297
    */
-  list(meta?: HttpMetaParams): Paginator<IdentityProof[]>;
+  list: Method<Paginator<IdentityProof[]>>;
 }
 
 export interface Accounts$SelectListsResource {
@@ -159,7 +157,7 @@ export interface Accounts$SelectListsResource {
    * @return Array of List
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
-  list(meta?: HttpMetaParams): Paginator<List[]>;
+  list: Method<Paginator<List[]>>;
 }
 
 export interface Accounts$SelectFollowersResource {
@@ -169,10 +167,10 @@ export interface Accounts$SelectFollowersResource {
    * @return Array of Account
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  list(
-    params?: DefaultPaginationParams,
-    meta?: HttpMetaParams,
-  ): Paginator<Account[], DefaultPaginationParams>;
+  list: Method<
+    Paginator<Account[], DefaultPaginationParams>,
+    DefaultPaginationParams
+  >;
 }
 
 export interface Accounts$SelectFollowingResource {
@@ -182,10 +180,10 @@ export interface Accounts$SelectFollowingResource {
    * @return Array of Account
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  list(
-    params?: DefaultPaginationParams,
-    meta?: HttpMetaParams,
-  ): Paginator<Account[], DefaultPaginationParams>;
+  list: Method<
+    Paginator<Account[], DefaultPaginationParams>,
+    DefaultPaginationParams
+  >;
 }
 
 export interface Accounts$SelectStatusesResource {
@@ -195,16 +193,17 @@ export interface Accounts$SelectStatusesResource {
    * @return Array of Status
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  list(
-    params?: ListAccountStatusesParams,
-    meta?: HttpMetaParams,
-  ): Paginator<Status[], ListAccountStatusesParams>;
+  list: Method<
+    Paginator<Status[], ListAccountStatusesParams>,
+    ListAccountStatusesParams
+  >;
 }
 
 export interface Accounts$SelectEndorsementsResource {
-  list(
-    params?: DefaultPaginationParams,
-  ): Paginator<Account[], DefaultPaginationParams>;
+  list: Method<
+    Paginator<Account[], DefaultPaginationParams>,
+    DefaultPaginationParams
+  >;
 }
 
 export interface Accounts$SelectResource {
@@ -222,7 +221,7 @@ export interface Accounts$SelectResource {
    * @return Account
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  fetch(meta?: HttpMetaParams): Promise<Account>;
+  fetch: Method<Account>;
 
   /**
    * Follow the given account.
@@ -231,10 +230,7 @@ export interface Accounts$SelectResource {
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  follow(
-    params?: FollowAccountParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Relationship>;
+  follow: Method<Relationship, FollowAccountParams, HttpMetaParams<"json">>;
 
   /**
    * Unfollow the given account
@@ -242,38 +238,35 @@ export interface Accounts$SelectResource {
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  unfollow(
-    params?: FollowAccountParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Relationship>;
+  unfollow: Method<Relationship, FollowAccountParams, HttpMetaParams<"json">>;
 
   /**
    * Block the given account. Clients should filter statuses from this account if received (e.g. due to a boost in the Home timeline)
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  block(meta?: HttpMetaParams): Promise<Relationship>;
+  block: Method<Relationship>;
 
   /**
    * Unblock the given account.
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  unblock(meta?: HttpMetaParams): Promise<Relationship>;
+  unblock: Method<Relationship>;
 
   /**
    * Add the given account to the user's featured profiles. (Featured profiles are currently shown on the user's own public profile.)
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts#pin
    */
-  pin(meta?: HttpMetaParams): Promise<Relationship>;
+  pin: Method<Relationship>;
 
   /**
    * Remove the given account from the user's featured profiles.
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  unpin(meta?: HttpMetaParams): Promise<Relationship>;
+  unpin: Method<Relationship>;
 
   /**
    * Mute the given account. Clients should filter statuses and notifications from this account, if received (e.g. due to a boost in the Home timeline).
@@ -281,38 +274,35 @@ export interface Accounts$SelectResource {
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  mute(
-    params?: MuteAccountParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Relationship>;
+  mute: Method<Relationship, MuteAccountParams, HttpMetaParams<"json">>;
 
   /**
    * Unmute the given account.
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  unmute(meta?: HttpMetaParams): Promise<Relationship>;
+  unmute: Method<Relationship>;
 
   /**
    * @returns N/A
    */
-  removeFromFollowers(meta?: HttpMetaParams): Promise<void>;
+  removeFromFollowers: Method<void>;
 
   /**
-   * Add the given account to the user’s featured profiles.
+   * Add the given account to the user's featured profiles.
    * @param meta Metadata
    * @return Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/#endorse
    */
-  endorse(meta?: HttpMetaParams): Promise<Relationship>;
+  endorse: Method<Relationship>;
 
   /**
-   * Remove the given account from the user’s featured profiles.
+   * Remove the given account from the user's featured profiles.
    * @param meta Metadata
    * @returns Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/#unendorse
    */
-  unendorse(meta?: HttpMetaParams): Promise<Relationship>;
+  unendorse: Method<Relationship>;
 }
 
 export interface AccountsRelationshipsResource {
@@ -321,10 +311,7 @@ export interface AccountsRelationshipsResource {
    * @return Array of Relationship
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  fetch(
-    params: FetchRelationshipsParams,
-    meta?: HttpMetaParams,
-  ): Promise<Relationship[]>;
+  fetch: Method<Relationship[], FetchRelationshipsParams>;
 }
 
 export interface AccountsSearchResource {
@@ -334,10 +321,10 @@ export interface AccountsSearchResource {
    * @return Array of Account
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  list(
-    params?: SearchAccountsParams,
-    meta?: HttpMetaParams,
-  ): Paginator<Account[], SearchAccountsParams>;
+  list: Method<
+    Paginator<Account[], SearchAccountsParams>,
+    SearchAccountsParams
+  >;
 }
 
 export interface AccountFamiliarFollowersResource {
@@ -345,7 +332,7 @@ export interface AccountFamiliarFollowersResource {
    * Obtain a list of all accounts that follow a given account, filtered for accounts you follow.
    * @returns Array of FamiliarFollowers
    */
-  fetch(id: string[], meta?: HttpMetaParams): Promise<FamiliarFollowers[]>;
+  fetch: Method<FamiliarFollowers[], readonly string[]>;
 }
 
 export interface AccountsResource {
@@ -355,14 +342,14 @@ export interface AccountsResource {
   search: AccountsSearchResource;
   familiarFollowers: AccountFamiliarFollowersResource;
 
-  fetch(params: FetchAccountsParams, meta?: HttpMetaParams): Promise<Account[]>;
+  fetch: Method<Account[], FetchAccountsParams>;
 
   /**
    * This method allows to quickly convert a username of a known account to an ID that can be used with the REST API, or to check if a username is available for sign-up
    * @param params Parameters
    * @return Account
    */
-  lookup(params: LookupAccountParams, meta?: HttpMetaParams): Promise<Account>;
+  lookup: Method<Account, LookupAccountParams>;
 
   /**
    * Creates a user and account records. Returns an account access token
@@ -372,17 +359,14 @@ export interface AccountsResource {
    * @return Token
    * @see https://docs.joinmastodon.org/methods/accounts/#create
    */
-  create(
-    params: CreateAccountParams,
-    meta?: HttpMetaParams<"multipart-form">,
-  ): Promise<Token>;
+  create: Method<Token, CreateAccountParams, HttpMetaParams<"multipart-form">>;
 
   /**
    * Test to make sure that the user token works.
    * @return the user's own Account with Source
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  verifyCredentials(meta?: HttpMetaParams): Promise<AccountCredentials>;
+  verifyCredentials: Method<AccountCredentials>;
 
   /**
    *  Update the user's display and preferences.
@@ -390,10 +374,11 @@ export interface AccountsResource {
    * @return the user's own Account with Source
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  updateCredentials(
-    params: UpdateCredentialsParams,
-    meta?: HttpMetaParams<"multipart-form">,
-  ): Promise<AccountCredentials>;
+  updateCredentials: Method<
+    AccountCredentials,
+    UpdateCredentialsParams,
+    HttpMetaParams<"multipart-form">
+  >;
 }
 
 /** @deprecated Use `AccountsResource` instead. */

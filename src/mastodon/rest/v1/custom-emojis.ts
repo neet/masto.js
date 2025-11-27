@@ -1,5 +1,5 @@
-import { type HttpMetaParams } from "../../../interfaces/index.js";
 import { type CustomEmoji } from "../../entities/v1/index.js";
+import { type Method } from "../../method.js";
 import { type Paginator } from "../../paginator.js";
 
 export interface CustomEmojisResource {
@@ -8,7 +8,7 @@ export interface CustomEmojisResource {
    * @return Array of CustomEmoji
    * @see https://docs.joinmastodon.org/methods/instance/custom_emojis/
    */
-  list(meta?: HttpMetaParams): Paginator<CustomEmoji[]>;
+  list: Method<Paginator<CustomEmoji[]>>;
 }
 
 /** @deprecated Use `CustomEmojisResource` instead. */

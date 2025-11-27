@@ -1,5 +1,6 @@
 import { type HttpMetaParams } from "../../../interfaces/index.js";
 import { type Filter, type FilterContext } from "../../entities/v1/index.js";
+import { type Method } from "../../method.js";
 import { type Paginator } from "../../paginator.js";
 
 export interface CreateFilterParams {
@@ -26,7 +27,7 @@ export interface Filter$SelectResource {
    * @return Returns Filter
    * @see https://docs.joinmastodon.org/methods/accounts/filters/
    */
-  fetch(meta?: HttpMetaParams): Promise<Filter>;
+  fetch: Method<Filter>;
 
   /**
    * Update a filter
@@ -34,17 +35,14 @@ export interface Filter$SelectResource {
    * @return Filter
    * @see https://docs.joinmastodon.org/methods/accounts/filters/
    */
-  update(
-    params?: UpdateFilterParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Filter>;
+  update: Method<Filter, UpdateFilterParams, HttpMetaParams<"json">>;
 
   /**
    * Remove a filter
    * @return N/A
    * @see https://docs.joinmastodon.org/methods/accounts/filters/
    */
-  remove(meta?: HttpMetaParams): Promise<void>;
+  remove: Method<void>;
 }
 
 export interface FiltersResource {
@@ -55,7 +53,7 @@ export interface FiltersResource {
    * @return Filter
    * @see https://docs.joinmastodon.org/methods/accounts/filters/
    */
-  list(meta?: HttpMetaParams): Paginator<Filter[]>;
+  list: Method<Paginator<Filter[]>>;
 
   /**
    * Create a filter
@@ -63,10 +61,7 @@ export interface FiltersResource {
    * @return Filter
    * @see https://docs.joinmastodon.org/methods/accounts/filters/
    */
-  create(
-    params?: CreateFilterParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Filter>;
+  create: Method<Filter, CreateFilterParams, HttpMetaParams<"json">>;
 }
 
 /** @deprecated Use `FiltersResource` instead. */

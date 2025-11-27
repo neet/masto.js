@@ -1,5 +1,6 @@
 import { type HttpMetaParams } from "../../../../interfaces/index.js";
 import { type Admin } from "../../../entities/v1/index.js";
+import { type Method } from "../../../method.js";
 import { type Paginator } from "../../../paginator.js";
 import { type DefaultPaginationParams } from "../../../resource.js";
 
@@ -64,10 +65,7 @@ export interface Accounts$SelectActionResource {
    * @return Account
    * @see https://docs.joinmastodon.org/methods/admin/accounts/#action
    */
-  create(
-    params: CreateActionParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<void>;
+  create: Method<void, CreateActionParams, HttpMetaParams<"json">>;
 }
 
 export interface Accounts$SelectResource {
@@ -78,49 +76,49 @@ export interface Accounts$SelectResource {
    * @return AdminAccount
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  fetch(meta?: HttpMetaParams): Promise<Admin.Account>;
+  fetch: Method<Admin.Account>;
 
   /**
    * Approve the given local account if it is currently pending approval.
    * @return AdminAccount
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  approve(meta?: HttpMetaParams): Promise<Admin.Account>;
+  approve: Method<Admin.Account>;
 
   /**
    * Reject the given local account if it is currently pending approval.
    * @return AdminAccount
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  reject(meta?: HttpMetaParams): Promise<Admin.Account>;
+  reject: Method<Admin.Account>;
 
   /**
    * Re-enable a local account whose login is currently disabled.
    * @return AdminAccount
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  enable(meta?: HttpMetaParams): Promise<Admin.Account>;
+  enable: Method<Admin.Account>;
 
   /**
    * Unsilence a currently silenced account.
    * @return AdminAccount
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  unsilence(meta?: HttpMetaParams): Promise<Admin.Account>;
+  unsilence: Method<Admin.Account>;
 
   /**
    * Unsuspend a currently suspended account.
    * @return AdminAccount
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  unsuspend(meta?: HttpMetaParams): Promise<Admin.Account>;
+  unsuspend: Method<Admin.Account>;
 
   /**
    * Unmark an account as sensitive
    * @return AdminAccount
    * @see https://docs.joinmastodon.org/methods/admin/accounts/#unsensitive
    */
-  unsensitive(meta?: HttpMetaParams): Promise<Admin.Account>;
+  unsensitive: Method<Admin.Account>;
 }
 
 export interface AccountsResource {
@@ -133,10 +131,10 @@ export interface AccountsResource {
    * @return Array of AdminAccount
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  list(
-    params?: ListAccountsParams,
-    meta?: HttpMetaParams,
-  ): Paginator<Admin.Account[], ListAccountsParams>;
+  list: Method<
+    Paginator<Admin.Account[], ListAccountsParams>,
+    ListAccountsParams
+  >;
 }
 
 /** @deprecated Use `AccountsResource` instead. */

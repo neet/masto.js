@@ -10,6 +10,7 @@ import {
   type StatusVisibility,
   type Translation,
 } from "../../entities/v1/index.js";
+import { type Method } from "../../method.js";
 import { type Paginator } from "../../paginator.js";
 
 export interface FetchStatusesParams {
@@ -70,6 +71,7 @@ export interface CreateStatusParamsWithMediaIds extends CreateStatusParamsBase {
   /** Array of Attachment ids to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used. */
   readonly mediaIds: readonly string[];
   /** Text content of the status. If `media_ids` is provided, this becomes optional. Attaching a `poll` is optional while `status` is provided. */
+
   readonly status?: string | null;
   readonly poll?: never;
 }
@@ -115,7 +117,7 @@ export interface Statuses$SelectContextResource {
    * @return Context
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  fetch(meta?: HttpMetaParams): Promise<Context>;
+  fetch: Method<Context>;
 }
 
 export interface Statuses$SelectCardResource {
@@ -125,7 +127,7 @@ export interface Statuses$SelectCardResource {
    * @see https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-card
    * @deprecated
    */
-  fetch(meta?: HttpMetaParams): Promise<PreviewCard>;
+  fetch: Method<PreviewCard>;
 }
 
 export interface Statuses$SelectRebloggedByResource {
@@ -134,7 +136,7 @@ export interface Statuses$SelectRebloggedByResource {
    * @return Array of Account
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  list(meta?: HttpMetaParams): Paginator<Account[]>;
+  list: Method<Paginator<Account[]>>;
 }
 
 export interface Statuses$SelectFavouritedByResource {
@@ -143,7 +145,7 @@ export interface Statuses$SelectFavouritedByResource {
    * @return Array of Account
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  list(meta?: HttpMetaParams): Paginator<Account[]>;
+  list: Method<Paginator<Account[]>>;
 }
 
 export interface Statuses$SelectHistoryResource {
@@ -152,7 +154,7 @@ export interface Statuses$SelectHistoryResource {
    * @returns StatusEdit
    * @see https://docs.joinmastodon.org/methods/statuses/#history
    */
-  list(meta?: HttpMetaParams): Paginator<StatusEdit[]>;
+  list: Method<Paginator<StatusEdit[]>>;
 }
 
 export interface Statuses$SelectSourceResource {
@@ -161,7 +163,7 @@ export interface Statuses$SelectSourceResource {
    * @returns StatusSource
    * @see https://docs.joinmastodon.org/methods/statuses/#source
    */
-  fetch(meta?: HttpMetaParams): Promise<StatusSource>;
+  fetch: Method<StatusSource>;
 }
 
 export interface Statuses$SelectResource {
@@ -177,7 +179,7 @@ export interface Statuses$SelectResource {
    * @return Status
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  fetch(meta?: HttpMetaParams): Promise<Status>;
+  fetch: Method<Status>;
 
   /**
    * Update a status
@@ -185,100 +187,91 @@ export interface Statuses$SelectResource {
    * @return Status. When scheduled_at is present, ScheduledStatus is returned instead.
    * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses
    */
-  update(
-    params: UpdateStatusParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Status>;
+  update: Method<Status, UpdateStatusParams, HttpMetaParams<"json">>;
 
   /**
    * Delete one of your own statuses.
    * @return Status with source text and `media_attachments` or `poll`
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  remove(meta?: HttpMetaParams): Promise<Status>;
+  remove: Method<Status>;
 
   /**
    * Add a status to your favourites list.
    * @return Status
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  favourite(meta?: HttpMetaParams): Promise<Status>;
+  favourite: Method<Status>;
 
   /**
    * Remove a status from your favourites list.
    * @return Status
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  unfavourite(meta?: HttpMetaParams): Promise<Status>;
+  unfavourite: Method<Status>;
 
   /**
    * Do not receive notifications for the thread that this status is part of. Must be a thread in which you are a participant.
    * @return Status
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  mute(meta?: HttpMetaParams): Promise<Status>;
+  mute: Method<Status>;
 
   /**
    * Start receiving notifications again for the thread that this status is part of.
    * @return Status
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  unmute(meta?: HttpMetaParams): Promise<Status>;
+  unmute: Method<Status>;
 
   /**
    * Re-share a status.
    * @return Status
    * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-reblog
    */
-  reblog(
-    params?: ReblogStatusParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Status>;
+  reblog: Method<Status, ReblogStatusParams, HttpMetaParams<"json">>;
 
   /**
    * Undo a re-share of a status.
    * @return Status
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  unreblog(meta?: HttpMetaParams): Promise<Status>;
+  unreblog: Method<Status>;
 
   /**
    * Feature one of your own public statuses at the top of your profile.
    * @return Status
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  pin(meta?: HttpMetaParams): Promise<Status>;
+  pin: Method<Status>;
 
   /**
    * Un-feature a status from the top of your profile.
    * @return Status
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  unpin(meta?: HttpMetaParams): Promise<Status>;
+  unpin: Method<Status>;
 
   /**
    * Privately bookmark a status.
    * @return Status
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  bookmark(meta?: HttpMetaParams): Promise<Status>;
+  bookmark: Method<Status>;
 
   /**
    * Remove a status from your private bookmarks.
    * @return Status
    * @see https://docs.joinmastodon.org/methods/statuses/
    */
-  unbookmark(meta?: HttpMetaParams): Promise<Status>;
+  unbookmark: Method<Status>;
 
   /**
    * Translate the status content into some language.
    * @param params Form data parameters
    * @returns Translation
    */
-  translate(
-    params: TranslateStatusParams,
-    meta?: HttpMetaParams,
-  ): Promise<Translation>;
+  translate: Method<Translation, TranslateStatusParams>;
 }
 
 export interface StatusesResource {
@@ -287,7 +280,7 @@ export interface StatusesResource {
   /**
    * Obtain information about multiple statuses.
    */
-  fetch(params: FetchStatusesParams, meta?: HttpMetaParams): Promise<Status[]>;
+  fetch: Method<Status[], FetchStatusesParams>;
 
   /**
    * Post a new status.

@@ -1,6 +1,26 @@
-import { type HttpMetaParams } from "../../../interfaces/index.js";
 import { type Announcement } from "../../entities/v1/index.js";
+import { type Method } from "../../method.js";
 import { type Paginator } from "../../paginator.js";
+
+export interface Announcements$SelectReactions$SelectResource {
+  /**
+   * Add a reaction to an announcement
+   * @return N/A
+   * @see https://docs.joinmastodon.org/methods/announcements/
+   */
+  update: Method<void>;
+
+  /**
+   * Remove a reaction from an announcement
+   * @return N/A
+   * @see https://docs.joinmastodon.org/methods/announcements/
+   */
+  remove: Method<void>;
+}
+
+export interface Announcements$SelectReactionsResource {
+  $select(name: string): Announcements$SelectReactions$SelectResource;
+}
 
 export interface Announcements$SelectResource {
   /**
@@ -8,23 +28,9 @@ export interface Announcements$SelectResource {
    * @return Nothing
    * @see https://docs.joinmastodon.org/methods/announcements/
    */
-  dismiss(meta?: HttpMetaParams): Promise<void>;
+  dismiss: Method<void>;
 
-  /**
-   * Add a reaction to an announcement
-   * @param name Emoji string
-   * @return N/A
-   * @see https://docs.joinmastodon.org/methods/announcements/
-   */
-  addReaction(name: string, meta?: HttpMetaParams): Promise<void>;
-
-  /**
-   * Remove a reaction from an announcement
-   * @param name Emoji string
-   * @return N/A
-   * @see https://docs.joinmastodon.org/methods/announcements/
-   */
-  removeReaction(name: string, meta?: HttpMetaParams): Promise<void>;
+  reactions: Announcements$SelectReactionsResource;
 }
 
 export interface AnnouncementsResource {
@@ -35,7 +41,7 @@ export interface AnnouncementsResource {
    * @return Announcements
    * @see https://docs.joinmastodon.org/methods/announcements/
    */
-  list(meta?: HttpMetaParams): Paginator<Announcement[]>;
+  list: Method<Paginator<Announcement[]>>;
 }
 
 /** @deprecated Use `AnnouncementsResource` instead. */

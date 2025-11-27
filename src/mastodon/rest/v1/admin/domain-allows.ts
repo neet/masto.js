@@ -1,5 +1,6 @@
 import { type HttpMetaParams } from "../../../../interfaces/index.js";
 import { type Admin } from "../../../entities/v1/index.js";
+import { type Method } from "../../../method.js";
 import { type Paginator } from "../../../paginator.js";
 import { type DefaultPaginationParams } from "../../../resource.js";
 
@@ -13,14 +14,14 @@ export interface DomainAllows$SelectResource {
    * @return DomainAllow
    * @see https://docs.joinmastodon.org/methods/admin/domain_allows/#get-one
    */
-  fetch(meta?: HttpMetaParams): Promise<Admin.DomainAllow>;
+  fetch: Method<Admin.DomainAllow>;
 
   /**
    * Delete a domain from the allowed domains list.
    * @return DomainAllow
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  remove(meta?: HttpMetaParams): Promise<Admin.DomainAllow>;
+  remove: Method<Admin.DomainAllow>;
 }
 
 export interface DomainAllowsResource {
@@ -32,10 +33,10 @@ export interface DomainAllowsResource {
    * @return Array of DomainAllow
    * @see https://docs.joinmastodon.org/methods/admin/domain_allows/#get
    */
-  list(
-    params?: DefaultPaginationParams,
-    meta?: HttpMetaParams,
-  ): Paginator<Admin.DomainAllow[], DefaultPaginationParams>;
+  list: Method<
+    Paginator<Admin.DomainAllow[], DefaultPaginationParams>,
+    DefaultPaginationParams
+  >;
 
   /**
    * Add a domain to the list of domains allowed to federate,
@@ -44,10 +45,11 @@ export interface DomainAllowsResource {
    * @return DomainAllow
    * @see https://docs.joinmastodon.org/methods/admin/domain_allows/#get-one
    */
-  create(
-    params: CreateDomainAllowParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Admin.DomainAllow>;
+  create: Method<
+    Admin.DomainAllow,
+    CreateDomainAllowParams,
+    HttpMetaParams<"json">
+  >;
 }
 
 /** @deprecated Use `DomainAllowsResource` instead */

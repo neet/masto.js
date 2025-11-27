@@ -1,10 +1,10 @@
-import { type HttpMetaParams } from "../../../interfaces/index.js";
 import {
   type Activity,
   type DomainBlock,
   type ExtendedDescription,
   type Instance,
 } from "../../entities/v1/index.js";
+import { type Method } from "../../method.js";
 import { type Paginator } from "../../paginator.js";
 
 export interface InstancePeersResource {
@@ -13,7 +13,7 @@ export interface InstancePeersResource {
    * @return Array of Activity
    * @see https://docs.joinmastodon.org/methods/instance/
    */
-  list(meta?: HttpMetaParams): Paginator<string[]>;
+  list: Method<Paginator<string[]>>;
 }
 
 export interface InstanceActivityResource {
@@ -22,24 +22,24 @@ export interface InstanceActivityResource {
    * @return Array of Activity
    * @see https://docs.joinmastodon.org/methods/instance/#activity
    */
-  list(meta?: HttpMetaParams): Paginator<Activity[]>;
+  list: Method<Paginator<Activity[]>>;
 }
 
 export interface InstanceLanguagesResource {
   /** https://github.com/mastodon/mastodon/pull/24443 */
-  list(meta?: HttpMetaParams): Promise<string[]>;
+  list: Method<string[]>;
 }
 
 export interface InstanceExtendedDescriptionResource {
   /**
    * Obtain an extended description of this server
    */
-  fetch(meta?: HttpMetaParams): Promise<ExtendedDescription>;
+  fetch: Method<ExtendedDescription>;
 }
 
 export interface InstanceTranslationLanguagesResource {
   /** https://github.com/mastodon/mastodon/pull/24037 */
-  list(meta?: HttpMetaParams): Promise<Record<string, string[]>>;
+  list: Method<Record<string, string[]>>;
 }
 
 export interface InstanceDomainBlocksResource {
@@ -47,7 +47,7 @@ export interface InstanceDomainBlocksResource {
    * Obtain a list of domains that have been blocked.
    * @see https://docs.joinmastodon.org/methods/instance/#domain_blocks
    */
-  fetch(meta?: HttpMetaParams): Promise<DomainBlock[]>;
+  fetch: Method<DomainBlock[]>;
 }
 
 export interface InstanceResource {
@@ -63,7 +63,7 @@ export interface InstanceResource {
    * @return Instance
    * @see https://docs.joinmastodon.org/methods/instance/
    */
-  fetch(meta?: HttpMetaParams): Promise<Instance>;
+  fetch: Method<Instance>;
 }
 
 /** @deprecated Use `InstanceResource` instead. */

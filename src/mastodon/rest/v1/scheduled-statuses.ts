@@ -1,5 +1,6 @@
 import { type HttpMetaParams } from "../../../interfaces/index.js";
 import { type ScheduledStatus } from "../../entities/v1/index.js";
+import { type Method } from "../../method.js";
 import { type Paginator } from "../../paginator.js";
 import { type DefaultPaginationParams } from "../../resource.js";
 
@@ -14,7 +15,7 @@ export interface ScheduledStatuses$SelectResource {
    * @return ScheduledStatus
    * @see https://docs.joinmastodon.org/methods/statuses/scheduled_statuses/
    */
-  fetch(meta?: HttpMetaParams): Promise<ScheduledStatus>;
+  fetch: Method<ScheduledStatus>;
 
   /**
    * Update Scheduled status
@@ -22,17 +23,18 @@ export interface ScheduledStatuses$SelectResource {
    * @return ScheduledStatus
    * @see https://docs.joinmastodon.org/api/rest/scheduled-statuses/#put-api-v1-scheduled-statuses-id
    */
-  update(
-    params: UpdateScheduledStatusParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<ScheduledStatus>;
+  update: Method<
+    ScheduledStatus,
+    UpdateScheduledStatusParams,
+    HttpMetaParams<"json">
+  >;
 
   /**
    * Cancel a scheduled status
    * @return N/A
    * @see https://docs.joinmastodon.org/methods/statuses/scheduled_statuses/
    */
-  remove(meta?: HttpMetaParams): Promise<void>;
+  remove: Method<void>;
 }
 
 export interface ScheduledStatusesResource {
@@ -44,10 +46,10 @@ export interface ScheduledStatusesResource {
    * @return Array of ScheduledStatus
    * @see https://docs.joinmastodon.org/methods/statuses/scheduled_statuses/
    */
-  list(
-    params?: DefaultPaginationParams,
-    meta?: HttpMetaParams,
-  ): Paginator<ScheduledStatus[], DefaultPaginationParams>;
+  list: Method<
+    Paginator<ScheduledStatus[], DefaultPaginationParams>,
+    DefaultPaginationParams
+  >;
 }
 
 /** @deprecated Use `ScheduledStatusesResource` instead. */

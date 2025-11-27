@@ -1,5 +1,5 @@
-import { type HttpMetaParams } from "../../../interfaces/index.js";
 import { type Conversation } from "../../entities/v1/index.js";
+import { type Method } from "../../method.js";
 import { type Paginator } from "../../paginator.js";
 import { type DefaultPaginationParams } from "../../resource.js";
 
@@ -9,17 +9,17 @@ export interface Conversations$SelectResource {
    * @return N/A
    * @see https://docs.joinmastodon.org/methods/timelines/conversations/#delete
    */
-  remove(meta?: HttpMetaParams): Promise<void>;
+  remove: Method<void>;
 
   /**
    * Mark as read
    * @return Conversation
    * @see https://docs.joinmastodon.org/methods/timelines/conversations/#post
    */
-  read(meta?: HttpMetaParams): Promise<Conversation>;
+  read: Method<Conversation>;
 
   /** https://github.com/mastodon/mastodon/pull/25509 */
-  unread(meta?: HttpMetaParams): Promise<Conversation>;
+  unread: Method<Conversation>;
 }
 
 export interface ConversationsResource {
@@ -31,10 +31,10 @@ export interface ConversationsResource {
    * @return Array of Conversation
    * @see https://docs.joinmastodon.org/methods/timelines/conversations/
    */
-  list(
-    params?: DefaultPaginationParams,
-    meta?: HttpMetaParams,
-  ): Paginator<Conversation[], DefaultPaginationParams>;
+  list: Method<
+    Paginator<Conversation[], DefaultPaginationParams>,
+    DefaultPaginationParams
+  >;
 }
 
 /** @deprecated Use `ConversationsResource` instead. */

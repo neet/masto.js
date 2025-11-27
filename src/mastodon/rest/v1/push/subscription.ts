@@ -4,6 +4,7 @@ import {
   type WebPushSubscriptionAlerts,
   type WebPushSubscriptionPolicy,
 } from "../../../entities/v1/index.js";
+import { type Method } from "../../../method.js";
 
 export interface CreateWebPushSubscriptionParams {
   readonly subscription: {
@@ -37,17 +38,18 @@ export interface WebPushSubscriptionResource {
    * @return Returns Push Subscription
    * @see https://docs.joinmastodon.org/methods/push
    */
-  create(
-    params: CreateWebPushSubscriptionParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<WebPushSubscription>;
+  create: Method<
+    WebPushSubscription,
+    CreateWebPushSubscriptionParams,
+    HttpMetaParams<"json">
+  >;
 
   /**
    * View the PushSubscription currently associated with this access token.
    * @return PushSubscription
    * @see https://docs.joinmastodon.org/methods/push/#get
    */
-  fetch(meta?: HttpMetaParams): Promise<WebPushSubscription>;
+  fetch: Method<WebPushSubscription>;
 
   /**
    * Updates the current push subscription. Only the data part can be updated. To change fundamentals, a new subscription must be created instead.
@@ -55,17 +57,18 @@ export interface WebPushSubscriptionResource {
    * @return PushSubscription
    * @see https://docs.joinmastodon.org/methods/push/#update
    */
-  update(
-    params: UpdateWebPushSubscriptionParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<WebPushSubscription>;
+  update: Method<
+    WebPushSubscription,
+    UpdateWebPushSubscriptionParams,
+    HttpMetaParams<"json">
+  >;
 
   /**
    * Removes the current Web Push API subscription.
    * @return N/A
    * @see https://docs.joinmastodon.org/methods/push/#delete
    */
-  remove(meta?: HttpMetaParams): Promise<void>;
+  remove: Method<void>;
 }
 
 /** @deprecated Use `WebPushSubscriptionResource` instead. */

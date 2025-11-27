@@ -1,5 +1,5 @@
-import { type HttpMetaParams } from "../../../interfaces/index.js";
 import { type Instance } from "../../entities/v2/index.js";
+import { type Method } from "../../method.js";
 
 export interface InstanceResource {
   /**
@@ -7,7 +7,7 @@ export interface InstanceResource {
    * @return Instance
    * @see https://docs.joinmastodon.org/methods/instance/
    */
-  fetch(meta?: HttpMetaParams): Promise<Instance>;
+  fetch: Method<Instance>;
 }
 
 /** @deprecated Use InstanceResource instead. */

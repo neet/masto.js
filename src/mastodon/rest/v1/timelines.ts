@@ -1,5 +1,5 @@
-import { type HttpMetaParams } from "../../../interfaces/index.js";
 import { type Status } from "../../entities/v1/index.js";
+import { type Method } from "../../method.js";
 import { type Paginator } from "../../paginator.js";
 import { type DefaultPaginationParams } from "../../resource.js";
 
@@ -24,10 +24,7 @@ export interface TimelinesHomeResource {
    * @return Array of Status
    * @see https://docs.joinmastodon.org/methods/timelines/
    */
-  list(
-    params?: ListTimelineParams,
-    meta?: HttpMetaParams,
-  ): Paginator<Status[], ListTimelineParams>;
+  list: Method<Paginator<Status[], ListTimelineParams>, ListTimelineParams>;
 }
 
 export interface TimelinesPublicResource {
@@ -37,10 +34,7 @@ export interface TimelinesPublicResource {
    * @return Array of Status
    * @see https://docs.joinmastodon.org/methods/timelines/
    */
-  list(
-    params?: ListTimelineParams,
-    meta?: HttpMetaParams,
-  ): Paginator<Status[], ListTimelineParams>;
+  list: Method<Paginator<Status[], ListTimelineParams>, ListTimelineParams>;
 }
 
 export interface TimelinesTag$SelectResource {
@@ -51,10 +45,7 @@ export interface TimelinesTag$SelectResource {
    * @return Array of Status
    * @see https://docs.joinmastodon.org/methods/timelines#tag
    */
-  list(
-    params?: ListTimelineParams,
-    meta?: HttpMetaParams,
-  ): Paginator<Status[], ListTimelineParams>;
+  list: Method<Paginator<Status[], ListTimelineParams>, ListTimelineParams>;
 }
 
 export interface TimelinesTagResource {
@@ -69,10 +60,7 @@ export interface TimelinesList$SelectResource {
    * @return Array of Status
    * @see https://docs.joinmastodon.org/methods/timelines/
    */
-  list(
-    params?: ListTimelineParams,
-    meta?: HttpMetaParams,
-  ): Paginator<Status[], ListTimelineParams>;
+  list: Method<Paginator<Status[], ListTimelineParams>, ListTimelineParams>;
 }
 
 export interface TimelinesListResource {
@@ -81,14 +69,11 @@ export interface TimelinesListResource {
 
 export interface TimelinesDirectResource {
   /**
-   * View statuses with a “direct” privacy, from your account or in your notifications.
+   * View statuses with a "direct" privacy, from your account or in your notifications.
    * @returns Array of Status
    * @see https://docs.joinmastodon.org/methods/timelines/
    */
-  list(
-    params?: ListTimelineParams,
-    meta?: HttpMetaParams,
-  ): Paginator<Status[], ListTimelineParams>;
+  list: Method<Paginator<Status[], ListTimelineParams>, ListTimelineParams>;
 }
 
 export interface TimelinesLinkResource {
@@ -97,10 +82,10 @@ export interface TimelinesLinkResource {
    * @returns Array of {@link Status}
    * @see https://docs.joinmastodon.org/methods/timelines/#link
    */
-  list(
-    params: ListLinkTimelineParams,
-    meta?: HttpMetaParams,
-  ): Paginator<Status[], ListLinkTimelineParams>;
+  list: Method<
+    Paginator<Status[], ListLinkTimelineParams>,
+    ListLinkTimelineParams
+  >;
 }
 
 export interface TimelinesResource {

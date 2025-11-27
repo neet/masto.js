@@ -1,6 +1,7 @@
 import { type HttpMetaParams } from "../../../../interfaces/index.js";
 import { type CohortFrequency } from "../../../entities/v1/admin/cohort.js";
 import { type Admin } from "../../../entities/v1/index.js";
+import { type Method } from "../../../method.js";
 
 export interface CreateRetentionParams {
   /** String (ISO 8601 Datetime). The start date for the time period. If a time is provided, it will be ignored. */
@@ -16,10 +17,7 @@ export interface RetentionResource {
    * Generate a retention data report for a given time period and bucket.
    * @see https://docs.joinmastodon.org/methods/admin/retention/#create
    */
-  create(
-    params: CreateRetentionParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Admin.Cohort[]>;
+  create: Method<Admin.Cohort[], CreateRetentionParams, HttpMetaParams<"json">>;
 }
 
 /** @deprecated Use `RetentionsResource` instead */
