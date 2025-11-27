@@ -1,5 +1,6 @@
 import { type HttpMetaParams } from "../../../interfaces/index.js";
 import { type MediaAttachment } from "../../entities/v1/index.js";
+import { type Method } from "../../method.js";
 
 export interface CreateMediaAttachmentParams {
   /** The file to be attached, using multipart form data. */
@@ -24,10 +25,11 @@ export interface MediaAttachmentsResource {
    * @return Attachment
    * @see https://docs.joinmastodon.org/methods/statuses/media/
    */
-  create(
-    params: CreateMediaAttachmentParams & CreateMediaAttachmentExtraParams,
-    meta?: HttpMetaParams<"multipart-form">,
-  ): Promise<MediaAttachment>;
+  create: Method<
+    MediaAttachment,
+    CreateMediaAttachmentParams & CreateMediaAttachmentExtraParams,
+    HttpMetaParams<"multipart-form">
+  >;
 }
 
 /** @deprecated Use MediaAttachmentsResource instead. */

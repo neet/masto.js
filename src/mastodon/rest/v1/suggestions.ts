@@ -1,5 +1,5 @@
-import { type HttpMetaParams } from "../../../interfaces/index.js";
 import { type Account } from "../../entities/v1/index.js";
+import { type Method } from "../../method.js";
 import { type Paginator } from "../../paginator.js";
 
 export interface ListSuggestionParams {
@@ -13,7 +13,7 @@ export interface Suggestions$SelectResource {
    * @return N/A
    * @see https://docs.joinmastodon.org/methods/accounts/suggestions/
    */
-  remove(id: string, meta?: HttpMetaParams): Promise<void>;
+  remove: Method<void, string>;
 }
 
 export interface SuggestionsResource {
@@ -25,10 +25,10 @@ export interface SuggestionsResource {
    * @return Array of Accounts
    * @see https://docs.joinmastodon.org/methods/suggestions/#v1
    */
-  list(
-    params?: ListSuggestionParams,
-    meta?: HttpMetaParams,
-  ): Paginator<Account[], ListSuggestionParams>;
+  list: Method<
+    Paginator<Account[], ListSuggestionParams>,
+    ListSuggestionParams
+  >;
 }
 
 /** @deprecated Use `SuggestionsResource` instead. */

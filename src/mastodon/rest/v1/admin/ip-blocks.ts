@@ -1,6 +1,7 @@
 import { type HttpMetaParams } from "../../../../interfaces/index.js";
 import { type IpBlockSeverity } from "../../../entities/v1/admin/index.js";
 import { type Admin } from "../../../entities/v1/index.js";
+import { type Method } from "../../../method.js";
 import { type Paginator } from "../../../paginator.js";
 
 export interface ListIpBlocksParams {
@@ -36,7 +37,7 @@ export interface IpBlocks$SelectResource {
    * @return IpBlock
    * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#get-one
    */
-  fetch(meta?: HttpMetaParams): Promise<Admin.IpBlock>;
+  fetch: Method<Admin.IpBlock>;
 
   /**
    * Change parameters for an existing IP block.
@@ -44,17 +45,14 @@ export interface IpBlocks$SelectResource {
    * @return IpBlock
    * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#update
    */
-  update(
-    params: UpdateIpBlockParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Admin.IpBlock>;
+  update: Method<Admin.IpBlock, UpdateIpBlockParams, HttpMetaParams<"json">>;
 
   /**
    * Lift a block against an IP range.
    * @return null
    * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#delete
    */
-  remove(meta?: HttpMetaParams): Promise<void>;
+  remove: Method<void>;
 }
 
 export interface IpBlocksResource {
@@ -66,10 +64,10 @@ export interface IpBlocksResource {
    * @return Array of IpBlock
    * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#get
    */
-  list(
-    params?: ListIpBlocksParams,
-    meta?: HttpMetaParams,
-  ): Paginator<Admin.IpBlock[], ListIpBlocksParams>;
+  list: Method<
+    Paginator<Admin.IpBlock[], ListIpBlocksParams>,
+    ListIpBlocksParams
+  >;
 
   /**
    * Add an IP address range to the list of IP blocks.
@@ -77,10 +75,7 @@ export interface IpBlocksResource {
    * @return IpBlock
    * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#post
    */
-  create(
-    params: CreateIpBlockParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Admin.IpBlock>;
+  create: Method<Admin.IpBlock, CreateIpBlockParams, HttpMetaParams<"json">>;
 }
 
 /** @deprecated Use `IpBlocksResource` instead */

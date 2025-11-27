@@ -1,5 +1,6 @@
 import { type HttpMetaParams } from "../../../../interfaces/index.js";
 import { type Admin } from "../../../entities/v1/index.js";
+import { type Method } from "../../../method.js";
 import { type Paginator } from "../../../paginator.js";
 import { type DefaultPaginationParams } from "../../../resource.js";
 
@@ -28,14 +29,14 @@ export interface CanonicalEmailBlocks$SelectResource {
    * @return CanonicalEmailBlock
    * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks
    */
-  fetch(meta?: HttpMetaParams): Promise<Admin.CanonicalEmailBlock>;
+  fetch: Method<Admin.CanonicalEmailBlock>;
 
   /**
    * Lift a block a canonical email.
    * @return null
    * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks
    */
-  remove(meta?: HttpMetaParams): Promise<void>;
+  remove: Method<void>;
 }
 
 export interface CanonicalEmailBlocksResource {
@@ -47,10 +48,10 @@ export interface CanonicalEmailBlocksResource {
    * @return Array of CanonicalEmailBlock
    * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks/
    */
-  list(
-    params?: DefaultPaginationParams,
-    meta?: HttpMetaParams,
-  ): Paginator<Admin.CanonicalEmailBlock[], DefaultPaginationParams>;
+  list: Method<
+    Paginator<Admin.CanonicalEmailBlock[], DefaultPaginationParams>,
+    DefaultPaginationParams
+  >;
 
   /**
    * Canonicalize and hash an email address.
@@ -58,10 +59,11 @@ export interface CanonicalEmailBlocksResource {
    * @return Array of CanonicalEmailBlock
    * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks/#test
    */
-  test(
-    params: TestCanonicalEmailBlockParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Admin.CanonicalEmailBlock[]>;
+  test: Method<
+    Admin.CanonicalEmailBlock[],
+    TestCanonicalEmailBlockParams,
+    HttpMetaParams<"json">
+  >;
 
   /**
    * Block a canonical email.
@@ -69,10 +71,11 @@ export interface CanonicalEmailBlocksResource {
    * @return CanonicalEmailBlock
    * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks
    */
-  create(
-    params: CreateCanonicalEmailBlockParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Admin.CanonicalEmailBlock>;
+  create: Method<
+    Admin.CanonicalEmailBlock,
+    CreateCanonicalEmailBlockParams,
+    HttpMetaParams<"json">
+  >;
 }
 
 /** @deprecated Use CanonicalEmailBlocksResource instead */

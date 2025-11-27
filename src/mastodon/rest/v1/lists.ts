@@ -1,5 +1,6 @@
 import { type HttpMetaParams } from "../../../interfaces/index.js";
 import { type Account, type List } from "../../entities/v1/index.js";
+import { type Method } from "../../method.js";
 import { type Paginator } from "../../paginator.js";
 import { type DefaultPaginationParams } from "../../resource.js";
 
@@ -27,10 +28,10 @@ export interface Lists$SelectAccountsResource {
    * @return Array of Account
    * @see https://docs.joinmastodon.org/methods/timelines/lists#accounts
    */
-  list(
-    params?: DefaultPaginationParams,
-    meta?: HttpMetaParams,
-  ): Paginator<Account[], DefaultPaginationParams>;
+  list: Method<
+    Paginator<Account[], DefaultPaginationParams>,
+    DefaultPaginationParams
+  >;
 
   /**
    * Add accounts to the given list. Note that the user must be following these accounts.
@@ -39,10 +40,7 @@ export interface Lists$SelectAccountsResource {
    * @return N/A
    * @see https://docs.joinmastodon.org/methods/timelines/lists#accounts-add
    */
-  create(
-    params: AddListAccountsParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<void>;
+  create: Method<void, AddListAccountsParams, HttpMetaParams<"json">>;
 
   /**
    * Remove accounts from the given list.
@@ -51,10 +49,7 @@ export interface Lists$SelectAccountsResource {
    * @return N/A
    * @see https://docs.joinmastodon.org/methods/timelines/lists#accounts-remove
    */
-  remove(
-    params: RemoveListAccountsParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<void>;
+  remove: Method<void, RemoveListAccountsParams, HttpMetaParams<"json">>;
 }
 
 export interface Lists$SelectResource {
@@ -65,7 +60,7 @@ export interface Lists$SelectResource {
    * @return List
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
-  fetch(meta?: HttpMetaParams): Promise<List>;
+  fetch: Method<List>;
 
   /**
    * Change the title of a list.
@@ -73,10 +68,7 @@ export interface Lists$SelectResource {
    * @return List
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
-  update(
-    params: UpdateListParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<List>;
+  update: Method<List, UpdateListParams, HttpMetaParams<"json">>;
 
   /**
    * Delete a list
@@ -84,7 +76,7 @@ export interface Lists$SelectResource {
    * @return N/A
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
-  remove(meta?: HttpMetaParams): Promise<void>;
+  remove: Method<void, string>;
 }
 
 export interface ListsResource {
@@ -95,7 +87,7 @@ export interface ListsResource {
    * @return Array of List
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
-  list(meta?: HttpMetaParams): Paginator<List[]>;
+  list: Method<Paginator<List[]>>;
 
   /**
    * Create a new list.
@@ -103,10 +95,7 @@ export interface ListsResource {
    * @return List
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
-  create(
-    params: CreateListParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<List>;
+  create: Method<List, CreateListParams, HttpMetaParams<"json">>;
 }
 
 /** @deprecated Use `ListsResource` instead. */

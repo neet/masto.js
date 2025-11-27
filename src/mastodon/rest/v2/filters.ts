@@ -8,6 +8,7 @@ import {
   type FilterAction,
   type FilterContext,
 } from "../../entities/v2/index.js";
+import { type Method } from "../../method.js";
 import { type Paginator } from "../../paginator.js";
 
 export interface CreateFilterParams {
@@ -71,17 +72,18 @@ export interface Filters$SelectKeywordsResource {
    * @return FilterKeywords
    * @see https://docs.joinmastodon.org/methods/filters/#keywords-create
    */
-  create(
-    params: CreateFilterKeywordParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<FilterKeyword>;
+  create: Method<
+    FilterKeyword,
+    CreateFilterKeywordParams,
+    HttpMetaParams<"json">
+  >;
 
   /**
    * List all keywords attached to the current filter group.
    * @returns Array of FilterKeyword
    * @see https://docs.joinmastodon.org/methods/filters/#keywords-get
    */
-  list(meta?: HttpMetaParams): Paginator<FilterKeyword[]>;
+  list: Method<Paginator<FilterKeyword[]>>;
 }
 
 export interface Filters$SelectStatusesResource {
@@ -90,7 +92,7 @@ export interface Filters$SelectStatusesResource {
    * @returns Array of FilterStatus
    * @see https://docs.joinmastodon.org/methods/filters/#statuses-get
    */
-  list(meta?: HttpMetaParams): Paginator<FilterStatus[]>;
+  list: Method<Paginator<FilterStatus[]>>;
 
   /**
    * Add a status filter to the current filter group.
@@ -98,10 +100,11 @@ export interface Filters$SelectStatusesResource {
    * @returns FilterStatus
    * @see https://docs.joinmastodon.org/methods/filters/#statuses-add
    */
-  create(
-    params: CreateFilterStatusParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<FilterStatus>;
+  create: Method<
+    FilterStatus,
+    CreateFilterStatusParams,
+    HttpMetaParams<"json">
+  >;
 }
 
 export interface Filters$SelectResource {
@@ -113,7 +116,7 @@ export interface Filters$SelectResource {
    * @return Filter
    * @see https://docs.joinmastodon.org/methods/filters/#get-one
    */
-  fetch(meta?: HttpMetaParams): Promise<Filter>;
+  fetch: Method<Filter>;
 
   /**
    * Update a filter group with the given parameters.
@@ -121,17 +124,14 @@ export interface Filters$SelectResource {
    * @return Filter
    * @see https://docs.joinmastodon.org/methods/filters/#update
    */
-  update(
-    params?: UpdateFilterParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Filter>;
+  update: Method<Filter, UpdateFilterParams, HttpMetaParams<"json">>;
 
   /**
    * Delete a filter group with the given id.
    * @return N/A
    * @see https://docs.joinmastodon.org/methods/filters/#delete
    */
-  remove(meta?: HttpMetaParams): Promise<void>;
+  remove: Method<void>;
 }
 
 export interface FiltersKeywords$SelectResource {
@@ -140,7 +140,7 @@ export interface FiltersKeywords$SelectResource {
    * @returns FilterKeyword
    * @see https://docs.joinmastodon.org/methods/filters/#keywords-get-one
    */
-  fetch(meta?: HttpMetaParams): Paginator<FilterKeyword>;
+  fetch: Method<Paginator<FilterKeyword>>;
 
   /**
    * Update the given filter keyword.
@@ -148,17 +148,18 @@ export interface FiltersKeywords$SelectResource {
    * @return FilterKeywords
    * @see https://docs.joinmastodon.org/methods/filters/#keywords-update
    */
-  update(
-    params: CreateFilterKeywordParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<FilterKeyword>;
+  update: Method<
+    FilterKeyword,
+    CreateFilterKeywordParams,
+    HttpMetaParams<"json">
+  >;
 
   /**
    * Deletes the given filter keyword.
    * @returns empty object
    * @see https://docs.joinmastodon.org/methods/filters/#keywords-delete
    */
-  remove(meta?: HttpMetaParams): Promise<void>;
+  remove: Method<void>;
 }
 
 export interface FiltersKeywordsResource {
@@ -171,13 +172,13 @@ export interface FiltersStatuses$SelectResource {
    * @returns FilterStatus
    * @see https://docs.joinmastodon.org/methods/filters/#statuses-get-one
    */
-  fetch(): Promise<FilterStatus>;
+  fetch: Method<FilterStatus>;
 
   /**
    * @returns FilterStatus
    * @see https://docs.joinmastodon.org/methods/filters/#statuses-get-one
    */
-  remove(): Promise<FilterStatus>;
+  remove: Method<FilterStatus>;
 }
 
 export interface FiltersStatusesResource {
@@ -195,7 +196,7 @@ export interface FiltersResource {
    * @return Array of Filter
    * @see https://docs.joinmastodon.org/methods/filters/#get
    */
-  list(meta?: HttpMetaParams): Paginator<Filter[]>;
+  list: Method<Paginator<Filter[]>>;
 
   /**
    * Create a filter group with the given parameters.
@@ -203,10 +204,7 @@ export interface FiltersResource {
    * @return Filter
    * @see https://docs.joinmastodon.org/methods/filters/#create
    */
-  create(
-    params?: CreateFilterParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Filter>;
+  create: Method<Filter, CreateFilterParams, HttpMetaParams<"json">>;
 }
 
 /** @deprecated Use `FiltersResource` instead. */

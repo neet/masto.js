@@ -1,5 +1,6 @@
 import { type HttpMetaParams } from "../../../../interfaces/index.js";
 import { type Admin } from "../../../entities/v1/index.js";
+import { type Method } from "../../../method.js";
 import { type Paginator } from "../../../paginator.js";
 
 export interface ListEmailDomainBlocksParams {
@@ -18,14 +19,14 @@ export interface EmailDomainBlocks$SelectResource {
    * @return EmailDomainBlock
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  fetch(meta?: HttpMetaParams): Promise<Admin.EmailDomainBlock>;
+  fetch: Method<Admin.EmailDomainBlock>;
 
   /**
    * Lift a block against an email domain.
    * @return null
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  remove(meta?: HttpMetaParams): Promise<void>;
+  remove: Method<void>;
 }
 
 export interface EmailDomainBlocksResource {
@@ -37,10 +38,10 @@ export interface EmailDomainBlocksResource {
    * @return Array of EmailDomainBlock
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  list(
-    params?: ListEmailDomainBlocksParams,
-    meta?: HttpMetaParams,
-  ): Paginator<Admin.EmailDomainBlock[], ListEmailDomainBlocksParams>;
+  list: Method<
+    Paginator<Admin.EmailDomainBlock[], ListEmailDomainBlocksParams>,
+    ListEmailDomainBlocksParams
+  >;
 
   /**
    * Add a domain to the list of email domains blocked from sign-ups.
@@ -48,10 +49,11 @@ export interface EmailDomainBlocksResource {
    * @return EmailDomainBlock
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  create(
-    params: CreateEmailDomainBlockParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Admin.EmailDomainBlock>;
+  create: Method<
+    Admin.EmailDomainBlock,
+    CreateEmailDomainBlockParams,
+    HttpMetaParams<"json">
+  >;
 }
 
 /** @deprecated Use `EmailDomainBlocksResource` instead */

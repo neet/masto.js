@@ -1,4 +1,5 @@
 import { type HttpMetaParams } from "../../../interfaces/index.js";
+import { type Method } from "../../method.js";
 
 export interface CreateConfirmationParams {
   /** If provided, updates the unconfirmed user’s email before resending the confirmation email. */
@@ -12,10 +13,11 @@ export interface EmailsConfirmationResource {
    * @returns Empty object
    * @see https://docs.joinmastodon.org/methods/emails/#confirmation
    */
-  create(
-    params: CreateConfirmationParams,
-    meta?: HttpMetaParams<"multipart-form">,
-  ): Promise<void>;
+  create: Method<
+    void,
+    CreateConfirmationParams,
+    HttpMetaParams<"multipart-form">
+  >;
 }
 
 export interface EmailsResource {

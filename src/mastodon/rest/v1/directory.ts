@@ -1,5 +1,6 @@
 import { type HttpMetaParams } from "../../../interfaces/index.js";
 import { type Account } from "../../entities/v1/index.js";
+import { type Method } from "../../method.js";
 import { type Paginator } from "../../paginator.js";
 
 export interface DirectoryOrderTypeRegistry {
@@ -27,10 +28,11 @@ export interface DirectoryResource {
    * @return Array of Account
    * @see https://docs.joinmastodon.org/methods/instance/directory/
    */
-  list(
-    params?: ListDirectoryParams,
-    meta?: HttpMetaParams<"json">,
-  ): Paginator<Account[], ListDirectoryParams>;
+  list: Method<
+    Paginator<Account[], ListDirectoryParams>,
+    ListDirectoryParams,
+    HttpMetaParams<"json">
+  >;
 }
 
 /** @deprecated Use `DirectoryResource` instead. */

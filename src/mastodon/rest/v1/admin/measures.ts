@@ -1,6 +1,7 @@
 import { type HttpMetaParams } from "../../../../interfaces/index.js";
 import { type MeasureKey } from "../../../entities/v1/admin/index.js";
 import { type Admin } from "../../../entities/v1/index.js";
+import { type Method } from "../../../method.js";
 
 export interface FetchMeasureParams {
   /**
@@ -82,10 +83,7 @@ export interface MeasuresResource {
    * Obtain quantitative metrics about the server.
    * @see https://docs.joinmastodon.org/methods/admin/measures/#get
    */
-  create(
-    params: FetchMeasureParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Admin.Measure[]>;
+  create: Method<Admin.Measure[], FetchMeasureParams, HttpMetaParams<"json">>;
 }
 
 /** @deprecated Use `MeasuresResource` instead */

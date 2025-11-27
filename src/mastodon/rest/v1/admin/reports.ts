@@ -1,5 +1,5 @@
-import { type HttpMetaParams } from "../../../../interfaces/index.js";
 import { type Admin } from "../../../entities/v1/index.js";
+import { type Method } from "../../../method.js";
 import { type Paginator } from "../../../paginator.js";
 
 export interface ListReportsParams {
@@ -15,35 +15,35 @@ export interface Reports$SelectResource {
    * @return AdminReport
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  fetch(meta?: HttpMetaParams): Promise<Admin.Report>;
+  fetch: Method<Admin.Report>;
 
   /**
    * Claim the handling of this report to yourself.
    * @return AdminReport
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  assignToSelf(meta?: HttpMetaParams): Promise<Admin.Report>;
+  assignToSelf: Method<Admin.Report>;
 
   /**
    * Unassign a report so that someone else can claim it.
    * @return AdminReport
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  unassign(meta?: HttpMetaParams): Promise<Admin.Report>;
+  unassign: Method<Admin.Report>;
 
   /**
    * Mark a report as resolved with no further action taken.
    * @return AdminReport
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  resolve(meta?: HttpMetaParams): Promise<Admin.Report>;
+  resolve: Method<Admin.Report>;
 
   /**
    * Reopen a currently closed report.
    * @return AdminReport
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  reopen(meta?: HttpMetaParams): Promise<Admin.Report>;
+  reopen: Method<Admin.Report>;
 }
 
 export interface ReportsResource {
@@ -55,10 +55,7 @@ export interface ReportsResource {
    * @return Array of AdminReport
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  list(
-    params?: ListReportsParams,
-    meta?: HttpMetaParams,
-  ): Paginator<Admin.Report[], ListReportsParams>;
+  list: Method<Paginator<Admin.Report[], ListReportsParams>, ListReportsParams>;
 }
 
 /** @deprecated Use `ReportsResource` instead */

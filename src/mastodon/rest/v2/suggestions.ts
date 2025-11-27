@@ -1,5 +1,5 @@
-import { type HttpMetaParams } from "../../../interfaces/index.js";
 import { type Suggestion } from "../../entities/v1/index.js";
+import { type Method } from "../../method.js";
 import { type Paginator } from "../../paginator.js";
 
 export interface ListSuggestionsParams {
@@ -14,10 +14,10 @@ export interface SuggestionsResource {
    * @param params
    * @returns
    */
-  list(
-    params?: ListSuggestionsParams,
-    meta?: HttpMetaParams,
-  ): Paginator<Suggestion[], ListSuggestionsParams>;
+  list: Method<
+    Paginator<Suggestion[], ListSuggestionsParams>,
+    ListSuggestionsParams
+  >;
 }
 
 /** @deprecated Use SuggestionsResource instead. */

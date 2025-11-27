@@ -1,15 +1,15 @@
-import { type HttpMetaParams } from "../../../interfaces/index.js";
 import {
   type Status,
   type Tag,
   type TrendLink,
 } from "../../entities/v1/index.js";
+import { type Method } from "../../method.js";
 import { type Paginator } from "../../paginator.js";
 import { type DefaultPaginationParams } from "../../resource.js";
 
 export interface ListTrendsParams {
   /** Maximum number of results to return. Defaults to 10. */
-  readonly limit: number;
+  readonly limit?: number;
 }
 
 export interface TrendsStatusesResource {
@@ -18,10 +18,10 @@ export interface TrendsStatusesResource {
    * @returns Array of Status
    * @see https://docs.joinmastodon.org/methods/trends/#statuses
    */
-  list(
-    params?: DefaultPaginationParams,
-    meta?: HttpMetaParams,
-  ): Paginator<Status[], DefaultPaginationParams>;
+  list: Method<
+    Paginator<Status[], DefaultPaginationParams>,
+    DefaultPaginationParams
+  >;
 }
 
 export interface TrendsLinksResource {
@@ -29,10 +29,10 @@ export interface TrendsLinksResource {
    * Links that have been shared more than others.
    * @see https://docs.joinmastodon.org/methods/trends/#links
    */
-  list(
-    params?: DefaultPaginationParams,
-    meta?: HttpMetaParams,
-  ): Paginator<TrendLink[], DefaultPaginationParams>;
+  list: Method<
+    Paginator<TrendLink[], DefaultPaginationParams>,
+    DefaultPaginationParams
+  >;
 }
 
 export interface TrendsTagsResource {
@@ -42,10 +42,7 @@ export interface TrendsTagsResource {
    * @return Array of Tag with History
    * @see https://docs.joinmastodon.org/methods/trends/#tags
    */
-  list(
-    params?: ListTrendsParams,
-    meta?: HttpMetaParams,
-  ): Paginator<Tag[], ListTrendsParams>;
+  list: Method<Paginator<Tag[], ListTrendsParams>, ListTrendsParams>;
 }
 
 export interface TrendsResource {

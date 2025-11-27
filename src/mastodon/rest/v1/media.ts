@@ -1,5 +1,6 @@
 import { type HttpMetaParams } from "../../../interfaces/index.js";
 import { type MediaAttachment } from "../../entities/v1/index.js";
+import { type Method } from "../../method.js";
 
 export interface CreateMediaAttachmentParams {
   /** The file to be attached, using multipart form data. */
@@ -20,7 +21,7 @@ export interface MediaAttachments$SelectResource {
    * @param id ID of the attachment
    * @see https://github.com/tootsuite/mastodon/pull/13210
    */
-  fetch(meta?: HttpMetaParams): Promise<MediaAttachment>;
+  fetch: Method<MediaAttachment>;
 
   /**
    * Update an Attachment, before it is attached to a status and posted.
@@ -29,10 +30,11 @@ export interface MediaAttachments$SelectResource {
    * @return Attachment
    * @see https://docs.joinmastodon.org/methods/statuses/media/
    */
-  update(
-    params: UpdateMediaAttachmentParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<MediaAttachment>;
+  update: Method<
+    MediaAttachment,
+    UpdateMediaAttachmentParams,
+    HttpMetaParams<"json">
+  >;
 }
 
 export interface MediaAttachmentsResource {
@@ -44,10 +46,11 @@ export interface MediaAttachmentsResource {
    * @return Attachment
    * @see https://docs.joinmastodon.org/methods/statuses/media/
    */
-  create(
-    params: CreateMediaAttachmentParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<MediaAttachment>;
+  create: Method<
+    MediaAttachment,
+    CreateMediaAttachmentParams,
+    HttpMetaParams<"json">
+  >;
 }
 
 /** @deprecated Use `MediaAttachmentsResource` instead */
