@@ -116,4 +116,24 @@ describe("RequestBuilder", () => {
 
     expect(dispatcher[Symbol.dispose]).toHaveBeenCalled();
   });
+
+  it("builds fetch action with raw option", () => {
+    let action: AnyAction | undefined;
+
+    const builder: any = createActionProxy(
+      {
+        dispatch: async <T>(a: AnyAction) => {
+          action = a;
+          return {} as T;
+        },
+      },
+      { context: ["root"] },
+    );
+    const data = {};
+    builder.$select("foo").bar.fetch.$raw(data);
+
+    expect(action?.type).toBe("fetch");
+    expect(action?.path).toBe("/root/foo/bar");
+    expect(action?.data).toBe(data);
+  });
 });

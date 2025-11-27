@@ -1,22 +1,45 @@
-import { type HttpMetaParams } from "../interfaces/http.js";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { type HttpMetaParams, type HttpResponse } from "../interfaces/http.js";
 import { type Paginator } from "./paginator.js";
 
-type Result<T> = T extends Paginator<unknown> ? T : Promise<T>;
-
 /* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
-type IfOptionalRecord<T, TTrue, TFalse> = {} extends T
+type IsOptional<T, TTrue, TFalse> = {} extends T
   ? TTrue
   : T extends undefined
     ? TTrue
     : TFalse;
 
+type WrapInPromiseIfNotPaginator<T> =
+  T extends Paginator<unknown> ? T : Promise<T>;
+
+type DefaultMethod<
+  TResult,
+  TParams,
+  TMeta extends HttpMetaParams<any>,
+> = IsOptional<
+  TParams,
+  { (params?: TParams, meta?: TMeta): WrapInPromiseIfNotPaginator<TResult> },
+  { (params: TParams, meta?: TMeta): WrapInPromiseIfNotPaginator<TResult> }
+>;
+
+type Raw<T> =
+  T extends Paginator<infer R>
+    ? Paginator<HttpResponse<R>>
+    : Promise<HttpResponse<T>>;
+
+/** @experimental */
+type RawMethod<
+  TResult,
+  TParams,
+  TMeta extends HttpMetaParams<any>,
+> = IsOptional<
+  TParams,
+  { $raw(params?: TParams, meta?: TMeta): Raw<TResult> },
+  { $raw(params: TParams, meta?: TMeta): Raw<TResult> }
+>;
+
 export type Method<
   TResult,
   TParams = undefined,
-  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   TMeta extends HttpMetaParams<any> = HttpMetaParams,
-> = IfOptionalRecord<
-  TParams,
-  { (params?: TParams, meta?: TMeta): Result<TResult> },
-  { (params: TParams, meta?: TMeta): Result<TResult> }
->;
+> = DefaultMethod<TResult, TParams, TMeta> & RawMethod<TResult, TParams, TMeta>;

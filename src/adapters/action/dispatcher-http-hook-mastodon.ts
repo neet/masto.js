@@ -100,7 +100,7 @@ export class HttpActionDispatcherHookMastodon
     const encoding = inferEncoding(type, path);
     const meta: HttpMetaParams<Encoding> = { ...action.meta, encoding };
 
-    return { type, path, data: action.data, meta };
+    return { ...action, type, path, meta };
   }
 
   dispatch(action: AnyAction): false | Promise<unknown> {

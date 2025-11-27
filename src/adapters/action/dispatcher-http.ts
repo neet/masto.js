@@ -29,29 +29,34 @@ export class HttpActionDispatcher implements ActionDispatcher<HttpAction> {
       case "fetch": {
         result = this.http
           .get(action.path, action.data, action.meta)
-          .then((r) => r.data as T);
+          .then((r) => (action.raw ? r : r.data) as T);
         break;
       }
       case "create": {
         result = this.http
           .post(action.path, action.data, action.meta)
-          .then((r) => r.data as T);
+          .then((r) => (action.raw ? r : r.data) as T);
         break;
       }
       case "update": {
         result = this.http
           .put(action.path, action.data, action.meta)
-          .then((r) => r.data as T);
+          .then((r) => (action.raw ? r : r.data) as T);
         break;
       }
       case "remove": {
         result = this.http
           .delete(action.path, action.data, action.meta)
-          .then((r) => r.data as T);
+          .then((r) => (action.raw ? r : r.data) as T);
         break;
       }
       case "list": {
-        result = new PaginatorHttp(this.http, action.path, action.data) as T;
+        result = new PaginatorHttp(
+          this.http,
+          action.raw,
+          action.path,
+          action.data,
+        ) as T;
         break;
       }
     }

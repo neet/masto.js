@@ -6,6 +6,7 @@ export interface Action<T extends string> {
   readonly path: string;
   readonly data: unknown;
   readonly meta: HttpMetaParams<Encoding>;
+  readonly raw: boolean;
 }
 
 export type AnyAction = Action<string>;
