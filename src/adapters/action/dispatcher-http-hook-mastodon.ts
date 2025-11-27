@@ -6,6 +6,7 @@ import {
   type Encoding,
   type Http,
   type HttpMetaParams,
+  type HttpResponse,
 } from "../../interfaces/index.js";
 import { type mastodon } from "../../mastodon/index.js";
 import { isRecord, sleep } from "../../utils/index.js";
@@ -108,9 +109,7 @@ export class HttpActionDispatcherHookMastodon
       action.type === "update" &&
       action.path === "/api/v1/accounts/update_credentials"
     ) {
-      return this.http
-        .patch(action.path, action.data, action.meta)
-        .then((r) => r.data);
+      return this.http.patch(action.path, action.data, action.meta);
     }
 
     return false;
@@ -118,7 +117,7 @@ export class HttpActionDispatcherHookMastodon
 
   afterDispatch(action: AnyAction, result: unknown): unknown {
     if (action.type === "create" && action.path === "/api/v2/media") {
-      const media = result as mastodon.v1.MediaAttachment;
+      const media = (result as HttpResponse<mastodon.v1.MediaAttachment>).data;
       if (isRecord(action.data) && action.data?.skipPolling === true) {
         return media;
       }

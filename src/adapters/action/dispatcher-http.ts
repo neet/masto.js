@@ -27,27 +27,35 @@ export class HttpActionDispatcher implements ActionDispatcher<HttpAction> {
 
     switch (action.type) {
       case "fetch": {
-        result = this.http
-          .get(action.path, action.data, action.meta)
-          .then((r) => r.data as T);
+        result = this.http.get(
+          action.path,
+          action.data,
+          action.meta,
+        ) as Promise<T>;
         break;
       }
       case "create": {
-        result = this.http
-          .post(action.path, action.data, action.meta)
-          .then((r) => r.data as T);
+        result = this.http.post(
+          action.path,
+          action.data,
+          action.meta,
+        ) as Promise<T>;
         break;
       }
       case "update": {
-        result = this.http
-          .put(action.path, action.data, action.meta)
-          .then((r) => r.data as T);
+        result = this.http.put(
+          action.path,
+          action.data,
+          action.meta,
+        ) as Promise<T>;
         break;
       }
       case "remove": {
-        result = this.http
-          .delete(action.path, action.data, action.meta)
-          .then((r) => r.data as T);
+        result = this.http.delete(
+          action.path,
+          action.data,
+          action.meta,
+        ) as Promise<T>;
         break;
       }
       case "list": {

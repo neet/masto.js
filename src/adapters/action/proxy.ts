@@ -98,10 +98,14 @@ const apply =
     const path = "/" + context.join("/");
     const [data, meta] = args;
 
-    return actionDispatcher.dispatch<T>({
+    const response = actionDispatcher.dispatch<T>({
       type: action,
       path,
       data,
       meta: meta as HttpMetaParams,
     });
+
+    return action === "list"
+      ? response
+      : (response as Promise<{ data: T }>).then((r) => r.data);
   };
