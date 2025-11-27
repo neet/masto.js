@@ -66,9 +66,9 @@ async function waitForMediaAttachment(
     try {
       await sleep(1000);
 
-      const processing = await http.get<mastodon.v1.MediaAttachment>(
-        `/api/v1/media/${id}`,
-      );
+      const processing = await http
+        .get<mastodon.v1.MediaAttachment>(`/api/v1/media/${id}`)
+        .then((r) => r.data);
 
       if (processing.url) {
         media = processing;
@@ -108,7 +108,9 @@ export class HttpActionDispatcherHookMastodon
       action.type === "update" &&
       action.path === "/api/v1/accounts/update_credentials"
     ) {
-      return this.http.patch(action.path, action.data, action.meta);
+      return this.http
+        .patch(action.path, action.data, action.meta)
+        .then((r) => r.data);
     }
 
     return false;
