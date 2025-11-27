@@ -16,7 +16,10 @@ describe("DispatcherHttp", () => {
       new HttpActionDispatcherHookMastodon(http),
     );
 
-    httpPost.mockResolvedValueOnce({ id: "1" });
+    httpPost.mockResolvedValueOnce({
+      data: { id: "1" },
+      headers: new Headers(),
+    });
 
     httpGet
       .mockRejectedValueOnce(
@@ -25,7 +28,10 @@ describe("DispatcherHttp", () => {
       .mockRejectedValueOnce(
         new MastoHttpError({ statusCode: 404, message: "Not Found" }),
       )
-      .mockResolvedValueOnce({ id: "1", url: "https://example.com" });
+      .mockResolvedValueOnce({
+        data: { id: "1", url: "https://example.com" },
+        headers: new Headers(),
+      });
 
     const media = await dispatcher.dispatch({
       type: "create",
@@ -46,7 +52,10 @@ describe("DispatcherHttp", () => {
       new HttpActionDispatcherHookMastodon(http, 1),
     );
 
-    httpPost.mockResolvedValueOnce({ id: "1" });
+    httpPost.mockResolvedValueOnce({
+      data: { id: "1" },
+      headers: new Headers(),
+    });
     httpGet.mockRejectedValue(
       new MastoHttpError({ statusCode: 404, message: "Not Found" }),
     );
@@ -69,7 +78,10 @@ describe("DispatcherHttp", () => {
       new HttpActionDispatcherHookMastodon(http, customTimeout),
     );
 
-    httpPost.mockResolvedValueOnce({ id: "1" });
+    httpPost.mockResolvedValueOnce({
+      data: { id: "1" },
+      headers: new Headers(),
+    });
     httpGet.mockRejectedValue(
       new MastoHttpError({ statusCode: 404, message: "Not Found" }),
     );
@@ -91,7 +103,10 @@ describe("DispatcherHttp", () => {
       new HttpActionDispatcherHookMastodon(http),
     );
 
-    httpPost.mockResolvedValueOnce({ id: "1" });
+    httpPost.mockResolvedValueOnce({
+      data: { id: "1" },
+      headers: new Headers(),
+    });
     httpGet.mockRejectedValueOnce(new Error("Unknown error"));
 
     const promise = dispatcher.dispatch({
@@ -111,7 +126,10 @@ describe("DispatcherHttp", () => {
       new HttpActionDispatcherHookMastodon(http),
     );
 
-    httpPost.mockResolvedValueOnce({ id: "1" });
+    httpPost.mockResolvedValueOnce({
+      data: { id: "1" },
+      headers: new Headers(),
+    });
 
     const media = await dispatcher.dispatch({
       type: "create",
