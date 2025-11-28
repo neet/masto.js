@@ -1,4 +1,7 @@
-import { type HttpMetaParams } from "../../../interfaces/index.js";
+import {
+  type HttpMetaParams,
+  type HttpResponse,
+} from "../../../interfaces/index.js";
 import {
   type Account,
   type Context,
@@ -288,14 +291,26 @@ export interface StatusesResource {
    * @return Status. When scheduled_at is present, ScheduledStatus is returned instead.
    * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses
    */
-  create(
-    params: CreateStatusParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<Status>;
-  create(
-    params: CreateScheduledStatusParams,
-    meta?: HttpMetaParams<"json">,
-  ): Promise<ScheduledStatus>;
+  create: {
+    (
+      params: CreateStatusParams,
+      meta?: HttpMetaParams<"json">,
+    ): Promise<Status>;
+    (
+      params: CreateScheduledStatusParams,
+      meta?: HttpMetaParams<"json">,
+    ): Promise<ScheduledStatus>;
+    /** @experimental */
+    $raw(
+      params: CreateStatusParams,
+      meta?: HttpMetaParams<"json">,
+    ): Promise<HttpResponse<Status>>;
+    /** @experimental */
+    $raw(
+      params: CreateScheduledStatusParams,
+      meta?: HttpMetaParams<"json">,
+    ): Promise<HttpResponse<ScheduledStatus>>;
+  };
 }
 
 /** @deprecated Use `StatusesResource` instead. */
