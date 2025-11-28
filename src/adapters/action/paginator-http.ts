@@ -3,18 +3,19 @@ import { type Http, type HttpMetaParams } from "../../interfaces/index.js";
 import { type mastodon } from "../../mastodon/index.js";
 import { parseLinkHeader } from "../../utils/index.js";
 
-export class PaginatorHttp<Entity, Params = undefined>
-  implements mastodon.Paginator<Entity, Params>
+export class PaginatorHttp<TEntity, TParams = undefined>
+  implements mastodon.Paginator<TEntity, TParams>
 {
   constructor(
     private readonly http: Http,
+    private readonly raw: boolean,
     private path?: string,
-    private params?: Params | string,
+    private params?: TParams | string,
     private readonly meta?: HttpMetaParams,
     private readonly direction: mastodon.Direction = "next",
   ) {}
 
-  async *values(): AsyncIterableIterator<Entity> {
+  async *values(): AsyncIterableIterator<TEntity> {
     let path = this.path;
     let params = this.params;
 
@@ -30,15 +31,15 @@ export class PaginatorHttp<Entity, Params = undefined>
       path = nextUrl?.pathname;
       params = nextUrl?.search.replace(/^\?/, "");
 
-      const data = (await response.data) as Entity;
+      const data = (this.raw ? response : response.data) as TEntity;
 
       yield data;
     }
   }
 
-  then<TResult1 = Entity, TResult2 = never>(
+  then<TResult1 = TEntity, TResult2 = never>(
     onfulfilled: (
-      value: Entity,
+      value: TEntity,
     ) => TResult1 | PromiseLike<TResult1> = Promise.resolve.bind(Promise),
     onrejected: (
       reason: unknown,
@@ -53,9 +54,10 @@ export class PaginatorHttp<Entity, Params = undefined>
     return this.direction;
   }
 
-  setDirection(direction: mastodon.Direction): PaginatorHttp<Entity, Params> {
+  setDirection(direction: mastodon.Direction): PaginatorHttp<TEntity, TParams> {
     return new PaginatorHttp(
       this.http,
+      this.raw,
       this.path,
       this.params,
       this.meta,
@@ -64,9 +66,9 @@ export class PaginatorHttp<Entity, Params = undefined>
   }
 
   [Symbol.asyncIterator](): AsyncIterator<
-    Entity,
+    TEntity,
     undefined,
-    Params | string | undefined
+    TParams | string | undefined
   > {
     return this.values();
   }

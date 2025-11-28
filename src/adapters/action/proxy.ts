@@ -81,18 +81,24 @@ const get =
 const apply =
   <T>(actionDispatcher: ActionDispatcher<AnyAction>, context: string[]) =>
   (_1: unknown, _2: unknown, args: unknown[]): unknown => {
-    const action = context.pop();
-
-    /* c8 ignore next 3 */
-    if (!action) {
-      throw new Error("No action specified");
-    }
+    let action = context.pop();
+    let raw = false;
 
     if (action === "$select") {
       return createActionProxy<T>(actionDispatcher, {
         context: [...context, ...(args as string[])],
         applicable: true,
       });
+    }
+
+    if (action === "$raw") {
+      action = context.pop();
+      raw = true;
+    }
+
+    /* c8 ignore next 3 */
+    if (!action) {
+      throw new Error("No action specified");
     }
 
     const path = "/" + context.join("/");
@@ -103,5 +109,6 @@ const apply =
       path,
       data,
       meta: meta as HttpMetaParams,
+      raw,
     });
   };
