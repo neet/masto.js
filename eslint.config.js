@@ -6,13 +6,17 @@ import eslintPluginUnicorn from "eslint-plugin-unicorn";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
+import allowNullInOptionalParameter from "./eslint/allow-null-in-optional-parameter.js";
+import namingConvention from "./eslint/naming-convention.js";
+import noOptional from "./eslint/no-optional.js";
+
 export default tseslint.config(
   eslint.configs.recommended,
   // eslint-disable-next-line import/no-named-as-default-member
   ...tseslint.configs.strict,
   importPlugin.flatConfigs.recommended,
   importPlugin.flatConfigs.typescript,
-  eslintPluginUnicorn.configs["flat/recommended"],
+  eslintPluginUnicorn.configs.recommended,
   eslintPluginPrettierRecommended,
   {
     ignores: ["dist/**/*", "docs/**/*", "coverage/**/*", "playground/**/*"],
@@ -24,7 +28,16 @@ export default tseslint.config(
         node: true,
       },
     },
-    plugins: { "simple-import-sort": simpleImportSort },
+    plugins: {
+      "simple-import-sort": simpleImportSort,
+      masto: {
+        rules: {
+          "allow-null-in-optional-parameter": allowNullInOptionalParameter,
+          "no-optional": noOptional,
+          "naming-convention": namingConvention,
+        },
+      },
+    },
     rules: {
       "no-console": "error",
       "no-unused-vars": "off",
@@ -32,6 +45,15 @@ export default tseslint.config(
       "simple-import-sort/imports": "error",
       "unicorn/prevent-abbreviations": "off",
       "unicorn/no-array-reduce": "off",
+      "no-restricted-imports": [
+        "error",
+        { paths: [{ name: "ws", message: "Use `isomophic-ws` instead." }] },
+      ],
+    },
+  },
+  {
+    files: ["**/*.ts"],
+    rules: {
       "@typescript-eslint/explicit-module-boundary-types": "error",
       "@typescript-eslint/explicit-member-accessibility": [
         "error",
@@ -46,10 +68,6 @@ export default tseslint.config(
         "error",
         { prefer: "type-imports", fixStyle: "inline-type-imports" },
       ],
-      "no-restricted-imports": [
-        "error",
-        { paths: [{ name: "ws", message: "Use `isomophic-ws` instead." }] },
-      ],
     },
   },
   {
@@ -58,6 +76,19 @@ export default tseslint.config(
       parserOptions: {
         project: "./tsconfig.esm.json",
       },
+    },
+  },
+  {
+    files: ["src/mastodon/{rest,oauth,streaming}/**/*.ts"],
+    rules: {
+      "masto/naming-convention": ["warn"],
+      "masto/allow-null-in-optional-parameter": ["warn"],
+    },
+  },
+  {
+    files: ["src/mastodon/entities/**/*.ts"],
+    rules: {
+      "masto/no-optional": ["warn"],
     },
   },
   {
