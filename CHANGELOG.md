@@ -1,5 +1,18 @@
 # Changelog
 
+## [7.7.0](https://github.com/neet/masto.js/compare/v7.6.0...v7.7.0) (2025-11-28)
+
+
+### Features
+
+* Introduce experimental `$raw` method that allows access to headers ([7468f53](https://github.com/neet/masto.js/commit/7468f537d8bd8a3534c9cd0e4fe1ba5544f11db9))
+* Introduce experimental `$raw` method that allows access to headers ([b5736b1](https://github.com/neet/masto.js/commit/b5736b177522162acca3a100a6c3e371789362ee))
+
+
+### Bug Fixes
+
+* Support missing $raw method in v1.statuses.create ([#1364](https://github.com/neet/masto.js/issues/1364)) ([cfe4d80](https://github.com/neet/masto.js/commit/cfe4d80d42d62cd5cc99d7d7fb4387e49ece5e48))
+
 ## [7.6.0](https://github.com/neet/masto.js/compare/v7.5.0...v7.6.0) (2025-11-24)
 
 
