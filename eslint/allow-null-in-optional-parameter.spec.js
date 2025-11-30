@@ -30,5 +30,22 @@ ruleTester.run("allow-null-in-optional-parameter", rule, {
       }
       `,
     },
+    {
+      code: `
+      interface CreateAccountParams {
+        email: string | null; 
+      }
+      `,
+      errors: [
+        {
+          message: "Mark nullable parameter as optional",
+        },
+      ],
+      output: `
+      interface CreateAccountParams {
+        email?: string | null; 
+      }
+      `,
+    },
   ],
 });

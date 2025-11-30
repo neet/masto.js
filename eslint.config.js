@@ -8,7 +8,6 @@ import tseslint from "typescript-eslint";
 
 import allowNullInOptionalParameter from "./eslint/allow-null-in-optional-parameter.js";
 import namingConvention from "./eslint/naming-convention.js";
-import noOptional from "./eslint/no-optional.js";
 
 export default tseslint.config(
   eslint.configs.recommended,
@@ -33,7 +32,6 @@ export default tseslint.config(
       masto: {
         rules: {
           "allow-null-in-optional-parameter": allowNullInOptionalParameter,
-          "no-optional": noOptional,
           "naming-convention": namingConvention,
         },
       },
@@ -78,19 +76,13 @@ export default tseslint.config(
       },
     },
   },
-  // {
-  //   files: ["src/mastodon/{rest,oauth,streaming}/**/*.ts"],
-  //   rules: {
-  //     "masto/naming-convention": ["warn"],
-  //     "masto/allow-null-in-optional-parameter": ["warn"],
-  //   },
-  // },
-  // {
-  //   files: ["src/mastodon/entities/**/*.ts"],
-  //   rules: {
-  //     "masto/no-optional": ["warn"],
-  //   },
-  // },
+  {
+    files: ["src/mastodon/{rest,oauth,streaming}/**/*.ts"],
+    rules: {
+      // "masto/naming-convention": ["warn"],
+      "masto/allow-null-in-optional-parameter": ["warn"],
+    },
+  },
   {
     files: [
       "vitest.config.ts",

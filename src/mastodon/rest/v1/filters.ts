@@ -10,7 +10,7 @@ export interface CreateFilterParams {
    * Array of enumerable strings `home`, `notifications`, `public`, `thread`.
    * At least one context must be specified.
    */
-  readonly context: readonly FilterContext[] | null;
+  readonly context: readonly FilterContext[];
   /** Should the server irreversibly drop matching entities from home and notifications? */
   readonly irreversible?: boolean | null;
   /** Consider word boundaries? */

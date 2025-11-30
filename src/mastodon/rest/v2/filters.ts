@@ -15,7 +15,7 @@ export interface CreateFilterParams {
   /** String. The name of the filter group. */
   readonly title: string;
   /** Array of String. Where the filter should be applied. Specify at least one of home, notifications, public, thread, account. */
-  readonly context: readonly FilterContext[] | null;
+  readonly context: readonly FilterContext[];
   /** String. The policy to be applied when the filter is matched. Specify warn or hide. */
   readonly filterAction?: FilterAction | null;
   /** Integer. How many seconds from now should the filter expire? */
