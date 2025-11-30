@@ -21,7 +21,7 @@ export interface CreateFilterParams {
 
 export type UpdateFilterParams = CreateFilterParams;
 
-export interface Filter$SelectResource {
+export interface Filters$SelectResource {
   /**
    * View a single filter
    * @return Returns Filter
@@ -46,7 +46,7 @@ export interface Filter$SelectResource {
 }
 
 export interface FiltersResource {
-  $select(id: string): Filter$SelectResource;
+  $select(id: string): Filters$SelectResource;
 
   /**
    * View all filters
@@ -66,3 +66,5 @@ export interface FiltersResource {
 
 /** @deprecated Use `FiltersResource` instead. */
 export type FilterRepository = FiltersResource;
+/** @deprecated Use `Filters$SelectResource` instead. */
+export type Filter$SelectResource = Filters$SelectResource;

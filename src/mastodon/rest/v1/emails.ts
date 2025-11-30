@@ -6,7 +6,7 @@ export interface CreateConfirmationParams {
   readonly email?: string | null;
 }
 
-export interface EmailsConfirmationResource {
+export interface EmailsConfirmationsResource {
   /**
    * Resend confirmation email
    * @param params Form data parameters
@@ -21,8 +21,10 @@ export interface EmailsConfirmationResource {
 }
 
 export interface EmailsResource {
-  confirmations: EmailsConfirmationResource;
+  confirmations: EmailsConfirmationsResource;
 }
 
 /** @deprecated Use `EmailsResource` instead. */
 export type EmailRepository = EmailsResource;
+/** @deprecated Use `EmailsConfirmationsResource` instead. */
+export type EmailsConfirmationResource = EmailsConfirmationsResource;

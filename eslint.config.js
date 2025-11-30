@@ -79,8 +79,8 @@ export default tseslint.config(
   {
     files: ["src/mastodon/{rest,oauth,streaming}/**/*.ts"],
     rules: {
-      // "masto/naming-convention": ["warn"],
-      "masto/allow-null-in-optional-parameter": ["warn"],
+      "masto/naming-convention": ["error"],
+      "masto/allow-null-in-optional-parameter": ["error"],
     },
   },
   {

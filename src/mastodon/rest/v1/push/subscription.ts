@@ -6,7 +6,7 @@ import {
 } from "../../../entities/v1/index.js";
 import { type Method } from "../../../method.js";
 
-export interface CreateWebPushSubscriptionParams {
+export interface CreatePushSubscriptionParams {
   readonly subscription: {
     /** Endpoint URL that is called when a notification event occurs. */
     readonly endpoint: string;
@@ -24,12 +24,12 @@ export interface CreateWebPushSubscriptionParams {
   readonly policy: WebPushSubscriptionPolicy;
 }
 
-export type UpdateWebPushSubscriptionParams = Pick<
-  CreateWebPushSubscriptionParams,
+export type UpdatePushSubscriptionParams = Pick<
+  CreatePushSubscriptionParams,
   "data"
 >;
 
-export interface WebPushSubscriptionResource {
+export interface PushSubscriptionResource {
   /**
    * Add a Web Push API subscription to receive notifications.
    * Each access token can have one push subscription.
@@ -40,7 +40,7 @@ export interface WebPushSubscriptionResource {
    */
   create: Method<
     WebPushSubscription,
-    CreateWebPushSubscriptionParams,
+    CreatePushSubscriptionParams,
     HttpMetaParams<"json">
   >;
 
@@ -59,7 +59,7 @@ export interface WebPushSubscriptionResource {
    */
   update: Method<
     WebPushSubscription,
-    UpdateWebPushSubscriptionParams,
+    UpdatePushSubscriptionParams,
     HttpMetaParams<"json">
   >;
 
@@ -71,5 +71,11 @@ export interface WebPushSubscriptionResource {
   remove: Method<void>;
 }
 
-/** @deprecated Use `WebPushSubscriptionResource` instead. */
-export type WebPushSubscriptionRepository = WebPushSubscriptionResource;
+/** @deprecated Use `PushSubscriptionResource` instead. */
+export type WebPushSubscriptionRepository = PushSubscriptionResource;
+/** @deprecated Use `PushSubscriptionResource` instead. */
+export type WebPushSubscriptionResource = PushSubscriptionResource;
+/** @deprecated Use `CreatePushSubscriptionParams` instead. */
+export type CreateWebPushSubscriptionParams = CreatePushSubscriptionParams;
+/** @deprecated Use `UpdatePushSubscriptionParams` instead. */
+export type UpdateWebPushSubscriptionParams = UpdatePushSubscriptionParams;

@@ -327,7 +327,7 @@ export interface AccountsSearchResource {
   >;
 }
 
-export interface AccountFamiliarFollowersResource {
+export interface AccountsFamiliarFollowersResource {
   /**
    * Obtain a list of all accounts that follow a given account, filtered for accounts you follow.
    * @returns Array of FamiliarFollowers
@@ -340,7 +340,7 @@ export interface AccountsResource {
 
   relationships: AccountsRelationshipsResource;
   search: AccountsSearchResource;
-  familiarFollowers: AccountFamiliarFollowersResource;
+  familiarFollowers: AccountsFamiliarFollowersResource;
 
   fetch: Method<Account[], FetchAccountsParams>;
 
@@ -383,3 +383,7 @@ export interface AccountsResource {
 
 /** @deprecated Use `AccountsResource` instead. */
 export type AccountRepository = AccountsResource;
+
+/** @deprecated Use `AccountsFamiliarFollowersResource` instead. */
+export type AccountFamiliarFollowersResource =
+  AccountsFamiliarFollowersResource;
