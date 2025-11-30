@@ -21,8 +21,8 @@ export default {
 
         if (
           node.typeAnnotation.typeAnnotation.type !== "TSUnionType" ||
-          !node.typeAnnotation.typeAnnotation.types.some(
-            (type) => type.type === "TSNullKeyword",
+          node.typeAnnotation.typeAnnotation.types.every(
+            (type) => type.type !== "TSNullKeyword",
           )
         ) {
           context.report({

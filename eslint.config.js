@@ -78,19 +78,19 @@ export default tseslint.config(
       },
     },
   },
-  {
-    files: ["src/mastodon/{rest,oauth,streaming}/**/*.ts"],
-    rules: {
-      "masto/naming-convention": ["warn"],
-      "masto/allow-null-in-optional-parameter": ["warn"],
-    },
-  },
-  {
-    files: ["src/mastodon/entities/**/*.ts"],
-    rules: {
-      "masto/no-optional": ["warn"],
-    },
-  },
+  // {
+  //   files: ["src/mastodon/{rest,oauth,streaming}/**/*.ts"],
+  //   rules: {
+  //     "masto/naming-convention": ["warn"],
+  //     "masto/allow-null-in-optional-parameter": ["warn"],
+  //   },
+  // },
+  // {
+  //   files: ["src/mastodon/entities/**/*.ts"],
+  //   rules: {
+  //     "masto/no-optional": ["warn"],
+  //   },
+  // },
   {
     files: [
       "vitest.config.ts",

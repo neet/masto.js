@@ -30,5 +30,22 @@ ruleTester.run("no-optional", rule, {
       }
       `,
     },
+    {
+      code: `
+      interface Account {
+        email?: string; 
+      }
+      `,
+      errors: [
+        {
+          message: "Do not use optional property. Use `T | null` instead.",
+        },
+      ],
+      output: `
+      interface Account {
+        email: string | null; 
+      }
+      `,
+    },
   ],
 });
