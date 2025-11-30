@@ -9,7 +9,7 @@ import { type DefaultPaginationParams } from "../../resource.js";
 
 export interface ListTrendsParams {
   /** Maximum number of results to return. Defaults to 10. */
-  readonly limit?: number;
+  readonly limit?: number | null;
 }
 
 export interface TrendsStatusesResource {

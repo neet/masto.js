@@ -3,7 +3,7 @@ import { type Method } from "../../method.js";
 
 export interface CreateConfirmationParams {
   /** If provided, updates the unconfirmed user’s email before resending the confirmation email. */
-  readonly email?: string;
+  readonly email?: string | null;
 }
 
 export interface EmailsConfirmationResource {

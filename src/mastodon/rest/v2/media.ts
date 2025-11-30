@@ -15,7 +15,7 @@ export interface CreateMediaAttachmentParams {
 
 export interface CreateMediaAttachmentExtraParams {
   /** Wait resolving promise for the media to be uploaded. Defaults to `false` */
-  readonly skipPolling?: boolean;
+  readonly skipPolling?: boolean | null;
 }
 
 export interface MediaAttachmentsResource {

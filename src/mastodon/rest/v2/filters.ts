@@ -21,17 +21,19 @@ export interface CreateFilterParams {
   /** Integer. How many seconds from now should the filter expire? */
   readonly expiresIn?: number | null;
 
-  readonly keywordsAttributes?: {
-    /** String. A keyword to be added to the newly-created filter group. */
-    readonly keyword?: string | null;
-    /** Boolean. Whether the keyword should consider word boundaries. */
-    readonly wholeWord?: boolean | null;
-  }[];
+  readonly keywordsAttributes?:
+    | {
+        /** String. A keyword to be added to the newly-created filter group. */
+        readonly keyword?: string | null;
+        /** Boolean. Whether the keyword should consider word boundaries. */
+        readonly wholeWord?: boolean | null;
+      }[]
+    | null;
 }
 
 export interface UpdateFilterParams {
   /** String. The name of the filter group. */
-  readonly title?: string;
+  readonly title?: string | null;
   /** Array of String. Where the filter should be applied. Specify at least one of home, notifications, public, thread, account. */
   readonly context?: readonly FilterContext[] | null;
   /** String. The policy to be applied when the filter is matched. Specify warn or hide. */
@@ -39,16 +41,18 @@ export interface UpdateFilterParams {
   /** Integer. How many seconds from now should the filter expire? */
   readonly expiresIn?: number | null;
 
-  readonly keywordsAttributes?: readonly {
-    /** String. Provide the ID of an existing keyword to modify it, instead of creating a new keyword. */
-    readonly id?: string | null;
-    /** String. A keyword to be added to the newly-created filter group. */
-    readonly keyword?: string | null;
-    /** Boolean. Whether the keyword should consider word boundaries. */
-    readonly wholeWord?: boolean | null;
-    /** Boolean. If true, will remove the keyword with the given ID */
-    readonly _destroy?: boolean | null;
-  }[];
+  readonly keywordsAttributes?:
+    | readonly {
+        /** String. Provide the ID of an existing keyword to modify it, instead of creating a new keyword. */
+        readonly id?: string | null;
+        /** String. A keyword to be added to the newly-created filter group. */
+        readonly keyword?: string | null;
+        /** Boolean. Whether the keyword should consider word boundaries. */
+        readonly wholeWord?: boolean | null;
+        /** Boolean. If true, will remove the keyword with the given ID */
+        readonly _destroy?: boolean | null;
+      }[]
+    | null;
 }
 
 export interface CreateFilterKeywordParams {

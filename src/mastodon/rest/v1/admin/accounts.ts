@@ -47,9 +47,9 @@ export type AccountActionType = keyof AccountActionRegistry;
 
 export interface CreateActionParams {
   /** Type of action to be taken. Enumerable oneOf: `none` `disable` `silence` `suspend` */
-  readonly type?: AccountActionType;
+  readonly type?: AccountActionType | null;
   /** ID of an associated report that caused this action to be taken */
-  readonly reportId?: string;
+  readonly reportId?: string | null;
   /** ID of a preset warning */
   readonly warningPresetId?: string | null;
   /** Additional text for clarification of why this action was taken */

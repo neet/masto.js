@@ -8,7 +8,7 @@ export interface CreateListParams {
   /** The title of the list to be created. */
   readonly title: string;
   /** https://github.com/mastodon/mastodon/pull/22048/files */
-  readonly exclusive?: boolean;
+  readonly exclusive?: boolean | null;
 }
 
 export type UpdateListParams = CreateListParams;
