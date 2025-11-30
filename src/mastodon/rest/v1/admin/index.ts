@@ -1,3 +1,4 @@
+/* eslint-disable masto/naming-convention */
 import { type AccountsResource } from "./accounts.js";
 import { type CanonicalEmailBlocksResource } from "./canonical-email-blocks.js";
 import { type DimensionsResource } from "./dimensions.js";

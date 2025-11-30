@@ -12,7 +12,7 @@ export interface FetchMarkersParams {
    * String enum anyOf `home`, `notifications`.
    * If not provided, an empty object will be returned.
    */
-  readonly timeline?: readonly MarkerTimeline[];
+  readonly timeline?: readonly MarkerTimeline[] | null;
 }
 
 export type CreateMarkersParams = {

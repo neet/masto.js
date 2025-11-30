@@ -33,18 +33,18 @@ export interface CreateAccountParams {
   /** The language of the confirmation email that will be sent */
   readonly locale: string;
   /** Text that will be reviewed by moderators if registrations require manual approval. */
-  readonly reason?: string;
+  readonly reason?: string | null;
   /** String (Date), required if the server has a minimum age requirement. */
-  readonly dateOfBirth?: string;
+  readonly dateOfBirth?: string | null;
   /** https://github.com/mastodon/mastodon/pull/25342 */
-  readonly timeZone?: string;
+  readonly timeZone?: string | null;
 }
 
 export interface UpdateCredentialsParams {
   /** Whether the account should be shown in the profile directory. */
-  readonly discoverable?: boolean;
+  readonly discoverable?: boolean | null;
   /** Whether the account has a bot flag. */
-  readonly bot?: boolean;
+  readonly bot?: boolean | null;
   /** The display name to use for the profile. */
   readonly displayName?: string | null;
   /** The account bio. */
@@ -69,9 +69,9 @@ export interface UpdateCredentialsParams {
 
 export interface MuteAccountParams {
   /** Mute notifications in addition to statuses? Defaults to true. */
-  readonly notifications?: boolean;
+  readonly notifications?: boolean | null;
   /** Duration to mute in seconds. Defaults to 0 (indefinite). */
-  readonly duration?: number;
+  readonly duration?: number | null;
 }
 
 export interface CreateAccountNoteParams {
@@ -327,7 +327,7 @@ export interface AccountsSearchResource {
   >;
 }
 
-export interface AccountFamiliarFollowersResource {
+export interface AccountsFamiliarFollowersResource {
   /**
    * Obtain a list of all accounts that follow a given account, filtered for accounts you follow.
    * @returns Array of FamiliarFollowers
@@ -340,7 +340,7 @@ export interface AccountsResource {
 
   relationships: AccountsRelationshipsResource;
   search: AccountsSearchResource;
-  familiarFollowers: AccountFamiliarFollowersResource;
+  familiarFollowers: AccountsFamiliarFollowersResource;
 
   fetch: Method<Account[], FetchAccountsParams>;
 
@@ -383,3 +383,7 @@ export interface AccountsResource {
 
 /** @deprecated Use `AccountsResource` instead. */
 export type AccountRepository = AccountsResource;
+
+/** @deprecated Use `AccountsFamiliarFollowersResource` instead. */
+export type AccountFamiliarFollowersResource =
+  AccountsFamiliarFollowersResource;

@@ -1,7 +1,7 @@
-import { type WebPushSubscriptionResource } from "./subscription.js";
+import { type PushSubscriptionResource } from "./subscription.js";
 
 export interface PushResource {
-  readonly subscription: WebPushSubscriptionResource;
+  readonly subscription: PushSubscriptionResource;
 }
 
 /** @deprecated Use `PushResource` instead. */

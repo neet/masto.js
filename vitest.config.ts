@@ -5,7 +5,6 @@ export default defineConfig({
     globals: true,
     pool: "threads",
     coverage: {
-      enabled: true,
       include: [
         "src/**/*.ts",
         "!src/**/index.ts",
@@ -13,7 +12,7 @@ export default defineConfig({
         "!**/__mocks__/**",
       ],
     },
-    workspace: [
+    projects: [
       {
         extends: true,
         test: {
@@ -36,6 +35,15 @@ export default defineConfig({
             "./test-utils/setup-files/vitest-sessions.ts",
           ],
           include: ["tests/**/*.spec.ts"],
+        },
+      },
+      {
+        extends: true,
+        test: {
+          name: "eslint",
+          environment: "node",
+          setupFiles: ["./eslint/vitest-eslint-setup.ts"],
+          include: ["eslint/**/*.spec.js"],
         },
       },
     ],

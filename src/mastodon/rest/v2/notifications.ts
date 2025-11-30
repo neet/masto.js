@@ -18,7 +18,7 @@ export interface ListNotificationsParams extends DefaultPaginationParams {
   /** Types to exclude from the results. */
   readonly excludeTypes?: readonly NotificationGroupType[] | null;
   /** Return only notifications received from the specified account. */
-  readonly accountId?: string;
+  readonly accountId?: string | null;
 
   /**
    * One of full (default) or partial_avatars. When set to partial_avatars,
@@ -26,7 +26,7 @@ export interface ListNotificationsParams extends DefaultPaginationParams {
    * instead returned in stripped-down form in the partial_accounts list. The most recent
    * account in a notification group is always rendered in full in the accounts attribute.
    */
-  readonly expandAccounts?: "full" | "partial_avatars";
+  readonly expandAccounts?: "full" | "partial_avatars" | null;
 
   /**
    * Restrict which notification types can be grouped. Use this if there are notification types
@@ -44,33 +44,33 @@ export interface ListNotificationsParams extends DefaultPaginationParams {
   readonly groupedTypes?: readonly NotificationGroupType[] | null;
 
   /** Whether to include notifications filtered by the user’s NotificationPolicy. Defaults to false. */
-  readonly includeFiltered?: boolean;
+  readonly includeFiltered?: boolean | null;
 }
 
 export interface FetchUnreadCountParams {
   /** Maximum number of results to return. Defaults to 100 notifications. Max 1000 notifications. */
-  readonly limit?: number;
+  readonly limit?: number | null;
   /** Types of notifications that should count towards unread notifications. */
-  readonly types?: readonly NotificationGroupType[];
+  readonly types?: readonly NotificationGroupType[] | null;
   /** Types of notifications that should not count towards unread notifications. */
-  readonly excludeTypes?: readonly NotificationGroupType[];
+  readonly excludeTypes?: readonly NotificationGroupType[] | null;
   /** Only count unread notifications received from the specified account. */
-  readonly accountId?: string;
+  readonly accountId?: string | null;
   /** Restrict which notification types can be grouped. Use this if there are notification types for which your client does not support grouping. If omitted, the server will group notifications of all types it supports (currently, favourite, follow and reblog). If you do not want any notification grouping, use GET /api/v1/notifications/unread_count instead. */
-  readonly groupedTypes?: readonly NotificationGroupType[];
+  readonly groupedTypes?: readonly NotificationGroupType[] | null;
 }
 
 export interface UpdateNotificationPolicyParams {
   /** Whether to accept, filter or drop notifications from accounts the user is not following. drop will prevent creation of the notification object altogether (without preventing the underlying activity), filter will cause it to be marked as filtered, and accept will not affect its processing. */
-  readonly forNotFollowing?: NotificationPolicyType;
+  readonly forNotFollowing?: NotificationPolicyType | null;
   /** Whether to accept, filter or drop notifications from accounts that are not following the user. drop will prevent creation of the notification object altogether (without preventing the underlying activity), filter will cause it to be marked as filtered, and accept will not affect its processing. */
-  readonly forNotFollowers?: NotificationPolicyType;
+  readonly forNotFollowers?: NotificationPolicyType | null;
   /** Whether to accept, filter or drop notifications from accounts created in the past 30 days. drop will prevent creation of the notification object altogether (without preventing the underlying activity), filter will cause it to be marked as filtered, and accept will not affect its processing. */
-  readonly forNewAccounts?: NotificationPolicyType;
+  readonly forNewAccounts?: NotificationPolicyType | null;
   /** Whether to accept, filter or drop notifications from private mentions. drop will prevent creation of the notification object altogether (without preventing the underlying activity), filter will cause it to be marked as filtered, and accept will not affect its processing. Replies to private mentions initiated by the user, as well as accounts the user follows, are always allowed, regardless of this value. */
-  readonly forPrivateMentions?: NotificationPolicyType;
+  readonly forPrivateMentions?: NotificationPolicyType | null;
   /** Whether to accept, filter or drop notifications from accounts that were limited by a moderator. drop will prevent creation of the notification object altogether (without preventing the underlying activity), filter will cause it to be marked as filtered, and accept will not affect its processing. */
-  readonly forLimitedAccounts?: NotificationPolicyType;
+  readonly forLimitedAccounts?: NotificationPolicyType | null;
 }
 
 export interface Notifications$SelectAccountsResource {

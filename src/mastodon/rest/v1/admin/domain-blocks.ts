@@ -7,21 +7,21 @@ export interface CreateDomainBlockParams {
   /** The domain to block federation required*/
   readonly domain: string;
   /** Whether to apply a silence, suspend, or noop to the domain?*/
-  readonly severity?: Admin.DomainBlockSeverity;
+  readonly severity?: Admin.DomainBlockSeverity | null;
   /** Whether media attachments should be rejected*/
-  readonly rejectMedia?: boolean;
+  readonly rejectMedia?: boolean | null;
   /** Whether reports from this domain should be rejected*/
-  readonly rejectReports?: boolean;
+  readonly rejectReports?: boolean | null;
   /**  A private note about this domain block, visible only to admins*/
   readonly privateComment?: string | null;
   /** A public note about this domain block, optionally shown on the about page*/
   readonly publicComment?: string | null;
   /** Whether to partially censor the domain when shown in public*/
-  readonly obfuscate?: boolean;
+  readonly obfuscate?: boolean | null;
 }
 
 export interface ListDomainBlocksParams {
-  readonly limit?: number;
+  readonly limit?: number | null;
 }
 
 export type UpdateDomainBlockParams = Omit<CreateDomainBlockParams, "domain">;

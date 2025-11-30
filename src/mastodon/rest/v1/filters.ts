@@ -10,7 +10,7 @@ export interface CreateFilterParams {
    * Array of enumerable strings `home`, `notifications`, `public`, `thread`.
    * At least one context must be specified.
    */
-  readonly context: readonly FilterContext[] | null;
+  readonly context: readonly FilterContext[];
   /** Should the server irreversibly drop matching entities from home and notifications? */
   readonly irreversible?: boolean | null;
   /** Consider word boundaries? */
@@ -21,7 +21,7 @@ export interface CreateFilterParams {
 
 export type UpdateFilterParams = CreateFilterParams;
 
-export interface Filter$SelectResource {
+export interface Filters$SelectResource {
   /**
    * View a single filter
    * @return Returns Filter
@@ -46,7 +46,7 @@ export interface Filter$SelectResource {
 }
 
 export interface FiltersResource {
-  $select(id: string): Filter$SelectResource;
+  $select(id: string): Filters$SelectResource;
 
   /**
    * View all filters
@@ -66,3 +66,5 @@ export interface FiltersResource {
 
 /** @deprecated Use `FiltersResource` instead. */
 export type FilterRepository = FiltersResource;
+/** @deprecated Use `Filters$SelectResource` instead. */
+export type Filter$SelectResource = Filters$SelectResource;

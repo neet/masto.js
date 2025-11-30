@@ -66,7 +66,7 @@ export interface CreateStatusParamsWithStatus extends CreateStatusParamsBase {
   /** Text content of the status. If `media_ids` is provided, this becomes optional. Attaching a `poll` is optional while `status` is provided. */
   readonly status: string;
   /** Array of Attachment ids to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used. */
-  readonly mediaIds?: never;
+  readonly mediaIds?: never | null;
   readonly poll?: CreateStatusPollParam | null;
 }
 
@@ -76,7 +76,7 @@ export interface CreateStatusParamsWithMediaIds extends CreateStatusParamsBase {
   /** Text content of the status. If `media_ids` is provided, this becomes optional. Attaching a `poll` is optional while `status` is provided. */
 
   readonly status?: string | null;
-  readonly poll?: never;
+  readonly poll?: never | null;
 }
 
 export type CreateStatusParams =
@@ -101,7 +101,7 @@ interface UpdateStatusMediaAttribute {
 
 export type UpdateStatusParams = CreateStatusParams & {
   /** https://github.com/mastodon/mastodon/pull/20878 */
-  readonly mediaAttributes?: readonly UpdateStatusMediaAttribute[];
+  readonly mediaAttributes?: readonly UpdateStatusMediaAttribute[] | null;
 };
 
 export interface ReblogStatusParams {
@@ -111,7 +111,7 @@ export interface ReblogStatusParams {
 
 export interface TranslateStatusParams {
   /** String (ISO 639 language code). The status content will be translated into this language. Defaults to the user’s current locale. */
-  readonly lang?: string;
+  readonly lang?: string | null;
 }
 
 export interface Statuses$SelectContextResource {
