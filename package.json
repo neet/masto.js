@@ -61,7 +61,7 @@
     "@sadams/wait-for-expect": "^1.2.0",
     "@size-limit/preset-small-lib": "^11.1.6",
     "@tsconfig/node22": "^22.0.2",
-    "@types/eslint__js": "^8.42.3",
+    "@types/eslint__js": "^9.14.0",
     "@types/node": "^22.18.12",
     "@types/ws": "^8.18.1",
     "@typescript-eslint/rule-tester": "^8.48.0",
