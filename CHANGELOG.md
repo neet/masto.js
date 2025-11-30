@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.7.1](https://github.com/neet/masto.js/compare/v7.7.0...v7.7.1) (2025-11-30)
+
+
+### Bug Fixes
+
+* Allow `null` in all optional parameters in REST API ([dfe5040](https://github.com/neet/masto.js/commit/dfe5040ef8b9e330e08fed7f064c6785e7746523))
+* Correct several type names to follow the naming convention ([528a155](https://github.com/neet/masto.js/commit/528a155d162b10e473cfdc28d3c39c635ff25be6))
+* Disallow null in CreateFilterParams["context"] ([6139683](https://github.com/neet/masto.js/commit/6139683f859a02debdd07a12d205017ec17fa4ba))
+
 ## [7.7.0](https://github.com/neet/masto.js/compare/v7.6.0...v7.7.0) (2025-11-28)
 
 
