@@ -144,7 +144,7 @@ export interface FiltersKeywords$SelectResource {
    * @returns FilterKeyword
    * @see https://docs.joinmastodon.org/methods/filters/#keywords-get-one
    */
-  fetch: Method<Paginator<FilterKeyword>>;
+  fetch: Method<FilterKeyword>;
 
   /**
    * Update the given filter keyword.
