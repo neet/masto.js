@@ -7,6 +7,9 @@ export interface QuoteStateRegistry {
   revoked: never;
   deleted: never;
   unauthorized: never;
+  blocked_account: never;
+  blocked_domain: never;
+  muted_account: never;
 }
 
 export type QuoteState = keyof QuoteStateRegistry;
