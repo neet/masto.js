@@ -1,4 +1,5 @@
 import { httpGet, HttpMockImpl, httpPost } from "../../__mocks__/index.js";
+import { type HttpResponse } from "../../interfaces/http.js";
 import { MastoHttpError, MastoTimeoutError } from "../errors/index.js";
 import { HttpActionDispatcher } from "./dispatcher-http.js";
 import { HttpActionDispatcherHookMastodon } from "./dispatcher-http-hook-mastodon.js";
@@ -38,6 +39,7 @@ describe("DispatcherHttp", () => {
       path: "/api/v2/media",
       data: undefined,
       meta: {},
+      raw: false,
     });
 
     expect(media).toHaveProperty("id", "1");
@@ -65,6 +67,7 @@ describe("DispatcherHttp", () => {
       path: "/api/v2/media",
       data: undefined,
       meta: {},
+      raw: false,
     });
 
     await expect(promise).rejects.toBeInstanceOf(MastoTimeoutError);
@@ -91,6 +94,7 @@ describe("DispatcherHttp", () => {
       path: "/api/v2/media",
       data: undefined,
       meta: {},
+      raw: false,
     });
 
     await expect(promise).rejects.toBeInstanceOf(MastoTimeoutError);
@@ -114,6 +118,7 @@ describe("DispatcherHttp", () => {
       path: "/api/v2/media",
       data: undefined,
       meta: {},
+      raw: false,
     });
 
     await expect(promise).rejects.toBeInstanceOf(Error);
@@ -138,9 +143,41 @@ describe("DispatcherHttp", () => {
         skipPolling: true,
       },
       meta: {},
+      raw: false,
     });
 
     expect(media).toHaveProperty("id", "1");
     expect(httpGet).toHaveBeenCalledTimes(0);
+  });
+
+  it("waits for media attachment to be created ($raw)", async () => {
+    const http = new HttpMockImpl();
+    const dispatcher = new HttpActionDispatcher(
+      http,
+      new HttpActionDispatcherHookMastodon(http),
+    );
+    const postHeaders = new Headers();
+
+    httpPost.mockResolvedValueOnce({
+      data: { id: "1" },
+      headers: postHeaders,
+    });
+
+    httpGet.mockResolvedValueOnce({
+      data: { id: "1", url: "https://example.com" },
+      headers: new Headers(),
+    });
+
+    const { data, headers } = await dispatcher.dispatch<HttpResponse<unknown>>({
+      type: "create",
+      path: "/api/v2/media",
+      data: undefined,
+      meta: {},
+      raw: true,
+    });
+
+    expect(data).toHaveProperty("id", "1");
+    expect(data).toHaveProperty("url", "https://example.com");
+    expect(headers).toBe(postHeaders);
   });
 });
