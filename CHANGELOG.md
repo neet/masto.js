@@ -1,5 +1,19 @@
 # Changelog
 
+## [7.8.0](https://github.com/neet/masto.js/compare/v7.7.1...v7.8.0) (2025-12-06)
+
+
+### Features
+
+* add three new quote states introduced by Mastodon v4.5.0 ([#1374](https://github.com/neet/masto.js/issues/1374)) ([9cac4ec](https://github.com/neet/masto.js/commit/9cac4ec51e6ed4aa6e3f459da07376fd7cb25df2))
+
+
+### Bug Fixes
+
+* Fix return type of /v2/filters/keywords/:id ([8dc80e4](https://github.com/neet/masto.js/commit/8dc80e477d625adc5babd981c865e17e039c4d6d))
+* Fix return type of /v2/filters/keywords/:id ([6aeb825](https://github.com/neet/masto.js/commit/6aeb825fd8877ef547cc2850033b8e07c43aaecb))
+* Fix v2.media.create nor working with $raw ([#1376](https://github.com/neet/masto.js/issues/1376)) ([7dbf15e](https://github.com/neet/masto.js/commit/7dbf15e163619608a9b07e7183d3721c08243fbc))
+
 ## [7.7.1](https://github.com/neet/masto.js/compare/v7.7.0...v7.7.1) (2025-11-30)
 
 
