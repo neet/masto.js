@@ -6,6 +6,7 @@ import {
   type Encoding,
   type Http,
   type HttpMetaParams,
+  type HttpResponse,
 } from "../../interfaces/index.js";
 import { type mastodon } from "../../mastodon/index.js";
 import { isRecord, sleep } from "../../utils/index.js";
@@ -116,15 +117,29 @@ export class HttpActionDispatcherHookMastodon
     return false;
   }
 
-  afterDispatch(action: AnyAction, result: unknown): unknown {
+  afterDispatch(action: AnyAction, _result: unknown): unknown {
     if (action.type === "create" && action.path === "/api/v2/media") {
-      const media = result as mastodon.v1.MediaAttachment;
       if (isRecord(action.data) && action.data?.skipPolling === true) {
-        return media;
+        return _result;
       }
-      return waitForMediaAttachment(media.id, this.mediaTimeout, this.http);
+
+      if (action.raw) {
+        const result = _result as HttpResponse<mastodon.v1.MediaAttachment>;
+
+        return waitForMediaAttachment(
+          result.data.id,
+          this.mediaTimeout,
+          this.http,
+        ).then((data) => ({
+          headers: result.headers,
+          data,
+        }));
+      } else {
+        const result = _result as mastodon.v1.MediaAttachment;
+        return waitForMediaAttachment(result.id, this.mediaTimeout, this.http);
+      }
     }
 
-    return result;
+    return _result;
   }
 }
