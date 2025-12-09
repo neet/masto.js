@@ -6,6 +6,7 @@ import { type MediaAttachment } from "./media-attachment.js";
 import { type Poll } from "./poll.js";
 import { type PreviewCard } from "./preview-card.js";
 import { type Quote } from "./quote.js";
+import { type QuoteApproval } from "./quote-approval.js";
 import { type ShallowQuote } from "./shallow-quote.js";
 import { type Tag } from "./tag.js";
 
@@ -81,6 +82,13 @@ export interface Status {
   repliesCount: number;
   /** Information about the status being quoted, if any */
   quote?: Quote | ShallowQuote | null;
+  /** How many replies this status has received. */
+  quotesCount: number;
+  /**
+   * Summary of the post quote’s approval policy and how it applies to the user making the request,
+   * that is, whether the user can be expected to be allowed to quote that post.
+   **/
+  quoteApproval: QuoteApproval;
 
   /** A link to the status's HTML representation. */
   url?: string | null;
