@@ -76,7 +76,7 @@ export interface Lists$SelectResource {
    * @return N/A
    * @see https://docs.joinmastodon.org/methods/timelines/lists/
    */
-  remove: Method<void, string>;
+  remove: Method<void>;
 }
 
 export interface ListsResource {
