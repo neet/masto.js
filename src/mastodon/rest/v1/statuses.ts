@@ -106,7 +106,7 @@ export type UpdateStatusParams = CreateStatusParams & {
 
 export interface ReblogStatusParams {
   /** any visibility except limited or direct (i.e. public, unlisted, private). Defaults to public. Currently unused in UI. */
-  readonly visibility: StatusVisibility;
+  readonly visibility?: StatusVisibility | null;
 }
 
 export interface TranslateStatusParams {
@@ -228,9 +228,9 @@ export interface Statuses$SelectResource {
   unmute: Method<Status>;
 
   /**
-   * Re-share a status.
+   * Boost a status
    * @return Status
-   * @see https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-reblog
+   * @see https://docs.joinmastodon.org/methods/statuses/#boost
    */
   reblog: Method<Status, ReblogStatusParams, HttpMetaParams<"json">>;
 
