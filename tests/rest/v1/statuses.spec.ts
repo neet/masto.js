@@ -174,6 +174,31 @@ describe("status", () => {
     }
   });
 
+  it("quotes and undo a status", async () => {
+    await using alice = await sessions.acquire();
+    await using bob = await sessions.acquire();
+
+    const { id: aliceStatusId } = await alice.rest.v1.statuses.create({
+      status: "status",
+    });
+
+    const bobStatus = await bob.rest.v1.statuses.create({
+      status: "quote",
+      quotedStatusId: aliceStatusId,
+    });
+    let aliceStatus = await bob.rest.v1.statuses.$select(aliceStatusId).fetch();
+    expect(aliceStatus.quotesCount).toBe(1);
+
+    const quotes = await bob.rest.v1.statuses
+      .$select(aliceStatusId)
+      .quotes.list();
+    expect(quotes.map((quote) => quote.account)).toContainEqual(bob.account);
+
+    await bob.rest.v1.statuses.$select(bobStatus.id).remove();
+    aliceStatus = await bob.rest.v1.statuses.$select(aliceStatusId).fetch();
+    expect(aliceStatus.quotesCount).toBe(0);
+  });
+
   it("pins and unpin a status", async () => {
     await using client = await sessions.acquire();
     let status = await client.rest.v1.statuses.create({
