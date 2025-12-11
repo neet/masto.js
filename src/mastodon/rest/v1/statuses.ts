@@ -151,6 +151,15 @@ export interface Statuses$SelectFavouritedByResource {
   list: Method<Paginator<Account[]>>;
 }
 
+export interface Statuses$SelectQuotesResource {
+  /**
+   * View quotes of a status.
+   * @return Array of Status
+   * @see https://docs.joinmastodon.org/methods/statuses/#quotes
+   */
+  list: Method<Paginator<Status[]>>;
+}
+
 export interface Statuses$SelectHistoryResource {
   /**
    * Get all known versions of a status, including the initial and current states.
@@ -174,6 +183,7 @@ export interface Statuses$SelectResource {
   card: Statuses$SelectCardResource;
   rebloggedBy: Statuses$SelectRebloggedByResource;
   favouritedBy: Statuses$SelectFavouritedByResource;
+  quotes: Statuses$SelectQuotesResource;
   history: Statuses$SelectHistoryResource;
   source: Statuses$SelectSourceResource;
 
