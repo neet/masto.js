@@ -1,5 +1,18 @@
 # Changelog
 
+## [7.9.0](https://github.com/neet/masto.js/compare/v7.8.0...v7.9.0) (2025-12-11)
+
+
+### Features
+
+* support new attributes of status - `quotesCount` and `quoteApproval` introduced by Mastodon v4.5.0 ([#1377](https://github.com/neet/masto.js/issues/1377)) ([4a88b21](https://github.com/neet/masto.js/commit/4a88b218e798463f12a124777361cf747aeb6d08))
+* support quotes of status API endpoint ([#1380](https://github.com/neet/masto.js/issues/1380)) ([a7e9a69](https://github.com/neet/masto.js/commit/a7e9a69c58cfc7a4a96dde1b19f868372373cb56))
+
+
+### Bug Fixes
+
+* Fix `v1.lists.$select(id).remove` and `v1.statuses.$select(id).reblog()` types ([#1381](https://github.com/neet/masto.js/issues/1381)) ([f9d0576](https://github.com/neet/masto.js/commit/f9d0576a17dffb61b334bb2583fa838c3590c906))
+
 ## [7.8.0](https://github.com/neet/masto.js/compare/v7.7.1...v7.8.0) (2025-12-06)
 
 
