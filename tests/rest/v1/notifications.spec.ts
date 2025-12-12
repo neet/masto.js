@@ -1,7 +1,5 @@
 import assert from "node:assert";
 
-import waitForExpect from "@sadams/wait-for-expect";
-
 it("handles notifications", async () => {
   await using alice = await sessions.acquire();
   await using bob = await sessions.acquire();
@@ -10,10 +8,14 @@ it("handles notifications", async () => {
   });
 
   try {
-    await waitForExpect(async () => {
-      const unreadCount = await alice.rest.v1.notifications.unreadCount.fetch();
-      expect(unreadCount.count).toBe(1);
-    });
+    await vi.waitFor(
+      async () => {
+        const unreadCount =
+          await alice.rest.v1.notifications.unreadCount.fetch();
+        expect(unreadCount.count).toBe(1);
+      },
+      { timeout: 4500 },
+    );
 
     let notifications = await alice.rest.v1.notifications.list();
     let notification = notifications.find((n) => n.status?.id === status.id);
@@ -52,12 +54,15 @@ it("clear notifications", async () => {
   try {
     let notifications = await alice.rest.v1.notifications.list();
 
-    await waitForExpect(async () => {
-      notifications = await alice.rest.v1.notifications.list();
-      expect(notifications.map((n) => n.status)).toContainEqual(s1);
-      expect(notifications.map((n) => n.status)).toContainEqual(s2);
-      expect(notifications.map((n) => n.status)).toContainEqual(s3);
-    });
+    await vi.waitFor(
+      async () => {
+        notifications = await alice.rest.v1.notifications.list();
+        expect(notifications.map((n) => n.status)).toContainEqual(s1);
+        expect(notifications.map((n) => n.status)).toContainEqual(s2);
+        expect(notifications.map((n) => n.status)).toContainEqual(s3);
+      },
+      { timeout: 4500 },
+    );
 
     expect(notifications.length >= 3).toBe(true);
 
