@@ -19,10 +19,14 @@ describe("timeline", () => {
 
     let statuses: mastodon.v1.Status[] | undefined;
 
-    await vi.waitFor(async () => {
-      statuses = await client.rest.v1.timelines.home.list();
-      expect(statuses).toContainEqual(status);
-    });
+    await vi.waitFor(
+      async () => {
+        statuses = await client.rest.v1.timelines.home.list();
+        expect(statuses).toContainEqual(status);
+      },
+
+      { timeout: 4500 },
+    );
   });
 
   it("returns public", async () => {

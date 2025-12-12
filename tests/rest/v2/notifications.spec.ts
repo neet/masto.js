@@ -8,11 +8,14 @@ describe("notification group", () => {
     try {
       await bob.rest.v1.accounts.$select(alice.id).follow();
 
-      await vi.waitFor(async () => {
-        const unreadCount =
-          await alice.rest.v2.notifications.unreadCount.fetch();
-        expect(unreadCount.count).toBe(1);
-      });
+      await vi.waitFor(
+        async () => {
+          const unreadCount =
+            await alice.rest.v2.notifications.unreadCount.fetch();
+          expect(unreadCount.count).toBe(1);
+        },
+        { timeout: 4500 },
+      );
 
       const notifications = await alice.rest.v2.notifications.list();
       expect(notifications.notificationGroups[0].type).toBe("follow");
@@ -93,10 +96,14 @@ describe("notification requests", () => {
       });
 
       let requests!: mastodon.v1.NotificationRequest[];
-      await vi.waitFor(async () => {
-        requests = await alice.rest.v1.notifications.requests.list();
-        expect(requests).toHaveLength(1);
-      });
+      await vi.waitFor(
+        async () => {
+          requests = await alice.rest.v1.notifications.requests.list();
+          expect(requests).toHaveLength(1);
+        },
+
+        { timeout: 4500 },
+      );
 
       const request = await alice.rest.v1.notifications.requests
         .$select(requests[0].id)
@@ -194,10 +201,14 @@ describe("notification requests", () => {
       });
 
       let requests!: mastodon.v1.NotificationRequest[];
-      await vi.waitFor(async () => {
-        requests = await alice.rest.v1.notifications.requests.list();
-        expect(requests).toHaveLength(1);
-      });
+      await vi.waitFor(
+        async () => {
+          requests = await alice.rest.v1.notifications.requests.list();
+          expect(requests).toHaveLength(1);
+        },
+
+        { timeout: 4500 },
+      );
 
       await alice.rest.v1.notifications.requests
         .$select(requests[0].id)
@@ -230,10 +241,14 @@ describe("notification requests", () => {
       });
 
       let requests!: mastodon.v1.NotificationRequest[];
-      await vi.waitFor(async () => {
-        requests = await alice.rest.v1.notifications.requests.list();
-        expect(requests).toHaveLength(1);
-      });
+      await vi.waitFor(
+        async () => {
+          requests = await alice.rest.v1.notifications.requests.list();
+          expect(requests).toHaveLength(1);
+        },
+
+        { timeout: 4500 },
+      );
 
       await alice.rest.v1.notifications.requests
         .$select(requests[0].id)

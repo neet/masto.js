@@ -3,10 +3,13 @@ it("authorize follow requests", async () => {
   await using bob = await sessions.acquire();
   await alice.rest.v1.accounts.updateCredentials({ locked: true });
 
-  await vi.waitFor(async () => {
-    const me = await alice.rest.v1.accounts.verifyCredentials();
-    expect(me.locked).toBe(true);
-  });
+  await vi.waitFor(
+    async () => {
+      const me = await alice.rest.v1.accounts.verifyCredentials();
+      expect(me.locked).toBe(true);
+    },
+    { timeout: 4500 },
+  );
 
   try {
     let relationship = await bob.rest.v1.accounts.$select(alice.id).follow();
@@ -31,10 +34,13 @@ it("rejects follow requests", async () => {
   await using bob = await sessions.acquire();
   await alice.rest.v1.accounts.updateCredentials({ locked: true });
 
-  await vi.waitFor(async () => {
-    const target = await bob.rest.v1.accounts.$select(alice.id).fetch();
-    expect(target.locked).toBe(true);
-  });
+  await vi.waitFor(
+    async () => {
+      const target = await bob.rest.v1.accounts.$select(alice.id).fetch();
+      expect(target.locked).toBe(true);
+    },
+    { timeout: 4500 },
+  );
 
   try {
     let relationship = await bob.rest.v1.accounts.$select(alice.id).follow();

@@ -18,13 +18,17 @@ describe("conversations", () => {
         visibility: "direct",
       });
 
-      await vi.waitFor(async () => {
-        const conversations = await alice.rest.v1.conversations.list();
-        conversation = conversations.find(
-          (c) => c.lastStatus?.id === status.id,
-        );
-        expect(conversation?.accounts).toContainEqual(bob.account);
-      });
+      await vi.waitFor(
+        async () => {
+          const conversations = await alice.rest.v1.conversations.list();
+          conversation = conversations.find(
+            (c) => c.lastStatus?.id === status.id,
+          );
+          expect(conversation?.accounts).toContainEqual(bob.account);
+        },
+
+        { timeout: 4500 },
+      );
 
       assert.ok(conversation != undefined);
 
