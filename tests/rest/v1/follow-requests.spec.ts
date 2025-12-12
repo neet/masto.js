@@ -1,11 +1,9 @@
-import waitForExpect from "@sadams/wait-for-expect";
-
 it("authorize follow requests", async () => {
   await using alice = await sessions.acquire();
   await using bob = await sessions.acquire();
   await alice.rest.v1.accounts.updateCredentials({ locked: true });
 
-  await waitForExpect(async () => {
+  await vi.waitFor(async () => {
     const me = await alice.rest.v1.accounts.verifyCredentials();
     expect(me.locked).toBe(true);
   });
@@ -33,7 +31,7 @@ it("rejects follow requests", async () => {
   await using bob = await sessions.acquire();
   await alice.rest.v1.accounts.updateCredentials({ locked: true });
 
-  await waitForExpect(async () => {
+  await vi.waitFor(async () => {
     const target = await bob.rest.v1.accounts.$select(alice.id).fetch();
     expect(target.locked).toBe(true);
   });

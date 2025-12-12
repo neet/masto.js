@@ -1,5 +1,3 @@
-import waitForExpect from "@sadams/wait-for-expect";
-
 import { type mastodon } from "../../../src/index.js";
 
 describe("timeline", () => {
@@ -21,7 +19,7 @@ describe("timeline", () => {
 
     let statuses: mastodon.v1.Status[] | undefined;
 
-    await waitForExpect(async () => {
+    await vi.waitFor(async () => {
       statuses = await client.rest.v1.timelines.home.list();
       expect(statuses).toContainEqual(status);
     });
