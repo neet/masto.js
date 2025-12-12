@@ -37,6 +37,7 @@
   },
   "scripts": {
     "test": "npm-run-all test:*",
+    "test:typecheck": "tsc --project tsconfig.test.json",
     "test:unit": "vitest --project unit",
     "test:e2e": "vitest --project e2e",
     "lint": "npm-run-all lint:*",
