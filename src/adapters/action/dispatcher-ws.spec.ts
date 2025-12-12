@@ -25,6 +25,7 @@ describe("DispatcherWs", () => {
         path: "/api/v2/unknown",
         data: undefined,
         meta: {},
+        raw: false,
       });
     }).toThrow(MastoUnexpectedError);
   });
