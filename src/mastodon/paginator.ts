@@ -1,7 +1,8 @@
 export type Direction = "next" | "prev";
 
-// eslint-disable-next-line prettier/prettier
-export interface Paginator<Entity, Params = undefined> extends PromiseLike<Entity>, AsyncIterable<Entity> { 
+export interface Paginator<Entity, Params = undefined>
+  extends PromiseLike<Entity>,
+    AsyncIterable<Entity> {
   /**
    * Get the current direction of the paginator.
    * @returns The current direction of the paginator.

@@ -1,6 +1,8 @@
+/* eslint-disable import/no-named-as-default-member */
 import eslint from "@eslint/js";
+import { defineConfig, globalIgnores } from "eslint/config";
+import eslintConfigPrettier from "eslint-config-prettier/flat";
 import importPlugin from "eslint-plugin-import";
-import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import eslintPluginUnicorn from "eslint-plugin-unicorn";
 import globals from "globals";
@@ -9,17 +11,13 @@ import tseslint from "typescript-eslint";
 import allowNullInOptionalParameter from "./eslint/allow-null-in-optional-parameter.js";
 import namingConvention from "./eslint/naming-convention.js";
 
-export default tseslint.config(
+export default defineConfig(
   eslint.configs.recommended,
-  // eslint-disable-next-line import/no-named-as-default-member
-  ...tseslint.configs.strict,
+  tseslint.configs.strict,
   importPlugin.flatConfigs.recommended,
   importPlugin.flatConfigs.typescript,
   eslintPluginUnicorn.configs.recommended,
-  eslintPluginPrettierRecommended,
-  {
-    ignores: ["dist/**/*", "docs/**/*", "coverage/**/*", "playground/**/*"],
-  },
+  eslintConfigPrettier,
   {
     settings: {
       "import/resolver": {
@@ -45,7 +43,7 @@ export default tseslint.config(
       "unicorn/no-array-reduce": "off",
       "no-restricted-imports": [
         "error",
-        { paths: [{ name: "ws", message: "Use `isomophic-ws` instead." }] },
+        { paths: [{ name: "ws", message: "Use `isomorphic-ws` instead." }] },
       ],
     },
   },
@@ -107,4 +105,5 @@ export default tseslint.config(
       "unicorn/no-process-exit": "off",
     },
   },
+  globalIgnores(["dist/**/*", "docs/**/*", "coverage/**/*", "playground/**/*"]),
 );

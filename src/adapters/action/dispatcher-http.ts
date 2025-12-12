@@ -61,12 +61,14 @@ export class HttpActionDispatcher implements ActionDispatcher<HttpAction> {
       }
     }
 
-    /* eslint-disable unicorn/prefer-ternary, prettier/prettier */
+    /* eslint-disable unicorn/prefer-ternary */
     if (result instanceof Promise) {
-      return result.then((result) => this.hook?.afterDispatch(action, result)) as Promise<T>;
+      return result.then((result) =>
+        this.hook?.afterDispatch(action, result),
+      ) as Promise<T>;
     } else {
       return this.hook.afterDispatch(action, result) as T;
     }
-    /* eslint-enable unicorn/prefer-ternary, prettier/prettier */
+    /* eslint-enable unicorn/prefer-ternary */
   }
 }
