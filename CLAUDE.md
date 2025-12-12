@@ -9,6 +9,7 @@ Masto.js is a universal Mastodon API client for JavaScript/TypeScript that works
 ## Development Commands
 
 ### Building
+
 ```bash
 npm run build              # Build both ESM and CJS outputs
 npm run build:esm          # Build ESM only
@@ -18,6 +19,7 @@ npm run build:cjs          # Build CJS only
 The build process uses `tsconfig-to-dual-package` to generate dual ESM/CJS outputs from separate TypeScript configs.
 
 ### Testing
+
 ```bash
 npm test                   # Run all tests (unit + e2e)
 npm run test:unit          # Run unit tests only (uses Vitest)
@@ -27,6 +29,7 @@ npm run test:e2e           # Run e2e tests only (requires Mastodon instance)
 **Important**: E2E tests require a local Mastodon instance running at `http://localhost:3000` with admin credentials (`admin@localhost` / `mastodonadmin`). The test setup automatically creates OAuth apps and tokens, caching them in `node_modules/.cache/masto/`.
 
 ### Linting
+
 ```bash
 npm run lint               # Run all linters
 npm run lint:eslint        # Run ESLint only
@@ -34,11 +37,13 @@ npm run lint:spellcheck    # Run spellcheck only
 ```
 
 ### Documentation
+
 ```bash
 npm run docs:build         # Generate TypeDoc documentation
 ```
 
 ### Running Single Tests
+
 ```bash
 npx vitest --project unit src/path/to/file.spec.ts
 npx vitest --project e2e tests/path/to/file.spec.ts
@@ -97,11 +102,13 @@ When you call `masto.v1.statuses.create({ status: "Hello" })`:
 ## Testing Strategy
 
 ### Unit Tests (`src/**/*.spec.ts`)
+
 - Located alongside source files
 - Test individual functions and edge cases
 - Used for exception handling and logic that's hard to test E2E
 
 ### E2E Tests (`tests/**/*.spec.ts`)
+
 - Primary testing approach
 - Use real Mastodon server at `localhost:3000`
 - Leverage `sessions` global for test account management:
@@ -115,7 +122,7 @@ await session.rest.v1.statuses.create({ status: "test" });
 await using alice = await sessions.acquire();
 await using bob = await sessions.acquire();
 await alice.rest.v1.statuses.create({
-  status: `Hello @${bob.account.acct}`
+  status: `Hello @${bob.account.acct}`,
 });
 ```
 
@@ -171,11 +178,12 @@ Keep bundle size minimal - this is a key project goal tracked via size-limit in 
 ### Debugging Proxy Behavior
 
 Set the `log` option when creating clients:
+
 ```typescript
 const masto = createRestAPIClient({
   url: "https://mastodon.social",
   accessToken: "...",
-  log: "debug"  // "debug" | "info" | "warn" | "error"
+  log: "debug", // "debug" | "info" | "warn" | "error"
 });
 ```
 

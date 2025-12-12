@@ -1,10 +1,7 @@
 {
   "version": "0.2",
   "language": "en,en-GB",
-  "ignorePaths": [
-    "**/node_modules/**",
-    "**/dist/**"
-  ],
+  "ignorePaths": ["**/node_modules/**", "**/dist/**"],
   "words": [
     "AGPL",
     "asynckit",
@@ -21,6 +18,7 @@
     "gifv",
     "Gmail",
     "hostsupdater",
+    "isomorphic",
     "idempotency",
     "Igarashi",
     "KeyBase",
@@ -49,8 +47,10 @@
     "unbookmark",
     "undici",
     "unendorse",
+    "unendorses",
     "unfavourite",
     "unfeature",
+    "unfeatures",
     "unfetch",
     "unfollow",
     "unprocessable",

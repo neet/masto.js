@@ -21,7 +21,7 @@ jobs:
         with:
           # > By default, Release Please uses the built-in GITHUB_TOKEN secret.
           # > However, all resources created by release-please (release tag or release pull request) will not trigger future GitHub actions workflows,
-          # > and workflows normally triggered by release.created events will also not run. 
+          # > and workflows normally triggered by release.created events will also not run.
           # https://github.com/googleapis/release-please-action?tab=readme-ov-file#other-actions-on-release-please-prs
           token: ${{ secrets.GH_PAT }}
           release-type: node
@@ -32,7 +32,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "24.9.0"
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: "https://registry.npmjs.org"
         if: ${{ steps.release.outputs.release_created }}
 
       - run: npm install -g npm@latest
@@ -43,4 +43,3 @@ jobs:
 
       - run: npm publish
         if: ${{ steps.release.outputs.release_created }}
-
