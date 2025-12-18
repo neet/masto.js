@@ -1,3 +1,4 @@
+import { type QuoteApprovalPolicy } from "../../rest/v1/statuses.js";
 import { type CustomEmoji } from "./custom-emoji.js";
 import { type Role } from "./role.js";
 import { type StatusVisibility } from "./status.js";
@@ -8,11 +9,12 @@ import { type StatusVisibility } from "./status.js";
  * @see https://docs.joinmastodon.org/entities/source/
  */
 export interface AccountSource {
-  /** Profile bio. */
+  /** Domains of websites allowed to credit the account. */
+  attributionDomains: string[];
+  /** Profile bio, in plain text instead of HTML. */
   note: string;
   /** Metadata about the account. */
   fields: AccountField[];
-
   /** The default post privacy to be used for new statuses. */
   privacy?: StatusVisibility | null;
   /** Whether new statuses should be marked sensitive by default. */
@@ -21,6 +23,16 @@ export interface AccountSource {
   language: string | null;
   /** The number of pending follow requests. */
   followRequestsCount?: number | null;
+  /** Whether the user hides the contents of their follows and followers collections. */
+  hideCollections?: boolean | null;
+  /**  Whether the account has opted into discovery features such as the profile directory. */
+  discoverable?: boolean | null;
+  /** Whether public posts should be searchable to anyone. */
+  indexable: boolean;
+  /** The default quote policy to be used for new statuses. */
+  quotePolicy: QuoteApprovalPolicy;
+  /** The complete role assigned to the currently authorized user, including permissions and highlighted status. */
+  role: Role;
 }
 
 /**
@@ -31,7 +43,6 @@ export interface AccountField {
   name: string;
   /** The value associated with the `name` key. */
   value: string;
-
   /** Timestamp of when the server verified a URL value for a rel="me” link. */
   verifiedAt?: string | null;
 }
