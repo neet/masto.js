@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.10.0](https://github.com/neet/masto.js/compare/v7.9.0...v7.10.0) (2025-12-18)
+
+
+### Features
+
+* update `AccountSource` type ([#1387](https://github.com/neet/masto.js/issues/1387)) ([473d51e](https://github.com/neet/masto.js/commit/473d51ed0744dd3bfe88fa97734baabec2944169))
+
 ## [7.9.0](https://github.com/neet/masto.js/compare/v7.8.0...v7.9.0) (2025-12-11)
 
 ### Features
