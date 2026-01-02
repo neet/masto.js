@@ -1,7 +1,9 @@
 export type * as Admin from "./admin/index.js";
 export type * from "./account.js";
+export type * from "./account-warning.js";
 export type * from "./activity.js";
 export type * from "./announcement.js";
+export type * from "./appeal.js";
 export type * from "./application.js";
 export type * from "./context.js";
 export type * from "./conversation.js";
@@ -25,6 +27,7 @@ export type * from "./notification-request.js";
 export type * from "./poll.js";
 export type * from "./preference.js";
 export type * from "./preview-card.js";
+export type * from "./quote-approval.js";
 export type * from "./quote.js";
 export type * from "./reaction.js";
 export type * from "./relationship.js";
