@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.10.1](https://github.com/neet/masto.js/compare/v7.10.0...v7.10.1) (2026-01-02)
+
+
+### Bug Fixes
+
+* Export missing v1 entity types: QuoteApproval, AccountWarning, Appeal ([#1395](https://github.com/neet/masto.js/issues/1395)) ([bb70017](https://github.com/neet/masto.js/commit/bb700175aada7ac5ed94a6aacbe66d3d1a59d74f))
+
 ## [7.10.0](https://github.com/neet/masto.js/compare/v7.9.0...v7.10.0) (2025-12-18)
 
 
