@@ -19,11 +19,7 @@ jobs:
       - uses: googleapis/release-please-action@v4
         id: release
         with:
-          # > By default, Release Please uses the built-in GITHUB_TOKEN secret.
-          # > However, all resources created by release-please (release tag or release pull request) will not trigger future GitHub actions workflows,
-          # > and workflows normally triggered by release.created events will also not run.
-          # https://github.com/googleapis/release-please-action?tab=readme-ov-file#other-actions-on-release-please-prs
-          token: ${{ secrets.GH_PAT }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           release-type: node
 
       - uses: actions/checkout@v4
