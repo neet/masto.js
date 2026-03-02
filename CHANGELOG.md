@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.10.2](https://github.com/neet/masto.js/compare/v7.10.1...v7.10.2) (2026-03-02)
+
+
+### Bug Fixes
+
+* Add missing Application entity fields introduced in Mastodon 4.3/4.4 ([#1409](https://github.com/neet/masto.js/issues/1409)) ([23cad4f](https://github.com/neet/masto.js/commit/23cad4f5071054b4386ea107e40802d1acf7b426)), closes [#1408](https://github.com/neet/masto.js/issues/1408)
+
 ## [7.10.1](https://github.com/neet/masto.js/compare/v7.10.0...v7.10.1) (2026-01-02)
 
 
