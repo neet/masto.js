@@ -39,8 +39,9 @@ function toHttpActionType(action: string): HttpActionType {
 function inferEncoding(action: HttpActionType, path: string): Encoding {
   if (
     (action === "create" && path === "/api/v1/accounts") ||
-    (action === "update" && path === "/api/v1/accounts/update_credentials") ||
-    (action === "update" && path === "/api/v1/profile") ||
+    (action === "update" &&
+      (path === "/api/v1/accounts/update_credentials" ||
+        path === "/api/v1/profile")) ||
     (action === "create" && path === "/api/v1/email") ||
     (action === "create" && path === "/api/v1/featured_tag") ||
     (action === "create" && path === "/api/v1/media") ||
@@ -108,14 +109,9 @@ export class HttpActionDispatcherHookMastodon
   dispatch(action: AnyAction): false | Promise<unknown> {
     if (
       action.type === "update" &&
-      action.path === "/api/v1/accounts/update_credentials"
+      (action.path === "/api/v1/accounts/update_credentials" ||
+        action.path === "/api/v1/profile")
     ) {
-      return this.http
-        .patch(action.path, action.data, action.meta)
-        .then((r) => r.data);
-    }
-
-    if (action.type === "update" && action.path === "/api/v1/profile") {
       return this.http
         .patch(action.path, action.data, action.meta)
         .then((r) => r.data);
