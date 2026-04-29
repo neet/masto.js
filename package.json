@@ -112,7 +112,7 @@
   "size-limit": [
     {
       "name": "rest",
-      "limit": "4.1 kB",
+      "limit": "4.0 kB",
       "path": "./dist/esm/index.js",
       "import": "{ createRestAPIClient }"
     },
@@ -124,7 +124,7 @@
     },
     {
       "name": "oauth",
-      "limit": "4.1 kB",
+      "limit": "4.0 kB",
       "path": "./dist/esm/index.js",
       "import": "{ createOAuthAPIClient }"
     }

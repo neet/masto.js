@@ -109,8 +109,7 @@ export class HttpActionDispatcherHookMastodon
   dispatch(action: AnyAction): false | Promise<unknown> {
     if (
       action.type === "update" &&
-      (action.path === "/api/v1/accounts/update_credentials" ||
-        action.path === "/api/v1/profile")
+      action.path === "/api/v1/accounts/update_credentials"
     ) {
       return this.http
         .patch(action.path, action.data, action.meta)
