@@ -39,9 +39,7 @@ function toHttpActionType(action: string): HttpActionType {
 function inferEncoding(action: HttpActionType, path: string): Encoding {
   if (
     (action === "create" && path === "/api/v1/accounts") ||
-    (action === "update" &&
-      (path === "/api/v1/accounts/update_credentials" ||
-        path === "/api/v1/profile")) ||
+    (action === "update" && path === "/api/v1/accounts/update_credentials") ||
     (action === "create" && path === "/api/v1/email") ||
     (action === "create" && path === "/api/v1/featured_tag") ||
     (action === "create" && path === "/api/v1/media") ||
