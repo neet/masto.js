@@ -7,6 +7,8 @@ export interface FeaturedTag {
   id: string;
   /** The name of the hashtag being featured. */
   name: string;
+  /** A link to all statuses by a user that contain this hashtag. */
+  url: string;
   /** The number of authored statuses containing this hashtag */
   statusesCount: number;
   /** The timestamp of the last authored status containing this hashtag. */

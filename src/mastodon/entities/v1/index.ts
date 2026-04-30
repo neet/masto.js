@@ -26,6 +26,7 @@ export type * from "./notification.js";
 export type * from "./notification-request.js";
 export type * from "./poll.js";
 export type * from "./preference.js";
+export type * from "./profile.js";
 export type * from "./preview-card.js";
 export type * from "./quote-approval.js";
 export type * from "./quote.js";
