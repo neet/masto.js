@@ -43,7 +43,8 @@ function inferEncoding(action: HttpActionType, path: string): Encoding {
     (action === "create" && path === "/api/v1/email") ||
     (action === "create" && path === "/api/v1/featured_tag") ||
     (action === "create" && path === "/api/v1/media") ||
-    (action === "create" && path === "/api/v2/media")
+    (action === "create" && path === "/api/v2/media") ||
+    (action === "update" && path === "/api/v1/profile")
   ) {
     return "multipart-form";
   }
