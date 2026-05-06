@@ -1,5 +1,17 @@
 # Changelog
 
+## [7.11.0](https://github.com/neet/masto.js/compare/v7.10.2...v7.11.0) (2026-05-03)
+
+
+### Features
+
+* support new Profile API (Mastodon v4.6.0) ([#1413](https://github.com/neet/masto.js/issues/1413)) ([ac170ac](https://github.com/neet/masto.js/commit/ac170ac999e42aca4c67055b3c7a25c09492f137))
+
+
+### Bug Fixes
+
+* Use multipart/form-data in PUT /api/v1/profile ([#1415](https://github.com/neet/masto.js/issues/1415)) ([5d57e4f](https://github.com/neet/masto.js/commit/5d57e4f98e168dc9f35e97999bc1f2710dc2430d))
+
 ## [7.10.2](https://github.com/neet/masto.js/compare/v7.10.1...v7.10.2) (2026-03-02)
 
 
