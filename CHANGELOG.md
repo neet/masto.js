@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.11.1](https://github.com/neet/masto.js/compare/v7.11.0...v7.11.1) (2026-05-06)
+
+
+### Bug Fixes
+
+* Revert "chore: use GITHUB_TOKEN instead of PAT in release-please workflow ([#1](https://github.com/neet/masto.js/issues/1)…" ([#1416](https://github.com/neet/masto.js/issues/1416)) ([b048759](https://github.com/neet/masto.js/commit/b048759741803741852a4d16cef05da435d2f3b6))
+
 ## [7.11.0](https://github.com/neet/masto.js/compare/v7.10.2...v7.11.0) (2026-05-03)
 
 
