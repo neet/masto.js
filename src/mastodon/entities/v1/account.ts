@@ -1,5 +1,6 @@
 import { type QuoteApprovalPolicy } from "../../rest/v1/statuses.js";
 import { type CustomEmoji } from "./custom-emoji.js";
+import { type FeatureApproval } from "./feature-approval.js";
 import { type Role } from "./role.js";
 import { type StatusVisibility } from "./status.js";
 
@@ -106,6 +107,8 @@ export interface Account {
   roles: Pick<Role, "id" | "name" | "color">[]; // TODO: Create an entity when documentation is updated
   /** https://github.com/mastodon/mastodon/pull/23591 */
   memorial?: boolean | null;
+  /** Summary of the account’s policy with regards to being featured in a Collection and how it applies to the user making the request. */
+  featureApproval: FeatureApproval;
 }
 
 /**

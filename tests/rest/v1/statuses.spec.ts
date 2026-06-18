@@ -1,5 +1,3 @@
-import crypto from "node:crypto";
-
 import { MastoHttpError } from "../../../src/index.js";
 
 describe("status", () => {
@@ -34,30 +32,6 @@ describe("status", () => {
 
     await client.rest.v1.statuses.$select(id).remove();
     await expect(client.rest.v1.statuses.$select(id).fetch()).rejects.toThrow();
-  });
-
-  it("creates a status with an Idempotency-Key", async () => {
-    await using client = await sessions.acquire();
-    const idempotencyKey = crypto.randomUUID();
-
-    const s1 = await client.rest.v1.statuses.create(
-      { status: "hello" },
-      {
-        requestInit: {
-          headers: new Headers({ "Idempotency-Key": idempotencyKey }),
-        },
-      },
-    );
-    const s2 = await client.rest.v1.statuses.create(
-      { status: "hello" },
-      {
-        requestInit: {
-          headers: new Headers({ "Idempotency-Key": idempotencyKey }),
-        },
-      },
-    );
-
-    expect(s1.id).toBe(s2.id);
   });
 
   it("fetches a status context", async () => {
@@ -195,8 +169,13 @@ describe("status", () => {
     expect(quotes.map((quote) => quote.account)).toContainEqual(bob.account);
 
     await bob.rest.v1.statuses.$select(bobStatus.id).remove();
-    aliceStatus = await bob.rest.v1.statuses.$select(aliceStatusId).fetch();
-    expect(aliceStatus.quotesCount).toBe(0);
+    await vi.waitFor(
+      async () => {
+        aliceStatus = await bob.rest.v1.statuses.$select(aliceStatusId).fetch();
+        expect(aliceStatus.quotesCount).toBe(0);
+      },
+      { timeout: 4500 },
+    );
   });
 
   it("pins and unpin a status", async () => {

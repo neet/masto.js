@@ -13,6 +13,7 @@ export interface V2Resource {
 export interface V1Resource {
   admin: v1.AdminResource;
   accounts: v1.AccountsResource;
+  collections: v1.CollectionsResource;
   announcements: v1.AnnouncementsResource;
   apps: v1.AppsResource;
   blocks: v1.BlocksResource;

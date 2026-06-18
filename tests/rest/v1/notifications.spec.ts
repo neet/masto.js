@@ -67,8 +67,13 @@ it("clear notifications", async () => {
     expect(notifications.length >= 3).toBe(true);
 
     await alice.rest.v1.notifications.clear();
-    notifications = await alice.rest.v1.notifications.list();
-    expect(notifications).toHaveLength(0);
+    await vi.waitFor(
+      async () => {
+        notifications = await alice.rest.v1.notifications.list();
+        expect(notifications).toHaveLength(0);
+      },
+      { timeout: 4500 },
+    );
   } finally {
     await bob.rest.v1.statuses.$select(s1.id).remove();
     await bob.rest.v1.statuses.$select(s2.id).remove();

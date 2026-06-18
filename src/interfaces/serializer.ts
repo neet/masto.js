@@ -1,4 +1,9 @@
-export type Encoding = "none" | "json" | "multipart-form" | "querystring";
+export type Encoding =
+  | "none"
+  | "json"
+  | "multipart-form"
+  | "querystring"
+  | "html";
 
 export interface Serializer {
   serialize(type: "json" | "querystring", data: unknown): string;

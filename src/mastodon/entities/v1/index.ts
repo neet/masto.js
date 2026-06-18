@@ -1,5 +1,9 @@
 export type * as Admin from "./admin/index.js";
 export type * from "./account.js";
+export type * from "./collection.js";
+export type * from "./collection-item.js";
+export type * from "./collection-with-accounts.js";
+export type * from "./shallow-tag.js";
 export type * from "./account-warning.js";
 export type * from "./activity.js";
 export type * from "./announcement.js";

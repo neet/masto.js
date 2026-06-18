@@ -48,6 +48,10 @@ export class SerializerNativeImpl implements Serializer {
           );
         }
       }
+      case "html": {
+        // Mastodon bug? https://github.com/neet/masto.js/issues/1424
+        return undefined as T;
+      }
       default: {
         throw new MastoDeserializeError(
           `Unknown content type ${type} returned from the server.`,

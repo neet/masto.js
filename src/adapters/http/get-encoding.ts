@@ -13,6 +13,9 @@ export const getEncoding = (headers: Headers): Encoding | undefined => {
     case "multipart/form-data": {
       return "multipart-form";
     }
+    case "text/html": {
+      return "html";
+    }
     default: {
       return;
     }
