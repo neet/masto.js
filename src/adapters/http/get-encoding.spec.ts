@@ -5,7 +5,8 @@ test.each([
   [{ "content-type": "application/json; charset=utf-8" }, "json"],
   [{ "Content-Type": "application/json" }, "json"],
   [{ "Content-Type": "multipart/form-data" }, "multipart-form"],
-  [{ "Content-Type": "text/html" }, undefined],
+  [{ "Content-Type": "text/html" }, "html"],
+  [{ "Content-Type": "image/png" }, undefined],
   [{}, undefined],
 ])("removes charset from content-type", (headers, expected) => {
   expect(getEncoding(new Headers(headers))).toBe(expected);

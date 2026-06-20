@@ -19,4 +19,6 @@ export interface Role {
   createdAt: string;
   /** The date that the role was updated. */
   updatedAt: string;
+  /** Maximum number of Collections that users with this role are allowed to create. */
+  collectionLimit: number;
 }

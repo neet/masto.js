@@ -73,4 +73,8 @@ describe("SerializerNativeImpl", () => {
       serializer.deserialize("none", "<html><body>test</body></html>");
     }).toThrowError(MastoDeserializeError);
   });
+
+  test("https://github.com/neet/masto.js/issues/1424", () => {
+    expect(serializer.deserialize("html", "")).toBeUndefined();
+  });
 });

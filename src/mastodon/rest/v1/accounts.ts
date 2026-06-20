@@ -4,6 +4,7 @@ import {
   type AccountCredentials,
   type AccountField,
   type AccountSource,
+  type Collections,
   type FamiliarFollowers,
   type FeaturedTag,
   type IdentityProof,
@@ -15,6 +16,7 @@ import {
 import { type Method } from "../../method.js";
 import { type Paginator } from "../../paginator.js";
 import { type DefaultPaginationParams } from "../../resource.js";
+import { type ListCollectionsParams } from "./collections.js";
 
 export interface FetchAccountsParams {
   /** The IDs of the Accounts in the database. */
@@ -206,6 +208,26 @@ export interface Accounts$SelectEndorsementsResource {
   >;
 }
 
+export interface Accounts$SelectCollectionsResource {
+  /**
+   * Get all Collections from a given account.
+   * @param params Parameters
+   * @return Collections
+   * @see https://docs.joinmastodon.org/methods/collections/
+   */
+  list: Method<Collections, ListCollectionsParams>;
+}
+
+export interface Accounts$SelectInCollectionsResource {
+  /**
+   * Get all Collections the current account is featured in.
+   * @param params Parameters
+   * @return Collections
+   * @see https://docs.joinmastodon.org/methods/collections/
+   */
+  list: Method<Collections, ListCollectionsParams>;
+}
+
 export interface Accounts$SelectResource {
   featuredTags: Accounts$SelectFeaturedTagsResource;
   note: Accounts$SelectNoteResource;
@@ -215,6 +237,8 @@ export interface Accounts$SelectResource {
   following: Accounts$SelectFollowingResource;
   statuses: Accounts$SelectStatusesResource;
   endorsements: Accounts$SelectEndorsementsResource;
+  collections: Accounts$SelectCollectionsResource;
+  inCollections: Accounts$SelectInCollectionsResource;
 
   /**
    * View information about a profile.
