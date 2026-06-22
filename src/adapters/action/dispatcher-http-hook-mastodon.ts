@@ -86,9 +86,7 @@ async function waitForMediaAttachment(
   return media;
 }
 
-export class HttpActionDispatcherHookMastodon
-  implements ActionDispatcherHook<AnyAction>
-{
+export class HttpActionDispatcherHookMastodon implements ActionDispatcherHook<AnyAction> {
   constructor(
     private readonly http: Http,
     private readonly mediaTimeout = 1000 * 60,

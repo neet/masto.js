@@ -2,8 +2,9 @@
   "extends": "@tsconfig/node22/tsconfig.json",
   "compilerOptions": {
     "module": "CommonJS",
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",
     "outDir": "./dist/cjs",
+    "rootDir": ".",
     "declaration": true
   },
   "include": ["./src/**/*"],

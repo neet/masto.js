@@ -20,7 +20,7 @@ let redis!: Redis;
 
 export default <Environment>{
   name: "mastodon",
-  transformMode: "web",
+  viteEnvironment: "ssr",
   async setup() {
     redis = new Redis();
     globalThis.__misc__ = await createGlobals();

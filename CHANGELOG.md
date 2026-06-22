@@ -1,5 +1,24 @@
 # Changelog
 
+## [7.12.0](https://github.com/neet/masto.js/compare/v7.11.1...v7.12.0) (2026-06-22)
+
+
+### Features
+
+* Add excludeDirect flag to ListAccountStatusesParams ([3ee49f5](https://github.com/neet/masto.js/commit/3ee49f531dbcd381ab69cc8fc417835178f478b5))
+* Add max*Length and profile*Limit properties to v2.Instance ([ed806b3](https://github.com/neet/masto.js/commit/ed806b30f7a3c7b93babeb5ca56d9de21bc85618))
+* Add missing_attribution to v1.PreviewCard ([7d54efe](https://github.com/neet/masto.js/commit/7d54efeda10019265d6e8b49e228a3a6371fb297))
+* Add supportedTypes to Notification API ([86e58f5](https://github.com/neet/masto.js/commit/86e58f55ca1c4a6201311bdbaf7d3d253d8baab8))
+* Add unresolved to v1.admin.reorts.list ([d92fad5](https://github.com/neet/masto.js/commit/d92fad5565aada1da4b385ffafd836f1202fe144))
+* Support annual reports API ([3ade275](https://github.com/neet/masto.js/commit/3ade2758dd176069f4f81ff53e4f3880176b1571))
+* Support annual reports API ([9b9b9a9](https://github.com/neet/masto.js/commit/9b9b9a9d3949423d7d871ac980178b6cb5d7c859))
+* Support collection API ([#1425](https://github.com/neet/masto.js/issues/1425)) ([cec3539](https://github.com/neet/masto.js/commit/cec35396e2ac0ffa5167d6cf388f5ba04f9763eb))
+
+
+### Bug Fixes
+
+* Fix typo in missingAttribution ([db12806](https://github.com/neet/masto.js/commit/db12806e96b8fa7df878f9da75c7f2539b90126e))
+
 ## [7.11.1](https://github.com/neet/masto.js/compare/v7.11.0...v7.11.1) (2026-05-06)
 
 
