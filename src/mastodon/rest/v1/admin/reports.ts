@@ -7,6 +7,7 @@ export interface ListReportsParams {
   readonly accountId?: string | null;
   readonly targetAccountId?: string | null;
   readonly byTargetDomain?: string | null;
+  readonly unresolved?: boolean | null;
 }
 
 export interface Reports$SelectResource {
