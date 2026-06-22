@@ -67,7 +67,7 @@ export interface PreviewCard {
   /** @see https://github.com/mastodon/mastodon/pull/27503 */
   language?: string;
   /** True if the linked article claims to be written by the current user without the user having the article’s domain in their attribution_domains). This is used to prompt them to review and add the domain. */
-  missing_attribution?: boolean | null;
+  missingAttribution?: boolean | null;
 }
 
 export interface TrendLink extends PreviewCard {
