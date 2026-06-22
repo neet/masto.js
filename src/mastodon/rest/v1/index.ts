@@ -1,4 +1,5 @@
 export type * from "./accounts.js";
+export type * from "./annual-reports.js";
 export type * from "./collections.js";
 export type * from "./admin/index.js";
 export type * from "./announcements.js";
