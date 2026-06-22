@@ -24,6 +24,8 @@ export interface InstanceThumbnail {
   blurhash: string;
   /** Links to scaled resolution images, for high DPI screens. */
   versions: InstanceThumbnailVersions;
+  /** The thumbnail’s alt text (a description of the image to help people with visual impairments understand its content). */
+  description: string;
 }
 
 export interface InstanceUrls {
@@ -38,6 +40,20 @@ export interface InstanceAccountsConfiguration {
   maxFeaturedTags: number;
   /** The maximum number of pinned statuses for each account. */
   maxPinnedStatuses: number;
+  /** The maximum length allowed for an account’s display name. */
+  maxDisplayNameLength: number;
+  /** The maximum length allowed for an account’s bio. */
+  maxNoteLength: number;
+  /** The maximum length allowed for an account’s avatar description. */
+  maxAvatarDescriptionLength: number;
+  /** The maximum length allowed for an account’s profile header description. */
+  maxHeaderDescriptionLength: number;
+  /** The maximum number of custom profile fields allowed to be set. */
+  maxProfileFields: number;
+  /** The maximum size of a profile field name, in characters. */
+  profileFieldNameLimit: number;
+  /** The maximum size of a profile field value, in characters. */
+  profileFieldValueLimit: number;
 }
 
 export interface InstanceStatusesConfiguration {
@@ -166,4 +182,6 @@ export interface Instance {
   contact: InstanceContact;
   /** An itemized list of rules for this website. */
   rules: Rule[];
+  /** The current Wrapstodon (Annual report campaign identifier (year), if any. */
+  wrapstodon?: string | null;
 }

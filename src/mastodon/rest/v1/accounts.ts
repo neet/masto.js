@@ -91,6 +91,8 @@ export interface ListAccountStatusesParams extends DefaultPaginationParams {
   readonly excludeReblogs?: boolean | null;
   /** Only return statuses using a specific hashtag */
   readonly tagged?: string | null;
+  /** https://github.com/mastodon/mastodon/pull/37763 */
+  readonly excludeDirect?: boolean | null;
 }
 
 export interface FollowAccountParams {

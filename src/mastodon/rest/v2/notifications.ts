@@ -3,6 +3,7 @@ import {
   type Account,
   type GroupedNotificationsResults,
   type NotificationGroupType,
+  type NotificationType,
 } from "../../entities/v1/index.js";
 import {
   type NotificationPolicy,
@@ -45,6 +46,9 @@ export interface ListNotificationsParams extends DefaultPaginationParams {
 
   /** Whether to include notifications filtered by the user’s NotificationPolicy. Defaults to false. */
   readonly includeFiltered?: boolean | null;
+
+  /** Array of String. Notification types to not get fallback representation for even when some is available. Passing this parameter is required to get any notification fallback at all. When this parameter is used, and a notification which type is not included in supported_types has an available fallback representation, it will be included in the notification’s fallback attribute. */
+  readonly supportedTypes?: readonly NotificationType[] | null;
 }
 
 export interface FetchUnreadCountParams {
@@ -73,6 +77,11 @@ export interface UpdateNotificationPolicyParams {
   readonly forLimitedAccounts?: NotificationPolicyType | null;
 }
 
+export interface FetchNotificationParams {
+  /** Array of String. Notification types to not get fallback representation for even when some is available. Passing this parameter is required to get any notification fallback at all. When this parameter is used, and a notification which type is not included in supported_types has an available fallback representation, it will be included in the notification’s fallback attribute. */
+  readonly supportedTypes?: readonly NotificationType[] | null;
+}
+
 export interface Notifications$SelectAccountsResource {
   fetch: Method<Account[]>;
 }
@@ -83,7 +92,7 @@ export interface Notifications$SelectResource {
   /**
    * View information about a specific notification group with a given group key.
    */
-  fetch: Method<GroupedNotificationsResults>;
+  fetch: Method<GroupedNotificationsResults, FetchNotificationParams>;
 
   /**
    * Dismiss a single notification group from the server.
