@@ -57,6 +57,7 @@
     "unreblog",
     "unreviewed",
     "unsilence",
-    "unstorage"
+    "unstorage",
+    "wrapstodon"
   ]
 }
