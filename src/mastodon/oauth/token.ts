@@ -38,6 +38,3 @@ export interface TokenResource {
     meta?: HttpMetaParams<"multipart-form">,
   ): Promise<Token>;
 }
-
-/** @deprecated Use `TokenResource` instead */
-export type TokenRepository = TokenResource;

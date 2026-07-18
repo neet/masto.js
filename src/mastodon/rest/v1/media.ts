@@ -52,6 +52,3 @@ export interface MediaAttachmentsResource {
     HttpMetaParams<"json">
   >;
 }
-
-/** @deprecated Use `MediaAttachmentsResource` instead */
-export type MediaAttachmentRepository = MediaAttachmentsResource;

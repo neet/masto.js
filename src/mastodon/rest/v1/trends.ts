@@ -50,6 +50,3 @@ export interface TrendsResource {
   links: TrendsLinksResource;
   tags: TrendsTagsResource;
 }
-
-/** @deprecated Use `TrendsResource` instead. */
-export type TrendRepository = TrendsResource;

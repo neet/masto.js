@@ -31,6 +31,3 @@ export interface Polls$SelectResource {
 export interface PollsResource {
   $select(id: string): Polls$SelectResource;
 }
-
-/** @deprecated Use `PollsResource` instead */
-export type PollRepository = PollsResource;

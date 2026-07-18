@@ -406,10 +406,3 @@ export interface AccountsResource {
     HttpMetaParams<"multipart-form">
   >;
 }
-
-/** @deprecated Use `AccountsResource` instead. */
-export type AccountRepository = AccountsResource;
-
-/** @deprecated Use `AccountsFamiliarFollowersResource` instead. */
-export type AccountFamiliarFollowersResource =
-  AccountsFamiliarFollowersResource;

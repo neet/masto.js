@@ -77,6 +77,3 @@ export interface CanonicalEmailBlocksResource {
     HttpMetaParams<"json">
   >;
 }
-
-/** @deprecated Use CanonicalEmailBlocksResource instead */
-export type CanonicalEmailBlockRepository = CanonicalEmailBlocksResource;

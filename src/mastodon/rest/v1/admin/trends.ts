@@ -72,6 +72,3 @@ export interface TrendsResource {
   statuses: TrendsStatusesResource;
   tags: TrendsTagsResource;
 }
-
-/** @deprecated Use `TrendsResource` instead */
-export type TrendRepository = TrendsResource;

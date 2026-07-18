@@ -136,6 +136,3 @@ export interface AccountsResource {
     ListAccountsParams
   >;
 }
-
-/** @deprecated Use `AccountsResource` instead. */
-export type AccountRepository = AccountsResource;

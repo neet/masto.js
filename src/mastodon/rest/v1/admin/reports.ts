@@ -58,6 +58,3 @@ export interface ReportsResource {
    */
   list: Method<Paginator<Admin.Report[], ListReportsParams>, ListReportsParams>;
 }
-
-/** @deprecated Use `ReportsResource` instead */
-export type ReportRepository = ReportsResource;

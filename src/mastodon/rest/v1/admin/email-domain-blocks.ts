@@ -55,6 +55,3 @@ export interface EmailDomainBlocksResource {
     HttpMetaParams<"json">
   >;
 }
-
-/** @deprecated Use `EmailDomainBlocksResource` instead */
-export type EmailDomainBlockRepository = EmailDomainBlocksResource;

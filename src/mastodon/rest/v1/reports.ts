@@ -28,6 +28,3 @@ export interface ReportsResource {
    */
   create: Method<Report, ReportAccountParams, HttpMetaParams<"json">>;
 }
-
-/** @deprecated Use `ReportsResource` instead. */
-export type ReportRepository = ReportsResource;

@@ -19,6 +19,3 @@ export interface RetentionResource {
    */
   create: Method<Admin.Cohort[], CreateRetentionParams, HttpMetaParams<"json">>;
 }
-
-/** @deprecated Use `RetentionsResource` instead */
-export type RetentionRepository = RetentionResource;
