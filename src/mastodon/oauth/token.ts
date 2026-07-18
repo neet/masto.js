@@ -14,8 +14,7 @@ interface BaseCreateTokenParams<T extends string> {
   readonly scope?: string | null;
 }
 
-export interface CreateTokenWithAuthorizationCodeParams
-  extends BaseCreateTokenParams<"authorization_code"> {
+export interface CreateTokenWithAuthorizationCodeParams extends BaseCreateTokenParams<"authorization_code"> {
   /** A user authorization code, obtained via GET /oauth/authorize. */
   readonly code: string;
 }
@@ -23,8 +22,7 @@ export interface CreateTokenWithAuthorizationCodeParams
 export type CreateTokenWithClientCredentialsParams =
   BaseCreateTokenParams<"client_credentials">;
 
-export interface CreateTokenWithPasswordParams
-  extends BaseCreateTokenParams<"password"> {
+export interface CreateTokenWithPasswordParams extends BaseCreateTokenParams<"password"> {
   readonly password: string;
   readonly username: string;
 }

@@ -3,9 +3,10 @@ import { type Http, type HttpMetaParams } from "../../interfaces/index.js";
 import { type mastodon } from "../../mastodon/index.js";
 import { parseLinkHeader } from "../../utils/index.js";
 
-export class PaginatorHttp<TEntity, TParams = undefined>
-  implements mastodon.Paginator<TEntity, TParams>
-{
+export class PaginatorHttp<
+  TEntity,
+  TParams = undefined,
+> implements mastodon.Paginator<TEntity, TParams> {
   constructor(
     private readonly http: Http,
     private readonly raw: boolean,

@@ -1,8 +1,6 @@
 import { type WebSocketSubscriptionCounter } from "../../interfaces/index.js";
 
-export class WebSocketSubscriptionCounterImpl
-  implements WebSocketSubscriptionCounter
-{
+export class WebSocketSubscriptionCounterImpl implements WebSocketSubscriptionCounter {
   private counts = new Map<string, number>();
 
   count(stream: string, params?: Record<string, unknown>): number {

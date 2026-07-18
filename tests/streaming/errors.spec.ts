@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/no-array-callback-reference */
 import { MastoUnexpectedError } from "../../src/adapters/errors/index.js";
 import { type mastodon } from "../../src/index.js";
 import { sleep } from "../../src/utils/index.js";

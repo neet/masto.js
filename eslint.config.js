@@ -41,6 +41,7 @@ export default defineConfig(
       "simple-import-sort/imports": "error",
       "unicorn/prevent-abbreviations": "off",
       "unicorn/no-array-reduce": "off",
+      "unicorn/filename-case": "off",
       "no-restricted-imports": [
         "error",
         { paths: [{ name: "ws", message: "Use `isomorphic-ws` instead." }] },

@@ -1,9 +1,5 @@
 export type Encoding =
-  | "none"
-  | "json"
-  | "multipart-form"
-  | "querystring"
-  | "html";
+  "none" | "json" | "multipart-form" | "querystring" | "html";
 
 export interface Serializer {
   serialize(type: "json" | "querystring", data: unknown): string;

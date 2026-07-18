@@ -1,8 +1,7 @@
 export type Direction = "next" | "prev";
 
 export interface Paginator<Entity, Params = undefined>
-  extends PromiseLike<Entity>,
-    AsyncIterable<Entity> {
+  extends PromiseLike<Entity>, AsyncIterable<Entity> {
   /**
    * Get the current direction of the paginator.
    * @returns The current direction of the paginator.

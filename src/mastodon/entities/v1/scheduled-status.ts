@@ -1,11 +1,10 @@
 import { type MediaAttachment } from "./media-attachment.js";
 import { type Status } from "./status.js";
 
-export interface StatusParams
-  extends Pick<
-    Status,
-    "id" | "inReplyToId" | "sensitive" | "spoilerText" | "visibility"
-  > {
+export interface StatusParams extends Pick<
+  Status,
+  "id" | "inReplyToId" | "sensitive" | "spoilerText" | "visibility"
+> {
   /** Content of the status */
   text: string;
   /** IDs of media attachments */

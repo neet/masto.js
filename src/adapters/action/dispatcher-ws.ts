@@ -12,9 +12,7 @@ import { WebSocketSubscription } from "../ws/index.js";
 type WebSocketActionType = "close" | "prepare" | "subscribe";
 type WebSocketAction = Action<WebSocketActionType>;
 
-export class WebSocketActionDispatcher
-  implements ActionDispatcher<WebSocketAction>
-{
+export class WebSocketActionDispatcher implements ActionDispatcher<WebSocketAction> {
   constructor(
     private readonly connector: WebSocketConnector,
     private readonly counter: WebSocketSubscriptionCounter,
