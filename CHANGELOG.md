@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.12.1](https://github.com/neet/masto.js/compare/v7.12.0...v7.12.1) (2026-07-18)
+
+
+### Bug Fixes
+
+* Update dependencies ([6437306](https://github.com/neet/masto.js/commit/6437306852986452f158d3009da239dcedccb832))
+* Update dependencies ([865b3ae](https://github.com/neet/masto.js/commit/865b3aee0f8dfcb8304eed3c4256feb2545cf6b5))
+
 ## [7.12.0](https://github.com/neet/masto.js/compare/v7.11.1...v7.12.0) (2026-06-22)
 
 
