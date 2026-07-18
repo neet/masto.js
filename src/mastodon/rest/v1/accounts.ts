@@ -1,10 +1,10 @@
 import { type HttpMetaParams } from "../../../interfaces/index.js";
 import {
   type Account,
-  type AccountCredentials,
   type AccountField,
   type AccountSource,
   type Collections,
+  type CredentialAccount,
   type FamiliarFollowers,
   type FeaturedTag,
   type IdentityProof,
@@ -392,7 +392,7 @@ export interface AccountsResource {
    * @return the user's own Account with Source
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
-  verifyCredentials: Method<AccountCredentials>;
+  verifyCredentials: Method<CredentialAccount>;
 
   /**
    *  Update the user's display and preferences.
@@ -401,7 +401,7 @@ export interface AccountsResource {
    * @see https://docs.joinmastodon.org/methods/accounts/
    */
   updateCredentials: Method<
-    AccountCredentials,
+    CredentialAccount,
     UpdateCredentialsParams,
     HttpMetaParams<"multipart-form">
   >;
