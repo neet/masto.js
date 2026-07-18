@@ -159,7 +159,6 @@ Clients and subscriptions implement `Symbol.dispose` for explicit resource clean
 
 - `change-case` - Case conversion
 - `events-to-async` - Event stream to async iterator conversion
-- `isomorphic-ws` + `ws` - WebSocket support for Node.js
 - `ts-custom-error` - Custom error classes
 
 Keep bundle size minimal - this is a key project goal tracked via size-limit in package.json (~4 kB per client type).
