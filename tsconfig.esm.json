@@ -2,7 +2,7 @@
   "extends": "@tsconfig/node22/tsconfig.json",
   "compilerOptions": {
     "moduleResolution": "NodeNext",
-    "outDir": "./dist/esm",
+    "outDir": "./dist",
     "rootDir": "./src",
     "declaration": true
   },
