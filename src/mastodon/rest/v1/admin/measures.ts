@@ -85,6 +85,3 @@ export interface MeasuresResource {
    */
   create: Method<Admin.Measure[], FetchMeasureParams, HttpMetaParams<"json">>;
 }
-
-/** @deprecated Use `MeasuresResource` instead */
-export type MeasureRepository = MeasuresResource;

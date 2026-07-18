@@ -61,6 +61,3 @@ export interface DimensionsResource {
     HttpMetaParams<"json">
   >;
 }
-
-/** @deprecated Use `DimensionsResource` instead. */
-export type DimensionRepository = DimensionsResource;

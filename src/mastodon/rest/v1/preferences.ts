@@ -9,6 +9,3 @@ export interface PreferencesResource {
    */
   fetch: Method<Preference>;
 }
-
-/** @deprecated Use `PreferencesResource` instead. */
-export type PreferenceRepository = PreferencesResource;

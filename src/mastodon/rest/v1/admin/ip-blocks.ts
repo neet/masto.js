@@ -77,6 +77,3 @@ export interface IpBlocksResource {
    */
   create: Method<Admin.IpBlock, CreateIpBlockParams, HttpMetaParams<"json">>;
 }
-
-/** @deprecated Use `IpBlocksResource` instead */
-export type IpBlockRepository = IpBlocksResource;

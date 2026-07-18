@@ -51,6 +51,3 @@ export interface DomainAllowsResource {
     HttpMetaParams<"json">
   >;
 }
-
-/** @deprecated Use `DomainAllowsResource` instead */
-export type DomainAllowRepository = DomainAllowsResource;

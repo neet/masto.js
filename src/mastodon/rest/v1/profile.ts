@@ -74,6 +74,3 @@ export interface ProfileResource {
     HttpMetaParams<"multipart-form">
   >;
 }
-
-/** @deprecated Use `ProfileResource` instead. */
-export type ProfileRepository = ProfileResource;

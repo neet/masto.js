@@ -15,6 +15,3 @@ export interface BookmarksResource {
     DefaultPaginationParams
   >;
 }
-
-/** @deprecated Use `BookmarksResource` instead. */
-export type BookmarkRepository = BookmarksResource;

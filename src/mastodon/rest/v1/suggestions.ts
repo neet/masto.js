@@ -30,6 +30,3 @@ export interface SuggestionsResource {
     ListSuggestionParams
   >;
 }
-
-/** @deprecated Use `SuggestionsResource` instead. */
-export type SuggestionRepository = SuggestionsResource;
