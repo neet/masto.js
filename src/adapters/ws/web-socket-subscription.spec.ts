@@ -1,5 +1,5 @@
 import getPort from "get-port";
-import { WebSocketServer } from "isomorphic-ws";
+import { WebSocketServer } from "ws";
 
 import { createLogger } from "../logger/index.js";
 import { SerializerNativeImpl } from "../serializers/index.js";

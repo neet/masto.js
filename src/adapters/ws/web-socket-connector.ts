@@ -1,5 +1,3 @@
-import WebSocket from "isomorphic-ws";
-
 import {
   type Logger,
   type WebSocketConnector,
