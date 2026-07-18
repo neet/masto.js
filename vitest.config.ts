@@ -5,12 +5,8 @@ export default defineConfig({
     globals: true,
     pool: "threads",
     coverage: {
-      include: [
-        "src/**/*.ts",
-        "!src/**/index.ts",
-        "!src/**/*.spec.ts",
-        "!**/__mocks__/**",
-      ],
+      include: ["src/**/*.ts"],
+      exclude: ["src/**/index.ts", "src/**/*.spec.ts", "**/__mocks__/**"],
     },
     projects: [
       {
