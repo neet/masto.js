@@ -1,5 +1,5 @@
 import {
-  type Admin,
+  type admin,
   type Status,
   type TrendLink,
 } from "../../../entities/v1/index.js";
@@ -53,8 +53,8 @@ export interface TrendsStatusesResource {
 
 /** https://github.com/mastodon/mastodon/pull/24257 */
 export interface TrendsTags$SelectResource {
-  approve: Method<Admin.Tag>;
-  reject: Method<Admin.Tag>;
+  approve: Method<admin.Tag>;
+  reject: Method<admin.Tag>;
 }
 
 export interface TrendsTagsResource {
@@ -64,7 +64,7 @@ export interface TrendsTagsResource {
    * Tags that are being used more frequently within the past week, including unapproved and unreviewed tags.
    * @see https://docs.joinmastodon.org/methods/admin/trends/#tags
    */
-  list: Method<Paginator<Admin.Tag[]>>;
+  list: Method<Paginator<admin.Tag[]>>;
 }
 
 export interface TrendsResource {
