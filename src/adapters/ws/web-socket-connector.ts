@@ -4,11 +4,7 @@ import {
   type Logger,
   type WebSocketConnector,
 } from "../../interfaces/index.js";
-import {
-  createPromiseWithResolvers,
-  ExponentialBackoff,
-  type PromiseWithResolvers,
-} from "../../utils/index.js";
+import { ExponentialBackoff } from "../../utils/index.js";
 import { MastoWebSocketError } from "../errors/index.js";
 import { waitForClose, waitForOpen } from "./wait-for-events.js";
 
@@ -44,7 +40,7 @@ export class WebSocketConnectorImpl implements WebSocketConnector {
       return Promise.resolve(this.ws);
     }
 
-    const promiseWithResolvers = createPromiseWithResolvers<WebSocket>();
+    const promiseWithResolvers = Promise.withResolvers<WebSocket>();
     this.queue.push(promiseWithResolvers);
     return promiseWithResolvers.promise;
   }
