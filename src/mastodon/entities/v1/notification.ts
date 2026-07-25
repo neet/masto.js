@@ -1,5 +1,6 @@
 import { type Account } from "./account.js";
 import { type AccountWarning } from "./account-warning.js";
+import { type Collection } from "./collection.js";
 import { type RelationshipSeveranceEvent } from "./relationship-severance-event.js";
 import { type Report } from "./report.js";
 import { type Status } from "./status.js";
@@ -113,6 +114,22 @@ export type ModerationWarningNotification =
     moderationWarning: AccountWarning;
   };
 
+/**
+ * Someone added you to a Collection
+ */
+export type AddedToCollectionNotification =
+  BaseNotificationPlain<"added_to_collection"> & {
+    collection: Collection;
+  };
+
+/**
+ * A Collection you are featured in was updated
+ */
+export type CollectionUpdateNotification =
+  BaseNotificationPlain<"collection_update"> & {
+    collection: Collection;
+  };
+
 export interface NotificationRegistry {
   mention: MentionNotification;
   status: StatusNotification;
@@ -128,6 +145,8 @@ export interface NotificationRegistry {
   "admin.report": AdminReportNotification;
   severed_relationships: SeveredRelationshipsNotification;
   moderation_warning: ModerationWarningNotification;
+  added_to_collection: AddedToCollectionNotification;
+  collection_update: CollectionUpdateNotification;
 }
 
 /**
