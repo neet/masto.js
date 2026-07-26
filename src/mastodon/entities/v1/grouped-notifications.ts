@@ -1,5 +1,6 @@
 import { type Account } from "./account.js";
 import { type AccountWarning } from "./account-warning.js";
+import { type Collection } from "./collection.js";
 import { type RelationshipSeveranceEvent } from "./relationship-severance-event.js";
 import { type Report } from "./report.js";
 import { type Status } from "./status.js";
@@ -70,6 +71,11 @@ type NotificationGroupWithModerationWarning<T> = BaseNotificationGroup<T> & {
   moderationWarning: AccountWarning;
 };
 
+type NotificationGroupWithCollection<T> = BaseNotificationGroup<T> & {
+  /** Collection that was the object of the notification. Attached when type of the notification is added_to_collection or collection_update. */
+  collection: Collection;
+};
+
 /** Someone mentioned you in their status */
 export type MentionNotificationGroup = NotificationGroupWithStatusId<"mention">;
 
@@ -119,6 +125,14 @@ export type SeveredRelationshipsNotificationGroup =
 export type ModerationWarningNotificationGroup =
   NotificationGroupWithModerationWarning<"moderation_warning">;
 
+/** Someone added you to a Collection */
+export type AddedToCollectionNotificationGroup =
+  NotificationGroupWithCollection<"added_to_collection">;
+
+/** A Collection you are featured in was updated */
+export type CollectionUpdateNotificationGroup =
+  NotificationGroupWithCollection<"collection_update">;
+
 export interface NotificationGroupRegistry {
   mention: MentionNotificationGroup;
   status: StatusNotificationGroup;
@@ -134,6 +148,8 @@ export interface NotificationGroupRegistry {
   "admin.report": AdminReportNotificationGroup;
   severed_relationships: SeveredRelationshipsNotificationGroup;
   moderation_warning: ModerationWarningNotificationGroup;
+  added_to_collection: AddedToCollectionNotificationGroup;
+  collection_update: CollectionUpdateNotificationGroup;
 }
 
 /** Group key identifying the grouped notifications. Should be treated as an opaque value. */
