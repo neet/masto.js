@@ -39,14 +39,6 @@ interface BaseNotificationGroup<T> {
   latestPageNotificationAt?: string;
   /** IDs of some of the accounts who most recently triggered notifications in this group. */
   sampleAccountIds: string;
-  /** ID of the Status that was the object of the notification. Attached when type of the notification is favourite, reblog, status, mention, poll, or update. */
-  statusId?: undefined | null;
-  /** Report that was the object of the notification. Attached when type of the notification is admin.report. */
-  report?: undefined | null;
-  /** Summary of the event that caused follow relationships to be severed. Attached when type of the notification is severed_relationships. */
-  event?: undefined | null;
-  /** Moderation warning that caused the notification. Attached when type of the notification is moderation_warning. */
-  moderationWarning?: undefined | null;
 }
 
 type NotificationGroupPlain<T> = BaseNotificationGroup<T>;
