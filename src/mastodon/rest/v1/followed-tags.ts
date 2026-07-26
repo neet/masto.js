@@ -9,6 +9,3 @@ export interface FollowedTagsResource {
     DefaultPaginationParams
   >;
 }
-
-/** @deprecated Use `FollowedTagsResource` instead. */
-export type FollowedTagRepository = FollowedTagsResource;

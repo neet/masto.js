@@ -37,6 +37,3 @@ export interface MarkersResource {
    */
   create: Method<Marker, CreateMarkersParams, HttpMetaParams<"json">>;
 }
-
-/** @deprecated Use `MarkersResource` instead */
-export type MarkerRepository = MarkersResource;

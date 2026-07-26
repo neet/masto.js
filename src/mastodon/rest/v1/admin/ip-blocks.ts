@@ -1,6 +1,6 @@
 import { type HttpMetaParams } from "../../../../interfaces/index.js";
 import { type IpBlockSeverity } from "../../../entities/v1/admin/index.js";
-import { type Admin } from "../../../entities/v1/index.js";
+import { type admin } from "../../../entities/v1/index.js";
 import { type Method } from "../../../method.js";
 import { type Paginator } from "../../../paginator.js";
 
@@ -37,7 +37,7 @@ export interface IpBlocks$SelectResource {
    * @return IpBlock
    * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#get-one
    */
-  fetch: Method<Admin.IpBlock>;
+  fetch: Method<admin.IpBlock>;
 
   /**
    * Change parameters for an existing IP block.
@@ -45,7 +45,7 @@ export interface IpBlocks$SelectResource {
    * @return IpBlock
    * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#update
    */
-  update: Method<Admin.IpBlock, UpdateIpBlockParams, HttpMetaParams<"json">>;
+  update: Method<admin.IpBlock, UpdateIpBlockParams, HttpMetaParams<"json">>;
 
   /**
    * Lift a block against an IP range.
@@ -65,7 +65,7 @@ export interface IpBlocksResource {
    * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#get
    */
   list: Method<
-    Paginator<Admin.IpBlock[], ListIpBlocksParams>,
+    Paginator<admin.IpBlock[], ListIpBlocksParams>,
     ListIpBlocksParams
   >;
 
@@ -75,8 +75,5 @@ export interface IpBlocksResource {
    * @return IpBlock
    * @see https://docs.joinmastodon.org/methods/admin/ip_blocks/#post
    */
-  create: Method<Admin.IpBlock, CreateIpBlockParams, HttpMetaParams<"json">>;
+  create: Method<admin.IpBlock, CreateIpBlockParams, HttpMetaParams<"json">>;
 }
-
-/** @deprecated Use `IpBlocksResource` instead */
-export type IpBlockRepository = IpBlocksResource;

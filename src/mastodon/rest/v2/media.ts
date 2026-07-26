@@ -31,6 +31,3 @@ export interface MediaAttachmentsResource {
     HttpMetaParams<"multipart-form">
   >;
 }
-
-/** @deprecated Use MediaAttachmentsResource instead. */
-export type MediaAttachmentRepository = MediaAttachmentsResource;

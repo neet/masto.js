@@ -17,6 +17,3 @@ export interface MutesResource {
     HttpMetaParams<"json">
   >;
 }
-
-/** @deprecated Use `MutesResource` instead. */
-export type MuteRepository = MutesResource;

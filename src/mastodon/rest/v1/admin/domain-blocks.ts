@@ -1,5 +1,5 @@
 import { type HttpMetaParams } from "../../../../interfaces/index.js";
-import { type Admin } from "../../../entities/v1/index.js";
+import { type admin } from "../../../entities/v1/index.js";
 import { type Method } from "../../../method.js";
 import { type Paginator } from "../../../paginator.js";
 
@@ -7,7 +7,7 @@ export interface CreateDomainBlockParams {
   /** The domain to block federation required*/
   readonly domain: string;
   /** Whether to apply a silence, suspend, or noop to the domain?*/
-  readonly severity?: Admin.DomainBlockSeverity | null;
+  readonly severity?: admin.DomainBlockSeverity | null;
   /** Whether media attachments should be rejected*/
   readonly rejectMedia?: boolean | null;
   /** Whether reports from this domain should be rejected*/
@@ -32,7 +32,7 @@ export interface DomainBlocks$SelectResource {
    * @return DomainBlock
    * @see https://docs.joinmastodon.org/methods/admin/domain_blocks/#get-one
    */
-  fetch: Method<Admin.DomainBlock>;
+  fetch: Method<admin.DomainBlock>;
 
   /**
    * Change parameters for an existing domain block.
@@ -41,7 +41,7 @@ export interface DomainBlocks$SelectResource {
    * @see https://docs.joinmastodon.org/methods/admin/domain_blocks/#update
    */
   update: Method<
-    Admin.DomainBlock,
+    admin.DomainBlock,
     UpdateDomainBlockParams,
     HttpMetaParams<"json">
   >;
@@ -64,7 +64,7 @@ export interface DomainBlocksResource {
    * @see https://docs.joinmastodon.org/methods/admin/domain_blocks/#get
    */
   list: Method<
-    Paginator<Admin.DomainBlock[], ListDomainBlocksParams>,
+    Paginator<admin.DomainBlock[], ListDomainBlocksParams>,
     ListDomainBlocksParams
   >;
 
@@ -75,11 +75,8 @@ export interface DomainBlocksResource {
    * @see https://docs.joinmastodon.org/methods/admin/domain_blocks/#post
    */
   create: Method<
-    Admin.DomainBlock,
+    admin.DomainBlock,
     CreateDomainBlockParams,
     HttpMetaParams<"json">
   >;
 }
-
-/** @deprecated Use `DomainBlocksResource` instead */
-export type DomainBlockRepository = DomainBlocksResource;

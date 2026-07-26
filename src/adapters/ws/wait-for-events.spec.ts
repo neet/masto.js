@@ -1,5 +1,5 @@
 import getPort from "get-port";
-import WebSocket, { WebSocketServer } from "isomorphic-ws";
+import { WebSocketServer } from "ws";
 
 import { waitForClose, waitForOpen } from "./wait-for-events.js";
 

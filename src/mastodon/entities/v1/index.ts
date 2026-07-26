@@ -1,4 +1,4 @@
-export type * as Admin from "./admin/index.js";
+export type * as admin from "./admin/index.js";
 export type * from "./account.js";
 export type * from "./collection.js";
 export type * from "./collection-item.js";
