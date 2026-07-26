@@ -1,5 +1,19 @@
 # Changelog
 
+## [7.13.0](https://github.com/neet/masto.js/compare/v7.12.1...v7.13.0) (2026-07-26)
+
+
+### Features
+
+* support `added_to_collection` and `collection_update` notifications ([db7748f](https://github.com/neet/masto.js/commit/db7748f1eafb283ea336092fda712737a81a18e2))
+* support `added_to_collection` and `collection_update` notifications ([41e4a14](https://github.com/neet/masto.js/commit/41e4a1455896a9ff1b7e39288b294d3be94f3482))
+
+
+### Bug Fixes
+
+* Fix some variants of NotificationGroup become `never` ([c8e6469](https://github.com/neet/masto.js/commit/c8e6469ae765db23e1c4bacd377f6df7af1ad86f))
+* Fix some variants of NotificationGroup become `never` ([8f6eb91](https://github.com/neet/masto.js/commit/8f6eb911f165a8a12717a31875978eec5dfe75b1))
+
 ## [7.12.1](https://github.com/neet/masto.js/compare/v7.12.0...v7.12.1) (2026-07-18)
 
 
