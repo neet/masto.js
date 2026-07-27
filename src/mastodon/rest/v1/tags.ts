@@ -38,3 +38,6 @@ export interface Tags$SelectResource {
 export interface TagsResource {
   $select(id: string): Tags$SelectResource;
 }
+
+/** @deprecated Use `TagsResource` instead. */
+export type TagRepository = TagsResource;

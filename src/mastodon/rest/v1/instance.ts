@@ -65,3 +65,6 @@ export interface InstanceResource {
    */
   fetch: Method<Instance>;
 }
+
+/** @deprecated Use `InstanceResource` instead. */
+export type InstanceRepository = InstanceResource;

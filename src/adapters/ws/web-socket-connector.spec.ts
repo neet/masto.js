@@ -1,5 +1,5 @@
 import getPort from "get-port";
-import { WebSocketServer } from "ws";
+import { WebSocket, WebSocketServer } from "isomorphic-ws";
 
 import { sleep } from "../../utils/index.js";
 import { MastoWebSocketError } from "../errors/index.js";

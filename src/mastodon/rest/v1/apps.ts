@@ -33,3 +33,6 @@ export interface AppsResource {
    */
   verifyCredentials: Method<Client>;
 }
+
+/** @deprecated Use `AppsResource` instead. */
+export type AppRepository = AppsResource;

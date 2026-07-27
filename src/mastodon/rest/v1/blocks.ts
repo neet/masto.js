@@ -15,3 +15,6 @@ export interface BlocksResource {
     DefaultPaginationParams
   >;
 }
+
+/** @deprecated Use `BlocksResource` instead. */
+export type BlockRepository = BlocksResource;

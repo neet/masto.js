@@ -1,9 +1,10 @@
 {
   "extends": "@tsconfig/node22/tsconfig.json",
   "compilerOptions": {
-    "moduleResolution": "NodeNext",
-    "outDir": "./dist/esm",
-    "rootDir": "./src",
+    "module": "CommonJS",
+    "moduleResolution": "bundler",
+    "outDir": "./dist/cjs",
+    "rootDir": ".",
     "declaration": true
   },
   "include": ["./src/**/*"],

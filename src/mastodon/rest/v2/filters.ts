@@ -210,3 +210,6 @@ export interface FiltersResource {
    */
   create: Method<Filter, CreateFilterParams, HttpMetaParams<"json">>;
 }
+
+/** @deprecated Use `FiltersResource` instead. */
+export type FilterRepository = FiltersResource;

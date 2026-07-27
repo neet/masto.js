@@ -1,10 +1,12 @@
+import WebSocket from "isomorphic-ws";
+
 export function waitForOpen(ws: WebSocket): Promise<void> {
   if (ws.readyState === WebSocket.OPEN) {
     return Promise.resolve();
   }
 
   return new Promise<void>((resolve, reject) => {
-    const handleError = (error: Event): void => {
+    const handleError = (error: WebSocket.ErrorEvent): void => {
       reject(error);
     };
 

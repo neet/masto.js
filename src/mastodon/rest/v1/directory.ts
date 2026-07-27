@@ -34,3 +34,6 @@ export interface DirectoryResource {
     HttpMetaParams<"json">
   >;
 }
+
+/** @deprecated Use `DirectoryResource` instead. */
+export type DirectoryRepository = DirectoryResource;

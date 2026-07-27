@@ -149,3 +149,6 @@ export interface NotificationsResource {
    */
   list: Method<Paginator<GroupedNotificationsResults>, ListNotificationsParams>;
 }
+
+/** @deprecated Use NotificationsResource instead. */
+export type NotificationRepository = NotificationsResource;

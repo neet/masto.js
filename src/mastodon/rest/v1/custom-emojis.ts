@@ -10,3 +10,6 @@ export interface CustomEmojisResource {
    */
   list: Method<Paginator<CustomEmoji[]>>;
 }
+
+/** @deprecated Use `CustomEmojisResource` instead. */
+export type CustomEmojiRepository = CustomEmojisResource;

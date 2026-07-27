@@ -1,5 +1,5 @@
 import { type HttpMetaParams } from "../../../../interfaces/index.js";
-import { type admin } from "../../../entities/v1/index.js";
+import { type Admin } from "../../../entities/v1/index.js";
 import { type Method } from "../../../method.js";
 import { type Paginator } from "../../../paginator.js";
 import { type DefaultPaginationParams } from "../../../resource.js";
@@ -29,7 +29,7 @@ export interface CanonicalEmailBlocks$SelectResource {
    * @return CanonicalEmailBlock
    * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks
    */
-  fetch: Method<admin.CanonicalEmailBlock>;
+  fetch: Method<Admin.CanonicalEmailBlock>;
 
   /**
    * Lift a block a canonical email.
@@ -49,7 +49,7 @@ export interface CanonicalEmailBlocksResource {
    * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks/
    */
   list: Method<
-    Paginator<admin.CanonicalEmailBlock[], DefaultPaginationParams>,
+    Paginator<Admin.CanonicalEmailBlock[], DefaultPaginationParams>,
     DefaultPaginationParams
   >;
 
@@ -60,7 +60,7 @@ export interface CanonicalEmailBlocksResource {
    * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks/#test
    */
   test: Method<
-    admin.CanonicalEmailBlock[],
+    Admin.CanonicalEmailBlock[],
     TestCanonicalEmailBlockParams,
     HttpMetaParams<"json">
   >;
@@ -72,8 +72,11 @@ export interface CanonicalEmailBlocksResource {
    * @see https://docs.joinmastodon.org/methods/admin/canonical_email_blocks
    */
   create: Method<
-    admin.CanonicalEmailBlock,
+    Admin.CanonicalEmailBlock,
     CreateCanonicalEmailBlockParams,
     HttpMetaParams<"json">
   >;
 }
+
+/** @deprecated Use CanonicalEmailBlocksResource instead */
+export type CanonicalEmailBlockRepository = CanonicalEmailBlocksResource;

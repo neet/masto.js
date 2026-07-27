@@ -45,3 +45,6 @@ export interface DomainBlocksResource {
    */
   remove: Method<void, RemoveDomainBlockParams, HttpMetaParams<"json">>;
 }
+
+/** @deprecated Use `DomainBlocksResource` instead. */
+export type DomainBlockRepository = DomainBlocksResource;

@@ -51,3 +51,6 @@ export interface FeaturedTagsResource {
     HttpMetaParams<"multipart-form">
   >;
 }
+
+/** @deprecated Use `FeaturedTagsResource` instead. */
+export type FeaturedTagRepository = FeaturedTagsResource;

@@ -33,3 +33,6 @@ export interface FollowRequestsResource {
     DefaultPaginationParams
   >;
 }
+
+/** @deprecated Use `FollowRequestsResource` instead. */
+export type FollowRequestRepository = FollowRequestsResource;

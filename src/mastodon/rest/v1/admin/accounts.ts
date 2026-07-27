@@ -1,5 +1,5 @@
 import { type HttpMetaParams } from "../../../../interfaces/index.js";
-import { type admin } from "../../../entities/v1/index.js";
+import { type Admin } from "../../../entities/v1/index.js";
 import { type Method } from "../../../method.js";
 import { type Paginator } from "../../../paginator.js";
 import { type DefaultPaginationParams } from "../../../resource.js";
@@ -76,49 +76,49 @@ export interface Accounts$SelectResource {
    * @return AdminAccount
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  fetch: Method<admin.Account>;
+  fetch: Method<Admin.Account>;
 
   /**
    * Approve the given local account if it is currently pending approval.
    * @return AdminAccount
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  approve: Method<admin.Account>;
+  approve: Method<Admin.Account>;
 
   /**
    * Reject the given local account if it is currently pending approval.
    * @return AdminAccount
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  reject: Method<admin.Account>;
+  reject: Method<Admin.Account>;
 
   /**
    * Re-enable a local account whose login is currently disabled.
    * @return AdminAccount
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  enable: Method<admin.Account>;
+  enable: Method<Admin.Account>;
 
   /**
    * Unsilence a currently silenced account.
    * @return AdminAccount
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  unsilence: Method<admin.Account>;
+  unsilence: Method<Admin.Account>;
 
   /**
    * Unsuspend a currently suspended account.
    * @return AdminAccount
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  unsuspend: Method<admin.Account>;
+  unsuspend: Method<Admin.Account>;
 
   /**
    * Unmark an account as sensitive
    * @return AdminAccount
    * @see https://docs.joinmastodon.org/methods/admin/accounts/#unsensitive
    */
-  unsensitive: Method<admin.Account>;
+  unsensitive: Method<Admin.Account>;
 }
 
 export interface AccountsResource {
@@ -132,7 +132,10 @@ export interface AccountsResource {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   list: Method<
-    Paginator<admin.Account[], ListAccountsParams>,
+    Paginator<Admin.Account[], ListAccountsParams>,
     ListAccountsParams
   >;
 }
+
+/** @deprecated Use `AccountsResource` instead. */
+export type AccountRepository = AccountsResource;

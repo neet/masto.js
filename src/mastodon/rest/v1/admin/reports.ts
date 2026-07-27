@@ -1,4 +1,4 @@
-import { type admin } from "../../../entities/v1/index.js";
+import { type Admin } from "../../../entities/v1/index.js";
 import { type Method } from "../../../method.js";
 import { type Paginator } from "../../../paginator.js";
 
@@ -16,35 +16,35 @@ export interface Reports$SelectResource {
    * @return AdminReport
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  fetch: Method<admin.Report>;
+  fetch: Method<Admin.Report>;
 
   /**
    * Claim the handling of this report to yourself.
    * @return AdminReport
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  assignToSelf: Method<admin.Report>;
+  assignToSelf: Method<Admin.Report>;
 
   /**
    * Unassign a report so that someone else can claim it.
    * @return AdminReport
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  unassign: Method<admin.Report>;
+  unassign: Method<Admin.Report>;
 
   /**
    * Mark a report as resolved with no further action taken.
    * @return AdminReport
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  resolve: Method<admin.Report>;
+  resolve: Method<Admin.Report>;
 
   /**
    * Reopen a currently closed report.
    * @return AdminReport
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  reopen: Method<admin.Report>;
+  reopen: Method<Admin.Report>;
 }
 
 export interface ReportsResource {
@@ -56,5 +56,8 @@ export interface ReportsResource {
    * @return Array of AdminReport
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  list: Method<Paginator<admin.Report[], ListReportsParams>, ListReportsParams>;
+  list: Method<Paginator<Admin.Report[], ListReportsParams>, ListReportsParams>;
 }
+
+/** @deprecated Use `ReportsResource` instead */
+export type ReportRepository = ReportsResource;
