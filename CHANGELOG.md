@@ -1,5 +1,35 @@
 # Changelog
 
+## [8.0.0](https://github.com/neet/masto.js/compare/v7.13.0...v8.0.0) (2026-07-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* Remove isomorphic-ws
+* Rename AccountCredentials to CredentialAccount
+* Drop CJS support
+* Rename namespace Admin to admin for consistency
+* Remove deprecated type aliases
+* Use native Promise.withResolvers
+
+### Features
+
+* Drop CJS support ([0a3845e](https://github.com/neet/masto.js/commit/0a3845e5b035864101a868c6bb46f792d97732fc))
+* Remove isomorphic-ws ([b5b32ce](https://github.com/neet/masto.js/commit/b5b32ceac511175500a85bfeb81eea7b5b3c8c9f))
+* Use native Promise.withResolvers ([a64675e](https://github.com/neet/masto.js/commit/a64675ebaef90d401b624d1e0a2ab25b88f95567))
+
+
+### Bug Fixes
+
+* **ci:** Bump Node.js version for release-please action ([#1444](https://github.com/neet/masto.js/issues/1444)) ([71ffa0e](https://github.com/neet/masto.js/commit/71ffa0e2e71bbb2810b2cffa6d8902032650baee))
+* Remove deprecated type aliases ([4426bd0](https://github.com/neet/masto.js/commit/4426bd0f69668ab5c50c33e5d999a0fb4f6fccf8))
+* Rename AccountCredentials to CredentialAccount ([23c9e63](https://github.com/neet/masto.js/commit/23c9e634cc387682ad7134302217db2f4d43fa79))
+
+
+### Miscellaneous Chores
+
+* Rename namespace Admin to admin for consistency ([ce5f05d](https://github.com/neet/masto.js/commit/ce5f05db2f9b2a612d3b0f5363ee69b8f5480b24))
+
 ## [7.13.0](https://github.com/neet/masto.js/compare/v7.12.1...v7.13.0) (2026-07-26)
 
 
