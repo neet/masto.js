@@ -24,3 +24,6 @@ export interface AdminResource {
   readonly retention: RetentionResource;
   readonly trends: TrendsResource;
 }
+
+/** @deprecated Use `AdminResource` instead */
+export type AdminRepository = AdminResource;

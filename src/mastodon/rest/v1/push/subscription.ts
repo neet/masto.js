@@ -70,3 +70,12 @@ export interface PushSubscriptionResource {
    */
   remove: Method<void>;
 }
+
+/** @deprecated Use `PushSubscriptionResource` instead. */
+export type WebPushSubscriptionRepository = PushSubscriptionResource;
+/** @deprecated Use `PushSubscriptionResource` instead. */
+export type WebPushSubscriptionResource = PushSubscriptionResource;
+/** @deprecated Use `CreatePushSubscriptionParams` instead. */
+export type CreateWebPushSubscriptionParams = CreatePushSubscriptionParams;
+/** @deprecated Use `UpdatePushSubscriptionParams` instead. */
+export type UpdateWebPushSubscriptionParams = UpdatePushSubscriptionParams;

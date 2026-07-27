@@ -1,5 +1,5 @@
 import { type HttpMetaParams } from "../../../../interfaces/index.js";
-import { type admin } from "../../../entities/v1/index.js";
+import { type Admin } from "../../../entities/v1/index.js";
 import { type Method } from "../../../method.js";
 import { type Paginator } from "../../../paginator.js";
 
@@ -19,7 +19,7 @@ export interface EmailDomainBlocks$SelectResource {
    * @return EmailDomainBlock
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  fetch: Method<admin.EmailDomainBlock>;
+  fetch: Method<Admin.EmailDomainBlock>;
 
   /**
    * Lift a block against an email domain.
@@ -39,7 +39,7 @@ export interface EmailDomainBlocksResource {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   list: Method<
-    Paginator<admin.EmailDomainBlock[], ListEmailDomainBlocksParams>,
+    Paginator<Admin.EmailDomainBlock[], ListEmailDomainBlocksParams>,
     ListEmailDomainBlocksParams
   >;
 
@@ -50,8 +50,11 @@ export interface EmailDomainBlocksResource {
    * @see https://docs.joinmastodon.org/methods/admin/
    */
   create: Method<
-    admin.EmailDomainBlock,
+    Admin.EmailDomainBlock,
     CreateEmailDomainBlockParams,
     HttpMetaParams<"json">
   >;
 }
+
+/** @deprecated Use `EmailDomainBlocksResource` instead */
+export type EmailDomainBlockRepository = EmailDomainBlocksResource;

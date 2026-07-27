@@ -7,22 +7,31 @@
   "license": "MIT",
   "type": "module",
   "sideEffects": false,
-  "types": "./dist/index.d.ts",
-  "module": "./dist/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
   "exports": {
     ".": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
       },
-      "default": "./dist/index.js"
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "default": "./dist/esm/index.js"
     },
     "./*.js": {
-      "import": {
-        "types": "./dist/*.d.ts",
-        "default": "./dist/*.js"
+      "require": {
+        "types": "./dist/cjs/*.d.ts",
+        "default": "./dist/cjs/*.js"
       },
-      "default": "./dist/*.js"
+      "import": {
+        "types": "./dist/esm/*.d.ts",
+        "default": "./dist/esm/*.js"
+      },
+      "default": "./dist/esm/*.js"
     },
     "./package.json": "./package.json"
   },
@@ -34,7 +43,9 @@
     "lint": "eslint --report-unused-disable-directives --cache",
     "spellcheck": "cspell --quiet --gitignore './**/*.{ts,js}'",
     "format": "prettier './**/*.{ts,js}' --check",
-    "build": "tsc --project tsconfig.esm.json",
+    "build": "npm-run-all build:* && tsconfig-to-dual-package tsconfig.esm.json tsconfig.cjs.json",
+    "build:esm": "tsc --project tsconfig.esm.json",
+    "build:cjs": "tsc --project tsconfig.cjs.json",
     "prepublishOnly": "npm run build",
     "docs:build": "typedoc ./src/index.ts && touch ./docs/.nojekyll",
     "purge:cache": "rm -rf ./node_modules/.cache/masto"
@@ -42,7 +53,9 @@
   "dependencies": {
     "change-case": "^5.4.4",
     "events-to-async": "^2.0.2",
-    "ts-custom-error": "^3.3.1"
+    "isomorphic-ws": "^5.0.0",
+    "ts-custom-error": "^3.3.1",
+    "ws": "^8.21.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",
@@ -66,14 +79,14 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^3.9.5",
     "size-limit": "^12.1.0",
+    "tsconfig-to-dual-package": "^1.2.0",
     "tslib": "^2.8.1",
     "typedoc": "^0.28.20",
     "typedoc-plugin-missing-exports": "^4.1.4",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.64.0",
     "undici": "^8.7.0",
-    "vitest": "^4.1.10",
-    "ws": "^8.21.1"
+    "vitest": "^4.1.10"
   },
   "files": [
     "README.md",
@@ -100,24 +113,21 @@
     {
       "name": "rest",
       "limit": "4.1 kB",
-      "path": "./dist/index.js",
+      "path": "./dist/esm/index.js",
       "import": "{ createRestAPIClient }"
     },
     {
       "name": "streaming",
       "limit": "4.0 kB",
-      "path": "./dist/index.js",
+      "path": "./dist/esm/index.js",
       "import": "{ createStreamingAPIClient }"
     },
     {
       "name": "oauth",
       "limit": "4.1 kB",
-      "path": "./dist/index.js",
+      "path": "./dist/esm/index.js",
       "import": "{ createOAuthAPIClient }"
     }
   ],
-  "engines": {
-    "node": ">=22.0.0"
-  },
   "packageManager": "npm@12.0.1"
 }

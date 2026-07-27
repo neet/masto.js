@@ -43,3 +43,6 @@ export interface AnnouncementsResource {
    */
   list: Method<Paginator<Announcement[]>>;
 }
+
+/** @deprecated Use `AnnouncementsResource` instead. */
+export type AnnouncementRepository = AnnouncementsResource;

@@ -36,3 +36,6 @@ export interface ConversationsResource {
     DefaultPaginationParams
   >;
 }
+
+/** @deprecated Use `ConversationsResource` instead. */
+export type ConversationRepository = ConversationsResource;

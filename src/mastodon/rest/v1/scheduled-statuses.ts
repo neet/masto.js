@@ -51,3 +51,6 @@ export interface ScheduledStatusesResource {
     DefaultPaginationParams
   >;
 }
+
+/** @deprecated Use `ScheduledStatusesResource` instead. */
+export type ScheduledStatusRepository = ScheduledStatusesResource;

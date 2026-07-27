@@ -1,5 +1,5 @@
 import { type HttpMetaParams } from "../../../../interfaces/index.js";
-import { type admin } from "../../../entities/v1/index.js";
+import { type Admin } from "../../../entities/v1/index.js";
 import { type Method } from "../../../method.js";
 import { type Paginator } from "../../../paginator.js";
 import { type DefaultPaginationParams } from "../../../resource.js";
@@ -14,14 +14,14 @@ export interface DomainAllows$SelectResource {
    * @return DomainAllow
    * @see https://docs.joinmastodon.org/methods/admin/domain_allows/#get-one
    */
-  fetch: Method<admin.DomainAllow>;
+  fetch: Method<Admin.DomainAllow>;
 
   /**
    * Delete a domain from the allowed domains list.
    * @return DomainAllow
    * @see https://docs.joinmastodon.org/methods/admin/
    */
-  remove: Method<admin.DomainAllow>;
+  remove: Method<Admin.DomainAllow>;
 }
 
 export interface DomainAllowsResource {
@@ -34,7 +34,7 @@ export interface DomainAllowsResource {
    * @see https://docs.joinmastodon.org/methods/admin/domain_allows/#get
    */
   list: Method<
-    Paginator<admin.DomainAllow[], DefaultPaginationParams>,
+    Paginator<Admin.DomainAllow[], DefaultPaginationParams>,
     DefaultPaginationParams
   >;
 
@@ -46,8 +46,11 @@ export interface DomainAllowsResource {
    * @see https://docs.joinmastodon.org/methods/admin/domain_allows/#get-one
    */
   create: Method<
-    admin.DomainAllow,
+    Admin.DomainAllow,
     CreateDomainAllowParams,
     HttpMetaParams<"json">
   >;
 }
+
+/** @deprecated Use `DomainAllowsResource` instead */
+export type DomainAllowRepository = DomainAllowsResource;

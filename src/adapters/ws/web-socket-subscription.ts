@@ -1,3 +1,5 @@
+import type WebSocket from "isomorphic-ws";
+
 import {
   type Logger,
   type Serializer,

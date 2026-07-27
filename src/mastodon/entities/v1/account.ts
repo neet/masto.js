@@ -114,7 +114,7 @@ export interface Account {
 /**
  * @see https://docs.joinmastodon.org/entities/Account/#CredentialAccount
  */
-export interface CredentialAccount extends Account {
+export interface AccountCredentials extends Account {
   /**
    * Note the extra `source` property, which is not visible on accounts other than your own.
    * Also note that plain-text is used within `source` and HTML is used for their

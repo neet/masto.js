@@ -28,7 +28,6 @@
 
 ## Migration Guides
 
-- [Migrate from v7 to v8](https://github.com/neet/masto.js/releases/tag/v8.0.0)
 - [Migrate from v6 to v7](https://github.com/neet/masto.js/releases/tag/v7.0.0)
 - [Migrate from v5 to v6](https://github.com/neet/masto.js/releases/tag/v6.0.0)
 - [Migrate from v4 to v5](https://github.com/neet/masto.js/releases/tag/v5.0.0)
@@ -47,7 +46,7 @@ First, you must install _Node.js_ and _npm_ in your environment. Follow [the npm
 
 The minimal required version of dependencies is as follows:
 
-- **Node.js**: `>= 22.x`
+- **Node.js**: `>= 20.x`
 - **npm**: `>= 9.x`
 - **TypeScript** (optional peer dependency): `>= 5.0.0`
 

@@ -148,3 +148,6 @@ export interface NotificationsResource {
    */
   clear: Method<void>;
 }
+
+/** @deprecated Use `NotificationsResource` instead */
+export type NotificationRepository = NotificationsResource;

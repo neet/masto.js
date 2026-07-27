@@ -31,3 +31,6 @@ export interface SearchResource {
    */
   list: Method<Paginator<Search, SearchParams>, SearchParams>;
 }
+
+/** @deprecated Use `SearchResource` instead. */
+export type SearchRepository = SearchResource;

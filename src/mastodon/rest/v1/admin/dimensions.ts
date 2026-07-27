@@ -1,6 +1,6 @@
 import { type HttpMetaParams } from "../../../../interfaces/index.js";
 import { type DimensionKey } from "../../../entities/v1/admin/index.js";
-import { type admin } from "../../../entities/v1/index.js";
+import { type Admin } from "../../../entities/v1/index.js";
 import { type Method } from "../../../method.js";
 
 export interface FetchDimensionParams {
@@ -56,8 +56,11 @@ export interface DimensionsResource {
    * @see https://docs.joinmastodon.org/methods/admin/dimensions/#get
    */
   create: Method<
-    admin.Dimension[],
+    Admin.Dimension[],
     FetchDimensionParams,
     HttpMetaParams<"json">
   >;
 }
+
+/** @deprecated Use `DimensionsResource` instead. */
+export type DimensionRepository = DimensionsResource;

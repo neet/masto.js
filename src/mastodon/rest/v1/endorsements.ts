@@ -14,3 +14,6 @@ export interface EndorsementsResource {
     DefaultPaginationParams
   >;
 }
+
+/** @deprecated Use `EndorsementsResource` instead. */
+export type EndorsementRepository = EndorsementsResource;

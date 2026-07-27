@@ -23,3 +23,8 @@ export interface EmailsConfirmationsResource {
 export interface EmailsResource {
   confirmations: EmailsConfirmationsResource;
 }
+
+/** @deprecated Use `EmailsResource` instead. */
+export type EmailRepository = EmailsResource;
+/** @deprecated Use `EmailsConfirmationsResource` instead. */
+export type EmailsConfirmationResource = EmailsConfirmationsResource;

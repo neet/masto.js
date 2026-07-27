@@ -63,3 +63,8 @@ export interface FiltersResource {
    */
   create: Method<Filter, CreateFilterParams, HttpMetaParams<"json">>;
 }
+
+/** @deprecated Use `FiltersResource` instead. */
+export type FilterRepository = FiltersResource;
+/** @deprecated Use `Filters$SelectResource` instead. */
+export type Filter$SelectResource = Filters$SelectResource;

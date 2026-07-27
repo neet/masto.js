@@ -97,3 +97,6 @@ export interface ListsResource {
    */
   create: Method<List, CreateListParams, HttpMetaParams<"json">>;
 }
+
+/** @deprecated Use `ListsResource` instead. */
+export type ListRepository = ListsResource;

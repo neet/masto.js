@@ -321,3 +321,6 @@ export interface StatusesResource {
     ): Promise<HttpResponse<ScheduledStatus>>;
   };
 }
+
+/** @deprecated Use `StatusesResource` instead. */
+export type StatusRepository = StatusesResource;

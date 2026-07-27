@@ -96,3 +96,6 @@ export interface TimelinesResource {
   direct: TimelinesDirectResource;
   link: TimelinesLinkResource;
 }
+
+/** @deprecated Use `TimelinesResource` instead. */
+export type TimelineRepository = TimelinesResource;
