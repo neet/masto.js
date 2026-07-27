@@ -1,7 +1,7 @@
 import { type HttpMetaParams } from "../../../interfaces/index.js";
 import {
-  type AccountCredentials,
   type AccountField,
+  type CredentialAccount,
   type Profile,
 } from "../../entities/v1/index.js";
 import { type Method } from "../../method.js";
@@ -43,12 +43,12 @@ export interface UpdateProfileParams {
 
 export interface ProfileAvatarResource {
   /** @see https://docs.joinmastodon.org/methods/profile/#delete-profile-avatar */
-  remove: Method<AccountCredentials>;
+  remove: Method<CredentialAccount>;
 }
 
 export interface ProfileHeaderResource {
   /** @see https://docs.joinmastodon.org/methods/profile/#delete-profile-header */
-  remove: Method<AccountCredentials>;
+  remove: Method<CredentialAccount>;
 }
 
 export interface ProfileResource {
@@ -74,6 +74,3 @@ export interface ProfileResource {
     HttpMetaParams<"multipart-form">
   >;
 }
-
-/** @deprecated Use `ProfileResource` instead. */
-export type ProfileRepository = ProfileResource;

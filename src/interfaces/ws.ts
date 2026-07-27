@@ -1,5 +1,3 @@
-import { type WebSocket } from "isomorphic-ws";
-
 export interface WebSocketConnector extends AsyncIterable<WebSocket> {
   acquire(): Promise<WebSocket>;
   kill(): void;

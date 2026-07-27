@@ -11,12 +11,10 @@ Masto.js is a universal Mastodon API client for JavaScript/TypeScript that works
 ### Building
 
 ```bash
-npm run build              # Build both ESM and CJS outputs
-npm run build:esm          # Build ESM only
-npm run build:cjs          # Build CJS only
+npm run build              # Build ESM output to dist/
 ```
 
-The build process uses `tsconfig-to-dual-package` to generate dual ESM/CJS outputs from separate TypeScript configs.
+The package is ESM-only (since v8). The build runs `tsc --project tsconfig.esm.json` and outputs directly to `dist/`.
 
 ### Testing
 
@@ -153,18 +151,17 @@ Clients and subscriptions implement `Symbol.dispose` for explicit resource clean
 
 ## Build System
 
-- Uses TypeScript with separate configs for ESM (`tsconfig.esm.json`) and CJS (`tsconfig.cjs.json`)
-- `tsconfig-to-dual-package` generates proper package.json files in dist/ directories
-- Outputs both `dist/esm/` and `dist/cjs/` with correct module types
+- ESM-only (since v8) — CJS output and the dual-package tooling were removed
+- `tsc --project tsconfig.esm.json` compiles `src/` to a flat `dist/` directory
+- `exports` in package.json exposes `./dist/index.js` plus per-file subpaths (`./*.js`)
 
 ## Dependencies
 
 - `change-case` - Case conversion
 - `events-to-async` - Event stream to async iterator conversion
-- `isomorphic-ws` + `ws` - WebSocket support for Node.js
 - `ts-custom-error` - Custom error classes
 
-Keep bundle size minimal - this is a key project goal tracked via size-limit in package.json (4.0 kB per client type).
+Keep bundle size minimal - this is a key project goal tracked via size-limit in package.json (~4 kB per client type).
 
 ## Common Tasks
 

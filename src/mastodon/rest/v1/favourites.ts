@@ -15,6 +15,3 @@ export interface FavouritesResource {
     DefaultPaginationParams
   >;
 }
-
-/** @deprecated Use `FavouritesResource` instead. */
-export type FavouriteRepository = FavouritesResource;
