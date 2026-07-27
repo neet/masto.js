@@ -19,7 +19,7 @@ export interface Report {
   /** Whether an action was taken yet. */
   actionTaken: boolean;
   /** When an action was taken against the report. */
-  actionTakenAt?: string | null;
+  actionTakenAt: string | null;
   /**
    * The generic reason for the report.
    *
@@ -37,9 +37,9 @@ export interface Report {
   /** When the report was created */
   createdAt: string;
   /** IDs of statuses that have been attached to this report for additional context. */
-  statusIds?: string[] | null;
+  statusIds: string[] | null;
   /** IDs of the rules that have been cited as a violation by this report. */
-  ruleIds?: string[] | null;
+  ruleIds: string[] | null;
   /** The account that was reported. */
   targetAccount: Account;
 }

@@ -30,7 +30,7 @@ export interface Relationship {
   /** Are you featuring this user on your profile? */
   endorsed: boolean;
   /** Personal note for this account */
-  note?: string | null;
+  note: string;
   /** Whether the represented user has requested to follow you */
   requestedBy: boolean;
 }

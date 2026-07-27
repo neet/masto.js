@@ -20,9 +20,9 @@ export interface DomainBlock {
   /** The reject report of the domain. */
   rejectReposts: boolean;
   /** The private comment of the domain. */
-  privateComment?: string | null;
+  privateComment: string | null;
   /** The public comment of the domain. */
-  publicComment?: string | null;
+  publicComment: string | null;
   /** The obfuscate of the domain block. */
   obfuscate: boolean;
   /** SHA256 of the domain. https://github.com/mastodon/mastodon/pull/29092 */

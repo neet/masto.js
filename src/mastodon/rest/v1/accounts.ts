@@ -66,7 +66,7 @@ export interface UpdateCredentialsParams {
    * Profile metadata `name` and `value`.
    * (By default, max 4 fields and 255 characters per property/value)
    */
-  readonly fieldsAttributes?: AccountField[] | null;
+  readonly fieldsAttributes?: Pick<AccountField, "name" | "value">[] | null;
 }
 
 export interface MuteAccountParams {

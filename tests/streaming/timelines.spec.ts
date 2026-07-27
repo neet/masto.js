@@ -12,7 +12,7 @@ describe("websocket", () => {
     const eventsPromise = subscription
       .values()
       .filter((e): e is mastodon.streaming.UpdateEvent => e.event === "update")
-      .filter((e) => e.payload.content.includes(random))
+      .filter((e) => e.payload.content?.includes(random))
       .take(1)
       .toArray();
 
@@ -36,7 +36,7 @@ describe("websocket", () => {
     const eventsPromise = subscription
       .values()
       .filter((e): e is mastodon.streaming.UpdateEvent => e.event === "update")
-      .filter((e) => e.payload.content.includes(random))
+      .filter((e) => e.payload.content?.includes(random))
       .take(1)
       .toArray();
 
@@ -65,7 +65,7 @@ describe("websocket", () => {
     const eventsPromise = subscription
       .values()
       .filter((e): e is mastodon.streaming.UpdateEvent => e.event === "update")
-      .filter((e) => e.payload.content.includes(random))
+      .filter((e) => e.payload.content?.includes(random))
       .take(1)
       .toArray();
 
@@ -90,7 +90,7 @@ describe("websocket", () => {
     const eventsPromise = subscription
       .values()
       .filter((e): e is mastodon.streaming.UpdateEvent => e.event === "update")
-      .filter((e) => e.payload.content.includes(random))
+      .filter((e) => e.payload.content?.includes(random))
       .take(1)
       .toArray();
 
@@ -120,7 +120,7 @@ describe("websocket", () => {
     const eventsPromise = subscription
       .values()
       .filter((e): e is mastodon.streaming.UpdateEvent => e.event === "update")
-      .filter((e) => e.payload.content.includes(hashtag))
+      .filter((e) => e.payload.content?.includes(hashtag))
       .take(1)
       .toArray();
 
@@ -146,7 +146,7 @@ describe("websocket", () => {
     const eventsPromise = subscription
       .values()
       .filter((e): e is mastodon.streaming.UpdateEvent => e.event === "update")
-      .filter((e) => e.payload.content.includes(hashtag))
+      .filter((e) => e.payload.content?.includes(hashtag))
       .take(1)
       .toArray();
 

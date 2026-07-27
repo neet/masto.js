@@ -10,6 +10,7 @@ import tseslint from "typescript-eslint";
 
 import allowNullInOptionalParameter from "./eslint/allow-null-in-optional-parameter.js";
 import namingConvention from "./eslint/naming-convention.js";
+import separateOptionalNullableProperty from "./eslint/separate-optional-nullable-property.js";
 
 export default defineConfig(
   eslint.configs.recommended,
@@ -31,6 +32,7 @@ export default defineConfig(
         rules: {
           "allow-null-in-optional-parameter": allowNullInOptionalParameter,
           "naming-convention": namingConvention,
+          "separate-optional-nullable-property": separateOptionalNullableProperty,
         },
       },
     },
@@ -76,6 +78,12 @@ export default defineConfig(
     rules: {
       "masto/naming-convention": ["error"],
       "masto/allow-null-in-optional-parameter": ["error"],
+    },
+  },
+  {
+    files: ["src/mastodon/entities/**/*.ts"],
+    rules: {
+      "masto/separate-optional-nullable-property": ["error"],
     },
   },
   {

@@ -70,11 +70,11 @@ export interface Instance {
   configuration: InstanceConfiguration;
 
   /** Banner image for the website. */
-  thumbnail?: string | null;
+  thumbnail: string | null;
   /** A user that can be contacted, as an alternative to `email`. */
-  contactAccount?: Account | null;
+  contactAccount: Account | null;
 
-  rules?: Rule[] | null;
+  rules: Rule[];
 }
 
 export interface InstanceURLs {

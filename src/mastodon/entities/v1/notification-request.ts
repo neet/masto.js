@@ -13,5 +13,5 @@ export interface NotificationRequest {
   /** How many of this account’s notifications were filtered. */
   notificationsCount: number;
   /** Most recent status associated with a filtered notification from that account. */
-  lastStatus?: Status | null;
+  lastStatus?: Status;
 }

@@ -53,7 +53,7 @@ export interface Status {
   /** The account that authored this status. */
   account: Account;
   /** HTML-encoded status content. */
-  content: string;
+  content?: string;
   /** Visibility of this status. */
   visibility: StatusVisibility;
   /** Is this status marked as sensitive content? */
@@ -63,7 +63,7 @@ export interface Status {
   /** Media that is attached to this status. */
   mediaAttachments: MediaAttachment[];
   /** The application used to post this status. */
-  application: Application;
+  application?: Application;
 
   /** Mentions of users within the status content. */
   mentions: StatusMention[];
@@ -81,7 +81,7 @@ export interface Status {
   /** How many replies this status has received. */
   repliesCount: number;
   /** Information about the status being quoted, if any */
-  quote?: Quote | ShallowQuote | null;
+  quote: Quote | ShallowQuote | null;
   /** How many replies this status has received. */
   quotesCount: number;
   /**
@@ -91,34 +91,34 @@ export interface Status {
   quoteApproval: QuoteApproval;
 
   /** A link to the status's HTML representation. */
-  url?: string | null;
+  url: string | null;
   /** ID of the status being replied. */
-  inReplyToId?: string | null;
+  inReplyToId: string | null;
   /** ID of the account being replied to. */
-  inReplyToAccountId?: string | null;
+  inReplyToAccountId: string | null;
   /** The status being reblogged. */
-  reblog?: Status | null;
+  reblog: Status | null;
   /** The poll attached to the status. */
-  poll?: Poll | null;
+  poll: Poll | null;
   /** Preview card for links included within status content. */
-  card?: PreviewCard | null;
+  card: PreviewCard | null;
   /** Primary language of this status. */
-  language?: string | null;
+  language: string | null;
   /**
    * Plain-text source of a status. Returned instead of `content` when status is deleted,
    * so the user may redraft from the source text without the client having
    * to reverse-engineer the original text from the HTML content.
    */
-  text?: string | null;
+  text?: string;
 
   /** Have you favourited this status? */
-  favourited?: boolean | null;
+  favourited?: boolean;
   /** Have you boosted this status? */
-  reblogged?: boolean | null;
+  reblogged?: boolean;
   /** Have you muted notifications for this status's conversation? */
-  muted?: boolean | null;
+  muted?: boolean;
   /** Have you bookmarked this status? */
-  bookmarked?: boolean | null;
+  bookmarked?: boolean;
   /** Have you pinned this status? Only appears if the status is pin-able. */
-  pinned?: boolean | null;
+  pinned?: boolean;
 }

@@ -16,5 +16,5 @@ export interface DomainBlock {
   /** The level to which the domain is blocked. */
   severity: DomainBlockSeverity;
   /** An optional reason for the domain block. */
-  comment?: string | null;
+  comment?: string;
 }

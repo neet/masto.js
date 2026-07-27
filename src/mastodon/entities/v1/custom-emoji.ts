@@ -13,5 +13,5 @@ export interface CustomEmoji {
   visibleInPicker: boolean;
 
   /** Used for sorting custom emoji in the picker. */
-  category?: string | null;
+  category: string | null;
 }

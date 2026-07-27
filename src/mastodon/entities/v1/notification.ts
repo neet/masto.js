@@ -20,21 +20,21 @@ interface BaseNotification<T> {
 
 type BaseNotificationPlain<T> = BaseNotification<T> & {
   /** Status that was the object of the notification, e.g. in mentions, reblogs, favourites, or polls. */
-  status?: undefined | null;
+  status?: undefined;
   /** Report that was the object of the notification. Attached when type of the notification is admin.report. */
-  report?: undefined | null;
+  report?: undefined;
 };
 
 type BaseNotificationWithStatus<T> = BaseNotification<T> & {
   /** Status that was the object of the notification, e.g. in mentions, reblogs, favourites, or polls. */
   status: Status;
   /** Report that was the object of the notification. Attached when type of the notification is admin.report. */
-  report?: undefined | null;
+  report?: undefined;
 };
 
 type BaseNotificationWithReport<T> = BaseNotification<T> & {
   /** Status that was the object of the notification, e.g. in mentions, reblogs, favourites, or polls. */
-  status?: undefined | null;
+  status?: undefined;
   /** Report that was the object of the notification. Attached when type of the notification is admin.report. */
   report: Report;
 };

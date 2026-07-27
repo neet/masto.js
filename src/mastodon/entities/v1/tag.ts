@@ -22,9 +22,9 @@ export interface Tag {
   /** A link to the hashtag on the instance. */
   url: string;
   /** Usage statistics for given days. */
-  history?: TagHistory[] | null;
+  history: TagHistory[];
   /** Whether the current token’s authorized user is following this tag. */
-  following?: boolean | null;
+  following?: boolean;
   /** Whether the current token’s authorized user is featuring this tag on their profile. */
-  featuring?: boolean | null;
+  featuring?: boolean;
 }

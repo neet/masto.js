@@ -38,7 +38,7 @@ export interface UpdateProfileParams {
   /** Domains of websites allowed to credit the account. */
   readonly attributionDomains?: string[] | null;
   /** Profile metadata `name` and `value`. */
-  readonly fieldsAttributes?: AccountField[] | null;
+  readonly fieldsAttributes?: Pick<AccountField, "name" | "value">[] | null;
 }
 
 export interface ProfileAvatarResource {

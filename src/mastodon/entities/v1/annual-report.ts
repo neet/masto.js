@@ -43,7 +43,7 @@ export interface AnnualReport {
   /** The schema version of the report, defines how to interpret data. */
   schemaVersion: number;
   /** An optional link to a shareable version of the report. */
-  shareUrl?: string | null;
+  shareUrl: string | null;
   /** The account ID the report is about. */
   accountId: string;
 }

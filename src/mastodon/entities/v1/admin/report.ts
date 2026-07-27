@@ -13,7 +13,7 @@ export interface Report {
   /** The action taken to resolve this report. */
   actionTaken: boolean;
   /** When an action was taken, if this report is currently resolved. */
-  actionTakenAt?: string | null;
+  actionTakenAt: string | null;
   /** The category under which the report is classified */
   category: ReportCategory;
   /** An optional reason for reporting. */
@@ -29,7 +29,7 @@ export interface Report {
   /** The account being reported. */
   targetAccount: Account;
   /** The account of the moderator assigned to this report. */
-  assignedAccount?: Account | null;
+  assignedAccount: Account | null;
   /** The action taken by the moderator who handled the report. */
   actionTakenByAccount: Account;
   /** Statuses attached to the report, for context. */

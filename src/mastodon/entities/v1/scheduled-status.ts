@@ -8,7 +8,7 @@ export interface StatusParams extends Pick<
   /** Content of the status */
   text: string;
   /** IDs of media attachments */
-  mediaIds?: string[] | null;
+  mediaIds: string[] | null;
   /** ID of the application */
   applicationId: string;
 }

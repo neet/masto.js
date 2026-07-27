@@ -31,7 +31,7 @@ export interface Filter {
   /** The contexts in which the filter should be applied. */
   context: FilterContext[];
   /** When the filter should no longer be applied */
-  expiresAt?: string | null;
+  expiresAt: string | null;
   /**
    * The action to be taken when a status matches this filter.
    *
@@ -43,7 +43,7 @@ export interface Filter {
    */
   filterAction: FilterAction;
   /** The keywords grouped under this filter. */
-  keywords: FilterKeyword[];
+  keywords?: FilterKeyword[];
   /** The statuses grouped under this filter. */
-  statuses: FilterStatus[];
+  statuses?: FilterStatus[];
 }

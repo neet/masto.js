@@ -12,18 +12,18 @@ export interface InstanceUsage {
 
 export interface InstanceThumbnailVersions {
   /** The URL for the thumbnail image at 1x resolution. */
-  "@1x": string;
+  "@1x"?: string;
   /** The URL for the thumbnail image at 2x resolution. */
-  "@2x": string;
+  "@2x"?: string;
 }
 
 export interface InstanceThumbnail {
   /** The URL for the thumbnail image. */
   url: string;
   /** A hash computed by [the BlurHash algorithm](https://github.com/woltapp/blurhash), for generating colorful preview thumbnails when media has not been downloaded yet. */
-  blurhash: string;
+  blurhash?: string;
   /** Links to scaled resolution images, for high DPI screens. */
-  versions: InstanceThumbnailVersions;
+  versions?: InstanceThumbnailVersions;
   /** The thumbnail’s alt text (a description of the image to help people with visual impairments understand its content). */
   description: string;
 }
@@ -32,7 +32,7 @@ export interface InstanceUrls {
   /** The WebSockets URL for connecting to the streaming API. */
   streaming: string;
   /** Instance status URL */
-  status?: string;
+  status: string | null;
 }
 
 export interface InstanceAccountsConfiguration {
@@ -123,11 +123,11 @@ export interface InstanceRegistrations {
   /** Whether registrations require moderator approval. */
   approvalRequired: boolean;
   /** A custom message to be shown when registrations are closed. */
-  message?: string | null;
+  message: string | null;
   /** A minimum age required to register, if configured. */
-  minAge?: number | null;
+  minAge: number | null;
   /** Whether registrations require the user to provide a reason for joining. Only applicable when `registrations[approval_required]` is true. */
-  reasonRequired?: boolean | null;
+  reasonRequired: boolean | null;
 }
 
 export interface InstanceContact {
@@ -183,5 +183,5 @@ export interface Instance {
   /** An itemized list of rules for this website. */
   rules: Rule[];
   /** The current Wrapstodon (Annual report campaign identifier (year), if any. */
-  wrapstodon?: string | null;
+  wrapstodon: string | null;
 }

@@ -14,5 +14,5 @@ export interface Conversation {
   unread: boolean;
 
   /** The last status in the conversation, to be used for optional display. */
-  lastStatus?: Status | null;
+  lastStatus: Status | null;
 }

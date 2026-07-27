@@ -97,7 +97,7 @@ describe("filters", () => {
 
     try {
       filter = await session.rest.v2.filters.$select(filter.id).update({
-        keywordsAttributes: [{ id: filter.keywords[0].id, _destroy: true }],
+        keywordsAttributes: [{ id: filter.keywords?.[0].id, _destroy: true }],
       });
       expect(filter.keywords).toHaveLength(1);
     } finally {

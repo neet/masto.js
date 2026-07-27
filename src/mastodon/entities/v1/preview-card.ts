@@ -44,30 +44,30 @@ export interface PreviewCard {
    * The author of the original resource.
    * @deprecated Use `authors` instead
    */
-  authorName?: string | null;
+  authorName: string;
   /**
    * A link to the author of the original resource.
    * @deprecated Use `authors` instead
    */
-  authorUrl?: string | null;
+  authorUrl: string;
   /** The provider of the original resource. */
-  providerName?: string | null;
+  providerName: string;
   /** A link to the provider of the original resource. */
-  providerUrl?: string | null;
+  providerUrl: string;
   /** HTML to be used for generating the preview card. */
-  html?: string | null;
+  html: string;
   /** Width of preview, in pixels. */
-  width?: number | null;
+  width: number;
   /** Height of preview, in pixels. */
-  height?: number | null;
+  height: number;
   /** Preview thumbnail. */
-  image?: string | null;
+  image: string | null;
   /** Used for photo embeds, instead of custom `html`. */
   embedUrl: string;
   /** @see https://github.com/mastodon/mastodon/pull/27503 */
-  language?: string;
+  language: string | null;
   /** True if the linked article claims to be written by the current user without the user having the article’s domain in their attribution_domains). This is used to prompt them to review and add the domain. */
-  missingAttribution?: boolean | null;
+  missingAttribution: boolean | null;
 }
 
 export interface TrendLink extends PreviewCard {

@@ -17,17 +17,17 @@ export interface AccountSource {
   /** Metadata about the account. */
   fields: AccountField[];
   /** The default post privacy to be used for new statuses. */
-  privacy?: StatusVisibility | null;
+  privacy: StatusVisibility;
   /** Whether new statuses should be marked sensitive by default. */
-  sensitive?: boolean | null;
+  sensitive: boolean;
   /** The default posting language for new statuses. */
   language: string | null;
   /** The number of pending follow requests. */
-  followRequestsCount?: number | null;
+  followRequestsCount: number;
   /** Whether the user hides the contents of their follows and followers collections. */
-  hideCollections?: boolean | null;
+  hideCollections: boolean | null;
   /**  Whether the account has opted into discovery features such as the profile directory. */
-  discoverable?: boolean | null;
+  discoverable: boolean | null;
   /** Whether public posts should be searchable to anyone. */
   indexable: boolean;
   /** The default quote policy to be used for new statuses. */
@@ -45,7 +45,7 @@ export interface AccountField {
   /** The value associated with the `name` key. */
   value: string;
   /** Timestamp of when the server verified a URL value for a rel="me” link. */
-  verifiedAt?: string | null;
+  verifiedAt: string | null;
 }
 
 /**
@@ -84,15 +84,15 @@ export interface Account {
   /** Indicates that the account represents a Group actor. */
   group: boolean;
   /** Whether the account has opted into discovery features such as the profile directory. */
-  discoverable?: boolean | null;
+  discoverable: boolean | null;
   /** Whether the local user has opted out of being indexed by search engines. */
-  noindex?: boolean | null;
+  noindex?: boolean;
   /** Indicates that the profile is currently inactive and that its user has moved to a new account. */
-  moved?: Account | null;
+  moved?: Account;
   /** An extra entity returned when an account is suspended. **/
-  suspended?: boolean | null;
+  suspended?: boolean;
   /** An extra attribute returned only when an account is silenced. If true, indicates that the account should be hidden behind a warning screen. */
-  limited?: boolean | null;
+  limited?: boolean;
   /** When the account was created. */
   createdAt: string;
   /** Time of the last status posted */
@@ -106,7 +106,7 @@ export interface Account {
   /** Roles that have been granted to this account. */
   roles: Pick<Role, "id" | "name" | "color">[]; // TODO: Create an entity when documentation is updated
   /** https://github.com/mastodon/mastodon/pull/23591 */
-  memorial?: boolean | null;
+  memorial?: boolean;
   /** Summary of the account’s policy with regards to being featured in a Collection and how it applies to the user making the request. */
   featureApproval: FeatureApproval;
 }

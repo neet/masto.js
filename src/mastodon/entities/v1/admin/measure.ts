@@ -33,7 +33,7 @@ export interface Measure {
   /** The unique keystring for the requested measure. */
   key: MeasureKey;
   /** The units associated with this data item’s value, if applicable. */
-  unit?: string | null;
+  unit: string | null;
   /** The numeric total associated with the requested measure. */
   total: string;
   /** A human-readable formatted value for this data item. */

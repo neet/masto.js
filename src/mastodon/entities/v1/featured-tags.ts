@@ -12,5 +12,5 @@ export interface FeaturedTag {
   /** The number of authored statuses containing this hashtag */
   statusesCount: number;
   /** The timestamp of the last authored status containing this hashtag. */
-  lastStatusAt?: string | null;
+  lastStatusAt: string | null;
 }

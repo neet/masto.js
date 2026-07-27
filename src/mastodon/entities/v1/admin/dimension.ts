@@ -6,9 +6,9 @@ export interface DimensionData {
   /** The value for this data item. */
   value: string;
   /** The units associated with this data item’s value, if applicable. */
-  unit?: string | null;
+  unit?: string;
   /** A human-readable formatted value for this data item. */
-  humanValue?: string | null;
+  humanValue?: string;
 }
 
 export interface DimensionKeyRegistry {

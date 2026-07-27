@@ -28,7 +28,7 @@ export interface AccountWarning {
   /** Account against which a moderation decision has been taken. */
   targetAccount: Account;
   /** Appeal submitted by the target account, if any. */
-  appeal?: Appeal | null;
+  appeal: Appeal | null;
   /** When the event took place. */
   createdAt: string;
 }
