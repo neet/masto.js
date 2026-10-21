@@ -59,7 +59,7 @@
     "eslint-import-resolver-typescript": "^4.4.5",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-simple-import-sort": "^14.0.0",
-    "eslint-plugin-unicorn": "^65.0.1",
+    "eslint-plugin-unicorn": "^72.0.0",
     "get-port": "^7.2.0",
     "ioredis": "^5.11.1",
     "iterator-helpers-polyfill": "^3.0.1",
