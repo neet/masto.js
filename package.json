@@ -46,34 +46,34 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",
-    "@oxc-project/runtime": "^0.140.0",
-    "@size-limit/preset-small-lib": "^13.0.2",
-    "@tsconfig/node22": "^22.0.5",
-    "@types/node": "^26.1.1",
-    "@types/ws": "^8.18.1",
-    "@typescript-eslint/rule-tester": "^8.64.0",
-    "@vitest/coverage-v8": "^4.1.10",
-    "cspell": "^10.0.1",
-    "eslint": "^9.39.4",
+    "@oxc-project/runtime": "^0.156.0",
+    "@size-limit/preset-small-lib": "^14.3.0",
+    "@tsconfig/node22": "^22.0.6",
+    "@types/node": "^26.6.6",
+    "@types/ws": "^8.18.2",
+    "@typescript-eslint/rule-tester": "^8.72.1",
+    "@vitest/coverage-v8": "^5.0.5",
+    "cspell": "^10.4.0",
+    "eslint": "^9.39.5",
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-typescript": "^4.4.5",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-simple-import-sort": "^14.0.0",
     "eslint-plugin-unicorn": "^65.0.1",
     "get-port": "^7.2.0",
-    "ioredis": "^5.11.1",
+    "ioredis": "^6.0.0",
     "iterator-helpers-polyfill": "^3.0.1",
     "npm-run-all": "^4.1.5",
-    "prettier": "^3.9.5",
-    "size-limit": "^12.1.0",
-    "tslib": "^2.8.1",
+    "prettier": "^3.9.10",
+    "size-limit": "^14.3.0",
+    "tslib": "^2.9.1",
     "typedoc": "^0.28.20",
     "typedoc-plugin-missing-exports": "^4.1.4",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.64.0",
-    "undici": "^8.7.0",
-    "vitest": "^4.1.10",
-    "ws": "^8.21.1"
+    "typescript-eslint": "^8.72.1",
+    "undici": "^8.12.3",
+    "vitest": "^5.0.5",
+    "ws": "^8.22.1"
   },
   "files": [
     "README.md",
@@ -119,5 +119,5 @@
   "engines": {
     "node": ">=22.0.0"
   },
-  "packageManager": "npm@12.0.1"
+  "packageManager": "npm@12.2.1"
 }
