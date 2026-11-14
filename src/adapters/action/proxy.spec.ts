@@ -136,4 +136,18 @@ describe("RequestBuilder", () => {
     expect(action?.path).toBe("/root/foo/bar");
     expect(action?.data).toBe(data);
   });
+
+  it("builds a request with a special character", () => {
+    let action: AnyAction | undefined;
+
+    const builder: any = createActionProxy({
+      dispatch: async <T>(a: AnyAction) => {
+        action = a;
+        return {} as T;
+      },
+    });
+    builder.foo.$select("1?x=").create();
+    expect(action?.type).toBe("create");
+    expect(action?.path).toBe("/foo/1%3Fx%3D");
+  });
 });
