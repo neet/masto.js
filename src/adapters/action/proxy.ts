@@ -84,9 +84,10 @@ const apply =
     let action = context.pop();
     let raw = false;
 
-    if (action === "$select") {
+    const arg = args.at(0);
+    if (action === "$select" && typeof arg === "string") {
       return createActionProxy<T>(actionDispatcher, {
-        context: [...context, ...(args as string[])],
+        context: [...context, encodeURIComponent(arg)],
         applicable: true,
       });
     }
