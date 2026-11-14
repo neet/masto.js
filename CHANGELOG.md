@@ -1,5 +1,13 @@
 # Changelog
 
+## [8.0.1](https://github.com/neet/masto.js/compare/v8.0.0...v8.0.1) (2026-11-14)
+
+
+### Bug Fixes
+
+* Encode select argument with encodeURIComponent ([61dc095](https://github.com/neet/masto.js/commit/61dc09526c28ed93944783a7ac83d9ee5ff423bb))
+* Encode select argument with encodeURIComponent ([3e0ff67](https://github.com/neet/masto.js/commit/3e0ff6729d8b24071d8c171796c9fdcd29013cf0))
+
 ## [8.0.0](https://github.com/neet/masto.js/compare/v7.13.0...v8.0.0) (2026-07-27)
 
 
